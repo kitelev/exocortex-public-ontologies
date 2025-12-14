@@ -1,0 +1,1016 @@
+@prefix exo:    <https://exocortex.my/ontology/exo#> .
+@prefix ems:    <https://exocortex.my/ontology/ems#> .
+@prefix exocmd: <https://exocortex.my/ontology/exocmd#> .
+@prefix emscmd: <https://exocortex.my/ontology/emscmd#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+# !ems
+<obsidian://vault/03%20Knowledge/ems/!ems.md>
+    exo:Asset_fileName "!ems.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000002" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Asset_description "Effort Management System" ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "https://exocortex.my/ontology/ems#" ;
+    exo:Ontology_imports "[[!exo]]" .
+
+# ems__Effort
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md>
+    exo:Asset_fileName "ems__Effort.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000001" ;
+    exo:Class_description "Базовый класс для всего, что требует усилий — задачи, проекты, области" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# ems__EffortStatus
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md>
+    exo:Asset_fileName "ems__EffortStatus.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000003" ;
+    exo:Class_description "Класс для статусов Effort — Backlog, Todo, Doing, Done, Cancelled" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# ems__EffortStatusBacklog
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md>
+    exo:Asset_fileName "ems__EffortStatusBacklog.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000010" ;
+    exo:Asset_label "Backlog" ;
+    exo:Asset_description "Статус — в бэклоге, не запланировано" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class ems:EffortStatus .
+
+# ems__EffortStatusCancelled
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md>
+    exo:Asset_fileName "ems__EffortStatusCancelled.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000014" ;
+    exo:Asset_label "Cancelled" ;
+    exo:Asset_description "Статус — отменено" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class ems:EffortStatus .
+
+# ems__EffortStatusDoing
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md>
+    exo:Asset_fileName "ems__EffortStatusDoing.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000012" ;
+    exo:Asset_label "Doing" ;
+    exo:Asset_description "Статус — в процессе выполнения" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class ems:EffortStatus .
+
+# ems__EffortStatusDone
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md>
+    exo:Asset_fileName "ems__EffortStatusDone.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000013" ;
+    exo:Asset_label "Done" ;
+    exo:Asset_description "Статус — выполнено" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class ems:EffortStatus .
+
+# ems__EffortStatusTodo
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md>
+    exo:Asset_fileName "ems__EffortStatusTodo.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000011" ;
+    exo:Asset_label "Todo" ;
+    exo:Asset_description "Статус — запланировано к выполнению" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class ems:EffortStatus .
+
+# ems__Effort_endTimestamp
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md>
+    exo:Asset_fileName "ems__Effort_endTimestamp.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000022" ;
+    exo:Asset_label "Effort End Timestamp" ;
+    exo:Asset_description "Время завершения выполнения Effort" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> ;
+    exo:Property_range "dateTime" .
+
+# ems__Effort_startTimestamp
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md>
+    exo:Asset_fileName "ems__Effort_startTimestamp.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000021" ;
+    exo:Asset_label "Effort Start Timestamp" ;
+    exo:Asset_description "Время начала выполнения Effort" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> ;
+    exo:Property_range "dateTime" .
+
+# ems__Effort_status
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md>
+    exo:Asset_fileName "ems__Effort_status.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000020" ;
+    exo:Asset_label "Effort Status" ;
+    exo:Asset_description "Текущий статус Effort" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> .
+
+# ems__Task
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md>
+    exo:Asset_fileName "ems__Task.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000002" ;
+    exo:Class_description "Задача — атомарная единица работы с чётким результатом" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/ems/!ems.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+
+# !emscmd
+<obsidian://vault/03%20Knowledge/emscmd/!emscmd.md>
+    exo:Asset_fileName "!emscmd.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000004" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Asset_description "EMS Commands — команды для управления задачами и усилиями" ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "https://exocortex.my/ontology/emscmd#" ;
+    exo:Ontology_imports "[[!exocmd]]" ;
+    exo:Ontology_imports "[[!ems]]" .
+
+# emscmd__StartTaskCommand
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskCommand.md>
+    exo:Asset_fileName "emscmd__StartTaskCommand.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000001" ;
+    exo:Asset_label "Start Task" ;
+    exo:Asset_description "Начинает выполнение задачи — устанавливает статус Doing и фиксирует время начала" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Command]]" ;
+    exo:Command_icon "play-circle" ;
+    exo:Command_shortcut "Ctrl+Shift+S" ;
+    exo:Command_inputType ems:Task ;
+    exo:Command_precondition <obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskNotDoingPrecondition.md> ;
+    exo:Command_process <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskProcess.md> ;
+    exo:Command_grounding <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskGrounding.md> .
+
+# emscmd__StartTaskGrounding
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskGrounding.md>
+    exo:Asset_fileName "emscmd__StartTaskGrounding.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000020" ;
+    exo:Asset_label "Start Task Grounding" ;
+    exo:Asset_description "SPARQL UPDATE для выполнения команды Start Task" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__SparqlGrounding]]" .
+
+# emscmd__StartTaskProcess
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskProcess.md>
+    exo:Asset_fileName "emscmd__StartTaskProcess.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000003" ;
+    exo:Asset_label "Start Task Process" ;
+    exo:Asset_description "Последовательность шагов для запуска задачи" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Sequence]]" ;
+    exo:Sequence_steps <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetStatus.md> ;
+    exo:Sequence_steps <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetTimestamp.md> ;
+    exo:Sequence_steps <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_Save.md> ;
+    exo:Sequence_steps <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_Notify.md> .
+
+# emscmd__StartTask_Notify
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_Notify.md>
+    exo:Asset_fileName "emscmd__StartTask_Notify.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000013" ;
+    exo:Asset_label "Notify User" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Step]]" ;
+    exo:Step_action "[[exocmd__Notify]]" ;
+    exo:Step_message "Task started! ⏱️" ;
+    exo:Step_notificationType "success" .
+
+# emscmd__StartTask_Save
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_Save.md>
+    exo:Asset_fileName "emscmd__StartTask_Save.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000012" ;
+    exo:Asset_label "Save Asset" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Step]]" ;
+    exo:Step_action "[[exocmd__SaveAsset]]" ;
+    exo:Step_target "$target" .
+
+# emscmd__StartTask_SetStatus
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetStatus.md>
+    exo:Asset_fileName "emscmd__StartTask_SetStatus.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000010" ;
+    exo:Asset_label "Set Status to Doing" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Step]]" ;
+    exo:Step_action "[[exocmd__SetProperty]]" ;
+    exo:Step_target "$target" ;
+    exo:Step_property ems:Effort_status ;
+    exo:Step_value ems:EffortStatusDoing .
+
+# emscmd__StartTask_SetTimestamp
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetTimestamp.md>
+    exo:Asset_fileName "emscmd__StartTask_SetTimestamp.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000011" ;
+    exo:Asset_label "Set Start Timestamp" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Step]]" ;
+    exo:Step_action "[[exocmd__SetProperty]]" ;
+    exo:Step_target "$target" ;
+    exo:Step_property ems:Effort_startTimestamp ;
+    exo:Step_value "$now" ;
+    exo:Step_valueType "[[exocmd__RuntimeValue]]" .
+
+# emscmd__TaskNotDoingPrecondition
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskNotDoingPrecondition.md>
+    exo:Asset_fileName "emscmd__TaskNotDoingPrecondition.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000002" ;
+    exo:Asset_label "Task Not Doing" ;
+    exo:Asset_description "Условие — задача не в статусе Doing. Переиспользуется для команд Start, Resume" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Precondition]]" .
+
+# !exo
+<obsidian://vault/03%20Knowledge/exo/!exo.md>
+    exo:Asset_fileName "!exo.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000001" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Asset_description "Exocortex Core Ontology" ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "https://exocortex.my/ontology/exo#" ;
+    exo:Ontology_imports "[[!rdf]]" ;
+    exo:Ontology_imports "[[!rdfs]]" ;
+    exo:Ontology_imports "[[!owl]]" .
+
+# exo__Asset
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md>
+    exo:Asset_fileName "exo__Asset.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000001" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exo/exo__Resource.md> ;
+    exo:Class_description "Объект, обладающий потенциальной или фактической ценностью для системы" .
+
+# exo__Asset_createdAt
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md>
+    exo:Asset_fileName "exo__Asset_createdAt.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000204" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> ;
+    exo:Property_range "dateTime" ;
+    exo:Asset_description "Дата и время создания ассета" .
+
+# exo__Asset_description
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md>
+    exo:Asset_fileName "exo__Asset_description.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000202" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> ;
+    exo:Property_range "string" ;
+    exo:Asset_description "Описание ассета" .
+
+# exo__Asset_isDefinedBy
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md>
+    exo:Asset_fileName "exo__Asset_isDefinedBy.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000203" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> ;
+    exo:Asset_description "Онтология, в которой определён ассет" .
+
+# exo__Asset_label
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md>
+    exo:Asset_fileName "exo__Asset_label.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000201" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> ;
+    exo:Property_range "string" ;
+    exo:Asset_description "Человекочитаемое название ассета" .
+
+# exo__Asset_uid
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md>
+    exo:Asset_fileName "exo__Asset_uid.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000200" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> ;
+    exo:Property_range "string" ;
+    exo:Asset_description "Уникальный идентификатор ассета (UUID v4)" .
+
+# exo__Class
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md>
+    exo:Asset_fileName "exo__Class.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000002" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass "[[rdfs__Class]]" ;
+    exo:Class_description "Метакласс — класс классов. Все классы являются инстансами exo__Class" .
+
+# exo__Class_description
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md>
+    exo:Asset_fileName "exo__Class_description.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000207" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Class.md> ;
+    exo:Property_range "string" ;
+    exo:Asset_description "Описание класса" .
+
+# exo__Class_superClass
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md>
+    exo:Asset_fileName "exo__Class_superClass.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000206" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Class.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Class.md> ;
+    exo:Asset_description "Родительский класс (наследование)" .
+
+# exo__DatatypeProperty
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md>
+    exo:Asset_fileName "exo__DatatypeProperty.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000005" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exo/exo__Property.md> ;
+    exo:Class_superClass "[[owl__DatatypeProperty]]" ;
+    exo:Class_description "Свойство, значением которого является литерал (string, number, date, etc.)" .
+
+# exo__Function
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md>
+    exo:Asset_fileName "exo__Function.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000102" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_description "Функция — преобразование входных данных в выходные" .
+
+# exo__Instance_class
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md>
+    exo:Asset_fileName "exo__Instance_class.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000205" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Class.md> ;
+    exo:Asset_description "Класс(ы), инстансом которого является ассет" .
+
+# exo__ObjectProperty
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md>
+    exo:Asset_fileName "exo__ObjectProperty.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000004" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exo/exo__Property.md> ;
+    exo:Class_superClass "[[owl__ObjectProperty]]" ;
+    exo:Class_description "Свойство, значением которого является ссылка на другой ассет" .
+
+# exo__Ontology
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md>
+    exo:Asset_fileName "exo__Ontology.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000006" ;
+    exo:Class_description "Онтология — группирует связанные классы и свойства" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class .
+
+# exo__Ontology_imports
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_imports.md>
+    exo:Asset_fileName "exo__Ontology_imports.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000008" ;
+    exo:Asset_label "Ontology Imports" ;
+    exo:Asset_description "Онтологии, на ассеты которых ссылается данная онтология" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> .
+
+# exo__Ontology_url
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md>
+    exo:Asset_fileName "exo__Ontology_url.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000007" ;
+    exo:Asset_label "Ontology URL" ;
+    exo:Asset_description "URL онтологии в формате IRI (например, https://exocortex.my/ontology/exo#)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> ;
+    exo:Property_range "string" .
+
+# exo__Property
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md>
+    exo:Asset_fileName "exo__Property.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000003" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass "[[rdf__Property]]" ;
+    exo:Class_description "Базовый класс для всех свойств. Описывает атрибуты классов" .
+
+# exo__Property_domain
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md>
+    exo:Asset_fileName "exo__Property_domain.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000120" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_superProperty "[[rdfs__domain]]" ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Property.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Class.md> ;
+    exo:Asset_description "Класс, к которому применимо свойство" .
+
+# exo__Property_range
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md>
+    exo:Asset_fileName "exo__Property_range.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000121" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_superProperty "[[rdfs__range]]" ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Property.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Class.md> ;
+    exo:Asset_description "Класс или тип значения свойства" .
+
+# exo__Property_superProperty
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md>
+    exo:Asset_fileName "exo__Property_superProperty.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000122" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exo/exo__Property.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exo/exo__Property.md> ;
+    exo:Asset_description "Родительское свойство (аналог rdfs:subPropertyOf)" .
+
+# exo__Resource
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md>
+    exo:Asset_fileName "exo__Resource.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000101" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exo/!exo.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass "[[rdfs__Resource]]" ;
+    exo:Class_description "Что-то, что содержит или предоставляет доступ к Content" .
+
+# !exocmd
+<obsidian://vault/03%20Knowledge/exocmd/!exocmd.md>
+    exo:Asset_fileName "!exocmd.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000003" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Asset_description "Command Ontology — метаклассы для описания команд" ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "https://exocortex.my/ontology/exocmd#" ;
+    exo:Ontology_imports "[[!exo]]" .
+
+# exocmd__Action
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Action.md>
+    exo:Asset_fileName "exocmd__Action.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000001" ;
+    exo:Class_description "Базовый класс для атомарных действий — примитивы, реализованные в Core" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# exocmd__Command
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md>
+    exo:Asset_fileName "exocmd__Command.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000001" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Function ;
+    exo:Class_description "Команда — действие, которое можно выполнить над ассетом. Вдохновлено OWL-S Service" .
+
+# exocmd__CommandInput
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput.md>
+    exo:Asset_fileName "exocmd__CommandInput.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000030" ;
+    exo:Class_description "Описание входного параметра команды — имя, тип, источник значения" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# exocmd__CommandInput_name
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput_name.md>
+    exo:Asset_fileName "exocmd__CommandInput_name.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000031" ;
+    exo:Asset_label "Input Name" ;
+    exo:Asset_description "Имя переменной входного параметра (например, $newStatus)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput.md> ;
+    exo:Property_range "string" .
+
+# exocmd__CommandInput_promptLabel
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput_promptLabel.md>
+    exo:Asset_fileName "exocmd__CommandInput_promptLabel.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000034" ;
+    exo:Asset_label "Input Prompt Label" ;
+    exo:Asset_description "Текст подсказки для пользователя при запросе значения (source=userPrompt)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput.md> ;
+    exo:Property_range "string" .
+
+# exocmd__CommandInput_source
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput_source.md>
+    exo:Asset_fileName "exocmd__CommandInput_source.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000033" ;
+    exo:Asset_label "Input Source" ;
+    exo:Asset_description "Источник значения — userPrompt (спросить), currentAsset, selection, etc." ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput.md> ;
+    exo:Property_range "string" .
+
+# exocmd__CommandInput_type
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput_type.md>
+    exo:Asset_fileName "exocmd__CommandInput_type.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000032" ;
+    exo:Asset_label "Input Type" ;
+    exo:Asset_description "Тип значения входного параметра — класс ассета" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput.md> ;
+    exo:Property_range exo:Class .
+
+# exocmd__Command_grounding
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_grounding.md>
+    exo:Asset_fileName "exocmd__Command_grounding.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000004" ;
+    exo:Asset_label "Command Grounding" ;
+    exo:Asset_description "Связь с реализацией — как команда выполняется (SPARQL, Core primitive, etc.)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exocmd/exocmd__Grounding.md> .
+
+# exocmd__Command_icon
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_icon.md>
+    exo:Asset_fileName "exocmd__Command_icon.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000005" ;
+    exo:Asset_label "Command Icon" ;
+    exo:Asset_description "Имя иконки для отображения команды в UI (Lucide icon name)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Command_inputType
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_inputType.md>
+    exo:Asset_fileName "exocmd__Command_inputType.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000001" ;
+    exo:Asset_label "Command Input Type" ;
+    exo:Asset_description "Класс ассета, на котором может быть вызвана команда" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range exo:Class .
+
+# exocmd__Command_inputs
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_inputs.md>
+    exo:Asset_fileName "exocmd__Command_inputs.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000007" ;
+    exo:Asset_label "Command Inputs" ;
+    exo:Asset_description "Дополнительные входные параметры команды (кроме базовых $target, $now, $user)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exocmd/exocmd__CommandInput.md> .
+
+# exocmd__Command_precondition
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_precondition.md>
+    exo:Asset_fileName "exocmd__Command_precondition.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000002" ;
+    exo:Asset_label "Command Precondition" ;
+    exo:Asset_description "Условие применимости команды — SPARQL ASK должен вернуть true" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exocmd/exocmd__Precondition.md> .
+
+# exocmd__Command_process
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_process.md>
+    exo:Asset_fileName "exocmd__Command_process.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000003" ;
+    exo:Asset_label "Command Process" ;
+    exo:Asset_description "Процесс выполнения команды — последовательность шагов" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exocmd/exocmd__Process.md> .
+
+# exocmd__Command_shortcut
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Command_shortcut.md>
+    exo:Asset_fileName "exocmd__Command_shortcut.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000006" ;
+    exo:Asset_label "Command Shortcut" ;
+    exo:Asset_description "Клавиатурное сочетание для вызова команды (например, Ctrl+Shift+S)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Command.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Conditional
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Conditional.md>
+    exo:Asset_fileName "exocmd__Conditional.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000006" ;
+    exo:Class_description "Условный процесс — if-then-else ветвление" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exocmd/exocmd__Process.md> .
+
+# exocmd__CreateAsset
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__CreateAsset.md>
+    exo:Asset_fileName "exocmd__CreateAsset.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000005" ;
+    exo:Class_description "Создаёт новый ассет указанного класса" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Action]]" .
+
+# exocmd__DeleteAsset
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__DeleteAsset.md>
+    exo:Asset_fileName "exocmd__DeleteAsset.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000006" ;
+    exo:Class_description "Удаляет ассет из хранилища" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Action]]" .
+
+# exocmd__Grounding
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Grounding.md>
+    exo:Asset_fileName "exocmd__Grounding.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000008" ;
+    exo:Class_description "Связь с реализацией — описывает ЧЕМ выполняется команда. Вдохновлено OWL-S Service Grounding" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# exocmd__Grounding_sparql
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Grounding_sparql.md>
+    exo:Asset_fileName "exocmd__Grounding_sparql.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000020" ;
+    exo:Asset_label "Grounding SPARQL" ;
+    exo:Asset_description "SPARQL UPDATE запрос для выполнения команды" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__SparqlGrounding.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Notify
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Notify.md>
+    exo:Asset_fileName "exocmd__Notify.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000004" ;
+    exo:Class_description "Показывает уведомление пользователю" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Action]]" .
+
+# exocmd__OpenInTab
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__OpenInTab.md>
+    exo:Asset_fileName "exocmd__OpenInTab.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000007" ;
+    exo:Class_description "Открывает ассет в новой вкладке" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Action]]" .
+
+# exocmd__Parallel
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Parallel.md>
+    exo:Asset_fileName "exocmd__Parallel.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000005" ;
+    exo:Class_description "Параллельный процесс — шаги выполняются одновременно" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exocmd/exocmd__Process.md> .
+
+# exocmd__Precondition
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Precondition.md>
+    exo:Asset_fileName "exocmd__Precondition.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000002" ;
+    exo:Class_description "Условие применимости команды. Содержит SPARQL ASK запрос" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# exocmd__Precondition_sparql
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Precondition_sparql.md>
+    exo:Asset_fileName "exocmd__Precondition_sparql.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000010" ;
+    exo:Asset_label "Precondition SPARQL" ;
+    exo:Asset_description "SPARQL ASK запрос для проверки условия. Должен вернуть true для применимости команды" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Precondition.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Process
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Process.md>
+    exo:Asset_fileName "exocmd__Process.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000003" ;
+    exo:Class_description "Абстрактный процесс — описывает КАК выполняется команда. Вдохновлено OWL-S Process Model" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# exocmd__RuntimeValue
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__RuntimeValue.md>
+    exo:Asset_fileName "exocmd__RuntimeValue.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000010" ;
+    exo:Class_description "Маркер runtime-значения — вычисляется в момент выполнения команды ($now, $user, etc.)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class .
+
+# exocmd__SaveAsset
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__SaveAsset.md>
+    exo:Asset_fileName "exocmd__SaveAsset.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000003" ;
+    exo:Class_description "Сохраняет изменения ассета в файловую систему" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Action]]" .
+
+# exocmd__Sequence
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Sequence.md>
+    exo:Asset_fileName "exocmd__Sequence.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000004" ;
+    exo:Class_description "Последовательный процесс — шаги выполняются один за другим" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exocmd/exocmd__Process.md> .
+
+# exocmd__Sequence_steps
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Sequence_steps.md>
+    exo:Asset_fileName "exocmd__Sequence_steps.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000011" ;
+    exo:Asset_label "Sequence Steps" ;
+    exo:Asset_description "Упорядоченный список шагов последовательного процесса" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Sequence.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> .
+
+# exocmd__SetProperty
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__SetProperty.md>
+    exo:Asset_fileName "exocmd__SetProperty.md" ;
+    exo:Asset_uid "30000000-0000-0000-0000-000000000002" ;
+    exo:Class_description "Устанавливает значение свойства ассета" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[exocmd__Action]]" .
+
+# exocmd__SparqlGrounding
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__SparqlGrounding.md>
+    exo:Asset_fileName "exocmd__SparqlGrounding.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000009" ;
+    exo:Class_description "Grounding через SPARQL UPDATE — команда выполняется как SPARQL-запрос к триплстору" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/exocmd/exocmd__Grounding.md> .
+
+# exocmd__Step
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md>
+    exo:Asset_fileName "exocmd__Step.md" ;
+    exo:Asset_uid "20000000-0000-0000-0000-000000000007" ;
+    exo:Class_description "Атомарный шаг процесса — вызов одного Action с параметрами" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass exo:Asset .
+
+# exocmd__Step_action
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_action.md>
+    exo:Asset_fileName "exocmd__Step_action.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000012" ;
+    exo:Asset_label "Step Action" ;
+    exo:Asset_description "Действие, которое выполняет шаг (SetProperty, SaveAsset, Notify, etc.)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/exocmd/exocmd__Action.md> .
+
+# exocmd__Step_message
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_message.md>
+    exo:Asset_fileName "exocmd__Step_message.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000017" ;
+    exo:Asset_label "Step Message" ;
+    exo:Asset_description "Текст сообщения для действия Notify" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Step_notificationType
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_notificationType.md>
+    exo:Asset_fileName "exocmd__Step_notificationType.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000018" ;
+    exo:Asset_label "Step Notification Type" ;
+    exo:Asset_description "Тип уведомления — success, warning, error, info" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Step_property
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_property.md>
+    exo:Asset_fileName "exocmd__Step_property.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000014" ;
+    exo:Asset_label "Step Property" ;
+    exo:Asset_description "Свойство для действия SetProperty" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range exo:Property .
+
+# exocmd__Step_target
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_target.md>
+    exo:Asset_fileName "exocmd__Step_target.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000013" ;
+    exo:Asset_label "Step Target" ;
+    exo:Asset_description "Целевой ассет для действия — переменная ($target) или URI ассета" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Step_value
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_value.md>
+    exo:Asset_fileName "exocmd__Step_value.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000015" ;
+    exo:Asset_label "Step Value" ;
+    exo:Asset_description "Значение для действия — литерал, wikilink на ассет, или runtime-переменная ($now)" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range "string" .
+
+# exocmd__Step_valueType
+<obsidian://vault/03%20Knowledge/exocmd/exocmd__Step_valueType.md>
+    exo:Asset_fileName "exocmd__Step_valueType.md" ;
+    exo:Asset_uid "40000000-0000-0000-0000-000000000016" ;
+    exo:Asset_label "Step Value Type" ;
+    exo:Asset_description "Тип значения — указывает, что значение является runtime-переменной" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/exocmd/!exocmd.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain <obsidian://vault/03%20Knowledge/exocmd/exocmd__Step.md> ;
+    exo:Property_range exo:Class .
+
+# !owl
+<obsidian://vault/03%20Knowledge/owl/!owl.md>
+    exo:Asset_fileName "!owl.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000010" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "http://www.w3.org/2002/07/owl#" ;
+    exo:Asset_description "Web Ontology Language" .
+
+# owl__DatatypeProperty
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md>
+    exo:Asset_fileName "owl__DatatypeProperty.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000104" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/owl/!owl.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_description "OWL Datatype Property — свойство со значением-литералом" .
+
+# owl__ObjectProperty
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md>
+    exo:Asset_fileName "owl__ObjectProperty.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000103" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/owl/!owl.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_description "OWL Object Property — свойство, связывающее два ресурса" .
+
+# !rdf
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md>
+    exo:Asset_fileName "!rdf.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000011" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+    exo:Asset_description "Resource Description Framework" .
+
+# rdf__Property
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md>
+    exo:Asset_fileName "rdf__Property.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000110" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/rdf/!rdf.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_description "RDF Property — базовый класс для всех свойств в RDF" .
+
+# !rdfs
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md>
+    exo:Asset_fileName "!rdfs.md" ;
+    exo:Asset_uid "00000000-0000-0000-0000-000000000012" ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Asset_description "RDF Schema" ;
+    exo:Instance_class exo:Ontology ;
+    exo:Ontology_url "http://www.w3.org/2000/01/rdf-schema#" ;
+    exo:Ontology_imports "[[!rdf]]" .
+
+# rdfs__Class
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md>
+    exo:Asset_fileName "rdfs__Class.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000113" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_superClass <obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> ;
+    exo:Class_description "RDFS Class — класс всех классов в RDFS" .
+
+# rdfs__Resource
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md>
+    exo:Asset_fileName "rdfs__Resource.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000100" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class exo:Class ;
+    exo:Class_description "Базовый класс RDFS — все сущности являются ресурсами" .
+
+# rdfs__domain
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md>
+    exo:Asset_fileName "rdfs__domain.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000111" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[rdf__Property]]" ;
+    exo:Property_domain "[[rdf__Property]]" ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> ;
+    exo:Asset_description "RDFS domain — указывает класс, к которому применимо свойство" .
+
+# rdfs__range
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md>
+    exo:Asset_fileName "rdfs__range.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000112" ;
+    exo:Asset_isDefinedBy <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+    exo:Instance_class "[[rdf__Property]]" ;
+    exo:Property_domain "[[rdf__Property]]" ;
+    exo:Property_range <obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> ;
+    exo:Asset_description "RDFS range — указывает класс или тип значения свойства" .
+

@@ -1,0 +1,876 @@
+
+
+<obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!ems.md" .
+<obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Asset_description> "Effort Management System" .
+<obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Ontology> .
+<obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Ontology_url> "https://exocortex.my/ontology/ems#" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__Effort.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Class_description> "Базовый класс для всего, что требует усилий — задачи, проекты, области" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <https://exocortex.my/ontology/exo#Class_superClass> <https://exocortex.my/ontology/exo#Asset> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Asset> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__EffortStatus.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000003" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Class_description> "Класс для статусов Effort — Backlog, Todo, Doing, Done, Cancelled" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <https://exocortex.my/ontology/exo#Class_superClass> <https://exocortex.my/ontology/exo#Asset> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Asset> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__EffortStatusBacklog.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000010" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Asset_label> "Backlog" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Asset_description> "Статус — в бэклоге, не запланировано" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusBacklog.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/ems#EffortStatus> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__EffortStatusCancelled.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000014" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Asset_label> "Cancelled" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Asset_description> "Статус — отменено" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusCancelled.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/ems#EffortStatus> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__EffortStatusDoing.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000012" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Asset_label> "Doing" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Asset_description> "Статус — в процессе выполнения" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/ems#EffortStatus> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__EffortStatusDone.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000013" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Asset_label> "Done" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Asset_description> "Статус — выполнено" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDone.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/ems#EffortStatus> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__EffortStatusTodo.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000011" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Asset_label> "Todo" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Asset_description> "Статус — запланировано к выполнению" .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__EffortStatusTodo.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/ems#EffortStatus> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__Effort_endTimestamp.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000022" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Asset_label> "Effort End Timestamp" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Asset_description> "Время завершения выполнения Effort" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_endTimestamp.md> <https://exocortex.my/ontology/exo#Property_range> "dateTime" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__Effort_startTimestamp.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000021" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Asset_label> "Effort Start Timestamp" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Asset_description> "Время начала выполнения Effort" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> <https://exocortex.my/ontology/exo#Property_range> "dateTime" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__Effort_status.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000020" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Asset_label> "Effort Status" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Asset_description> "Текущий статус Effort" .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/ems/ems__EffortStatus.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTaskCommand.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_label> "Start Task" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_description> "Начинает выполнение задачи — устанавливает статус Doing и фиксирует время начала" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Command> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Command_icon> "play-circle" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Command_shortcut> "Ctrl+Shift+S" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Command_inputType> <obsidian://vault/03%20Knowledge/ems/ems__Task.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Command_precondition> <obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Command_process> <obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Command_grounding> <obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTaskGrounding.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000020" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_label> "Start Task Grounding" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_description> "SPARQL UPDATE для выполнения команды Start Task" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#SparqlGrounding> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskGrounding.md> <https://exocortex.my/ontology/exo#Grounding_sparql> "PREFIX ems: <https://exocortex.my/ontology/ems#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+DELETE { $target ems:Effort_status ?oldStatus }
+INSERT {
+  $target ems:Effort_status ems:EffortStatusDoing .
+  $target ems:Effort_startTimestamp $now .
+}
+WHERE {
+  OPTIONAL { $target ems:Effort_status ?oldStatus }
+}
+" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTaskProcess.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000003" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_label> "Start Task Process" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_description> "Последовательность шагов для запуска задачи" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Sequence> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Sequence_steps> <obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Sequence_steps> <obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Sequence_steps> <obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTaskProcess.md> <https://exocortex.my/ontology/exo#Sequence_steps> <obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTask_Notify.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000013" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Asset_label> "Notify User" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Step> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Step_action> <https://exocortex.my/ontology/exo#Notify> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Step_message> "Task started! ⏱️" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Notify.md> <https://exocortex.my/ontology/exo#Step_notificationType> "success" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTask_Save.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000012" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Asset_label> "Save Asset" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Step> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Step_action> <https://exocortex.my/ontology/exo#SaveAsset> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_Save.md> <https://exocortex.my/ontology/exo#Step_target> "$target" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTask_SetStatus.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000010" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Asset_label> "Set Status to Doing" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Step> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Step_action> <https://exocortex.my/ontology/exo#SetProperty> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Step_target> "$target" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Step_property> <obsidian://vault/03%20Knowledge/ems/ems__Effort_status.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetStatus.md> <https://exocortex.my/ontology/exo#Step_value> <obsidian://vault/03%20Knowledge/ems/ems__EffortStatusDoing.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__StartTask_SetTimestamp.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000011" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Asset_label> "Set Start Timestamp" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Step> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_action> <https://exocortex.my/ontology/exo#SetProperty> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_target> "$target" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_property> <obsidian://vault/03%20Knowledge/ems/ems__Effort_startTimestamp.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_value> "$now" .
+<obsidian://vault/03%20Knowledge/ems/ems__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_valueType> <https://exocortex.my/ontology/exo#RuntimeValue> .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__Task.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Class_description> "Задача — атомарная единица работы с чётким результатом" .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__Task.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/ems/ems__Effort.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_fileName> "ems__TaskNotDoingPrecondition.md" .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_label> "Task Not Doing" .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_description> "Условие — задача не в статусе Doing. Переиспользуется для команд Start, Resume" .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/ems/!ems.md> .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Precondition> .
+<obsidian://vault/03%20Knowledge/ems/ems__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Precondition_sparql> "PREFIX ems: <https://exocortex.my/ontology/ems#>
+ASK {
+  $target a ems:Task .
+  OPTIONAL { $target ems:Effort_status ?s }
+  FILTER(!BOUND(?s) || ?s != ems:EffortStatusDoing)
+}
+" .
+<obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!exo.md" .
+<obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Ontology> .
+<obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Ontology_url> "https://exocortex.my/ontology/exo#" .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Action.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Class_description> "Базовый класс для атомарных действий — примитивы, реализованные в Core" .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Action.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Asset.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Resource.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Resource.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset.md> <https://exocortex.my/ontology/exo#Class_description> "Объект, обладающий потенциальной или фактической ценностью для системы" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Asset_createdAt.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000204" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Property_range> "dateTime" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_createdAt.md> <https://exocortex.my/ontology/exo#Asset_description> "Дата и время создания ассета" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Asset_description.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000202" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_description.md> <https://exocortex.my/ontology/exo#Asset_description> "Описание ассета" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Asset_isDefinedBy.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000203" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_isDefinedBy.md> <https://exocortex.my/ontology/exo#Asset_description> "Онтология, в которой определён ассет" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Asset_label.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000201" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_label.md> <https://exocortex.my/ontology/exo#Asset_description> "Человекочитаемое название ассета" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Asset_uid.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000200" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Asset_uid.md> <https://exocortex.my/ontology/exo#Asset_description> "Уникальный идентификатор ассета (UUID v4)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Class.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Class_superClass> "[[rdfs__Class]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class.md> <https://exocortex.my/ontology/exo#Class_description> "Метакласс — класс классов. Все классы являются инстансами exo__Class" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Class_description.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000207" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_description.md> <https://exocortex.my/ontology/exo#Asset_description> "Описание класса" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Class_superClass.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000206" .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Class_superClass.md> <https://exocortex.my/ontology/exo#Asset_description> "Родительский класс (наследование)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Function.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Function.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command.md> <https://exocortex.my/ontology/exo#Class_description> "Команда — действие, которое можно выполнить над ассетом. Вдохновлено OWL-S Service" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__CommandInput.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000030" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Class_description> "Описание входного параметра команды — имя, тип, источник значения" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__CommandInput_name.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000031" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Asset_label> "Input Name" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Asset_description> "Имя переменной входного параметра (например, $newStatus)" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_name.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__CommandInput_promptLabel.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000034" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Asset_label> "Input Prompt Label" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Asset_description> "Текст подсказки для пользователя при запросе значения (source=userPrompt)" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_promptLabel.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__CommandInput_source.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000033" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Asset_label> "Input Source" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Asset_description> "Источник значения — userPrompt (спросить), currentAsset, selection, etc." .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_source.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__CommandInput_type.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000032" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Asset_label> "Input Type" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Asset_description> "Тип значения входного параметра — класс ассета" .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CommandInput_type.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_grounding.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000004" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Grounding" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Asset_description> "Связь с реализацией — как команда выполняется (SPARQL, Core primitive, etc.)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_grounding.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_icon.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000005" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Icon" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Asset_description> "Имя иконки для отображения команды в UI (Lucide icon name)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_icon.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_inputType.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000001" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Input Type" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Asset_description> "Класс ассета, на котором может быть вызвана команда" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputType.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_inputs.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000007" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Inputs" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Asset_description> "Дополнительные входные параметры команды (кроме базовых $target, $now, $user)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_inputs.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__CommandInput.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_precondition.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Precondition" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Asset_description> "Условие применимости команды — SPARQL ASK должен вернуть true" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_precondition.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_process.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000003" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Process" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Asset_description> "Процесс выполнения команды — последовательность шагов" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_process.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Command_shortcut.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000006" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Asset_label> "Command Shortcut" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Asset_description> "Клавиатурное сочетание для вызова команды (например, Ctrl+Shift+S)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Command.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Command_shortcut.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Conditional.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000006" .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Class_description> "Условный процесс — if-then-else ветвление" .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Conditional.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__CreateAsset.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000005" .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <https://exocortex.my/ontology/exo#Class_description> "Создаёт новый ассет указанного класса" .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__CreateAsset.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Action> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__DatatypeProperty.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000005" .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Class_superClass> "[[owl__DatatypeProperty]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Class_description> "Свойство, значением которого является литерал (string, number, date, etc.)" .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__DeleteAsset.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000006" .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <https://exocortex.my/ontology/exo#Class_description> "Удаляет ассет из хранилища" .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__DeleteAsset.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Action> .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Function.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000102" .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Function.md> <https://exocortex.my/ontology/exo#Class_description> "Функция — преобразование входных данных в выходные" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Grounding.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000008" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Class_description> "Связь с реализацией — описывает ЧЕМ выполняется команда. Вдохновлено OWL-S Service Grounding" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Grounding_sparql.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000020" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Asset_label> "Grounding SPARQL" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Asset_description> "SPARQL UPDATE запрос для выполнения команды" .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Grounding_sparql.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Instance_class.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000205" .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Instance_class.md> <https://exocortex.my/ontology/exo#Asset_description> "Класс(ы), инстансом которого является ассет" .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Notify.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000004" .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <https://exocortex.my/ontology/exo#Class_description> "Показывает уведомление пользователю" .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Notify.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Action> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__ObjectProperty.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000004" .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Class_superClass> "[[owl__ObjectProperty]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__ObjectProperty.md> <https://exocortex.my/ontology/exo#Class_description> "Свойство, значением которого является ссылка на другой ассет" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Ontology.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000006" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <https://exocortex.my/ontology/exo#Class_description> "Онтология — группирует связанные классы и свойства" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Ontology_url.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000007" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Asset_label> "Ontology URL" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Asset_description> "URL онтологии в формате IRI (например, https://exocortex.my/ontology/exo#)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Ontology.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Ontology_url.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__OpenInTab.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000007" .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <https://exocortex.my/ontology/exo#Class_description> "Открывает ассет в новой вкладке" .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__OpenInTab.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Action> .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Parallel.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000005" .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Class_description> "Параллельный процесс — шаги выполняются одновременно" .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Parallel.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Precondition.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Class_description> "Условие применимости команды. Содержит SPARQL ASK запрос" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Precondition_sparql.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000010" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Asset_label> "Precondition SPARQL" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Asset_description> "SPARQL ASK запрос для проверки условия. Должен вернуть true для применимости команды" .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Precondition.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Precondition_sparql.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Process.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000003" .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Class_description> "Абстрактный процесс — описывает КАК выполняется команда. Вдохновлено OWL-S Process Model" .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Process.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Property.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000003" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Class_superClass> "[[rdf__Property]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property.md> <https://exocortex.my/ontology/exo#Class_description> "Базовый класс для всех свойств. Описывает атрибуты классов" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Property_domain.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000120" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Property_superProperty> "[[rdfs__domain]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_domain.md> <https://exocortex.my/ontology/exo#Asset_description> "Класс, к которому применимо свойство" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Property_range.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000121" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Property_superProperty> "[[rdfs__range]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_range.md> <https://exocortex.my/ontology/exo#Asset_description> "Класс или тип значения свойства" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Property_superProperty.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000122" .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Property_superProperty.md> <https://exocortex.my/ontology/exo#Asset_description> "Родительское свойство (аналог rdfs:subPropertyOf)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Resource.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000101" .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Class_superClass> "[[rdfs__Resource]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__Resource.md> <https://exocortex.my/ontology/exo#Class_description> "Что-то, что содержит или предоставляет доступ к Content" .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__RuntimeValue.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000010" .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <https://exocortex.my/ontology/exo#Class_description> "Маркер runtime-значения — вычисляется в момент выполнения команды ($now, $user, etc.)" .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__RuntimeValue.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__SaveAsset.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000003" .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <https://exocortex.my/ontology/exo#Class_description> "Сохраняет изменения ассета в файловую систему" .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__SaveAsset.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Action> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Sequence.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000004" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Class_description> "Последовательный процесс — шаги выполняются один за другим" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Process.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Sequence_steps.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000011" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Asset_label> "Sequence Steps" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Asset_description> "Упорядоченный список шагов последовательного процесса" .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Sequence.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Sequence_steps.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__SetProperty.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <https://exocortex.my/ontology/exo#Asset_uid> "30000000-0000-0000-0000-000000000002" .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <https://exocortex.my/ontology/exo#Class_description> "Устанавливает значение свойства ассета" .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__SetProperty.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Action> .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__SparqlGrounding.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000009" .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Class_description> "Grounding через SPARQL UPDATE — команда выполняется как SPARQL-запрос к триплстору" .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__SparqlGrounding.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Grounding.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Asset_uid> "20000000-0000-0000-0000-000000000007" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Class_description> "Атомарный шаг процесса — вызов одного Action с параметрами" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_action.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000012" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Action" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Asset_description> "Действие, которое выполняет шаг (SetProperty, SaveAsset, Notify, etc.)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Action.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_action.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Action.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_message.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000017" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Message" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Asset_description> "Текст сообщения для действия Notify" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_message.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_notificationType.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000018" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Notification Type" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Asset_description> "Тип уведомления — success, warning, error, info" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_notificationType.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_property.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000014" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Property" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Asset_description> "Свойство для действия SetProperty" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_property.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_target.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000013" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Target" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Asset_description> "Целевой ассет для действия — переменная ($target) или URI ассета" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_target.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_value.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000015" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Value" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Asset_description> "Значение для действия — литерал, wikilink на ассет, или runtime-переменная ($now)" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_value.md> <https://exocortex.my/ontology/exo#Property_range> "string" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Step_valueType.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Asset_uid> "40000000-0000-0000-0000-000000000016" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Asset_label> "Step Value Type" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Asset_description> "Тип значения — указывает, что значение является runtime-переменной" .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Step.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Step_valueType.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Class.md> .
+<obsidian://vault/03%20Knowledge/owl/!owl.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!owl.md" .
+<obsidian://vault/03%20Knowledge/owl/!owl.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000010" .
+<obsidian://vault/03%20Knowledge/owl/!owl.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/owl/!owl.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Ontology> .
+<obsidian://vault/03%20Knowledge/owl/!owl.md> <https://exocortex.my/ontology/exo#Ontology_url> "http://www.w3.org/2002/07/owl#" .
+<obsidian://vault/03%20Knowledge/owl/!owl.md> <https://exocortex.my/ontology/exo#Asset_description> "Web Ontology Language" .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_fileName> "owl__DatatypeProperty.md" .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000104" .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/owl/!owl.md> .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/owl/!owl.md> .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/owl/owl__DatatypeProperty.md> <https://exocortex.my/ontology/exo#Class_description> "OWL Datatype Property — свойство со значением-литералом" .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_fileName> "owl__ObjectProperty.md" .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000103" .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/owl/!owl.md> .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/owl/!owl.md> .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/owl/owl__ObjectProperty.md> <https://exocortex.my/ontology/exo#Class_description> "OWL Object Property — свойство, связывающее два ресурса" .
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!rdf.md" .
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000011" .
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Ontology> .
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md> <https://exocortex.my/ontology/exo#Ontology_url> "http://www.w3.org/1999/02/22-rdf-syntax-ns#" .
+<obsidian://vault/03%20Knowledge/rdf/!rdf.md> <https://exocortex.my/ontology/exo#Asset_description> "Resource Description Framework" .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <https://exocortex.my/ontology/exo#Asset_fileName> "rdf__Property.md" .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000110" .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/rdf/!rdf.md> .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/rdf/!rdf.md> .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/rdf/rdf__Property.md> <https://exocortex.my/ontology/exo#Class_description> "RDF Property — базовый класс для всех свойств в RDF" .
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!rdfs.md" .
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000012" .
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Ontology> .
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> <https://exocortex.my/ontology/exo#Ontology_url> "http://www.w3.org/2000/01/rdf-schema#" .
+<obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> <https://exocortex.my/ontology/exo#Asset_description> "RDF Schema" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Asset_fileName> "rdfs__Class.md" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000113" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Class_superClass> <obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> <https://exocortex.my/ontology/exo#Class_description> "RDFS Class — класс всех классов в RDFS" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <https://exocortex.my/ontology/exo#Asset_fileName> "rdfs__Resource.md" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000100" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__Resource.md> <https://exocortex.my/ontology/exo#Class_description> "Базовый класс RDFS — все сущности являются ресурсами" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Asset_fileName> "rdfs__domain.md" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000111" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Instance_class> "[[rdf__Property]]" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Property_domain> "[[rdf__Property]]" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__domain.md> <https://exocortex.my/ontology/exo#Asset_description> "RDFS domain — указывает класс, к которому применимо свойство" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Asset_fileName> "rdfs__range.md" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000112" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/rdfs/!rdfs.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Instance_class> "[[rdf__Property]]" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Property_domain> "[[rdf__Property]]" .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/rdfs/rdfs__Class.md> .
+<obsidian://vault/03%20Knowledge/rdfs/rdfs__range.md> <https://exocortex.my/ontology/exo#Asset_description> "RDFS range — указывает класс или тип значения свойства" .

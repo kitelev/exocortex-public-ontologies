@@ -1,0 +1,22 @@
+{
+  "collapse-filter": false,
+  "search": "-[\"exo__instance_class\":exo__Ontology] -file:exo__Class -file:exo__ObjectProperty -file:exo__Datatype",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": false,
+  "centerStrength": 0.24169921875,
+  "repelStrength": 12.1533203125,
+  "linkStrength": 1,
+  "linkDistance": 30,
+  "scale": 0.7714323028337785,
+  "close": false
+}
