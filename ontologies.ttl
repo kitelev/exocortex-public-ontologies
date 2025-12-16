@@ -132,6 +132,33 @@ obs:emscmd/!emscmd.md
     exo:Ontology_url "https://exocortex.my/ontology/emscmd#" ;
     exo:Ontology_imports "[[!exocmd]]", "[[!ems]]" .
 
+obs:emscmd/emscmd__CompleteTaskCommand.md
+    exo:Asset_fileName "emscmd__CompleteTaskCommand.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000020" ;
+    exo:Asset_label "Завершить задачу" ;
+    exo:Asset_description "Завершает выполнение задачи, переводя её в статус Done" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Command]]" .
+
+obs:emscmd/emscmd__CompleteTaskGrounding.md
+    exo:Asset_fileName "emscmd__CompleteTaskGrounding.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000022" ;
+    exo:Asset_label "Complete Task Grounding" ;
+    exo:Asset_description "SPARQL UPDATE для завершения задачи" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Grounding]]" .
+
+obs:emscmd/emscmd__CompleteTaskProcess.md
+    exo:Asset_fileName "emscmd__CompleteTaskProcess.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000021" ;
+    exo:Asset_label "Complete Task Process" ;
+    exo:Asset_description "Процесс завершения задачи" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Process]]" .
+
 obs:emscmd/emscmd__StartTaskCommand.md
     exo:Asset_fileName "emscmd__StartTaskCommand.md" ;
     exo:Asset_uid "60000000-0000-0000-0000-000000000001" ;
@@ -213,6 +240,42 @@ obs:emscmd/emscmd__StartTask_SetTimestamp.md
     exo:Step_value "$now" ;
     exo:Step_valueType "[[exocmd__RuntimeValue]]" .
 
+obs:emscmd/emscmd__StopTaskCommand.md
+    exo:Asset_fileName "emscmd__StopTaskCommand.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000010" ;
+    exo:Asset_label "Остановить задачу" ;
+    exo:Asset_description "Приостанавливает выполнение задачи, переводя её в статус Queued" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Command]]" .
+
+obs:emscmd/emscmd__StopTaskGrounding.md
+    exo:Asset_fileName "emscmd__StopTaskGrounding.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000013" ;
+    exo:Asset_label "Stop Task Grounding" ;
+    exo:Asset_description "SPARQL UPDATE для остановки задачи" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Grounding]]" .
+
+obs:emscmd/emscmd__StopTaskProcess.md
+    exo:Asset_fileName "emscmd__StopTaskProcess.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000011" ;
+    exo:Asset_label "Stop Task Process" ;
+    exo:Asset_description "Процесс остановки задачи" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Process]]" .
+
+obs:emscmd/emscmd__TaskDoingPrecondition.md
+    exo:Asset_fileName "emscmd__TaskDoingPrecondition.md" ;
+    exo:Asset_uid "50000000-0000-0000-0000-000000000012" ;
+    exo:Asset_label "Task Doing Precondition" ;
+    exo:Asset_description "Проверяет, что задача находится в статусе Doing" ;
+    exo:Asset_isDefinedBy obs:emscmd/!emscmd.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class "[[exocmd__Precondition]]" .
+
 obs:emscmd/emscmd__TaskNotDoingPrecondition.md
     exo:Asset_fileName "emscmd__TaskNotDoingPrecondition.md" ;
     exo:Asset_uid "60000000-0000-0000-0000-000000000002" ;
@@ -245,7 +308,8 @@ obs:emslayout/emslayout__DailyTasksLayout.md
     exo:Layout_targetClass ems:Task ;
     exo:Layout_columns obs:emslayout/emslayout__DailyTasks_LabelColumn.md, obs:emslayout/emslayout__DailyTasks_StatusColumn.md, obs:emslayout/emslayout__DailyTasks_StartTimeColumn.md, obs:emslayout/emslayout__DailyTasks_DurationColumn.md ;
     exo:Layout_defaultSort obs:emslayout/emslayout__DailyTasks_SortByStart.md ;
-    exo:Layout_filters obs:emslayout/emslayout__DailyTasks_TodayFilter.md .
+    exo:Layout_filters obs:emslayout/emslayout__DailyTasks_TodayFilter.md ;
+    exo:Layout_actions obs:emslayout/emslayout__TaskActions.md .
 
 obs:emslayout/emslayout__DailyTasks_DurationColumn.md
     exo:Asset_fileName "emslayout__DailyTasks_DurationColumn.md" ;
@@ -340,6 +404,18 @@ obs:emslayout/emslayout__KanbanTasksLayout.md
     exo:Layout_targetClass ems:Task ;
     exo:KanbanLayout_laneProperty ems:Effort_status ;
     exo:KanbanLayout_lanes ems:EffortStatus_Queued, ems:EffortStatus_Doing, ems:EffortStatus_Done .
+
+obs:emslayout/emslayout__TaskActions.md
+    exo:Asset_fileName "emslayout__TaskActions.md" ;
+    exo:Asset_uid "60000000-0000-0000-0000-000000000040" ;
+    exo:Asset_label "Task Actions" ;
+    exo:Asset_description "Кнопки управления задачей — Начать, Остановить, Завершить" ;
+    exo:Asset_isDefinedBy obs:emslayout/!emslayout.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class exo:LayoutActions ;
+    exo:LayoutActions_commands "[[emscmd__StartTaskCommand]]", "[[emscmd__StopTaskCommand]]", "[[emscmd__CompleteTaskCommand]]" ;
+    exo:LayoutActions_position "column" ;
+    exo:LayoutActions_showLabels "false" .
 
 obs:exo/!exo.md
     exo:Asset_fileName "!exo.md" ;
@@ -526,6 +602,49 @@ obs:exo/exo__Layout.md
     exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
     exo:Instance_class exo:Class ;
     exo:Class_subClassOf obs:exo/exo__Asset.md .
+
+obs:exo/exo__LayoutActions.md
+    exo:Asset_fileName "exo__LayoutActions.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000080" ;
+    exo:Asset_label "Layout Actions" ;
+    exo:Asset_description "Набор кнопок-команд, отображаемых для каждой строки в Layout" ;
+    exo:Asset_isDefinedBy obs:exo/!exo.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class exo:Class ;
+    exo:Class_subClassOf obs:exo/exo__Asset.md .
+
+obs:exo/exo__LayoutActions_commands.md
+    exo:Asset_fileName "exo__LayoutActions_commands.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000081" ;
+    exo:Asset_label "Actions Commands" ;
+    exo:Asset_description "Список команд, отображаемых как кнопки действий" ;
+    exo:Asset_isDefinedBy obs:exo/!exo.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain obs:exo/exo__LayoutActions.md ;
+    exo:Property_range "[[exocmd__Command]]" .
+
+obs:exo/exo__LayoutActions_position.md
+    exo:Asset_fileName "exo__LayoutActions_position.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000082" ;
+    exo:Asset_label "Actions Position" ;
+    exo:Asset_description "Позиция отображения кнопок действий" ;
+    exo:Asset_isDefinedBy obs:exo/!exo.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain obs:exo/exo__LayoutActions.md ;
+    exo:Property_range "[[xsd__string]]" .
+
+obs:exo/exo__LayoutActions_showLabels.md
+    exo:Asset_fileName "exo__LayoutActions_showLabels.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000083" ;
+    exo:Asset_label "Show Action Labels" ;
+    exo:Asset_description "Показывать ли текстовые подписи к кнопкам действий" ;
+    exo:Asset_isDefinedBy obs:exo/!exo.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class exo:DatatypeProperty ;
+    exo:Property_domain obs:exo/exo__LayoutActions.md ;
+    exo:Property_range "[[xsd__boolean]]" .
 
 obs:exo/exo__LayoutColumn.md
     exo:Asset_fileName "exo__LayoutColumn.md" ;
@@ -753,6 +872,17 @@ obs:exo/exo__LayoutSort_property.md
     exo:Instance_class exo:ObjectProperty ;
     exo:Property_domain obs:exo/exo__LayoutSort.md ;
     exo:Property_range obs:exo/exo__Property.md .
+
+obs:exo/exo__Layout_actions.md
+    exo:Asset_fileName "exo__Layout_actions.md" ;
+    exo:Asset_uid "10000000-0000-0000-0000-000000000084" ;
+    exo:Asset_label "Layout Actions" ;
+    exo:Asset_description "Набор действий (кнопок команд) для данного Layout" ;
+    exo:Asset_isDefinedBy obs:exo/!exo.md ;
+    exo:Asset_createdAt "2025-01-01T00:00:00.000Z"^^xsd:dateTime ;
+    exo:Instance_class exo:ObjectProperty ;
+    exo:Property_domain obs:exo/exo__Layout.md ;
+    exo:Property_range obs:exo/exo__LayoutActions.md .
 
 obs:exo/exo__Layout_columns.md
     exo:Asset_fileName "exo__Layout_columns.md" ;

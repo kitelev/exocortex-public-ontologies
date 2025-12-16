@@ -1,10 +1,10 @@
 📦 Loading vault: /Users/kitelev/Developer/exocortex-development/exocortex-public-ontologies...
-✅ Loaded 1370 triples in 46ms
+✅ Loaded 1494 triples in 50ms
 
 🔍 Parsing SPARQL query...
 🔄 Translating to algebra...
 🎯 Executing query...
-✅ Generated 1370 triple(s) in 5ms
+✅ Generated 1494 triple(s) in 5ms
 
 <obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!ems.md" .
 <obsidian://vault/03%20Knowledge/ems/!ems.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000002" .
@@ -122,6 +122,30 @@
 <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> <https://exocortex.my/ontology/exo#Ontology_url> "https://exocortex.my/ontology/emscmd#" .
 <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> <https://exocortex.my/ontology/exo#Ontology_imports> "[[!exocmd]]" .
 <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> <https://exocortex.my/ontology/exo#Ontology_imports> "[[!ems]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__CompleteTaskCommand.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000020" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_label> "Завершить задачу" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_description> "Завершает выполнение задачи, переводя её в статус Done" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskCommand.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Command]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__CompleteTaskGrounding.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000022" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_label> "Complete Task Grounding" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_description> "SPARQL UPDATE для завершения задачи" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskGrounding.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Grounding]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__CompleteTaskProcess.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000021" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_label> "Complete Task Process" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_description> "Процесс завершения задачи" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__CompleteTaskProcess.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Process]]" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__StartTaskCommand.md" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000001" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_label> "Start Task" .
@@ -209,6 +233,38 @@ WHERE {
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_property> <https://exocortex.my/ontology/ems#Effort_startTimestamp> .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_value> "$now" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__StartTask_SetTimestamp.md> <https://exocortex.my/ontology/exo#Step_valueType> "[[exocmd__RuntimeValue]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__StopTaskCommand.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000010" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_label> "Остановить задачу" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_description> "Приостанавливает выполнение задачи, переводя её в статус Queued" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskCommand.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Command]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__StopTaskGrounding.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000013" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_label> "Stop Task Grounding" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_description> "SPARQL UPDATE для остановки задачи" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskGrounding.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Grounding]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__StopTaskProcess.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000011" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_label> "Stop Task Process" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_description> "Процесс остановки задачи" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__StopTaskProcess.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Process]]" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__TaskDoingPrecondition.md" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_uid> "50000000-0000-0000-0000-000000000012" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_label> "Task Doing Precondition" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_description> "Проверяет, что задача находится в статусе Doing" .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emscmd/!emscmd.md> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskDoingPrecondition.md> <https://exocortex.my/ontology/exo#Instance_class> "[[exocmd__Precondition]]" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emscmd__TaskNotDoingPrecondition.md" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000002" .
 <obsidian://vault/03%20Knowledge/emscmd/emscmd__TaskNotDoingPrecondition.md> <https://exocortex.my/ontology/exo#Asset_label> "Task Not Doing" .
@@ -250,6 +306,7 @@ ASK {
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasksLayout.md> <https://exocortex.my/ontology/exo#Layout_columns> <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasks_DurationColumn.md> .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasksLayout.md> <https://exocortex.my/ontology/exo#Layout_defaultSort> <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasks_SortByStart.md> .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasksLayout.md> <https://exocortex.my/ontology/exo#Layout_filters> <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasks_TodayFilter.md> .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasksLayout.md> <https://exocortex.my/ontology/exo#Layout_actions> <obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasks_DurationColumn.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emslayout__DailyTasks_DurationColumn.md" .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasks_DurationColumn.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000013" .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__DailyTasks_DurationColumn.md> <https://exocortex.my/ontology/exo#Asset_label> "Duration Column" .
@@ -344,6 +401,19 @@ FILTER(?startDay = ?today)
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__KanbanTasksLayout.md> <https://exocortex.my/ontology/exo#KanbanLayout_lanes> <https://exocortex.my/ontology/ems#EffortStatus_Queued> .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__KanbanTasksLayout.md> <https://exocortex.my/ontology/exo#KanbanLayout_lanes> <https://exocortex.my/ontology/ems#EffortStatus_Doing> .
 <obsidian://vault/03%20Knowledge/emslayout/emslayout__KanbanTasksLayout.md> <https://exocortex.my/ontology/exo#KanbanLayout_lanes> <https://exocortex.my/ontology/ems#EffortStatus_Done> .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Asset_fileName> "emslayout__TaskActions.md" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Asset_uid> "60000000-0000-0000-0000-000000000040" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Asset_label> "Task Actions" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Asset_description> "Кнопки управления задачей — Начать, Остановить, Завершить" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/emslayout/!emslayout.md> .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/emslayout/!emslayout.md> .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#LayoutActions> .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#LayoutActions_commands> "[[emscmd__StartTaskCommand]]" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#LayoutActions_commands> "[[emscmd__StopTaskCommand]]" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#LayoutActions_commands> "[[emscmd__CompleteTaskCommand]]" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#LayoutActions_position> "column" .
+<obsidian://vault/03%20Knowledge/emslayout/emslayout__TaskActions.md> <https://exocortex.my/ontology/exo#LayoutActions_showLabels> "false" .
 <obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Asset_fileName> "!exo.md" .
 <obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Asset_uid> "00000000-0000-0000-0000-000000000001" .
 <obsidian://vault/03%20Knowledge/exo/!exo.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
@@ -529,6 +599,48 @@ FILTER(?startDay = ?today)
 <obsidian://vault/03%20Knowledge/exo/exo__Layout.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
 <obsidian://vault/03%20Knowledge/exo/exo__Layout.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
 <obsidian://vault/03%20Knowledge/exo/exo__Layout.md> <https://exocortex.my/ontology/exo#Class_subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__LayoutActions.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000080" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Asset_label> "Layout Actions" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Asset_description> "Набор кнопок-команд, отображаемых для каждой строки в Layout" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#Class> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> <https://exocortex.my/ontology/exo#Class_subClassOf> <obsidian://vault/03%20Knowledge/exo/exo__Asset.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__LayoutActions_commands.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000081" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Asset_label> "Actions Commands" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Asset_description> "Список команд, отображаемых как кнопки действий" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_commands.md> <https://exocortex.my/ontology/exo#Property_range> "[[exocmd__Command]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__LayoutActions_position.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000082" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Asset_label> "Actions Position" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Asset_description> "Позиция отображения кнопок действий" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_position.md> <https://exocortex.my/ontology/exo#Property_range> "[[xsd__string]]" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__LayoutActions_showLabels.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000083" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Asset_label> "Show Action Labels" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Asset_description> "Показывать ли текстовые подписи к кнопкам действий" .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__LayoutActions_showLabels.md> <https://exocortex.my/ontology/exo#Property_range> "[[xsd__boolean]]" .
 <obsidian://vault/03%20Knowledge/exo/exo__LayoutColumn.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__LayoutColumn.md" .
 <obsidian://vault/03%20Knowledge/exo/exo__LayoutColumn.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000040" .
 <obsidian://vault/03%20Knowledge/exo/exo__LayoutColumn.md> <https://exocortex.my/ontology/exo#Asset_label> "Layout Column" .
@@ -756,6 +868,18 @@ FILTER(?startDay = ?today)
 <obsidian://vault/03%20Knowledge/exo/exo__LayoutSort_property.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__LayoutSort.md> .
 <obsidian://vault/03%20Knowledge/exo/exo__LayoutSort_property.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
 <obsidian://vault/03%20Knowledge/exo/exo__LayoutSort_property.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__Property.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Layout_actions.md" .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000084" .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Asset_label> "Layout Actions" .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Asset_description> "Набор действий (кнопок команд) для данного Layout" .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <obsidian://vault/03%20Knowledge/exo/!exo.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Asset_createdAt> "2025-01-01T00:00:00.000Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Instance_class> <https://exocortex.my/ontology/exo#ObjectProperty> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Property_domain> <obsidian://vault/03%20Knowledge/exo/exo__Layout.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <http://www.w3.org/2000/01/rdf-schema#domain> <obsidian://vault/03%20Knowledge/exo/exo__Layout.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <https://exocortex.my/ontology/exo#Property_range> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
+<obsidian://vault/03%20Knowledge/exo/exo__Layout_actions.md> <http://www.w3.org/2000/01/rdf-schema#range> <obsidian://vault/03%20Knowledge/exo/exo__LayoutActions.md> .
 <obsidian://vault/03%20Knowledge/exo/exo__Layout_columns.md> <https://exocortex.my/ontology/exo#Asset_fileName> "exo__Layout_columns.md" .
 <obsidian://vault/03%20Knowledge/exo/exo__Layout_columns.md> <https://exocortex.my/ontology/exo#Asset_uid> "10000000-0000-0000-0000-000000000022" .
 <obsidian://vault/03%20Knowledge/exo/exo__Layout_columns.md> <https://exocortex.my/ontology/exo#Asset_label> "Columns" .

@@ -15,6 +15,7 @@ exo__Layout_columns:
 exo__Layout_defaultSort: "[[emslayout__DailyTasks_SortByStart]]"
 exo__Layout_filters:
   - "[[emslayout__DailyTasks_TodayFilter]]"
+exo__Layout_actions: "[[emslayout__TaskActions]]"
 ---
 
 # Daily Tasks Layout
