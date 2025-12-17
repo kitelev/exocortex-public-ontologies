@@ -1,44 +1,10 @@
 ---
-type: cmd:Command
-cmd:Command_name: completeTask
-cmd:Command_label: Завершить задачу
-cmd:Command_description: Установить время завершения задачи
-cmd:Command_category: action
-cmd:Command_targetType: "[[ems__Task]]"
-cmd:Command_preconditions:
-  - "[[cmd__TaskNotCompleted]]"
+exo__Asset_uid: d4e5f6a7-cmd0-0005-0000-000000000001
+exo__Asset_isDefinedBy: "[[!commands]]"
+exo__Instance_class:
+  - "[[cmd__Command]]"
+cmd__Command_name: completeTask
+cmd__Command_description: Завершить задачу (установить endTimestamp)
+cmd__Command_category: action
+cmd__Command_contextType: "[[ems__Task]]"
 ---
-
-# CompleteTask Command
-
-Команда завершения задачи.
-
-## Input
-
-Команда не требует ввода — работает с текущей заметкой.
-
-## Preconditions
-
-1. Текущая заметка имеет `type: ems:Task`
-2. Задача ещё не завершена (`ems:Effort_endTimestamp` отсутствует)
-
-## Outcome
-
-- Если задача не начата — установить `startTimestamp` = `endTimestamp`
-- Установлен `ems:Effort_endTimestamp` = текущее время
-- Показано уведомление "Задача завершена"
-
-## Пример
-
-```yaml
-# До
-type: ems:Task
-core:Asset_label: "Написать тесты"
-ems:Effort_startTimestamp: "2025-01-15T10:00:00Z"
-
-# После completeTask
-type: ems:Task
-core:Asset_label: "Написать тесты"
-ems:Effort_startTimestamp: "2025-01-15T10:00:00Z"
-ems:Effort_endTimestamp: "2025-01-15T11:30:00Z"
-```
