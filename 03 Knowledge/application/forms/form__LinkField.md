@@ -1,37 +1,9 @@
 ---
-type: meta:Class
-label: LinkField
-uri: https://exocortex.my/ontology/application/forms#LinkField
-meta:Class_parent: "[[form__FormField]]"
+exo__Asset_uid: d4e5f6a7-form-0004-0000-000000000001
+exo__Asset_isDefinedBy: "[[!forms]]"
+exo__Instance_class:
+  - "[[exo__Class]]"
+exo__Class_superClass:
+  - "[[form__FormField]]"
+exo__Class_description: Поле для выбора ссылки на Asset определённого типа
 ---
-
-# LinkField
-
-Поле для выбора ссылки на другой Asset.
-
-## Определение
-
-LinkField показывает fuzzy-suggest для выбора связанной сущности определённого типа.
-
-## Дополнительные свойства
-
-| Свойство | Тип | Описание |
-|----------|-----|----------|
-| `form:LinkField_targetType` | meta:Class | Тип целевой сущности |
-| `form:LinkField_allowCreate` | xsd:boolean | Разрешить создание новой |
-| `form:LinkField_multiple` | xsd:boolean | Множественный выбор |
-
-## Пример
-
-```yaml
-type: form:LinkField
-form:FormField_name: project
-form:FormField_label: "Проект"
-form:FormField_required: false
-form:LinkField_targetType: "[[ems__Project]]"
-form:LinkField_allowCreate: false
-```
-
-## UI-реализация
-
-В Obsidian реализуется через FuzzySuggestModal с фильтрацией по типу.
