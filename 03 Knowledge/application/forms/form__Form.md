@@ -1,37 +1,7 @@
 ---
-type: meta:Class
-label: Form
-uri: https://exocortex.my/ontology/application/forms#Form
-meta:Class_abstract: false
+exo__Asset_uid: d4e5f6a7-form-0002-0000-000000000001
+exo__Asset_isDefinedBy: "[[!forms]]"
+exo__Instance_class:
+  - "[[exo__Class]]"
+exo__Class_description: Форма ввода данных для команды
 ---
-
-# Form
-
-Форма ввода данных для команды.
-
-## Определение
-
-Form описывает набор полей для сбора данных от пользователя.
-
-## Свойства
-
-| Свойство | Тип | Описание |
-|----------|-----|----------|
-| `form:Form_name` | xsd:string | Имя формы |
-| `form:Form_fields` | form:FormField[] | Список полей |
-| `form:Form_submitLabel` | xsd:string | Текст кнопки отправки |
-| `form:Form_cancelLabel` | xsd:string | Текст кнопки отмены |
-
-## Пример
-
-```yaml
-type: form:Form
-form:Form_name: createTaskForm
-form:Form_fields:
-  - "[[form__LabelField]]"
-  - "[[form__ProjectField]]"
-  - "[[form__AreaField]]"
-  - "[[form__PriorityField]]"
-form:Form_submitLabel: "Создать"
-form:Form_cancelLabel: "Отмена"
-```
