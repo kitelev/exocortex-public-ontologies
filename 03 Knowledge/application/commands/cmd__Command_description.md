@@ -1,9 +1,9 @@
 ---
-exo__Asset_isDefinedBy: "[[!commands]]"
-exo__Asset_uid: a1b2c3d4-4444-4000-8000-000000000002
-exo__Instance_class:
-  - "[[exo__StringProperty]]"
-exo__Property_domain: "[[cmd__Command]]"
-exo__Asset_description: Человекочитаемое описание команды
+core__Asset_isDefinedBy: "[[!commands]]"
+core__Asset_uid: a1b2c3d4-4444-4000-8000-000000000002
+core__Instance_class:
+  - "[[core__StringProperty]]"
+core__Property_domain: "[[cmd__Command]]"
+core__Asset_description: Человекочитаемое описание команды
 ---
 
