@@ -1,0 +1,297 @@
+@startuml exocortex-public-ontologies
+
+' =============================================================================
+' EXOCORTEX PUBLIC ONTOLOGIES - CLASS DIAGRAM
+' Architecture: Clean Architecture + DDD
+' =============================================================================
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam groupInheritance 2
+
+' =============================================================================
+' CORE LAYER (Shared Kernel)
+' =============================================================================
+package "core" <<Rectangle>> #E8F5E9 {
+
+    class "core__Resource" as Resource <<root>> {
+        --
+        Корень иерархии
+    }
+
+    class "core__Asset" as Asset {
+        + label : String
+        + description : String
+        + uri : String
+        + created : DateTime
+        + modified : DateTime
+        --
+        Базовая единица знаний
+    }
+
+    class "core__Reference" as Reference {
+        + target : Asset
+        --
+        Ссылка на другой Asset
+    }
+
+    class "core__Relation" as Relation {
+        + source : Asset
+        + target : Asset
+        + type : ObjectProperty
+        --
+        Типизированная связь
+    }
+
+    class "core__Class" as Class <<metaclass>> {
+        --
+        Метакласс
+    }
+
+    class "core__Property" as Property {
+        --
+        Базовый класс свойств
+    }
+
+    class "core__ObjectProperty" as ObjectProperty {
+        --
+        Ссылка на Asset
+    }
+
+    class "core__DatatypeProperty" as DatatypeProperty {
+        --
+        Примитивное значение
+    }
+
+    class "core__StringProperty" as StringProperty
+    class "core__NumberProperty" as NumberProperty
+    class "core__BooleanProperty" as BooleanProperty
+    class "core__DateProperty" as DateProperty
+    class "core__DateTimeProperty" as DateTimeProperty
+
+    class "core__Ontology" as Ontology {
+        + url : String
+        --
+        Контейнер онтологии
+    }
+
+    ' Inheritance
+    Asset --|> Resource
+    Reference --|> Asset
+    Relation --|> Asset
+    Class --|> Resource
+    Property --|> Resource
+    ObjectProperty --|> Property
+    DatatypeProperty --|> Property
+    StringProperty --|> DatatypeProperty
+    NumberProperty --|> DatatypeProperty
+    BooleanProperty --|> DatatypeProperty
+    DateProperty --|> DatatypeProperty
+    DateTimeProperty --|> DatatypeProperty
+    Ontology --|> Resource
+}
+
+' =============================================================================
+' META LAYER (Schema Definitions)
+' =============================================================================
+package "meta" <<Rectangle>> #E3F2FD {
+
+    class "meta__Class" as MetaClass {
+        + superClass : Class[]
+        + description : String
+        --
+        Расширение core__Class
+    }
+
+    class "meta__Property" as MetaProperty {
+        + domain : Class
+        + range : Class|Datatype
+        + description : String
+        --
+        Расширение core__Property
+    }
+
+    class "meta__Constraint" as Constraint {
+        + property : Property
+        + message : String
+        --
+        Ограничение на свойство
+    }
+
+    class "meta__Cardinality" as Cardinality {
+        + min : Number
+        + max : Number
+        --
+        Кардинальность свойства
+    }
+
+    MetaClass ..|> Class : extends
+    MetaProperty ..|> Property : extends
+    Constraint --|> Resource
+    Cardinality --|> Resource
+}
+
+' =============================================================================
+' DOMAIN LAYER - EMS (Effort Management System)
+' =============================================================================
+package "domain/ems" <<Rectangle>> #FFF3E0 {
+
+    class "ems__Effort" as Effort <<mixin>> {
+        + startTimestamp : DateTime
+        + endTimestamp : DateTime
+        --
+        {abstract} Трекинг времени
+    }
+
+    class "ems__Task" as Task {
+        + project : Project
+        + area : Area
+        + prototype : Prototype
+        + priority : Number
+        + dueDate : Date
+        --
+        Задача
+    }
+
+    class "ems__Project" as Project {
+        + area : Area
+        + status : String
+        + dueDate : Date
+        --
+        Проект
+    }
+
+    class "ems__Area" as Area {
+        + parent : Area
+        --
+        Область ответственности
+    }
+
+    class "ems__Prototype" as Prototype {
+        + area : Area
+        + defaultDuration : Number
+        --
+        Шаблон задачи
+    }
+
+    ' Inheritance
+    Task --|> Asset
+    Task ..|> Effort : mixin
+    Project --|> Asset
+    Area --|> Asset
+    Prototype --|> Asset
+
+    ' Associations
+    Task --> Project : project
+    Task --> Area : area
+    Task --> Prototype : prototype
+    Project --> Area : area
+    Area --> Area : parent
+    Prototype --> Area : area
+}
+
+' =============================================================================
+' APPLICATION LAYER (Use Cases)
+' =============================================================================
+package "application" <<Rectangle>> #F3E5F5 {
+
+    package "commands" {
+        class "cmd__Command" as Command <<abstract>> {
+            + name : String
+            + description : String
+            + category : String
+            + hotkey : String
+            + contextType : Class
+            + targetType : Class
+            + form : Form
+            --
+            {abstract} Use Case
+        }
+
+        class "cmd__CreateTask" as CreateTask
+        class "cmd__StartTask" as StartTask
+        class "cmd__CompleteTask" as CompleteTask
+        class "cmd__Search" as Search
+
+        CreateTask --|> Command
+        StartTask --|> Command
+        CompleteTask --|> Command
+        Search --|> Command
+    }
+
+    package "forms" {
+        class "form__Form" as Form {
+            + fields : FormField[]
+            --
+            Форма ввода
+        }
+
+        class "form__FormField" as FormField <<abstract>> {
+            + name : String
+            + label : String
+            + type : String
+            + required : Boolean
+            + property : Property
+            --
+            {abstract} Поле формы
+        }
+
+        class "form__LinkField" as LinkField {
+            + targetType : Class
+            --
+            Поле-ссылка
+        }
+
+        LinkField --|> FormField
+        Form --> FormField : fields
+    }
+
+    Command --> Form : form
+    Command --> Class : contextType
+    Command --> Class : targetType
+}
+
+' =============================================================================
+' PRESENTATION LAYER (Platform-Specific)
+' =============================================================================
+package "presentation/obsidian" <<Rectangle>> #FFEBEE {
+
+    package "layouts" {
+        class "layout__Layout" as Layout {
+            + targetType : Class
+            + sections : String[]
+            + isDefault : Boolean
+            --
+            Визуальный шаблон
+        }
+
+        class "layout__TaskLayout" as TaskLayout
+
+        TaskLayout --|> Layout
+        Layout --> Class : targetType
+    }
+
+    package "groundings" {
+        class "grnd__Grounding" as Grounding {
+            + command : Command
+            + platform : String
+            + status : String
+            + capabilities : String[]
+            --
+            Привязка к платформе
+        }
+
+        class "grnd__CreateTaskGrounding" as CreateTaskGrounding
+
+        CreateTaskGrounding --|> Grounding
+        Grounding --> Command : command
+    }
+}
+
+' =============================================================================
+' LAYER DEPENDENCIES (Clean Architecture)
+' =============================================================================
+note "Layer Dependencies:\ncore ← meta ← domain ← application ← presentation" as N1
+
+@enduml
