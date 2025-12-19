@@ -1,4 +1,4 @@
 ---
 "!": http://www.w3.org/1999/02/22-rdf-syntax-ns#
-rdf:type: "[[owl/owl__Ontology]]"
+rdf:type: "[[owl__Ontology]]"
 ---

@@ -1,7 +1,7 @@
 ---
 rdf:type: "[[rdfs__Class]]"
 rdfs:isDefinedBy: "[[!rdf]]"
-rdfs:label: Property
-rdfs:comment: The class of RDF properties.
+rdfs:label: Statement
 rdfs:subClassOf: "[[rdfs__Resource]]"
+rdfs:comment: The class of RDF statements.
 ---
