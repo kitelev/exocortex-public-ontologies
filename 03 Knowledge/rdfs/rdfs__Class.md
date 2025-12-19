@@ -1,7 +1,7 @@
 ---
-rdf:type: "[[rdfs/rdfs__Class]]"
+rdf:type: "[[rdfs__Class]]"
 rdfs:isDefinedBy: "[[!rdfs]]"
 rdfs:label: Class
 rdfs:comment: The class of classes.
-rdfs:subClassOf: "[[rdfs/rdfs__Resource]]"
+rdfs:subClassOf: "[[rdfs__Resource]]"
 ---
