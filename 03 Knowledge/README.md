@@ -17,7 +17,12 @@
 Значением проперти `rdfs:isDefinedBy` указывается wikilink на [[owl__Ontology]]
 
 
+## Чистая онтологизация
+- NB: Описывать [[rdf__Statement]] для [[rdfs__isDefinedBy]] избыточно - достаточно положить ресурс в папку онтологии. 
+	- Так как при GET HTTP урла онтологии будет всегда получаться вся онтология (то есть папка)
+
 ## TODOs
-- [x] rdfs
-- [x] rdf
-- [ ] owl
+- [x] [[rdfs__label]]
+- [x] [[rdfs__comment]]
+- [x] [[rdfs__Literal]]
+- [x] [[rdfs__subClassOf]]
