@@ -1,6 +1,6 @@
 ---
 rdf:type: "[[rdf__Property]]"
-rdfs:isDefinedBy: "[[rdf/!rdf|!rdf]]"
+rdfs:isDefinedBy: "[[!rdf]]"
 rdfs:label: object
 rdfs:comment: The object of the subject RDF statement.
 rdfs:domain: "[[rdf__Statement]]"
