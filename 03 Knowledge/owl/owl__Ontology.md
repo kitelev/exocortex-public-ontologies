@@ -1,7 +1,7 @@
 ---
-rdf:type: "[[rdfs/rdfs__Class]]"
+rdf:type: "[[rdfs__Class]]"
 rdfs:label: Ontology
 rdfs:comment: The class of ontologies
 rdfs:isDefinedBy: "[[!owl]]"
-rdfs:subClassOf: "[[rdfs/rdfs__Resource]]"
+rdfs:subClassOf: "[[rdfs__Resource]]"
 ---
