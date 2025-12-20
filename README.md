@@ -143,6 +143,30 @@ This filter:
 - Hides all statements EXCEPT those with `rdfs__subClassOf` predicate
 - Excludes the `rdfs__subClassOf` property anchor itself
 
+### Graph View: Clean Structure
+
+To hide common meta-properties and focus on domain-specific relations:
+
+```
+-file:rdfs__range.md
+-file:rdfs__domain.md
+-file:rdf__type.md
+-["rdf__predicate":rdfs__comment]
+-["rdf__predicate":rdfs__label]
+-["rdf__predicate":rdfs__isdefinedby]
+-file:rdf__property
+-file:rdfs__Class.md
+-file:rdfs__subClassOf.md
+-file:rdfs__Resource
+-["metadata":namespace]
+```
+
+This filter hides:
+- Meta-properties (`rdfs:range`, `rdfs:domain`, `rdf:type`)
+- Documentation triples (`rdfs:comment`, `rdfs:label`, `rdfs:isDefinedBy`)
+- Core class anchors (`rdfs:Class`, `rdfs:Resource`, `rdf:Property`)
+- Namespace declarations
+
 ### Querying Triples with Dataview
 
 Find all triples where a resource is the subject:
