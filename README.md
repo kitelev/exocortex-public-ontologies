@@ -40,6 +40,8 @@ exocortex-public-ontologies/
 ├── dc/                     # Dublin Core Elements
 ├── dcterms/                # Dublin Core Terms
 ├── skos/                   # SKOS vocabulary
+├── scripts/                # Validation tools
+│   └── validate.py         # Integrity checker
 └── ~templates/             # Obsidian templates
     ├── ~rdf__Statement.md
     └── ~(dataview) Triples.md
@@ -221,13 +223,30 @@ These ontologies provide the semantic foundation for:
 - **Type inference** and validation
 - **Vocabulary standardization** across knowledge bases
 
+## Validation
+
+Run the validation script to check ontology integrity:
+
+```bash
+python scripts/validate.py
+```
+
+The validator checks:
+- **Broken wikilinks** — references to non-existent anchors
+- **Missing metadata** — files without `metadata` property
+- **Invalid metadata** — files with incorrect metadata values
+- **Orphaned anchors** — anchors not referenced in any statement
+
+Use `--verbose` for detailed output.
+
 ## Contributing
 
 1. Fork the repository
 2. Add new ontologies following the file format
 3. Ensure all resources have anchor files
 4. Add `metadata` property to all files
-5. Submit a pull request
+5. Run `python scripts/validate.py` to verify integrity
+6. Submit a pull request
 
 ## License
 
