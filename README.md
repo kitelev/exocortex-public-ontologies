@@ -15,24 +15,31 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 ## Included Ontologies
 
-| Namespace | Prefix | URI | Files | Coverage |
-|-----------|--------|-----|-------|----------|
-| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 139 | 100% |
-| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 86 | 100% |
-| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 432 | 100% |
-| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 84 | 100% |
-| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 343 | 100% |
-| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 126 | 100% |
-| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 346 | 100% |
-| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 285 | 100% |
-| TIME | `time` | `http://www.w3.org/2006/time#` | 377 | 100% |
-| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 100% |
-| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 395 | 100% |
-| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 225 | 100% |
-| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 434 | 100% |
-| XSD | `xsd` | `http://www.w3.org/2001/XMLSchema#` | 37 | Core types |
+### Verified (100% isomorphic with W3C originals)
 
-**Total: 3,342 files — 14 ontologies**
+| Namespace | Prefix | URI | Triples | Files |
+|-----------|--------|-----|---------|-------|
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 104 |
+| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 536 |
+| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 |
+| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 799 |
+| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 288 |
+| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1146 | 1330 |
+| TIME | `time` | `http://www.w3.org/2006/time#` | 894 | 1063 |
+| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 |
+
+**Total verified: 3,796 triples — 9 ontologies**
+
+### Additional (not yet verified)
+
+| Namespace | Prefix | URI | Status |
+|-----------|--------|-----|--------|
+| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | Pending |
+| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | Pending |
+| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | Pending |
+| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | Pending |
+| XSD | `xsd` | `http://www.w3.org/2001/XMLSchema#` | Core types only |
 
 ## Directory Structure
 
@@ -266,6 +273,8 @@ These ontologies provide the semantic foundation for:
 
 ## Validation
 
+### Structural Validation
+
 Run the validation script to check ontology integrity:
 
 ```bash
@@ -277,8 +286,24 @@ The validator checks:
 - **Missing metadata** — files without `metadata` property
 - **Invalid metadata** — files with incorrect metadata values
 - **Orphaned anchors** — anchors not referenced in any statement
+- **Literal placeholder violations** — `___` used for non-literal objects
+- **Blank node consistency** — blank nodes properly defined and referenced
 
 Use `--verbose` for detailed output.
+
+### Isomorphism Comparison
+
+Verify that file-based ontologies are semantically identical to W3C originals:
+
+```bash
+# Compare specific ontology
+python scripts/compare_ontologies.py rdf
+
+# Compare all verified ontologies
+python scripts/compare_ontologies.py --all
+```
+
+This exports ontologies to RDF/XML and compares with official W3C sources using rdflib graph isomorphism.
 
 ### Pre-commit Hook
 

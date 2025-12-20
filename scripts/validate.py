@@ -60,6 +60,7 @@ class ValidationResult:
     missing_isDefinedBy: List[str] = field(default_factory=list)
     orphaned_blank_nodes: List[str] = field(default_factory=list)
     undefined_blank_nodes: List[Tuple[str, str]] = field(default_factory=list)
+    literal_placeholder_violations: List[Tuple[str, str]] = field(default_factory=list)
 
     def has_errors(self) -> bool:
         # Note: missing_isDefinedBy is not an error since original ontologies
@@ -75,7 +76,8 @@ class ValidationResult:
             self.has_body_violations,
             # self.missing_isDefinedBy,  # Not required by original ontologies
             self.orphaned_blank_nodes,
-            self.undefined_blank_nodes
+            self.undefined_blank_nodes,
+            self.literal_placeholder_violations
         ])
 
     def summary(self) -> str:
@@ -102,6 +104,8 @@ class ValidationResult:
             lines.append(f"  Orphaned blank nodes: {len(self.orphaned_blank_nodes)}")
         if self.undefined_blank_nodes:
             lines.append(f"  Undefined blank nodes: {len(self.undefined_blank_nodes)}")
+        if self.literal_placeholder_violations:
+            lines.append(f"  Literal placeholder violations: {len(self.literal_placeholder_violations)}")
         return '\n'.join(lines) if lines else "  All checks passed!"
 
 
@@ -393,6 +397,17 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             if verbose:
                 print(f"  📛 {rel_path}: {error}")
 
+    # Check literal placeholder consistency
+    # If filename uses ___ (literal placeholder), rdf__object must be a literal, not a wikilink
+    if metadata == 'statement' and '___' in filepath.stem:
+        rdf_object = data.get('rdf__object', '')
+        # Check if object is a pure wikilink (starts with [[, not with " for literal)
+        if isinstance(rdf_object, str) and rdf_object.startswith('[['):
+            error_msg = f"Filename uses ___ but rdf__object is wikilink: {rdf_object}"
+            result.literal_placeholder_violations.append((str(rel_path), error_msg))
+            if verbose:
+                print(f"  📛 {rel_path}: {error_msg}")
+
     # Check for body content (only frontmatter allowed)
     if has_body_content(filepath):
         result.has_body_violations.append(str(rel_path))
@@ -625,6 +640,13 @@ def main():
                 print(f"  - {filepath}: {error}")
             if len(result.naming_violations) > 20:
                 print(f"  ... and {len(result.naming_violations) - 20} more")
+
+        if result.literal_placeholder_violations and not verbose:
+            print(f"\nLiteral placeholder violations ({len(result.literal_placeholder_violations)}):")
+            for filepath, error in result.literal_placeholder_violations[:20]:
+                print(f"  - {filepath}: {error}")
+            if len(result.literal_placeholder_violations) > 20:
+                print(f"  ... and {len(result.literal_placeholder_violations) - 20} more")
 
         if result.frontmatter_prop_violations and not verbose:
             print(f"\nFrontmatter property violations ({len(result.frontmatter_prop_violations)}):")
