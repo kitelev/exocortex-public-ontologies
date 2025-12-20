@@ -47,6 +47,7 @@ class ValidationResult:
     naming_violations: List[Tuple[str, str]] = field(default_factory=list)
     frontmatter_prop_violations: List[Tuple[str, str]] = field(default_factory=list)
     has_body_violations: List[str] = field(default_factory=list)
+    missing_isDefinedBy: List[str] = field(default_factory=list)
 
     def has_errors(self) -> bool:
         return any([
@@ -57,7 +58,8 @@ class ValidationResult:
             self.invalid_metadata,
             self.naming_violations,
             self.frontmatter_prop_violations,
-            self.has_body_violations
+            self.has_body_violations,
+            self.missing_isDefinedBy
         ])
 
     def summary(self) -> str:
@@ -78,6 +80,8 @@ class ValidationResult:
             lines.append(f"  Frontmatter property violations: {len(self.frontmatter_prop_violations)}")
         if self.has_body_violations:
             lines.append(f"  Files with body content: {len(self.has_body_violations)}")
+        if self.missing_isDefinedBy:
+            lines.append(f"  Missing rdfs:isDefinedBy statements: {len(self.missing_isDefinedBy)}")
         return '\n'.join(lines) if lines else "  All checks passed!"
 
 
@@ -330,6 +334,32 @@ def validate_file(filepath: Path, all_anchors: Set[str], result: ValidationResul
             print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
 
 
+def check_isDefinedBy_statements(repo_root: Path, verbose: bool = False) -> List[str]:
+    """Check that each anchor has a corresponding rdfs:isDefinedBy statement."""
+    missing = []
+
+    for ns in NAMESPACES:
+        ns_dir = repo_root / ns
+        if not ns_dir.exists():
+            continue
+
+        for filepath in ns_dir.glob('*.md'):
+            data, error = parse_frontmatter(filepath)
+            if not data or data.get('metadata') != 'anchor':
+                continue
+
+            anchor_name = filepath.stem
+            # Expected statement file: {anchor} rdfs__isDefinedBy !{namespace}.md
+            expected_statement = ns_dir / f"{anchor_name} rdfs__isDefinedBy !{ns}.md"
+
+            if not expected_statement.exists():
+                missing.append(f"{ns}/{anchor_name}")
+                if verbose:
+                    print(f"  🔗 {ns}/{anchor_name}: missing rdfs:isDefinedBy statement")
+
+    return sorted(missing)
+
+
 def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], verbose: bool = False) -> List[str]:
     """Find anchors that are not referenced in any statement."""
     referenced = set()
@@ -384,6 +414,9 @@ def validate_all(repo_root: Path, verbose: bool = False) -> ValidationResult:
     if result.orphaned_anchors and verbose:
         for anchor in result.orphaned_anchors:
             print(f"  👻 {anchor}")
+
+    print("\nChecking rdfs:isDefinedBy statements...")
+    result.missing_isDefinedBy = check_isDefinedBy_statements(repo_root, verbose)
 
     return result
 
@@ -445,6 +478,13 @@ def main():
                 print(f"  - {filepath}")
             if len(result.has_body_violations) > 20:
                 print(f"  ... and {len(result.has_body_violations) - 20} more")
+
+        if result.missing_isDefinedBy and not verbose:
+            print(f"\nMissing rdfs:isDefinedBy statements ({len(result.missing_isDefinedBy)}):")
+            for anchor in result.missing_isDefinedBy[:20]:
+                print(f"  - {anchor}")
+            if len(result.missing_isDefinedBy) > 20:
+                print(f"  ... and {len(result.missing_isDefinedBy) - 20} more")
 
         sys.exit(1)
     else:
