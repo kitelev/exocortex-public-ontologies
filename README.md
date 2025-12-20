@@ -15,16 +15,16 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 ## Included Ontologies
 
-| Namespace | Prefix | URI | Files |
-|-----------|--------|-----|-------|
-| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 139 |
-| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 86 |
-| OWL | `owl` | `http://www.w3.org/2002/07/owl#` | 15 |
-| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 24 |
-| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 25 |
-| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 10 |
+| Namespace | Prefix | URI | Files | Coverage |
+|-----------|--------|-----|-------|----------|
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 139 | 100% |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 86 | 100% |
+| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 432 | 100% |
+| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 84 | 100% |
+| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 343 | 100% |
+| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 126 | 100% |
 
-**Total: 299 files (6 namespaces, 47 anchors, 246 statements)**
+**Total: 1,210 files — all W3C and Dublin Core ontologies fully covered**
 
 ## Directory Structure
 
