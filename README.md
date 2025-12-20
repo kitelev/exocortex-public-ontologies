@@ -1,323 +1,106 @@
-# Exocortex Public Ontologies
+# RDF Ontologies in File-based Triple Format
 
-Публичные онтологии для системы управления знаниями [Exocortex](https://github.com/kitelev/exocortex).
+## File Structure
 
-## Структура (Clean Architecture + DDD)
+Each folder represents a namespace.
 
+### Resource Files
+
+Each RDF resource is represented by an **empty file** with the resource identifier as the filename:
+- `rdfs__Class.md` — the resource identifier (empty file)
+- `owl__Ontology.md` — the resource identifier (empty file)
+
+### Triple Files
+
+Each RDF triple is represented as a separate file with the format:
 ```
-03 Knowledge/
-├── core/           # Shared Kernel — базовые абстракции
-│   ├── core__Asset.md          # Базовая единица знаний
-│   ├── core__Reference.md      # Ссылка на ассет
-│   └── core__Relation.md       # Связь между ассетами
-│
-├── meta/           # Meta-modeling — мета-классы
-│   ├── meta__Class.md          # Описание класса
-│   ├── meta__Property.md       # Описание свойства
-│   ├── meta__Constraint.md     # Ограничение валидации
-│   └── meta__Cardinality.md    # Кардинальность свойства
-│
-├── domain/         # Bounded Contexts — домены
-│   └── ems/                    # Effort Management System
-│       ├── ems__Task.md        # Задача
-│       ├── ems__Project.md     # Проект
-│       ├── ems__Area.md        # Область ответственности
-│       ├── ems__Prototype.md   # Шаблон задачи
-│       └── ems__Effort.md      # Трекинг времени (mixin)
-│
-├── application/    # Use Cases — команды и формы
-│   ├── commands/               # Команды
-│   │   ├── cmd__Command.md     # Базовый класс команды
-│   │   ├── cmd__CreateTask.md  # Создать задачу
-│   │   ├── cmd__StartTask.md   # Начать задачу
-│   │   ├── cmd__CompleteTask.md# Завершить задачу
-│   │   └── cmd__Search.md      # Поиск по базе
-│   └── forms/                  # Формы
-│       ├── form__Form.md       # Базовый класс формы
-│       ├── form__FormField.md  # Поле формы
-│       └── form__LinkField.md  # Поле-ссылка на ассет
-│
-└── presentation/   # Platform-specific — реализации для платформ
-    └── obsidian/
-        ├── layouts/            # Визуальные шаблоны
-        │   ├── layout__Layout.md
-        │   └── layout__TaskLayout.md
-        ├── groundings/         # Реализации команд
-        │   ├── grnd__Grounding.md
-        │   └── grnd__CreateTaskGrounding.md
-        └── ui/                 # UI-компоненты
-            └── !ui.md
+{subject} {predicate} {object}.md
 ```
 
-## Диаграмма классов
+NB: `{object}` может быть не указан - вместо этого указывается `___`. Это используется, если, например, значение `{object}` слишком длинное. См. пример [[!owl rdfs__comment ___]]
 
-```mermaid
-classDiagram
-    direction TB
-
-    %% =========================================================================
-    %% CORE LAYER (Shared Kernel)
-    %% =========================================================================
-    namespace core {
-        class Resource {
-            <<root>>
-        }
-        class Asset {
-            +label: String
-            +description: String
-            +uri: String
-            +created: DateTime
-            +modified: DateTime
-        }
-        class Reference {
-            +target: Asset
-        }
-        class Relation {
-            +source: Asset
-            +target: Asset
-            +type: ObjectProperty
-        }
-        class Class {
-            <<metaclass>>
-        }
-        class Property
-        class ObjectProperty
-        class DatatypeProperty
-        class StringProperty
-        class NumberProperty
-        class BooleanProperty
-        class DateProperty
-        class DateTimeProperty
-        class Ontology {
-            +url: String
-        }
-    }
-
-    Resource <|-- Asset
-    Resource <|-- Class
-    Resource <|-- Property
-    Resource <|-- Ontology
-    Asset <|-- Reference
-    Asset <|-- Relation
-    Property <|-- ObjectProperty
-    Property <|-- DatatypeProperty
-    DatatypeProperty <|-- StringProperty
-    DatatypeProperty <|-- NumberProperty
-    DatatypeProperty <|-- BooleanProperty
-    DatatypeProperty <|-- DateProperty
-    DatatypeProperty <|-- DateTimeProperty
-
-    %% =========================================================================
-    %% META LAYER
-    %% =========================================================================
-    namespace meta {
-        class MetaClass["meta__Class"] {
-            +superClass: Class[]
-            +description: String
-        }
-        class MetaProperty["meta__Property"] {
-            +domain: Class
-            +range: Class
-            +description: String
-        }
-        class Constraint {
-            +property: Property
-            +message: String
-        }
-        class Cardinality {
-            +min: Number
-            +max: Number
-        }
-    }
-
-    Class <|.. MetaClass : extends
-    Property <|.. MetaProperty : extends
-    Resource <|-- Constraint
-    Resource <|-- Cardinality
-
-    %% =========================================================================
-    %% DOMAIN LAYER - EMS
-    %% =========================================================================
-    namespace domain_ems {
-        class Effort {
-            <<mixin>>
-            +startTimestamp: DateTime
-            +endTimestamp: DateTime
-        }
-        class Task {
-            +project: Project
-            +area: Area
-            +prototype: Prototype
-            +priority: Number
-            +dueDate: Date
-        }
-        class Project {
-            +area: Area
-            +status: String
-            +dueDate: Date
-        }
-        class Area {
-            +parent: Area
-        }
-        class Prototype {
-            +area: Area
-            +defaultDuration: Number
-        }
-    }
-
-    Asset <|-- Task
-    Asset <|-- Project
-    Asset <|-- Area
-    Asset <|-- Prototype
-    Effort <|.. Task : mixin
-    Task --> Project : project
-    Task --> Area : area
-    Task --> Prototype : prototype
-    Project --> Area : area
-    Area --> Area : parent
-    Prototype --> Area : area
-
-    %% =========================================================================
-    %% APPLICATION LAYER
-    %% =========================================================================
-    namespace application {
-        class Command {
-            <<abstract>>
-            +name: String
-            +description: String
-            +category: String
-            +hotkey: String
-            +contextType: Class
-            +targetType: Class
-            +form: Form
-        }
-        class CreateTask
-        class StartTask
-        class CompleteTask
-        class Search
-        class Form {
-            +fields: FormField[]
-        }
-        class FormField {
-            <<abstract>>
-            +name: String
-            +label: String
-            +type: String
-            +required: Boolean
-        }
-        class LinkField {
-            +targetType: Class
-        }
-    }
-
-    Command <|-- CreateTask
-    Command <|-- StartTask
-    Command <|-- CompleteTask
-    Command <|-- Search
-    FormField <|-- LinkField
-    Command --> Form : form
-    Command --> Class : contextType
-    Form --> FormField : fields
-
-    %% =========================================================================
-    %% PRESENTATION LAYER
-    %% =========================================================================
-    namespace presentation {
-        class Layout {
-            +targetType: Class
-            +sections: String[]
-            +isDefault: Boolean
-        }
-        class TaskLayout
-        class Grounding {
-            +command: Command
-            +platform: String
-            +status: String
-            +capabilities: String[]
-        }
-        class CreateTaskGrounding
-    }
-
-    Layout <|-- TaskLayout
-    Grounding <|-- CreateTaskGrounding
-    Layout --> Class : targetType
-    Grounding --> Command : command
-```
-
-> 📁 PlantUML версия: [docs/class-diagram.puml](./docs/class-diagram.puml)
-
-## Принципы архитектуры
-
-### Слои (Clean Architecture)
-
-| Слой | Зависит от | Описание |
-|------|------------|----------|
-| **core** | ничего | Shared Kernel — базовые абстракции |
-| **meta** | core | Мета-моделирование (классы, свойства) |
-| **domain** | core, meta | Бизнес-логика (Task, Project) |
-| **application** | core, meta, domain | Use Cases (команды, формы) |
-| **presentation** | все | Platform-specific (Obsidian layouts) |
-
-### Low Coupling + High Cohesion
-
-- **Low Coupling**: слои зависят только от внутренних слоёв
-- **High Cohesion**: связанные концепции сгруппированы вместе
-- **Single Responsibility**: каждая онтология имеет одну цель
-- **Bounded Contexts**: доменная логика изолирована в domain/
-
-## Формат файлов
-
-Каждый файл — Markdown с YAML frontmatter (как в vault-2025):
-
+Triple files contain YAML frontmatter with reified statement structure:
 ```yaml
 ---
-exo__Asset_uid: a1b2c3d4-ems-0001-0000-000000000001
-exo__Asset_isDefinedBy: "[[!ems]]"
-exo__Instance_class:
-  - "[[meta__Class]]"
-exo__Class_superClass:
-  - "[[ems__Effort]]"
-exo__Class_description: Единица работы с отслеживанием времени
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[{subject}]]"
+rdf__predicate: "[[{predicate}]]"
+rdf__object: "[[{object}]]"
 ---
 ```
 
-**Правила:**
-- Только frontmatter, минимальный markdown body
-- Каждое свойство — отдельный файл (`ems__Task_project.md`)
-- Онтологии обозначаются `!` (`!ems.md`)
-- Ссылки через wikilinks: `[[ems__Task]]`
-
-## Установка
-
-```bash
-# Клонировать репозиторий
-git clone https://github.com/kitelev/exocortex-public-ontologies.git
-
-# Скопировать в vault
-cp -r exocortex-public-ontologies/03\ Knowledge/ /path/to/vault/
-
-# Или симлинк
-ln -s $(pwd)/exocortex-public-ontologies/03\ Knowledge /path/to/vault/03\ Knowledge
+For literal values, `rdf:object` contains the literal without wikilinks:
+```yaml
+rdf__object: "Class"
 ```
 
-## Экспорт
+Examples:
+- `rdfs__Class a rdfs__Class.md` — type declaration (`rdf:type`)
+- `rdfs__Class rdfs__label "Class".md` — literal value
+- `rdfs__Class rdfs__subClassOf rdfs__Resource.md` — resource reference
 
-| Файл | Формат | Описание |
-|------|--------|----------|
-| `ontologies.nt` | N-Triples | Машиночитаемый |
-| `ontologies.ttl` | Turtle | Человекочитаемый |
+### Ontology Files
 
-```bash
-npx @kitelev/exocortex-cli sparql query \
-  --vault . --format ntriples \
-  "CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }" > ontologies.nt
+The namespace itself is represented by a file with `!` prefix:
+- `!rdf.md` — RDF namespace
+- `!rdfs.md` — RDFS namespace
+- `!owl.md` — OWL namespace
+
+These files contain the `!` property with the ontology URL.
+
+## Naming Conventions
+
+- `__` (double underscore) replaces `:` in prefixed names: `rdfs:Class` → `rdfs__Class`
+- `a` is used as shorthand for `rdf:type` (standard SPARQL/Turtle syntax)
+- Literal values are quoted in filename: `"Class"`, `"The class of classes."`
+- Resource references are unquoted in filename: `rdfs__Resource`
+
+## Example
+
+For the RDF triple:
+```turtle
+rdfs:Class rdf:type rdfs:Class .
+rdfs:Class rdfs:label "Class" .
+rdfs:Class rdfs:subClassOf rdfs:Resource .
 ```
 
-## См. также
+Files:
+```
+rdfs/
+├── rdfs__Class.md                              (empty - resource anchor)
+├── rdfs__Class a rdfs__Class.md                (frontmatter with reified triple)
+├── rdfs__Class rdfs__label "Class".md          (frontmatter with reified triple)
+├── rdfs__Class rdfs__subClassOf rdfs__Resource.md  (frontmatter with reified triple)
+```
 
-- [Exocortex](https://github.com/kitelev/exocortex) — основной репозиторий
-- [CLAUDE.md](./CLAUDE.md) — инструкции для AI-ассистентов
+### Triple File Content Example
 
-## Лицензия
+File `rdfs__Class a rdfs__Class.md`:
+```yaml
+---
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__Class]]"
+rdf__predicate: "[[rdf__type|a]]"
+rdf__object: "[[rdfs__Class]]"
+---
+```
 
-MIT
+File `rdfs__Class rdfs__label "Class".md`:
+```yaml
+---
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__Class]]"
+rdf__predicate: "[[rdfs__label]]"
+rdf__object: "Class"
+---
+```
+
+## TODOs
+- [ ] Все литералы обернуть в двойные кавычки
+	- [ ] При необходимости добавить типизацию
+		- Пример `"2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date>`
+- [ ] Обновить этот файл через ИИ
+- [ ] Описать через ИИ
+	- [ ] [[skos__definition]]
+	- [ ] [[skos__scopeNote]]
+	- [ ] [[owl__AnnotationProperty]]
