@@ -24,8 +24,12 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 343 | 100% |
 | SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 126 | 100% |
 | FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 346 | 100% |
+| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 285 | 100% |
+| TIME | `time` | `http://www.w3.org/2006/time#` | 377 | 100% |
+| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 100% |
+| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 395 | 100% |
 
-**Total: 1,556 files — W3C, Dublin Core, and FOAF ontologies fully covered**
+**Total: 2,646 files — 11 ontologies fully covered**
 
 ## Directory Structure
 
@@ -42,6 +46,10 @@ exocortex-public-ontologies/
 ├── dcterms/                # Dublin Core Terms
 ├── skos/                   # SKOS vocabulary
 ├── foaf/                   # FOAF (Friend of a Friend)
+├── prov/                   # PROV-O (Provenance)
+├── time/                   # TIME (Temporal entities)
+├── geo/                    # GEO (WGS84 coordinates)
+├── vcard/                  # VCARD (Contact information)
 ├── scripts/                # Validation tools
 │   ├── validate.py         # Integrity checker
 │   └── install-hooks.sh    # Git hooks installer
