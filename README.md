@@ -28,8 +28,11 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | TIME | `time` | `http://www.w3.org/2006/time#` | 377 | 100% |
 | GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 100% |
 | VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 395 | 100% |
+| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 225 | 100% |
+| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 434 | 100% |
+| XSD | `xsd` | `http://www.w3.org/2001/XMLSchema#` | 37 | Core types |
 
-**Total: 2,646 files — 11 ontologies fully covered**
+**Total: 3,342 files — 14 ontologies**
 
 ## Directory Structure
 
@@ -50,6 +53,9 @@ exocortex-public-ontologies/
 ├── time/                   # TIME (Temporal entities)
 ├── geo/                    # GEO (WGS84 coordinates)
 ├── vcard/                  # VCARD (Contact information)
+├── doap/                   # DOAP (Description of a Project)
+├── sioc/                   # SIOC (Online Communities)
+├── xsd/                    # XSD (XML Schema datatypes)
 ├── scripts/                # Validation tools
 │   ├── validate.py         # Integrity checker
 │   └── install-hooks.sh    # Git hooks installer
