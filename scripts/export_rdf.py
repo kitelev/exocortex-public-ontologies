@@ -79,7 +79,8 @@ def parse_frontmatter(filepath: Path) -> Tuple[Optional[dict], Optional[str]]:
         if not end_match:
             return None, "No closing ---"
 
-    yaml_content = content[4:3 + end_match.start()]
+    # Include the trailing newline before --- for proper block scalar chomping
+    yaml_content = content[4:3 + end_match.start() + 1]
 
     try:
         data = yaml.safe_load(yaml_content)
