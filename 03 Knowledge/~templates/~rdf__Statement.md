@@ -1,6 +1,6 @@
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject:
-rdf:predicate:
-rdf:object:
+rdf__type: "[[rdf__Statement]]"
+rdf__subject:
+rdf__predicate:
+rdf__object:
 ---

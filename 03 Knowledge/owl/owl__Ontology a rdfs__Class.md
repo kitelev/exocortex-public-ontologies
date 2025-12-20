@@ -1,6 +1,6 @@
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[owl__Ontology]]"
-rdf:predicate: "[[rdf__type]]"
-rdf:object: "[[rdfs__Class]]"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[owl__Ontology]]"
+rdf__predicate: "[[rdf__type]]"
+rdf__object: "[[rdfs__Class]]"
 ---

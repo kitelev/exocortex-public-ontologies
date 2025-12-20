@@ -1,6 +1,6 @@
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[rdfs__comment]]"
-rdf:predicate: "[[rdfs__range]]"
-rdf:object: "[[rdfs__Literal]]"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__comment]]"
+rdf__predicate: "[[rdfs__range]]"
+rdf__object: "[[rdfs__Literal]]"
 ---

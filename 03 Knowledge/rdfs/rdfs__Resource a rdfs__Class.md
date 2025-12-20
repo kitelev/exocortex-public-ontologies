@@ -1,6 +1,6 @@
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[rdfs__Resource]]"
-rdf:predicate: "[[rdf__type|a]]"
-rdf:object: "[[rdfs__Class]]"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__Resource]]"
+rdf__predicate: "[[rdf__type|a]]"
+rdf__object: "[[rdfs__Class]]"
 ---
