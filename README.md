@@ -8,7 +8,7 @@ This repository contains standard W3C and Dublin Core ontologies converted to a 
 
 - **Graph navigation** via Obsidian wikilinks
 - **SPARQL-like queries** via Dataview plugin
-- **Reification support** for statement-level metadata
+- **Class hierarchy visualization** via Graph View
 - **Human-readable** knowledge representation
 
 Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge management ecosystem.
@@ -17,14 +17,14 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 | Namespace | Prefix | URI | Files |
 |-----------|--------|-----|-------|
-| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 41 |
-| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 74 |
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 139 |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 86 |
 | OWL | `owl` | `http://www.w3.org/2002/07/owl#` | 15 |
 | Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 24 |
 | Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 25 |
 | SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 10 |
 
-**Total: 189 triple files + 6 namespace files**
+**Total: 299 files (6 namespaces, 47 anchors, 246 statements)**
 
 ## Directory Structure
 
@@ -32,7 +32,7 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 exocortex-public-ontologies/
 ├── rdf/                    # RDF namespace
 │   ├── !rdf.md             # Namespace declaration
-│   ├── rdf__Property.md    # Resource anchor (empty)
+│   ├── rdf__Property.md    # Resource anchor
 │   ├── rdf__type.md        # Resource anchor
 │   └── rdf__type rdfs__label ___.md  # Triple file
 ├── rdfs/                   # RDFS namespace
@@ -47,27 +47,37 @@ exocortex-public-ontologies/
 
 ## File Format
 
+All files have a `metadata` property indicating their type:
+- `namespace` — namespace declaration files
+- `anchor` — resource anchor files
+- `statement` — RDF triple files
+
 ### 1. Namespace Files (`!{prefix}.md`)
 
 Define the namespace URI:
 
 ```yaml
 ---
+metadata: namespace
 "!": http://www.w3.org/1999/02/22-rdf-syntax-ns#
 ---
 ```
 
 ### 2. Resource Files (`{prefix}__{localname}.md`)
 
-Empty files serving as anchor points for wikilinks:
+Anchor points for wikilinks:
 
-- `rdf__Property.md` — the `rdf:Property` class
-- `rdfs__Class.md` — the `rdfs:Class` class
-- `owl__Ontology.md` — the `owl:Ontology` class
+```yaml
+---
+metadata: anchor
+---
+```
+
+Examples: `rdf__Property.md`, `rdfs__Class.md`, `owl__Ontology.md`
 
 ### 3. Triple Files (`{subject} {predicate} {object}.md`)
 
-Each RDF triple is a file with reified statement structure:
+Each RDF triple is a file with statement structure:
 
 **Filename format:**
 ```
@@ -84,7 +94,7 @@ Each RDF triple is a file with reified statement structure:
 
 ```yaml
 ---
-rdf__type: "[[rdf__Statement]]"
+metadata: statement
 rdf__subject: "[[rdf__Property]]"
 rdf__predicate: "[[rdf__type|a]]"
 rdf__object: "[[rdfs__Class]]"
@@ -94,7 +104,7 @@ rdf__object: "[[rdfs__Class]]"
 For literal values:
 ```yaml
 ---
-rdf__type: "[[rdf__Statement]]"
+metadata: statement
 rdf__subject: "[[rdf__type]]"
 rdf__predicate: "[[rdfs__label]]"
 rdf__object: type
@@ -118,6 +128,18 @@ rdf__object: '"Class"@en'
 
 ## Usage with Obsidian
 
+### Graph View: Class Hierarchy
+
+To visualize the class hierarchy (only anchors and `rdfs:subClassOf` relations):
+
+```
+-(["metadata":statement] -["rdf__predicate":rdfs__subClassOf]) -file:"rdfs__subClassOf.md"
+```
+
+This filter:
+- Hides all statements EXCEPT those with `rdfs__subClassOf` predicate
+- Excludes the `rdfs__subClassOf` property anchor itself
+
 ### Querying Triples with Dataview
 
 Find all triples where a resource is the subject:
@@ -139,6 +161,13 @@ TABLE WITHOUT ID
     rdf__predicate,
     rdf__object
 WHERE rdf__object = [[rdfs__Resource]]
+```
+
+Filter by metadata type:
+
+```dataview
+LIST
+WHERE metadata = "anchor"
 ```
 
 ### Templates
@@ -174,7 +203,7 @@ File: `owl/!owl owl__imports !rdfs.md`
 
 ```yaml
 ---
-rdf__type: "[[rdf__Statement]]"
+metadata: statement
 rdf__subject: "[[!owl]]"
 rdf__predicate: "[[owl__imports]]"
 rdf__object: "[[!rdfs]]"
@@ -197,7 +226,8 @@ These ontologies provide the semantic foundation for:
 1. Fork the repository
 2. Add new ontologies following the file format
 3. Ensure all resources have anchor files
-4. Submit a pull request
+4. Add `metadata` property to all files
+5. Submit a pull request
 
 ## License
 
