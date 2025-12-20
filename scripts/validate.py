@@ -26,6 +26,10 @@ NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'skos', 'foaf', 'prov', 'ti
 EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 
+# Required properties for statement files (exactly these 4, no more, no less)
+STATEMENT_REQUIRED_PROPS = {'metadata', 'rdf__subject', 'rdf__predicate', 'rdf__object'}
+
+
 @dataclass
 class ValidationResult:
     """Holds validation results."""
@@ -35,6 +39,8 @@ class ValidationResult:
     missing_metadata: List[str] = field(default_factory=list)
     invalid_metadata: List[Tuple[str, str]] = field(default_factory=list)
     naming_violations: List[Tuple[str, str]] = field(default_factory=list)
+    statement_prop_violations: List[Tuple[str, str]] = field(default_factory=list)
+    has_body_violations: List[str] = field(default_factory=list)
 
     def has_errors(self) -> bool:
         return any([
@@ -43,7 +49,9 @@ class ValidationResult:
             self.invalid_frontmatter,
             self.missing_metadata,
             self.invalid_metadata,
-            self.naming_violations
+            self.naming_violations,
+            self.statement_prop_violations,
+            self.has_body_violations
         ])
 
     def summary(self) -> str:
@@ -60,6 +68,10 @@ class ValidationResult:
             lines.append(f"  Invalid metadata: {len(self.invalid_metadata)}")
         if self.naming_violations:
             lines.append(f"  Naming convention violations: {len(self.naming_violations)}")
+        if self.statement_prop_violations:
+            lines.append(f"  Statement property violations: {len(self.statement_prop_violations)}")
+        if self.has_body_violations:
+            lines.append(f"  Files with body content: {len(self.has_body_violations)}")
         return '\n'.join(lines) if lines else "  All checks passed!"
 
 
@@ -170,6 +182,29 @@ def parse_frontmatter(filepath: Path) -> Tuple[dict, str]:
         return None, f"YAML parse error: {e}"
 
 
+def has_body_content(filepath: Path) -> bool:
+    """Check if file has any content after frontmatter (body)."""
+    try:
+        content = filepath.read_text(encoding='utf-8')
+    except Exception:
+        return False
+
+    if not content.startswith('---'):
+        return True  # No frontmatter means everything is body
+
+    # Find closing ---
+    end_match = re.search(r'\n---\s*\n', content[3:])
+    if not end_match:
+        end_match = re.search(r'\n---\s*$', content[3:])
+        if not end_match:
+            return False  # Invalid file
+
+    # Content after closing ---
+    body_start = 3 + end_match.end()
+    body = content[body_start:].strip()
+    return len(body) > 0
+
+
 def extract_wikilinks(data: dict) -> Set[str]:
     """Extract all wikilink targets from frontmatter values."""
     links = set()
@@ -233,6 +268,21 @@ def validate_file(filepath: Path, all_anchors: Set[str], result: ValidationResul
                 if verbose:
                     print(f"  🔗 {rel_path}: broken link to [[{link}]]")
 
+        # Check statement has exactly 4 required properties
+        props = set(data.keys())
+        if props != STATEMENT_REQUIRED_PROPS:
+            missing = STATEMENT_REQUIRED_PROPS - props
+            extra = props - STATEMENT_REQUIRED_PROPS
+            errors = []
+            if missing:
+                errors.append(f"missing: {', '.join(sorted(missing))}")
+            if extra:
+                errors.append(f"extra: {', '.join(sorted(extra))}")
+            error_msg = '; '.join(errors)
+            result.statement_prop_violations.append((str(rel_path), error_msg))
+            if verbose:
+                print(f"  📋 {rel_path}: {error_msg}")
+
     # Check naming convention
     if metadata:
         valid, error = check_naming_convention(filepath, metadata)
@@ -240,6 +290,12 @@ def validate_file(filepath: Path, all_anchors: Set[str], result: ValidationResul
             result.naming_violations.append((str(rel_path), error))
             if verbose:
                 print(f"  📛 {rel_path}: {error}")
+
+    # Check for body content (only frontmatter allowed)
+    if has_body_content(filepath):
+        result.has_body_violations.append(str(rel_path))
+        if verbose:
+            print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
 
 
 def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], verbose: bool = False) -> List[str]:
@@ -343,6 +399,20 @@ def main():
                 print(f"  - {filepath}: {error}")
             if len(result.naming_violations) > 20:
                 print(f"  ... and {len(result.naming_violations) - 20} more")
+
+        if result.statement_prop_violations and not verbose:
+            print(f"\nStatement property violations ({len(result.statement_prop_violations)}):")
+            for filepath, error in result.statement_prop_violations[:20]:
+                print(f"  - {filepath}: {error}")
+            if len(result.statement_prop_violations) > 20:
+                print(f"  ... and {len(result.statement_prop_violations) - 20} more")
+
+        if result.has_body_violations and not verbose:
+            print(f"\nFiles with body content ({len(result.has_body_violations)}):")
+            for filepath in result.has_body_violations[:20]:
+                print(f"  - {filepath}")
+            if len(result.has_body_violations) > 20:
+                print(f"  ... and {len(result.has_body_violations) - 20} more")
 
         sys.exit(1)
     else:
