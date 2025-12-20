@@ -1,97 +1,205 @@
-# RDF Ontologies in File-based Triple Format
+# Exocortex Public Ontologies
 
-## File Structure
+File-based RDF ontologies for knowledge management in Obsidian.
 
-Each folder represents a namespace.
+## Overview
 
-### Resource Files
+This repository contains standard W3C and Dublin Core ontologies converted to a file-based triple format. Each RDF triple is represented as a separate Markdown file with YAML frontmatter, enabling:
 
-Each RDF resource is represented by an **empty file** with the resource identifier as the filename:
-- `rdfs__Class.md` — the resource identifier (empty file)
-- `owl__Ontology.md` — the resource identifier (empty file)
+- **Graph navigation** via Obsidian wikilinks
+- **SPARQL-like queries** via Dataview plugin
+- **Reification support** for statement-level metadata
+- **Human-readable** knowledge representation
 
-### Triple Files
+Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge management ecosystem.
 
-Each RDF triple is represented as a separate file with the format:
+## Included Ontologies
+
+| Namespace | Prefix | URI | Files |
+|-----------|--------|-----|-------|
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 41 |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 74 |
+| OWL | `owl` | `http://www.w3.org/2002/07/owl#` | 15 |
+| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 24 |
+| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 25 |
+| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 10 |
+
+**Total: 189 triple files + 6 namespace files**
+
+## Directory Structure
+
+```
+exocortex-public-ontologies/
+├── rdf/                    # RDF namespace
+│   ├── !rdf.md             # Namespace declaration
+│   ├── rdf__Property.md    # Resource anchor (empty)
+│   ├── rdf__type.md        # Resource anchor
+│   └── rdf__type rdfs__label ___.md  # Triple file
+├── rdfs/                   # RDFS namespace
+├── owl/                    # OWL namespace
+├── dc/                     # Dublin Core Elements
+├── dcterms/                # Dublin Core Terms
+├── skos/                   # SKOS vocabulary
+└── ~templates/             # Obsidian templates
+    ├── ~rdf__Statement.md
+    └── ~(dataview) Triples.md
+```
+
+## File Format
+
+### 1. Namespace Files (`!{prefix}.md`)
+
+Define the namespace URI:
+
+```yaml
+---
+"!": http://www.w3.org/1999/02/22-rdf-syntax-ns#
+---
+```
+
+### 2. Resource Files (`{prefix}__{localname}.md`)
+
+Empty files serving as anchor points for wikilinks:
+
+- `rdf__Property.md` — the `rdf:Property` class
+- `rdfs__Class.md` — the `rdfs:Class` class
+- `owl__Ontology.md` — the `owl:Ontology` class
+
+### 3. Triple Files (`{subject} {predicate} {object}.md`)
+
+Each RDF triple is a file with reified statement structure:
+
+**Filename format:**
 ```
 {subject} {predicate} {object}.md
 ```
 
-NB: `{object}` не указывается, если его тип [[rdfs__Literal]] - вместо этого указывается `___`
+**Special cases:**
+- Object is a literal: use `___` placeholder
+  - `rdfs__Class rdfs__label ___.md`
+- Predicate is `rdf:type`: use shorthand `a`
+  - `rdf__Property a rdfs__Class.md`
 
-Triple files contain YAML frontmatter with reified statement structure:
+**File content (YAML frontmatter):**
+
 ```yaml
 ---
 rdf__type: "[[rdf__Statement]]"
-rdf__subject: "[[{subject}]]"
-rdf__predicate: "[[{predicate}]]"
-rdf__object: "[[{object}]]"
+rdf__subject: "[[rdf__Property]]"
+rdf__predicate: "[[rdf__type|a]]"
+rdf__object: "[[rdfs__Class]]"
 ---
 ```
 
-For literal values, `rdf:object` contains the literal without wikilinks:
+For literal values:
 ```yaml
-rdf__object: "Class"
+---
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdf__type]]"
+rdf__predicate: "[[rdfs__label]]"
+rdf__object: type
+---
 ```
 
-Если в оригинальном TTL указано `"Class"@en`, то в YAML будет `'"Class"@en'`
-
-Examples:
-- `rdfs__Class a rdfs__Class.md` — type declaration (`rdf:type`)
-- `rdfs__Class rdfs__label ___.md` — literal value
-- `rdfs__Class rdfs__subClassOf rdfs__Resource.md` — resource reference
-
-### Ontology Files
-
-The namespace itself is represented by a file with `!` prefix:
-- `!rdf.md` — RDF namespace
-- `!rdfs.md` — RDFS namespace
-- `!owl.md` — OWL namespace
-
-These files contain the `!` property with the namespace URL.
+Language-tagged literals are preserved:
+```yaml
+rdf__object: '"Class"@en'
+```
 
 ## Naming Conventions
 
-- `__` (double underscore) replaces `:` in prefixed names: `rdfs:Class` → `rdfs__Class`
-- `a` is used as shorthand for `rdf:type` (standard SPARQL/Turtle syntax)
-- Resource references are unquoted in filename: `rdfs__Resource`
+| Original | File-based |
+|----------|------------|
+| `rdfs:Class` | `rdfs__Class` |
+| `rdf:type` | `a` (in filenames) |
+| `:` (prefix separator) | `__` (double underscore) |
+| Literal object | `___` (triple underscore) |
+| Namespace file | `!` prefix |
 
-## Example
+## Usage with Obsidian
 
-For the RDF triple:
+### Querying Triples with Dataview
+
+Find all triples where a resource is the subject:
+
+```dataview
+TABLE WITHOUT ID
+    link(file.link, "_") AS "_",
+    rdf__subject,
+    rdf__predicate,
+    rdf__object
+WHERE rdf__subject = [[rdfs__Class]]
+```
+
+Find all triples where a resource is the object:
+
+```dataview
+TABLE WITHOUT ID
+    rdf__subject,
+    rdf__predicate,
+    rdf__object
+WHERE rdf__object = [[rdfs__Resource]]
+```
+
+### Templates
+
+The `~templates/` folder contains ready-to-use templates:
+
+- **`~rdf__Statement.md`** — Template for creating new triples
+- **`~(dataview) Triples.md`** — Embed in any resource to see related triples
+
+## Examples
+
+### RDF Triple
+
+Original Turtle:
 ```turtle
 rdfs:Class rdf:type rdfs:Class .
 rdfs:Class rdfs:label "Class" .
 rdfs:Class rdfs:subClassOf rdfs:Resource .
 ```
 
-Files:
+File-based representation:
 ```
 rdfs/
-├── rdfs__Class.md                              (empty - resource anchor)
-├── rdfs__Class a rdfs__Class.md                (frontmatter with reified triple)
-├── rdfs__Class rdfs__label ___.md          (frontmatter with reified triple)
-├── rdfs__Class rdfs__subClassOf rdfs__Resource.md  (frontmatter with reified triple)
+├── rdfs__Class.md                                  # Resource anchor
+├── rdfs__Class a rdfs__Class.md                    # Type declaration
+├── rdfs__Class rdfs__label ___.md                  # Label (literal)
+└── rdfs__Class rdfs__subClassOf rdfs__Resource.md  # Subclass relation
 ```
 
-### Triple File Content Example
+### Cross-Namespace Reference
 
-File `rdfs__Class a rdfs__Class.md`:
+File: `owl/!owl owl__imports !rdfs.md`
+
 ```yaml
 ---
 rdf__type: "[[rdf__Statement]]"
-rdf__subject: "[[rdfs__Class]]"
-rdf__predicate: "[[rdf__type|a]]"
-rdf__object: "[[rdfs__Class]]"
+rdf__subject: "[[!owl]]"
+rdf__predicate: "[[owl__imports]]"
+rdf__object: "[[!rdfs]]"
 ---
 ```
 
-File `rdfs__Class rdfs__label ___.md`:
-```yaml
----
-rdf__type: "[[rdf__Statement]]"
-rdf__subject: "[[rdfs__Class]]"
-rdf__predicate: "[[rdfs__label]]"
-rdf__object: "Class"
----
-```
+This represents: `owl: owl:imports rdfs:` (the OWL ontology imports RDFS)
+
+## Integration with Exocortex
+
+These ontologies provide the semantic foundation for:
+
+- **Ontology-driven layouts** in Obsidian
+- **SPARQL queries** via `@kitelev/exocortex-cli`
+- **Type inference** and validation
+- **Vocabulary standardization** across knowledge bases
+
+## Contributing
+
+1. Fork the repository
+2. Add new ontologies following the file format
+3. Ensure all resources have anchor files
+4. Submit a pull request
+
+## License
+
+The ontology definitions are from W3C and Dublin Core standards.
+This file-based format is part of the Exocortex project.
