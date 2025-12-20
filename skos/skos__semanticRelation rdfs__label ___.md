@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[skos__semanticRelation]]"
 rdf__predicate: "[[rdfs__label]]"
-rdf__object: semanticRelation
+rdf__object: '"is in semantic relation with"@en'
 ---

@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[skos__narrower]]"
 rdf__predicate: "[[rdfs__comment]]"
-rdf__object: "Relates a concept to a concept that is more specific in meaning."
+rdf__object: '"Narrower concepts are typically rendered as children in a concept hierarchy (tree)."@en'
 ---

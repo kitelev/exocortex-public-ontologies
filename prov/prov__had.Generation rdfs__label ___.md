@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "[[prov__had.Generation]]"
+rdf__predicate: "[[rdfs__label]]"
+rdf__object: "\"hadGeneration\""
+---

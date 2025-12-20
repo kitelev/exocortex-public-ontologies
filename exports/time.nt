@@ -1,0 +1,653 @@
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N96a12434912847c496243b5da1b432b0 .
+<http://www.w3.org/2006/time#Interval> <http://www.w3.org/2000/01/rdf-schema#comment> "A temporal entity with an extent or duration." .
+<http://www.w3.org/2006/time#ProperInterval> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nedc745af18c84b4da3ba782a6c64fce0 .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#GeneralDateTimeDescription> .
+<http://www.w3.org/2006/time#Thursday> <http://www.w3.org/2000/01/rdf-schema#comment> "Thursday" .
+_:Nebb5540144874109b3c924006d24e68c <http://www.w3.org/2002/07/owl#cardinality> "1" .
+<http://www.w3.org/2006/time#hasDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Value of DateTimeInterval expressed as a structured value." .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#inside> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#November> <http://www.w3.org/2000/01/rdf-schema#comment> "November" .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#label> "MonthOfYear"@en .
+<http://www.w3.org/2006/time#unitType> <http://www.w3.org/2000/01/rdf-schema#label> "unitType"@en .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Na4736f0dfb8f429891f4621e04559f6c .
+<http://www.w3.org/2006/time#month> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N86d73e2895ed4b86af85ff87f4f8f579 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#nominalPosition> .
+_:N9492f0cf7a4f44878cddd4ae80ac139c <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#hasTRS> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#TemporalEntity> <http://www.w3.org/2000/01/rdf-schema#comment> "A temporal interval or instant." .
+<http://www.w3.org/2006/time#TimePosition> <http://www.w3.org/2000/01/rdf-schema#label> "TimePosition"@en .
+<http://www.w3.org/2006/time#xsdDateTime> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalDuring> <http://www.w3.org/2000/01/rdf-schema#label> "intervalDuring"@en .
+_:N4783277cb8d14c75900fd787f38a1794 <http://www.w3.org/2002/07/owl#unionOf> _:N189ff7b9bc6b40468da4e545b858e099 .
+_:N58305019ce9f47f9bce9501966494572 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#day> <http://www.w3.org/2000/01/rdf-schema#label> "day"@en .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Na6ef302d9843440aa29f219c8fce72a1 .
+<http://www.w3.org/2006/time#before> <http://www.w3.org/2000/01/rdf-schema#label> "before"@en .
+_:N63994bf719314d88881722b67626a90f <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nebb5540144874109b3c924006d24e68c .
+<http://www.w3.org/2006/time#TimePosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#intervalDisjoint> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#dayOfYear> <http://www.w3.org/2000/01/rdf-schema#label> "dayOfYear"@en .
+<http://www.w3.org/2006/time#intervalFinishes> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N8746fc7c3f324e5982d6ab95e5e597c8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#inXSDDate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#intervalIn> <http://www.w3.org/2000/01/rdf-schema#label> "intervalIn"@en .
+<http://www.w3.org/2006/time#numericPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "The (numeric) position of an instant in a coordinate system." .
+<http://www.w3.org/2006/time#hasDurationDescription> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#years> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#numericDuration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Ne294cb14422e4a2d926495a636a516d8 .
+_:Nc23e4a9e52cf48a1a3ca4c260743fb87 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#GeneralDurationDescription> .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#comment> "The month of the year." .
+<http://www.w3.org/2006/time#Thursday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+<http://www.w3.org/2006/time#inXSDgYearMonth> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N1f7f1517e4144ba6bee26085d4e77919 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#intervalMeets> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#inXSDgYear> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#July> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+<http://www.w3.org/2006/time#seconds> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in seconds." .
+_:Nd256255850434c4bb82a1ea82a0afae7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N1f7f1517e4144ba6bee26085d4e77919 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#intervalDuring> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#May> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#March> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalStartedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#Instant> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N63155ceffd1f40a9920867c32aea1146 .
+<http://www.w3.org/2006/time#June> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#hours> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#November> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+<http://www.w3.org/2006/time#unitSecond> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nc1f7aa7e93024750959462c656753a2d <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#dayOfWeek> .
+<http://www.w3.org/2006/time#months> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#seconds> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N27a47416d8be43fba46300ed2af28fe9 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hasTRS> .
+_:N1452916052e44702b2e674c47c5d3fd1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#dayOfYear> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#months> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in months." .
+<http://www.w3.org/2006/time#inXSDgYearMonth> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed using xsd:gYearMonth." .
+_:N96a12434912847c496243b5da1b432b0 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+_:N55c1010d455b42ca86c7b085fe4fa833 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#GeneralDateTimeDescription> .
+<http://www.w3.org/2006/time#week> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#June> <http://www.w3.org/2000/01/rdf-schema#label> "June"@en .
+_:N189ff7b9bc6b40468da4e545b858e099 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:N683e8995c8194f2cbf557ca7acede0a0 .
+_:Nf25456fbd14949de86875778b4e5ec4e <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N2078d0100ace4dd987cb58b57728455e <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#month> .
+<http://www.w3.org/2006/time#days> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N90c484a97760482ca281aeed944863dc <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:Nbb2d88a092ed47d18bc89034a5c01c95 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N63155ceffd1f40a9920867c32aea1146 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#year> .
+_:N386aea30159f4ec38ba8c713dae61e49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#hasTRS> <http://www.w3.org/2000/01/rdf-schema#label> "hasTRS"@en .
+<http://www.w3.org/2006/time#intervalMeets> <http://www.w3.org/2000/01/rdf-schema#label> "intervalMeets"@en .
+<http://www.w3.org/2006/time#hour> <http://www.w3.org/2000/01/rdf-schema#comment> "Hour position in a calendar-clock system." .
+<http://www.w3.org/2006/time#days> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in days." .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N05351d0734af44b0ab7139e9924aff69 .
+_:Ne74525fbdcbe4383afd50484786bf2d8 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#years> .
+<http://www.w3.org/2006/time#intervalStarts> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#inside> <http://www.w3.org/2000/01/rdf-schema#comment> "An instant that falls inside the interval." .
+<http://www.w3.org/2006/time#second> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#generalYear> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N90c484a97760482ca281aeed944863dc <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#July> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Monday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#ProperInterval> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#Interval> .
+<http://www.w3.org/2006/time#hasXSDDuration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#June> <http://www.w3.org/2000/01/rdf-schema#comment> "June" .
+_:Na733848956ea4d5ea82bc630ee41a95f <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#years> .
+<http://www.w3.org/2006/time#June> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+_:N58748af85aab4c39a471f74af8782c74 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2006/time#after> <http://www.w3.org/2000/01/rdf-schema#comment> "Gives directionality to time. If a temporal entity T1 is after another temporal entity T2, then the beginning of T1 is after the end of T2." .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nb85f85830ffe45df85f83221cf853edc .
+<http://www.w3.org/2006/time#weeks> <http://www.w3.org/2000/01/rdf-schema#label> "weeks"@en .
+_:Nf25456fbd14949de86875778b4e5ec4e <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#hasMonthOfYear> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#minutes> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#inTemporalPosition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#inXSDgYearMonth> <http://www.w3.org/2000/01/rdf-schema#label> "inXSDgYearMonth"@en .
+<http://www.w3.org/2006/time#Monday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+<http://www.w3.org/2006/time#hasDuration> <http://www.w3.org/2000/01/rdf-schema#label> "hasDuration"@en .
+<http://www.w3.org/2006/time#intervalMetBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N2078d0100ace4dd987cb58b57728455e <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#gMonth> .
+<http://www.w3.org/2006/time#May> <http://www.w3.org/2000/01/rdf-schema#label> "May"@en .
+_:Nedc745af18c84b4da3ba782a6c64fce0 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#day> .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Description of temporal extent structured with separate values for the various elements of a calendar-clock system." .
+<http://www.w3.org/2006/time#intervalEquals> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalEquals another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is coincident with the end of T2." .
+<http://www.w3.org/2006/time#intervalContains> <http://www.w3.org/2000/01/rdf-schema#label> "intervalContains"@en .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N4192c78384ea4766be01ac9eee7d67d6 .
+<http://www.w3.org/2006/time#hasBeginning> <http://www.w3.org/2000/01/rdf-schema#label> "hasBeginning"@en .
+<http://www.w3.org/2006/time#May> <http://www.w3.org/2000/01/rdf-schema#comment> "May" .
+<http://www.w3.org/2006/time#week> <http://www.w3.org/2000/01/rdf-schema#label> "week"@en .
+_:N96a12434912847c496243b5da1b432b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#year> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N1ead51b7072c4fcbbdef1e1c0c975bc3 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#label> "GeneralDateTimeDescription"@en .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#label> "DurationDescription"@en .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nd555daab4369426886f271ce1782e7e4 .
+<http://www.w3.org/2006/time#April> <http://www.w3.org/2000/01/rdf-schema#comment> "April" .
+_:N9492f0cf7a4f44878cddd4ae80ac139c <http://www.w3.org/2002/07/owl#cardinality> "1" .
+_:N22f19dcd671f47a5ae1084e958a0a42e <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#Monday> <http://www.w3.org/2000/01/rdf-schema#comment> "Monday" .
+<http://www.w3.org/2006/time#intervalAfter> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalAfter another proper interval T2, then the beginning of T1 is after the end of T2." .
+<http://www.w3.org/2006/time#September> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nbc38afb64a32481fbd62b7e6ccfd0654 .
+_:N05351d0734af44b0ab7139e9924aff69 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Wednesday> <http://www.w3.org/2000/01/rdf-schema#label> "Wednesday"@en .
+<http://www.w3.org/2006/time#intervalIn> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#year> <http://www.w3.org/2000/01/rdf-schema#comment> "Year position in a calendar-clock system." .
+<http://www.w3.org/2006/time#inXSDDateTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#July> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#unitType> <http://www.w3.org/2000/01/rdf-schema#domain> _:N6203880c5f904840b2f3ec73edb83218 .
+<http://www.w3.org/2006/time#2016> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nc1f7aa7e93024750959462c656753a2d .
+<http://www.w3.org/2006/time#Tuesday> <http://www.w3.org/2000/01/rdf-schema#label> "Tuesday"@en .
+<http://www.w3.org/2006/time#unitType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N5bf34b1dab6d46859ae718f0fc032779 .
+<http://www.w3.org/2006/time#August> <http://www.w3.org/2000/01/rdf-schema#label> "August"@en .
+_:Nbc38afb64a32481fbd62b7e6ccfd0654 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#months> .
+<http://www.w3.org/2006/time#days> <http://www.w3.org/2000/01/rdf-schema#label> "days"@en .
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed using xsd:dateTimeStamp." .
+_:N1ead51b7072c4fcbbdef1e1c0c975bc3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#December> <http://www.w3.org/2000/01/rdf-schema#comment> "December" .
+<http://www.w3.org/2006/time#Tuesday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalMetBy> <http://www.w3.org/2000/01/rdf-schema#label> "intervalMetBy"@en .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N1dfa46633cff4f169e36aec6db52e4d3 .
+_:N1dfa46633cff4f169e36aec6db52e4d3 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.w3.org/2006/time#hasDayOfWeek> <http://www.w3.org/2000/01/rdf-schema#label> "Has Day Of Week" .
+<http://www.w3.org/2006/time#intervalOverlappedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#September> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#inTimePosition> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed as a temporal coordinate or nominal value." .
+<http://www.w3.org/2006/time#intervalFinishedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalFinishedBy another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is coincident with the end of T2." .
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalOverlaps> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#November> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#TemporalPosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N0f6a43c6942c4c049f5e250cc7c65d18 .
+<http://www.w3.org/2006/time#hasDayOfWeek> <http://www.w3.org/2000/01/rdf-schema#comment> "The day of the week on which a calendar-clock description falls." .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N386aea30159f4ec38ba8c713dae61e49 .
+<http://www.w3.org/2006/time#hasTimeZone> <http://www.w3.org/2000/01/rdf-schema#label> "Has Time Zone" .
+<http://www.w3.org/2006/time#inXSDgYear> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed using xsd:gYear." .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N383dde42ccaf4a62b3b202df794d90c6 .
+<http://www.w3.org/2006/time#TimePosition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N4223f42271094b65aac726c243e77724 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#hour> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N27a47416d8be43fba46300ed2af28fe9 <http://www.w3.org/2002/07/owl#cardinality> "1" .
+<http://www.w3.org/2006/time#inTimePosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#nominalPosition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Friday> <http://www.w3.org/2000/01/rdf-schema#comment> "Friday" .
+<http://www.w3.org/2006/time#March> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+_:Nd555daab4369426886f271ce1782e7e4 <http://www.w3.org/2002/07/owl#hasValue> <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> .
+<http://www.w3.org/2006/time#TemporalEntity> <http://www.w3.org/2002/07/owl#unionOf> _:Ndc179fb4f9e042e59f477f64c8c2fbc3 .
+<http://www.w3.org/2006/time#inDateTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N683e8995c8194f2cbf557ca7acede0a0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#intervalAfter> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#unitType> <http://www.w3.org/2000/01/rdf-schema#comment> "The temporal unit which provides the precision of a date-time value or scale of a temporal extent." .
+<http://www.w3.org/2006/time#generalMonth> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N22f19dcd671f47a5ae1084e958a0a42e <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#TemporalEntity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#TemporalPosition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalOverlaps> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalOverlaps another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is after the beginning of T2, and the end of T1 is before the end of T2." .
+<http://www.w3.org/2006/time#March> <http://www.w3.org/2000/01/rdf-schema#comment> "March" .
+_:N1375473e354946309732897b53654ef0 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#unitType> .
+_:N86d73e2895ed4b86af85ff87f4f8f579 <http://www.w3.org/2002/07/owl#cardinality> "1" .
+<http://www.w3.org/2006/time#November> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:Nca8414f0db28479b8d26bbcd5b666429 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#seconds> .
+_:Nfb6a9f2d725f4c198248d93661f7d29e <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:Na4736f0dfb8f429891f4621e04559f6c <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#year> .
+<http://www.w3.org/2006/time#June> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N9932e96899134583804aec28a17bb6ae <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:Nbbaf5035c1bd4e778a854b45047e4aa9 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+_:N103e47b281c14ae9a46027e95746ee73 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#hasTime> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#April> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+_:Nbbaf5035c1bd4e778a854b45047e4aa9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/2000/01/rdf-schema#comment> "Duration of a temporal extent expressed as a number scaled by a temporal unit." .
+<http://www.w3.org/2006/time#hours> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in hours." .
+<http://www.w3.org/2006/time#TemporalEntity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#month> <http://www.w3.org/2000/01/rdf-schema#comment> "Month position in a calendar-clock system. The range of this property is not specified, so can be replaced by any specific representation of a calendar month from any calendar." .
+_:Nc051db92ba4e43ab8d3365cf4867f74f <http://www.w3.org/2001/XMLSchema#pattern> "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N383dde42ccaf4a62b3b202df794d90c6 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#inDateTime> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed using a structured description." .
+<http://www.w3.org/2006/time#hasEnd> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#hasBeginning> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#Sunday> <http://www.w3.org/2000/01/rdf-schema#label> "Sunday"@en .
+<http://www.w3.org/2006/time#TemporalPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:N103e47b281c14ae9a46027e95746ee73 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N5bf34b1dab6d46859ae718f0fc032779 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#April> <http://www.w3.org/2000/01/rdf-schema#label> "April"@en .
+<http://www.w3.org/2006/time#TimeZone> <http://www.w3.org/2000/01/rdf-schema#comment> "A Time Zone specifies the amount by which the local time is offset from UTC." .
+<http://www.w3.org/2006/time#inXSDDate> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Saturday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N1ead51b7072c4fcbbdef1e1c0c975bc3 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hours> .
+<http://www.w3.org/2006/time#months> <http://www.w3.org/2000/01/rdf-schema#label> "months"@en .
+_:N8537e1931a80434292c9d7c60acdfcf6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#Duration> .
+<http://www.w3.org/2006/time#December> <http://www.w3.org/2000/01/rdf-schema#label> "December"@en .
+_:N56a0652a01b046f09b4d1cd0703d788f <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Saturday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+_:N58305019ce9f47f9bce9501966494572 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N1dfa46633cff4f169e36aec6db52e4d3 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#minutes> .
+_:N63994bf719314d88881722b67626a90f <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#seconds> .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#numericPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#label> "DateTimeDescription"@en .
+<http://www.w3.org/2006/time#hasTime> <http://www.w3.org/2000/01/rdf-schema#label> "hasTime"@en .
+_:N454c198d1f324d55b48869fcbc07b961 <http://www.w3.org/2001/XMLSchema#pattern> "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+<http://www.w3.org/2006/time#day> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalMeets> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalIn> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalIn another proper interval T2, then the beginning of T1 is after or coincident with the beginning of T2, and the end of T1 is before or coincident with the end of T2." .
+<http://www.w3.org/2006/time#September> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+_:N795a1716aebb498b906fa8e5faa7028a <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2006/time#TemporalPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "A position on a time-line." .
+<http://www.w3.org/2006/time#years> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#TRS> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N86d73e2895ed4b86af85ff87f4f8f579 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#TemporalPosition> <http://www.w3.org/2000/01/rdf-schema#label> "TemporalPosition"@en .
+_:Nd256255850434c4bb82a1ea82a0afae7 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#years> .
+<http://www.w3.org/2006/time#DateTimeInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "DateTimeInterval is a subclass of ProperInterval that uses points in time as beginning and end." .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Description of date and time structured with separate values for the various elements of a calendar-clock system." .
+<http://www.w3.org/2006/time#Friday> <http://www.w3.org/2000/01/rdf-schema#label> "Friday"@en .
+_:N05351d0734af44b0ab7139e9924aff69 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#weeks> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Ne74525fbdcbe4383afd50484786bf2d8 .
+_:N386aea30159f4ec38ba8c713dae61e49 <http://www.w3.org/2002/07/owl#hasValue> <http://www.w3.org/2006/time#unitMonth> .
+<http://www.w3.org/2006/time#intervalDisjoint> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#month> <http://www.w3.org/2000/01/rdf-schema#label> "month"@en .
+<http://www.w3.org/2006/time#minute> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N9492f0cf7a4f44878cddd4ae80ac139c .
+<http://www.w3.org/2006/time#inTemporalPosition> <http://www.w3.org/2000/01/rdf-schema#label> "inTemporalPosition"@en .
+<http://www.w3.org/2006/time#hasDuration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N383dde42ccaf4a62b3b202df794d90c6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#intervalDisjoint> <http://www.w3.org/2000/01/rdf-schema#label> "intervalDisjoint"@en .
+<http://www.w3.org/2006/time#inXSDgYear> <http://www.w3.org/2000/01/rdf-schema#label> "inXSDgYear"@en .
+<http://www.w3.org/2006/time#numericDuration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N1975399b09054045a971f50f0493d1ac <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#weeks> .
+<http://www.w3.org/2006/time#inXSDgYear> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#inXSDDateTime> <http://www.w3.org/2000/01/rdf-schema#label> "inXSDDateTime"@en .
+_:N4192c78384ea4766be01ac9eee7d67d6 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#second> .
+_:N27a47416d8be43fba46300ed2af28fe9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Monday> <http://www.w3.org/2000/01/rdf-schema#label> "Monday"@en .
+_:N1dfa46633cff4f169e36aec6db52e4d3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#intervalDisjoint> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalDisjoint another proper interval T2, then the end of T1 is before the beginning of T2, or the end of T2 is before the beginning of T1, i.e. the intervals do not overlap in any way." .
+<http://www.w3.org/2006/time#years> <http://www.w3.org/2000/01/rdf-schema#label> "years"@en .
+_:Nb68d833b81f14d4cb03d96ef4f2f5c9a <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N1452916052e44702b2e674c47c5d3fd1 .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#week> <http://www.w3.org/2000/01/rdf-schema#comment> "Week position in a calendar-clock system." .
+_:Nbbaf5035c1bd4e778a854b45047e4aa9 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hours> .
+<http://www.w3.org/2006/time#intervalStartedBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N683e8995c8194f2cbf557ca7acede0a0 <http://www.w3.org/2002/07/owl#cardinality> "1" .
+_:Nb68d833b81f14d4cb03d96ef4f2f5c9a <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N90c484a97760482ca281aeed944863dc <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#day> .
+_:N898bad30dc8d4256926c5d68e697be30 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#minutes> .
+_:N96a12434912847c496243b5da1b432b0 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#day> .
+_:N56a0652a01b046f09b4d1cd0703d788f <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#Saturday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N63994bf719314d88881722b67626a90f .
+<http://www.w3.org/2006/time#2006> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#numericDuration> <http://www.w3.org/2000/01/rdf-schema#label> "numericDuration"@en .
+<http://www.w3.org/2006/time#April> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#March> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:N2078d0100ace4dd987cb58b57728455e <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Instant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#hasDurationDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Duration of a temporal entity, expressed using a structured description." .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalEquals> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nf25456fbd14949de86875778b4e5ec4e .
+<http://www.w3.org/2006/time#Sunday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Description of temporal extent structured with separate values for the various elements of a calendar-clock system." .
+<http://www.w3.org/2006/time#unitWeek> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalOverlaps> <http://www.w3.org/2000/01/rdf-schema#label> "intervalOverlaps"@en .
+<http://www.w3.org/2006/time#before> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#TemporalDuration> <http://www.w3.org/2000/01/rdf-schema#comment> "Time extent; duration of a time interval separate from its particular start or end position." .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N22f19dcd671f47a5ae1084e958a0a42e .
+_:Ndc179fb4f9e042e59f477f64c8c2fbc3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:N795a1716aebb498b906fa8e5faa7028a .
+<http://www.w3.org/2006/time#intervalOverlappedBy> <http://www.w3.org/2000/01/rdf-schema#label> "intervalOverlappedBy"@en .
+_:N103e47b281c14ae9a46027e95746ee73 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#dayOfYear> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N062ef1b8dc6742b79725bb197d015435 .
+<http://www.w3.org/2006/time#days> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalBefore> <http://www.w3.org/2000/01/rdf-schema#label> "intervalBefore"@en .
+<http://www.w3.org/2006/time#intervalStarts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N1375473e354946309732897b53654ef0 <http://www.w3.org/2002/07/owl#hasValue> <http://www.w3.org/2006/time#unitMonth> .
+<http://www.w3.org/2006/time#hours> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N103e47b281c14ae9a46027e95746ee73 .
+_:Ne294cb14422e4a2d926495a636a516d8 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hour> .
+<http://www.w3.org/2006/time#intervalStartedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalStartedBy another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is after the end of T2." .
+<http://www.w3.org/2006/time#year> <http://www.w3.org/2000/01/rdf-schema#label> "year"@en .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N1375473e354946309732897b53654ef0 .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nd256255850434c4bb82a1ea82a0afae7 .
+<http://www.w3.org/2006/time#months> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N1452916052e44702b2e674c47c5d3fd1 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#days> .
+<http://www.w3.org/2006/time#Interval> <http://www.w3.org/2000/01/rdf-schema#label> "Interval"@en .
+_:N898bad30dc8d4256926c5d68e697be30 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#intervalBefore> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#hasDayOfWeek> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N9932e96899134583804aec28a17bb6ae <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:N454c198d1f324d55b48869fcbc07b961 .
+_:Ndc179fb4f9e042e59f477f64c8c2fbc3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#Instant> .
+<http://www.w3.org/2006/time#October> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+<http://www.w3.org/2006/time#TimePosition> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N4783277cb8d14c75900fd787f38a1794 .
+_:N40b27bbcf2134990b76ffa0cc272a919 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.w3.org/2006/time#Tuesday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+<http://www.w3.org/2006/time#generalYear> <http://www.w3.org/2002/07/owl#withRestrictions> _:N9932e96899134583804aec28a17bb6ae .
+_:N898bad30dc8d4256926c5d68e697be30 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#numericPosition> <http://www.w3.org/2000/01/rdf-schema#label> "numericPosition"@en .
+<http://www.w3.org/2006/time#Thursday> <http://www.w3.org/2000/01/rdf-schema#label> "Thursday"@en .
+_:Nd81bcfd8f8d14721a0401f7ede67b8d1 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#timeZone> .
+<http://www.w3.org/2006/time#week> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:Na6ef302d9843440aa29f219c8fce72a1 <http://www.w3.org/2002/07/owl#hasValue> <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N4223f42271094b65aac726c243e77724 .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N40b27bbcf2134990b76ffa0cc272a919 .
+<http://www.w3.org/2006/time#July> <http://www.w3.org/2000/01/rdf-schema#comment> "July" .
+<http://www.w3.org/2006/time#April> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:N56a0652a01b046f09b4d1cd0703d788f <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#monthOfYear> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#hasMonthOfYear> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N1f7f1517e4144ba6bee26085d4e77919 .
+<http://www.w3.org/2006/time#hasEnd> <http://www.w3.org/2000/01/rdf-schema#comment> "End of a temporal entity." .
+<http://www.w3.org/2006/time#inDateTime> <http://www.w3.org/2000/01/rdf-schema#label> "inDateTime"@en .
+<http://www.w3.org/2006/time#Sunday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#Interval> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N898bad30dc8d4256926c5d68e697be30 .
+<http://www.w3.org/2006/time#inTemporalPosition> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed as a temporal coordinate or nominal value." .
+<http://www.w3.org/2006/time#intervalMetBy> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalMetBy another proper interval T2, then the beginning of T1 is coincident with the end of T2." .
+_:N63994bf719314d88881722b67626a90f <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/2000/01/rdf-schema#comment> "January" .
+<http://www.w3.org/2006/time#intervalOverlappedBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> <http://www.w3.org/2000/01/rdf-schema#label> "inXSDDateTimeStamp"@en .
+<http://www.w3.org/2006/time#October> <http://www.w3.org/2000/01/rdf-schema#comment> "October" .
+_:N1975399b09054045a971f50f0493d1ac <http://www.w3.org/2002/07/owl#cardinality> "0" .
+_:N7bfd74d0227649c89da2460dc57ef34f <http://www.w3.org/2001/XMLSchema#pattern> "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+_:Nd555daab4369426886f271ce1782e7e4 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hasTRS> .
+<http://www.w3.org/2006/time#weeks> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#year> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#minute> <http://www.w3.org/2000/01/rdf-schema#comment> "Minute position in a calendar-clock system." .
+<http://www.w3.org/2006/time#hasTimeZone> <http://www.w3.org/2000/01/rdf-schema#comment> "The time zone for clock elements in the temporal position or extent description." .
+_:Na72bbc1c6c4b4f8995ad68a9d533913e <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2006/time#Sunday> <http://www.w3.org/2000/01/rdf-schema#comment> "Sunday" .
+<http://www.w3.org/2006/time#DateTimeInterval> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#ProperInterval> .
+<http://www.w3.org/2006/time#inTimePosition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#inXSDDateTime> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nc69da46cdd0844a4ac956e682fabd1c8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#September> <http://www.w3.org/2000/01/rdf-schema#label> "September"@en .
+<http://www.w3.org/2006/time#July> <http://www.w3.org/2000/01/rdf-schema#label> "July"@en .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/2000/01/rdf-schema#label> "Duration"@en .
+_:Nedc745af18c84b4da3ba782a6c64fce0 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#gDay> .
+<http://www.w3.org/2006/time#Interval> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:N683e8995c8194f2cbf557ca7acede0a0 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#numericPosition> .
+_:Nbb2d88a092ed47d18bc89034a5c01c95 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#minute> .
+<http://www.w3.org/2006/time#TemporalEntity> <http://www.w3.org/2000/01/rdf-schema#label> "TemporalEntity"@en .
+<http://www.w3.org/2006/time#hasTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#unitType> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N0f6a43c6942c4c049f5e250cc7c65d18 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hasTRS> .
+<http://www.w3.org/2006/time#February> <http://www.w3.org/2000/01/rdf-schema#comment> "February" .
+<http://www.w3.org/2006/time#intervalStarts> <http://www.w3.org/2000/01/rdf-schema#label> "intervalStarts"@en .
+<http://www.w3.org/2006/time#Friday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+_:Ne294cb14422e4a2d926495a636a516d8 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+_:N1452916052e44702b2e674c47c5d3fd1 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N146a2dddb9eb44a0b94878755e54af6d .
+_:Nca8414f0db28479b8d26bbcd5b666429 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#dayOfYear> <http://www.w3.org/2000/01/rdf-schema#comment> "The number of the day within the year." .
+<http://www.w3.org/2006/time#after> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#October> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#hasDateTimeDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#inXSDDateTime> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed using xsd:dateTime." .
+_:Ne979cad14556461eb8d61b888980894d <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Tuesday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#intervalContains> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#hour> <http://www.w3.org/2000/01/rdf-schema#label> "hour"@en .
+_:Nbc38afb64a32481fbd62b7e6ccfd0654 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N56a0652a01b046f09b4d1cd0703d788f .
+<http://www.w3.org/2006/time#hasMonthOfYear> <http://www.w3.org/2000/01/rdf-schema#comment> "The month of the year on which a calendar-clock description falls." .
+<http://www.w3.org/2006/time#hasEnd> <http://www.w3.org/2000/01/rdf-schema#label> "hasEnd"@en .
+_:Nbc38afb64a32481fbd62b7e6ccfd0654 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#hasTRS> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N1375473e354946309732897b53654ef0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N5bf34b1dab6d46859ae718f0fc032779 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#week> .
+<http://www.w3.org/2006/time#Wednesday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N1975399b09054045a971f50f0493d1ac <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#unitHour> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Ne294cb14422e4a2d926495a636a516d8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N6203880c5f904840b2f3ec73edb83218 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.w3.org/2006/time#hasMonthOfYear> <http://www.w3.org/2000/01/rdf-schema#label> "Has Month Of Year" .
+<http://www.w3.org/2006/time#Friday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Wednesday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+<http://www.w3.org/2006/time#hasTimeZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:Nca8414f0db28479b8d26bbcd5b666429 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#DateTimeInterval> <http://www.w3.org/2000/01/rdf-schema#label> "DateTimeInterval"@en .
+_:N146a2dddb9eb44a0b94878755e54af6d <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#weeks> .
+_:N40b27bbcf2134990b76ffa0cc272a919 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#months> .
+<http://www.w3.org/2006/time#Saturday> <http://www.w3.org/2000/01/rdf-schema#label> "Saturday"@en .
+<http://www.w3.org/2006/time#inside> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#hasBeginning> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N86489c5aea354fdda3029b91df1a5500 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hour> .
+<http://www.w3.org/2006/time#hasTRS> <http://www.w3.org/2000/01/rdf-schema#comment> "The temporal reference system used by a temporal position or extent description." .
+<http://www.w3.org/2006/time#hours> <http://www.w3.org/2000/01/rdf-schema#label> "hours"@en .
+_:Na733848956ea4d5ea82bc630ee41a95f <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+_:Na72bbc1c6c4b4f8995ad68a9d533913e <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:N86d73e2895ed4b86af85ff87f4f8f579 .
+<http://www.w3.org/2006/time#intervalOverlappedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalOverlappedBy another proper interval T2, then the beginning of T1 is after the beginning of T2, and the beginning of T1 is before the end of T2, and the end of T1 is after the end of T2." .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Tuesday> <http://www.w3.org/2000/01/rdf-schema#comment> "Tuesday" .
+<http://www.w3.org/2006/time#ProperInterval> <http://www.w3.org/2000/01/rdf-schema#label> "ProperInterval"@en .
+_:N07cd11d71ea1457682f301eb54912272 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#minutes> .
+<http://www.w3.org/2006/time#intervalFinishes> <http://www.w3.org/2000/01/rdf-schema#label> "intervalFinishes"@en .
+<http://www.w3.org/2006/time#inside> <http://www.w3.org/2000/01/rdf-schema#label> "inside"@en .
+_:N062ef1b8dc6742b79725bb197d015435 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#days> .
+<http://www.w3.org/2006/time#hasTRS> <http://www.w3.org/2000/01/rdf-schema#domain> _:N3f1dad8a19d841c88e4362e3d6e63bb9 .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Na733848956ea4d5ea82bc630ee41a95f .
+<http://www.w3.org/2006/time#minutes> <http://www.w3.org/2000/01/rdf-schema#label> "minutes"@en .
+<http://www.w3.org/2006/time#intervalFinishedBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#before> <http://www.w3.org/2000/01/rdf-schema#comment> "Gives directionality to time. If a temporal entity T1 is before another temporal entity T2, then the end of T1 is before the beginning of T2." .
+<http://www.w3.org/2006/time#numericDuration> <http://www.w3.org/2000/01/rdf-schema#comment> "Value of a temporal extent expressed as a number scaled by a temporal unit." .
+_:Nbfd7987121104985916995bceb00c5fe <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:Nc23e4a9e52cf48a1a3ca4c260743fb87 .
+<http://www.w3.org/2006/time#March> <http://www.w3.org/2000/01/rdf-schema#label> "March"@en .
+_:N58305019ce9f47f9bce9501966494572 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#days> .
+<http://www.w3.org/2006/time#Friday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#unitMonth> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nc69da46cdd0844a4ac956e682fabd1c8 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hours> .
+<http://www.w3.org/2006/time#intervalContains> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalContains another proper interval T2, then the beginning of T1 is before the beginning of T2, and the end of T1 is after the end of T2." .
+_:N86489c5aea354fdda3029b91df1a5500 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+<http://www.w3.org/2006/time#month> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N86489c5aea354fdda3029b91df1a5500 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N40b27bbcf2134990b76ffa0cc272a919 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#October> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:N9492f0cf7a4f44878cddd4ae80ac139c <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#month> .
+<http://www.w3.org/2006/time#Duration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#TemporalDuration> .
+_:Na6ef302d9843440aa29f219c8fce72a1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#DayOfWeek> <http://www.w3.org/2000/01/rdf-schema#label> "DayOfWeek"@en .
+_:N8537e1931a80434292c9d7c60acdfcf6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2006/time#TemporalDuration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N55c1010d455b42ca86c7b085fe4fa833 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:N8537e1931a80434292c9d7c60acdfcf6 .
+<http://www.w3.org/2006/time#October> <http://www.w3.org/2000/01/rdf-schema#label> "October"@en .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N27a47416d8be43fba46300ed2af28fe9 .
+_:Na4736f0dfb8f429891f4621e04559f6c <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#hasDurationDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nfb6a9f2d725f4c198248d93661f7d29e .
+_:Nc23e4a9e52cf48a1a3ca4c260743fb87 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2006/time#February> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#second> <http://www.w3.org/2000/01/rdf-schema#comment> "Second position in a calendar-clock system." .
+<http://www.w3.org/2006/time#numericPosition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nb68d833b81f14d4cb03d96ef4f2f5c9a .
+<http://www.w3.org/2006/time#Wednesday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#Wednesday> <http://www.w3.org/2000/01/rdf-schema#comment> "Wednesday" .
+<http://www.w3.org/2006/time#hasEnd> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N1975399b09054045a971f50f0493d1ac .
+<http://www.w3.org/2006/time#inXSDgYearMonth> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N146a2dddb9eb44a0b94878755e54af6d <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+_:N4783277cb8d14c75900fd787f38a1794 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.w3.org/2006/time#inXSDDate> <http://www.w3.org/2000/01/rdf-schema#comment> "Position of an instant, expressed using xsd:date." .
+_:N8746fc7c3f324e5982d6ab95e5e597c8 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#unitType> .
+_:N383dde42ccaf4a62b3b202df794d90c6 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#seconds> .
+_:Nfb6a9f2d725f4c198248d93661f7d29e <http://www.w3.org/2002/07/owl#hasValue> "--01" .
+_:N3f1dad8a19d841c88e4362e3d6e63bb9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://www.w3.org/2006/time#intervalDuring> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nca8414f0db28479b8d26bbcd5b666429 .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#GeneralDurationDescription> .
+<http://www.w3.org/2006/time#Sunday> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#DayOfWeek> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#label> "GeneralDurationDescription"@en .
+<http://www.w3.org/2006/time#years> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in years." .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N8746fc7c3f324e5982d6ab95e5e597c8 .
+_:Nb85f85830ffe45df85f83221cf853edc <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#numericDuration> .
+<http://www.w3.org/2006/time#hasBeginning> <http://www.w3.org/2000/01/rdf-schema#comment> "Beginning of a temporal entity." .
+<http://www.w3.org/2006/time#intervalBefore> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalBefore another proper interval T2, then the end of T1 is before the beginning of T2." .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Na4736f0dfb8f429891f4621e04559f6c <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:Nbfd7987121104985916995bceb00c5fe <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#TemporalPosition> .
+<http://www.w3.org/2006/time#minute> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#minute> <http://www.w3.org/2000/01/rdf-schema#label> "minute"@en .
+<http://www.w3.org/2006/time#hasTemporalDuration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#August> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#after> <http://www.w3.org/2000/01/rdf-schema#label> "after"@en .
+<http://www.w3.org/2006/time#intervalFinishes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N07cd11d71ea1457682f301eb54912272 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#TemporalDuration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#weeks> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in weeks." .
+<http://www.w3.org/2006/time#hasDuration> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalEquals> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#minutes> <http://www.w3.org/2000/01/rdf-schema#comment> "Length of, or element of the length of, a temporal extent expressed in minutes." .
+_:N146a2dddb9eb44a0b94878755e54af6d <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N4192c78384ea4766be01ac9eee7d67d6 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#intervalFinishes> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalFinishes another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is coincident with the end of T2." .
+<http://www.w3.org/2006/time#December> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#seconds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:Nd81bcfd8f8d14721a0401f7ede67b8d1 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#DateTimeInterval> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nb85f85830ffe45df85f83221cf853edc <http://www.w3.org/2002/07/owl#cardinality> "1" .
+<http://www.w3.org/2006/time#dayOfYear> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N795a1716aebb498b906fa8e5faa7028a <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://www.w3.org/2006/time#Interval> .
+_:Ne74525fbdcbe4383afd50484786bf2d8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#TemporalUnit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Thursday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#TimeZone> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Na6ef302d9843440aa29f219c8fce72a1 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#hasTRS> .
+<http://www.w3.org/2006/time#before> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#intervalIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N1f7f1517e4144ba6bee26085d4e77919 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#second> .
+_:Nbb2d88a092ed47d18bc89034a5c01c95 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#Instant> <http://www.w3.org/2000/01/rdf-schema#comment> "A temporal entity with zero extent or duration." .
+_:N07cd11d71ea1457682f301eb54912272 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:Nebb5540144874109b3c924006d24e68c <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nbbaf5035c1bd4e778a854b45047e4aa9 .
+_:N4192c78384ea4766be01ac9eee7d67d6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N0f6a43c6942c4c049f5e250cc7c65d18 <http://www.w3.org/2002/07/owl#cardinality> "1" .
+_:Nd81bcfd8f8d14721a0401f7ede67b8d1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#unitMinute> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#August> <http://www.w3.org/2000/01/rdf-schema#comment> "August" .
+<http://www.w3.org/2006/time#generalMonth> <http://www.w3.org/2002/07/owl#withRestrictions> _:N58748af85aab4c39a471f74af8782c74 .
+<http://www.w3.org/2006/time#Thursday> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nf25456fbd14949de86875778b4e5ec4e <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#month> .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Ne979cad14556461eb8d61b888980894d .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#inTemporalPosition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#August> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#November> <http://www.w3.org/2000/01/rdf-schema#label> "November"@en .
+_:N4223f42271094b65aac726c243e77724 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#months> .
+_:N13a195caac0e4d7c89ce9460e4ec3c41 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.w3.org/2006/time#TimeZone> <http://www.w3.org/2000/01/rdf-schema#label> "TimeZone"@en .
+_:Ne74525fbdcbe4383afd50484786bf2d8 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#DateTimeInterval> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#minutes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#February> <http://www.w3.org/2000/01/rdf-schema#label> "February"@en .
+<http://www.w3.org/2006/time#inXSDDateTimeStamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#February> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#hasDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#label> "hasDateTimeDescription"@en .
+<http://www.w3.org/2006/time#DayOfWeek> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+_:Ne979cad14556461eb8d61b888980894d <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#year> .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N07cd11d71ea1457682f301eb54912272 .
+_:Ne979cad14556461eb8d61b888980894d <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#gYear> .
+_:N13a195caac0e4d7c89ce9460e4ec3c41 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:N7bfd74d0227649c89da2460dc57ef34f .
+_:N189ff7b9bc6b40468da4e545b858e099 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:Na72bbc1c6c4b4f8995ad68a9d533913e .
+<http://www.w3.org/2006/time#ProperInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "A temporal entity with non-zero extent or duration." .
+<http://www.w3.org/2006/time#hasDayOfWeek> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nd555daab4369426886f271ce1782e7e4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#DayOfWeek> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#DurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nc69da46cdd0844a4ac956e682fabd1c8 .
+_:Na733848956ea4d5ea82bc630ee41a95f <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#second> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N22f19dcd671f47a5ae1084e958a0a42e <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#week> .
+<http://www.w3.org/2006/time#December> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#DayOfWeek> <http://www.w3.org/2000/01/rdf-schema#comment> "The day of week." .
+<http://www.w3.org/2006/time#Instant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#TemporalEntity> .
+<http://www.w3.org/2006/time#seconds> <http://www.w3.org/2000/01/rdf-schema#label> "seconds"@en .
+<http://www.w3.org/2006/time#intervalOverlaps> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#Monday> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#inTimePosition> <http://www.w3.org/2000/01/rdf-schema#label> "inTimePosition"@en .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#comment> "Description of date and time structured with separate values for the various elements of a calendar-clock system." .
+<http://www.w3.org/2006/time#intervalStarts> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalStarts another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is before the end of T2." .
+_:N0f6a43c6942c4c049f5e250cc7c65d18 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#generalDay> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#TimeZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://www.w3.org/2006/time#TimePosition> <http://www.w3.org/2000/01/rdf-schema#comment> "A temporal position described using either a (nominal) value from an ordinal reference system, or a (numeric) value in a temporal coordinate system." .
+<http://www.w3.org/2006/time#intervalBefore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#> <http://www.w3.org/2000/01/rdf-schema#label> "OWL-Time Ontology" .
+<http://www.w3.org/2006/time#intervalEquals> <http://www.w3.org/2000/01/rdf-schema#label> "intervalEquals"@en .
+_:N63155ceffd1f40a9920867c32aea1146 <http://www.w3.org/2002/07/owl#cardinality> "0" .
+_:Nc1f7aa7e93024750959462c656753a2d <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#May> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+<http://www.w3.org/2006/time#intervalContains> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N58748af85aab4c39a471f74af8782c74 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:Nc051db92ba4e43ab8d3365cf4867f74f .
+_:N63155ceffd1f40a9920867c32aea1146 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:Nfb6a9f2d725f4c198248d93661f7d29e <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#month> .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nbb2d88a092ed47d18bc89034a5c01c95 .
+<http://www.w3.org/2006/time#intervalMetBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:Nebb5540144874109b3c924006d24e68c <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#unitType> .
+<http://www.w3.org/2006/time#hour> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:N4223f42271094b65aac726c243e77724 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#intervalAfter> <http://www.w3.org/2000/01/rdf-schema#label> "intervalAfter"@en .
+<http://www.w3.org/2006/time#unitYear> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Year> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N58305019ce9f47f9bce9501966494572 .
+<http://www.w3.org/2006/time#hasTime> <http://www.w3.org/2000/01/rdf-schema#comment> "Supports the association of a temporal entity with a feature." .
+<http://www.w3.org/2006/time#intervalAfter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#TemporalDuration> <http://www.w3.org/2000/01/rdf-schema#label> "TemporalDuration"@en .
+_:Nc1f7aa7e93024750959462c656753a2d <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#generalDay> <http://www.w3.org/2002/07/owl#withRestrictions> _:N13a195caac0e4d7c89ce9460e4ec3c41 .
+<http://www.w3.org/2006/time#August> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+_:Nb85f85830ffe45df85f83221cf853edc <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#hasTimeZone> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#inXSDDate> <http://www.w3.org/2000/01/rdf-schema#label> "inXSDDate"@en .
+_:Nedc745af18c84b4da3ba782a6c64fce0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+<http://www.w3.org/2006/time#Saturday> <http://www.w3.org/2000/01/rdf-schema#comment> "Saturday" .
+<http://www.w3.org/2006/time#weeks> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#December> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+<http://www.w3.org/2006/time#day> <http://www.w3.org/2000/01/rdf-schema#comment> "Day position in a calendar-clock system. The range of this property is not specified, so can be replaced by any specific representation of a calendar day from any calendar." .
+<http://www.w3.org/2006/time#inDateTime> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#unitDay> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#after> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+_:N386aea30159f4ec38ba8c713dae61e49 <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#unitType> .
+<http://www.w3.org/2006/time#February> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#MonthOfYear> .
+_:N05351d0734af44b0ab7139e9924aff69 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.w3.org/2006/time#hasDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#Instant> <http://www.w3.org/2000/01/rdf-schema#label> "Instant"@en .
+_:Nb68d833b81f14d4cb03d96ef4f2f5c9a <http://www.w3.org/2002/07/owl#onProperty> <http://www.w3.org/2006/time#minute> .
+<http://www.w3.org/2006/time#day> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://www.w3.org/2006/time#hasDurationDescription> <http://www.w3.org/2000/01/rdf-schema#label> "hasDurationDescription"@en .
+<http://www.w3.org/2006/time#ProperInterval> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#intervalFinishedBy> <http://www.w3.org/2000/01/rdf-schema#label> "intervalFinishedBy"@en .
+_:N062ef1b8dc6742b79725bb197d015435 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
+_:N8746fc7c3f324e5982d6ab95e5e597c8 <http://www.w3.org/2002/07/owl#cardinality> "1" .
+<http://www.w3.org/2006/time#second> <http://www.w3.org/2000/01/rdf-schema#label> "second"@en .
+<http://www.w3.org/2006/time#September> <http://www.w3.org/2000/01/rdf-schema#comment> "September" .
+_:N6203880c5f904840b2f3ec73edb83218 <http://www.w3.org/2002/07/owl#unionOf> _:N55c1010d455b42ca86c7b085fe4fa833 .
+<http://www.w3.org/2006/time#intervalDuring> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalDuring another proper interval T2, then the beginning of T1 is after the beginning of T2, and the end of T1 is before the end of T2." .
+<http://www.w3.org/2006/time#intervalStartedBy> <http://www.w3.org/2000/01/rdf-schema#label> "intervalStartedBy"@en .
+_:N3f1dad8a19d841c88e4362e3d6e63bb9 <http://www.w3.org/2002/07/owl#unionOf> _:Nbfd7987121104985916995bceb00c5fe .
+<http://www.w3.org/2006/time#hasDuration> <http://www.w3.org/2000/01/rdf-schema#comment> "Duration of a temporal entity, expressed as a scaled value or nominal value." .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:Nd81bcfd8f8d14721a0401f7ede67b8d1 .
+<http://www.w3.org/2006/time#GeneralDurationDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N1ead51b7072c4fcbbdef1e1c0c975bc3 .
+<http://www.w3.org/2006/time#Interval> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2006/time#TemporalEntity> .
+<http://www.w3.org/2006/time#May> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://www.w3.org/2006/time#> .
+<http://www.w3.org/2006/time#DateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N2078d0100ace4dd987cb58b57728455e .
+<http://www.w3.org/2006/time#intervalFinishedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+_:Nc69da46cdd0844a4ac956e682fabd1c8 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://www.w3.org/2006/time#January> <http://www.w3.org/2000/01/rdf-schema#label> "January"@en .
+<http://www.w3.org/2006/time#GeneralDateTimeDescription> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N90c484a97760482ca281aeed944863dc .
+<http://www.w3.org/2006/time#MonthOfYear> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:N86489c5aea354fdda3029b91df1a5500 .
+_:N5bf34b1dab6d46859ae718f0fc032779 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+_:Nd256255850434c4bb82a1ea82a0afae7 <http://www.w3.org/2002/07/owl#cardinality> "1" .
+_:N062ef1b8dc6742b79725bb197d015435 <http://www.w3.org/2002/07/owl#maxCardinality> "1" .
+<http://www.w3.org/2006/time#intervalMeets> <http://www.w3.org/2000/01/rdf-schema#comment> "If a proper interval T1 is intervalMeets another proper interval T2, then the end of T1 is coincident with the beginning of T2." .

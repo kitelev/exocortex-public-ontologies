@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[dcterms__temporal]]"
 rdf__predicate: "[[rdfs__label]]"
-rdf__object: temporal
+rdf__object: '"Temporal Coverage"@en'
 ---

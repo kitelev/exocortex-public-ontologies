@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "[[prov__qualified.Primary.Source]]"
+rdf__predicate: "[[prov__inverse]]"
+rdf__object: "\"qualifiedSourceOf\""
+---
