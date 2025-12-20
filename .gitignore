@@ -7,3 +7,4 @@
 /dataSources/
 /dataSources.local.xml
 /.obsidianscripts/__pycache__/
+.obsidian/
