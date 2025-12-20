@@ -29,6 +29,9 @@ EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 # Required properties for statement files (exactly these 4, no more, no less)
 STATEMENT_REQUIRED_PROPS = {'metadata', 'rdf__subject', 'rdf__predicate', 'rdf__object'}
 
+# Required properties for anchor files (exactly 1)
+ANCHOR_REQUIRED_PROPS = {'metadata'}
+
 
 @dataclass
 class ValidationResult:
@@ -39,7 +42,7 @@ class ValidationResult:
     missing_metadata: List[str] = field(default_factory=list)
     invalid_metadata: List[Tuple[str, str]] = field(default_factory=list)
     naming_violations: List[Tuple[str, str]] = field(default_factory=list)
-    statement_prop_violations: List[Tuple[str, str]] = field(default_factory=list)
+    frontmatter_prop_violations: List[Tuple[str, str]] = field(default_factory=list)
     has_body_violations: List[str] = field(default_factory=list)
 
     def has_errors(self) -> bool:
@@ -50,7 +53,7 @@ class ValidationResult:
             self.missing_metadata,
             self.invalid_metadata,
             self.naming_violations,
-            self.statement_prop_violations,
+            self.frontmatter_prop_violations,
             self.has_body_violations
         ])
 
@@ -68,8 +71,8 @@ class ValidationResult:
             lines.append(f"  Invalid metadata: {len(self.invalid_metadata)}")
         if self.naming_violations:
             lines.append(f"  Naming convention violations: {len(self.naming_violations)}")
-        if self.statement_prop_violations:
-            lines.append(f"  Statement property violations: {len(self.statement_prop_violations)}")
+        if self.frontmatter_prop_violations:
+            lines.append(f"  Frontmatter property violations: {len(self.frontmatter_prop_violations)}")
         if self.has_body_violations:
             lines.append(f"  Files with body content: {len(self.has_body_violations)}")
         return '\n'.join(lines) if lines else "  All checks passed!"
@@ -278,8 +281,18 @@ def validate_file(filepath: Path, all_anchors: Set[str], result: ValidationResul
                 errors.append(f"missing: {', '.join(sorted(missing))}")
             if extra:
                 errors.append(f"extra: {', '.join(sorted(extra))}")
-            error_msg = '; '.join(errors)
-            result.statement_prop_violations.append((str(rel_path), error_msg))
+            error_msg = f"statement: {'; '.join(errors)}"
+            result.frontmatter_prop_violations.append((str(rel_path), error_msg))
+            if verbose:
+                print(f"  📋 {rel_path}: {error_msg}")
+
+    # Check anchor has exactly 1 property (metadata only)
+    if metadata == 'anchor':
+        props = set(data.keys())
+        if props != ANCHOR_REQUIRED_PROPS:
+            extra = props - ANCHOR_REQUIRED_PROPS
+            error_msg = f"anchor: extra properties: {', '.join(sorted(extra))}"
+            result.frontmatter_prop_violations.append((str(rel_path), error_msg))
             if verbose:
                 print(f"  📋 {rel_path}: {error_msg}")
 
@@ -400,12 +413,12 @@ def main():
             if len(result.naming_violations) > 20:
                 print(f"  ... and {len(result.naming_violations) - 20} more")
 
-        if result.statement_prop_violations and not verbose:
-            print(f"\nStatement property violations ({len(result.statement_prop_violations)}):")
-            for filepath, error in result.statement_prop_violations[:20]:
+        if result.frontmatter_prop_violations and not verbose:
+            print(f"\nFrontmatter property violations ({len(result.frontmatter_prop_violations)}):")
+            for filepath, error in result.frontmatter_prop_violations[:20]:
                 print(f"  - {filepath}: {error}")
-            if len(result.statement_prop_violations) > 20:
-                print(f"  ... and {len(result.statement_prop_violations) - 20} more")
+            if len(result.frontmatter_prop_violations) > 20:
+                print(f"  ... and {len(result.frontmatter_prop_violations) - 20} more")
 
         if result.has_body_violations and not verbose:
             print(f"\nFiles with body content ({len(result.has_body_violations)}):")
