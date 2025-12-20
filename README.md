@@ -17,7 +17,7 @@ Each RDF triple is represented as a separate file with the format:
 {subject} {predicate} {object}.md
 ```
 
-NB: `{object}` может быть не указан - вместо этого указывается `___`. Это используется, если, например, значение `{object}` слишком длинное. См. пример [[!owl rdfs__comment ___]]
+NB: `{object}` не указывается, если его тип [[rdfs__Literal]] - вместо этого указывается `___`
 
 Triple files contain YAML frontmatter with reified statement structure:
 ```yaml
@@ -34,9 +34,11 @@ For literal values, `rdf:object` contains the literal without wikilinks:
 rdf__object: "Class"
 ```
 
+Если в оригинальном TTL указано `"Class"@en`, то в YAML будет `'"Class"@en'`
+
 Examples:
 - `rdfs__Class a rdfs__Class.md` — type declaration (`rdf:type`)
-- `rdfs__Class rdfs__label "Class".md` — literal value
+- `rdfs__Class rdfs__label ___.md` — literal value
 - `rdfs__Class rdfs__subClassOf rdfs__Resource.md` — resource reference
 
 ### Ontology Files
@@ -46,13 +48,12 @@ The namespace itself is represented by a file with `!` prefix:
 - `!rdfs.md` — RDFS namespace
 - `!owl.md` — OWL namespace
 
-These files contain the `!` property with the ontology URL.
+These files contain the `!` property with the namespace URL.
 
 ## Naming Conventions
 
 - `__` (double underscore) replaces `:` in prefixed names: `rdfs:Class` → `rdfs__Class`
 - `a` is used as shorthand for `rdf:type` (standard SPARQL/Turtle syntax)
-- Literal values are quoted in filename: `"Class"`, `"The class of classes."`
 - Resource references are unquoted in filename: `rdfs__Resource`
 
 ## Example
@@ -69,7 +70,7 @@ Files:
 rdfs/
 ├── rdfs__Class.md                              (empty - resource anchor)
 ├── rdfs__Class a rdfs__Class.md                (frontmatter with reified triple)
-├── rdfs__Class rdfs__label "Class".md          (frontmatter with reified triple)
+├── rdfs__Class rdfs__label ___.md          (frontmatter with reified triple)
 ├── rdfs__Class rdfs__subClassOf rdfs__Resource.md  (frontmatter with reified triple)
 ```
 
@@ -85,7 +86,7 @@ rdf__object: "[[rdfs__Class]]"
 ---
 ```
 
-File `rdfs__Class rdfs__label "Class".md`:
+File `rdfs__Class rdfs__label ___.md`:
 ```yaml
 ---
 rdf__type: "[[rdf__Statement]]"
@@ -94,13 +95,3 @@ rdf__predicate: "[[rdfs__label]]"
 rdf__object: "Class"
 ---
 ```
-
-## TODOs
-- [ ] Все литералы обернуть в двойные кавычки
-	- [ ] При необходимости добавить типизацию
-		- Пример `"2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date>`
-- [ ] Обновить этот файл через ИИ
-- [ ] Описать через ИИ
-	- [ ] [[skos__definition]]
-	- [ ] [[skos__scopeNote]]
-	- [ ] [[owl__AnnotationProperty]]
