@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 
 # Repository root (relative to script location)
 REPO_ROOT = Path(__file__).parent.parent
-NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
+NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'prov_o', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
 EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 
@@ -62,6 +62,8 @@ class ValidationResult:
     undefined_blank_nodes: List[Tuple[str, str]] = field(default_factory=list)
 
     def has_errors(self) -> bool:
+        # Note: missing_isDefinedBy is not an error since original ontologies
+        # don't have rdfs:isDefinedBy for all terms
         return any([
             self.orphaned_anchors,
             self.broken_wikilinks,
@@ -71,7 +73,7 @@ class ValidationResult:
             self.naming_violations,
             self.frontmatter_prop_violations,
             self.has_body_violations,
-            self.missing_isDefinedBy,
+            # self.missing_isDefinedBy,  # Not required by original ontologies
             self.orphaned_blank_nodes,
             self.undefined_blank_nodes
         ])

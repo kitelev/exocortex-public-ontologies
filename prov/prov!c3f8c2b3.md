@@ -1,3 +1,3 @@
 ---
-metadata: node
+metadata: blank_node
 ---

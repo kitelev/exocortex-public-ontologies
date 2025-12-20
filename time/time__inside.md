@@ -1,4 +1,3 @@
 ---
-tags:
-  - entity
+metadata: anchor
 ---
