@@ -1,6 +1,6 @@
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[rdfs__Literal]]"
-rdf:predicate: "[[rdfs__isDefinedBy]]"
-rdf:object: "[[!rdfs]]"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__Literal]]"
+rdf__predicate: "[[rdfs__isDefinedBy]]"
+rdf__object: "[[!rdfs]]"
 ---

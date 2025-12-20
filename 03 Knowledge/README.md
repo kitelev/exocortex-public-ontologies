@@ -2,7 +2,7 @@
 
 ## File Structure
 
-Each folder represents an ontology (namespace).
+Each folder represents a namespace.
 
 ### Resource Files
 
@@ -17,19 +17,21 @@ Each RDF triple is represented as a separate file with the format:
 {subject} {predicate} {object}.md
 ```
 
+NB: `{object}` может быть не указан - вместо этого указывается `___`. Это используется, если, например, значение `{object}` слишком длинное. См. пример [[!owl rdfs__comment ___]]
+
 Triple files contain YAML frontmatter with reified statement structure:
 ```yaml
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[{subject}]]"
-rdf:predicate: "[[{predicate}]]"
-rdf:object: "[[{object}]]"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[{subject}]]"
+rdf__predicate: "[[{predicate}]]"
+rdf__object: "[[{object}]]"
 ---
 ```
 
 For literal values, `rdf:object` contains the literal without wikilinks:
 ```yaml
-rdf:object: "Class"
+rdf__object: "Class"
 ```
 
 Examples:
@@ -39,10 +41,10 @@ Examples:
 
 ### Ontology Files
 
-The ontology itself is represented by a file with `!` prefix:
-- `!rdf.md` — RDF ontology
-- `!rdfs.md` — RDFS ontology
-- `!owl.md` — OWL ontology
+The namespace itself is represented by a file with `!` prefix:
+- `!rdf.md` — RDF namespace
+- `!rdfs.md` — RDFS namespace
+- `!owl.md` — OWL namespace
 
 These files contain the `!` property with the ontology URL.
 
@@ -76,19 +78,36 @@ rdfs/
 File `rdfs__Class a rdfs__Class.md`:
 ```yaml
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[rdfs__Class]]"
-rdf:predicate: "[[rdf__type|a]]"
-rdf:object: "[[rdfs__Class]]"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__Class]]"
+rdf__predicate: "[[rdf__type|a]]"
+rdf__object: "[[rdfs__Class]]"
 ---
 ```
 
 File `rdfs__Class rdfs__label "Class".md`:
 ```yaml
 ---
-rdf:type: "[[rdf__Statement]]"
-rdf:subject: "[[rdfs__Class]]"
-rdf:predicate: "[[rdfs__label]]"
-rdf:object: "Class"
+rdf__type: "[[rdf__Statement]]"
+rdf__subject: "[[rdfs__Class]]"
+rdf__predicate: "[[rdfs__label]]"
+rdf__object: "Class"
 ---
 ```
+
+## TODOs
+- [x] [[rdfs__subPropertyOf]]
+- [x] [[dcterms__issued]]
+- [x] [[dcterms__description]]
+- [x] [[dc__date]]
+- [x] [[dc__title]]
+- [x] [[dc__description]]
+- [x] [[skos__note]]
+- [ ] Все литералы обернуть в двойные кавычки
+	- [ ] При необходимости добавить типизацию
+		- Пример `"2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date>`
+- [ ] Обновить этот файл через ИИ
+- [ ] Описать через ИИ
+	- [ ] [[skos__definition]]
+	- [ ] [[skos__scopeNote]]
+	- [ ] [[owl__AnnotationProperty]]
