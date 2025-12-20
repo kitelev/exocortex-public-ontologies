@@ -1,10 +1,10 @@
-# Default ignored files
+# Editor
+/.idea/
 /shelf/
-/.idea/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
-/.obsidianscripts/__pycache__/
+
+# Obsidian
 .obsidian/
+
+# Python
+__pycache__/
+*.pyc
