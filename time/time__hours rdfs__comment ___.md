@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[time__hours]]"
 rdf__predicate: "[[rdfs__comment]]"
-rdf__object: "Length of, or element of the length of, a temporal extent expressed in hours."
+rdf__object: "\"length of, or element of the length of, a temporal extent expressed in hours\"@en"
 ---

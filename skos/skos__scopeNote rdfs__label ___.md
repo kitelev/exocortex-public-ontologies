@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[skos__scopeNote]]"
 rdf__predicate: "[[rdfs__label]]"
-rdf__object: "Scope Note"
+rdf__object: '"scope note"@en'
 ---

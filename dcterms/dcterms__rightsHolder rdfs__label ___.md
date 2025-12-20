@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[dcterms__rightsHolder]]"
 rdf__predicate: "[[rdfs__label]]"
-rdf__object: rightsHolder
+rdf__object: '"Rights Holder"@en'
 ---

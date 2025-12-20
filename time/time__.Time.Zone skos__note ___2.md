@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "[[time__.Time.Zone]]"
+rdf__predicate: "[[skos__note]]"
+rdf__object: "\"An ontology for time zone descriptions was described in [owl-time-20060927] and provided as RDF in a separate namespace tzont:. However, that ontology was incomplete in scope, and the example datasets were selective. Furthermore, since the use of a class from an external ontology as the range of an ObjectProperty in OWL-Time creates a dependency, reference to the time zone class has been replaced with the 'stub' class in the normative part of this version of OWL-Time.\"@en"
+---

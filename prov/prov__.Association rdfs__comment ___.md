@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "[[prov__.Association]]"
+rdf__predicate: "[[rdfs__comment]]"
+rdf__object: "\"An instance of prov:Association provides additional descriptions about the binary prov:wasAssociatedWith relation from an prov:Activity to some prov:Agent that had some responsiblity for it. For example, :baking prov:wasAssociatedWith :baker; prov:qualifiedAssociation [ a prov:Association; prov:agent :baker; :foo :bar ].\"@en"
+---

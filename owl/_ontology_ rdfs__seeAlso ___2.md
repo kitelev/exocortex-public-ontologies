@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "<http://www.w3.org/2002/07/owl>"
+rdf__predicate: "[[rdfs__seeAlso]]"
+rdf__object: "<http://www.w3.org/TR/owl2-rdf-based-semantics/#table-axiomatic-properties>"
+---

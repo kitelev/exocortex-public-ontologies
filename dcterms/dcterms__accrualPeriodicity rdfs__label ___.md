@@ -2,5 +2,5 @@
 metadata: statement
 rdf__subject: "[[dcterms__accrualPeriodicity]]"
 rdf__predicate: "[[rdfs__label]]"
-rdf__object: accrualPeriodicity
+rdf__object: '"Accrual Periodicity"@en'
 ---

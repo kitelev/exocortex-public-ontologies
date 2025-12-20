@@ -158,8 +158,10 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
 
         subject, predicate, obj = parts
 
-        # Validate subject: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid}
-        if subject.startswith('!'):
+        # Validate subject: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or _name_ (external URI)
+        if subject.startswith('_') and subject.endswith('_'):
+            pass  # External URI format - subject is specified in frontmatter
+        elif subject.startswith('!'):
             if subject[1:] not in NAMESPACES:
                 return False, f"Unknown namespace in subject: {subject}"
         elif BLANK_NODE_PATTERN.match(subject):
@@ -174,9 +176,11 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
         else:
             return False, f"Subject must have prefix ({{prefix}}__{{name}} or {{prefix}}!{{uuid}}), got: {subject}"
 
-        # Validate predicate: must be {prefix}__{name} or 'a'
+        # Validate predicate: must be {prefix}__{name} or 'a' or _name_ (external URI)
         if predicate == 'a':
             pass  # OK - shorthand for rdf:type
+        elif predicate.startswith('_') and predicate.endswith('_'):
+            pass  # External URI format - predicate is specified in frontmatter
         elif '__' in predicate:
             prefix = predicate.split('__')[0]
             if prefix not in NAMESPACES:
@@ -184,9 +188,11 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
         else:
             return False, f"Predicate must have prefix or be 'a', got: {predicate}"
 
-        # Validate object: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or ___
-        if obj == '___':
-            pass  # OK - literal placeholder
+        # Validate object: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or ___ or ___N or _name_
+        if obj.startswith('___'):
+            pass  # OK - literal placeholder (with optional numeric suffix)
+        elif obj.startswith('_') and obj.endswith('_'):
+            pass  # External URI format - object is specified in frontmatter
         elif obj.startswith('!'):
             if obj[1:] not in NAMESPACES:
                 return False, f"Unknown namespace in object: {obj}"

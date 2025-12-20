@@ -1,6 +1,6 @@
 ---
 metadata: statement
-rdf__subject: "[[prov__Activity]]"
+rdf__subject: "[[prov__activity]]"
 rdf__predicate: "[[rdfs__label]]"
-rdf__object: '"Activity"@en'
+rdf__object: "\"activity\""
 ---
