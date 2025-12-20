@@ -41,7 +41,8 @@ exocortex-public-ontologies/
 ├── dcterms/                # Dublin Core Terms
 ├── skos/                   # SKOS vocabulary
 ├── scripts/                # Validation tools
-│   └── validate.py         # Integrity checker
+│   ├── validate.py         # Integrity checker
+│   └── install-hooks.sh    # Git hooks installer
 └── ~templates/             # Obsidian templates
     ├── ~rdf__Statement.md
     └── ~(dataview) Triples.md
@@ -238,6 +239,16 @@ The validator checks:
 - **Orphaned anchors** — anchors not referenced in any statement
 
 Use `--verbose` for detailed output.
+
+### Pre-commit Hook
+
+Install the git hook to validate automatically before each commit:
+
+```bash
+./scripts/install-hooks.sh
+```
+
+The hook blocks commits if validation fails.
 
 ## Contributing
 
