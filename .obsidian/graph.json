@@ -1,0 +1,79 @@
+{
+  "collapse-filter": false,
+  "search": "-file:rdfs__range.md -file:rdfs__domain.md -file:rdf__type.md  -[\"rdf__predicate\":rdfs__comment]  -[\"rdf__predicate\":rdfs__label]  -[\"rdf__predicate\":rdfs__isdefinedby]  -file:rdf__property  -file:rdfs__Class.md  -file:rdfs__subClassOf.md  -file:rdfs__Resource  -[\"metadata\":namespace]",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": false,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "path:\"/rdfs\"",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "path:\"/owl\"",
+      "color": {
+        "a": 1,
+        "rgb": 16514816
+      }
+    },
+    {
+      "query": "path:\"/rdf\"",
+      "color": {
+        "a": 1,
+        "rgb": 16746496
+      }
+    },
+    {
+      "query": "path:\"/dcterms\"",
+      "color": {
+        "a": 1,
+        "rgb": 7935
+      }
+    },
+    {
+      "query": "path:\"/skos\"",
+      "color": {
+        "a": 1,
+        "rgb": 13107455
+      }
+    },
+    {
+      "query": "path:\"/dc\"",
+      "color": {
+        "a": 1,
+        "rgb": 520942
+      }
+    },
+    {
+      "query": "path:\"/foaf\"",
+      "color": {
+        "a": 1,
+        "rgb": 4454912
+      }
+    },
+    {
+      "query": "path:\"/time\"",
+      "color": {
+        "a": 1,
+        "rgb": 19727
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": true,
+  "textFadeMultiplier": 3,
+  "nodeSizeMultiplier": 1.9650146484375,
+  "lineSizeMultiplier": 5,
+  "collapse-forces": false,
+  "centerStrength": 0.532796223958333,
+  "repelStrength": 10.2335611979167,
+  "linkStrength": 1,
+  "linkDistance": 30,
+  "scale": 1.1386323332354897,
+  "close": false
+}
