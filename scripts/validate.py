@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 
 # Repository root (relative to script location)
 REPO_ROOT = Path(__file__).parent.parent
-NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'skos']
+NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'skos', 'foaf']
 EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 

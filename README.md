@@ -23,8 +23,9 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 84 | 100% |
 | Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 343 | 100% |
 | SKOS | `skos` | `http://www.w3.org/2004/02/skos/core` | 126 | 100% |
+| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 346 | 100% |
 
-**Total: 1,210 files — all W3C and Dublin Core ontologies fully covered**
+**Total: 1,556 files — W3C, Dublin Core, and FOAF ontologies fully covered**
 
 ## Directory Structure
 
@@ -40,6 +41,7 @@ exocortex-public-ontologies/
 ├── dc/                     # Dublin Core Elements
 ├── dcterms/                # Dublin Core Terms
 ├── skos/                   # SKOS vocabulary
+├── foaf/                   # FOAF (Friend of a Friend)
 ├── scripts/                # Validation tools
 │   ├── validate.py         # Integrity checker
 │   └── install-hooks.sh    # Git hooks installer
