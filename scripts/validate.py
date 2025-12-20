@@ -32,6 +32,9 @@ STATEMENT_REQUIRED_PROPS = {'metadata', 'rdf__subject', 'rdf__predicate', 'rdf__
 # Required properties for anchor files (exactly 1)
 ANCHOR_REQUIRED_PROPS = {'metadata'}
 
+# Required properties for namespace files (exactly 2)
+NAMESPACE_REQUIRED_PROPS = {'metadata', '!'}
+
 
 @dataclass
 class ValidationResult:
@@ -292,6 +295,22 @@ def validate_file(filepath: Path, all_anchors: Set[str], result: ValidationResul
         if props != ANCHOR_REQUIRED_PROPS:
             extra = props - ANCHOR_REQUIRED_PROPS
             error_msg = f"anchor: extra properties: {', '.join(sorted(extra))}"
+            result.frontmatter_prop_violations.append((str(rel_path), error_msg))
+            if verbose:
+                print(f"  📋 {rel_path}: {error_msg}")
+
+    # Check namespace has exactly 2 properties (metadata and !)
+    if metadata == 'namespace':
+        props = set(data.keys())
+        if props != NAMESPACE_REQUIRED_PROPS:
+            missing = NAMESPACE_REQUIRED_PROPS - props
+            extra = props - NAMESPACE_REQUIRED_PROPS
+            errors = []
+            if missing:
+                errors.append(f"missing: {', '.join(sorted(missing))}")
+            if extra:
+                errors.append(f"extra: {', '.join(sorted(extra))}")
+            error_msg = f"namespace: {'; '.join(errors)}"
             result.frontmatter_prop_violations.append((str(rel_path), error_msg))
             if verbose:
                 print(f"  📋 {rel_path}: {error_msg}")
