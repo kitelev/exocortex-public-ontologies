@@ -1,5 +1,5 @@
 ---
-rdf__type: "[[rdf__Statement]]"
+metadata: statement
 rdf__subject: "[[dc/dc__date]]"
 rdf__predicate: "[[rdfs__isDefinedBy]]"
 rdf__object: "[[!dc]]"
