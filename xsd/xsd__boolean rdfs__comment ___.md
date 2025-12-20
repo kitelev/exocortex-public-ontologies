@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "[[xsd__boolean]]"
+rdf__predicate: "[[rdfs__comment]]"
+rdf__object: "Boolean (true/false)."
+---
