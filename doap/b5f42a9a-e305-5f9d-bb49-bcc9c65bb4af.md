@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: http://usefulinc.com/ns/doap#ArchRepository
+uri: "http://usefulinc.com/ns/doap#ArchRepository"
+aliases:
+  - "doap:ArchRepository"
 ---

@@ -82,6 +82,9 @@ All files have a `metadata` property indicating their type:
 - `namespace` — namespace declaration files
 - `anchor` — resource anchor files
 - `statement` — RDF triple files
+- `blank_node` — blank node anchor files
+
+All files include human-readable **aliases** for navigation in Obsidian.
 
 ### 1. Namespace Files (`{uuid}.md`)
 
@@ -91,6 +94,8 @@ Define the namespace URI. File name is UUIDv5 of the namespace URI:
 ---
 metadata: namespace
 uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+aliases:
+  - "!rdf"
 ---
 ```
 
@@ -110,6 +115,8 @@ Anchor points for wikilinks. File name is UUIDv5 of the full URI:
 ---
 metadata: anchor
 uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#Property
+aliases:
+  - "rdf:Property"
 ---
 ```
 
@@ -148,6 +155,8 @@ metadata: statement
 subject: "[[f1afe09a-f371-5a01-a530-be18bfdb4d6b]]"
 predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
 object: "[[30488677-f427-5947-8a14-02903ca20a7e]]"
+aliases:
+  - "rdf:Property a rdfs:Class"
 ---
 ```
 
@@ -158,6 +167,8 @@ metadata: statement
 subject: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Class\"@en"
+aliases:
+  - "rdf:type rdfs:label Class"
 ---
 ```
 
@@ -169,6 +180,8 @@ Blank nodes use skolemization (RFC 7511) for UUID generation:
 ---
 metadata: blank_node
 uri: http://www.w3.org/ns/prov/.well-known/genid/a1b2c3d4
+aliases:
+  - "_:genid-a1b2c3d4"
 ---
 ```
 
@@ -213,6 +226,53 @@ file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, uri)
 canonical = "http://purl.org/dc/elements/1.1/title|http://www.w3.org/2000/01/rdf-schema#label|\"Title\"@en"
 file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, canonical)
 ```
+
+## Aliases
+
+Each file includes a human-readable alias in the `aliases` frontmatter property. This enables:
+- **Quick navigation** in Obsidian via alias search
+- **Human-readable identification** of UUID-named files
+- **RDF-like triple representation** for statements
+
+### Alias Formats
+
+| File Type | Alias Format | Example |
+|-----------|--------------|---------|
+| Namespace | `!prefix` | `!rdf`, `!rdfs`, `!owl` |
+| Anchor | `prefix:localname` | `rdf:Property`, `rdfs:Class` |
+| Blank node | `_:genid-{id}` | `_:genid-a1b2c3d4` |
+| Statement | `subj pred obj` | `rdfs:Class a rdfs:Class` |
+
+### Statement Aliases
+
+Statement aliases use the format `{subject_alias} {predicate_alias} {object_alias}`:
+
+- **Subject/Object (URI):** `prefix:localname` (e.g., `rdfs:Class`)
+- **Predicate `rdf:type`:** Shortened to `a` (RDF/Turtle convention)
+- **Literal objects:** Value in quotes, truncated to 30 chars (e.g., `"The class of classes..."`)
+- **Unknown resources:** `?` placeholder
+
+**Examples:**
+- `rdfs:Class a rdfs:Class`
+- `rdf:Property rdfs:label Property`
+- `owl:Thing rdfs:comment "The class of OWL individuals..."`
+
+### Generating Aliases
+
+The `scripts/add_aliases.py` script generates aliases for all existing files:
+
+```bash
+# Dry run (preview changes)
+python scripts/add_aliases.py --dry-run
+
+# Apply aliases
+python scripts/add_aliases.py
+
+# Verbose output
+python scripts/add_aliases.py -v
+```
+
+The `scripts/import_ontology.py` script automatically generates aliases during import.
 
 ### Ontology URI vs Namespace URI
 
@@ -542,6 +602,7 @@ The hook blocks commits if validation fails.
 | `validate.py` | Check structural integrity | `python scripts/validate.py [namespaces...]` |
 | `verify_import.py` | Semantic equivalence check | `python scripts/verify_import.py <rdf_file> <ontology_dir>` |
 | `add_uri_and_index.py` | Add URI field and generate index | `python scripts/add_uri_and_index.py <ontology_dir>` |
+| `add_aliases.py` | Add human-readable aliases | `python scripts/add_aliases.py [--dry-run]` |
 | `migrate_to_uuid.py` | Migrate legacy names to UUIDv5 | `python scripts/migrate_to_uuid.py <directory>` |
 | `test_all_ontologies.py` | Comprehensive test suite | `python scripts/test_all_ontologies.py` |
 

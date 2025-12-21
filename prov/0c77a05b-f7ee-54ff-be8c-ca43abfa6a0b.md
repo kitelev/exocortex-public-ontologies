@@ -3,4 +3,6 @@ metadata: statement
 subject: "[[bd0aec65-fd99-58c2-9b3e-ea9dd9609a80]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"wasAssociatedWith\""
+aliases:
+  - "prov:wasAssociatedWith rdfs:label \"wasAssociatedWith\""
 ---
