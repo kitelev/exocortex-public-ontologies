@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[a5207322-b148-5cde-b5a6-dc3e9e108510]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#subPropertyOf>"
-object: "<http://purl.org/dc/elements/1.1/rights>"
+predicate: "[[4b368645-5f7a-551b-940f-acebfe3d0bd2]]"
+object: "[[40fa06a0-807e-52af-a479-e066381bda7e]]"
 aliases:
-  - "dcterms:accessRights ? ?"
+  - "dcterms:accessRights rdfs:subPropertyOf dc:rights"
 ---

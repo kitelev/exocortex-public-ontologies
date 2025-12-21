@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[d350c13a-e40a-5e5c-aed6-5c7058cc45f7]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#range>"
+predicate: "[[c6a11966-a018-5be8-95a0-eba182c2fd93]]"
 object: "[[7731e0bf-2615-592f-9094-15fb5f35e2e9]]"
 aliases:
-  - "foaf:thumbnail ? foaf:Image"
+  - "foaf:thumbnail rdfs:range foaf:Image"
 ---

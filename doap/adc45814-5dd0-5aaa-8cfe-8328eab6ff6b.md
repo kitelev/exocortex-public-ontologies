@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[7119a367-425c-5036-ad3b-cf192de1d2dc]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Dépôt Subversion du code source.\"@fr"
 aliases:
-  - "doap:SVNRepository ? Dépôt Subversion du code sourc..."
+  - "doap:SVNRepository rdfs:comment Dépôt Subversion du code sourc..."
 ---

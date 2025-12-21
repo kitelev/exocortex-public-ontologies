@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[f279837f-17df-578f-82a1-ce90f7f86381]]"
-predicate: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
-object: "<http://www.w3.org/2002/07/owl#ObjectProperty>"
+predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
+object: "[[1ca4d39e-3c44-575a-8e82-b745bf274777]]"
 aliases:
-  - "skos:relatedMatch ? ?"
+  - "skos:relatedMatch a owl:ObjectProperty"
 ---

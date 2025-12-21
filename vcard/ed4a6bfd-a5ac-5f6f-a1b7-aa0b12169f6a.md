@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[a6a7cdc7-a531-56be-9047-8e9de8883904]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"This object property has been mapped\"@en"
 aliases:
-  - "vcard:geo ? This object property has been ..."
+  - "vcard:geo rdfs:comment This object property has been ..."
 ---

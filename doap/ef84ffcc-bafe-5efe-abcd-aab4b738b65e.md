@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[10f5980c-efc5-5968-a6ec-6b87ec18f6ff]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"URL adresa wiki projektu pro společné diskuse.\"@cs"
 aliases:
-  - "doap:wiki ? URL adresa wiki projektu pro s..."
+  - "doap:wiki rdfs:comment URL adresa wiki projektu pro s..."
 ---

@@ -309,8 +309,11 @@ All files now use UUIDv5 names. Special conventions only apply to frontmatter co
 | Element | Convention | Example |
 |---------|------------|---------|
 | `rdf:type` | `a` alias in wikilinks | `[[73b69787-...\|a]]` |
-| External URI | `<{full-uri}>` in frontmatter | `<http://example.org/ext>` |
-| External placeholder | `_ext{n}_` in wikilinks | `[[_ext1_]]` |
+
+**External References:** All URIs (including external resources not defined in this repository) use wikilinks to UUIDv5 files: `[[uuid]]`. The target file may or may not exist - this is allowed because:
+- External resources may be defined in other ontologies
+- Resources can be imported incrementally
+- UUIDv5 is deterministic - the same URI always produces the same UUID
 
 ### Literal Encoding Rules
 
@@ -483,12 +486,14 @@ python scripts/validate.py --verbose
 
 The validator checks:
 - **UUID filename format** — all files must have UUIDv5 names
-- **Broken wikilinks** — references to non-existent anchors
+- **External wikilinks** — references to anchors not in this repository (INFO only, not error)
 - **Missing metadata** — files without `metadata` property
 - **Invalid metadata** — files with incorrect metadata values
 - **Orphaned anchors** — anchors not referenced in any statement
 - **Orphaned blank nodes** — blank nodes not referenced in any statement
 - **Frontmatter properties** — correct properties per file type
+
+**Note:** External wikilinks (references to resources defined in other ontologies) are allowed and reported as INFO, not as errors. This enables incremental ontology import.
 
 ### Semantic Verification
 
@@ -540,10 +545,11 @@ Supported formats:
 - Adds `uri` field to all anchor and namespace files
 - Generates human-readable `aliases` for all files
 - Handles blank nodes with skolem IRIs
-- Preserves external URIs as `<http://...>` references
+- Converts ALL URIs to wikilinks `[[uuid]]` (including external resources)
 - Normalizes CRLF to LF in multiline literals
 - Escapes all special YAML characters in literals
 - Creates separate ontology anchor if ontology URI differs from namespace
+- Only creates anchor files for resources in the current namespace
 
 ### Post-Import Steps
 

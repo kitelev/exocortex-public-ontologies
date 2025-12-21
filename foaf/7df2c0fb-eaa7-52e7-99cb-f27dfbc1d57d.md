@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[1342ab68-4006-5bc5-baef-4ab1bbcfe202]]"
-predicate: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
-object: "<http://www.w3.org/2002/07/owl#InverseFunctionalProperty>"
+predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
+object: "[[db0e656c-9d80-5739-8eeb-e81add7ac847]]"
 aliases:
-  - "foaf:icqChatID ? ?"
+  - "foaf:icqChatID a owl:InverseFunctionalProperty"
 ---

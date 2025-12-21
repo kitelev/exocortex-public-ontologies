@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[fee2834b-4114-5e03-a09d-bf335174b1ce]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#label>"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"latitude\"@en"
 aliases:
-  - "vcard:latitude ? latitude"
+  - "vcard:latitude rdfs:label latitude"
 ---

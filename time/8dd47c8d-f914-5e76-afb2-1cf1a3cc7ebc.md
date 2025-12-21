@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[4ba20829-62cd-565b-ab41-96b317361f67]]"
-predicate: "<http://www.w3.org/2004/02/skos/core#prefLabel>"
+predicate: "[[2db0199c-c05f-51cd-b1d4-6c0ca7bb7485]]"
 object: "\"Woche\"@de"
 aliases:
-  - "time:unitWeek ? Woche"
+  - "time:unitWeek skos:prefLabel Woche"
 ---
