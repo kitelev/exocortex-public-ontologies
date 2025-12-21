@@ -27,20 +27,21 @@ NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'pr
 EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 
-# Required properties for statement files (exactly these 4, no more, no less)
+# Required properties for statement files (exactly these 4 required + optional aliases)
 STATEMENT_REQUIRED_PROPS = {'metadata', 'subject', 'predicate', 'object'}
+STATEMENT_OPTIONAL_PROPS = {'aliases'}
 
-# Required properties for anchor files (metadata required, uri optional)
+# Required properties for anchor files (metadata required, uri and aliases optional)
 ANCHOR_REQUIRED_PROPS = {'metadata'}
-ANCHOR_OPTIONAL_PROPS = {'uri'}
+ANCHOR_OPTIONAL_PROPS = {'uri', 'aliases'}
 
 # Required properties for namespace files
 NAMESPACE_REQUIRED_PROPS = {'metadata', 'uri'}
-NAMESPACE_OPTIONAL_PROPS = set()
+NAMESPACE_OPTIONAL_PROPS = {'aliases'}
 
 # Required properties for blank_node files
 BLANK_NODE_REQUIRED_PROPS = {'metadata', 'uri'}
-BLANK_NODE_OPTIONAL_PROPS = set()
+BLANK_NODE_OPTIONAL_PROPS = {'aliases'}
 
 # Valid metadata values
 VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node', 'index'}
@@ -247,11 +248,12 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
                 if verbose:
                     print(f"  🔗 {rel_path}: broken link to [[{link}]]")
 
-        # Check statement has exactly 4 required properties
+        # Check statement has exactly 4 required properties + optional aliases
         props = set(data.keys())
-        if props != STATEMENT_REQUIRED_PROPS:
-            missing = STATEMENT_REQUIRED_PROPS - props
-            extra = props - STATEMENT_REQUIRED_PROPS
+        allowed = STATEMENT_REQUIRED_PROPS | STATEMENT_OPTIONAL_PROPS
+        missing = STATEMENT_REQUIRED_PROPS - props
+        extra = props - allowed
+        if missing or extra:
             errors = []
             if missing:
                 errors.append(f"missing: {', '.join(sorted(missing))}")

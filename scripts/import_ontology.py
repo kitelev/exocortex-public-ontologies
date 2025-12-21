@@ -66,6 +66,45 @@ KNOWN_NAMESPACES = {
 PREFIX_TO_URI = {v: k for k, v in KNOWN_NAMESPACES.items()}
 
 
+def extract_prefix_from_uri(uri: str) -> Optional[str]:
+    """Extract the namespace prefix from a full URI."""
+    if not uri:
+        return None
+    for ns_uri, prefix in KNOWN_NAMESPACES.items():
+        if uri.startswith(ns_uri):
+            return prefix
+    return None
+
+
+def extract_localname_from_uri(uri: str) -> str:
+    """Extract local name from URI."""
+    if '#' in uri:
+        return uri.split('#')[-1]
+    elif '/' in uri:
+        return uri.rstrip('/').split('/')[-1]
+    return uri
+
+
+def format_alias_value(value: str) -> str:
+    """Format alias value for YAML, adding quotes if needed."""
+    needs_quotes = (
+        ':' in value or
+        '?' in value or
+        value.startswith('[') or
+        value.startswith('{') or
+        value.startswith('"') or
+        value.startswith("'") or
+        value.startswith('!') or
+        value.startswith('_:') or
+        '\n' in value or
+        value.startswith('#')
+    )
+    if needs_quotes:
+        escaped = value.replace('\\', '\\\\').replace('"', '\\"')
+        return f'"{escaped}"'
+    return value
+
+
 def write_file(filepath: Path, content: str) -> None:
     """Write file with normalized LF line endings."""
     # Normalize CRLF and CR to LF
@@ -342,10 +381,14 @@ def create_namespace_file(output_dir: Path, prefix: str, namespace_uri: str) -> 
     filename = f"{ns_uuid}.md"
     filepath = output_dir / filename
 
+    # Generate alias: !prefix
+    alias = format_alias_value(f"!{prefix}")
+
     content = f"""---
 metadata: namespace
-"!": {namespace_uri}
 uri: {namespace_uri}
+aliases:
+  - {alias}
 ---
 """
     write_file(filepath, content)
@@ -368,7 +411,20 @@ def create_anchor_file(output_dir: Path, anchor: str, uri: str = None) -> None:
         return
 
     if uri:
-        content = f"""---
+        # Generate alias: prefix:localname
+        prefix = extract_prefix_from_uri(uri)
+        if prefix:
+            localname = extract_localname_from_uri(uri)
+            alias = format_alias_value(f"{prefix}:{localname}")
+            content = f"""---
+metadata: anchor
+uri: {uri}
+aliases:
+  - {alias}
+---
+"""
+        else:
+            content = f"""---
 metadata: anchor
 uri: {uri}
 ---
@@ -404,9 +460,14 @@ def create_blank_node_file(output_dir: Path, anchor: str, namespace_uri: str, bl
     if filepath.exists():
         return bnode_uuid
 
+    # Generate alias: _:genid-{short_id}
+    alias = format_alias_value(f"_:genid-{blank_id}")
+
     content = f"""---
 metadata: blank_node
-skolem_iri: {skolem_iri}
+uri: {skolem_iri}
+aliases:
+  - {alias}
 ---
 """
     write_file(filepath, content)
@@ -522,11 +583,69 @@ def create_statement_file(
     else:
         obj_yaml = f'"[[{obj_anchor_or_literal}]]"'
 
+    # Generate statement alias: subj_alias pred_alias obj_alias
+    # Subject alias
+    if subject_is_external:
+        subj_alias = "?"
+    elif subject_uri:
+        prefix = extract_prefix_from_uri(subject_uri)
+        if prefix:
+            subj_alias = f"{prefix}:{extract_localname_from_uri(subject_uri)}"
+        else:
+            subj_alias = "?"
+    else:
+        subj_alias = "?"
+
+    # Predicate alias
+    if predicate_is_external:
+        pred_alias = "?"
+    elif predicate_anchor == RDF_TYPE_UUID:
+        pred_alias = "a"
+    elif predicate_uri:
+        prefix = extract_prefix_from_uri(predicate_uri)
+        if prefix:
+            pred_alias = f"{prefix}:{extract_localname_from_uri(predicate_uri)}"
+        else:
+            pred_alias = "?"
+    else:
+        pred_alias = "?"
+
+    # Object alias
+    if is_literal:
+        # Extract literal value for alias (truncate if long)
+        lit_match = re.match(r'^"?\\"(.+?)\\"', obj_anchor_or_literal)
+        if lit_match:
+            lit_val = lit_match.group(1)
+            if len(lit_val) > 30:
+                obj_alias = lit_val[:30] + "..."
+            else:
+                obj_alias = lit_val
+        else:
+            obj_alias = obj_anchor_or_literal[:30] if len(obj_anchor_or_literal) > 30 else obj_anchor_or_literal
+    elif object_is_external:
+        obj_alias = "?"
+    elif object_uri:
+        prefix = extract_prefix_from_uri(object_uri)
+        if prefix:
+            obj_alias = f"{prefix}:{extract_localname_from_uri(object_uri)}"
+        else:
+            obj_alias = "?"
+    else:
+        obj_alias = "?"
+
+    statement_alias = f"{subj_alias} {pred_alias} {obj_alias}"
+    # Truncate if too long
+    if len(statement_alias) > 100:
+        statement_alias = statement_alias[:97] + "..."
+    alias_yaml = format_alias_value(statement_alias)
+
     content = f"""---
 metadata: statement
-rdf__subject: {subj_yaml}
-rdf__predicate: {pred_yaml}
-rdf__object: {obj_yaml}
+subject: {subj_yaml}
+predicate: {pred_yaml}
+object: {obj_yaml}
+aliases:
+  - {alias_yaml}
 ---
 """
     write_file(filepath, content)
