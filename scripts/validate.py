@@ -30,8 +30,9 @@ EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 # Required properties for statement files (exactly these 4, no more, no less)
 STATEMENT_REQUIRED_PROPS = {'metadata', 'rdf__subject', 'rdf__predicate', 'rdf__object'}
 
-# Required properties for anchor files (exactly 1)
+# Required properties for anchor files (metadata required, uri optional)
 ANCHOR_REQUIRED_PROPS = {'metadata'}
+ANCHOR_OPTIONAL_PROPS = {'uri'}
 
 # Required properties for namespace files (exactly 2)
 NAMESPACE_REQUIRED_PROPS = {'metadata', '!'}
@@ -40,7 +41,7 @@ NAMESPACE_REQUIRED_PROPS = {'metadata', '!'}
 BLANK_NODE_REQUIRED_PROPS = {'metadata'}
 
 # Valid metadata values
-VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node'}
+VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node', 'index'}
 
 # Blank node naming pattern: {namespace}!{8-char-uuid}
 BLANK_NODE_PATTERN = re.compile(r'^([a-z]+)!([a-f0-9]{8})$')
@@ -364,11 +365,12 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             if verbose:
                 print(f"  📋 {rel_path}: {error_msg}")
 
-    # Check anchor has exactly 1 property (metadata only)
+    # Check anchor has required properties (metadata) and optional (uri)
     if metadata == 'anchor':
         props = set(data.keys())
-        if props != ANCHOR_REQUIRED_PROPS:
-            extra = props - ANCHOR_REQUIRED_PROPS
+        allowed = ANCHOR_REQUIRED_PROPS | ANCHOR_OPTIONAL_PROPS
+        extra = props - allowed
+        if extra:
             error_msg = f"anchor: extra properties: {', '.join(sorted(extra))}"
             result.frontmatter_prop_violations.append((str(rel_path), error_msg))
             if verbose:
@@ -419,8 +421,8 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             if verbose:
                 print(f"  📛 {rel_path}: {error_msg}")
 
-    # Check for body content (only frontmatter allowed)
-    if has_body_content(filepath):
+    # Check for body content (only frontmatter allowed, except for index files)
+    if metadata != 'index' and has_body_content(filepath):
         result.has_body_violations.append(str(rel_path))
         if verbose:
             print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
