@@ -42,8 +42,8 @@ except ImportError:
     print("Error: rdflib is required. Install with: pip install rdflib")
     sys.exit(1)
 
-# Known namespace URIs and their prefixes
-KNOWN_NAMESPACES = {
+# Mapping from namespace URIs to their prefixes
+NAMESPACE_URI_TO_PREFIX = {
     'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf',
     'http://www.w3.org/2000/01/rdf-schema#': 'rdfs',
     'http://www.w3.org/2002/07/owl#': 'owl',
@@ -61,15 +61,15 @@ KNOWN_NAMESPACES = {
     'http://www.w3.org/2001/XMLSchema#': 'xsd',
 }
 
-# Reverse mapping
-PREFIX_TO_URI = {v: k for k, v in KNOWN_NAMESPACES.items()}
+# Reverse mapping: prefix → namespace URI
+PREFIX_TO_NAMESPACE_URI = {v: k for k, v in NAMESPACE_URI_TO_PREFIX.items()}
 
 
 def extract_prefix_from_uri(uri: str) -> Optional[str]:
     """Extract the namespace prefix from a full URI."""
     if not uri:
         return None
-    for ns_uri, prefix in KNOWN_NAMESPACES.items():
+    for ns_uri, prefix in NAMESPACE_URI_TO_PREFIX.items():
         if uri.startswith(ns_uri):
             return prefix
     return None
@@ -267,7 +267,7 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
         # Check if it's a namespace URI (ends with # or /)
         # and matches a known namespace exactly
         # Returns UUID for the namespace
-        for ns_uri, prefix in KNOWN_NAMESPACES.items():
+        for ns_uri, prefix in NAMESPACE_URI_TO_PREFIX.items():
             if uri_str == ns_uri:  # Only exact match with suffix
                 ns_uuid = namespace_uuid_map.get(ns_uri) or uri_to_uuid(ns_uri)
                 return (ns_uuid, False)
@@ -710,7 +710,7 @@ def import_ontology(
 
     # Build namespace UUID map for term_to_anchor
     namespace_uuid_map: Dict[str, str] = {effective_ns: ns_uuid}
-    for ns_uri in KNOWN_NAMESPACES.keys():
+    for ns_uri in NAMESPACE_URI_TO_PREFIX.keys():
         namespace_uuid_map[ns_uri] = uri_to_uuid(ns_uri)
 
     if verbose:

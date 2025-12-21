@@ -26,7 +26,8 @@ from dataclasses import dataclass, field
 
 # Repository root (relative to script location)
 REPO_ROOT = Path(__file__).parent.parent
-NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
+# Namespace prefixes (short names for namespace URIs, e.g., 'rdf' for http://www.w3.org/1999/02/22-rdf-syntax-ns#)
+PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
 EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 
@@ -198,7 +199,7 @@ def get_all_anchors(repo_root: Path) -> Set[str]:
     """Get all anchor names (files with metadata: anchor, namespace, or blank_node)."""
     anchors = set()
 
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
@@ -331,7 +332,7 @@ def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_node
     referenced = set()
 
     # Collect all wikilinks from statements
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
@@ -363,7 +364,7 @@ def get_all_namespace_files(repo_root: Path) -> Set[str]:
     """Get all namespace file names (files with metadata: namespace)."""
     namespaces = set()
 
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
@@ -380,7 +381,7 @@ def get_all_blank_nodes(repo_root: Path) -> Set[str]:
     """Get all defined blank node names (files with metadata: blank_node)."""
     blank_nodes = set()
 
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
@@ -405,7 +406,7 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
     defined_blank_nodes = get_all_blank_nodes(repo_root)
     referenced_blank_nodes = set()
 
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
@@ -441,7 +442,7 @@ def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List
     """
     result = ValidationResult()
 
-    namespaces_to_check = target_namespaces if target_namespaces else NAMESPACES
+    namespaces_to_check = target_namespaces if target_namespaces else PREFIXES
 
     print("Collecting anchors...")
     # Collect anchors from ALL namespaces (needed for cross-references)

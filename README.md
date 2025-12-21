@@ -17,8 +17,8 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 ### Verified (semantically equivalent to originals)
 
-| Namespace | Prefix | URI | Triples | Files | Status |
-|-----------|--------|-----|---------|-------|--------|
+| Ontology | Prefix | Namespace URI | Triples | Files | Status |
+|----------|--------|---------------|---------|-------|--------|
 | Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 | ✅ |
 | Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 31 | ✅ |
 | Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 800 | ✅ |
@@ -38,8 +38,8 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 ### Additional
 
-| Namespace | Prefix | URI | Status |
-|-----------|--------|-----|--------|
+| Ontology | Prefix | Namespace URI | Status |
+|----------|--------|---------------|--------|
 | XSD | `xsd` | `http://www.w3.org/2001/XMLSchema#` | Core types only (manually created) |
 
 ## Directory Structure
