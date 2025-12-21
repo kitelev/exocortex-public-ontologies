@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[1eaee0a6-3c0b-5a49-bc8f-290a599b9954]]"
-predicate: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
-object: "<http://www.w3.org/2002/07/owl#ObjectProperty>"
+predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
+object: "[[1ca4d39e-3c44-575a-8e82-b745bf274777]]"
 aliases:
-  - "foaf:schoolHomepage ? ?"
+  - "foaf:schoolHomepage a owl:ObjectProperty"
 ---

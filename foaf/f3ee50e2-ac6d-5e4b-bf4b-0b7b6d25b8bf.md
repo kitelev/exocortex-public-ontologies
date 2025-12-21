@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[da0b7a03-14af-51bd-bbbf-4b180617f5c3]]"
-predicate: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
-object: "<http://www.w3.org/2002/07/owl#Ontology>"
+predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
+object: "[[e21f4a95-fec8-57e2-80eb-e4fd1cd542e2]]"
 aliases:
-  - "foaf:0.1 ? ?"
+  - "foaf:0.1 a owl:Ontology"
 ---

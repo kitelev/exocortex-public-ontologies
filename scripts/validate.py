@@ -4,10 +4,13 @@ Validation tools for exocortex-public-ontologies.
 
 Checks:
 1. Orphaned anchors - anchors not referenced in any statement
-2. Broken wikilinks - references to non-existent anchors
+2. External wikilinks - references to anchors not in this repository (INFO only, not error)
 3. File format - proper YAML frontmatter structure
 4. Metadata consistency - all files have valid metadata property
 5. Blank node format - proper naming convention {namespace}!{uuid}
+
+Note: External wikilinks (to resources defined in other ontologies) are allowed.
+These are reported as INFO but do not cause validation failure.
 
 Usage:
     python scripts/validate.py [--fix] [--verbose]
@@ -54,7 +57,7 @@ UUID_PATTERN = re.compile(r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-
 class ValidationResult:
     """Holds validation results."""
     orphaned_anchors: List[str] = field(default_factory=list)
-    broken_wikilinks: List[Tuple[str, str]] = field(default_factory=list)
+    external_wikilinks: List[Tuple[str, str]] = field(default_factory=list)  # INFO only, not error
     invalid_frontmatter: List[Tuple[str, str]] = field(default_factory=list)
     missing_metadata: List[str] = field(default_factory=list)
     invalid_metadata: List[Tuple[str, str]] = field(default_factory=list)
@@ -65,9 +68,14 @@ class ValidationResult:
     undefined_blank_nodes: List[Tuple[str, str]] = field(default_factory=list)
 
     def has_errors(self) -> bool:
+        """Check if there are any validation errors.
+
+        Note: external_wikilinks are NOT errors - they are expected when
+        referencing resources from other ontologies.
+        """
         return any([
             self.orphaned_anchors,
-            self.broken_wikilinks,
+            # external_wikilinks are INFO only, not errors
             self.invalid_frontmatter,
             self.missing_metadata,
             self.invalid_metadata,
@@ -82,8 +90,8 @@ class ValidationResult:
         lines = []
         if self.orphaned_anchors:
             lines.append(f"  Orphaned anchors: {len(self.orphaned_anchors)}")
-        if self.broken_wikilinks:
-            lines.append(f"  Broken wikilinks: {len(self.broken_wikilinks)}")
+        if self.external_wikilinks:
+            lines.append(f"  External wikilinks (INFO): {len(self.external_wikilinks)}")
         if self.invalid_frontmatter:
             lines.append(f"  Invalid frontmatter: {len(self.invalid_frontmatter)}")
         if self.missing_metadata:
@@ -238,9 +246,10 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
         for link in wikilinks:
             # Use case-insensitive comparison for macOS compatibility
             if link.lower() not in all_anchors_lower:
-                result.broken_wikilinks.append((str(rel_path), link))
+                # External wikilinks are allowed (resources may be defined elsewhere)
+                result.external_wikilinks.append((str(rel_path), link))
                 if verbose:
-                    print(f"  🔗 {rel_path}: broken link to [[{link}]]")
+                    print(f"  ℹ️  {rel_path}: external link [[{link}]]")
 
         # Check statement has exactly 4 required properties + optional aliases
         props = set(data.keys())
@@ -501,6 +510,11 @@ def main():
     print("=" * 60)
     print(result.summary())
 
+    # Show external wikilinks info (not an error)
+    if result.external_wikilinks:
+        print(f"\nℹ️  External wikilinks: {len(result.external_wikilinks)} references to resources not in this repository")
+        print("   (This is normal - these may be defined in other ontologies)")
+
     if result.has_errors():
         print("\n❌ Validation failed!")
 
@@ -511,12 +525,12 @@ def main():
             if len(result.orphaned_anchors) > 10:
                 print(f"  ... and {len(result.orphaned_anchors) - 10} more")
 
-        if result.broken_wikilinks and not args.verbose:
-            print(f"\nBroken wikilinks ({len(result.broken_wikilinks)}):")
-            for filepath, link in result.broken_wikilinks[:10]:
+        if result.external_wikilinks and not args.verbose:
+            print(f"\nExternal wikilinks - INFO ({len(result.external_wikilinks)}):")
+            for filepath, link in result.external_wikilinks[:10]:
                 print(f"  - {filepath} → [[{link}]]")
-            if len(result.broken_wikilinks) > 10:
-                print(f"  ... and {len(result.broken_wikilinks) - 10} more")
+            if len(result.external_wikilinks) > 10:
+                print(f"  ... and {len(result.external_wikilinks) - 10} more")
 
         if result.invalid_frontmatter and not args.verbose:
             print(f"\nInvalid frontmatter ({len(result.invalid_frontmatter)}):")

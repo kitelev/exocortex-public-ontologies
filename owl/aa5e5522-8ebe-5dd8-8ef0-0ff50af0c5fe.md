@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[2b820fb5-b37b-5462-9b0a-36becc84136a]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#range>"
-object: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>"
+predicate: "[[c6a11966-a018-5be8-95a0-eba182c2fd93]]"
+object: "[[3993c428-acef-52c6-93d0-2411daef10e2]]"
 aliases:
-  - "owl:oneOf ? ?"
+  - "owl:oneOf rdfs:range rdf:List"
 ---

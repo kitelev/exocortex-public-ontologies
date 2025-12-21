@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[822bcb97-38f0-552d-8197-a2f2448a2ad9]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Versionsinformation eines Projekt Releases.\"@de"
 aliases:
-  - "doap:Version ? Versionsinformation eines Proj..."
+  - "doap:Version rdfs:comment Versionsinformation eines Proj..."
 ---

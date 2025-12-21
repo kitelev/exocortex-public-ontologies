@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[ee291356-24f5-510e-a7ea-8b1c5a54d411]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Position of a time instant\"@en"
 aliases:
-  - "time:inTemporalPosition ? Position of a time instant"
+  - "time:inTemporalPosition rdfs:comment Position of a time instant"
 ---

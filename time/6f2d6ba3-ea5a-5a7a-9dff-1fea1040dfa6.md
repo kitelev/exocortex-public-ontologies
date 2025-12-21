@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[1ed67664-1521-526f-b30e-2a250c933915]]"
-predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Una entidad temporal con una extensión o duración.\"@es"
 aliases:
-  - "time:Interval ? Una entidad temporal con una e..."
+  - "time:Interval rdfs:comment Una entidad temporal con una e..."
 ---
