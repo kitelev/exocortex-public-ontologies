@@ -61,14 +61,11 @@ class ValidationResult:
     naming_violations: List[Tuple[str, str]] = field(default_factory=list)
     frontmatter_prop_violations: List[Tuple[str, str]] = field(default_factory=list)
     has_body_violations: List[str] = field(default_factory=list)
-    missing_isDefinedBy: List[str] = field(default_factory=list)
     orphaned_blank_nodes: List[str] = field(default_factory=list)
     undefined_blank_nodes: List[Tuple[str, str]] = field(default_factory=list)
     literal_placeholder_violations: List[Tuple[str, str]] = field(default_factory=list)
 
     def has_errors(self) -> bool:
-        # Note: missing_isDefinedBy is not an error since original ontologies
-        # don't have rdfs:isDefinedBy for all terms
         return any([
             self.orphaned_anchors,
             self.broken_wikilinks,
@@ -78,7 +75,6 @@ class ValidationResult:
             self.naming_violations,
             self.frontmatter_prop_violations,
             self.has_body_violations,
-            # self.missing_isDefinedBy,  # Not required by original ontologies
             self.orphaned_blank_nodes,
             self.undefined_blank_nodes,
             self.literal_placeholder_violations
@@ -102,8 +98,6 @@ class ValidationResult:
             lines.append(f"  Frontmatter property violations: {len(self.frontmatter_prop_violations)}")
         if self.has_body_violations:
             lines.append(f"  Files with body content: {len(self.has_body_violations)}")
-        if self.missing_isDefinedBy:
-            lines.append(f"  Missing rdfs:isDefinedBy statements: {len(self.missing_isDefinedBy)}")
         if self.orphaned_blank_nodes:
             lines.append(f"  Orphaned blank nodes: {len(self.orphaned_blank_nodes)}")
         if self.undefined_blank_nodes:
@@ -428,39 +422,6 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
 
 
-def check_isDefinedBy_statements(repo_root: Path, verbose: bool = False) -> List[str]:
-    """Check that each anchor has a corresponding rdfs:isDefinedBy statement."""
-    import uuid as uuid_module
-
-    # UUID for rdfs:isDefinedBy
-    RDFS_IS_DEFINED_BY_UUID = str(uuid_module.uuid5(uuid_module.NAMESPACE_URL, 'http://www.w3.org/2000/01/rdf-schema#isDefinedBy'))
-
-    missing = []
-
-    for ns in NAMESPACES:
-        ns_dir = repo_root / ns
-        if not ns_dir.exists():
-            continue
-
-        for filepath in ns_dir.glob('*.md'):
-            data, error = parse_frontmatter(filepath)
-            if not data or data.get('metadata') != 'anchor':
-                continue
-
-            anchor_name = filepath.stem
-            # Expected statement file: {anchor} {rdfs:isDefinedBy_uuid} !{namespace}.md
-            # Format can be either old (rdfs__isDefinedBy) or new (UUIDv5)
-            expected_statement_new = ns_dir / f"{anchor_name} {RDFS_IS_DEFINED_BY_UUID} !{ns}.md"
-            expected_statement_old = ns_dir / f"{anchor_name} rdfs__isDefinedBy !{ns}.md"
-
-            if not expected_statement_new.exists() and not expected_statement_old.exists():
-                missing.append(f"{ns}/{anchor_name}")
-                if verbose:
-                    print(f"  🔗 {ns}/{anchor_name}: missing rdfs:isDefinedBy statement")
-
-    return sorted(missing)
-
-
 def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], verbose: bool = False) -> List[str]:
     """Find anchors that are not referenced in any statement."""
     referenced = set()
@@ -620,9 +581,6 @@ def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List
         for filepath, bn in result.undefined_blank_nodes:
             print(f"  ❌ {filepath}: undefined blank node {bn}")
 
-    print("\nChecking rdfs:isDefinedBy statements...")
-    result.missing_isDefinedBy = check_isDefinedBy_statements(repo_root, verbose)
-
     return result
 
 
@@ -703,13 +661,6 @@ def main():
                 print(f"  - {filepath}")
             if len(result.has_body_violations) > 20:
                 print(f"  ... and {len(result.has_body_violations) - 20} more")
-
-        if result.missing_isDefinedBy and not args.verbose:
-            print(f"\nMissing rdfs:isDefinedBy statements ({len(result.missing_isDefinedBy)}):")
-            for anchor in result.missing_isDefinedBy[:20]:
-                print(f"  - {anchor}")
-            if len(result.missing_isDefinedBy) > 20:
-                print(f"  ... and {len(result.missing_isDefinedBy) - 20} more")
 
         if result.orphaned_blank_nodes and not args.verbose:
             print(f"\nOrphaned blank nodes ({len(result.orphaned_blank_nodes)}):")
