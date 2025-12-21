@@ -1,6 +1,0 @@
----
-metadata: statement
-rdf__subject: "[[time!00000037]]"
-rdf__predicate: "[[owl__maxCardinality]]"
-rdf__object: "\"1\"^^[[xsd__nonNegativeInteger]]"
----

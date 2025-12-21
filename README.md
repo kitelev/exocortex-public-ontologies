@@ -121,9 +121,9 @@ Each RDF triple is a file with statement structure:
 ```yaml
 ---
 metadata: statement
-rdf__subject: "[[rdf__Property]]"
-rdf__predicate: "[[rdf__type|a]]"
-rdf__object: "[[rdfs__Class]]"
+rdf__subject: "[[f1afe09a-f371-5a01-a530-be18bfdb4d6b]]"
+rdf__predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
+rdf__object: "[[30488677-f427-5947-8a14-02903ca20a7e]]"
 ---
 ```
 
@@ -131,8 +131,8 @@ For literal values:
 ```yaml
 ---
 metadata: statement
-rdf__subject: "[[rdf__type]]"
-rdf__predicate: "[[rdfs__label]]"
+rdf__subject: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b]]"
+rdf__predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 rdf__object: type
 ---
 ```
@@ -200,7 +200,7 @@ TABLE WITHOUT ID
     rdf__subject,
     rdf__predicate,
     rdf__object
-WHERE rdf__subject = [[rdfs__Class]]
+WHERE rdf__subject = [[30488677-f427-5947-8a14-02903ca20a7e]]
 ```
 
 Find all triples where a resource is the object:
@@ -210,7 +210,7 @@ TABLE WITHOUT ID
     rdf__subject,
     rdf__predicate,
     rdf__object
-WHERE rdf__object = [[rdfs__Resource]]
+WHERE rdf__object = [[d6ac0df2-324e-561c-9f05-41d3b2d5ebd3]]
 ```
 
 Filter by metadata type:
@@ -255,7 +255,7 @@ File: `owl/!owl owl__imports !rdfs.md`
 ---
 metadata: statement
 rdf__subject: "[[!owl]]"
-rdf__predicate: "[[owl__imports]]"
+rdf__predicate: "[[532c87f0-8cfa-5ff5-990f-aac1562178eb]]"
 rdf__object: "[[!rdfs]]"
 ---
 ```

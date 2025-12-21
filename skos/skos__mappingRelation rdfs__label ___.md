@@ -1,6 +1,0 @@
----
-metadata: statement
-rdf__subject: "[[skos__mappingRelation]]"
-rdf__predicate: "[[rdfs__label]]"
-rdf__object: '"is in mapping relation with"@en'
----

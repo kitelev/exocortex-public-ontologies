@@ -1,6 +1,0 @@
----
-metadata: statement
-rdf__subject: "[[dcterms__instructionalMethod]]"
-rdf__predicate: "[[dcterms__description]]"
-rdf__object: '"Instructional Method typically includes ways of presenting instructional materials or conducting instructional activities, patterns of learner-to-learner and learner-to-instructor interactions, and mechanisms by which group and individual levels of learning are measured.  Instructional methods include all aspects of the instruction and learning processes from planning and implementation through evaluation and feedback."@en'
----

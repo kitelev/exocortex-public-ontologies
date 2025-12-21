@@ -45,6 +45,9 @@ VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node'}
 # Blank node naming pattern: {namespace}!{8-char-uuid}
 BLANK_NODE_PATTERN = re.compile(r'^([a-z]+)!([a-f0-9]{8})$')
 
+# UUIDv5 pattern: xxxxxxxx-xxxx-5xxx-xxxx-xxxxxxxxxxxx (standard UUID format)
+UUID_PATTERN = re.compile(r'^[a-f0-9]{8}-[a-f0-9]{4}-5[a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}$')
+
 
 @dataclass
 class ValidationResult:
@@ -135,9 +138,11 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
         return True, ""
 
     elif metadata == 'anchor':
-        # Must be {prefix}__{localname}
+        # Can be {prefix}__{localname} OR UUIDv5
+        if UUID_PATTERN.match(filename):
+            return True, ""  # Valid UUIDv5 format
         if '__' not in filename:
-            return False, f"Anchor must have format {{prefix}}__{{name}}, got: {filename}"
+            return False, f"Anchor must have format {{prefix}}__{{name}} or UUIDv5, got: {filename}"
         prefix = filename.split('__')[0]
         if prefix not in NAMESPACES:
             return False, f"Unknown prefix '{prefix}' in anchor: {filename}"
@@ -164,9 +169,11 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
 
         subject, predicate, obj = parts
 
-        # Validate subject: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or _name_ (external URI)
+        # Validate subject: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or UUIDv5 or _name_ (external URI)
         if subject.startswith('_') and subject.endswith('_'):
             pass  # External URI format - subject is specified in frontmatter
+        elif UUID_PATTERN.match(subject):
+            pass  # Valid UUIDv5 format
         elif subject.startswith('!'):
             if subject[1:] not in NAMESPACES:
                 return False, f"Unknown namespace in subject: {subject}"
@@ -180,11 +187,13 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in subject: {subject}"
         else:
-            return False, f"Subject must have prefix ({{prefix}}__{{name}} or {{prefix}}!{{uuid}}), got: {subject}"
+            return False, f"Subject must have prefix ({{prefix}}__{{name}} or {{prefix}}!{{uuid}}) or UUIDv5, got: {subject}"
 
-        # Validate predicate: must be {prefix}__{name} or 'a' or _name_ (external URI)
+        # Validate predicate: must be {prefix}__{name} or 'a' or UUIDv5 or _name_ (external URI)
         if predicate == 'a':
             pass  # OK - shorthand for rdf:type
+        elif UUID_PATTERN.match(predicate):
+            pass  # Valid UUIDv5 format
         elif predicate.startswith('_') and predicate.endswith('_'):
             pass  # External URI format - predicate is specified in frontmatter
         elif '__' in predicate:
@@ -192,11 +201,13 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in predicate: {predicate}"
         else:
-            return False, f"Predicate must have prefix or be 'a', got: {predicate}"
+            return False, f"Predicate must have prefix, be 'a', or be UUIDv5, got: {predicate}"
 
-        # Validate object: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or ___ or ___N or _name_
+        # Validate object: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or UUIDv5 or ___ or ___N or _name_
         if obj.startswith('___'):
             pass  # OK - literal placeholder (with optional numeric suffix)
+        elif UUID_PATTERN.match(obj):
+            pass  # Valid UUIDv5 format
         elif obj.startswith('_') and obj.endswith('_'):
             pass  # External URI format - object is specified in frontmatter
         elif obj.startswith('!'):
@@ -212,7 +223,7 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in object: {obj}"
         else:
-            return False, f"Object must have prefix, be '___', be namespace, or be blank node, got: {obj}"
+            return False, f"Object must have prefix, be '___', be namespace, be blank node, or be UUIDv5, got: {obj}"
 
         return True, ""
 
@@ -417,6 +428,11 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
 
 def check_isDefinedBy_statements(repo_root: Path, verbose: bool = False) -> List[str]:
     """Check that each anchor has a corresponding rdfs:isDefinedBy statement."""
+    import uuid as uuid_module
+
+    # UUID for rdfs:isDefinedBy
+    RDFS_IS_DEFINED_BY_UUID = str(uuid_module.uuid5(uuid_module.NAMESPACE_URL, 'http://www.w3.org/2000/01/rdf-schema#isDefinedBy'))
+
     missing = []
 
     for ns in NAMESPACES:
@@ -430,10 +446,12 @@ def check_isDefinedBy_statements(repo_root: Path, verbose: bool = False) -> List
                 continue
 
             anchor_name = filepath.stem
-            # Expected statement file: {anchor} rdfs__isDefinedBy !{namespace}.md
-            expected_statement = ns_dir / f"{anchor_name} rdfs__isDefinedBy !{ns}.md"
+            # Expected statement file: {anchor} {rdfs:isDefinedBy_uuid} !{namespace}.md
+            # Format can be either old (rdfs__isDefinedBy) or new (UUIDv5)
+            expected_statement_new = ns_dir / f"{anchor_name} {RDFS_IS_DEFINED_BY_UUID} !{ns}.md"
+            expected_statement_old = ns_dir / f"{anchor_name} rdfs__isDefinedBy !{ns}.md"
 
-            if not expected_statement.exists():
+            if not expected_statement_new.exists() and not expected_statement_old.exists():
                 missing.append(f"{ns}/{anchor_name}")
                 if verbose:
                     print(f"  🔗 {ns}/{anchor_name}: missing rdfs:isDefinedBy statement")
