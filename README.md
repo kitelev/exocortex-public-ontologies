@@ -19,22 +19,22 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 | Namespace | Prefix | URI | Triples | Files | Status |
 |-----------|--------|-----|---------|-------|--------|
-| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 134 | ✅ |
-| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 43 | ✅ |
-| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 833 | ✅ |
-| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 741 | 840 | ✅ |
-| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 631 | 737 | ✅ |
-| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 54 | ✅ |
-| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 545 | ✅ |
-| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1146 | 1344 | ✅ |
-| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 166 | ✅ |
-| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 107 | ✅ |
-| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 669 | 805 | ✅ |
-| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 318 | ✅ |
-| TIME | `time` | `http://www.w3.org/2006/time#` | 1296 | 1528 | ✅ |
-| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 882 | 1147 | ✅ |
+| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 | ✅ |
+| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 31 | ✅ |
+| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 800 | ✅ |
+| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 741 | 803 | ✅ |
+| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 620 | 696 | ✅ |
+| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 | ✅ |
+| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 529 | ✅ |
+| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1126 | 1290 | ✅ |
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 | ✅ |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 103 | ✅ |
+| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 658 | 758 | ✅ |
+| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 289 | ✅ |
+| TIME | `time` | `http://www.w3.org/2006/time#` | 1295 | 1465 | ✅ |
+| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 882 | 1111 | ✅ |
 
-**Total: 7,147 triples — 14 ontologies**
+**Total: 7,104 triples — 14 ontologies**
 
 ### Additional
 

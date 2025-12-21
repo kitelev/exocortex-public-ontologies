@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[c86d0731-e3be-50ac-afc9-cc6353784efa]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#label>"
 object: "\"RFC 4646\"@en"
 aliases:
-  - "dcterms:RFC4646 rdfs:label RFC 4646"
+  - "dcterms:RFC4646 ? RFC 4646"
 ---

@@ -53,7 +53,6 @@ KNOWN_NAMESPACES = {
     'http://www.w3.org/2004/02/skos/core#': 'skos',
     'http://xmlns.com/foaf/0.1/': 'foaf',
     'http://www.w3.org/ns/prov#': 'prov',
-    'http://www.w3.org/ns/prov-o#': 'prov_o',
     'http://www.w3.org/2006/time#': 'time',
     'http://www.w3.org/2003/01/geo/wgs84_pos#': 'geo',
     'http://www.w3.org/2006/vcard/ns#': 'vcard',
@@ -187,38 +186,25 @@ def uri_to_anchor(uri: str, ontology_prefix: str, ontology_ns: str) -> Tuple[str
     The uuid_string is the full UUIDv5 generated from the URI.
     The second element is kept as None for API compatibility but is unused.
 
+    IMPORTANT: Only resources in the CURRENT ontology namespace are internal.
+    Resources from other known namespaces are treated as EXTERNAL to avoid
+    broken wikilinks (we don't know what resources exist in other ontologies).
+
     Examples:
+        (when importing rdf:)
         http://www.w3.org/1999/02/22-rdf-syntax-ns#type -> ('a1b2c3d4-...', None, False)
+        http://www.w3.org/2000/01/rdf-schema#Class -> (None, None, True)  # External
         http://example.org/foo -> (None, None, True)  # External URI
     """
     uri_str = str(uri)
 
-    # Check known namespaces
-    for ns_uri, prefix in KNOWN_NAMESPACES.items():
-        if uri_str.startswith(ns_uri):
-            return (uri_to_uuid(uri_str), None, False)
-
-    # Check if it's the ontology namespace
+    # Check if it's the current ontology namespace - INTERNAL
     if ontology_ns and uri_str.startswith(ontology_ns):
         return (uri_to_uuid(uri_str), None, False)
 
-    # Check if URI ends with # or / and extract local part
-    if '#' in uri_str:
-        ns, local = uri_str.rsplit('#', 1)
-        ns += '#'
-    elif '/' in uri_str:
-        ns, local = uri_str.rsplit('/', 1)
-        ns += '/'
-    else:
-        # External URI with no namespace separator
-        return (None, None, True)
-
-    # Try to find prefix for the namespace
-    if ns in KNOWN_NAMESPACES:
-        return (uri_to_uuid(uri_str), None, False)
-    else:
-        # External URI - not a known namespace
-        return (None, None, True)
+    # All other URIs are EXTERNAL (including other known namespaces)
+    # This prevents broken wikilinks to resources that may not exist
+    return (None, None, True)
 
 
 def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str], namespace_uri: str) -> Tuple[str, str]:
@@ -768,31 +754,53 @@ def import_ontology(
     anchors: Dict[str, str] = {}  # uuid -> uri
     blank_nodes: Dict[str, str] = {}  # uuid -> local_id
 
+    def is_local_resource(uri_str: str) -> bool:
+        """Check if a URI belongs to THIS ontology's namespace (not external)."""
+        # Check if it belongs to the current ontology namespace
+        if uri_str.startswith(effective_ns):
+            return True
+        # Check if it's the ontology URI itself (without # suffix)
+        if ontology_uri and uri_str == ontology_uri:
+            return True
+        # Check if it belongs to another KNOWN namespace - these are EXTERNAL
+        for ns_uri in KNOWN_NAMESPACES.keys():
+            if uri_str.startswith(ns_uri):
+                return False  # External - belongs to another known ontology
+        # Unknown namespace - treat as external (will use <uri> syntax)
+        return False
+
     # First pass: identify all resources that need anchor files
+    # IMPORTANT: Only create anchor files for resources in THIS namespace
     for s, p, o in g:
         # Subject
         if isinstance(s, URIRef):
-            anchor, is_ext = term_to_anchor(s, prefix, effective_ns, bnode_map, external_uris,
-                                           ontology_uri, namespace_uuid_map)
-            if not is_ext:
-                anchors[anchor] = str(s)
+            uri_str = str(s)
+            if is_local_resource(uri_str):
+                anchor, is_ext = term_to_anchor(s, prefix, effective_ns, bnode_map, external_uris,
+                                               ontology_uri, namespace_uuid_map)
+                if not is_ext:
+                    anchors[anchor] = uri_str
         elif isinstance(s, BNode):
             bn_uuid, bn_local = bnode_to_anchor(s, prefix, bnode_map, effective_ns)
             blank_nodes[bn_uuid] = bn_local
 
-        # Predicate (always URIRef)
+        # Predicate (always URIRef) - only create anchor if local
         if isinstance(p, URIRef):
-            anchor, is_ext = term_to_anchor(p, prefix, effective_ns, bnode_map, external_uris,
-                                           ontology_uri, namespace_uuid_map)
-            if not is_ext:
-                anchors[anchor] = str(p)
+            uri_str = str(p)
+            if is_local_resource(uri_str):
+                anchor, is_ext = term_to_anchor(p, prefix, effective_ns, bnode_map, external_uris,
+                                               ontology_uri, namespace_uuid_map)
+                if not is_ext:
+                    anchors[anchor] = uri_str
 
-        # Object (if URI or BNode)
+        # Object (if URI or BNode) - only create anchor if local
         if isinstance(o, URIRef):
-            anchor, is_ext = term_to_anchor(o, prefix, effective_ns, bnode_map, external_uris,
-                                           ontology_uri, namespace_uuid_map)
-            if not is_ext:
-                anchors[anchor] = str(o)
+            uri_str = str(o)
+            if is_local_resource(uri_str):
+                anchor, is_ext = term_to_anchor(o, prefix, effective_ns, bnode_map, external_uris,
+                                               ontology_uri, namespace_uuid_map)
+                if not is_ext:
+                    anchors[anchor] = uri_str
         elif isinstance(o, BNode):
             bn_uuid, bn_local = bnode_to_anchor(o, prefix, bnode_map, effective_ns)
             blank_nodes[bn_uuid] = bn_local
@@ -827,18 +835,24 @@ def import_ontology(
         print(f"Creating statement files...")
 
     for s, p, o in g:
-        # Get subject anchor and URI
-        subj_anchor, subj_is_ext = term_to_anchor(s, prefix, effective_ns, bnode_map, external_uris,
-                                                  ontology_uri, namespace_uuid_map)
+        # IMPORTANT: Only create statements where subject belongs to THIS namespace
+        # This prevents duplicate statements across ontologies
         if isinstance(s, URIRef):
             subj_uri = str(s)
+            if not is_local_resource(subj_uri):
+                # Skip statements about resources from other namespaces
+                continue
         elif isinstance(s, BNode):
-            # Use skolem IRI for blank node
+            # Blank nodes are always local to this ontology
             bn_uuid, bn_local = bnode_to_anchor(s, prefix, bnode_map, effective_ns)
             base = effective_ns.rstrip('#/')
             subj_uri = f"{base}/.well-known/genid/{bn_local}"
         else:
             subj_uri = None
+
+        # Get subject anchor
+        subj_anchor, subj_is_ext = term_to_anchor(s, prefix, effective_ns, bnode_map, external_uris,
+                                                  ontology_uri, namespace_uuid_map)
 
         # Get predicate anchor and URI
         pred_anchor, pred_is_ext = term_to_anchor(p, prefix, effective_ns, bnode_map, external_uris,

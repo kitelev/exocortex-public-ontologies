@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[424ee04f-c736-55a9-be06-559be311276d]]"
-predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
-object: "[[581d50c0-7bc2-5a97-bdc2-9c056f43c807]]"
+predicate: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
+object: "<http://www.w3.org/2002/07/owl#Class>"
 aliases:
-  - "vcard:None a owl:Class"
+  - "vcard:None ? ?"
 ---

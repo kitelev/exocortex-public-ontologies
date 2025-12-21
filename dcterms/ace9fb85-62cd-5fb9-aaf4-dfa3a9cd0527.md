@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[4fbfc7d4-6d77-5be0-8add-93220c31b1c2]]"
-predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
-object: "[[925c76c0-596b-56ec-b768-ce3924a53bdf]]"
+predicate: "<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>"
+object: "<http://www.w3.org/2000/01/rdf-schema#Datatype>"
 aliases:
-  - "dcterms:URI a rdfs:Datatype"
+  - "dcterms:URI ? ?"
 ---

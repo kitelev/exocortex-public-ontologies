@@ -342,10 +342,7 @@ def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_node
             # UUID-named namespace files are also excluded
             if anchor in all_namespaces:
                 continue
-            # Legacy blank nodes are expected to be referenced as subjects in their own statements
-            if BLANK_NODE_PATTERN.match(anchor):
-                continue
-            # New UUID blank nodes are handled separately
+            # UUID blank nodes are handled separately
             if anchor in all_blank_nodes:
                 continue
             orphaned.append(anchor)

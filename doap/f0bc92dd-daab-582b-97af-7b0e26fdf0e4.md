@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[ba23f984-efc9-5883-bf42-10d0dceb83a3]]"
-predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
 object: "\"Aide pour l’utilisation de ce projet.\"@fr"
 aliases:
-  - "doap:documentation rdfs:comment Aide pour l’utilisation de ce ..."
+  - "doap:documentation ? Aide pour l’utilisation de ce ..."
 ---

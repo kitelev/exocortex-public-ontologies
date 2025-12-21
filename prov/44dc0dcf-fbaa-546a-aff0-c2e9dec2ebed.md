@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[9521aa4a-3923-5798-920d-81c0c3e783dc]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#label>"
 object: "\"InstantaneousEvent\""
 aliases:
-  - "prov:InstantaneousEvent rdfs:label InstantaneousEvent"
+  - "prov:InstantaneousEvent ? InstantaneousEvent"
 ---

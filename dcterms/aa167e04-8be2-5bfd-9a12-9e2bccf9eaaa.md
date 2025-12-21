@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[d6bdce35-5eaa-58ee-9ed4-ffa0f11aabc0]]"
-predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
 object: "\"A related resource from which the described resource is derived.\"@en"
 aliases:
-  - "dcterms:source rdfs:comment A related resource from which ..."
+  - "dcterms:source ? A related resource from which ..."
 ---

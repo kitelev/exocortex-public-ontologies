@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[0c23614e-94e8-50e3-9f25-fcc73e0fc1e5]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#label>"
 object: "\"visualiser\"@fr"
 aliases:
-  - "doap:browse rdfs:label visualiser"
+  - "doap:browse ? visualiser"
 ---
