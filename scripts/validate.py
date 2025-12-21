@@ -47,11 +47,8 @@ BLANK_NODE_OPTIONAL_PROPS = {'skolem_iri'}
 # Valid metadata values
 VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node', 'index'}
 
-# Blank node naming pattern: {namespace}!{8-char-uuid}
-BLANK_NODE_PATTERN = re.compile(r'^([a-z]+)!([a-f0-9]{8})$')
-
-# UUIDv5 pattern: xxxxxxxx-xxxx-5xxx-xxxx-xxxxxxxxxxxx (standard UUID format)
-UUID_PATTERN = re.compile(r'^[a-f0-9]{8}-[a-f0-9]{4}-5[a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}$')
+# UUID pattern: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (standard UUID format)
+UUID_PATTERN = re.compile(r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$')
 
 
 @dataclass
@@ -115,120 +112,26 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
     """
     Check if filename follows naming convention.
 
-    NEW Naming conventions (all files are UUIDv5):
+    All files MUST be UUIDv5:
     - Namespace: {uuid}.md (from namespace URI)
     - Anchor: {uuid}.md (from resource URI)
     - Blank node: {uuid}.md (from skolem IRI)
     - Statement: {uuid}.md (from canonical triple)
 
-    LEGACY Naming conventions (still supported):
-    - Namespace: !{prefix}.md
-    - Anchor: {prefix}__{localname}.md
-    - Blank node: {prefix}!{8-char-uuid}.md
-    - Statement: {subject} {predicate} {object}.md
+    Exception: _index.md files are allowed for Hugo indexing.
     """
     filename = filepath.stem  # without .md
-    ns_dir = filepath.parent.name  # namespace directory
 
-    # NEW FORMAT: All files can be UUIDv5
+    # Allow _index.md for Hugo indexing
+    if filename == '_index':
+        return True, ""
+
+    # All other files must be UUID format
     if UUID_PATTERN.match(filename):
-        return True, ""  # Valid UUIDv5 format for any metadata type
+        return True, ""  # Valid UUID format
 
-    # LEGACY FORMAT: Check specific patterns per metadata type
-    if metadata == 'namespace':
-        # Legacy: Must be !{prefix}
-        if not filename.startswith('!'):
-            return False, f"Namespace file must be UUIDv5 or start with '!', got: {filename}"
-        return True, ""
-
-    elif metadata == 'anchor':
-        # Legacy: {prefix}__{localname}
-        if '__' not in filename:
-            return False, f"Anchor must be UUIDv5 or have format {{prefix}}__{{name}}, got: {filename}"
-        prefix = filename.split('__')[0]
-        if prefix not in NAMESPACES:
-            return False, f"Unknown prefix '{prefix}' in anchor: {filename}"
-        return True, ""
-
-    elif metadata == 'blank_node':
-        # Legacy: {prefix}!{8-char-uuid}
-        match = BLANK_NODE_PATTERN.match(filename)
-        if not match:
-            return False, f"Blank node must be UUIDv5 or have format {{prefix}}!{{8-char-uuid}}, got: {filename}"
-        prefix = match.group(1)
-        if prefix not in NAMESPACES:
-            return False, f"Unknown prefix '{prefix}' in blank node: {filename}"
-        # Verify blank node is in correct namespace directory
-        if prefix != ns_dir:
-            return False, f"Blank node '{filename}' should be in '{prefix}/' directory, not '{ns_dir}/'"
-        return True, ""
-
-    elif metadata == 'statement':
-        # Legacy: {subject} {predicate} {object}
-        parts = filename.split(' ')
-        if len(parts) != 3:
-            return False, f"Statement must be UUIDv5 or have 3 space-separated parts, got: {filename}"
-
-        # If we get here, it's legacy format with 3 parts
-        subject, predicate, obj = parts
-
-        # Validate subject
-        if subject.startswith('_') and subject.endswith('_'):
-            pass  # External URI format
-        elif UUID_PATTERN.match(subject):
-            pass  # Valid UUIDv5 format
-        elif subject.startswith('!'):
-            if subject[1:] not in NAMESPACES:
-                return False, f"Unknown namespace in subject: {subject}"
-        elif BLANK_NODE_PATTERN.match(subject):
-            prefix = BLANK_NODE_PATTERN.match(subject).group(1)
-            if prefix not in NAMESPACES:
-                return False, f"Unknown prefix in blank node subject: {subject}"
-        elif '__' in subject:
-            prefix = subject.split('__')[0]
-            if prefix not in NAMESPACES:
-                return False, f"Unknown prefix in subject: {subject}"
-        else:
-            return False, f"Invalid subject format: {subject}"
-
-        # Validate predicate
-        if predicate == 'a':
-            pass
-        elif UUID_PATTERN.match(predicate):
-            pass
-        elif predicate.startswith('_') and predicate.endswith('_'):
-            pass
-        elif '__' in predicate:
-            prefix = predicate.split('__')[0]
-            if prefix not in NAMESPACES:
-                return False, f"Unknown prefix in predicate: {predicate}"
-        else:
-            return False, f"Invalid predicate format: {predicate}"
-
-        # Validate object
-        if obj.startswith('___'):
-            pass
-        elif UUID_PATTERN.match(obj):
-            pass
-        elif obj.startswith('_') and obj.endswith('_'):
-            pass
-        elif obj.startswith('!'):
-            if obj[1:] not in NAMESPACES:
-                return False, f"Unknown namespace in object: {obj}"
-        elif BLANK_NODE_PATTERN.match(obj):
-            prefix = BLANK_NODE_PATTERN.match(obj).group(1)
-            if prefix not in NAMESPACES:
-                return False, f"Unknown prefix in blank node object: {obj}"
-        elif '__' in obj:
-            prefix = obj.split('__')[0]
-            if prefix not in NAMESPACES:
-                return False, f"Unknown prefix in object: {obj}"
-        else:
-            return False, f"Invalid object format: {obj}"
-
-        return True, ""
-
-    return True, ""
+    # Non-UUID format - not allowed
+    return False, f"Filename must be UUID format, got: {filename}"
 
 
 def parse_frontmatter(filepath: Path) -> Tuple[dict, str]:
@@ -505,44 +408,17 @@ def get_all_blank_nodes(repo_root: Path) -> Set[str]:
     return blank_nodes
 
 
-def extract_blank_nodes_from_filename(filename: str) -> Set[str]:
-    """Extract blank node references from a statement filename (legacy format only)."""
-    blank_nodes = set()
-    # New format: UUIDv5 filename - blank nodes are extracted from frontmatter wikilinks
-    if UUID_PATTERN.match(filename):
-        return blank_nodes  # No blank nodes extractable from filename
-
-    # Legacy format: {subject} {predicate} {object}
-    parts = filename.split(' ')
-    if len(parts) != 3:
-        return blank_nodes
-
-    subject, _, obj = parts
-
-    # Check if subject is a blank node (legacy format)
-    if BLANK_NODE_PATTERN.match(subject):
-        blank_nodes.add(subject)
-
-    # Check if object is a blank node (legacy format)
-    if BLANK_NODE_PATTERN.match(obj):
-        blank_nodes.add(obj)
-
-    return blank_nodes
-
-
 def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List[str], List[Tuple[str, str]]]:
     """
     Find blank node issues:
     1. Orphaned blank nodes - defined but never referenced in any statement wikilinks
-    2. Undefined blank nodes - referenced in statements but not defined
 
-    Supports both legacy ({prefix}!{uuid}) and new (UUIDv5) blank node formats.
+    All files must be UUIDv5 format. Blank node references are extracted from wikilinks.
 
     Returns: (orphaned_blank_nodes, undefined_blank_nodes)
     """
     defined_blank_nodes = get_all_blank_nodes(repo_root)
     referenced_blank_nodes = set()
-    undefined_refs = []  # (filepath, blank_node)
 
     for ns in NAMESPACES:
         ns_dir = repo_root / ns
@@ -552,23 +428,12 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
         for filepath in ns_dir.glob('*.md'):
             data, _ = parse_frontmatter(filepath)
             if data and data.get('metadata') == 'statement':
-                filename = filepath.stem
-
-                # NEW FORMAT: Extract blank node references from wikilinks in frontmatter
+                # Extract blank node references from wikilinks in frontmatter
                 wikilinks = extract_wikilinks(data)
                 for link in wikilinks:
                     # Check if this wikilink refers to a defined blank node
                     if link in defined_blank_nodes:
                         referenced_blank_nodes.add(link)
-
-                # LEGACY FORMAT: Extract blank node references from filename
-                refs = extract_blank_nodes_from_filename(filename)
-                referenced_blank_nodes.update(refs)
-
-                # Check for undefined blank nodes (legacy format only)
-                for ref in refs:
-                    if ref not in defined_blank_nodes:
-                        undefined_refs.append((str(filepath.relative_to(repo_root)), ref))
 
     # Find orphaned blank nodes (defined but never referenced)
     orphaned = []
@@ -578,7 +443,7 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
             if verbose:
                 print(f"  👻 Orphaned blank node: {bn}")
 
-    return sorted(orphaned), undefined_refs
+    return sorted(orphaned), []
 
 
 def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List[str] = None) -> ValidationResult:
