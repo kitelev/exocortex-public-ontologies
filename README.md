@@ -20,21 +20,21 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | Namespace | Prefix | URI | Triples | Files | Status |
 |-----------|--------|-----|---------|-------|--------|
 | Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 134 | ✅ |
-| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 53 | 72 | ✅ |
+| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 43 | ✅ |
 | Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 833 | ✅ |
-| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 350 | 420 | ✅ |
-| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 631 | 725 | ✅ |
+| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 741 | 840 | ✅ |
+| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 631 | 737 | ✅ |
 | GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 54 | ✅ |
-| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 544 | ✅ |
-| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1146 | 1343 | ✅ |
+| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 545 | ✅ |
+| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1146 | 1344 | ✅ |
 | RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 166 | ✅ |
 | RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 107 | ✅ |
-| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 379 | 452 | ✅ |
-| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 317 | ✅ |
-| TIME | `time` | `http://www.w3.org/2006/time#` | 894 | 1527 | ✅ |
-| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 516 | 614 | ✅ |
+| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 669 | 805 | ✅ |
+| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 318 | ✅ |
+| TIME | `time` | `http://www.w3.org/2006/time#` | 1296 | 1528 | ✅ |
+| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 882 | 1147 | ✅ |
 
-**Total: 5,725+ triples — 14 ontologies**
+**Total: 7,147 triples — 14 ontologies**
 
 ### Additional
 
@@ -65,10 +65,12 @@ exocortex-public-ontologies/
 ├── sioc/                   # SIOC (Online Communities)
 ├── xsd/                    # XSD (XML Schema datatypes)
 ├── scripts/                # Tools
-│   ├── validate.py         # Integrity checker (runs on pre-commit)
 │   ├── import_ontology.py  # RDF → file-based converter
+│   ├── validate.py         # Integrity checker (runs on pre-commit)
+│   ├── verify_import.py    # Semantic equivalence check
+│   ├── export_rdf.py       # Export back to RDF format
 │   ├── add_aliases.py      # Add human-readable aliases
-│   └── migrate_to_uuid.py  # Legacy → UUIDv5 migration
+│   └── compare_ontologies.py # Compare ontology directories
 └── ~templates/             # Obsidian templates
 ```
 
@@ -566,10 +568,9 @@ python scripts/test_all_ontologies.py
 This script:
 1. Backs up each ontology
 2. Deletes and reimports from original source
-3. Adds URI and index
-4. Validates structure
-5. Verifies semantic equivalence
-6. Reports results and timing
+3. Validates structure
+4. Verifies semantic equivalence
+5. Reports results and timing
 
 ### Pre-commit Hook
 
@@ -583,13 +584,22 @@ The hook blocks commits if validation fails.
 
 ## Scripts Reference
 
+### Core Scripts
+
 | Script | Purpose | Usage |
 |--------|---------|-------|
 | `import_ontology.py` | Convert RDF to file-based format | `python scripts/import_ontology.py <input> <output> -p <prefix>` |
 | `validate.py` | Check structural integrity | `python scripts/validate.py [namespaces...]` |
 | `verify_import.py` | Semantic equivalence check | `python scripts/verify_import.py <rdf_file> <ontology_dir>` |
-| `add_aliases.py` | Add human-readable aliases | `python scripts/add_aliases.py [--dry-run]` |
+| `export_rdf.py` | Export back to RDF format | `python scripts/export_rdf.py <ontology_dir> <output_file>` |
 | `test_all_ontologies.py` | Comprehensive test suite | `python scripts/test_all_ontologies.py` |
+
+### Utility Scripts
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `add_aliases.py` | Add/update human-readable aliases | `python scripts/add_aliases.py [--dry-run]` |
+| `compare_ontologies.py` | Compare two ontology directories | `python scripts/compare_ontologies.py <dir1> <dir2>` |
 
 ### Key UUIDs Reference
 
