@@ -4,5 +4,5 @@ subject: "[[429c3120-2823-5dfd-903c-16016b4e07f5]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Repositório Bitkeeper\"@pt"
 aliases:
-  - "doap:BKRepository rdfs:label \"Repositório Bitkeeper\"@pt"
+  - "doap:BKRepository rdfs:label Repositório Bitkeeper"
 ---

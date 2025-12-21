@@ -4,5 +4,5 @@ subject: "[[52612c59-1cce-588d-9967-9f17d298e26b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"créé\"@fr"
 aliases:
-  - "doap:created rdfs:label \"créé\"@fr"
+  - "doap:created rdfs:label créé"
 ---

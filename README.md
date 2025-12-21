@@ -49,8 +49,7 @@ exocortex-public-ontologies/
 ├── rdf/                    # RDF namespace
 │   ├── 1f51ee89-....md     # Namespace file (uuid5 of namespace URI)
 │   ├── f1afe09a-....md     # Anchor file (uuid5 of resource URI)
-│   ├── 73b69787-....md     # Statement file (uuid5 of canonical triple)
-│   └── _index.md           # UUID → Label lookup table (Hugo)
+│   └── 73b69787-....md     # Statement file (uuid5 of canonical triple)
 ├── rdfs/                   # RDFS namespace
 ├── owl/                    # OWL namespace
 ├── dc/                     # Dublin Core Elements
@@ -68,9 +67,8 @@ exocortex-public-ontologies/
 ├── scripts/                # Tools
 │   ├── validate.py         # Integrity checker (runs on pre-commit)
 │   ├── import_ontology.py  # RDF → file-based converter
-│   ├── migrate_to_uuid.py  # Legacy → UUIDv5 migration
-│   ├── migrate_xsd.py      # XSD-specific migration
-│   └── add_uri_and_index.py # Add URI field and generate indices
+│   ├── add_aliases.py      # Add human-readable aliases
+│   └── migrate_to_uuid.py  # Legacy → UUIDv5 migration
 └── ~templates/             # Obsidian templates
 ```
 
@@ -291,16 +289,6 @@ Ontology URI: http://www.w3.org/2002/07/owl → UUID: 64e92819-163a-5984-92c3-39
 Namespace URI: http://www.w3.org/2002/07/owl# → Namespace file: !owl.md
 ```
 
-### Index Files
-
-Each ontology directory contains `_index.md` with UUID → Label mapping for human-readable lookup:
-
-```markdown
-| UUID | Label | URI |
-|------|-------|-----|
-| `11183371...` | Contributor | http://purl.org/dc/elements/1.1/contributor |
-```
-
 ### URI in Frontmatter
 
 Anchor files include the original `uri` field for reverse lookup:
@@ -463,7 +451,7 @@ print(uuid.uuid5(uuid.NAMESPACE_URL, uri))
 # Output: d0e9e696-d3f2-5966-a62f-d8358cbde741
 ```
 
-Or check `_index.md` files for human-readable mappings.
+Or use aliases in Obsidian for human-readable lookup.
 
 ## Integration with Exocortex
 
@@ -492,7 +480,7 @@ python scripts/validate.py --verbose
 ```
 
 The validator checks:
-- **UUID filename format** — all files must have UUIDv5 names (except `_index.md`)
+- **UUID filename format** — all files must have UUIDv5 names
 - **Broken wikilinks** — references to non-existent anchors
 - **Missing metadata** — files without `metadata` property
 - **Invalid metadata** — files with incorrect metadata values
@@ -547,7 +535,9 @@ Supported formats:
 
 **Import handling:**
 - Auto-detects format from file content
-- Handles blank nodes with `_ext{n}_` naming
+- Adds `uri` field to all anchor and namespace files
+- Generates human-readable `aliases` for all files
+- Handles blank nodes with skolem IRIs
 - Preserves external URIs as `<http://...>` references
 - Normalizes CRLF to LF in multiline literals
 - Escapes all special YAML characters in literals
@@ -555,12 +545,9 @@ Supported formats:
 
 ### Post-Import Steps
 
-After importing, run these scripts:
+After importing, validate and verify:
 
 ```bash
-# Add URI field to anchors and generate index file
-python scripts/add_uri_and_index.py <ontology_dir>
-
 # Validate the imported ontology
 python scripts/validate.py <prefix>
 
@@ -601,9 +588,7 @@ The hook blocks commits if validation fails.
 | `import_ontology.py` | Convert RDF to file-based format | `python scripts/import_ontology.py <input> <output> -p <prefix>` |
 | `validate.py` | Check structural integrity | `python scripts/validate.py [namespaces...]` |
 | `verify_import.py` | Semantic equivalence check | `python scripts/verify_import.py <rdf_file> <ontology_dir>` |
-| `add_uri_and_index.py` | Add URI field and generate index | `python scripts/add_uri_and_index.py <ontology_dir>` |
 | `add_aliases.py` | Add human-readable aliases | `python scripts/add_aliases.py [--dry-run]` |
-| `migrate_to_uuid.py` | Migrate legacy names to UUIDv5 | `python scripts/migrate_to_uuid.py <directory>` |
 | `test_all_ontologies.py` | Comprehensive test suite | `python scripts/test_all_ontologies.py` |
 
 ### Key UUIDs Reference

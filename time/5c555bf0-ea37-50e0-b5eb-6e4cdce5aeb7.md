@@ -1,6 +1,6 @@
 ---
 metadata: anchor
-uri: "http://www.w3.org/2006/time#DayOfWeek"
+uri: http://www.w3.org/2006/time#DayOfWeek
 aliases:
   - "time:DayOfWeek"
 ---

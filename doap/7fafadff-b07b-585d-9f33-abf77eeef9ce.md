@@ -4,5 +4,5 @@ subject: "[[5eb7aac1-a60e-5214-87f2-a83d22f60af1]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"base de dados de bugs\"@pt"
 aliases:
-  - "doap:bug-database rdfs:label \"base de dados de bugs\"@pt"
+  - "doap:bug-database rdfs:label base de dados de bugs"
 ---

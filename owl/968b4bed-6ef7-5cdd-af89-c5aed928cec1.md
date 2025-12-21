@@ -1,6 +1,6 @@
 ---
 metadata: anchor
-uri: "http://www.w3.org/2002/07/owl#assertionProperty"
+uri: http://www.w3.org/2002/07/owl#assertionProperty
 aliases:
   - "owl:assertionProperty"
 ---
