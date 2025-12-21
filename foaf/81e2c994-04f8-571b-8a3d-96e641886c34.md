@@ -1,4 +1,3 @@
 ---
 metadata: anchor
-uri: http://xmlns.com/foaf/0.1/\1\
 ---

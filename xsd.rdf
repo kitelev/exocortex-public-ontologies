@@ -1,0 +1,13 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>300 Multiple Choices</title>
+</head><body>
+<h1>Multiple Choices</h1>
+The document name you requested (<code>/2001/XMLSchema.rdf</code>) could not be found on this server.
+However, we found documents with names similar to the one you requested.<p>Available documents:
+<ul>
+<li><a href="/2001/XMLSchema.html">/2001/XMLSchema.html</a> (common basename)
+<li><a href="/2001/XMLSchema.dtd">/2001/XMLSchema.dtd</a> (common basename)
+<li><a href="/2001/XMLSchema.xsd">/2001/XMLSchema.xsd</a> (common basename)
+</ul>
+</body></html>
