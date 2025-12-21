@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "<http://www.w3.org/2002/07/owl>"
+rdf__predicate: "[[de47ef62-c3be-5246-98d5-ed6e481d149e]]"
+rdf__object: "The OWL 2 Schema vocabulary (OWL 2)"
+---

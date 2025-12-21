@@ -1,6 +1,0 @@
----
-metadata: statement
-rdf__subject: "[[skos__related]]"
-rdf__predicate: "[[rdfs__comment]]"
-rdf__object: '"skos:related is disjoint with skos:broaderTransitive"@en'
----

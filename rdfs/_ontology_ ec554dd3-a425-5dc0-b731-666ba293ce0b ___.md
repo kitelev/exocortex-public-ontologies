@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "<http://www.w3.org/2000/01/rdf-schema#>"
+rdf__predicate: "[[ec554dd3-a425-5dc0-b731-666ba293ce0b]]"
+rdf__object: "<http://www.w3.org/2000/01/rdf-schema-more>"
+---

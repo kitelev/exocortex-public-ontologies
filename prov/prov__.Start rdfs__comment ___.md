@@ -1,6 +1,0 @@
----
-metadata: statement
-rdf__subject: "[[prov__.Start]]"
-rdf__predicate: "[[rdfs__comment]]"
-rdf__object: "\"An instance of prov:Start provides additional descriptions about the binary prov:wasStartedBy relation from some started prov:Activity to an prov:Entity that started it. For example, :foot_race prov:wasStartedBy :bang; prov:qualifiedStart [ a prov:Start; prov:entity :bang; :foo :bar; prov:atTime '2012-03-09T08:05:08-05:00'^^xsd:dateTime ] .\"@en"
----

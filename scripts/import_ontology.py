@@ -27,9 +27,13 @@ import hashlib
 import os
 import re
 import sys
+import uuid
 from pathlib import Path
 from typing import Dict, Optional, Set, Tuple
 from collections import defaultdict
+
+# UUIDv5 namespace for URLs (standard)
+UUID_NAMESPACE_URL = uuid.UUID('6ba7b811-9dad-11d1-80b4-00c04fd430c8')
 
 try:
     from rdflib import Graph, URIRef, Literal, BNode, Namespace
@@ -104,8 +108,21 @@ def detect_format(filepath: Path) -> str:
     return format_map.get(suffix, 'xml')
 
 
+def uri_to_uuid(uri: str) -> str:
+    """Convert a URI to UUIDv5 using URL namespace.
+
+    This provides case-sensitive, collision-free filenames.
+
+    Example: 'http://purl.org/dc/elements/1.1/contributor' -> 'a1b2c3d4-e5f6-5789-abcd-ef0123456789'
+    """
+    return str(uuid.uuid5(UUID_NAMESPACE_URL, uri))
+
+
 def escape_case(name: str) -> str:
-    """Add dots before uppercase letters for case-insensitive filesystem.
+    """DEPRECATED: Add dots before uppercase letters for case-insensitive filesystem.
+
+    This function is kept for backward compatibility but should not be used.
+    Use uri_to_uuid() instead.
 
     Example: 'MonthOfYear' -> '.Month.Of.Year'
     """
@@ -117,13 +134,15 @@ def escape_case(name: str) -> str:
 
 def uri_to_anchor(uri: str, ontology_prefix: str, ontology_ns: str) -> Tuple[str, str, bool]:
     """
-    Convert a URI to an anchor name.
+    Convert a URI to an anchor name (UUIDv5).
 
-    Returns: (prefix, local_name, is_external)
+    Returns: (uuid_string, None, is_external)
+
+    The uuid_string is the full UUIDv5 generated from the URI.
+    The second element is kept as None for API compatibility but is unused.
 
     Examples:
-        http://www.w3.org/1999/02/22-rdf-syntax-ns#type -> ('rdf', 'type', False)
-        http://www.w3.org/2002/07/owl#Class -> ('owl', '.Class', False)
+        http://www.w3.org/1999/02/22-rdf-syntax-ns#type -> ('a1b2c3d4-...', None, False)
         http://example.org/foo -> (None, None, True)  # External URI
     """
     uri_str = str(uri)
@@ -131,15 +150,11 @@ def uri_to_anchor(uri: str, ontology_prefix: str, ontology_ns: str) -> Tuple[str
     # Check known namespaces
     for ns_uri, prefix in KNOWN_NAMESPACES.items():
         if uri_str.startswith(ns_uri):
-            local = uri_str[len(ns_uri):]
-            local_escaped = escape_case(local)
-            return (prefix, local_escaped, False)
+            return (uri_to_uuid(uri_str), None, False)
 
     # Check if it's the ontology namespace
     if ontology_ns and uri_str.startswith(ontology_ns):
-        local = uri_str[len(ontology_ns):]
-        local_escaped = escape_case(local)
-        return (ontology_prefix, local_escaped, False)
+        return (uri_to_uuid(uri_str), None, False)
 
     # Check if URI ends with # or / and extract local part
     if '#' in uri_str:
@@ -154,8 +169,7 @@ def uri_to_anchor(uri: str, ontology_prefix: str, ontology_ns: str) -> Tuple[str
 
     # Try to find prefix for the namespace
     if ns in KNOWN_NAMESPACES:
-        prefix = KNOWN_NAMESPACES[ns]
-        return (prefix, escape_case(local), False)
+        return (uri_to_uuid(uri_str), None, False)
     else:
         # External URI - not a known namespace
         return (None, None, True)
@@ -177,11 +191,11 @@ def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str]) -> str
 
 def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict[str, str], external_uris: Dict[str, str] = None) -> Tuple[str, bool]:
     """
-    Convert an RDF term to an anchor name.
+    Convert an RDF term to an anchor name (UUIDv5).
 
     Returns: (anchor_name, is_external)
 
-    anchor_name examples: 'rdf__type', 'time!a1b2c3d4', '!rdf', '_ext_'
+    anchor_name examples: 'a1b2c3d4-e5f6-5789-abcd-ef0123456789', '!rdf', '_ext_'
     is_external: True if the anchor is a placeholder for an external URI
     """
     if external_uris is None:
@@ -203,16 +217,15 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
                 return (f"!{ontology_prefix}", False)
 
         # Regular URI
-        prefix, local, is_external = uri_to_anchor(uri_str, ontology_prefix, ontology_ns)
+        uuid_anchor, _, is_external = uri_to_anchor(uri_str, ontology_prefix, ontology_ns)
         if is_external:
             # Create a unique placeholder for this external URI
             ext_key = f"_ext{len(external_uris)}_"
             external_uris[ext_key] = uri_str
             return (ext_key, True)
-        elif local:
-            return (f"{prefix}__{local}", False)
         else:
-            return (f"!{prefix}", False)
+            # uuid_anchor is already the full UUIDv5 string
+            return (uuid_anchor, False)
 
     elif isinstance(term, BNode):
         return (bnode_to_anchor(term, ontology_prefix, bnode_map), False)
@@ -228,7 +241,7 @@ def literal_to_yaml(lit: Literal) -> str:
     Examples:
         Literal("hello") -> '"hello"'
         Literal("hello", lang="en") -> '"hello"@en'
-        Literal("42", datatype=XSD.integer) -> '"42"^^[[xsd__integer]]'
+        Literal("42", datatype=XSD.integer) -> '"42"^^[[a1b2c3d4-...]]'
     """
     value = str(lit)
 
@@ -240,14 +253,9 @@ def literal_to_yaml(lit: Literal) -> str:
         return f'"{escaped}"@{lit.language}'
     elif lit.datatype:
         dtype_str = str(lit.datatype)
-        # Convert datatype URI to wikilink
-        for ns_uri, prefix in KNOWN_NAMESPACES.items():
-            if dtype_str.startswith(ns_uri):
-                local = dtype_str[len(ns_uri):]
-                local_escaped = escape_case(local)
-                return f'"{escaped}"^^[[{prefix}__{local_escaped}]]'
-        # Unknown datatype - use full URI
-        return f'"{escaped}"^^<{dtype_str}>'
+        # Convert datatype URI to wikilink using UUIDv5
+        dtype_uuid = uri_to_uuid(dtype_str)
+        return f'"{escaped}"^^[[{dtype_uuid}]]'
     else:
         # Plain literal
         return f'"{escaped}"'
@@ -560,13 +568,10 @@ def import_ontology(
                     obj_yaml = f'"{escaped}"@{o.language}'
                 elif o.datatype:
                     dtype_str = str(o.datatype)
-                    for ns_uri, pfx in KNOWN_NAMESPACES.items():
-                        if dtype_str.startswith(ns_uri):
-                            local = dtype_str[len(ns_uri):]
-                            local_escaped = escape_case(local)
-                            escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
-                            obj_yaml = f'"{escaped}"^^[[{pfx}__{local_escaped}]]'
-                            break
+                    # Use UUIDv5 for datatype reference
+                    dtype_uuid = uri_to_uuid(dtype_str)
+                    escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                    obj_yaml = f'"{escaped}"^^[[{dtype_uuid}]]'
 
             create_statement_file(
                 output_dir, subj_anchor, pred_anchor, obj_yaml,
