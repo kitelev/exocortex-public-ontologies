@@ -1,6 +1,6 @@
 ---
 metadata: statement
-rdf__subject: "[[3b22b1bc-b69d-5286-a297-e5a810e49e73]]"
-rdf__predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-rdf__object: "\"age\""
+subject: "[[3b22b1bc-b69d-5286-a297-e5a810e49e73]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"age\""
 ---

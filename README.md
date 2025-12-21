@@ -90,7 +90,6 @@ Define the namespace URI. File name is UUIDv5 of the namespace URI:
 ```yaml
 ---
 metadata: namespace
-"!": http://www.w3.org/1999/02/22-rdf-syntax-ns#
 uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
 ---
 ```
@@ -146,9 +145,9 @@ file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, canonical)
 ```yaml
 ---
 metadata: statement
-rdf__subject: "[[f1afe09a-f371-5a01-a530-be18bfdb4d6b]]"
-rdf__predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
-rdf__object: "[[30488677-f427-5947-8a14-02903ca20a7e]]"
+subject: "[[f1afe09a-f371-5a01-a530-be18bfdb4d6b]]"
+predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
+object: "[[30488677-f427-5947-8a14-02903ca20a7e]]"
 ---
 ```
 
@@ -156,9 +155,9 @@ For literal values:
 ```yaml
 ---
 metadata: statement
-rdf__subject: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b]]"
-rdf__predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-rdf__object: "\"Class\"@en"
+subject: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Class\"@en"
 ---
 ```
 
@@ -169,7 +168,7 @@ Blank nodes use skolemization (RFC 7511) for UUID generation:
 ```yaml
 ---
 metadata: blank_node
-skolem_iri: http://www.w3.org/ns/prov/.well-known/genid/a1b2c3d4
+uri: http://www.w3.org/ns/prov/.well-known/genid/a1b2c3d4
 ---
 ```
 
@@ -178,8 +177,8 @@ skolem_iri: http://www.w3.org/ns/prov/.well-known/genid/a1b2c3d4
 import uuid
 namespace_uri = "http://www.w3.org/ns/prov#"
 blank_local_id = "a1b2c3d4"  # 8-char hex from MD5 hash
-skolem_iri = f"{namespace_uri.rstrip('#/')}/.well-known/genid/{blank_local_id}"
-file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, skolem_iri)
+uri = f"{namespace_uri.rstrip('#/')}/.well-known/genid/{blank_local_id}"
+file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, uri)
 ```
 
 ## Naming Conventions
@@ -283,7 +282,7 @@ Literals in YAML frontmatter follow specific encoding rules:
 To visualize the class hierarchy (only anchors and `rdfs:subClassOf` relations):
 
 ```
--(["metadata":statement] -["rdf__predicate":[[55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2]]]) -file:"55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2"
+-(["metadata":statement] -["predicate":[[55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2]]]) -file:"55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2"
 ```
 
 This filter:
@@ -314,20 +313,20 @@ Find all triples where a resource is the subject:
 ```dataview
 TABLE WITHOUT ID
     link(file.link, "_") AS "_",
-    rdf__subject,
-    rdf__predicate,
-    rdf__object
-WHERE rdf__subject = [[30488677-f427-5947-8a14-02903ca20a7e]]
+    subject,
+    predicate,
+    object
+WHERE subject = [[30488677-f427-5947-8a14-02903ca20a7e]]
 ```
 
 Find all triples where a resource is the object:
 
 ```dataview
 TABLE WITHOUT ID
-    rdf__subject,
-    rdf__predicate,
-    rdf__object
-WHERE rdf__object = [[d6ac0df2-324e-561c-9f05-41d3b2d5ebd3]]
+    subject,
+    predicate,
+    object
+WHERE object = [[d6ac0df2-324e-561c-9f05-41d3b2d5ebd3]]
 ```
 
 Filter by metadata type:
@@ -341,7 +340,7 @@ WHERE metadata = "anchor"
 
 The `~templates/` folder contains ready-to-use templates:
 
-- **`~rdf__Statement.md`** — Template for creating new triples
+- **`~Statement.md`** — Template for creating new triples
 - **`~(dataview) Triples.md`** — Embed in any resource to see related triples
 
 ## Examples
@@ -382,9 +381,9 @@ File: `owl/{uuid}.md` where UUID = uuid5(canonical_triple)
 ```yaml
 ---
 metadata: statement
-rdf__subject: "[[64e92819-163a-5984-92c3-39bf71eb19fd]]"
-rdf__predicate: "[[532c87f0-8cfa-5ff5-990f-aac1562178eb]]"
-rdf__object: "[[1a2b3c4d-5e6f-5xxx-xxxx-xxxxxxxxxxxx]]"
+subject: "[[64e92819-163a-5984-92c3-39bf71eb19fd]]"
+predicate: "[[532c87f0-8cfa-5ff5-990f-aac1562178eb]]"
+object: "[[1a2b3c4d-5e6f-5xxx-xxxx-xxxxxxxxxxxx]]"
 ---
 ```
 

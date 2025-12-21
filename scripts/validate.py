@@ -28,21 +28,19 @@ EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 
 # Required properties for statement files (exactly these 4, no more, no less)
-STATEMENT_REQUIRED_PROPS = {'metadata', 'rdf__subject', 'rdf__predicate', 'rdf__object'}
+STATEMENT_REQUIRED_PROPS = {'metadata', 'subject', 'predicate', 'object'}
 
 # Required properties for anchor files (metadata required, uri optional)
 ANCHOR_REQUIRED_PROPS = {'metadata'}
 ANCHOR_OPTIONAL_PROPS = {'uri'}
 
 # Required properties for namespace files
-# New format: metadata, !, uri
-NAMESPACE_REQUIRED_PROPS = {'metadata', '!'}
-NAMESPACE_OPTIONAL_PROPS = {'uri'}
+NAMESPACE_REQUIRED_PROPS = {'metadata', 'uri'}
+NAMESPACE_OPTIONAL_PROPS = set()
 
 # Required properties for blank_node files
-# New format: metadata, skolem_iri
-BLANK_NODE_REQUIRED_PROPS = {'metadata'}
-BLANK_NODE_OPTIONAL_PROPS = {'skolem_iri'}
+BLANK_NODE_REQUIRED_PROPS = {'metadata', 'uri'}
+BLANK_NODE_OPTIONAL_PROPS = set()
 
 # Valid metadata values
 VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node', 'index'}
@@ -64,7 +62,6 @@ class ValidationResult:
     has_body_violations: List[str] = field(default_factory=list)
     orphaned_blank_nodes: List[str] = field(default_factory=list)
     undefined_blank_nodes: List[Tuple[str, str]] = field(default_factory=list)
-    literal_placeholder_violations: List[Tuple[str, str]] = field(default_factory=list)
 
     def has_errors(self) -> bool:
         return any([
@@ -77,8 +74,7 @@ class ValidationResult:
             self.frontmatter_prop_violations,
             self.has_body_violations,
             self.orphaned_blank_nodes,
-            self.undefined_blank_nodes,
-            self.literal_placeholder_violations
+            self.undefined_blank_nodes
         ])
 
     def summary(self) -> str:
@@ -103,8 +99,6 @@ class ValidationResult:
             lines.append(f"  Orphaned blank nodes: {len(self.orphaned_blank_nodes)}")
         if self.undefined_blank_nodes:
             lines.append(f"  Undefined blank nodes: {len(self.undefined_blank_nodes)}")
-        if self.literal_placeholder_violations:
-            lines.append(f"  Literal placeholder violations: {len(self.literal_placeholder_violations)}")
         return '\n'.join(lines) if lines else "  All checks passed!"
 
 
@@ -314,17 +308,6 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             result.naming_violations.append((str(rel_path), error))
             if verbose:
                 print(f"  📛 {rel_path}: {error}")
-
-    # Check literal placeholder consistency
-    # If filename uses ___ (literal placeholder), rdf__object must be a literal, not a wikilink
-    if metadata == 'statement' and '___' in filepath.stem:
-        rdf_object = data.get('rdf__object', '')
-        # Check if object is a pure wikilink (starts with [[, not with " for literal)
-        if isinstance(rdf_object, str) and rdf_object.startswith('[['):
-            error_msg = f"Filename uses ___ but rdf__object is wikilink: {rdf_object}"
-            result.literal_placeholder_violations.append((str(rel_path), error_msg))
-            if verbose:
-                print(f"  📛 {rel_path}: {error_msg}")
 
     # Check for body content (only frontmatter allowed, except for index files)
     if metadata != 'index' and has_body_content(filepath):
@@ -553,13 +536,6 @@ def main():
                 print(f"  - {filepath}: {error}")
             if len(result.naming_violations) > 20:
                 print(f"  ... and {len(result.naming_violations) - 20} more")
-
-        if result.literal_placeholder_violations and not args.verbose:
-            print(f"\nLiteral placeholder violations ({len(result.literal_placeholder_violations)}):")
-            for filepath, error in result.literal_placeholder_violations[:20]:
-                print(f"  - {filepath}: {error}")
-            if len(result.literal_placeholder_violations) > 20:
-                print(f"  ... and {len(result.literal_placeholder_violations) - 20} more")
 
         if result.frontmatter_prop_violations and not args.verbose:
             print(f"\nFrontmatter property violations ({len(result.frontmatter_prop_violations)}):")

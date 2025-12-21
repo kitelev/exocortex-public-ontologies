@@ -1,6 +1,6 @@
 ---
 metadata: statement
-rdf__subject: "[[0c23614e-94e8-50e3-9f25-fcc73e0fc1e5]]"
-rdf__predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
-rdf__object: "\"Webové rozhraní pro prohlížení úložiště.\"@cs"
+subject: "[[0c23614e-94e8-50e3-9f25-fcc73e0fc1e5]]"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+object: "\"Webové rozhraní pro prohlížení úložiště.\"@cs"
 ---

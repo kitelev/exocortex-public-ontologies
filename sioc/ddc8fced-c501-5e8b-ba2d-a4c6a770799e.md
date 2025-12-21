@@ -1,6 +1,6 @@
 ---
 metadata: statement
-rdf__subject: "[[b563fbc8-b559-5ce7-b636-e126c8b93720]]"
-rdf__predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
-rdf__object: "\"Links to an Item or Post which this Item or Post is a reply to.\"@en"
+subject: "[[b563fbc8-b559-5ce7-b636-e126c8b93720]]"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+object: "\"Links to an Item or Post which this Item or Post is a reply to.\"@en"
 ---

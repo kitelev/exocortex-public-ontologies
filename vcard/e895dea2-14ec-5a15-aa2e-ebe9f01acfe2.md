@@ -1,4 +1,4 @@
 ---
 metadata: blank_node
-skolem_iri: http://www.w3.org/2006/vcard/ns/.well-known/genid/e6241cfa
+uri: "http://www.w3.org/2006/vcard/ns/.well-known/genid/e6241cfa"
 ---
