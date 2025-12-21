@@ -47,9 +47,9 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 exocortex-public-ontologies/
 ├── rdf/                    # RDF namespace
 │   ├── !rdf.md             # Namespace declaration
-│   ├── rdf__Property.md    # Resource anchor
-│   ├── rdf__type.md        # Resource anchor
-│   └── rdf__type rdfs__label ___.md  # Triple file
+│   ├── _index.md           # UUID → Label lookup table
+│   ├── f1afe09a-...md      # Resource anchor (rdf:Property)
+│   └── f1afe09a-... d0e9e696-... ___.md  # Triple file
 ├── rdfs/                   # RDFS namespace
 ├── owl/                    # OWL namespace
 ├── dc/                     # Dublin Core Elements
@@ -63,12 +63,12 @@ exocortex-public-ontologies/
 ├── doap/                   # DOAP (Description of a Project)
 ├── sioc/                   # SIOC (Online Communities)
 ├── xsd/                    # XSD (XML Schema datatypes)
-├── scripts/                # Validation tools
+├── scripts/                # Tools
 │   ├── validate.py         # Integrity checker
-│   └── install-hooks.sh    # Git hooks installer
+│   ├── import_ontology.py  # RDF → file-based converter
+│   ├── migrate_to_uuid.py  # Legacy → UUIDv5 migration
+│   └── add_uri_and_index.py # Add URI field and generate indices
 └── ~templates/             # Obsidian templates
-    ├── ~rdf__Statement.md
-    └── ~(dataview) Triples.md
 ```
 
 ## File Format
@@ -89,17 +89,21 @@ metadata: namespace
 ---
 ```
 
-### 2. Resource Files (`{prefix}__{localname}.md`)
+### 2. Resource Files (`{uuid}.md`)
 
-Anchor points for wikilinks:
+Anchor points for wikilinks. File name is UUIDv5 of the full URI:
 
 ```yaml
 ---
 metadata: anchor
+uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#Property
 ---
 ```
 
-Examples: `rdf__Property.md`, `rdfs__Class.md`, `owl__Ontology.md`
+Examples:
+- `f1afe09a-f371-5a01-a530-be18bfdb4d6b.md` (rdf:Property)
+- `30488677-f427-5947-8a14-02903ca20a7e.md` (rdfs:Class)
+- `532c87f0-8cfa-5ff5-990f-aac1562178eb.md` (owl:imports)
 
 ### 3. Triple Files (`{subject} {predicate} {object}.md`)
 
@@ -144,13 +148,52 @@ rdf__object: '"Class"@en'
 
 ## Naming Conventions
 
-| Original | File-based |
-|----------|------------|
-| `rdfs:Class` | `rdfs__Class` |
-| `rdf:type` | `a` (in filenames) |
-| `:` (prefix separator) | `__` (double underscore) |
-| Literal object | `___` (triple underscore) |
-| Namespace file | `!` prefix |
+### UUIDv5-based File Names
+
+All resource and statement files use **UUIDv5** identifiers derived from their full URI. This solves the case-insensitive file system issue on macOS where resources like `contributor` and `Contributor` would collide.
+
+**UUID Generation:**
+- Namespace: URL (`6ba7b811-9dad-11d1-80b4-00c04fd430c8`)
+- Input: Full URI of the resource (e.g., `http://purl.org/dc/elements/1.1/contributor`)
+- Result: Deterministic UUID (e.g., `65db3e67-614c-5467-8338-61778bb0c03f`)
+
+**Example:**
+```
+URI: http://purl.org/dc/elements/1.1/contributor
+UUID: 65db3e67-614c-5467-8338-61778bb0c03f
+File: dc/65db3e67-614c-5467-8338-61778bb0c03f.md
+```
+
+### Index Files
+
+Each ontology directory contains `_index.md` with UUID → Label mapping for human-readable lookup:
+
+```markdown
+| UUID | Label | URI |
+|------|-------|-----|
+| `65db3e67...` | Contributor | http://purl.org/dc/elements/1.1/Contributor |
+```
+
+### URI in Frontmatter
+
+Anchor files include the original `uri` field for reverse lookup:
+
+```yaml
+---
+metadata: anchor
+uri: http://purl.org/dc/elements/1.1/contributor
+---
+```
+
+### Special Naming Conventions
+
+| Element | Convention |
+|---------|------------|
+| `rdf:type` | `a` (in statement filenames) |
+| Literal object | `___` (triple underscore placeholder) |
+| Namespace file | `!{prefix}.md` (e.g., `!dc.md`) |
+| Blank node | `{prefix}!{8-char-uuid}.md` |
+| Index file | `_index.md` |
 
 ## Usage with Obsidian
 
@@ -241,15 +284,21 @@ rdfs:Class rdfs:subClassOf rdfs:Resource .
 File-based representation:
 ```
 rdfs/
-├── rdfs__Class.md                                  # Resource anchor
-├── rdfs__Class a rdfs__Class.md                    # Type declaration
-├── rdfs__Class rdfs__label ___.md                  # Label (literal)
-└── rdfs__Class rdfs__subClassOf rdfs__Resource.md  # Subclass relation
+├── 30488677-f427-5947-8a14-02903ca20a7e.md         # rdfs:Class anchor
+├── 30488677-... a 30488677-....md                   # Type declaration
+├── 30488677-... d0e9e696-... ___.md                 # Label (literal)
+└── 30488677-... 55ff3aec-... d6ac0df2-....md        # Subclass relation
 ```
+
+UUIDs:
+- `30488677-f427-5947-8a14-02903ca20a7e` = rdfs:Class
+- `d0e9e696-d3f2-5966-a62f-d8358cbde741` = rdfs:label
+- `55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2` = rdfs:subClassOf
+- `d6ac0df2-324e-561c-9f05-41d3b2d5ebd3` = rdfs:Resource
 
 ### Cross-Namespace Reference
 
-File: `owl/!owl owl__imports !rdfs.md`
+File: `owl/!owl 532c87f0-8cfa-5ff5-990f-aac1562178eb !rdfs.md`
 
 ```yaml
 ---
@@ -261,6 +310,19 @@ rdf__object: "[[!rdfs]]"
 ```
 
 This represents: `owl: owl:imports rdfs:` (the OWL ontology imports RDFS)
+
+### Lookup UUID by URI
+
+Use Python to find UUID for any URI:
+
+```python
+import uuid
+uri = "http://www.w3.org/2000/01/rdf-schema#label"
+print(uuid.uuid5(uuid.NAMESPACE_URL, uri))
+# Output: d0e9e696-d3f2-5966-a62f-d8358cbde741
+```
+
+Or check `_index.md` files for human-readable mappings.
 
 ## Integration with Exocortex
 
