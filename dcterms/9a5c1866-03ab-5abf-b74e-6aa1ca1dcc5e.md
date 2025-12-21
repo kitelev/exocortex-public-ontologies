@@ -1,0 +1,6 @@
+---
+metadata: statement
+rdf__subject: "[[53ddaf15-3319-56d4-b1c0-d985c50a07a9]]"
+rdf__predicate: "[[2e218ab8-518d-5cd0-a660-f575a101e5d8]]"
+rdf__object: "[[5d4a8a31-57ec-5315-8da2-8d5d8b73c709]]"
+---

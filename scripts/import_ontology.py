@@ -66,6 +66,13 @@ KNOWN_NAMESPACES = {
 PREFIX_TO_URI = {v: k for k, v in KNOWN_NAMESPACES.items()}
 
 
+def write_file(filepath: Path, content: str) -> None:
+    """Write file with normalized LF line endings."""
+    # Normalize CRLF and CR to LF
+    content = content.replace('\r\n', '\n').replace('\r', '\n')
+    filepath.write_text(content, encoding='utf-8')
+
+
 def detect_format(filepath: Path) -> str:
     """Detect RDF format from file content and extension."""
     # First, try to detect from content
@@ -175,35 +182,49 @@ def uri_to_anchor(uri: str, ontology_prefix: str, ontology_ns: str) -> Tuple[str
         return (None, None, True)
 
 
-def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str]) -> str:
+def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str], namespace_uri: str) -> Tuple[str, str]:
     """
-    Convert a blank node to an anchor name.
+    Convert a blank node to an anchor name (UUIDv5 from skolem IRI).
 
-    Format: prefix!8hexchars
+    Returns: (uuid_anchor, blank_local_id)
+
+    The blank_local_id is needed for creating the blank node file later.
     """
     bnode_id = str(bnode)
     if bnode_id not in bnode_map:
         # Create a stable 8-char hex ID from the bnode
         hash_bytes = hashlib.md5(bnode_id.encode()).hexdigest()[:8]
-        bnode_map[bnode_id] = f"{prefix}!{hash_bytes}"
+
+        # Build skolem IRI and generate UUID
+        base = namespace_uri.rstrip('#/')
+        skolem_iri = f"{base}/.well-known/genid/{hash_bytes}"
+        bnode_uuid = uri_to_uuid(skolem_iri)
+
+        bnode_map[bnode_id] = (bnode_uuid, hash_bytes)
+
     return bnode_map[bnode_id]
 
 
-def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict[str, str], external_uris: Dict[str, str] = None, ontology_uri: str = None) -> Tuple[str, bool]:
+def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict[str, str],
+                   external_uris: Dict[str, str] = None, ontology_uri: str = None,
+                   namespace_uuid_map: Dict[str, str] = None) -> Tuple[str, bool]:
     """
     Convert an RDF term to an anchor name (UUIDv5).
 
     Returns: (anchor_name, is_external)
 
-    anchor_name examples: 'a1b2c3d4-e5f6-5789-abcd-ef0123456789', '!rdf', '_ext_'
+    anchor_name examples: 'a1b2c3d4-e5f6-5789-abcd-ef0123456789', '_ext_'
     is_external: True if the anchor is a placeholder for an external URI
 
     Args:
         ontology_uri: The actual ontology URI (may differ from namespace, e.g.,
                       http://www.w3.org/2002/07/owl vs http://www.w3.org/2002/07/owl#)
+        namespace_uuid_map: Mapping from namespace URI to its UUID (for namespace references)
     """
     if external_uris is None:
         external_uris = {}
+    if namespace_uuid_map is None:
+        namespace_uuid_map = {}
 
     if isinstance(term, URIRef):
         uri_str = str(term)
@@ -222,16 +243,17 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
 
         # Check if it's a namespace URI (ends with # or /)
         # and matches a known namespace exactly
-        # Note: Only match the FULL namespace URI (with # or /), not the base
-        # URIs without suffix are treated as ontology URIs and get UUIDs
+        # Now returns UUID instead of !prefix
         for ns_uri, prefix in KNOWN_NAMESPACES.items():
             if uri_str == ns_uri:  # Only exact match with suffix
-                return (f"!{prefix}", False)
+                ns_uuid = namespace_uuid_map.get(ns_uri) or uri_to_uuid(ns_uri)
+                return (ns_uuid, False)
 
         # Check ontology namespace (only exact match with suffix)
         if ontology_ns:
             if uri_str == ontology_ns:
-                return (f"!{ontology_prefix}", False)
+                ns_uuid = namespace_uuid_map.get(ontology_ns) or uri_to_uuid(ontology_ns)
+                return (ns_uuid, False)
 
         # Regular URI
         uuid_anchor, _, is_external = uri_to_anchor(uri_str, ontology_prefix, ontology_ns)
@@ -245,7 +267,8 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
             return (uuid_anchor, False)
 
     elif isinstance(term, BNode):
-        return (bnode_to_anchor(term, ontology_prefix, bnode_map), False)
+        bnode_uuid, _ = bnode_to_anchor(term, ontology_prefix, bnode_map, ontology_ns or '')
+        return (bnode_uuid, False)
 
     else:
         raise ValueError(f"Cannot convert {type(term)} to anchor")
@@ -309,17 +332,24 @@ def make_safe_filename(name: str) -> str:
     return safe
 
 
-def create_namespace_file(output_dir: Path, prefix: str, namespace_uri: str) -> None:
-    """Create a namespace declaration file."""
-    filename = f"!{prefix}.md"
+def create_namespace_file(output_dir: Path, prefix: str, namespace_uri: str) -> str:
+    """Create a namespace declaration file.
+
+    Returns: The UUID used for the filename (for link updates).
+    """
+    # Generate UUIDv5 from namespace URI
+    ns_uuid = uri_to_uuid(namespace_uri)
+    filename = f"{ns_uuid}.md"
     filepath = output_dir / filename
 
     content = f"""---
 metadata: namespace
 "!": {namespace_uri}
+uri: {namespace_uri}
 ---
 """
-    filepath.write_text(content, encoding='utf-8')
+    write_file(filepath, content)
+    return ns_uuid
 
 
 def create_anchor_file(output_dir: Path, anchor: str, uri: str = None) -> None:
@@ -348,22 +378,39 @@ uri: {uri}
 metadata: anchor
 ---
 """
-    filepath.write_text(content, encoding='utf-8')
+    write_file(filepath, content)
 
 
-def create_blank_node_file(output_dir: Path, anchor: str) -> None:
-    """Create a blank node anchor file."""
-    filename = f"{make_safe_filename(anchor)}.md"
+def create_blank_node_file(output_dir: Path, anchor: str, namespace_uri: str, blank_id: str) -> str:
+    """Create a blank node anchor file using skolem IRI.
+
+    Args:
+        output_dir: Directory to create file in
+        anchor: Original anchor name (prefix!hexid format) - kept for compatibility
+        namespace_uri: The namespace URI for skolemization
+        blank_id: The blank node local ID
+
+    Returns: The UUID used for the filename.
+    """
+    # Build skolem IRI (RFC 7511 / W3C RDF 1.1)
+    base = namespace_uri.rstrip('#/')
+    skolem_iri = f"{base}/.well-known/genid/{blank_id}"
+
+    # Generate UUIDv5 from skolem IRI
+    bnode_uuid = uri_to_uuid(skolem_iri)
+    filename = f"{bnode_uuid}.md"
     filepath = output_dir / filename
 
     if filepath.exists():
-        return
+        return bnode_uuid
 
-    content = """---
+    content = f"""---
 metadata: blank_node
+skolem_iri: {skolem_iri}
 ---
 """
-    filepath.write_text(content, encoding='utf-8')
+    write_file(filepath, content)
+    return bnode_uuid
 
 
 def escape_yaml_multiline(value: str) -> str:
@@ -384,6 +431,25 @@ def escape_yaml_multiline(value: str) -> str:
         return f'"{escaped}"'
 
 
+def canonicalize_triple(
+    subject_uri: str,
+    predicate_uri: str,
+    object_value: str,
+    is_literal: bool
+) -> str:
+    """
+    Build canonical triple string for UUIDv5 generation.
+
+    Format: {subject_uri}|{predicate_uri}|{object_canonical}
+
+    For literals, object_value should already be in canonical form:
+    - "value" for plain strings
+    - "value"@lang for language-tagged
+    - "value"^^<datatype_uri> for typed literals
+    """
+    return f"{subject_uri}|{predicate_uri}|{object_value}"
+
+
 def create_statement_file(
     output_dir: Path,
     subject_anchor: str,
@@ -394,6 +460,7 @@ def create_statement_file(
     subject_uri: Optional[str] = None,
     predicate_uri: Optional[str] = None,
     object_uri: Optional[str] = None,
+    object_canonical: Optional[str] = None,
     subject_is_external: bool = False,
     predicate_is_external: bool = False,
     object_is_external: bool = False
@@ -401,51 +468,35 @@ def create_statement_file(
     """
     Create a statement file for an RDF triple.
 
-    Filename format: {subject} {predicate} {object}.md
-    For literals, object is replaced with ___ placeholder.
-    For external URIs, use _ext_ placeholder.
+    Filename format: {uuidv5}.md (UUIDv5 of canonical triple)
     """
-    # Use 'a' shorthand for rdf:type predicate in filename
     # UUIDv5 for rdf:type (http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
     RDF_TYPE_UUID = '73b69787-81ea-563e-8e09-9c84cad4cf2b'
-    pred_name = 'a' if predicate_anchor == RDF_TYPE_UUID else predicate_anchor
 
+    # Build canonical triple for UUID generation
     if is_literal:
-        # Use ___ for literal placeholder in filename
-        base_filename = f"{subject_anchor} {pred_name} ___"
+        # Use the canonical literal form
+        obj_for_canonical = object_canonical or obj_anchor_or_literal
     else:
-        base_filename = f"{subject_anchor} {pred_name} {obj_anchor_or_literal}"
+        # For URI objects, use the URI
+        obj_for_canonical = object_uri or obj_anchor_or_literal
 
-    base_filename = make_safe_filename(base_filename)
+    # Generate UUIDv5 from canonical triple
+    canonical = canonicalize_triple(
+        subject_uri or subject_anchor,
+        predicate_uri or predicate_anchor,
+        obj_for_canonical,
+        is_literal
+    )
+    statement_uuid = uri_to_uuid(canonical)
 
-    # Handle duplicate filenames by adding numeric suffix
-    if base_filename in used_filenames:
-        used_filenames[base_filename] += 1
-        filename = f"{base_filename}{used_filenames[base_filename]}.md"
-    else:
-        used_filenames[base_filename] = 0
-        filename = f"{base_filename}.md"
-
-    # But wait - for literal duplicates, we use ___2, ___3, etc (not ___1)
-    # And for first literal, we use ___ (not ___0)
-    # Let me re-check the convention...
-    # Looking at existing files: ___.md, ___2.md, ___3.md, etc.
-    # So first occurrence is ___.md, second is ___2.md
-
-    # Recalculate filename
-    count = used_filenames[base_filename]
-    if count == 0:
-        filename = f"{base_filename}.md"
-    else:
-        # For ___ files, append number after ___
-        if is_literal:
-            filename = f"{base_filename}{count + 1}.md"
-        else:
-            # For non-literals with same subject+predicate+object, this shouldn't happen
-            # But if it does, add suffix
-            filename = f"{base_filename}_{count + 1}.md"
-
+    # Check for collision (shouldn't happen with proper canonical form)
+    filename = f"{statement_uuid}.md"
     filepath = output_dir / filename
+
+    if filepath.exists():
+        # This is a duplicate triple - skip it
+        return
 
     # Build YAML frontmatter
     # Subject
@@ -478,7 +529,32 @@ rdf__predicate: {pred_yaml}
 rdf__object: {obj_yaml}
 ---
 """
-    filepath.write_text(content, encoding='utf-8')
+    write_file(filepath, content)
+
+
+def literal_to_canonical(lit: Literal) -> str:
+    """
+    Convert an RDF literal to canonical N-Triples-like form for UUIDv5 generation.
+
+    Examples:
+        Literal("hello") -> '"hello"'
+        Literal("hello", lang="en") -> '"hello"@en'
+        Literal("42", datatype=XSD.integer) -> '"42"^^http://www.w3.org/2001/XMLSchema#integer'
+    """
+    value = str(lit)
+
+    # Normalize line endings
+    value = value.replace('\r\n', '\n').replace('\r', '\n')
+
+    # Escape for canonical form
+    escaped = value.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+
+    if lit.language:
+        return f'"{escaped}"@{lit.language}'
+    elif lit.datatype:
+        return f'"{escaped}"^^{str(lit.datatype)}'
+    else:
+        return f'"{escaped}"'
 
 
 def import_ontology(
@@ -490,6 +566,12 @@ def import_ontology(
 ) -> Tuple[int, int, int]:
     """
     Import an RDF ontology into file-based format.
+
+    All files use UUIDv5 names:
+    - Namespace: UUIDv5(namespace_uri)
+    - Anchor: UUIDv5(resource_uri)
+    - Blank node: UUIDv5(skolem_iri)
+    - Statement: UUIDv5(canonical_triple)
 
     Returns: (triple_count, anchor_count, file_count)
     """
@@ -534,13 +616,23 @@ def import_ontology(
             if ns_counts:
                 namespace_uri = max(ns_counts.keys(), key=lambda k: ns_counts[k])
 
+    effective_ns = namespace_uri or f"http://example.org/{prefix}#"
+
     if verbose:
-        print(f"Using namespace: {namespace_uri}")
+        print(f"Using namespace: {effective_ns}")
         if ontology_uri and ontology_uri != namespace_uri and ontology_uri != namespace_uri.rstrip('#/'):
             print(f"Ontology URI: {ontology_uri}")
 
-    # Create namespace file
-    create_namespace_file(output_dir, prefix, namespace_uri or f"http://example.org/{prefix}#")
+    # Create namespace file and get its UUID
+    ns_uuid = create_namespace_file(output_dir, prefix, effective_ns)
+
+    # Build namespace UUID map for term_to_anchor
+    namespace_uuid_map: Dict[str, str] = {effective_ns: ns_uuid}
+    for ns_uri in KNOWN_NAMESPACES.keys():
+        namespace_uuid_map[ns_uri] = uri_to_uuid(ns_uri)
+
+    if verbose:
+        print(f"Namespace UUID: {ns_uuid}")
 
     # If ontology URI differs from namespace (e.g., owl: vs owl#), create anchor for it
     ontology_anchor = None
@@ -549,44 +641,52 @@ def import_ontology(
         ontology_anchor = uri_to_uuid(ontology_uri)
 
     # Track blank nodes and external URIs
-    bnode_map: Dict[str, str] = {}
+    # bnode_map now stores: {bnode_id: (uuid_anchor, local_id)}
+    bnode_map: Dict[str, Tuple[str, str]] = {}
     external_uris: Dict[str, str] = {}
 
-    # Collect all anchors needed
-    anchors: Set[str] = set()
-    blank_nodes: Set[str] = set()
+    # Collect all anchors needed (uuid -> uri mapping for creating files with URI)
+    anchors: Dict[str, str] = {}  # uuid -> uri
+    blank_nodes: Dict[str, str] = {}  # uuid -> local_id
 
     # First pass: identify all resources that need anchor files
     for s, p, o in g:
         # Subject
         if isinstance(s, URIRef):
-            anchor, is_ext = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-            if not is_ext and not anchor.startswith('!'):  # Not a namespace
-                anchors.add(anchor)
+            anchor, is_ext = term_to_anchor(s, prefix, effective_ns, bnode_map, external_uris,
+                                           ontology_uri, namespace_uuid_map)
+            if not is_ext:
+                anchors[anchor] = str(s)
         elif isinstance(s, BNode):
-            bn_anchor, _ = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-            blank_nodes.add(bn_anchor)
+            bn_uuid, bn_local = bnode_to_anchor(s, prefix, bnode_map, effective_ns)
+            blank_nodes[bn_uuid] = bn_local
 
         # Predicate (always URIRef)
         if isinstance(p, URIRef):
-            anchor, is_ext = term_to_anchor(p, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-            if not is_ext and not anchor.startswith('!'):
-                anchors.add(anchor)
+            anchor, is_ext = term_to_anchor(p, prefix, effective_ns, bnode_map, external_uris,
+                                           ontology_uri, namespace_uuid_map)
+            if not is_ext:
+                anchors[anchor] = str(p)
 
         # Object (if URI or BNode)
         if isinstance(o, URIRef):
-            anchor, is_ext = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-            if not is_ext and not anchor.startswith('!'):
-                anchors.add(anchor)
+            anchor, is_ext = term_to_anchor(o, prefix, effective_ns, bnode_map, external_uris,
+                                           ontology_uri, namespace_uuid_map)
+            if not is_ext:
+                anchors[anchor] = str(o)
         elif isinstance(o, BNode):
-            bn_anchor, _ = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-            blank_nodes.add(bn_anchor)
+            bn_uuid, bn_local = bnode_to_anchor(o, prefix, bnode_map, effective_ns)
+            blank_nodes[bn_uuid] = bn_local
 
-    # Create anchor files
+    # Remove namespace UUID from anchors (it's created separately)
+    if ns_uuid in anchors:
+        del anchors[ns_uuid]
+
+    # Create anchor files with URIs
     if verbose:
         print(f"Creating {len(anchors)} anchor files...")
-    for anchor in anchors:
-        create_anchor_file(output_dir, anchor)
+    for anchor_uuid, anchor_uri in anchors.items():
+        create_anchor_file(output_dir, anchor_uuid, uri=anchor_uri)
 
     # Create ontology anchor if it differs from namespace
     if ontology_anchor and ontology_anchor not in anchors:
@@ -597,8 +697,8 @@ def import_ontology(
     # Create blank node files
     if verbose:
         print(f"Creating {len(blank_nodes)} blank node files...")
-    for bn in blank_nodes:
-        create_blank_node_file(output_dir, bn)
+    for bn_uuid, bn_local in blank_nodes.items():
+        create_blank_node_file(output_dir, f"{prefix}!{bn_local}", effective_ns, bn_local)
 
     # Second pass: create statement files
     used_filenames: Dict[str, int] = {}
@@ -608,45 +708,66 @@ def import_ontology(
         print(f"Creating statement files...")
 
     for s, p, o in g:
-        # Get subject anchor
-        subj_anchor, subj_is_ext = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-        subj_uri = str(s) if isinstance(s, URIRef) else None
+        # Get subject anchor and URI
+        subj_anchor, subj_is_ext = term_to_anchor(s, prefix, effective_ns, bnode_map, external_uris,
+                                                  ontology_uri, namespace_uuid_map)
+        if isinstance(s, URIRef):
+            subj_uri = str(s)
+        elif isinstance(s, BNode):
+            # Use skolem IRI for blank node
+            bn_uuid, bn_local = bnode_to_anchor(s, prefix, bnode_map, effective_ns)
+            base = effective_ns.rstrip('#/')
+            subj_uri = f"{base}/.well-known/genid/{bn_local}"
+        else:
+            subj_uri = None
 
-        # Get predicate anchor
-        pred_anchor, pred_is_ext = term_to_anchor(p, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
+        # Get predicate anchor and URI
+        pred_anchor, pred_is_ext = term_to_anchor(p, prefix, effective_ns, bnode_map, external_uris,
+                                                  ontology_uri, namespace_uuid_map)
         pred_uri = str(p) if isinstance(p, URIRef) else None
 
         # Handle object
         if isinstance(o, Literal):
+            # Get canonical literal for UUID generation
+            obj_canonical = literal_to_canonical(o)
+
             obj_str = str(o)
+            # Normalize CRLF to LF before escaping
+            obj_str = obj_str.replace('\r\n', '\n').replace('\r', '\n')
             # Check for multiline/special characters - always use escaped string for frontmatter
             if '\n' in obj_str or '\t' in obj_str:
                 # Escape special characters for YAML double-quoted string
                 escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
                 if o.language:
-                    # Inner quotes + lang tag inside outer quotes
                     obj_yaml = f'"\\"{escaped}\\"@{o.language}"'
                 elif o.datatype:
                     dtype_str = str(o.datatype)
-                    # Use UUIDv5 for datatype reference
                     dtype_uuid = uri_to_uuid(dtype_str)
                     obj_yaml = f'"\\"{escaped}\\"^^[[{dtype_uuid}]]"'
                 else:
-                    # Plain multiline string without lang/datatype
                     obj_yaml = f'"\\"{escaped}\\""'
             else:
-                # Single line - use literal_to_yaml
                 obj_yaml = literal_to_yaml(o)
 
             create_statement_file(
                 output_dir, subj_anchor, pred_anchor, obj_yaml,
                 is_literal=True, used_filenames=used_filenames,
                 subject_uri=subj_uri, predicate_uri=pred_uri,
+                object_canonical=obj_canonical,
                 subject_is_external=subj_is_ext, predicate_is_external=pred_is_ext
             )
         else:
-            obj_anchor, obj_is_ext = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
-            obj_uri = str(o) if isinstance(o, URIRef) else None
+            obj_anchor, obj_is_ext = term_to_anchor(o, prefix, effective_ns, bnode_map, external_uris,
+                                                    ontology_uri, namespace_uuid_map)
+            if isinstance(o, URIRef):
+                obj_uri = str(o)
+            elif isinstance(o, BNode):
+                bn_uuid, bn_local = bnode_to_anchor(o, prefix, bnode_map, effective_ns)
+                base = effective_ns.rstrip('#/')
+                obj_uri = f"{base}/.well-known/genid/{bn_local}"
+            else:
+                obj_uri = None
+
             create_statement_file(
                 output_dir, subj_anchor, pred_anchor, obj_anchor,
                 is_literal=False, used_filenames=used_filenames,

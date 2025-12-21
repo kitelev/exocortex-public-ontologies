@@ -1,6 +1,0 @@
----
-metadata: statement
-rdf__subject: "[[vcard!dd4fbc3b]]"
-rdf__predicate: "[[38fa15b6-0571-567d-b1d7-604a66ea6e5e]]"
-rdf__object: "[[vcard!fff38820]]"
----

@@ -79,15 +79,24 @@ All files have a `metadata` property indicating their type:
 - `anchor` — resource anchor files
 - `statement` — RDF triple files
 
-### 1. Namespace Files (`!{prefix}.md`)
+### 1. Namespace Files (`{uuid}.md`)
 
-Define the namespace URI:
+Define the namespace URI. File name is UUIDv5 of the namespace URI:
 
 ```yaml
 ---
 metadata: namespace
 "!": http://www.w3.org/1999/02/22-rdf-syntax-ns#
+uri: http://www.w3.org/1999/02/22-rdf-syntax-ns#
 ---
+```
+
+**UUID Generation:**
+```python
+import uuid
+ns_uri = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, ns_uri)
+# Result: 1f51ee89-dd69-5793-8a11-89959f0bc850
 ```
 
 ### 2. Resource Files (`{uuid}.md`)
@@ -106,20 +115,27 @@ Examples:
 - `30488677-f427-5947-8a14-02903ca20a7e.md` (rdfs:Class)
 - `532c87f0-8cfa-5ff5-990f-aac1562178eb.md` (owl:imports)
 
-### 3. Triple Files (`{subject} {predicate} {object}.md`)
+### 3. Triple Files (`{uuid}.md`)
 
-Each RDF triple is a file with statement structure:
+Each RDF triple is a file with statement structure. File name is UUIDv5 of the canonical triple.
 
-**Filename format:**
+**Canonical Triple Format:**
 ```
-{subject} {predicate} {object}.md
+{subject_uri}|{predicate_uri}|{object_canonical}
 ```
 
-**Special cases:**
-- Object is a literal: use `___` placeholder
-  - `rdfs__Class rdfs__label ___.md`
-- Predicate is `rdf:type`: use shorthand `a`
-  - `rdf__Property a rdfs__Class.md`
+Where `object_canonical` is:
+- URI: full URI (e.g., `http://www.w3.org/2000/01/rdf-schema#Class`)
+- Literal: `"value"@lang` or `"value"^^<datatype_uri>`
+- Blank node: skolem IRI
+
+**UUID Generation:**
+```python
+import uuid
+# For: rdfs:Class rdf:type rdfs:Class
+canonical = "http://www.w3.org/2000/01/rdf-schema#Class|http://www.w3.org/1999/02/22-rdf-syntax-ns#type|http://www.w3.org/2000/01/rdf-schema#Class"
+file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, canonical)
+```
 
 **File content (YAML frontmatter):**
 
@@ -138,38 +154,61 @@ For literal values:
 metadata: statement
 rdf__subject: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b]]"
 rdf__predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-rdf__object: type
+rdf__object: "\"Class\"@en"
 ---
 ```
 
-Language-tagged literals are preserved:
+### 4. Blank Node Files (`{uuid}.md`)
+
+Blank nodes use skolemization (RFC 7511) for UUID generation:
+
 ```yaml
-rdf__object: '"Class"@en'
+---
+metadata: blank_node
+skolem_iri: http://www.w3.org/ns/prov/.well-known/genid/a1b2c3d4
+---
+```
+
+**UUID Generation:**
+```python
+import uuid
+namespace_uri = "http://www.w3.org/ns/prov#"
+blank_local_id = "a1b2c3d4"  # 8-char hex from MD5 hash
+skolem_iri = f"{namespace_uri.rstrip('#/')}/.well-known/genid/{blank_local_id}"
+file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, skolem_iri)
 ```
 
 ## Naming Conventions
 
 ### UUIDv5-based File Names
 
-All resource and statement files use **UUIDv5** identifiers derived from their full URI. This solves the case-insensitive file system issue on macOS where resources like `contributor` and `Contributor` would collide.
+**ALL files** use **UUIDv5** identifiers. This provides:
+- Case-insensitive filesystem compatibility (macOS)
+- Deterministic, reproducible file names
+- No spaces in filenames
+- Uniform naming across all file types
 
-**UUID Generation:**
-- Namespace: URL (`6ba7b811-9dad-11d1-80b4-00c04fd430c8`)
-- Input: Full URI of the resource (e.g., `http://purl.org/dc/elements/1.1/contributor`)
-- Result: Deterministic UUID (e.g., `11183371-dee2-5111-8d61-db2d94aa7701`)
+**UUID Namespace:** URL (`6ba7b811-9dad-11d1-80b4-00c04fd430c8`)
+
+| File Type | Input for UUIDv5 | Example |
+|-----------|------------------|---------|
+| Namespace | Namespace URI | `uuid5(URL, "http://purl.org/dc/elements/1.1/")` |
+| Anchor | Resource URI | `uuid5(URL, "http://purl.org/dc/elements/1.1/contributor")` |
+| Statement | Canonical triple | `uuid5(URL, "{subj_uri}\|{pred_uri}\|{obj}")` |
+| Blank node | Skolem IRI | `uuid5(URL, "{ns}/.well-known/genid/{id}")` |
 
 **Example:**
 ```python
 import uuid
+
+# Anchor
 uri = "http://purl.org/dc/elements/1.1/contributor"
 file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, uri)
 # Result: 11183371-dee2-5111-8d61-db2d94aa7701
-```
 
-```
-URI: http://purl.org/dc/elements/1.1/contributor
-UUID: 11183371-dee2-5111-8d61-db2d94aa7701
-File: dc/11183371-dee2-5111-8d61-db2d94aa7701.md
+# Statement
+canonical = "http://purl.org/dc/elements/1.1/title|http://www.w3.org/2000/01/rdf-schema#label|\"Title\"@en"
+file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, canonical)
 ```
 
 ### Ontology URI vs Namespace URI
@@ -212,14 +251,13 @@ uri: http://purl.org/dc/elements/1.1/contributor
 
 ### Special Naming Conventions
 
+All files now use UUIDv5 names. Special conventions only apply to frontmatter content:
+
 | Element | Convention | Example |
 |---------|------------|---------|
-| `rdf:type` | `a` shorthand in filenames | `{subj} 73b69787...\|a {obj}.md` |
-| Literal object | `___` placeholder | `{subj} {pred} ___.md` |
-| Namespace file | `!{prefix}.md` | `!dc.md`, `!owl.md` |
-| Blank node | `_ext{n}_` or `{prefix}!{8-char-uuid}` | `_ext1_`, `dc!a1b2c3d4` |
-| Index file | `_index.md` | `dc/_index.md` |
+| `rdf:type` | `a` alias in wikilinks | `[[73b69787-...\|a]]` |
 | External URI | `<{full-uri}>` in frontmatter | `<http://example.org/ext>` |
+| External placeholder | `_ext{n}_` in wikilinks | `[[_ext1_]]` |
 
 ### Literal Encoding Rules
 
