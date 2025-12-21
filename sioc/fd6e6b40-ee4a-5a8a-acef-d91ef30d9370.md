@@ -4,5 +4,5 @@ subject: "[[fcb151ed-497e-5bd7-85e7-4318df1c9f84]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Item\"@en"
 aliases:
-  - "sioc:Item rdfs:label \"Item\"@en"
+  - "sioc:Item rdfs:label Item"
 ---

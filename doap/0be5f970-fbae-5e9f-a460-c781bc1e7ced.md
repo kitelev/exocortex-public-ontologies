@@ -4,5 +4,5 @@ subject: "[[39fe9ed3-757f-5e20-b77a-3ece2e88dbd4]]"
 predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Dépôt du code source.\"@fr"
 aliases:
-  - "doap:Repository rdfs:comment \"Dépôt du code source.\"@fr"
+  - "doap:Repository rdfs:comment Dépôt du code source."
 ---

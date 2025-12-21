@@ -4,5 +4,5 @@ subject: "[[8a6adad8-c518-5a93-9e36-c8b71b67f09d]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"tiene duración XSD\"@es"
 aliases:
-  - "time:hasXSDDuration rdfs:label \"tiene duración XSD\"@es"
+  - "time:hasXSDDuration rdfs:label tiene duración XSD"
 ---

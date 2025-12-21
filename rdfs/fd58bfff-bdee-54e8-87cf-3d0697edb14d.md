@@ -4,5 +4,5 @@ subject: "[[9a38b45a-4e91-52fb-9d78-4ee892d56baa]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"member\""
 aliases:
-  - "rdfs:member rdfs:label \"member\""
+  - "rdfs:member rdfs:label member"
 ---

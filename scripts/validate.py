@@ -112,16 +112,10 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
     - Anchor: {uuid}.md (from resource URI)
     - Blank node: {uuid}.md (from skolem IRI)
     - Statement: {uuid}.md (from canonical triple)
-
-    Exception: _index.md files are allowed for Hugo indexing.
     """
     filename = filepath.stem  # without .md
 
-    # Allow _index.md for Hugo indexing
-    if filename == '_index':
-        return True, ""
-
-    # All other files must be UUID format
+    # All files must be UUID format
     if UUID_PATTERN.match(filename):
         return True, ""  # Valid UUID format
 

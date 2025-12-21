@@ -4,5 +4,5 @@ subject: "[[06568687-5c55-5dcc-9b8f-76e801d607a8]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"page web\"@fr"
 aliases:
-  - "doap:homepage rdfs:label \"page web\"@fr"
+  - "doap:homepage rdfs:label page web"
 ---
