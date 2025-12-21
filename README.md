@@ -47,14 +47,15 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 ```
 exocortex-public-ontologies/
 ├── rdf/                    # RDF namespace
-│   ├── !rdf.md             # Namespace declaration
-│   ├── _index.md           # UUID → Label lookup table
-│   ├── f1afe09a-...md      # Resource anchor (rdf:Property)
-│   └── f1afe09a-... d0e9e696-... ___.md  # Triple file
+│   ├── 1f51ee89-....md     # Namespace file (uuid5 of namespace URI)
+│   ├── f1afe09a-....md     # Anchor file (uuid5 of resource URI)
+│   ├── 73b69787-....md     # Statement file (uuid5 of canonical triple)
+│   └── _index.md           # UUID → Label lookup table (Hugo)
 ├── rdfs/                   # RDFS namespace
 ├── owl/                    # OWL namespace
 ├── dc/                     # Dublin Core Elements
 ├── dcterms/                # Dublin Core Terms
+├── dcam/                   # Dublin Core Abstract Model
 ├── skos/                   # SKOS vocabulary
 ├── foaf/                   # FOAF (Friend of a Friend)
 ├── prov/                   # PROV-O (Provenance)
@@ -65,12 +66,15 @@ exocortex-public-ontologies/
 ├── sioc/                   # SIOC (Online Communities)
 ├── xsd/                    # XSD (XML Schema datatypes)
 ├── scripts/                # Tools
-│   ├── validate.py         # Integrity checker
+│   ├── validate.py         # Integrity checker (runs on pre-commit)
 │   ├── import_ontology.py  # RDF → file-based converter
 │   ├── migrate_to_uuid.py  # Legacy → UUIDv5 migration
+│   ├── migrate_xsd.py      # XSD-specific migration
 │   └── add_uri_and_index.py # Add URI field and generate indices
 └── ~templates/             # Obsidian templates
 ```
+
+**All files use UUIDv5 names.** No legacy naming formats are allowed.
 
 ## File Format
 
@@ -279,36 +283,29 @@ Literals in YAML frontmatter follow specific encoding rules:
 To visualize the class hierarchy (only anchors and `rdfs:subClassOf` relations):
 
 ```
--(["metadata":statement] -["rdf__predicate":rdfs__subClassOf]) -file:"rdfs__subClassOf.md"
+-(["metadata":statement] -["rdf__predicate":[[55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2]]]) -file:"55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2"
 ```
 
 This filter:
-- Hides all statements EXCEPT those with `rdfs__subClassOf` predicate
-- Excludes the `rdfs__subClassOf` property anchor itself
+- Hides all statements EXCEPT those with `rdfs:subClassOf` predicate (UUID: `55ff3aec-...`)
+- Excludes the `rdfs:subClassOf` property anchor itself
 
 ### Graph View: Clean Structure
 
 To hide common meta-properties and focus on domain-specific relations:
 
 ```
--file:rdfs__range.md
--file:rdfs__domain.md
--file:rdf__type.md
--["rdf__predicate":rdfs__comment]
--["rdf__predicate":rdfs__label]
--["rdf__predicate":rdfs__isdefinedby]
--file:rdf__property
--file:rdfs__Class.md
--file:rdfs__subClassOf.md
--file:rdfs__Resource
+-["metadata":statement]
 -["metadata":namespace]
 ```
 
-This filter hides:
-- Meta-properties (`rdfs:range`, `rdfs:domain`, `rdf:type`)
-- Documentation triples (`rdfs:comment`, `rdfs:label`, `rdfs:isDefinedBy`)
-- Core class anchors (`rdfs:Class`, `rdfs:Resource`, `rdf:Property`)
-- Namespace declarations
+This simplified filter hides all statements and namespace declarations, showing only anchor files (resources).
+
+For more granular control, filter by specific predicate UUIDs:
+- `73b69787-81ea-563e-8e09-9c84cad4cf2b` = rdf:type
+- `d0e9e696-d3f2-5966-a62f-d8358cbde741` = rdfs:label
+- `da1b0b28-9c51-55c3-a963-2337006693de` = rdfs:comment
+- `2e218ab8-518d-5cd0-a660-f575a101e5d8` = rdfs:isDefinedBy
 
 ### Querying Triples with Dataview
 
@@ -358,35 +355,43 @@ rdfs:Class rdfs:label "Class" .
 rdfs:Class rdfs:subClassOf rdfs:Resource .
 ```
 
-File-based representation:
+File-based representation (all UUIDv5 names):
 ```
 rdfs/
-├── 30488677-f427-5947-8a14-02903ca20a7e.md         # rdfs:Class anchor
-├── 30488677-... a 30488677-....md                   # Type declaration
-├── 30488677-... d0e9e696-... ___.md                 # Label (literal)
-└── 30488677-... 55ff3aec-... d6ac0df2-....md        # Subclass relation
+├── 30488677-f427-5947-8a14-02903ca20a7e.md   # rdfs:Class anchor
+├── a1b2c3d4-e5f6-5xxx-xxxx-xxxxxxxxxxxx.md   # Statement: Class rdf:type Class
+├── b2c3d4e5-f6a7-5xxx-xxxx-xxxxxxxxxxxx.md   # Statement: Class rdfs:label "Class"
+└── c3d4e5f6-a7b8-5xxx-xxxx-xxxxxxxxxxxx.md   # Statement: Class rdfs:subClassOf Resource
 ```
 
-UUIDs:
-- `30488677-f427-5947-8a14-02903ca20a7e` = rdfs:Class
-- `d0e9e696-d3f2-5966-a62f-d8358cbde741` = rdfs:label
-- `55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2` = rdfs:subClassOf
-- `d6ac0df2-324e-561c-9f05-41d3b2d5ebd3` = rdfs:Resource
+**Key UUIDs:**
+| Resource | UUID |
+|----------|------|
+| `rdfs:Class` | `30488677-f427-5947-8a14-02903ca20a7e` |
+| `rdfs:Resource` | `d6ac0df2-324e-561c-9f05-41d3b2d5ebd3` |
+| `rdfs:label` | `d0e9e696-d3f2-5966-a62f-d8358cbde741` |
+| `rdfs:subClassOf` | `55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2` |
+| `rdf:type` | `73b69787-81ea-563e-8e09-9c84cad4cf2b` |
 
 ### Cross-Namespace Reference
 
-File: `owl/!owl 532c87f0-8cfa-5ff5-990f-aac1562178eb !rdfs.md`
+Statement: `owl: owl:imports rdfs:` (the OWL ontology imports RDFS)
+
+File: `owl/{uuid}.md` where UUID = uuid5(canonical_triple)
 
 ```yaml
 ---
 metadata: statement
-rdf__subject: "[[!owl]]"
+rdf__subject: "[[64e92819-163a-5984-92c3-39bf71eb19fd]]"
 rdf__predicate: "[[532c87f0-8cfa-5ff5-990f-aac1562178eb]]"
-rdf__object: "[[!rdfs]]"
+rdf__object: "[[1a2b3c4d-5e6f-5xxx-xxxx-xxxxxxxxxxxx]]"
 ---
 ```
 
-This represents: `owl: owl:imports rdfs:` (the OWL ontology imports RDFS)
+Where:
+- `64e92819-...` = OWL namespace
+- `532c87f0-...` = owl:imports
+- `1a2b3c4d-...` = RDFS namespace
 
 ### Lookup UUID by URI
 
@@ -428,13 +433,13 @@ python scripts/validate.py --verbose
 ```
 
 The validator checks:
+- **UUID filename format** — all files must have UUIDv5 names (except `_index.md`)
 - **Broken wikilinks** — references to non-existent anchors
 - **Missing metadata** — files without `metadata` property
 - **Invalid metadata** — files with incorrect metadata values
 - **Orphaned anchors** — anchors not referenced in any statement
-- **Literal placeholder violations** — `___` used for non-literal objects
-- **Blank node consistency** — blank nodes properly defined and referenced
-- **UUIDv5 format** — anchor names must be valid UUIDv5 or special patterns
+- **Orphaned blank nodes** — blank nodes not referenced in any statement
+- **Frontmatter properties** — correct properties per file type
 
 ### Semantic Verification
 
