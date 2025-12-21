@@ -576,18 +576,27 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
     return sorted(orphaned), undefined_refs
 
 
-def validate_all(repo_root: Path, verbose: bool = False) -> ValidationResult:
-    """Run all validation checks."""
+def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List[str] = None) -> ValidationResult:
+    """Run all validation checks.
+
+    Args:
+        repo_root: Path to repository root
+        verbose: Print verbose output
+        target_namespaces: If provided, only validate these namespaces. Otherwise validate all.
+    """
     result = ValidationResult()
 
+    namespaces_to_check = target_namespaces if target_namespaces else NAMESPACES
+
     print("Collecting anchors...")
+    # Collect anchors from ALL namespaces (needed for cross-references)
     all_anchors = get_all_anchors(repo_root)
     all_anchors_lower = {a.lower() for a in all_anchors}  # For case-insensitive matching
     print(f"  Found {len(all_anchors)} anchors")
 
     print("\nValidating files...")
     file_count = 0
-    for ns in NAMESPACES:
+    for ns in namespaces_to_check:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             print(f"  ⚠️  Namespace directory not found: {ns}/")
@@ -618,14 +627,27 @@ def validate_all(repo_root: Path, verbose: bool = False) -> ValidationResult:
 
 
 def main():
-    verbose = '--verbose' in sys.argv or '-v' in sys.argv
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Validate exocortex-public-ontologies')
+    parser.add_argument('namespaces', nargs='*', help='Specific namespaces to validate (default: all)')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    args = parser.parse_args()
 
     print("=" * 60)
     print("Exocortex Public Ontologies Validator")
     print("=" * 60)
     print()
 
-    result = validate_all(REPO_ROOT, verbose)
+    # Determine which namespaces to validate
+    target_namespaces = None
+    if args.namespaces:
+        target_namespaces = args.namespaces
+        print(f"Validating namespaces: {', '.join(target_namespaces)}\n")
+    else:
+        print("Validating all namespaces\n")
+
+    result = validate_all(REPO_ROOT, args.verbose, target_namespaces)
 
     print("\n" + "=" * 60)
     print("VALIDATION SUMMARY")
@@ -635,68 +657,68 @@ def main():
     if result.has_errors():
         print("\n❌ Validation failed!")
 
-        if result.orphaned_anchors and not verbose:
+        if result.orphaned_anchors and not args.verbose:
             print(f"\nOrphaned anchors ({len(result.orphaned_anchors)}):")
             for anchor in result.orphaned_anchors[:10]:
                 print(f"  - {anchor}")
             if len(result.orphaned_anchors) > 10:
                 print(f"  ... and {len(result.orphaned_anchors) - 10} more")
 
-        if result.broken_wikilinks and not verbose:
+        if result.broken_wikilinks and not args.verbose:
             print(f"\nBroken wikilinks ({len(result.broken_wikilinks)}):")
             for filepath, link in result.broken_wikilinks[:10]:
                 print(f"  - {filepath} → [[{link}]]")
             if len(result.broken_wikilinks) > 10:
                 print(f"  ... and {len(result.broken_wikilinks) - 10} more")
 
-        if result.invalid_frontmatter and not verbose:
+        if result.invalid_frontmatter and not args.verbose:
             print(f"\nInvalid frontmatter ({len(result.invalid_frontmatter)}):")
             for filepath, error in result.invalid_frontmatter[:10]:
                 print(f"  - {filepath}: {error}")
 
-        if result.naming_violations and not verbose:
+        if result.naming_violations and not args.verbose:
             print(f"\nNaming convention violations ({len(result.naming_violations)}):")
             for filepath, error in result.naming_violations[:20]:
                 print(f"  - {filepath}: {error}")
             if len(result.naming_violations) > 20:
                 print(f"  ... and {len(result.naming_violations) - 20} more")
 
-        if result.literal_placeholder_violations and not verbose:
+        if result.literal_placeholder_violations and not args.verbose:
             print(f"\nLiteral placeholder violations ({len(result.literal_placeholder_violations)}):")
             for filepath, error in result.literal_placeholder_violations[:20]:
                 print(f"  - {filepath}: {error}")
             if len(result.literal_placeholder_violations) > 20:
                 print(f"  ... and {len(result.literal_placeholder_violations) - 20} more")
 
-        if result.frontmatter_prop_violations and not verbose:
+        if result.frontmatter_prop_violations and not args.verbose:
             print(f"\nFrontmatter property violations ({len(result.frontmatter_prop_violations)}):")
             for filepath, error in result.frontmatter_prop_violations[:20]:
                 print(f"  - {filepath}: {error}")
             if len(result.frontmatter_prop_violations) > 20:
                 print(f"  ... and {len(result.frontmatter_prop_violations) - 20} more")
 
-        if result.has_body_violations and not verbose:
+        if result.has_body_violations and not args.verbose:
             print(f"\nFiles with body content ({len(result.has_body_violations)}):")
             for filepath in result.has_body_violations[:20]:
                 print(f"  - {filepath}")
             if len(result.has_body_violations) > 20:
                 print(f"  ... and {len(result.has_body_violations) - 20} more")
 
-        if result.missing_isDefinedBy and not verbose:
+        if result.missing_isDefinedBy and not args.verbose:
             print(f"\nMissing rdfs:isDefinedBy statements ({len(result.missing_isDefinedBy)}):")
             for anchor in result.missing_isDefinedBy[:20]:
                 print(f"  - {anchor}")
             if len(result.missing_isDefinedBy) > 20:
                 print(f"  ... and {len(result.missing_isDefinedBy) - 20} more")
 
-        if result.orphaned_blank_nodes and not verbose:
+        if result.orphaned_blank_nodes and not args.verbose:
             print(f"\nOrphaned blank nodes ({len(result.orphaned_blank_nodes)}):")
             for bn in result.orphaned_blank_nodes[:20]:
                 print(f"  - {bn}")
             if len(result.orphaned_blank_nodes) > 20:
                 print(f"  ... and {len(result.orphaned_blank_nodes) - 20} more")
 
-        if result.undefined_blank_nodes and not verbose:
+        if result.undefined_blank_nodes and not args.verbose:
             print(f"\nUndefined blank nodes ({len(result.undefined_blank_nodes)}):")
             for filepath, bn in result.undefined_blank_nodes[:20]:
                 print(f"  - {filepath}: {bn}")

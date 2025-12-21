@@ -189,7 +189,7 @@ def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str]) -> str
     return bnode_map[bnode_id]
 
 
-def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict[str, str], external_uris: Dict[str, str] = None) -> Tuple[str, bool]:
+def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict[str, str], external_uris: Dict[str, str] = None, ontology_uri: str = None) -> Tuple[str, bool]:
     """
     Convert an RDF term to an anchor name (UUIDv5).
 
@@ -197,6 +197,10 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
 
     anchor_name examples: 'a1b2c3d4-e5f6-5789-abcd-ef0123456789', '!rdf', '_ext_'
     is_external: True if the anchor is a placeholder for an external URI
+
+    Args:
+        ontology_uri: The actual ontology URI (may differ from namespace, e.g.,
+                      http://www.w3.org/2002/07/owl vs http://www.w3.org/2002/07/owl#)
     """
     if external_uris is None:
         external_uris = {}
@@ -204,16 +208,29 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
     if isinstance(term, URIRef):
         uri_str = str(term)
 
+        # FIRST: Check if it's the ontology URI itself (different from namespace)
+        # This handles cases like http://www.w3.org/2002/07/owl which is
+        # different from the namespace http://www.w3.org/2002/07/owl#
+        # Must come BEFORE namespace checks to avoid matching ns.rstrip('#/')
+        if ontology_uri and uri_str == ontology_uri:
+            # Check if ontology_uri differs from namespace WITH its suffix
+            # e.g., ontology_uri = "http://.../owl" vs ontology_ns = "http://.../owl#"
+            if ontology_ns and ontology_uri != ontology_ns:
+                # It's a distinct ontology URI - return its UUID
+                return (uri_to_uuid(ontology_uri), False)
+            # Otherwise fall through to namespace check
+
         # Check if it's a namespace URI (ends with # or /)
         # and matches a known namespace exactly
+        # Note: Only match the FULL namespace URI (with # or /), not the base
+        # URIs without suffix are treated as ontology URIs and get UUIDs
         for ns_uri, prefix in KNOWN_NAMESPACES.items():
-            if uri_str == ns_uri.rstrip('#/') or uri_str == ns_uri:
+            if uri_str == ns_uri:  # Only exact match with suffix
                 return (f"!{prefix}", False)
 
-        # Check ontology namespace
+        # Check ontology namespace (only exact match with suffix)
         if ontology_ns:
-            ns_base = ontology_ns.rstrip('#/')
-            if uri_str == ns_base or uri_str == ontology_ns:
+            if uri_str == ontology_ns:
                 return (f"!{ontology_prefix}", False)
 
         # Regular URI
@@ -238,27 +255,42 @@ def literal_to_yaml(lit: Literal) -> str:
     """
     Convert an RDF literal to YAML value.
 
+    The result is a YAML double-quoted string containing the RDF literal notation.
+    All special characters are properly escaped for YAML compatibility.
+
     Examples:
-        Literal("hello") -> '"hello"'
-        Literal("hello", lang="en") -> '"hello"@en'
-        Literal("42", datatype=XSD.integer) -> '"42"^^[[a1b2c3d4-...]]'
+        Literal("hello") -> '"\\\"hello\\\""'  (YAML value: "hello")
+        Literal("hello", lang="en") -> '"\\\"hello\\\"@en"'  (YAML value: "hello"@en)
+        Literal("42", datatype=XSD.integer) -> '"\\\"42\\\"^^[[uuid]]"'
     """
     value = str(lit)
 
-    # Escape special characters in the value
-    # For YAML, we need to escape quotes and handle newlines
-    escaped = value.replace('\\', '\\\\').replace('"', '\\"')
+    # Normalize line endings (CRLF -> LF)
+    value = value.replace('\r\n', '\n')
+    value = value.replace('\r', '\n')
+
+    # Escape special characters for YAML double-quoted strings
+    # Order matters: backslash first, then quotes, then special chars
+    escaped = value.replace('\\', '\\\\')
+    escaped = escaped.replace('"', '\\"')
+    escaped = escaped.replace('\n', '\\n')
+    escaped = escaped.replace('\t', '\\t')
 
     if lit.language:
-        return f'"{escaped}"@{lit.language}'
+        # Format: "\"value\"@lang"
+        inner = f'\\"{escaped}\\"@{lit.language}'
     elif lit.datatype:
         dtype_str = str(lit.datatype)
         # Convert datatype URI to wikilink using UUIDv5
         dtype_uuid = uri_to_uuid(dtype_str)
-        return f'"{escaped}"^^[[{dtype_uuid}]]'
+        # Format: "\"value\"^^[[uuid]]"
+        inner = f'\\"{escaped}\\"^^[[{dtype_uuid}]]'
     else:
-        # Plain literal
-        return f'"{escaped}"'
+        # Plain literal: "\"value\""
+        inner = f'\\"{escaped}\\"'
+
+    # Wrap in double quotes for YAML compatibility
+    return f'"{inner}"'
 
 
 def make_safe_filename(name: str) -> str:
@@ -290,8 +322,14 @@ metadata: namespace
     filepath.write_text(content, encoding='utf-8')
 
 
-def create_anchor_file(output_dir: Path, anchor: str) -> None:
-    """Create an anchor file for a resource."""
+def create_anchor_file(output_dir: Path, anchor: str, uri: str = None) -> None:
+    """Create an anchor file for a resource.
+
+    Args:
+        output_dir: Directory to create the file in
+        anchor: The anchor name (UUID)
+        uri: Optional URI for this resource (added to frontmatter)
+    """
     filename = f"{make_safe_filename(anchor)}.md"
     filepath = output_dir / filename
 
@@ -299,7 +337,14 @@ def create_anchor_file(output_dir: Path, anchor: str) -> None:
     if filepath.exists():
         return
 
-    content = """---
+    if uri:
+        content = f"""---
+metadata: anchor
+uri: {uri}
+---
+"""
+    else:
+        content = """---
 metadata: anchor
 ---
 """
@@ -361,7 +406,9 @@ def create_statement_file(
     For external URIs, use _ext_ placeholder.
     """
     # Use 'a' shorthand for rdf:type predicate in filename
-    pred_name = 'a' if predicate_anchor == 'rdf__type' else predicate_anchor
+    # UUIDv5 for rdf:type (http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+    RDF_TYPE_UUID = '73b69787-81ea-563e-8e09-9c84cad4cf2b'
+    pred_name = 'a' if predicate_anchor == RDF_TYPE_UUID else predicate_anchor
 
     if is_literal:
         # Use ___ for literal placeholder in filename
@@ -410,8 +457,8 @@ def create_statement_file(
     # Predicate with optional alias for rdf:type
     if predicate_is_external:
         pred_yaml = f'"<{predicate_uri}>"'
-    elif predicate_anchor == 'rdf__type':
-        pred_yaml = '"[[rdf__type|a]]"'
+    elif predicate_anchor == RDF_TYPE_UUID:
+        pred_yaml = f'"[[{RDF_TYPE_UUID}|a]]"'
     else:
         pred_yaml = f'"[[{predicate_anchor}]]"'
 
@@ -460,10 +507,12 @@ def import_ontology(
         print(f"Loaded {len(g)} triples")
 
     # Try to detect ontology namespace from the graph
+    ontology_uri = None  # The actual owl:Ontology URI (may differ from namespace)
     if not namespace_uri:
         # Look for owl:Ontology or the most common namespace
         for s, p, o in g.triples((None, RDF.type, OWL.Ontology)):
-            namespace_uri = str(s)
+            ontology_uri = str(s)  # Save original ontology URI
+            namespace_uri = ontology_uri
             if not namespace_uri.endswith('#') and not namespace_uri.endswith('/'):
                 namespace_uri += '#'
             break
@@ -487,9 +536,17 @@ def import_ontology(
 
     if verbose:
         print(f"Using namespace: {namespace_uri}")
+        if ontology_uri and ontology_uri != namespace_uri and ontology_uri != namespace_uri.rstrip('#/'):
+            print(f"Ontology URI: {ontology_uri}")
 
     # Create namespace file
     create_namespace_file(output_dir, prefix, namespace_uri or f"http://example.org/{prefix}#")
+
+    # If ontology URI differs from namespace (e.g., owl: vs owl#), create anchor for it
+    ontology_anchor = None
+    if ontology_uri and not ontology_uri.endswith('#') and not ontology_uri.endswith('/'):
+        # Ontology URI like http://www.w3.org/2002/07/owl needs its own anchor
+        ontology_anchor = uri_to_uuid(ontology_uri)
 
     # Track blank nodes and external URIs
     bnode_map: Dict[str, str] = {}
@@ -503,26 +560,26 @@ def import_ontology(
     for s, p, o in g:
         # Subject
         if isinstance(s, URIRef):
-            anchor, is_ext = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris)
+            anchor, is_ext = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
             if not is_ext and not anchor.startswith('!'):  # Not a namespace
                 anchors.add(anchor)
         elif isinstance(s, BNode):
-            bn_anchor, _ = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris)
+            bn_anchor, _ = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
             blank_nodes.add(bn_anchor)
 
         # Predicate (always URIRef)
         if isinstance(p, URIRef):
-            anchor, is_ext = term_to_anchor(p, prefix, namespace_uri, bnode_map, external_uris)
+            anchor, is_ext = term_to_anchor(p, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
             if not is_ext and not anchor.startswith('!'):
                 anchors.add(anchor)
 
         # Object (if URI or BNode)
         if isinstance(o, URIRef):
-            anchor, is_ext = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris)
+            anchor, is_ext = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
             if not is_ext and not anchor.startswith('!'):
                 anchors.add(anchor)
         elif isinstance(o, BNode):
-            bn_anchor, _ = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris)
+            bn_anchor, _ = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
             blank_nodes.add(bn_anchor)
 
     # Create anchor files
@@ -530,6 +587,12 @@ def import_ontology(
         print(f"Creating {len(anchors)} anchor files...")
     for anchor in anchors:
         create_anchor_file(output_dir, anchor)
+
+    # Create ontology anchor if it differs from namespace
+    if ontology_anchor and ontology_anchor not in anchors:
+        if verbose:
+            print(f"Creating ontology anchor: {ontology_anchor} for {ontology_uri}")
+        create_anchor_file(output_dir, ontology_anchor, uri=ontology_uri)
 
     # Create blank node files
     if verbose:
@@ -546,32 +609,34 @@ def import_ontology(
 
     for s, p, o in g:
         # Get subject anchor
-        subj_anchor, subj_is_ext = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris)
+        subj_anchor, subj_is_ext = term_to_anchor(s, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
         subj_uri = str(s) if isinstance(s, URIRef) else None
 
         # Get predicate anchor
-        pred_anchor, pred_is_ext = term_to_anchor(p, prefix, namespace_uri, bnode_map, external_uris)
+        pred_anchor, pred_is_ext = term_to_anchor(p, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
         pred_uri = str(p) if isinstance(p, URIRef) else None
 
         # Handle object
         if isinstance(o, Literal):
-            obj_yaml = literal_to_yaml(o)
-            # Check for multiline
             obj_str = str(o)
+            # Check for multiline/special characters - always use escaped string for frontmatter
             if '\n' in obj_str or '\t' in obj_str:
-                # Use block scalar for multiline
-                obj_yaml = escape_yaml_multiline(obj_str)
+                # Escape special characters for YAML double-quoted string
+                escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
                 if o.language:
-                    # Can't easily use block scalar with language tag
-                    # Fall back to escaped string
-                    escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
-                    obj_yaml = f'"{escaped}"@{o.language}'
+                    # Inner quotes + lang tag inside outer quotes
+                    obj_yaml = f'"\\"{escaped}\\"@{o.language}"'
                 elif o.datatype:
                     dtype_str = str(o.datatype)
                     # Use UUIDv5 for datatype reference
                     dtype_uuid = uri_to_uuid(dtype_str)
-                    escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
-                    obj_yaml = f'"{escaped}"^^[[{dtype_uuid}]]'
+                    obj_yaml = f'"\\"{escaped}\\"^^[[{dtype_uuid}]]"'
+                else:
+                    # Plain multiline string without lang/datatype
+                    obj_yaml = f'"\\"{escaped}\\""'
+            else:
+                # Single line - use literal_to_yaml
+                obj_yaml = literal_to_yaml(o)
 
             create_statement_file(
                 output_dir, subj_anchor, pred_anchor, obj_yaml,
@@ -580,7 +645,7 @@ def import_ontology(
                 subject_is_external=subj_is_ext, predicate_is_external=pred_is_ext
             )
         else:
-            obj_anchor, obj_is_ext = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris)
+            obj_anchor, obj_is_ext = term_to_anchor(o, prefix, namespace_uri, bnode_map, external_uris, ontology_uri)
             obj_uri = str(o) if isinstance(o, URIRef) else None
             create_statement_file(
                 output_dir, subj_anchor, pred_anchor, obj_anchor,

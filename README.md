@@ -15,31 +15,32 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 ## Included Ontologies
 
-### Verified (100% isomorphic with W3C originals)
+### Verified (semantically equivalent to originals)
 
-| Namespace | Prefix | URI | Triples | Files |
-|-----------|--------|-----|---------|-------|
-| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 |
-| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 104 |
-| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 536 |
-| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 |
-| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 799 |
-| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 288 |
-| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1146 | 1330 |
-| TIME | `time` | `http://www.w3.org/2006/time#` | 894 | 1063 |
-| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 |
+| Namespace | Prefix | URI | Triples | Files | Status |
+|-----------|--------|-----|---------|-------|--------|
+| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 134 | ✅ |
+| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 53 | 72 | ✅ |
+| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 833 | ✅ |
+| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 350 | 420 | ✅ |
+| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 631 | 725 | ✅ |
+| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 54 | ✅ |
+| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 544 | ✅ |
+| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1146 | 1343 | ✅ |
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 166 | ✅ |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 107 | ✅ |
+| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 379 | 452 | ✅ |
+| SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 317 | ✅ |
+| TIME | `time` | `http://www.w3.org/2006/time#` | 894 | 1527 | ✅ |
+| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 516 | 614 | ✅ |
 
-**Total verified: 3,796 triples — 9 ontologies**
+**Total: 5,725+ triples — 14 ontologies**
 
-### Additional (not yet verified)
+### Additional
 
 | Namespace | Prefix | URI | Status |
 |-----------|--------|-----|--------|
-| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | Pending |
-| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | Pending |
-| DOAP | `doap` | `http://usefulinc.com/ns/doap#` | Pending |
-| SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | Pending |
-| XSD | `xsd` | `http://www.w3.org/2001/XMLSchema#` | Core types only |
+| XSD | `xsd` | `http://www.w3.org/2001/XMLSchema#` | Core types only (manually created) |
 
 ## Directory Structure
 
@@ -155,13 +156,37 @@ All resource and statement files use **UUIDv5** identifiers derived from their f
 **UUID Generation:**
 - Namespace: URL (`6ba7b811-9dad-11d1-80b4-00c04fd430c8`)
 - Input: Full URI of the resource (e.g., `http://purl.org/dc/elements/1.1/contributor`)
-- Result: Deterministic UUID (e.g., `65db3e67-614c-5467-8338-61778bb0c03f`)
+- Result: Deterministic UUID (e.g., `11183371-dee2-5111-8d61-db2d94aa7701`)
 
 **Example:**
+```python
+import uuid
+uri = "http://purl.org/dc/elements/1.1/contributor"
+file_uuid = uuid.uuid5(uuid.NAMESPACE_URL, uri)
+# Result: 11183371-dee2-5111-8d61-db2d94aa7701
+```
+
 ```
 URI: http://purl.org/dc/elements/1.1/contributor
-UUID: 65db3e67-614c-5467-8338-61778bb0c03f
-File: dc/65db3e67-614c-5467-8338-61778bb0c03f.md
+UUID: 11183371-dee2-5111-8d61-db2d94aa7701
+File: dc/11183371-dee2-5111-8d61-db2d94aa7701.md
+```
+
+### Ontology URI vs Namespace URI
+
+Many ontologies distinguish between:
+- **Ontology URI**: The URI of the ontology itself (e.g., `http://www.w3.org/2002/07/owl`)
+- **Namespace URI**: The prefix for resources (e.g., `http://www.w3.org/2002/07/owl#`)
+
+The import script handles this automatically:
+1. Detects ontology URI from `owl:Ontology` declarations
+2. Creates separate anchor file for ontology URI if different from namespace
+3. Uses namespace URI (with `#` or `/`) for resource prefixes
+
+**Example (OWL):**
+```
+Ontology URI: http://www.w3.org/2002/07/owl → UUID: 64e92819-163a-5984-92c3-39bf71eb19fd
+Namespace URI: http://www.w3.org/2002/07/owl# → Namespace file: !owl.md
 ```
 
 ### Index Files
@@ -171,7 +196,7 @@ Each ontology directory contains `_index.md` with UUID → Label mapping for hum
 ```markdown
 | UUID | Label | URI |
 |------|-------|-----|
-| `65db3e67...` | Contributor | http://purl.org/dc/elements/1.1/Contributor |
+| `11183371...` | Contributor | http://purl.org/dc/elements/1.1/contributor |
 ```
 
 ### URI in Frontmatter
@@ -187,13 +212,27 @@ uri: http://purl.org/dc/elements/1.1/contributor
 
 ### Special Naming Conventions
 
-| Element | Convention |
-|---------|------------|
-| `rdf:type` | `a` (in statement filenames) |
-| Literal object | `___` (triple underscore placeholder) |
-| Namespace file | `!{prefix}.md` (e.g., `!dc.md`) |
-| Blank node | `{prefix}!{8-char-uuid}.md` |
-| Index file | `_index.md` |
+| Element | Convention | Example |
+|---------|------------|---------|
+| `rdf:type` | `a` shorthand in filenames | `{subj} 73b69787...\|a {obj}.md` |
+| Literal object | `___` placeholder | `{subj} {pred} ___.md` |
+| Namespace file | `!{prefix}.md` | `!dc.md`, `!owl.md` |
+| Blank node | `_ext{n}_` or `{prefix}!{8-char-uuid}` | `_ext1_`, `dc!a1b2c3d4` |
+| Index file | `_index.md` | `dc/_index.md` |
+| External URI | `<{full-uri}>` in frontmatter | `<http://example.org/ext>` |
+
+### Literal Encoding Rules
+
+Literals in YAML frontmatter follow specific encoding rules:
+
+| Literal Type | YAML Format | Example |
+|--------------|-------------|---------|
+| Plain string | `"\"value\""` | `"\"Class\""` |
+| Language-tagged | `"\"value\"@lang"` | `"\"Class\"@en"` |
+| Typed literal | `"\"value\"^^[[uuid]]"` | `"\"2024-01-01\"^^[[xsd-date-uuid]]"` |
+| Multiline | Escaped `\n` | `"\"Line1\\nLine2\"@en"` |
+
+**Important:** CRLF (`\r\n`) is normalized to LF (`\n`) during import.
 
 ## Usage with Obsidian
 
@@ -340,7 +379,14 @@ These ontologies provide the semantic foundation for:
 Run the validation script to check ontology integrity:
 
 ```bash
+# Validate all ontologies
 python scripts/validate.py
+
+# Validate specific namespace(s)
+python scripts/validate.py dc dcterms owl
+
+# Verbose output
+python scripts/validate.py --verbose
 ```
 
 The validator checks:
@@ -350,22 +396,25 @@ The validator checks:
 - **Orphaned anchors** — anchors not referenced in any statement
 - **Literal placeholder violations** — `___` used for non-literal objects
 - **Blank node consistency** — blank nodes properly defined and referenced
+- **UUIDv5 format** — anchor names must be valid UUIDv5 or special patterns
 
-Use `--verbose` for detailed output.
+### Semantic Verification
 
-### Isomorphism Comparison
-
-Verify that file-based ontologies are semantically identical to W3C originals:
+Verify that file-based ontologies are semantically identical to original RDF sources:
 
 ```bash
-# Compare specific ontology
-python scripts/compare_ontologies.py rdf
+# Verify specific ontology
+python scripts/verify_import.py originals/dc.ttl dc
 
-# Compare all verified ontologies
-python scripts/compare_ontologies.py --all
+# Verbose output showing differences
+python scripts/verify_import.py originals/owl.ttl owl -v
 ```
 
-This exports ontologies to RDF/XML and compares with official W3C sources using rdflib graph isomorphism.
+The verification script:
+1. Loads triples from original RDF file
+2. Loads triples from file-based representation
+3. Compares both sets for semantic equivalence
+4. Reports any differences
 
 ### Importing Ontologies
 
@@ -378,7 +427,10 @@ python scripts/import_ontology.py <input_file> <output_dir> --prefix <prefix>
 # Example: Import Dublin Core Terms
 python scripts/import_ontology.py dcterms.ttl dcterms --prefix dcterms
 
-# Auto-detect namespace URI or specify explicitly
+# Verbose output
+python scripts/import_ontology.py myonto.owl myonto --prefix myonto -v
+
+# Auto-detect or specify namespace
 python scripts/import_ontology.py myonto.owl myonto --prefix myonto --namespace http://example.org/myonto#
 ```
 
@@ -391,7 +443,44 @@ Supported formats:
 - **TriG** (`.trig`)
 - **N-Quads** (`.nq`)
 
-The script auto-detects format from file content and handles blank nodes, external URIs, and multiline literals.
+**Import handling:**
+- Auto-detects format from file content
+- Handles blank nodes with `_ext{n}_` naming
+- Preserves external URIs as `<http://...>` references
+- Normalizes CRLF to LF in multiline literals
+- Escapes all special YAML characters in literals
+- Creates separate ontology anchor if ontology URI differs from namespace
+
+### Post-Import Steps
+
+After importing, run these scripts:
+
+```bash
+# Add URI field to anchors and generate index file
+python scripts/add_uri_and_index.py <ontology_dir>
+
+# Validate the imported ontology
+python scripts/validate.py <prefix>
+
+# Verify semantic equivalence
+python scripts/verify_import.py originals/<source_file> <ontology_dir>
+```
+
+### Test All Ontologies
+
+Run comprehensive test on all ontologies:
+
+```bash
+python scripts/test_all_ontologies.py
+```
+
+This script:
+1. Backs up each ontology
+2. Deletes and reimports from original source
+3. Adds URI and index
+4. Validates structure
+5. Verifies semantic equivalence
+6. Reports results and timing
 
 ### Pre-commit Hook
 
@@ -402,6 +491,32 @@ Install the git hook to validate automatically before each commit:
 ```
 
 The hook blocks commits if validation fails.
+
+## Scripts Reference
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `import_ontology.py` | Convert RDF to file-based format | `python scripts/import_ontology.py <input> <output> -p <prefix>` |
+| `validate.py` | Check structural integrity | `python scripts/validate.py [namespaces...]` |
+| `verify_import.py` | Semantic equivalence check | `python scripts/verify_import.py <rdf_file> <ontology_dir>` |
+| `add_uri_and_index.py` | Add URI field and generate index | `python scripts/add_uri_and_index.py <ontology_dir>` |
+| `migrate_to_uuid.py` | Migrate legacy names to UUIDv5 | `python scripts/migrate_to_uuid.py <directory>` |
+| `test_all_ontologies.py` | Comprehensive test suite | `python scripts/test_all_ontologies.py` |
+
+### Key UUIDs Reference
+
+Common predicate UUIDs for reference:
+
+| Predicate | UUID |
+|-----------|------|
+| `rdf:type` | `73b69787-81ea-563e-8e09-9c84cad4cf2b` |
+| `rdfs:label` | `d0e9e696-d3f2-5966-a62f-d8358cbde741` |
+| `rdfs:comment` | `da1b0b28-9c51-55c3-a963-2337006693de` |
+| `rdfs:subClassOf` | `55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2` |
+| `rdfs:domain` | `c29ac1cb-6937-5aa2-a8c1-68f2e1b7e39f` |
+| `rdfs:range` | `f4d4a1a9-d8e5-5f47-a2a9-c8d9e0f1a2b3` |
+| `rdfs:isDefinedBy` | `2e218ab8-518d-5cd0-a660-f575a101e5d8` |
+| `owl:imports` | `532c87f0-8cfa-5ff5-990f-aac1562178eb` |
 
 ## Contributing
 
