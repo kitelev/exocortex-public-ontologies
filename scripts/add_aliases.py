@@ -18,7 +18,8 @@ import yaml
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
-NAMESPACES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
+# Namespace prefixes (short names for namespace URIs)
+PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
 
 # Namespace URI to prefix mapping (canonical)
 NS_URI_TO_PREFIX = {
@@ -192,7 +193,7 @@ def build_uuid_to_alias_map(repo_root: Path) -> Dict[str, str]:
     """
     uuid_map = {}
 
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
@@ -380,7 +381,7 @@ def main():
         'errors': 0
     }
 
-    for ns in NAMESPACES:
+    for ns in PREFIXES:
         ns_dir = repo_root / ns
         if not ns_dir.exists():
             continue
