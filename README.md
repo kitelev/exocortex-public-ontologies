@@ -305,6 +305,32 @@ python scripts/compare_ontologies.py --all
 
 This exports ontologies to RDF/XML and compares with official W3C sources using rdflib graph isomorphism.
 
+### Importing Ontologies
+
+Convert external RDF ontologies to file-based format:
+
+```bash
+# Import from RDF/XML, Turtle, N-Triples, or other formats
+python scripts/import_ontology.py <input_file> <output_dir> --prefix <prefix>
+
+# Example: Import Dublin Core Terms
+python scripts/import_ontology.py dcterms.ttl dcterms --prefix dcterms
+
+# Auto-detect namespace URI or specify explicitly
+python scripts/import_ontology.py myonto.owl myonto --prefix myonto --namespace http://example.org/myonto#
+```
+
+Supported formats:
+- **RDF/XML** (`.rdf`, `.owl`, `.xml`)
+- **Turtle** (`.ttl`)
+- **N-Triples** (`.nt`)
+- **N3** (`.n3`)
+- **JSON-LD** (`.jsonld`, `.json`)
+- **TriG** (`.trig`)
+- **N-Quads** (`.nq`)
+
+The script auto-detects format from file content and handles blank nodes, external URIs, and multiline literals.
+
 ### Pre-commit Hook
 
 Install the git hook to validate automatically before each commit:
