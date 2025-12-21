@@ -1,6 +1,6 @@
 ---
 metadata: statement
-rdf__subject: "[[24e86433-f887-5196-9479-563b6902294f]]"
-rdf__predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
-rdf__object: "\"The set of conceptual resources specified by the National Library of Medicine Classification.\"@en"
+subject: "[[24e86433-f887-5196-9479-563b6902294f]]"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+object: "\"The set of conceptual resources specified by the National Library of Medicine Classification.\"@en"
 ---
