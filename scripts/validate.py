@@ -34,11 +34,15 @@ STATEMENT_REQUIRED_PROPS = {'metadata', 'rdf__subject', 'rdf__predicate', 'rdf__
 ANCHOR_REQUIRED_PROPS = {'metadata'}
 ANCHOR_OPTIONAL_PROPS = {'uri'}
 
-# Required properties for namespace files (exactly 2)
+# Required properties for namespace files
+# New format: metadata, !, uri
 NAMESPACE_REQUIRED_PROPS = {'metadata', '!'}
+NAMESPACE_OPTIONAL_PROPS = {'uri'}
 
-# Required properties for blank_node files (exactly 1, same as anchor)
+# Required properties for blank_node files
+# New format: metadata, skolem_iri
 BLANK_NODE_REQUIRED_PROPS = {'metadata'}
+BLANK_NODE_OPTIONAL_PROPS = {'skolem_iri'}
 
 # Valid metadata values
 VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node', 'index'}
@@ -111,43 +115,46 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
     """
     Check if filename follows naming convention.
 
-    Naming conventions:
+    NEW Naming conventions (all files are UUIDv5):
+    - Namespace: {uuid}.md (from namespace URI)
+    - Anchor: {uuid}.md (from resource URI)
+    - Blank node: {uuid}.md (from skolem IRI)
+    - Statement: {uuid}.md (from canonical triple)
+
+    LEGACY Naming conventions (still supported):
     - Namespace: !{prefix}.md
     - Anchor: {prefix}__{localname}.md
-    - Blank node: {prefix}!{8-char-uuid}.md (e.g., time!a1b2c3d4.md)
+    - Blank node: {prefix}!{8-char-uuid}.md
     - Statement: {subject} {predicate} {object}.md
-      - subject: {prefix}__{name} or !{prefix} or {prefix}!{uuid}
-      - predicate: {prefix}__{name} or 'a' (for rdf:type)
-      - object: {prefix}__{name} or !{prefix} or {prefix}!{uuid} or ___ (literal)
     """
     filename = filepath.stem  # without .md
     ns_dir = filepath.parent.name  # namespace directory
 
-    # Valid prefixes (must have __ separator)
-    prefixes = NAMESPACES + ['!']
+    # NEW FORMAT: All files can be UUIDv5
+    if UUID_PATTERN.match(filename):
+        return True, ""  # Valid UUIDv5 format for any metadata type
 
+    # LEGACY FORMAT: Check specific patterns per metadata type
     if metadata == 'namespace':
-        # Must be !{prefix}
+        # Legacy: Must be !{prefix}
         if not filename.startswith('!'):
-            return False, f"Namespace file must start with '!', got: {filename}"
+            return False, f"Namespace file must be UUIDv5 or start with '!', got: {filename}"
         return True, ""
 
     elif metadata == 'anchor':
-        # Can be {prefix}__{localname} OR UUIDv5
-        if UUID_PATTERN.match(filename):
-            return True, ""  # Valid UUIDv5 format
+        # Legacy: {prefix}__{localname}
         if '__' not in filename:
-            return False, f"Anchor must have format {{prefix}}__{{name}} or UUIDv5, got: {filename}"
+            return False, f"Anchor must be UUIDv5 or have format {{prefix}}__{{name}}, got: {filename}"
         prefix = filename.split('__')[0]
         if prefix not in NAMESPACES:
             return False, f"Unknown prefix '{prefix}' in anchor: {filename}"
         return True, ""
 
     elif metadata == 'blank_node':
-        # Must be {prefix}!{8-char-uuid}
+        # Legacy: {prefix}!{8-char-uuid}
         match = BLANK_NODE_PATTERN.match(filename)
         if not match:
-            return False, f"Blank node must have format {{prefix}}!{{8-char-uuid}}, got: {filename}"
+            return False, f"Blank node must be UUIDv5 or have format {{prefix}}!{{8-char-uuid}}, got: {filename}"
         prefix = match.group(1)
         if prefix not in NAMESPACES:
             return False, f"Unknown prefix '{prefix}' in blank node: {filename}"
@@ -157,23 +164,23 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
         return True, ""
 
     elif metadata == 'statement':
-        # Must be {subject} {predicate} {object}
+        # Legacy: {subject} {predicate} {object}
         parts = filename.split(' ')
         if len(parts) != 3:
-            return False, f"Statement must have 3 space-separated parts, got {len(parts)}: {filename}"
+            return False, f"Statement must be UUIDv5 or have 3 space-separated parts, got: {filename}"
 
+        # If we get here, it's legacy format with 3 parts
         subject, predicate, obj = parts
 
-        # Validate subject: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or UUIDv5 or _name_ (external URI)
+        # Validate subject
         if subject.startswith('_') and subject.endswith('_'):
-            pass  # External URI format - subject is specified in frontmatter
+            pass  # External URI format
         elif UUID_PATTERN.match(subject):
             pass  # Valid UUIDv5 format
         elif subject.startswith('!'):
             if subject[1:] not in NAMESPACES:
                 return False, f"Unknown namespace in subject: {subject}"
         elif BLANK_NODE_PATTERN.match(subject):
-            # Valid blank node format
             prefix = BLANK_NODE_PATTERN.match(subject).group(1)
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in blank node subject: {subject}"
@@ -182,34 +189,33 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in subject: {subject}"
         else:
-            return False, f"Subject must have prefix ({{prefix}}__{{name}} or {{prefix}}!{{uuid}}) or UUIDv5, got: {subject}"
+            return False, f"Invalid subject format: {subject}"
 
-        # Validate predicate: must be {prefix}__{name} or 'a' or UUIDv5 or _name_ (external URI)
+        # Validate predicate
         if predicate == 'a':
-            pass  # OK - shorthand for rdf:type
+            pass
         elif UUID_PATTERN.match(predicate):
-            pass  # Valid UUIDv5 format
+            pass
         elif predicate.startswith('_') and predicate.endswith('_'):
-            pass  # External URI format - predicate is specified in frontmatter
+            pass
         elif '__' in predicate:
             prefix = predicate.split('__')[0]
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in predicate: {predicate}"
         else:
-            return False, f"Predicate must have prefix, be 'a', or be UUIDv5, got: {predicate}"
+            return False, f"Invalid predicate format: {predicate}"
 
-        # Validate object: must be {prefix}__{name} or !{prefix} or {prefix}!{uuid} or UUIDv5 or ___ or ___N or _name_
+        # Validate object
         if obj.startswith('___'):
-            pass  # OK - literal placeholder (with optional numeric suffix)
+            pass
         elif UUID_PATTERN.match(obj):
-            pass  # Valid UUIDv5 format
+            pass
         elif obj.startswith('_') and obj.endswith('_'):
-            pass  # External URI format - object is specified in frontmatter
+            pass
         elif obj.startswith('!'):
             if obj[1:] not in NAMESPACES:
                 return False, f"Unknown namespace in object: {obj}"
         elif BLANK_NODE_PATTERN.match(obj):
-            # Valid blank node format
             prefix = BLANK_NODE_PATTERN.match(obj).group(1)
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in blank node object: {obj}"
@@ -218,7 +224,7 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
             if prefix not in NAMESPACES:
                 return False, f"Unknown prefix in object: {obj}"
         else:
-            return False, f"Object must have prefix, be '___', be namespace, be blank node, or be UUIDv5, got: {obj}"
+            return False, f"Invalid object format: {obj}"
 
         return True, ""
 
@@ -370,27 +376,29 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             if verbose:
                 print(f"  📋 {rel_path}: {error_msg}")
 
-    # Check blank_node has exactly 1 property (metadata only)
+    # Check blank_node has required properties (metadata) and optional (skolem_iri)
     if metadata == 'blank_node':
         props = set(data.keys())
-        if props != BLANK_NODE_REQUIRED_PROPS:
-            extra = props - BLANK_NODE_REQUIRED_PROPS
+        allowed = BLANK_NODE_REQUIRED_PROPS | BLANK_NODE_OPTIONAL_PROPS
+        extra = props - allowed
+        if extra:
             error_msg = f"blank_node: extra properties: {', '.join(sorted(extra))}"
             result.frontmatter_prop_violations.append((str(rel_path), error_msg))
             if verbose:
                 print(f"  📋 {rel_path}: {error_msg}")
 
-    # Check namespace has exactly 2 properties (metadata and !)
+    # Check namespace has required properties (metadata and !) and optional (uri)
     if metadata == 'namespace':
         props = set(data.keys())
-        if props != NAMESPACE_REQUIRED_PROPS:
-            missing = NAMESPACE_REQUIRED_PROPS - props
-            extra = props - NAMESPACE_REQUIRED_PROPS
-            errors = []
-            if missing:
-                errors.append(f"missing: {', '.join(sorted(missing))}")
-            if extra:
-                errors.append(f"extra: {', '.join(sorted(extra))}")
+        allowed = NAMESPACE_REQUIRED_PROPS | NAMESPACE_OPTIONAL_PROPS
+        missing = NAMESPACE_REQUIRED_PROPS - props
+        extra = props - allowed
+        errors = []
+        if missing:
+            errors.append(f"missing: {', '.join(sorted(missing))}")
+        if extra:
+            errors.append(f"extra: {', '.join(sorted(extra))}")
+        if errors:
             error_msg = f"namespace: {'; '.join(errors)}"
             result.frontmatter_prop_violations.append((str(rel_path), error_msg))
             if verbose:
@@ -422,8 +430,13 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
 
 
-def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], verbose: bool = False) -> List[str]:
-    """Find anchors that are not referenced in any statement."""
+def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_nodes: Set[str], all_namespaces: Set[str], verbose: bool = False) -> List[str]:
+    """Find anchors that are not referenced in any statement.
+
+    Excludes:
+    - Namespace files (expected to not be referenced)
+    - Blank nodes (handled separately by find_blank_node_issues)
+    """
     referenced = set()
 
     # Collect all wikilinks from statements
@@ -444,12 +457,35 @@ def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], verbose: bool 
             # Namespace files are expected to not be referenced (or only in imports)
             if anchor.startswith('!'):
                 continue
-            # Blank nodes are expected to be referenced as subjects in their own statements
+            # UUID-named namespace files are also excluded
+            if anchor in all_namespaces:
+                continue
+            # Legacy blank nodes are expected to be referenced as subjects in their own statements
             if BLANK_NODE_PATTERN.match(anchor):
+                continue
+            # New UUID blank nodes are handled separately
+            if anchor in all_blank_nodes:
                 continue
             orphaned.append(anchor)
 
     return sorted(orphaned)
+
+
+def get_all_namespace_files(repo_root: Path) -> Set[str]:
+    """Get all namespace file names (files with metadata: namespace)."""
+    namespaces = set()
+
+    for ns in NAMESPACES:
+        ns_dir = repo_root / ns
+        if not ns_dir.exists():
+            continue
+
+        for filepath in ns_dir.glob('*.md'):
+            data, error = parse_frontmatter(filepath)
+            if data and data.get('metadata') == 'namespace':
+                namespaces.add(filepath.stem)
+
+    return namespaces
 
 
 def get_all_blank_nodes(repo_root: Path) -> Set[str]:
@@ -470,19 +506,24 @@ def get_all_blank_nodes(repo_root: Path) -> Set[str]:
 
 
 def extract_blank_nodes_from_filename(filename: str) -> Set[str]:
-    """Extract blank node references from a statement filename."""
+    """Extract blank node references from a statement filename (legacy format only)."""
     blank_nodes = set()
+    # New format: UUIDv5 filename - blank nodes are extracted from frontmatter wikilinks
+    if UUID_PATTERN.match(filename):
+        return blank_nodes  # No blank nodes extractable from filename
+
+    # Legacy format: {subject} {predicate} {object}
     parts = filename.split(' ')
     if len(parts) != 3:
         return blank_nodes
 
     subject, _, obj = parts
 
-    # Check if subject is a blank node
+    # Check if subject is a blank node (legacy format)
     if BLANK_NODE_PATTERN.match(subject):
         blank_nodes.add(subject)
 
-    # Check if object is a blank node
+    # Check if object is a blank node (legacy format)
     if BLANK_NODE_PATTERN.match(obj):
         blank_nodes.add(obj)
 
@@ -492,15 +533,16 @@ def extract_blank_nodes_from_filename(filename: str) -> Set[str]:
 def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List[str], List[Tuple[str, str]]]:
     """
     Find blank node issues:
-    1. Orphaned blank nodes - defined but never used as subject in any statement
+    1. Orphaned blank nodes - defined but never referenced in any statement wikilinks
     2. Undefined blank nodes - referenced in statements but not defined
+
+    Supports both legacy ({prefix}!{uuid}) and new (UUIDv5) blank node formats.
 
     Returns: (orphaned_blank_nodes, undefined_blank_nodes)
     """
     defined_blank_nodes = get_all_blank_nodes(repo_root)
     referenced_blank_nodes = set()
     undefined_refs = []  # (filepath, blank_node)
-    blank_nodes_used_as_subject = set()
 
     for ns in NAMESPACES:
         ns_dir = repo_root / ns
@@ -511,25 +553,27 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
             data, _ = parse_frontmatter(filepath)
             if data and data.get('metadata') == 'statement':
                 filename = filepath.stem
+
+                # NEW FORMAT: Extract blank node references from wikilinks in frontmatter
+                wikilinks = extract_wikilinks(data)
+                for link in wikilinks:
+                    # Check if this wikilink refers to a defined blank node
+                    if link in defined_blank_nodes:
+                        referenced_blank_nodes.add(link)
+
+                # LEGACY FORMAT: Extract blank node references from filename
                 refs = extract_blank_nodes_from_filename(filename)
                 referenced_blank_nodes.update(refs)
 
-                # Track blank nodes used as subject
-                parts = filename.split(' ')
-                if len(parts) == 3:
-                    subject = parts[0]
-                    if BLANK_NODE_PATTERN.match(subject):
-                        blank_nodes_used_as_subject.add(subject)
-
-                # Check for undefined blank nodes
+                # Check for undefined blank nodes (legacy format only)
                 for ref in refs:
                     if ref not in defined_blank_nodes:
                         undefined_refs.append((str(filepath.relative_to(repo_root)), ref))
 
-    # Find orphaned blank nodes (defined but never used as subject in any statement)
+    # Find orphaned blank nodes (defined but never referenced)
     orphaned = []
     for bn in defined_blank_nodes:
-        if bn not in blank_nodes_used_as_subject:
+        if bn not in referenced_blank_nodes:
             orphaned.append(bn)
             if verbose:
                 print(f"  👻 Orphaned blank node: {bn}")
@@ -569,8 +613,12 @@ def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List
 
     print(f"  Validated {file_count} files")
 
+    # Get blank nodes and namespaces first (needed for orphaned anchor check)
+    all_blank_nodes = get_all_blank_nodes(repo_root)
+    all_namespaces = get_all_namespace_files(repo_root)
+
     print("\nChecking for orphaned anchors...")
-    result.orphaned_anchors = find_orphaned_anchors(repo_root, all_anchors, verbose)
+    result.orphaned_anchors = find_orphaned_anchors(repo_root, all_anchors, all_blank_nodes, all_namespaces, verbose)
     if result.orphaned_anchors and verbose:
         for anchor in result.orphaned_anchors:
             print(f"  👻 {anchor}")

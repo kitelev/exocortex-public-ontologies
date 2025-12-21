@@ -33,37 +33,52 @@ def extract_frontmatter(content: str) -> dict:
         return {}
 
 
-def load_triples_from_files(ontology_dir: Path) -> set:
-    """Load triples from file-based representation."""
-    triples = set()
+def load_triples_from_files(ontology_dir: Path) -> tuple:
+    """Load triples from file-based representation.
 
-    # First, build a map of namespace files to their URIs
-    namespace_uris = {}
+    Returns: (triples, blank_node_uuids)
+    """
+    triples = set()
+    blank_node_uuids = set()
+
+    # First pass: build maps for namespace URIs and blank node skolem IRIs
+    namespace_uris = {}  # {namespace_uuid: uri} and {!prefix: uri} for legacy support
+    blank_node_skolems = {}  # {uuid: skolem_iri}
+
     for f in ontology_dir.iterdir():
-        if f.is_file() and f.name.startswith('!') and f.name.endswith('.md') and ' ' not in f.name:
-            content = f.read_text(encoding='utf-8')
-            fm = extract_frontmatter(content)
-            if fm.get('metadata') == 'namespace':
-                # URI can be under 'uri' or '!' key
-                uri = fm.get('uri') or fm.get('!')
-                if uri:
-                    # !dc.md -> uri
-                    ns_name = f.stem  # !dc
-                    namespace_uris[ns_name] = uri
+        if not f.is_file() or not f.name.endswith('.md'):
+            continue
+        content = f.read_text(encoding='utf-8')
+        fm = extract_frontmatter(content)
+
+        if fm.get('metadata') == 'namespace':
+            # URI can be under 'uri' or '!' key
+            uri = fm.get('uri') or fm.get('!')
+            if uri:
+                # Map both UUID (new format) and !prefix (legacy) to URI
+                file_uuid = f.stem
+                namespace_uris[file_uuid] = uri
+                # Also support legacy !prefix format
+                if f.name.startswith('!'):
+                    namespace_uris[f.stem] = uri
+
+        elif fm.get('metadata') == 'blank_node':
+            # New format: blank_node files have skolem_iri in frontmatter
+            skolem_iri = fm.get('skolem_iri')
+            if skolem_iri:
+                blank_node_skolems[f.stem] = skolem_iri
+                blank_node_uuids.add(f.stem)
 
     for f in ontology_dir.iterdir():
         if not f.is_file() or not f.name.endswith('.md'):
             continue
         if f.name == '_index.md':
             continue  # Skip index file
-        # Include namespace statement files like "!dc predicate object.md"
-        # but skip namespace definition files like "!dc.md"
-        if f.name.startswith('!') and ' ' not in f.stem:
-            continue
 
         content = f.read_text(encoding='utf-8')
         fm = extract_frontmatter(content)
 
+        # Skip non-statement files (namespace, blank_node, anchor)
         if fm.get('metadata') != 'statement':
             continue
 
@@ -81,15 +96,19 @@ def load_triples_from_files(ontology_dir: Path) -> set:
             # Handle external URI predicate like <http://...> -> convert to UUID
             if pred.startswith('<') and pred.endswith('>'):
                 pred = uri_to_uuid(pred[1:-1])
-            # Object might be literal or wikilink
+
+            # Process object
             if obj.startswith('[[') and obj.endswith(']]'):
                 obj = obj[2:-2]
                 # Handle alias in object too
                 if '|' in obj:
                     obj = obj.split('|')[0]
-                # Handle namespace reference like !dc -> convert to UUID
+                # Handle namespace reference (legacy !dc or UUID)
                 if obj.startswith('!') and obj in namespace_uris:
                     obj = uri_to_uuid(namespace_uris[obj])
+                # Handle blank node reference (UUID -> skolem IRI -> UUID)
+                elif obj in blank_node_skolems:
+                    obj = uri_to_uuid(blank_node_skolems[obj])
             elif obj.startswith('<') and obj.endswith('>'):
                 # External URI like <http://...> -> convert to UUID
                 obj = uri_to_uuid(obj[1:-1])
@@ -103,24 +122,37 @@ def load_triples_from_files(ontology_dir: Path) -> set:
                     # Remove outer quotes if present (from "\"...\"" -> "...")
                     if obj.startswith('""') and obj.endswith('""'):
                         obj = obj[1:-1]
-            # Handle subject namespace reference
+
+            # Process subject
+            # Handle namespace reference (legacy !prefix or UUID)
             if subj.startswith('!') and subj in namespace_uris:
                 subj = uri_to_uuid(namespace_uris[subj])
+            # Handle blank node reference (UUID -> skolem IRI -> UUID)
+            elif subj in blank_node_skolems:
+                subj = uri_to_uuid(blank_node_skolems[subj])
             # Handle external URI subject like <http://...> -> convert to UUID
             elif subj.startswith('<') and subj.endswith('>'):
                 subj = uri_to_uuid(subj[1:-1])
+
             triples.add((subj, pred, obj))
 
-    return triples
+    return triples, blank_node_uuids
 
 
-def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> set:
-    """Load triples from RDF file and convert to UUID-based representation."""
+def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> tuple:
+    """Load triples from RDF file and convert to UUID-based representation.
+
+    Returns: (triples, blank_node_uuids)
+    """
     g = Graph()
     g.parse(rdf_path)
 
     triples = set()
-    blank_node_map = {}
+    blank_node_map = {}  # BNode -> skolem IRI UUID
+    blank_node_uuids = set()
+
+    # Build base URI for skolem IRIs
+    base_uri = namespace_uri.rstrip('#/') if namespace_uri else ''
 
     for s, p, o in g:
         # Convert subject
@@ -128,7 +160,15 @@ def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> set:
             subj = uri_to_uuid(str(s))
         elif isinstance(s, BNode):
             if s not in blank_node_map:
-                blank_node_map[s] = f"blank_{len(blank_node_map)}"
+                # Generate skolem IRI UUID (same as import_ontology.py)
+                bnode_id = str(s)
+                if base_uri:
+                    skolem_iri = f"{base_uri}/.well-known/genid/{bnode_id}"
+                else:
+                    skolem_iri = f"urn:bnode:{bnode_id}"
+                bnode_uuid = uri_to_uuid(skolem_iri)
+                blank_node_map[s] = bnode_uuid
+                blank_node_uuids.add(bnode_uuid)
             subj = blank_node_map[s]
         else:
             continue
@@ -144,7 +184,14 @@ def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> set:
             obj = uri_to_uuid(str(o))
         elif isinstance(o, BNode):
             if o not in blank_node_map:
-                blank_node_map[o] = f"blank_{len(blank_node_map)}"
+                bnode_id = str(o)
+                if base_uri:
+                    skolem_iri = f"{base_uri}/.well-known/genid/{bnode_id}"
+                else:
+                    skolem_iri = f"urn:bnode:{bnode_id}"
+                bnode_uuid = uri_to_uuid(skolem_iri)
+                blank_node_map[o] = bnode_uuid
+                blank_node_uuids.add(bnode_uuid)
             obj = blank_node_map[o]
         elif isinstance(o, Literal):
             # Format literal similar to import script
@@ -163,7 +210,7 @@ def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> set:
 
         triples.add((subj, pred, obj))
 
-    return triples, blank_node_map
+    return triples, blank_node_uuids
 
 
 def normalize_literal(lit: str) -> str:
@@ -185,20 +232,52 @@ def normalize_literal(lit: str) -> str:
     return (lit, None, None)
 
 
-def compare_triples(file_triples: set, rdf_triples: set) -> tuple:
-    """Compare two sets of triples, handling blank nodes specially."""
-    # Separate blank node triples
-    file_regular = {t for t in file_triples if not any('blank_' in str(x) or '!' in str(x) for x in t)}
-    rdf_regular = {t for t in rdf_triples if not any('blank_' in str(x) for x in t)}
+def is_uuid(s: str) -> bool:
+    """Check if a string looks like a UUID."""
+    import re
+    return bool(re.match(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$', s))
 
-    file_blank = {t for t in file_triples if any('!' in str(x) for x in t)}
-    rdf_blank = {t for t in rdf_triples if any('blank_' in str(x) for x in t)}
 
-    # Compare regular triples
-    only_in_files = file_regular - rdf_regular
-    only_in_rdf = rdf_regular - file_regular
+def compare_triples(file_triples: set, rdf_triples: set, rdf_blank_uuids: set, file_blank_uuids: set) -> tuple:
+    """Compare two sets of triples, handling blank nodes by structural comparison.
 
-    return only_in_files, only_in_rdf, len(file_blank), len(rdf_blank)
+    Blank nodes get different UUIDs each time because rdflib assigns different
+    internal IDs. We compare:
+    1. Non-blank triples: exact match
+    2. Blank node triples: structural match (same predicate-object patterns)
+    """
+    def is_blank_triple(triple, blank_uuids):
+        """Check if any element of the triple is a blank node UUID."""
+        s, p, o = triple
+        return s in blank_uuids or o in blank_uuids
+
+    def get_triple_pattern(triple, blank_uuids):
+        """Get a normalized pattern for structural comparison.
+        Replace blank node UUIDs with 'BLANK' marker.
+        """
+        s, p, o = triple
+        ns = 'BLANK' if s in blank_uuids else s
+        no = 'BLANK' if o in blank_uuids else o
+        return (ns, p, no)
+
+    # Separate non-blank and blank triples
+    file_nonblank = {t for t in file_triples if not is_blank_triple(t, file_blank_uuids)}
+    rdf_nonblank = {t for t in rdf_triples if not is_blank_triple(t, rdf_blank_uuids)}
+
+    file_blank = {t for t in file_triples if is_blank_triple(t, file_blank_uuids)}
+    rdf_blank = {t for t in rdf_triples if is_blank_triple(t, rdf_blank_uuids)}
+
+    # Compare non-blank triples exactly
+    only_in_files_nonblank = file_nonblank - rdf_nonblank
+    only_in_rdf_nonblank = rdf_nonblank - file_nonblank
+
+    # Compare blank triples by pattern (structural match)
+    file_patterns = {get_triple_pattern(t, file_blank_uuids) for t in file_blank}
+    rdf_patterns = {get_triple_pattern(t, rdf_blank_uuids) for t in rdf_blank}
+
+    patterns_match = (file_patterns == rdf_patterns)
+
+    return only_in_files_nonblank, only_in_rdf_nonblank, len(file_blank), len(rdf_blank), patterns_match
 
 
 def main():
@@ -220,45 +299,51 @@ def main():
         return 1
 
     print(f"Loading triples from RDF: {rdf_path}")
-    rdf_triples, blank_map = load_triples_from_rdf(rdf_path, args.namespace or '')
-    print(f"  Found {len(rdf_triples)} triples ({len(blank_map)} blank nodes)")
+    rdf_triples, rdf_blank_uuids = load_triples_from_rdf(rdf_path, args.namespace or '')
+    print(f"  Found {len(rdf_triples)} triples ({len(rdf_blank_uuids)} blank nodes)")
 
     print(f"\nLoading triples from files: {ont_dir}")
-    file_triples = load_triples_from_files(ont_dir)
-    print(f"  Found {len(file_triples)} triples")
+    file_triples, file_blank_uuids = load_triples_from_files(ont_dir)
+    print(f"  Found {len(file_triples)} triples ({len(file_blank_uuids)} blank nodes)")
 
     print("\nComparing triples...")
-    only_files, only_rdf, file_blank_count, rdf_blank_count = compare_triples(file_triples, rdf_triples)
+    only_files, only_rdf, file_blank_count, rdf_blank_count, patterns_match = compare_triples(
+        file_triples, rdf_triples, rdf_blank_uuids, file_blank_uuids
+    )
 
     print(f"\n{'='*60}")
     print("VERIFICATION SUMMARY")
     print(f"{'='*60}")
     print(f"  RDF triples: {len(rdf_triples)}")
     print(f"  File triples: {len(file_triples)}")
+    print(f"  Blank nodes (RDF): {len(rdf_blank_uuids)}")
+    print(f"  Blank nodes (files): {len(file_blank_uuids)}")
     print(f"  Blank node triples (RDF): {rdf_blank_count}")
     print(f"  Blank node triples (files): {file_blank_count}")
+    print(f"  Blank node patterns match: {'Yes' if patterns_match else 'No'}")
 
     if only_files:
-        print(f"\n⚠️  Only in files ({len(only_files)}):")
+        print(f"\n⚠️  Only in files (non-blank) ({len(only_files)}):")
         for t in list(only_files)[:10]:
             print(f"    {t}")
         if len(only_files) > 10:
             print(f"    ... and {len(only_files) - 10} more")
 
     if only_rdf:
-        print(f"\n⚠️  Only in RDF ({len(only_rdf)}):")
+        print(f"\n⚠️  Only in RDF (non-blank) ({len(only_rdf)}):")
         for t in list(only_rdf)[:10]:
             print(f"    {t}")
         if len(only_rdf) > 10:
             print(f"    ... and {len(only_rdf) - 10} more")
 
-    # Check if semantically equivalent (ignoring blank node differences)
-    if not only_files and not only_rdf:
+    # Check if semantically equivalent
+    # Non-blank triples must match exactly, blank patterns must match structurally
+    if not only_files and not only_rdf and patterns_match:
         print("\n✅ Ontologies are semantically equivalent!")
         return 0
-    elif len(only_files) == 0 and len(only_rdf) <= rdf_blank_count:
-        print("\n✅ Ontologies are semantically equivalent (blank node handling differs)")
-        return 0
+    elif not only_files and not only_rdf and not patterns_match:
+        print("\n⚠️  Non-blank triples match, but blank node structure differs")
+        return 1
     else:
         print("\n❌ Ontologies differ!")
         return 1
