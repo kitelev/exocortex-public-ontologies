@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[a0f2d0d0-6363-58f8-b345-26c3b001c8c7]]"
-predicate: "[[2e218ab8-518d-5cd0-a660-f575a101e5d8]]"
-object: "[[00f8088d-c19d-5871-b701-530a0860d85e]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#isDefinedBy>"
+object: "<http://www.w3.org/ns/prov-o#>"
 aliases:
-  - "prov:hadPlan rdfs:isDefinedBy prov_o:"
+  - "prov:hadPlan ? ?"
 ---

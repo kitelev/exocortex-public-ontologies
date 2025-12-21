@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[5eb7aac1-a60e-5214-87f2-a83d22f60af1]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#label>"
 object: "\"base de dados de bugs\"@pt"
 aliases:
-  - "doap:bug-database rdfs:label base de dados de bugs"
+  - "doap:bug-database ? base de dados de bugs"
 ---

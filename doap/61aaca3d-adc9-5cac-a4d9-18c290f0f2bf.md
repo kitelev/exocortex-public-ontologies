@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[764d470f-24ba-5c8b-ad81-9de6695201bb]]"
-predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#comment>"
 object: "\"Nombre del módulo de un repositorio Subversion, CVS, BitKeeper o Arch.\"@es"
 aliases:
-  - "doap:module rdfs:comment Nombre del módulo de un reposi..."
+  - "doap:module ? Nombre del módulo de un reposi..."
 ---

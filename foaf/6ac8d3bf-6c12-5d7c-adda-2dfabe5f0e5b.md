@@ -1,8 +1,8 @@
 ---
 metadata: statement
 subject: "[[b5fe3d0d-bc55-5c6e-977d-18d9fa9dfe05]]"
-predicate: "[[2e218ab8-518d-5cd0-a660-f575a101e5d8]]"
+predicate: "<http://www.w3.org/2000/01/rdf-schema#isDefinedBy>"
 object: "[[da0b7a03-14af-51bd-bbbf-4b180617f5c3]]"
 aliases:
-  - "foaf:mbox rdfs:isDefinedBy foaf:0.1"
+  - "foaf:mbox ? foaf:0.1"
 ---
