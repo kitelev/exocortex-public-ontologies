@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 File-based RDF ontologies for the Exocortex knowledge management ecosystem. Converts W3C and Dublin Core ontologies into a Markdown/YAML format where each RDF triple is a separate file. This enables Obsidian graph navigation, Dataview queries, and human-readable knowledge representation.
 
-**14 verified ontologies, 7,104 triples total** (RDF, RDFS, OWL, Dublin Core, SKOS, FOAF, PROV-O, TIME, GEO, VCARD, DOAP, SIOC, plus XSD core types).
+**17 verified ontologies, 26,794 triples total** (RDF, RDFS, OWL, Dublin Core, SKOS, FOAF, PROV-O, TIME, GEO, VCARD, DOAP, SIOC, DCAT, ORG, Schema.org, plus XSD core types).
 
 ## Commands
 
