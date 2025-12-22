@@ -19,22 +19,25 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 
 | Ontology | Prefix | Namespace URI | Triples | Files | Status |
 |----------|--------|---------------|---------|-------|--------|
-| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 | ✅ |
-| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 31 | ✅ |
-| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 800 | ✅ |
+| Schema.org | `schema` | `https://schema.org/` | 17,606 | 20,596 | ✅ |
+| DCAT | `dcat` | `http://www.w3.org/ns/dcat#` | 1,338 | 1,407 | ✅ |
+| TIME | `time` | `http://www.w3.org/2006/time#` | 1,295 | 1,465 | ✅ |
+| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1,126 | 1,290 | ✅ |
+| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 882 | 1,111 | ✅ |
+| ORG | `org` | `http://www.w3.org/ns/org#` | 746 | 817 | ✅ |
 | DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 741 | 803 | ✅ |
-| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 620 | 696 | ✅ |
-| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 | ✅ |
-| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 529 | ✅ |
-| PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1126 | 1290 | ✅ |
-| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 | ✅ |
-| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 103 | ✅ |
+| Dublin Core Terms | `dcterms` | `http://purl.org/dc/terms/` | 700 | 800 | ✅ |
 | SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 658 | 758 | ✅ |
+| FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 620 | 696 | ✅ |
+| OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 529 | ✅ |
 | SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 289 | ✅ |
-| TIME | `time` | `http://www.w3.org/2006/time#` | 1295 | 1465 | ✅ |
-| VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 882 | 1111 | ✅ |
+| RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 | ✅ |
+| Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 | ✅ |
+| RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 103 | ✅ |
+| GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 | ✅ |
+| Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 31 | ✅ |
 
-**Total: 7,104 triples — 14 ontologies**
+**Total: 26,794 triples, 31,010 files — 17 ontologies**
 
 ### Additional
 
@@ -63,6 +66,9 @@ exocortex-public-ontologies/
 ├── vcard/                  # VCARD (Contact information)
 ├── doap/                   # DOAP (Description of a Project)
 ├── sioc/                   # SIOC (Online Communities)
+├── dcat/                   # DCAT (Data Catalog Vocabulary)
+├── org/                    # ORG (Organization Ontology)
+├── schema/                 # Schema.org vocabulary
 ├── xsd/                    # XSD (XML Schema datatypes)
 ├── scripts/                # Tools
 │   ├── import_ontology.py  # RDF → file-based converter
@@ -70,7 +76,8 @@ exocortex-public-ontologies/
 │   ├── verify_import.py    # Semantic equivalence check
 │   ├── export_rdf.py       # Export back to RDF format
 │   ├── add_aliases.py      # Add human-readable aliases
-│   └── compare_ontologies.py # Compare ontology directories
+│   ├── compare_ontologies.py # Compare ontology directories
+│   └── stats.py            # Generate ontology statistics
 └── ~templates/             # Obsidian templates
 ```
 
@@ -606,6 +613,7 @@ The hook blocks commits if validation fails.
 |--------|---------|-------|
 | `add_aliases.py` | Add/update human-readable aliases | `python scripts/add_aliases.py [--dry-run]` |
 | `compare_ontologies.py` | Compare two ontology directories | `python scripts/compare_ontologies.py <dir1> <dir2>` |
+| `stats.py` | Generate statistics for all ontologies | `python scripts/stats.py [--json\|--markdown]` |
 
 ### Key UUIDs Reference
 
