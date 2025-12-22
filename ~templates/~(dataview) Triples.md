@@ -2,27 +2,27 @@
 ```dataview
 TABLE WITHOUT ID
 	link(file.link, "_") AS "_",
-	rdf__subject,
-	rdf__predicate,
-	rdf__object
-WHERE rdf__subject = this.file.link
+	subject.aliases[0] AS subject,
+	predicate.aliases[0] AS predicate,
+	object.aliases[0] AS object
+WHERE subject = this.file.link
 ```
 ## As Predicate
 ```dataview
 TABLE WITHOUT ID
 	link(file.link, "_") AS "_",
-	rdf__subject, 
-	rdf__predicate,
-	rdf__object
+	subject.aliases[0] AS subject,
+	predicate.aliases[0] AS predicate,
+	object.aliases[0] AS object
 WHERE 
-	rdf__predicate = this.file.link
+	predicate = this.file.link
 ```
 ## As Object
 ```dataview
 TABLE WITHOUT ID
 	link(file.link, "_") AS "_",
-	rdf__subject,
-	rdf__predicate,
-	rdf__object
-WHERE rdf__object = this.file.link
+	subject.aliases[0] AS subject,
+	predicate.aliases[0] AS predicate,
+	object.aliases[0] AS object
+WHERE object = this.file.link
 ```

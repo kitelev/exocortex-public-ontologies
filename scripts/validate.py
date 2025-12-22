@@ -67,6 +67,7 @@ class ValidationResult:
     has_body_violations: List[str] = field(default_factory=list)
     orphaned_blank_nodes: List[str] = field(default_factory=list)
     undefined_blank_nodes: List[Tuple[str, str]] = field(default_factory=list)
+    missing_aliases: List[str] = field(default_factory=list)
 
     def has_errors(self) -> bool:
         """Check if there are any validation errors.
@@ -84,7 +85,8 @@ class ValidationResult:
             self.frontmatter_prop_violations,
             self.has_body_violations,
             self.orphaned_blank_nodes,
-            self.undefined_blank_nodes
+            self.undefined_blank_nodes,
+            self.missing_aliases
         ])
 
     def summary(self) -> str:
@@ -109,6 +111,8 @@ class ValidationResult:
             lines.append(f"  Orphaned blank nodes: {len(self.orphaned_blank_nodes)}")
         if self.undefined_blank_nodes:
             lines.append(f"  Undefined blank nodes: {len(self.undefined_blank_nodes)}")
+        if self.missing_aliases:
+            lines.append(f"  Missing aliases: {len(self.missing_aliases)}")
         return '\n'.join(lines) if lines else "  All checks passed!"
 
 
@@ -320,6 +324,13 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
         result.has_body_violations.append(str(rel_path))
         if verbose:
             print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
+
+    # Check that all files have aliases (required for human-readable navigation)
+    aliases = data.get('aliases')
+    if not aliases or not isinstance(aliases, list) or len(aliases) == 0:
+        result.missing_aliases.append(str(rel_path))
+        if verbose:
+            print(f"  🏷️  {rel_path}: missing aliases")
 
 
 def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_nodes: Set[str], all_namespaces: Set[str], verbose: bool = False) -> List[str]:
@@ -572,6 +583,13 @@ def main():
                 print(f"  - {filepath}: {bn}")
             if len(result.undefined_blank_nodes) > 20:
                 print(f"  ... and {len(result.undefined_blank_nodes) - 20} more")
+
+        if result.missing_aliases and not args.verbose:
+            print(f"\nMissing aliases ({len(result.missing_aliases)}):")
+            for filepath in result.missing_aliases[:20]:
+                print(f"  - {filepath}")
+            if len(result.missing_aliases) > 20:
+                print(f"  ... and {len(result.missing_aliases) - 20} more")
 
         sys.exit(1)
     else:

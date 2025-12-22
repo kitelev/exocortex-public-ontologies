@@ -64,11 +64,27 @@ NAMESPACE_URI_TO_PREFIX = {
 # Reverse mapping: prefix → namespace URI
 PREFIX_TO_NAMESPACE_URI = {v: k for k, v in NAMESPACE_URI_TO_PREFIX.items()}
 
+# Special mapping for ontology URIs (without # suffix)
+# These are used for owl:Ontology resources that don't end with # or /
+ONTOLOGY_URI_TO_PREFIX = {
+    'http://www.w3.org/2002/07/owl': 'owl',
+    'http://www.w3.org/2004/02/skos/core': 'skos',
+    'http://www.w3.org/2006/time': 'time',
+    'http://www.w3.org/2006/vcard/ns': 'vcard',
+    'http://www.w3.org/ns/dcat': 'dcat',
+    'http://www.w3.org/ns/org': 'org',
+    'http://www.w3.org/ns/prov': 'prov',
+}
+
 
 def extract_prefix_from_uri(uri: str) -> Optional[str]:
     """Extract the namespace prefix from a full URI."""
     if not uri:
         return None
+    # First, check ontology URIs (exact match, for URIs without # suffix)
+    if uri in ONTOLOGY_URI_TO_PREFIX:
+        return ONTOLOGY_URI_TO_PREFIX[uri]
+    # Then check namespace URIs (prefix match)
     for ns_uri, prefix in NAMESPACE_URI_TO_PREFIX.items():
         if uri.startswith(ns_uri):
             return prefix
@@ -388,27 +404,34 @@ def create_anchor_file(output_dir: Path, anchor: str, uri: str = None) -> None:
         return
 
     if uri:
-        # Generate alias: prefix:localname
+        # Generate alias: prefix:localname or fallback
         prefix = extract_prefix_from_uri(uri)
+        localname = extract_localname_from_uri(uri)
+
         if prefix:
-            localname = extract_localname_from_uri(uri)
-            alias = format_alias_value(f"{prefix}:{localname}")
-            content = f"""---
+            # Check if this is an ontology URI (exact match, no localname)
+            if uri in ONTOLOGY_URI_TO_PREFIX:
+                alias = format_alias_value(f"{prefix}:")
+            else:
+                alias = format_alias_value(f"{prefix}:{localname}")
+        else:
+            # Fallback: use localname or last URI segment
+            alias = format_alias_value(localname if localname else uri)
+
+        content = f"""---
 metadata: anchor
 uri: {uri}
 aliases:
   - {alias}
 ---
 """
-        else:
-            content = f"""---
-metadata: anchor
-uri: {uri}
----
-"""
     else:
-        content = """---
+        # No URI - generate UUID-based alias as fallback
+        alias = format_alias_value(anchor[:8])
+        content = f"""---
 metadata: anchor
+aliases:
+  - {alias}
 ---
 """
     write_file(filepath, content)
