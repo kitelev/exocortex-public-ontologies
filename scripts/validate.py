@@ -27,7 +27,7 @@ from dataclasses import dataclass, field
 # Repository root (relative to script location)
 REPO_ROOT = Path(__file__).parent.parent
 # Namespace prefixes (short names for namespace URIs, e.g., 'rdf' for http://www.w3.org/1999/02/22-rdf-syntax-ns#)
-PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
+PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema']
 EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
 
 
