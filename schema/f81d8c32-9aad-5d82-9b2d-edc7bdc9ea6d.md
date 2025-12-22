@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/SaleEvent
+uri: "https://schema.org/SaleEvent"
+aliases:
+  - "schema:SaleEvent"
 ---

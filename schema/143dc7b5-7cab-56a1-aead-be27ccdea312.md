@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/EnrollingByInvitation
+uri: "https://schema.org/EnrollingByInvitation"
+aliases:
+  - "schema:EnrollingByInvitation"
 ---

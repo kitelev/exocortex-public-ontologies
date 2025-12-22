@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/EventPostponed
+uri: "https://schema.org/EventPostponed"
+aliases:
+  - "schema:EventPostponed"
 ---

@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/customer
+uri: "https://schema.org/customer"
+aliases:
+  - "schema:customer"
 ---

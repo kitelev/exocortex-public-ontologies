@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/ReservationPending
+uri: "https://schema.org/ReservationPending"
+aliases:
+  - "schema:ReservationPending"
 ---

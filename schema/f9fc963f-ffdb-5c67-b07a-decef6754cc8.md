@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/targetPopulation
+uri: "https://schema.org/targetPopulation"
+aliases:
+  - "schema:targetPopulation"
 ---

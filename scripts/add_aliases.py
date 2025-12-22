@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Dict, Optional, Tuple
 
 # Namespace prefixes (short names for namespace URIs)
-PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd']
+PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema']
 
 # Namespace URI to prefix mapping (canonical)
 NS_URI_TO_PREFIX = {
@@ -33,11 +33,24 @@ NS_URI_TO_PREFIX = {
     'http://xmlns.com/foaf/0.1/': 'foaf',
     'http://www.w3.org/ns/prov#': 'prov',
     'http://www.w3.org/2006/time#': 'time',
-    'http://www.opengis.net/ont/geosparql#': 'geo',
+    'http://www.w3.org/2003/01/geo/wgs84_pos#': 'geo',
     'http://www.w3.org/2006/vcard/ns#': 'vcard',
     'http://usefulinc.com/ns/doap#': 'doap',
     'http://rdfs.org/sioc/ns#': 'sioc',
     'http://www.w3.org/2001/XMLSchema#': 'xsd',
+    'http://www.w3.org/ns/dcat#': 'dcat',
+    'http://www.w3.org/ns/org#': 'org',
+    'https://schema.org/': 'schema',
+}
+
+# Ontology URIs (without #) that map to the same prefix
+# These are used when owl:Ontology URI differs from namespace URI
+ONTOLOGY_URI_TO_PREFIX = {
+    'http://www.w3.org/2002/07/owl': 'owl',
+    'http://www.w3.org/2004/02/skos/core': 'skos',
+    'http://www.w3.org/2006/time': 'time',
+    'http://www.w3.org/2006/vcard/ns': 'vcard',
+    'http://www.w3.org/ns/dcat': 'dcat',
 }
 
 # Maximum length for statement aliases
@@ -53,6 +66,9 @@ def extract_prefix_from_uri(uri: str) -> Optional[str]:
     for ns_uri, prefix in NS_URI_TO_PREFIX.items():
         if uri.startswith(ns_uri):
             return prefix
+    # Try ontology URIs (exact match for ontology anchors)
+    if uri in ONTOLOGY_URI_TO_PREFIX:
+        return ONTOLOGY_URI_TO_PREFIX[uri]
     return None
 
 
@@ -252,6 +268,10 @@ def get_anchor_alias(fm: dict) -> Optional[str]:
     uri = fm.get('uri', '')
     if not uri:
         return None
+    # Check if this is an ontology URI (exact match, no localname)
+    if uri in ONTOLOGY_URI_TO_PREFIX:
+        prefix = ONTOLOGY_URI_TO_PREFIX[uri]
+        return f'{prefix}:'  # e.g., "owl:" for the OWL ontology itself
     prefix = extract_prefix_from_uri(uri)
     if not prefix:
         return None

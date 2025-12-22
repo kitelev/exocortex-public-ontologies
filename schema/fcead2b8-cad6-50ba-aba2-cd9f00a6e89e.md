@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/OccupationalTherapy
+uri: "https://schema.org/OccupationalTherapy"
+aliases:
+  - "schema:OccupationalTherapy"
 ---

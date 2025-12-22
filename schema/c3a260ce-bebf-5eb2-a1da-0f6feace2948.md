@@ -4,5 +4,5 @@ subject: "[[3ae9d3ba-29a6-517e-93a1-4320c46b7e46]]"
 predicate: "[[668d3000-14e3-5149-aecc-97c7b6c6dc33]]"
 object: "[[23182273-4f9d-585d-9498-f203ed6a2cee]]"
 aliases:
-  - "? ? ?"
+  - "schema:cvdNumC19Died schema:domainIncludes schema:CDCPMDRecord"
 ---

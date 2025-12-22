@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/validFor
+uri: "https://schema.org/validFor"
+aliases:
+  - "schema:validFor"
 ---

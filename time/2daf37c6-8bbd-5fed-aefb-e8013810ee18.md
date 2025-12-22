@@ -4,5 +4,5 @@ subject: "[[d5db9df1-e493-542e-bed2-b9c4a33f9f2b]]"
 predicate: "[[2db0199c-c05f-51cd-b1d4-6c0ca7bb7485]]"
 object: "\"Воскресенье\"@ru"
 aliases:
-  - "time:Sunday skos:prefLabel Воскресенье"
+  - "time:Sunday skos:prefLabel \"Воскресенье\"@ru"
 ---

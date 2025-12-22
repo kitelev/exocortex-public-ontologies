@@ -4,5 +4,5 @@ subject: "[[45bfb987-2f8b-5906-b3fe-1e20caa7ae36]]"
 predicate: "[[4c823ec0-bfd0-55eb-9fc8-492948441d03]]"
 object: "\"Systém organizace znalostí (KOS) použitý pro klasifikaci datových sad v katalogu.\"@cs"
 aliases:
-  - "? skos:definition Systém organizace znalostí (KO..."
+  - "dcat:themeTaxonomy skos:definition \"Systém organizace znalostí (K..."
 ---

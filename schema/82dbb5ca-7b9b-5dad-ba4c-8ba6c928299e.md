@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/screenCount
+uri: "https://schema.org/screenCount"
+aliases:
+  - "schema:screenCount"
 ---

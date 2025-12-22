@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/comprisedOf
+uri: "https://schema.org/comprisedOf"
+aliases:
+  - "schema:comprisedOf"
 ---

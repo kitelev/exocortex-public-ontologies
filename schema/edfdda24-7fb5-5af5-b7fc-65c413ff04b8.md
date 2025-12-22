@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/HealthPlanCostSharingSpecification
+uri: "https://schema.org/HealthPlanCostSharingSpecification"
+aliases:
+  - "schema:HealthPlanCostSharingSpecification"
 ---

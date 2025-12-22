@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/DepositAccount
+uri: "https://schema.org/DepositAccount"
+aliases:
+  - "schema:DepositAccount"
 ---

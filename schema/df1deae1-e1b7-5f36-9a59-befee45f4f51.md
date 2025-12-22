@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/hasMolecularFunction
+uri: "https://schema.org/hasMolecularFunction"
+aliases:
+  - "schema:hasMolecularFunction"
 ---

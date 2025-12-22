@@ -4,5 +4,5 @@ subject: "[[d34c5f39-a026-5288-bfb3-d2efd6adc680]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"tjenesteendpoint\"@da"
 aliases:
-  - "? rdfs:label tjenesteendpoint"
+  - "dcat:endpointURL rdfs:label \"tjenesteendpoint\"@da"
 ---

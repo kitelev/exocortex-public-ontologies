@@ -4,5 +4,5 @@ subject: "[[b85bcdc4-7528-531f-b5d5-182a26dbd87f]]"
 predicate: "[[668d3000-14e3-5149-aecc-97c7b6c6dc33]]"
 object: "[[86603b62-1c04-584f-bb8e-9df9edb87d15]]"
 aliases:
-  - "? ? ?"
+  - "schema:deliveryStatus schema:domainIncludes schema:ParcelDelivery"
 ---

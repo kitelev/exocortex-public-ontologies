@@ -4,5 +4,5 @@ subject: "[[c95aa618-b273-5cf7-af65-54d330e5e87b]]"
 predicate: "[[668d3000-14e3-5149-aecc-97c7b6c6dc33]]"
 object: "[[33cfa2f5-ae3a-532c-947f-c2efafb58184]]"
 aliases:
-  - "? ? ?"
+  - "schema:identifier schema:domainIncludes schema:Thing"
 ---

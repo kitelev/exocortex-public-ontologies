@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/MenuItem
+uri: "https://schema.org/MenuItem"
+aliases:
+  - "schema:MenuItem"
 ---

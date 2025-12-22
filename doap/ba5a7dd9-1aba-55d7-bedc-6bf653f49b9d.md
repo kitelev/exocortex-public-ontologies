@@ -4,5 +4,5 @@ subject: "[[f5c2abb3-06c3-54ae-b167-d0303af04674]]"
 predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Repositorio CVS del código fuente.\"@es"
 aliases:
-  - "doap:CVSRepository rdfs:comment Repositorio CVS del código fue..."
+  - "doap:CVSRepository rdfs:comment \"Repositorio CVS del código fu..."
 ---

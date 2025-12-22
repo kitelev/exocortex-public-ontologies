@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/OrderStatus
+uri: "https://schema.org/OrderStatus"
+aliases:
+  - "schema:OrderStatus"
 ---

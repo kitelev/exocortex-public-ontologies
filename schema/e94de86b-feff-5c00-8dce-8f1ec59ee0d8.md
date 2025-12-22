@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/Surgical
+uri: "https://schema.org/Surgical"
+aliases:
+  - "schema:Surgical"
 ---

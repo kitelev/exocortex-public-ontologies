@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/givenName
+uri: "https://schema.org/givenName"
+aliases:
+  - "schema:givenName"
 ---

@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/MolecularEntity
+uri: "https://schema.org/MolecularEntity"
+aliases:
+  - "schema:MolecularEntity"
 ---
