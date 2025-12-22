@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[b7e52e43-d764-5e4d-a0de-60b83bfd4ca1]]"
+predicate: "[[4c823ec0-bfd0-55eb-9fc8-492948441d03]]"
+object: "\"Ressource udgivet eller udvalgt og arrangeret af en enkelt aktør.\"@da"
+aliases:
+  - "? skos:definition Ressource udgivet eller udvalg..."
+---

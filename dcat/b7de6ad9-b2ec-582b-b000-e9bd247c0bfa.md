@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[568c7fbf-1fc7-5c3d-955c-f341fd38eceb]]"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+object: "\"minimum spatial separation resolvable in a dataset, measured in meters.\"@en-US"
+aliases:
+  - "? rdfs:comment minimum spatial separation res..."
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[9f80cc10-fa49-5bcd-966e-151b647a2942]]"
+predicate: "[[dc0b7002-165a-5d8d-be11-a10c11eadf18]]"
+object: "\"Dataudstilling\"@da"
+aliases:
+  - "? skos:altLabel Dataudstilling"
+---

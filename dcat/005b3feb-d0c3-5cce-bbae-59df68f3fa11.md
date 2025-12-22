@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[cef11d31-66f8-5183-bb2c-8933a15b6988]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"thème\"@fr"
+aliases:
+  - "? rdfs:label thème"
+---
