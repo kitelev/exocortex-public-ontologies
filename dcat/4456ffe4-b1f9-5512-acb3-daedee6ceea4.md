@@ -4,5 +4,5 @@ subject: "[[2b1f1dca-2497-5e19-87bf-ac6a31568524]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"access address\"@en"
 aliases:
-  - "? rdfs:label access address"
+  - "dcat:accessURL rdfs:label \"access address\"@en"
 ---

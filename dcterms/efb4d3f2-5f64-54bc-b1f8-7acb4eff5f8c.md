@@ -4,5 +4,5 @@ subject: "[[7a3742e7-c3d6-5295-9676-2c843977cf40]]"
 predicate: "[[3e98087c-7fe5-5523-b25a-b83b0f6bbd8c]]"
 object: "\"2000-07-11\"^^[[f9e4597b-3986-557b-9b9e-781d6599bcf5]]"
 aliases:
-  - "dcterms:Box dcterms:issued 2000-07-11"
+  - "dcterms:Box dcterms:issued \"2000-07-11\"^^[[f9e4597b-3986-..."
 ---

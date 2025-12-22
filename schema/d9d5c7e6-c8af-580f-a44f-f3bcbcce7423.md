@@ -4,5 +4,5 @@ subject: "[[d0f4a41e-64bf-5a02-9d04-c3bbb3f258e6]]"
 predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
 object: "[[f1afe09a-f371-5a01-a530-be18bfdb4d6b]]"
 aliases:
-  - "? a rdf:Property"
+  - "schema:certificationRating a rdf:Property"
 ---

@@ -4,5 +4,5 @@ subject: "[[7a532d12-83f5-5b7c-bf4c-b227d1fffae4]]"
 predicate: "[[668d3000-14e3-5149-aecc-97c7b6c6dc33]]"
 object: "[[9134198c-0773-57f5-895b-5375f8990f34]]"
 aliases:
-  - "? ? ?"
+  - "schema:shippingDestination schema:domainIncludes schema:OfferShippingDetails"
 ---

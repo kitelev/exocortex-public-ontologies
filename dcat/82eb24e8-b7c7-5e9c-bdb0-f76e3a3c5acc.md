@@ -4,5 +4,5 @@ subject: "[[83d79cb8-77ea-5b22-a96f-a56cc72df4cc]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"media type\"@en"
 aliases:
-  - "? rdfs:label media type"
+  - "dcat:mediaType rdfs:label \"media type\"@en"
 ---

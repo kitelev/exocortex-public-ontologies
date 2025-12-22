@@ -1,6 +1,6 @@
 ---
 metadata: blank_node
-uri: http://www.w3.org/ns/prov/.well-known/genid/9966fdf4
+uri: "http://www.w3.org/ns/prov/.well-known/genid/9966fdf4"
 aliases:
   - "_:genid-9966fdf4"
 ---

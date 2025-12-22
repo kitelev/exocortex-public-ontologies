@@ -4,5 +4,5 @@ subject: "[[764d470f-24ba-5c8b-ad81-9de6695201bb]]"
 predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Nombre del módulo de un repositorio Subversion, CVS, BitKeeper o Arch.\"@es"
 aliases:
-  - "doap:module rdfs:comment Nombre del módulo de un reposi..."
+  - "doap:module rdfs:comment \"Nombre del módulo de un repos..."
 ---

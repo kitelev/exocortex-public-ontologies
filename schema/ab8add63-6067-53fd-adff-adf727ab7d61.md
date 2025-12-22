@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/OwnershipInfo
+uri: "https://schema.org/OwnershipInfo"
+aliases:
+  - "schema:OwnershipInfo"
 ---

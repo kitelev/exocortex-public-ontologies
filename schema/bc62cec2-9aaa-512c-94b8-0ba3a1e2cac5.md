@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/materialExtent
+uri: "https://schema.org/materialExtent"
+aliases:
+  - "schema:materialExtent"
 ---

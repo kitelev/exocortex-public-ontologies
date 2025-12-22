@@ -4,5 +4,5 @@ subject: "[[0013919c-e566-52ae-b9e1-bb1c910c52da]]"
 predicate: "[[668d3000-14e3-5149-aecc-97c7b6c6dc33]]"
 object: "[[a0fbf7c0-2543-5abf-b0bc-41f468f43380]]"
 aliases:
-  - "? ? ?"
+  - "schema:endDate schema:domainIncludes schema:Event"
 ---

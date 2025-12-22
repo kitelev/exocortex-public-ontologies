@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/MusicVenue
+uri: "https://schema.org/MusicVenue"
+aliases:
+  - "schema:MusicVenue"
 ---

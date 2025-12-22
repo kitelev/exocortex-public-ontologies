@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/AdultOrientedEnumeration
+uri: "https://schema.org/AdultOrientedEnumeration"
+aliases:
+  - "schema:AdultOrientedEnumeration"
 ---

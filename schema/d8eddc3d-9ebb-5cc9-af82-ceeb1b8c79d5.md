@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/geoCrosses
+uri: "https://schema.org/geoCrosses"
+aliases:
+  - "schema:geoCrosses"
 ---

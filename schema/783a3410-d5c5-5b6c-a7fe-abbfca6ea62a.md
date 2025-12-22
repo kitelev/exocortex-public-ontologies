@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/audience
+uri: "https://schema.org/audience"
+aliases:
+  - "schema:audience"
 ---

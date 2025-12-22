@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/DemoGameAvailability
+uri: "https://schema.org/DemoGameAvailability"
+aliases:
+  - "schema:DemoGameAvailability"
 ---

@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/eligibilityToWorkRequirement
+uri: "https://schema.org/eligibilityToWorkRequirement"
+aliases:
+  - "schema:eligibilityToWorkRequirement"
 ---

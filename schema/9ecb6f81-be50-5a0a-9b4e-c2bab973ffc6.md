@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/EducationalOrganization
+uri: "https://schema.org/EducationalOrganization"
+aliases:
+  - "schema:EducationalOrganization"
 ---

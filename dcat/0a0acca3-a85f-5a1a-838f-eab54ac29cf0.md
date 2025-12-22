@@ -4,5 +4,5 @@ subject: "[[cef11d31-66f8-5183-bb2c-8933a15b6988]]"
 predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
 object: "\"Et centralt emne for ressourcen. En ressource kan have flere centrale emner.\"@da"
 aliases:
-  - "? rdfs:comment Et centralt emne for ressource..."
+  - "dcat:theme rdfs:comment \"Et centralt emne for ressourc..."
 ---

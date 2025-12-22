@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/MedicalDevicePurpose
+uri: "https://schema.org/MedicalDevicePurpose"
+aliases:
+  - "schema:MedicalDevicePurpose"
 ---

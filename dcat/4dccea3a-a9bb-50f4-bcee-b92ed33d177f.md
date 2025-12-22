@@ -4,5 +4,5 @@ subject: "[[c6fa5e10-b9cd-5f9c-bb1d-c1047f538449]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"διανομή\"@el"
 aliases:
-  - "? rdfs:label διανομή"
+  - "dcat:distribution rdfs:label \"διανομή\"@el"
 ---

@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/Registry
+uri: "https://schema.org/Registry"
+aliases:
+  - "schema:Registry"
 ---

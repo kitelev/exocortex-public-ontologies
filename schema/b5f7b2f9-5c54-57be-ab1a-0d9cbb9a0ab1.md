@@ -1,4 +1,6 @@
 ---
 metadata: anchor
-uri: https://schema.org/artMedium
+uri: "https://schema.org/artMedium"
+aliases:
+  - "schema:artMedium"
 ---
