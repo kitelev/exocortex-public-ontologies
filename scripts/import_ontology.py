@@ -59,6 +59,7 @@ NAMESPACE_URI_TO_PREFIX = {
     'http://usefulinc.com/ns/doap#': 'doap',
     'http://rdfs.org/sioc/ns#': 'sioc',
     'http://www.w3.org/2001/XMLSchema#': 'xsd',
+    'http://www.w3.org/2003/06/sw-vocab-status/ns#': 'vs',
 }
 
 # Reverse mapping: prefix → namespace URI

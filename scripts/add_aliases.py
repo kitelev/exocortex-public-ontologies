@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Dict, Optional, Tuple
 
 # Namespace prefixes (short names for namespace URIs)
-PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema']
+PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema', 'vs']
 
 # Namespace URI to prefix mapping (canonical)
 NS_URI_TO_PREFIX = {
@@ -41,6 +41,7 @@ NS_URI_TO_PREFIX = {
     'http://www.w3.org/ns/dcat#': 'dcat',
     'http://www.w3.org/ns/org#': 'org',
     'https://schema.org/': 'schema',
+    'http://www.w3.org/2003/06/sw-vocab-status/ns#': 'vs',
 }
 
 # Ontology URIs (without #) that map to the same prefix
