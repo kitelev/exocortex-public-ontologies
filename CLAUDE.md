@@ -35,6 +35,9 @@ python scripts/test_all_ontologies.py
 
 # Install pre-commit validation hook
 ./scripts/install-hooks.sh
+
+# Generate statistics report
+python scripts/stats.py [--json]
 ```
 
 ## Architecture
