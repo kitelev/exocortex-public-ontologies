@@ -38,6 +38,10 @@ python scripts/test_all_ontologies.py
 
 # Generate statistics report
 python scripts/stats.py [--json]
+
+# Run tests
+pip install pytest
+pytest tests/ -v
 ```
 
 ## Architecture
