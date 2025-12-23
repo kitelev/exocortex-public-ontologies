@@ -2,42 +2,32 @@
 """
 Generate statistics for exocortex-public-ontologies.
 
-Shows counts of files, triples, anchors, and predicates per namespace.
+Displays:
+- Total file counts by type
+- Per-namespace breakdown
+- Top predicates used
+- External reference analysis
 
 Usage:
-    python scripts/stats.py [--json] [--markdown]
+    python scripts/stats.py [--json]
 """
 
-import os
-import sys
+import argparse
 import json
-import yaml
 import re
+import yaml
 from pathlib import Path
-from collections import defaultdict
-from dataclasses import dataclass, field
-from typing import Dict, List, Set, Optional
+from collections import Counter, defaultdict
+from typing import Dict, List, Set, Tuple
 
 # Repository root (relative to script location)
 REPO_ROOT = Path(__file__).parent.parent
-PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema']
+
+# Namespace prefixes
+PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema', 'vs']
 
 
-@dataclass
-class NamespaceStats:
-    """Statistics for a single namespace."""
-    prefix: str
-    total_files: int = 0
-    statements: int = 0
-    anchors: int = 0
-    blank_nodes: int = 0
-    namespaces: int = 0
-    predicates: Set[str] = field(default_factory=set)
-    classes: Set[str] = field(default_factory=set)
-    properties: Set[str] = field(default_factory=set)
-
-
-def parse_frontmatter(filepath: Path) -> Optional[dict]:
+def parse_frontmatter(filepath: Path) -> dict:
     """Parse YAML frontmatter from a markdown file."""
     try:
         content = filepath.read_text(encoding='utf-8')
@@ -62,140 +52,171 @@ def parse_frontmatter(filepath: Path) -> Optional[dict]:
         return None
 
 
-def extract_uri_local_name(uri_or_wikilink: str) -> Optional[str]:
-    """Extract local name from URI or wikilink."""
-    # Handle wikilinks like [[uuid|alias]] or [[uuid]]
-    wikilink_match = re.match(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]', uri_or_wikilink)
-    if wikilink_match:
-        return wikilink_match.group(1)
+def extract_wikilinks(data: dict) -> Set[str]:
+    """Extract all wikilink targets from frontmatter values."""
+    links = set()
+    wikilink_pattern = re.compile(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]')
 
-    # Handle URIs
-    if '#' in uri_or_wikilink:
-        return uri_or_wikilink.split('#')[-1]
-    if '/' in uri_or_wikilink:
-        return uri_or_wikilink.split('/')[-1]
+    for key, value in data.items():
+        if isinstance(value, str):
+            for match in wikilink_pattern.finditer(value):
+                links.add(match.group(1))
 
-    return uri_or_wikilink
+    return links
 
 
-def collect_namespace_stats(repo_root: Path, prefix: str) -> Optional[NamespaceStats]:
-    """Collect statistics for a single namespace."""
-    ns_dir = repo_root / prefix
-    if not ns_dir.exists():
-        return None
+def collect_stats(repo_root: Path) -> dict:
+    """Collect all statistics from the repository."""
+    stats = {
+        'total_files': 0,
+        'by_type': Counter(),
+        'by_namespace': defaultdict(lambda: {'files': 0, 'anchors': 0, 'statements': 0, 'namespaces': 0, 'blank_nodes': 0}),
+        'predicates': Counter(),
+        'all_anchors': set(),
+        'referenced_anchors': set(),
+        'external_refs': Counter(),
+    }
 
-    stats = NamespaceStats(prefix=prefix)
-
-    for filepath in ns_dir.glob('*.md'):
-        stats.total_files += 1
-        data = parse_frontmatter(filepath)
-        if not data:
+    # Collect all anchors first
+    for ns in PREFIXES:
+        ns_dir = repo_root / ns
+        if not ns_dir.exists():
             continue
 
-        metadata = data.get('metadata', '')
+        for filepath in ns_dir.glob('*.md'):
+            data = parse_frontmatter(filepath)
+            if data and data.get('metadata') in ('anchor', 'namespace', 'blank_node'):
+                stats['all_anchors'].add(filepath.stem)
 
-        if metadata == 'statement':
-            stats.statements += 1
-            # Track predicate
-            predicate = data.get('predicate', '')
-            if predicate:
-                local_name = extract_uri_local_name(predicate)
-                if local_name:
-                    stats.predicates.add(local_name)
-        elif metadata == 'anchor':
-            stats.anchors += 1
-        elif metadata == 'blank_node':
-            stats.blank_nodes += 1
-        elif metadata == 'namespace':
-            stats.namespaces += 1
+    # Process all files
+    for ns in PREFIXES:
+        ns_dir = repo_root / ns
+        if not ns_dir.exists():
+            continue
+
+        for filepath in ns_dir.glob('*.md'):
+            data = parse_frontmatter(filepath)
+            if not data:
+                continue
+
+            stats['total_files'] += 1
+            metadata = data.get('metadata', 'unknown')
+            stats['by_type'][metadata] += 1
+            stats['by_namespace'][ns]['files'] += 1
+
+            if metadata == 'anchor':
+                stats['by_namespace'][ns]['anchors'] += 1
+            elif metadata == 'namespace':
+                stats['by_namespace'][ns]['namespaces'] += 1
+            elif metadata == 'blank_node':
+                stats['by_namespace'][ns]['blank_nodes'] += 1
+            elif metadata == 'statement':
+                stats['by_namespace'][ns]['statements'] += 1
+
+                # Count predicate usage
+                predicate = data.get('predicate', '')
+                pred_match = re.search(r'\[\[([^\]|]+)', predicate)
+                if pred_match:
+                    pred_uuid = pred_match.group(1)
+                    stats['predicates'][pred_uuid] += 1
+
+                # Track referenced anchors
+                wikilinks = extract_wikilinks(data)
+                for link in wikilinks:
+                    if link in stats['all_anchors']:
+                        stats['referenced_anchors'].add(link)
+                    else:
+                        stats['external_refs'][link] += 1
 
     return stats
 
 
-def print_table(stats_list: List[NamespaceStats], output_format: str = 'text'):
-    """Print statistics as table."""
-    # Sort by total files descending
-    sorted_stats = sorted(stats_list, key=lambda s: s.total_files, reverse=True)
+def get_alias_for_uuid(uuid: str, repo_root: Path) -> str:
+    """Try to find the alias for a given UUID."""
+    for ns in PREFIXES:
+        filepath = repo_root / ns / f"{uuid}.md"
+        if filepath.exists():
+            data = parse_frontmatter(filepath)
+            if data and 'aliases' in data and data['aliases']:
+                return data['aliases'][0]
+    return uuid[:8] + '...'
 
-    # Calculate totals
-    total_files = sum(s.total_files for s in sorted_stats)
-    total_statements = sum(s.statements for s in sorted_stats)
-    total_anchors = sum(s.anchors for s in sorted_stats)
-    total_blank_nodes = sum(s.blank_nodes for s in sorted_stats)
-    total_predicates = len(set().union(*(s.predicates for s in sorted_stats)))
 
-    if output_format == 'json':
-        result = {
-            'namespaces': [
-                {
-                    'prefix': s.prefix,
-                    'files': s.total_files,
-                    'statements': s.statements,
-                    'anchors': s.anchors,
-                    'blank_nodes': s.blank_nodes,
-                    'unique_predicates': len(s.predicates)
-                }
-                for s in sorted_stats
+def print_stats(stats: dict, repo_root: Path, as_json: bool = False):
+    """Print statistics in human-readable or JSON format."""
+    if as_json:
+        # Convert sets and counters to JSON-serializable format
+        output = {
+            'total_files': stats['total_files'],
+            'by_type': dict(stats['by_type']),
+            'by_namespace': {k: dict(v) for k, v in stats['by_namespace'].items()},
+            'top_predicates': [
+                {'uuid': uuid, 'count': count, 'alias': get_alias_for_uuid(uuid, repo_root)}
+                for uuid, count in stats['predicates'].most_common(20)
             ],
-            'totals': {
-                'files': total_files,
-                'statements': total_statements,
-                'anchors': total_anchors,
-                'blank_nodes': total_blank_nodes,
-                'unique_predicates': total_predicates
-            }
+            'external_refs_count': len(stats['external_refs']),
+            'external_refs_total': sum(stats['external_refs'].values()),
         }
-        print(json.dumps(result, indent=2))
+        print(json.dumps(output, indent=2))
         return
 
-    if output_format == 'markdown':
-        print("| Namespace | Files | Statements | Anchors | Blank Nodes | Predicates |")
-        print("|-----------|------:|----------:|--------:|------------:|-----------:|")
-        for s in sorted_stats:
-            print(f"| {s.prefix} | {s.total_files:,} | {s.statements:,} | {s.anchors:,} | {s.blank_nodes} | {len(s.predicates)} |")
-        print(f"| **Total** | **{total_files:,}** | **{total_statements:,}** | **{total_anchors:,}** | **{total_blank_nodes}** | **{total_predicates}** |")
-        return
-
-    # Default: text format
-    print("=" * 80)
-    print("ONTOLOGY STATISTICS")
-    print("=" * 80)
+    print("=" * 60)
+    print("EXOCORTEX PUBLIC ONTOLOGIES - STATISTICS")
+    print("=" * 60)
     print()
-    print(f"{'Namespace':<12} {'Files':>10} {'Statements':>12} {'Anchors':>10} {'BlankNodes':>12} {'Predicates':>12}")
-    print("-" * 80)
 
-    for s in sorted_stats:
-        print(f"{s.prefix:<12} {s.total_files:>10,} {s.statements:>12,} {s.anchors:>10,} {s.blank_nodes:>12} {len(s.predicates):>12}")
+    # Overview
+    print("OVERVIEW")
+    print("-" * 40)
+    print(f"  Total namespaces:    {len(stats['by_namespace'])}")
+    print(f"  Total files:         {stats['total_files']:,}")
+    print(f"  Total anchors:       {len(stats['all_anchors']):,}")
+    print(f"  Total statements:    {stats['by_type'].get('statement', 0):,}")
+    print(f"  External refs:       {sum(stats['external_refs'].values()):,} ({len(stats['external_refs']):,} unique)")
+    print()
 
-    print("-" * 80)
-    print(f"{'TOTAL':<12} {total_files:>10,} {total_statements:>12,} {total_anchors:>10,} {total_blank_nodes:>12} {total_predicates:>12}")
-    print("=" * 80)
+    # By type
+    print("FILES BY TYPE")
+    print("-" * 40)
+    for metadata_type, count in sorted(stats['by_type'].items(), key=lambda x: -x[1]):
+        pct = count / stats['total_files'] * 100
+        print(f"  {metadata_type:15} {count:>6,} ({pct:5.1f}%)")
+    print()
+
+    # By namespace
+    print("FILES BY NAMESPACE")
+    print("-" * 40)
+    print(f"  {'Namespace':<10} {'Files':>8} {'Anchors':>8} {'Stmts':>8} {'BNodes':>8}")
+    print(f"  {'-'*10} {'-'*8} {'-'*8} {'-'*8} {'-'*8}")
+    for ns in sorted(stats['by_namespace'].keys(), key=lambda x: -stats['by_namespace'][x]['files']):
+        ns_stats = stats['by_namespace'][ns]
+        print(f"  {ns:<10} {ns_stats['files']:>8,} {ns_stats['anchors']:>8,} {ns_stats['statements']:>8,} {ns_stats['blank_nodes']:>8,}")
+    print()
+
+    # Top predicates
+    print("TOP 15 PREDICATES")
+    print("-" * 40)
+    for uuid, count in stats['predicates'].most_common(15):
+        alias = get_alias_for_uuid(uuid, repo_root)
+        pct = count / stats['by_type'].get('statement', 1) * 100
+        print(f"  {alias:35} {count:>6,} ({pct:5.1f}%)")
+    print()
+
+    # External refs
+    print("TOP 10 EXTERNAL REFERENCES")
+    print("-" * 40)
+    for uuid, count in stats['external_refs'].most_common(10):
+        print(f"  {uuid}  {count:>5,} refs")
+    print()
 
 
 def main():
-    import argparse
-
     parser = argparse.ArgumentParser(description='Generate ontology statistics')
     parser.add_argument('--json', action='store_true', help='Output as JSON')
-    parser.add_argument('--markdown', action='store_true', help='Output as Markdown table')
-    parser.add_argument('namespaces', nargs='*', help='Specific namespaces (default: all)')
     args = parser.parse_args()
 
-    namespaces_to_check = args.namespaces if args.namespaces else PREFIXES
-
-    stats_list = []
-    for prefix in namespaces_to_check:
-        stats = collect_namespace_stats(REPO_ROOT, prefix)
-        if stats:
-            stats_list.append(stats)
-
-    output_format = 'text'
-    if args.json:
-        output_format = 'json'
-    elif args.markdown:
-        output_format = 'markdown'
-
-    print_table(stats_list, output_format)
+    stats = collect_stats(REPO_ROOT)
+    print_stats(stats, REPO_ROOT, args.json)
 
 
 if __name__ == '__main__':
