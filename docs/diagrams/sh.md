@@ -6,15 +6,15 @@ UML-style class diagram for the **sh** namespace.
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
-- `-->` Object Property
-- `..>` Datatype Property
+- `-->` Object Property (owl:ObjectProperty)
+- `..>` Datatype Property (owl:DatatypeProperty)
 
 ```mermaid
 classDiagram
     class owl_Ontology
-    class rdf_Property
     class xsd_boolean
     class xsd_anyURI
+    class rdf_Property
     class xsd_string
     class rdfs_Class
     class rdfs_Resource
@@ -113,25 +113,6 @@ classDiagram
     sh_SPARQLAskExecutable <|-- sh_SPARQLAskValidator
     rdfs_Resource <|-- sh_Parameterizable
     sh_PropertyShape <|-- sh_Parameter
-    sh_PrefixDeclaration ..> xsd_string : sh:prefix
-    sh_AbstractResult ..> sh_Severity : sh:resultSeverity
-    sh_ValidationReport ..> sh_ValidationResult : sh:result
-    sh_AbstractResult ..> rdfs_Resource : sh:resultPath
-    sh_PrefixDeclaration ..> xsd_anyURI : sh:namespace
-    sh_Shape ..> sh_Target : sh:target
-    sh_Shape ..> sh_PropertyShape : sh:property
-    sh_AbstractResult ..> sh_AbstractResult : sh:detail
-    sh_ValidationReport ..> xsd_boolean : sh:shapesGraphWellFormed
-    sh_Shape ..> rdf_Property : sh:targetSubjectsOf
-    sh_Shape ..> sh_Rule : sh:rule
-    sh_Rule ..> sh_Shape : sh:condition
-    owl_Ontology ..> rdfs_Resource : sh:entailment
-    sh_Shape ..> rdf_Property : sh:targetObjectsOf
-    sh_SPARQLConstructExecutable ..> xsd_string : sh:construct
-    owl_Ontology ..> owl_Ontology : sh:shapesGraph
-    sh_ConstraintComponent ..> sh_Validator : sh:nodeValidator
-    sh_ResultAnnotation ..> xsd_string : sh:annotationVarName
-    sh_PropertyShape ..> sh_PropertyGroup : sh:group
 ```
 
 ## Statistics
@@ -141,5 +122,5 @@ classDiagram
 | Classes | 40 |
 | Properties | 101 |
 | Inheritance relationships | 55 |
-| Properties with domain | 25 |
-| Properties with range | 47 |
+| Properties with domain | 54 |
+| Properties with range | 77 |
