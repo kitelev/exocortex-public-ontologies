@@ -6,15 +6,19 @@ UML-style class diagram for the **geosparql** namespace.
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
-- `-->` Object Property
-- `..>` Datatype Property
+- `-->` Object Property (owl:ObjectProperty)
+- `..>` Datatype Property (owl:DatatypeProperty)
 
 ```mermaid
 classDiagram
-    class ca079f4f
+    class geosparql_gmlLiteral
     class geosparql_kmlLiteral
-    class xsd_boolean
+    class ca079f4f
     class rdfs_Literal
+    class geosparql_wktLiteral
+    class geosparql_dggsLiteral
+    class xsd_integer
+    class xsd_boolean
     class geosparql_geoJSONLiteral
     class bc7f215b
     class b5c888a2
@@ -34,14 +38,33 @@ classDiagram
     bc7f215b <|-- geosparql_GeometryCollection
     geosparql_SpatialObjectCollection <|-- geosparql_GeometryCollection
     geosparql_SpatialObject <|-- geosparql_Geometry
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehCovers
     geosparql_Geometry ..> geosparql_geoJSONLiteral : geosparql:asGeoJSON
-    geosparql_Geometry ..> rdfs_Literal : geosparql:hasSerialization
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:sfIntersects
+    geosparql_Feature --> geosparql_Geometry : geosparql:hasDefaultGeometry
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehOverlap
+    geosparql_Geometry ..> geosparql_wktLiteral : geosparql:asWKT
     geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:rcc8tppi
-    geosparql_Geometry ..> xsd_boolean : geosparql:isSimple
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:sfDisjoint
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehInside
+    geosparql_Geometry ..> ca079f4f : geosparql:hasMetricSpatialAccuracy
     geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:rcc8ntpp
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehContains
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:sfWithin
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:rcc8tpp
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehDisjoint
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehCoveredBy
     geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:sfContains
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:rcc8ntppi
     geosparql_Geometry ..> geosparql_kmlLiteral : geosparql:asKML
-    geosparql_SpatialObject ..> ca079f4f : geosparql:hasMetricArea
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:rcc8eq
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:ehEquals
+    geosparql_SpatialObject --> geosparql_SpatialObject : geosparql:sfTouches
+    geosparql_Feature --> geosparql_Geometry : geosparql:hasCentroid
+    geosparql_Feature --> geosparql_Geometry : geosparql:defaultGeometry
+    geosparql_Feature --> geosparql_Geometry : geosparql:hasBoundingBox
+    geosparql_SpatialObject ..> ca079f4f : geosparql:hasMetricPerimeterLength
+    geosparql_Geometry ..> geosparql_gmlLiteral : geosparql:asGML
 ```
 
 ## Statistics
@@ -51,5 +74,5 @@ classDiagram
 | Classes | 6 |
 | Properties | 54 |
 | Inheritance relationships | 8 |
-| Properties with domain | 19 |
-| Properties with range | 20 |
+| Properties with domain | 54 |
+| Properties with range | 47 |
