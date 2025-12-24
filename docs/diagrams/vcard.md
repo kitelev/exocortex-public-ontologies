@@ -2,31 +2,15 @@
 
 UML-style class diagram for the **vcard** namespace.
 
-*Generated automatically. Classes: 75, Properties: 84*
+*Generated automatically. Classes: 62, Properties: 84*
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
-- `-->` Object Property
-- `..>` Datatype Property
+- `-->` Object Property (owl:ObjectProperty)
+- `..>` Datatype Property (owl:DatatypeProperty)
 
 ```mermaid
 classDiagram
-    class vcard_RelatedType
-    class vcard_TelephoneType
-    class vcard_Type
-    class _0fe2bd43
-    class _1e8f15a8
-    class _27a61271
-    class _27fdff12
-    class _5ca151b2
-    class _92b55bff
-    class _9882b74c
-    class _9d9c42b2
-    class _9de50819
-    class afabe2fd
-    class bd3511ac
-    class d1db992f
-    class e6fb0d42
     class vcard_Acquaintance
     class vcard_Address
     class vcard_Agent
@@ -64,35 +48,80 @@ classDiagram
     class vcard_Msg
     class vcard_Muse
     class vcard_Name
+    class vcard_Neighbor
+    class vcard_None
+    class vcard_Organization
+    class vcard_Other
+    class vcard_Pager
+    class vcard_Parcel
+    class vcard_Parent
+    class vcard_PCS
+    class vcard_Postal
+    class vcard_Pref
+    class vcard_RelatedType
+    class vcard_Sibling
+    class vcard_Spouse
+    class vcard_Sweetheart
+    class vcard_Tel
+    class vcard_TelephoneType
+    class vcard_Text
+    class vcard_TextPhone
+    class vcard_Type
+    class vcard_Unknown
+    class vcard_VCard
+    class vcard_Video
+    class vcard_Voice
+    class vcard_Work
+    class vcard_X400
+    vcard_Type <|-- vcard_X400
+    vcard_Gender <|-- vcard_None
+    vcard_Type <|-- vcard_Pref
     vcard_Type <|-- vcard_Internet
     vcard_Type <|-- vcard_Label
+    vcard_RelatedType <|-- vcard_Spouse
     vcard_Type <|-- vcard_Intl
     vcard_TelephoneType <|-- vcard_BBS
     vcard_RelatedType <|-- vcard_Crush
     vcard_RelatedType <|-- vcard_Met
+    vcard_RelatedType <|-- vcard_Sweetheart
     vcard_TelephoneType <|-- vcard_Msg
     vcard_TelephoneType <|-- vcard_Car
     vcard_Type <|-- vcard_Home
     vcard_TelephoneType <|-- vcard_Cell
     vcard_RelatedType <|-- vcard_Colleague
+    vcard_TelephoneType <|-- vcard_Text
+    vcard_RelatedType <|-- vcard_Neighbor
     vcard_Kind <|-- vcard_Individual
+    vcard_TelephoneType <|-- vcard_PCS
+    vcard_Type <|-- vcard_Postal
     vcard_RelatedType <|-- vcard_Date
     vcard_Gender <|-- vcard_Female
+    vcard_TelephoneType <|-- vcard_TextPhone
     vcard_RelatedType <|-- vcard_Muse
     vcard_RelatedType <|-- vcard_Emergency
     vcard_RelatedType <|-- vcard_Child
     vcard_Kind <|-- vcard_Group
     vcard_TelephoneType <|-- vcard_Fax
     vcard_RelatedType <|-- vcard_Me
+    vcard_Gender <|-- vcard_Unknown
     vcard_RelatedType <|-- vcard_Contact
+    vcard_RelatedType <|-- vcard_Sibling
     vcard_RelatedType <|-- vcard_Coresident
+    vcard_Gender <|-- vcard_Other
+    vcard_RelatedType <|-- vcard_Parent
     vcard_RelatedType <|-- vcard_Friend
     vcard_TelephoneType <|-- vcard_Modem
     vcard_RelatedType <|-- vcard_Kin
     vcard_RelatedType <|-- vcard_Coworker
+    vcard_TelephoneType <|-- vcard_Video
     vcard_RelatedType <|-- vcard_Agent
     vcard_Kind <|-- vcard_Location
     vcard_Type <|-- vcard_Dom
+    vcard_TelephoneType <|-- vcard_Voice
+    vcard_Kind <|-- vcard_Organization
+    vcard_Type <|-- vcard_Parcel
+    vcard_Type <|-- vcard_Work
+    vcard_TelephoneType <|-- vcard_Pager
     vcard_RelatedType <|-- vcard_Acquaintance
     vcard_Type <|-- vcard_ISDN
     vcard_Gender <|-- vcard_Male
@@ -103,8 +132,8 @@ classDiagram
 
 | Metric | Count |
 |--------|-------|
-| Classes | 75 |
+| Classes | 62 |
 | Properties | 84 |
 | Inheritance relationships | 52 |
 | Properties with domain | 1 |
-| Properties with range | 19 |
+| Properties with range | 28 |

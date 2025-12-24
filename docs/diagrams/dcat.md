@@ -2,21 +2,25 @@
 
 UML-style class diagram for the **dcat** namespace.
 
-*Generated automatically. Classes: 9, Properties: 28*
+*Generated automatically. Classes: 8, Properties: 28*
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
-- `-->` Object Property
-- `..>` Datatype Property
+- `-->` Object Property (owl:ObjectProperty)
+- `..>` Datatype Property (owl:DatatypeProperty)
 
 ```mermaid
 classDiagram
+    class _4e232b4c
+    class dcterms_Location
+    class dcterms_PeriodOfTime
+    class rdfs_Resource
+    class rdfs_Literal
     class dcterms_MediaType
     class skos_Concept
     class _1238c9c5
     class _51bb0e06
     class _051921fa
-    class _4e232b4c
     class dcat_Catalog
     class dcat_CatalogRecord
     class dcat_DataService
@@ -33,14 +37,24 @@ classDiagram
     dcat_Resource <|-- dcat_Dataset
     dcat_Dataset <|-- dcat_Catalog
     dcat_Distribution --> dcterms_MediaType : dcat:packageFormat
+    dcat_Catalog --> dcat_CatalogRecord : dcat:record
+    dcat_Distribution ..> rdfs_Literal : dcat:byteSize
+    dcat_Catalog --> dcat_DataService : dcat:service
+    dcat_Distribution --> rdfs_Resource : dcat:downloadURL
+    dcat_Distribution --> dcterms_MediaType : dcat:compressFormat
+    dcat_DataService --> dcat_Dataset : dcat:servesDataset
+    dcat_Catalog --> dcat_Catalog : dcat:catalog
+    dcat_DataService --> rdfs_Resource : dcat:endpointURL
+    dcat_Resource --> dcat_Relationship : dcat:qualifiedRelation
+    _4e232b4c --> dcat_Role : dcat:hadRole
 ```
 
 ## Statistics
 
 | Metric | Count |
 |--------|-------|
-| Classes | 9 |
+| Classes | 8 |
 | Properties | 28 |
 | Inheritance relationships | 7 |
-| Properties with domain | 7 |
-| Properties with range | 9 |
+| Properties with domain | 21 |
+| Properties with range | 27 |
