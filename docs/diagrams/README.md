@@ -1,0 +1,25 @@
+# Ontology Diagrams
+
+Mermaid diagrams for each ontology:
+
+- [as](as.md)
+- [dc](dc.md)
+- [dcam](dcam.md)
+- [dcat](dcat.md)
+- [dcterms](dcterms.md)
+- [doap](doap.md)
+- [foaf](foaf.md)
+- [geo](geo.md)
+- [geosparql](geosparql.md)
+- [org](org.md)
+- [owl](owl.md)
+- [prov](prov.md)
+- [rdf](rdf.md)
+- [rdfs](rdfs.md)
+- [schema](schema.md)
+- [sh](sh.md)
+- [sioc](sioc.md)
+- [skos](skos.md)
+- [sosa](sosa.md)
+- [time](time.md)
+- [vcard](vcard.md)
