@@ -24,42 +24,46 @@ Examples:
 
 import argparse
 import hashlib
-import os
 import re
 import sys
 import uuid
 from pathlib import Path
-from typing import Dict, Optional, Set, Tuple
+from typing import Dict, Optional, Tuple
 from collections import defaultdict
 
 # UUIDv5 namespace for URLs (standard)
-UUID_NAMESPACE_URL = uuid.UUID('6ba7b811-9dad-11d1-80b4-00c04fd430c8')
+UUID_NAMESPACE_URL = uuid.UUID("6ba7b811-9dad-11d1-80b4-00c04fd430c8")
 
 try:
-    from rdflib import Graph, URIRef, Literal, BNode, Namespace
-    from rdflib.namespace import RDF, RDFS, OWL, XSD, DC, DCTERMS, SKOS
+    from rdflib import Graph, URIRef, Literal, BNode
+    from rdflib.namespace import RDF, OWL
 except ImportError:
     print("Error: rdflib is required. Install with: pip install rdflib")
     sys.exit(1)
 
 # Mapping from namespace URIs to their prefixes
 NAMESPACE_URI_TO_PREFIX = {
-    'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf',
-    'http://www.w3.org/2000/01/rdf-schema#': 'rdfs',
-    'http://www.w3.org/2002/07/owl#': 'owl',
-    'http://purl.org/dc/elements/1.1/': 'dc',
-    'http://purl.org/dc/terms/': 'dcterms',
-    'http://purl.org/dc/dcam/': 'dcam',
-    'http://www.w3.org/2004/02/skos/core#': 'skos',
-    'http://xmlns.com/foaf/0.1/': 'foaf',
-    'http://www.w3.org/ns/prov#': 'prov',
-    'http://www.w3.org/2006/time#': 'time',
-    'http://www.w3.org/2003/01/geo/wgs84_pos#': 'geo',
-    'http://www.w3.org/2006/vcard/ns#': 'vcard',
-    'http://usefulinc.com/ns/doap#': 'doap',
-    'http://rdfs.org/sioc/ns#': 'sioc',
-    'http://www.w3.org/2001/XMLSchema#': 'xsd',
-    'http://www.w3.org/2003/06/sw-vocab-status/ns#': 'vs',
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#": "rdf",
+    "http://www.w3.org/2000/01/rdf-schema#": "rdfs",
+    "http://www.w3.org/2002/07/owl#": "owl",
+    "http://purl.org/dc/elements/1.1/": "dc",
+    "http://purl.org/dc/terms/": "dcterms",
+    "http://purl.org/dc/dcam/": "dcam",
+    "http://www.w3.org/2004/02/skos/core#": "skos",
+    "http://xmlns.com/foaf/0.1/": "foaf",
+    "http://www.w3.org/ns/prov#": "prov",
+    "http://www.w3.org/2006/time#": "time",
+    "http://www.w3.org/2003/01/geo/wgs84_pos#": "geo",
+    "http://www.w3.org/2006/vcard/ns#": "vcard",
+    "http://usefulinc.com/ns/doap#": "doap",
+    "http://rdfs.org/sioc/ns#": "sioc",
+    "http://www.w3.org/2001/XMLSchema#": "xsd",
+    "http://www.w3.org/2003/06/sw-vocab-status/ns#": "vs",
+    "http://rdfs.org/ns/void#": "void",
+    "http://www.opengis.net/ont/geosparql#": "geosparql",
+    "http://www.w3.org/ns/shacl#": "sh",
+    "http://www.w3.org/ns/sosa/": "sosa",
+    "https://www.w3.org/ns/activitystreams#": "as",
 }
 
 # Reverse mapping: prefix → namespace URI
@@ -68,13 +72,16 @@ PREFIX_TO_NAMESPACE_URI = {v: k for k, v in NAMESPACE_URI_TO_PREFIX.items()}
 # Special mapping for ontology URIs (without # suffix)
 # These are used for owl:Ontology resources that don't end with # or /
 ONTOLOGY_URI_TO_PREFIX = {
-    'http://www.w3.org/2002/07/owl': 'owl',
-    'http://www.w3.org/2004/02/skos/core': 'skos',
-    'http://www.w3.org/2006/time': 'time',
-    'http://www.w3.org/2006/vcard/ns': 'vcard',
-    'http://www.w3.org/ns/dcat': 'dcat',
-    'http://www.w3.org/ns/org': 'org',
-    'http://www.w3.org/ns/prov': 'prov',
+    "http://www.w3.org/2002/07/owl": "owl",
+    "http://www.w3.org/2004/02/skos/core": "skos",
+    "http://www.w3.org/2006/time": "time",
+    "http://www.w3.org/2006/vcard/ns": "vcard",
+    "http://www.w3.org/ns/dcat": "dcat",
+    "http://www.w3.org/ns/org": "org",
+    "http://www.w3.org/ns/prov": "prov",
+    "http://www.w3.org/ns/shacl": "sh",
+    "http://www.w3.org/ns/sosa": "sosa",
+    "https://www.w3.org/ns/activitystreams": "as",
 }
 
 
@@ -94,29 +101,29 @@ def extract_prefix_from_uri(uri: str) -> Optional[str]:
 
 def extract_localname_from_uri(uri: str) -> str:
     """Extract local name from URI."""
-    if '#' in uri:
-        return uri.split('#')[-1]
-    elif '/' in uri:
-        return uri.rstrip('/').split('/')[-1]
+    if "#" in uri:
+        return uri.split("#")[-1]
+    elif "/" in uri:
+        return uri.rstrip("/").split("/")[-1]
     return uri
 
 
 def format_alias_value(value: str) -> str:
     """Format alias value for YAML, adding quotes if needed."""
     needs_quotes = (
-        ':' in value or
-        '?' in value or
-        value.startswith('[') or
-        value.startswith('{') or
-        value.startswith('"') or
-        value.startswith("'") or
-        value.startswith('!') or
-        value.startswith('_:') or
-        '\n' in value or
-        value.startswith('#')
+        ":" in value
+        or "?" in value
+        or value.startswith("[")
+        or value.startswith("{")
+        or value.startswith('"')
+        or value.startswith("'")
+        or value.startswith("!")
+        or value.startswith("_:")
+        or "\n" in value
+        or value.startswith("#")
     )
     if needs_quotes:
-        escaped = value.replace('\\', '\\\\').replace('"', '\\"')
+        escaped = value.replace("\\", "\\\\").replace('"', '\\"')
         return f'"{escaped}"'
     return value
 
@@ -124,50 +131,54 @@ def format_alias_value(value: str) -> str:
 def write_file(filepath: Path, content: str) -> None:
     """Write file with normalized LF line endings."""
     # Normalize CRLF and CR to LF
-    content = content.replace('\r\n', '\n').replace('\r', '\n')
-    filepath.write_text(content, encoding='utf-8')
+    content = content.replace("\r\n", "\n").replace("\r", "\n")
+    filepath.write_text(content, encoding="utf-8")
 
 
 def detect_format(filepath: Path) -> str:
     """Detect RDF format from file content and extension."""
     # First, try to detect from content
     try:
-        content = filepath.read_text(encoding='utf-8')[:500]
+        content = filepath.read_text(encoding="utf-8")[:500]
         # Check for Turtle/N3 indicators
-        if content.strip().startswith('@prefix') or content.strip().startswith('@base'):
-            return 'turtle'
+        if content.strip().startswith("@prefix") or content.strip().startswith("@base"):
+            return "turtle"
         # Check for JSON-LD
-        if content.strip().startswith('{') and '"@' in content:
-            return 'json-ld'
+        if content.strip().startswith("{") and '"@' in content:
+            return "json-ld"
         # Check for N-Triples (lines ending with .)
-        lines = content.strip().split('\n')
-        if all(line.strip().endswith('.') or line.strip().startswith('#') or not line.strip() for line in lines[:5] if line.strip()):
-            if not content.strip().startswith('<') or '<?xml' not in content:
+        lines = content.strip().split("\n")
+        if all(
+            line.strip().endswith(".") or line.strip().startswith("#") or not line.strip()
+            for line in lines[:5]
+            if line.strip()
+        ):
+            if not content.strip().startswith("<") or "<?xml" not in content:
                 # Could be N-Triples - but also could be Turtle without prefix
                 pass
         # Check for XML
-        if content.strip().startswith('<?xml') or content.strip().startswith('<rdf:RDF'):
-            return 'xml'
+        if content.strip().startswith("<?xml") or content.strip().startswith("<rdf:RDF"):
+            return "xml"
     except Exception:
         pass
 
     # Fall back to extension
     suffix = filepath.suffix.lower()
     format_map = {
-        '.rdf': 'xml',
-        '.owl': 'xml',
-        '.xml': 'xml',
-        '.ttl': 'turtle',
-        '.turtle': 'turtle',
-        '.nt': 'nt',
-        '.ntriples': 'nt',
-        '.n3': 'n3',
-        '.jsonld': 'json-ld',
-        '.json': 'json-ld',
-        '.trig': 'trig',
-        '.nq': 'nquads',
+        ".rdf": "xml",
+        ".owl": "xml",
+        ".xml": "xml",
+        ".ttl": "turtle",
+        ".turtle": "turtle",
+        ".nt": "nt",
+        ".ntriples": "nt",
+        ".n3": "n3",
+        ".jsonld": "json-ld",
+        ".json": "json-ld",
+        ".trig": "trig",
+        ".nq": "nquads",
     }
-    return format_map.get(suffix, 'xml')
+    return format_map.get(suffix, "xml")
 
 
 def uri_to_uuid(uri: str) -> str:
@@ -190,7 +201,7 @@ def escape_case(name: str) -> str:
     """
     # Don't escape if first char is uppercase (it becomes .X which is weird for filename start)
     # Actually, we DO need to escape even the first char for consistency
-    result = re.sub(r'([A-Z])', r'.\1', name)
+    result = re.sub(r"([A-Z])", r".\1", name)
     return result
 
 
@@ -235,7 +246,7 @@ def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str], namesp
         hash_bytes = hashlib.md5(bnode_id.encode()).hexdigest()[:8]
 
         # Build skolem IRI and generate UUID
-        base = namespace_uri.rstrip('#/')
+        base = namespace_uri.rstrip("#/")
         skolem_iri = f"{base}/.well-known/genid/{hash_bytes}"
         bnode_uuid = uri_to_uuid(skolem_iri)
 
@@ -244,9 +255,15 @@ def bnode_to_anchor(bnode: BNode, prefix: str, bnode_map: Dict[str, str], namesp
     return bnode_map[bnode_id]
 
 
-def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict[str, str],
-                   external_uris: Dict[str, str] = None, ontology_uri: str = None,
-                   namespace_uuid_map: Dict[str, str] = None) -> Tuple[str, bool]:
+def term_to_anchor(
+    term,
+    ontology_prefix: str,
+    ontology_ns: str,
+    bnode_map: Dict[str, str],
+    external_uris: Dict[str, str] = None,
+    ontology_uri: str = None,
+    namespace_uuid_map: Dict[str, str] = None,
+) -> Tuple[str, bool]:
     """
     Convert an RDF term to an anchor name (UUIDv5).
 
@@ -300,7 +317,7 @@ def term_to_anchor(term, ontology_prefix: str, ontology_ns: str, bnode_map: Dict
         return (uuid_anchor, is_not_local)
 
     elif isinstance(term, BNode):
-        bnode_uuid, _ = bnode_to_anchor(term, ontology_prefix, bnode_map, ontology_ns or '')
+        bnode_uuid, _ = bnode_to_anchor(term, ontology_prefix, bnode_map, ontology_ns or "")
         return (bnode_uuid, False)
 
     else:
@@ -322,15 +339,15 @@ def literal_to_yaml(lit: Literal) -> str:
     value = str(lit)
 
     # Normalize line endings (CRLF -> LF)
-    value = value.replace('\r\n', '\n')
-    value = value.replace('\r', '\n')
+    value = value.replace("\r\n", "\n")
+    value = value.replace("\r", "\n")
 
     # Escape special characters for YAML double-quoted strings
     # Order matters: backslash first, then quotes, then special chars
-    escaped = value.replace('\\', '\\\\')
+    escaped = value.replace("\\", "\\\\")
     escaped = escaped.replace('"', '\\"')
-    escaped = escaped.replace('\n', '\\n')
-    escaped = escaped.replace('\t', '\\t')
+    escaped = escaped.replace("\n", "\\n")
+    escaped = escaped.replace("\t", "\\t")
 
     if lit.language:
         # Format: "\"value\"@lang"
@@ -360,8 +377,8 @@ def make_safe_filename(name: str) -> str:
     # Spaces are allowed (used in statement filenames)
     safe = name
     # Remove or replace truly problematic chars
-    for char in ['/', '\\', ':', '*', '?', '"', '<', '>', '|']:
-        safe = safe.replace(char, '_')
+    for char in ["/", "\\", ":", "*", "?", '"', "<", ">", "|"]:
+        safe = safe.replace(char, "_")
     return safe
 
 
@@ -450,7 +467,7 @@ def create_blank_node_file(output_dir: Path, anchor: str, namespace_uri: str, bl
     Returns: The UUID used for the filename.
     """
     # Build skolem IRI (RFC 7511 / W3C RDF 1.1)
-    base = namespace_uri.rstrip('#/')
+    base = namespace_uri.rstrip("#/")
     skolem_iri = f"{base}/.well-known/genid/{blank_id}"
 
     # Generate UUIDv5 from skolem IRI
@@ -480,25 +497,20 @@ def escape_yaml_multiline(value: str) -> str:
     Escape a multiline string for YAML.
     Uses block scalar with keep indicator (|+) for multiline, or quoted string for single line.
     """
-    if '\n' in value:
+    if "\n" in value:
         # For multiline, use block scalar
         # Indent each line by 2 spaces
-        lines = value.split('\n')
-        indented = '\n'.join('  ' + line for line in lines)
+        lines = value.split("\n")
+        indented = "\n".join("  " + line for line in lines)
         # Use |+ to keep trailing newlines, add indented blank line at end
         return f"|+\n{indented}\n  "
     else:
         # Single line - escape for YAML double-quoted string
-        escaped = value.replace('\\', '\\\\').replace('"', '\\"')
+        escaped = value.replace("\\", "\\\\").replace('"', '\\"')
         return f'"{escaped}"'
 
 
-def canonicalize_triple(
-    subject_uri: str,
-    predicate_uri: str,
-    object_value: str,
-    is_literal: bool
-) -> str:
+def canonicalize_triple(subject_uri: str, predicate_uri: str, object_value: str, is_literal: bool) -> str:
     """
     Build canonical triple string for UUIDv5 generation.
 
@@ -522,7 +534,7 @@ def create_statement_file(
     subject_uri: Optional[str] = None,
     predicate_uri: Optional[str] = None,
     object_uri: Optional[str] = None,
-    object_canonical: Optional[str] = None
+    object_canonical: Optional[str] = None,
 ) -> None:
     """
     Create a statement file for an RDF triple.
@@ -532,7 +544,7 @@ def create_statement_file(
     All URIs are represented as wikilinks [[uuid]]. Missing target files are allowed.
     """
     # UUIDv5 for rdf:type (http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
-    RDF_TYPE_UUID = '73b69787-81ea-563e-8e09-9c84cad4cf2b'
+    RDF_TYPE_UUID = "73b69787-81ea-563e-8e09-9c84cad4cf2b"
 
     # Build canonical triple for UUID generation
     if is_literal:
@@ -544,10 +556,7 @@ def create_statement_file(
 
     # Generate UUIDv5 from canonical triple
     canonical = canonicalize_triple(
-        subject_uri or subject_anchor,
-        predicate_uri or predicate_anchor,
-        obj_for_canonical,
-        is_literal
+        subject_uri or subject_anchor, predicate_uri or predicate_anchor, obj_for_canonical, is_literal
     )
     statement_uuid = uri_to_uuid(canonical)
 
@@ -650,10 +659,10 @@ def literal_to_canonical(lit: Literal) -> str:
     value = str(lit)
 
     # Normalize line endings
-    value = value.replace('\r\n', '\n').replace('\r', '\n')
+    value = value.replace("\r\n", "\n").replace("\r", "\n")
 
     # Escape for canonical form
-    escaped = value.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+    escaped = value.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\t", "\\t")
 
     if lit.language:
         return f'"{escaped}"@{lit.language}'
@@ -664,11 +673,7 @@ def literal_to_canonical(lit: Literal) -> str:
 
 
 def import_ontology(
-    input_file: Path,
-    output_dir: Path,
-    prefix: str,
-    namespace_uri: Optional[str] = None,
-    verbose: bool = False
+    input_file: Path, output_dir: Path, prefix: str, namespace_uri: Optional[str] = None, verbose: bool = False
 ) -> Tuple[int, int, int]:
     """
     Import an RDF ontology into file-based format.
@@ -701,8 +706,8 @@ def import_ontology(
         for s, p, o in g.triples((None, RDF.type, OWL.Ontology)):
             ontology_uri = str(s)  # Save original ontology URI
             namespace_uri = ontology_uri
-            if not namespace_uri.endswith('#') and not namespace_uri.endswith('/'):
-                namespace_uri += '#'
+            if not namespace_uri.endswith("#") and not namespace_uri.endswith("/"):
+                namespace_uri += "#"
             break
 
         if not namespace_uri:
@@ -711,10 +716,10 @@ def import_ontology(
             for s, p, o in g:
                 if isinstance(s, URIRef):
                     uri = str(s)
-                    if '#' in uri:
-                        ns = uri.rsplit('#', 1)[0] + '#'
-                    elif '/' in uri:
-                        ns = uri.rsplit('/', 1)[0] + '/'
+                    if "#" in uri:
+                        ns = uri.rsplit("#", 1)[0] + "#"
+                    elif "/" in uri:
+                        ns = uri.rsplit("/", 1)[0] + "/"
                     else:
                         continue
                     ns_counts[ns] += 1
@@ -726,7 +731,7 @@ def import_ontology(
 
     if verbose:
         print(f"Using namespace: {effective_ns}")
-        if ontology_uri and ontology_uri != namespace_uri and ontology_uri != namespace_uri.rstrip('#/'):
+        if ontology_uri and ontology_uri != namespace_uri and ontology_uri != namespace_uri.rstrip("#/"):
             print(f"Ontology URI: {ontology_uri}")
 
     # Create namespace file and get its UUID
@@ -742,7 +747,7 @@ def import_ontology(
 
     # If ontology URI differs from namespace (e.g., owl: vs owl#), create anchor for it
     ontology_anchor = None
-    if ontology_uri and not ontology_uri.endswith('#') and not ontology_uri.endswith('/'):
+    if ontology_uri and not ontology_uri.endswith("#") and not ontology_uri.endswith("/"):
         # Ontology URI like http://www.w3.org/2002/07/owl needs its own anchor
         ontology_anchor = uri_to_uuid(ontology_uri)
 
@@ -772,8 +777,7 @@ def import_ontology(
         if isinstance(s, URIRef):
             uri_str = str(s)
             if is_local_resource(uri_str):
-                anchor, _ = term_to_anchor(s, prefix, effective_ns, bnode_map, None,
-                                           ontology_uri, namespace_uuid_map)
+                anchor, _ = term_to_anchor(s, prefix, effective_ns, bnode_map, None, ontology_uri, namespace_uuid_map)
                 anchors[anchor] = uri_str
         elif isinstance(s, BNode):
             bn_uuid, bn_local = bnode_to_anchor(s, prefix, bnode_map, effective_ns)
@@ -783,16 +787,14 @@ def import_ontology(
         if isinstance(p, URIRef):
             uri_str = str(p)
             if is_local_resource(uri_str):
-                anchor, _ = term_to_anchor(p, prefix, effective_ns, bnode_map, None,
-                                           ontology_uri, namespace_uuid_map)
+                anchor, _ = term_to_anchor(p, prefix, effective_ns, bnode_map, None, ontology_uri, namespace_uuid_map)
                 anchors[anchor] = uri_str
 
         # Object (if URI or BNode) - only create anchor if local
         if isinstance(o, URIRef):
             uri_str = str(o)
             if is_local_resource(uri_str):
-                anchor, _ = term_to_anchor(o, prefix, effective_ns, bnode_map, None,
-                                           ontology_uri, namespace_uuid_map)
+                anchor, _ = term_to_anchor(o, prefix, effective_ns, bnode_map, None, ontology_uri, namespace_uuid_map)
                 anchors[anchor] = uri_str
         elif isinstance(o, BNode):
             bn_uuid, bn_local = bnode_to_anchor(o, prefix, bnode_map, effective_ns)
@@ -825,7 +827,7 @@ def import_ontology(
     triple_count = 0
 
     if verbose:
-        print(f"Creating statement files...")
+        print("Creating statement files...")
 
     for s, p, o in g:
         # IMPORTANT: Only create statements where subject belongs to THIS namespace
@@ -838,18 +840,16 @@ def import_ontology(
         elif isinstance(s, BNode):
             # Blank nodes are always local to this ontology
             bn_uuid, bn_local = bnode_to_anchor(s, prefix, bnode_map, effective_ns)
-            base = effective_ns.rstrip('#/')
+            base = effective_ns.rstrip("#/")
             subj_uri = f"{base}/.well-known/genid/{bn_local}"
         else:
             subj_uri = None
 
         # Get subject anchor
-        subj_anchor, _ = term_to_anchor(s, prefix, effective_ns, bnode_map, None,
-                                        ontology_uri, namespace_uuid_map)
+        subj_anchor, _ = term_to_anchor(s, prefix, effective_ns, bnode_map, None, ontology_uri, namespace_uuid_map)
 
         # Get predicate anchor and URI
-        pred_anchor, _ = term_to_anchor(p, prefix, effective_ns, bnode_map, None,
-                                        ontology_uri, namespace_uuid_map)
+        pred_anchor, _ = term_to_anchor(p, prefix, effective_ns, bnode_map, None, ontology_uri, namespace_uuid_map)
         pred_uri = str(p) if isinstance(p, URIRef) else None
 
         # Handle object
@@ -859,11 +859,11 @@ def import_ontology(
 
             obj_str = str(o)
             # Normalize CRLF to LF before escaping
-            obj_str = obj_str.replace('\r\n', '\n').replace('\r', '\n')
+            obj_str = obj_str.replace("\r\n", "\n").replace("\r", "\n")
             # Check for multiline/special characters - always use escaped string for frontmatter
-            if '\n' in obj_str or '\t' in obj_str:
+            if "\n" in obj_str or "\t" in obj_str:
                 # Escape special characters for YAML double-quoted string
-                escaped = obj_str.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\t', '\\t')
+                escaped = obj_str.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\t", "\\t")
                 if o.language:
                     obj_yaml = f'"\\"{escaped}\\"@{o.language}"'
                 elif o.datatype:
@@ -876,49 +876,54 @@ def import_ontology(
                 obj_yaml = literal_to_yaml(o)
 
             create_statement_file(
-                output_dir, subj_anchor, pred_anchor, obj_yaml,
-                is_literal=True, used_filenames=used_filenames,
-                subject_uri=subj_uri, predicate_uri=pred_uri,
-                object_canonical=obj_canonical
+                output_dir,
+                subj_anchor,
+                pred_anchor,
+                obj_yaml,
+                is_literal=True,
+                used_filenames=used_filenames,
+                subject_uri=subj_uri,
+                predicate_uri=pred_uri,
+                object_canonical=obj_canonical,
             )
         else:
-            obj_anchor, _ = term_to_anchor(o, prefix, effective_ns, bnode_map, None,
-                                           ontology_uri, namespace_uuid_map)
+            obj_anchor, _ = term_to_anchor(o, prefix, effective_ns, bnode_map, None, ontology_uri, namespace_uuid_map)
             if isinstance(o, URIRef):
                 obj_uri = str(o)
             elif isinstance(o, BNode):
                 bn_uuid, bn_local = bnode_to_anchor(o, prefix, bnode_map, effective_ns)
-                base = effective_ns.rstrip('#/')
+                base = effective_ns.rstrip("#/")
                 obj_uri = f"{base}/.well-known/genid/{bn_local}"
             else:
                 obj_uri = None
 
             create_statement_file(
-                output_dir, subj_anchor, pred_anchor, obj_anchor,
-                is_literal=False, used_filenames=used_filenames,
-                subject_uri=subj_uri, predicate_uri=pred_uri, object_uri=obj_uri
+                output_dir,
+                subj_anchor,
+                pred_anchor,
+                obj_anchor,
+                is_literal=False,
+                used_filenames=used_filenames,
+                subject_uri=subj_uri,
+                predicate_uri=pred_uri,
+                object_uri=obj_uri,
             )
 
         triple_count += 1
 
     # Count files created
-    file_count = len(list(output_dir.glob('*.md')))
+    file_count = len(list(output_dir.glob("*.md")))
 
     return triple_count, len(anchors) + len(blank_nodes), file_count
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description='Import RDF ontologies into file-based triple format.'
-    )
-    parser.add_argument('input', type=Path, help='Input RDF file')
-    parser.add_argument('output', type=Path, help='Output directory')
-    parser.add_argument('--prefix', '-p', required=True,
-                        help='Namespace prefix (e.g., rdf, owl, myonto)')
-    parser.add_argument('--namespace', '-n',
-                        help='Namespace URI (auto-detected if not specified)')
-    parser.add_argument('--verbose', '-v', action='store_true',
-                        help='Verbose output')
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Import RDF ontologies into file-based triple format.")
+    parser.add_argument("input", type=Path, help="Input RDF file")
+    parser.add_argument("output", type=Path, help="Output directory")
+    parser.add_argument("--prefix", "-p", required=True, help="Namespace prefix (e.g., rdf, owl, myonto)")
+    parser.add_argument("--namespace", "-n", help="Namespace URI (auto-detected if not specified)")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
 
     args = parser.parse_args()
 
@@ -929,18 +934,14 @@ def main():
     print(f"Importing {args.input} to {args.output}/")
 
     triple_count, anchor_count, file_count = import_ontology(
-        args.input,
-        args.output,
-        args.prefix,
-        args.namespace,
-        args.verbose
+        args.input, args.output, args.prefix, args.namespace, args.verbose
     )
 
-    print(f"Done!")
+    print("Done!")
     print(f"  Triples imported: {triple_count}")
     print(f"  Anchors created: {anchor_count}")
     print(f"  Files created: {file_count}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

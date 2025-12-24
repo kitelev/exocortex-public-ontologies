@@ -16,47 +16,72 @@ Usage:
     python scripts/validate.py [--fix] [--verbose]
 """
 
-import os
 import re
 import sys
 import yaml
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import List, Optional, Set, Tuple
 from dataclasses import dataclass, field
 
 # Repository root (relative to script location)
 REPO_ROOT = Path(__file__).parent.parent
 # Namespace prefixes (short names for namespace URIs, e.g., 'rdf' for http://www.w3.org/1999/02/22-rdf-syntax-ns#)
-PREFIXES = ['rdf', 'rdfs', 'owl', 'dc', 'dcterms', 'dcam', 'skos', 'foaf', 'prov', 'time', 'geo', 'vcard', 'doap', 'sioc', 'xsd', 'dcat', 'org', 'schema', 'vs']
-EXCLUDED_DIRS = ['~templates', 'scripts', '.git']
+PREFIXES = [
+    "rdf",
+    "rdfs",
+    "owl",
+    "dc",
+    "dcterms",
+    "dcam",
+    "skos",
+    "foaf",
+    "prov",
+    "time",
+    "geo",
+    "vcard",
+    "doap",
+    "sioc",
+    "xsd",
+    "dcat",
+    "org",
+    "schema",
+    "vs",
+    "sh",
+    "sosa",
+    "as",
+    "void",
+    "geosparql",
+]
+EXCLUDED_DIRS = ["~templates", "scripts", ".git"]
 
 
 # Required properties for statement files (exactly these 4 required + optional aliases)
-STATEMENT_REQUIRED_PROPS = {'metadata', 'subject', 'predicate', 'object'}
-STATEMENT_OPTIONAL_PROPS = {'aliases'}
+STATEMENT_REQUIRED_PROPS = {"metadata", "subject", "predicate", "object"}
+STATEMENT_OPTIONAL_PROPS = {"aliases"}
 
 # Required properties for anchor files (metadata required, uri and aliases optional)
-ANCHOR_REQUIRED_PROPS = {'metadata'}
-ANCHOR_OPTIONAL_PROPS = {'uri', 'aliases'}
+ANCHOR_REQUIRED_PROPS = {"metadata"}
+ANCHOR_OPTIONAL_PROPS = {"uri", "aliases"}
 
 # Required properties for namespace files
-NAMESPACE_REQUIRED_PROPS = {'metadata', 'uri'}
-NAMESPACE_OPTIONAL_PROPS = {'aliases'}
+NAMESPACE_REQUIRED_PROPS = {"metadata", "uri"}
+NAMESPACE_OPTIONAL_PROPS = {"aliases"}
 
 # Required properties for blank_node files
-BLANK_NODE_REQUIRED_PROPS = {'metadata', 'uri'}
-BLANK_NODE_OPTIONAL_PROPS = {'aliases'}
+BLANK_NODE_REQUIRED_PROPS = {"metadata", "uri"}
+BLANK_NODE_OPTIONAL_PROPS = {"aliases"}
 
 # Valid metadata values
-VALID_METADATA = {'namespace', 'anchor', 'statement', 'blank_node', 'index'}
+VALID_METADATA = {"namespace", "anchor", "statement", "blank_node", "index"}
 
 # UUID pattern: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (standard UUID format)
-UUID_PATTERN = re.compile(r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$')
+UUID_PATTERN = re.compile(r"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$")
 
 
 @dataclass
 class ValidationResult:
     """Holds validation results."""
+
     orphaned_anchors: List[str] = field(default_factory=list)
     external_wikilinks: List[Tuple[str, str]] = field(default_factory=list)  # INFO only, not error
     invalid_frontmatter: List[Tuple[str, str]] = field(default_factory=list)
@@ -75,19 +100,21 @@ class ValidationResult:
         Note: external_wikilinks are NOT errors - they are expected when
         referencing resources from other ontologies.
         """
-        return any([
-            self.orphaned_anchors,
-            # external_wikilinks are INFO only, not errors
-            self.invalid_frontmatter,
-            self.missing_metadata,
-            self.invalid_metadata,
-            self.naming_violations,
-            self.frontmatter_prop_violations,
-            self.has_body_violations,
-            self.orphaned_blank_nodes,
-            self.undefined_blank_nodes,
-            self.missing_aliases
-        ])
+        return any(
+            [
+                self.orphaned_anchors,
+                # external_wikilinks are INFO only, not errors
+                self.invalid_frontmatter,
+                self.missing_metadata,
+                self.invalid_metadata,
+                self.naming_violations,
+                self.frontmatter_prop_violations,
+                self.has_body_violations,
+                self.orphaned_blank_nodes,
+                self.undefined_blank_nodes,
+                self.missing_aliases,
+            ]
+        )
 
     def summary(self) -> str:
         lines = []
@@ -113,7 +140,7 @@ class ValidationResult:
             lines.append(f"  Undefined blank nodes: {len(self.undefined_blank_nodes)}")
         if self.missing_aliases:
             lines.append(f"  Missing aliases: {len(self.missing_aliases)}")
-        return '\n'.join(lines) if lines else "  All checks passed!"
+        return "\n".join(lines) if lines else "  All checks passed!"
 
 
 def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
@@ -139,22 +166,22 @@ def check_naming_convention(filepath: Path, metadata: str) -> Tuple[bool, str]:
 def parse_frontmatter(filepath: Path) -> Tuple[dict, str]:
     """Parse YAML frontmatter from a markdown file."""
     try:
-        content = filepath.read_text(encoding='utf-8')
+        content = filepath.read_text(encoding="utf-8")
     except Exception as e:
         return None, f"Cannot read file: {e}"
 
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         return None, "No frontmatter found (missing opening ---)"
 
     # Find closing ---
-    end_match = re.search(r'\n---\s*\n', content[3:])
+    end_match = re.search(r"\n---\s*\n", content[3:])
     if not end_match:
         # Try end of file
-        end_match = re.search(r'\n---\s*$', content[3:])
+        end_match = re.search(r"\n---\s*$", content[3:])
         if not end_match:
             return None, "No closing --- found"
 
-    yaml_content = content[4:3 + end_match.start()]
+    yaml_content = content[4 : 3 + end_match.start()]
 
     try:
         data = yaml.safe_load(yaml_content)
@@ -166,17 +193,17 @@ def parse_frontmatter(filepath: Path) -> Tuple[dict, str]:
 def has_body_content(filepath: Path) -> bool:
     """Check if file has any content after frontmatter (body)."""
     try:
-        content = filepath.read_text(encoding='utf-8')
+        content = filepath.read_text(encoding="utf-8")
     except Exception:
         return False
 
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         return True  # No frontmatter means everything is body
 
     # Find closing ---
-    end_match = re.search(r'\n---\s*\n', content[3:])
+    end_match = re.search(r"\n---\s*\n", content[3:])
     if not end_match:
-        end_match = re.search(r'\n---\s*$', content[3:])
+        end_match = re.search(r"\n---\s*$", content[3:])
         if not end_match:
             return False  # Invalid file
 
@@ -189,7 +216,7 @@ def has_body_content(filepath: Path) -> bool:
 def extract_wikilinks(data: dict) -> Set[str]:
     """Extract all wikilink targets from frontmatter values."""
     links = set()
-    wikilink_pattern = re.compile(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]')
+    wikilink_pattern = re.compile(r"\[\[([^\]|]+)(?:\|[^\]]+)?\]\]")
 
     for key, value in data.items():
         if isinstance(value, str):
@@ -208,23 +235,31 @@ def get_all_anchors(repo_root: Path) -> Set[str]:
         if not ns_dir.exists():
             continue
 
-        for filepath in ns_dir.glob('*.md'):
+        for filepath in ns_dir.glob("*.md"):
             data, error = parse_frontmatter(filepath)
-            if data and data.get('metadata') in ('anchor', 'namespace', 'blank_node'):
+            if data and data.get("metadata") in ("anchor", "namespace", "blank_node"):
                 # Anchor name is filename without .md
                 anchors.add(filepath.stem)
 
     return anchors
 
 
-def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[str], result: ValidationResult, verbose: bool = False):
+def validate_file(
+    filepath: Path,
+    all_anchors: Set[str],
+    all_anchors_lower: Set[str],
+    result: ValidationResult,
+    repo_root: Path,
+    verbose: bool = False,
+) -> None:
     """Validate a single file.
 
     Args:
         all_anchors: Set of anchor names (original case)
         all_anchors_lower: Set of anchor names (lowercase) for case-insensitive comparison
+        repo_root: Root path for calculating relative paths
     """
-    rel_path = filepath.relative_to(REPO_ROOT)
+    rel_path = filepath.relative_to(repo_root)
 
     # Parse frontmatter
     data, error = parse_frontmatter(filepath)
@@ -235,7 +270,7 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
         return
 
     # Check metadata property
-    metadata = data.get('metadata')
+    metadata = data.get("metadata")
     if not metadata:
         result.missing_metadata.append(str(rel_path))
         if verbose:
@@ -246,7 +281,7 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
             print(f"  ❌ {rel_path}: invalid metadata value '{metadata}'")
 
     # Check wikilinks in statements
-    if metadata == 'statement':
+    if metadata == "statement":
         wikilinks = extract_wikilinks(data)
         for link in wikilinks:
             # Use case-insensitive comparison for macOS compatibility
@@ -273,7 +308,7 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
                 print(f"  📋 {rel_path}: {error_msg}")
 
     # Check anchor has required properties (metadata) and optional (uri)
-    if metadata == 'anchor':
+    if metadata == "anchor":
         props = set(data.keys())
         allowed = ANCHOR_REQUIRED_PROPS | ANCHOR_OPTIONAL_PROPS
         extra = props - allowed
@@ -284,7 +319,7 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
                 print(f"  📋 {rel_path}: {error_msg}")
 
     # Check blank_node has required properties (metadata) and optional (skolem_iri)
-    if metadata == 'blank_node':
+    if metadata == "blank_node":
         props = set(data.keys())
         allowed = BLANK_NODE_REQUIRED_PROPS | BLANK_NODE_OPTIONAL_PROPS
         extra = props - allowed
@@ -295,7 +330,7 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
                 print(f"  📋 {rel_path}: {error_msg}")
 
     # Check namespace has required properties (metadata and !) and optional (uri)
-    if metadata == 'namespace':
+    if metadata == "namespace":
         props = set(data.keys())
         allowed = NAMESPACE_REQUIRED_PROPS | NAMESPACE_OPTIONAL_PROPS
         missing = NAMESPACE_REQUIRED_PROPS - props
@@ -320,20 +355,22 @@ def validate_file(filepath: Path, all_anchors: Set[str], all_anchors_lower: Set[
                 print(f"  📛 {rel_path}: {error}")
 
     # Check for body content (only frontmatter allowed, except for index files)
-    if metadata != 'index' and has_body_content(filepath):
+    if metadata != "index" and has_body_content(filepath):
         result.has_body_violations.append(str(rel_path))
         if verbose:
             print(f"  📄 {rel_path}: has body content (only frontmatter allowed)")
 
     # Check that all files have aliases (required for human-readable navigation)
-    aliases = data.get('aliases')
+    aliases = data.get("aliases")
     if not aliases or not isinstance(aliases, list) or len(aliases) == 0:
         result.missing_aliases.append(str(rel_path))
         if verbose:
             print(f"  🏷️  {rel_path}: missing aliases")
 
 
-def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_nodes: Set[str], all_namespaces: Set[str], verbose: bool = False) -> List[str]:
+def find_orphaned_anchors(
+    repo_root: Path, all_anchors: Set[str], all_blank_nodes: Set[str], all_namespaces: Set[str], verbose: bool = False
+) -> List[str]:
     """Find anchors that are not referenced in any statement.
 
     Excludes:
@@ -348,9 +385,9 @@ def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_node
         if not ns_dir.exists():
             continue
 
-        for filepath in ns_dir.glob('*.md'):
+        for filepath in ns_dir.glob("*.md"):
             data, _ = parse_frontmatter(filepath)
-            if data and data.get('metadata') == 'statement':
+            if data and data.get("metadata") == "statement":
                 referenced.update(extract_wikilinks(data))
 
     # Find anchors not in referenced set
@@ -358,7 +395,7 @@ def find_orphaned_anchors(repo_root: Path, all_anchors: Set[str], all_blank_node
     for anchor in all_anchors:
         if anchor not in referenced:
             # Namespace files are expected to not be referenced (or only in imports)
-            if anchor.startswith('!'):
+            if anchor.startswith("!"):
                 continue
             # UUID-named namespace files are also excluded
             if anchor in all_namespaces:
@@ -380,9 +417,9 @@ def get_all_namespace_files(repo_root: Path) -> Set[str]:
         if not ns_dir.exists():
             continue
 
-        for filepath in ns_dir.glob('*.md'):
+        for filepath in ns_dir.glob("*.md"):
             data, error = parse_frontmatter(filepath)
-            if data and data.get('metadata') == 'namespace':
+            if data and data.get("metadata") == "namespace":
                 namespaces.add(filepath.stem)
 
     return namespaces
@@ -397,9 +434,9 @@ def get_all_blank_nodes(repo_root: Path) -> Set[str]:
         if not ns_dir.exists():
             continue
 
-        for filepath in ns_dir.glob('*.md'):
+        for filepath in ns_dir.glob("*.md"):
             data, error = parse_frontmatter(filepath)
-            if data and data.get('metadata') == 'blank_node':
+            if data and data.get("metadata") == "blank_node":
                 blank_nodes.add(filepath.stem)
 
     return blank_nodes
@@ -422,9 +459,9 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
         if not ns_dir.exists():
             continue
 
-        for filepath in ns_dir.glob('*.md'):
+        for filepath in ns_dir.glob("*.md"):
             data, _ = parse_frontmatter(filepath)
-            if data and data.get('metadata') == 'statement':
+            if data and data.get("metadata") == "statement":
                 # Extract blank node references from wikilinks in frontmatter
                 wikilinks = extract_wikilinks(data)
                 for link in wikilinks:
@@ -443,7 +480,9 @@ def find_blank_node_issues(repo_root: Path, verbose: bool = False) -> Tuple[List
     return sorted(orphaned), []
 
 
-def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List[str] = None) -> ValidationResult:
+def validate_all(
+    repo_root: Path, verbose: bool = False, target_namespaces: Optional[List[str]] = None
+) -> ValidationResult:
     """Run all validation checks.
 
     Args:
@@ -469,8 +508,8 @@ def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List
             print(f"  ⚠️  Namespace directory not found: {ns}/")
             continue
 
-        for filepath in ns_dir.glob('*.md'):
-            validate_file(filepath, all_anchors, all_anchors_lower, result, verbose)
+        for filepath in ns_dir.glob("*.md"):
+            validate_file(filepath, all_anchors, all_anchors_lower, result, repo_root, verbose)
             file_count += 1
 
     print(f"  Validated {file_count} files")
@@ -494,12 +533,12 @@ def validate_all(repo_root: Path, verbose: bool = False, target_namespaces: List
     return result
 
 
-def main():
+def main() -> None:
     import argparse
 
-    parser = argparse.ArgumentParser(description='Validate exocortex-public-ontologies')
-    parser.add_argument('namespaces', nargs='*', help='Specific namespaces to validate (default: all)')
-    parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    parser = argparse.ArgumentParser(description="Validate exocortex-public-ontologies")
+    parser.add_argument("namespaces", nargs="*", help="Specific namespaces to validate (default: all)")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     print("=" * 60)
@@ -524,7 +563,9 @@ def main():
 
     # Show external wikilinks info (not an error)
     if result.external_wikilinks:
-        print(f"\nℹ️  External wikilinks: {len(result.external_wikilinks)} references to resources not in this repository")
+        print(
+            f"\nℹ️  External wikilinks: {len(result.external_wikilinks)} references to resources not in this repository"
+        )
         print("   (This is normal - these may be defined in other ontologies)")
 
     if result.has_errors():
@@ -597,5 +638,5 @@ def main():
         sys.exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
