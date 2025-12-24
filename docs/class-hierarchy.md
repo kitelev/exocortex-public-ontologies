@@ -1,0 +1,1345 @@
+# Class Hierarchy
+
+Complete class hierarchy across all ontologies.
+
+*Generated automatically. Total classes: 1278*
+
+## as
+
+- `as:Link`
+  - `as:Mention`
+- `as:Object`
+  - `as:Activity`
+    - `as:Accept`
+      - `as:TentativeAccept`
+    - `as:Add`
+    - `as:Announce`
+    - `as:Create`
+    - `as:Delete`
+    - `as:Dislike`
+    - `as:Flag`
+    - `as:Follow`
+    - `as:Ignore`
+      - `as:Block`
+    - `as:IntransitiveActivity`
+      - `as:Arrive`
+      - `as:Question`
+      - `as:Travel`
+    - `as:Join`
+    - `as:Leave`
+    - `as:Like`
+    - `as:Listen`
+    - `as:Move`
+    - `as:Offer`
+      - `as:Invite`
+    - `as:Read`
+    - `as:Reject`
+      - `as:TentativeReject`
+    - `as:Remove`
+    - `as:Undo`
+    - `as:Update`
+    - `as:View`
+  - `as:Application`
+  - `as:Article`
+  - `as:Collection`
+    - `as:CollectionPage`
+      - `as:OrderedCollectionPage`
+  - `as:Document`
+    - `as:Audio`
+    - `as:Image`
+    - `as:Video`
+  - `as:Event`
+  - `as:Group`
+  - `as:Note`
+  - `as:Organization`
+  - `as:Page`
+  - `as:Person`
+  - `as:Place`
+  - `as:Profile`
+  - `as:Relationship`
+  - `as:Service`
+  - `as:Tombstone`
+- `as:OrderedCollection`
+  - `as:OrderedCollectionPage`
+- `as:OrderedItems`
+
+## dcam
+
+- `dcam:VocabularyEncodingScheme`
+
+## dcat
+
+- `dcat:CatalogRecord`
+- `dcat:Distribution`
+- `dcat:Relationship`
+- `dcat:Resource`
+  - `dcat:DataService`
+  - `dcat:Dataset`
+    - `dcat:Catalog`
+
+## dcterms
+
+- `dcterms:Agent`
+- `dcterms:BibliographicResource`
+- `dcterms:Frequency`
+- `dcterms:LinguisticSystem`
+- `dcterms:LocationPeriodOrJurisdiction`
+  - `dcterms:Jurisdiction`
+  - `dcterms:Location`
+  - `dcterms:PeriodOfTime`
+- `dcterms:MediaTypeOrExtent`
+  - `dcterms:MediaType`
+    - `dcterms:FileFormat`
+    - `dcterms:PhysicalMedium`
+  - `dcterms:SizeOrDuration`
+- `dcterms:MethodOfAccrual`
+- `dcterms:MethodOfInstruction`
+- `dcterms:PhysicalResource`
+- `dcterms:Policy`
+- `dcterms:ProvenanceStatement`
+- `dcterms:RightsStatement`
+  - `dcterms:LicenseDocument`
+- `dcterms:Standard`
+
+## doap
+
+- `doap:Repository`
+  - `doap:ArchRepository`
+  - `doap:BazaarBranch`
+  - `doap:BKRepository`
+  - `doap:CVSRepository`
+  - `doap:DarcsRepository`
+  - `doap:GitBranch`
+  - `doap:GitRepository`
+  - `doap:HgRepository`
+  - `doap:SVNRepository`
+- `doap:Version`
+
+## foaf
+
+- `foaf:Agent`
+  - `foaf:Group`
+  - `foaf:Organization`
+    - `org:FormalOrganization`
+  - `foaf:Person`
+  - `org:Organization`
+    - `org:OrganizationalCollaboration`
+    - `org:OrganizationalUnit`
+- `foaf:Document`
+  - `foaf:Image`
+  - `foaf:PersonalProfileDocument`
+  - `sioc:Post`
+- `foaf:LabelProperty`
+- `foaf:Project`
+  - `doap:Project`
+
+## geo
+
+- `geo:SpatialThing`
+  - `foaf:Person`
+  - `geo:Point`
+
+## geosparql
+
+- `geosparql:SpatialObject`
+  - `geosparql:Feature`
+  - `geosparql:Geometry`
+
+## org
+
+- `org:Membership`
+- `org:Post`
+- `org:Site`
+
+## owl
+
+- `owl:Thing`
+  - `foaf:OnlineAccount`
+    - `foaf:OnlineChatAccount`
+    - `foaf:OnlineEcommerceAccount`
+    - `foaf:OnlineGamingAccount`
+    - `sioc:UserAccount`
+  - `owl:NamedIndividual`
+  - `owl:Nothing`
+  - `time:DayOfWeek`
+  - `time:TemporalEntity`
+    - `time:Instant`
+    - `time:Interval`
+      - `time:ProperInterval`
+        - `time:DateTimeInterval`
+
+## prov
+
+- `prov:Activity`
+  - `org:ChangeEvent`
+- `prov:Agent`
+  - `prov:Organization`
+  - `prov:Person`
+  - `prov:SoftwareAgent`
+- `prov:Entity`
+  - `prov:Bundle`
+  - `prov:Collection`
+    - `prov:EmptyCollection`
+  - `prov:Plan`
+- `prov:Influence`
+  - `prov:ActivityInfluence`
+    - `prov:Communication`
+    - `prov:Generation`
+    - `prov:Invalidation`
+  - `prov:AgentInfluence`
+    - `prov:Association`
+    - `prov:Attribution`
+    - `prov:Delegation`
+  - `prov:EntityInfluence`
+    - `prov:Derivation`
+      - `prov:PrimarySource`
+      - `prov:Quotation`
+      - `prov:Revision`
+    - `prov:End`
+    - `prov:Start`
+    - `prov:Usage`
+- `prov:InstantaneousEvent`
+  - `prov:End`
+  - `prov:Generation`
+  - `prov:Invalidation`
+  - `prov:Start`
+  - `prov:Usage`
+- `prov:Location`
+- `prov:Role`
+
+## rdfs
+
+- `rdfs:Resource`
+  - `doap:Specification`
+  - `owl:AllDifferent`
+  - `owl:AllDisjointClasses`
+  - `owl:AllDisjointProperties`
+  - `owl:Annotation`
+  - `owl:Axiom`
+  - `owl:NegativePropertyAssertion`
+  - `owl:Ontology`
+  - `rdf:CompoundLiteral`
+  - `rdf:List`
+  - `rdf:Property`
+    - `owl:AnnotationProperty`
+    - `owl:DatatypeProperty`
+    - `owl:DeprecatedProperty`
+    - `owl:FunctionalProperty`
+    - `owl:ObjectProperty`
+      - `owl:AsymmetricProperty`
+      - `owl:InverseFunctionalProperty`
+      - `owl:IrreflexiveProperty`
+      - `owl:ReflexiveProperty`
+      - `owl:SymmetricProperty`
+      - `owl:TransitiveProperty`
+    - `owl:OntologyProperty`
+    - `rdfs:ContainerMembershipProperty`
+  - `rdf:Statement`
+  - `rdfs:Class`
+    - `dcterms:AgentClass`
+    - `owl:Class`
+      - `owl:Restriction`
+    - `owl:DeprecatedClass`
+    - `rdfs:Datatype`
+      - `owl:DataRange`
+    - `schema:DataType`
+    - `sh:TargetType`
+      - `sh:JSTargetType`
+      - `sh:SPARQLTargetType`
+  - `rdfs:Container`
+    - `geosparql:SpatialObjectCollection`
+      - `geosparql:FeatureCollection`
+      - `geosparql:GeometryCollection`
+    - `rdf:Alt`
+    - `rdf:Bag`
+    - `rdf:Seq`
+  - `rdfs:Literal`
+  - `sh:AbstractResult`
+    - `sh:ValidationResult`
+  - `sh:JSExecutable`
+    - `sh:JSConstraint`
+    - `sh:JSFunction`
+    - `sh:JSRule`
+    - `sh:JSTarget`
+    - `sh:JSValidator`
+  - `sh:JSLibrary`
+  - `sh:NodeKind`
+  - `sh:Parameterizable`
+    - `sh:ConstraintComponent`
+    - `sh:Function`
+      - `sh:SPARQLFunction`
+  - `sh:PrefixDeclaration`
+  - `sh:PropertyGroup`
+  - `sh:ResultAnnotation`
+  - `sh:Rule`
+    - `sh:SPARQLRule`
+    - `sh:TripleRule`
+  - `sh:Severity`
+  - `sh:Shape`
+    - `sh:NodeShape`
+    - `sh:PropertyShape`
+      - `sh:Parameter`
+  - `sh:SPARQLExecutable`
+    - `sh:SPARQLAskExecutable`
+      - `sh:SPARQLAskValidator`
+      - `sh:SPARQLTarget`
+    - `sh:SPARQLConstructExecutable`
+    - `sh:SPARQLSelectExecutable`
+      - `sh:SPARQLConstraint`
+      - `sh:SPARQLSelectValidator`
+    - `sh:SPARQLUpdateExecutable`
+  - `sh:Target`
+  - `sh:ValidationReport`
+  - `sh:Validator`
+
+## schema
+
+- `schema:Boolean`
+- `schema:Date`
+- `schema:DateTime`
+- `schema:Number`
+  - `schema:Float`
+  - `schema:Integer`
+- `schema:Text`
+  - `schema:CssSelectorType`
+  - `schema:PronounceableText`
+  - `schema:URL`
+  - `schema:XPathType`
+- `schema:Thing`
+  - `schema:Action`
+    - `schema:AchieveAction`
+      - `schema:LoseAction`
+      - `schema:TieAction`
+      - `schema:WinAction`
+    - `schema:AssessAction`
+      - `schema:ChooseAction`
+        - `schema:VoteAction`
+      - `schema:IgnoreAction`
+      - `schema:ReactAction`
+        - `schema:AgreeAction`
+        - `schema:DisagreeAction`
+        - `schema:DislikeAction`
+        - `schema:EndorseAction`
+        - `schema:LikeAction`
+        - `schema:WantAction`
+      - `schema:ReviewAction`
+    - `schema:ConsumeAction`
+      - `schema:DrinkAction`
+      - `schema:EatAction`
+      - `schema:InstallAction`
+      - `schema:ListenAction`
+      - `schema:PlayGameAction`
+      - `schema:ReadAction`
+      - `schema:UseAction`
+        - `schema:WearAction`
+      - `schema:ViewAction`
+      - `schema:WatchAction`
+    - `schema:ControlAction`
+      - `schema:ActivateAction`
+      - `schema:AuthenticateAction`
+      - `schema:DeactivateAction`
+      - `schema:LoginAction`
+      - `schema:ResetPasswordAction`
+      - `schema:ResumeAction`
+      - `schema:SuspendAction`
+    - `schema:CreateAction`
+      - `schema:CookAction`
+      - `schema:DrawAction`
+      - `schema:FilmAction`
+      - `schema:PaintAction`
+      - `schema:PhotographAction`
+      - `schema:WriteAction`
+    - `schema:FindAction`
+      - `schema:CheckAction`
+      - `schema:DiscoverAction`
+      - `schema:TrackAction`
+    - `schema:InteractAction`
+      - `schema:BefriendAction`
+      - `schema:CommunicateAction`
+        - `schema:AskAction`
+        - `schema:CheckInAction`
+        - `schema:CheckOutAction`
+        - `schema:CommentAction`
+        - `schema:InformAction`
+          - `schema:ConfirmAction`
+          - `schema:RsvpAction`
+        - `schema:InviteAction`
+        - `schema:ReplyAction`
+        - `schema:ShareAction`
+      - `schema:FollowAction`
+      - `schema:JoinAction`
+      - `schema:LeaveAction`
+      - `schema:MarryAction`
+      - `schema:RegisterAction`
+      - `schema:SubscribeAction`
+      - `schema:UnRegisterAction`
+    - `schema:MoveAction`
+      - `schema:ArriveAction`
+      - `schema:DepartAction`
+      - `schema:TravelAction`
+    - `schema:OrganizeAction`
+      - `schema:AllocateAction`
+        - `schema:AcceptAction`
+        - `schema:AssignAction`
+        - `schema:AuthorizeAction`
+        - `schema:RejectAction`
+      - `schema:ApplyAction`
+      - `schema:BookmarkAction`
+      - `schema:PlanAction`
+        - `schema:CancelAction`
+        - `schema:ReserveAction`
+        - `schema:ScheduleAction`
+    - `schema:PlayAction`
+      - `schema:ExerciseAction`
+      - `schema:PerformAction`
+    - `schema:SearchAction`
+    - `schema:SeekToAction`
+    - `schema:SolveMathAction`
+    - `schema:TradeAction`
+      - `schema:BuyAction`
+      - `schema:OrderAction`
+      - `schema:PayAction`
+      - `schema:PreOrderAction`
+      - `schema:QuoteAction`
+      - `schema:RentAction`
+      - `schema:SellAction`
+      - `schema:TipAction`
+    - `schema:TransferAction`
+      - `schema:BorrowAction`
+      - `schema:DonateAction`
+      - `schema:DownloadAction`
+      - `schema:GiveAction`
+      - `schema:LendAction`
+      - `schema:MoneyTransfer`
+      - `schema:ReceiveAction`
+      - `schema:ReturnAction`
+      - `schema:SendAction`
+      - `schema:TakeAction`
+    - `schema:UpdateAction`
+      - `schema:AddAction`
+        - `schema:InsertAction`
+          - `schema:AppendAction`
+          - `schema:PrependAction`
+      - `schema:DeleteAction`
+      - `schema:ReplaceAction`
+  - `schema:BioChemEntity`
+    - `schema:ChemicalSubstance`
+    - `schema:Gene`
+    - `schema:MolecularEntity`
+    - `schema:Protein`
+  - `schema:CreativeWork`
+    - `schema:AmpStory`
+    - `schema:ArchiveComponent`
+    - `schema:Article`
+      - `schema:AdvertiserContentArticle`
+      - `schema:NewsArticle`
+        - `schema:AnalysisNewsArticle`
+        - `schema:AskPublicNewsArticle`
+        - `schema:BackgroundNewsArticle`
+        - `schema:OpinionNewsArticle`
+        - `schema:ReportageNewsArticle`
+        - `schema:ReviewNewsArticle`
+      - `schema:Report`
+      - `schema:SatiricalArticle`
+      - `schema:ScholarlyArticle`
+        - `schema:MedicalScholarlyArticle`
+      - `schema:SocialMediaPosting`
+        - `schema:BlogPosting`
+          - `schema:LiveBlogPosting`
+        - `schema:DiscussionForumPosting`
+      - `schema:TechArticle`
+        - `schema:APIReference`
+    - `schema:Atlas`
+    - `schema:Blog`
+    - `schema:Book`
+      - `schema:Audiobook`
+      - `schema:SequentialArt`
+    - `schema:Certification`
+    - `schema:Chapter`
+    - `schema:Claim`
+    - `schema:Clip`
+      - `schema:MovieClip`
+      - `schema:RadioClip`
+      - `schema:TVClip`
+      - `schema:VideoGameClip`
+    - `schema:Code`
+    - `schema:Collection`
+      - `schema:ProductCollection`
+    - `schema:ComicStory`
+      - `schema:ComicCoverArt`
+    - `schema:Comment`
+      - `schema:Answer`
+      - `schema:CorrectionComment`
+      - `schema:Question`
+    - `schema:Conversation`
+    - `schema:Course`
+    - `schema:CreativeWorkSeason`
+      - `schema:PodcastSeason`
+      - `schema:RadioSeason`
+      - `schema:TVSeason`
+    - `schema:CreativeWorkSeries`
+      - `schema:BookSeries`
+      - `schema:MovieSeries`
+      - `schema:Periodical`
+        - `schema:ComicSeries`
+        - `schema:Newspaper`
+      - `schema:PodcastSeries`
+      - `schema:RadioSeries`
+      - `schema:TVSeries`
+      - `schema:VideoGameSeries`
+    - `schema:DataCatalog`
+    - `schema:Dataset`
+      - `schema:DataFeed`
+        - `schema:CompleteDataFeed`
+    - `schema:DefinedTermSet`
+      - `schema:CategoryCodeSet`
+    - `schema:Diet`
+    - `schema:DigitalDocument`
+      - `schema:NoteDigitalDocument`
+      - `schema:PresentationDigitalDocument`
+      - `schema:SpreadsheetDigitalDocument`
+      - `schema:TextDigitalDocument`
+    - `schema:Drawing`
+    - `schema:EducationalOccupationalCredential`
+    - `schema:Episode`
+      - `schema:PodcastEpisode`
+      - `schema:RadioEpisode`
+      - `schema:TVEpisode`
+    - `schema:ExercisePlan`
+    - `schema:Game`
+      - `schema:VideoGame`
+    - `schema:Guide`
+    - `schema:HowTo`
+      - `schema:Recipe`
+    - `schema:HowToDirection`
+    - `schema:HowToSection`
+    - `schema:HowToStep`
+    - `schema:HowToTip`
+    - `schema:HyperToc`
+    - `schema:HyperTocEntry`
+    - `schema:LearningResource`
+      - `schema:Quiz`
+      - `schema:Syllabus`
+    - `schema:Legislation`
+      - `schema:LegislationObject`
+    - `schema:Manuscript`
+    - `schema:Map`
+    - `schema:MathSolver`
+    - `schema:MediaObject`
+      - `schema:3DModel`
+      - `schema:AudioObject`
+        - `schema:AudioObjectSnapshot`
+      - `schema:DataDownload`
+      - `schema:ImageObject`
+        - `schema:Barcode`
+        - `schema:ImageObjectSnapshot`
+      - `schema:MusicVideoObject`
+      - `schema:TextObject`
+      - `schema:VideoObject`
+        - `schema:VideoObjectSnapshot`
+    - `schema:MediaReviewItem`
+    - `schema:Menu`
+    - `schema:MenuSection`
+    - `schema:Message`
+      - `schema:EmailMessage`
+    - `schema:Movie`
+    - `schema:MusicComposition`
+    - `schema:MusicPlaylist`
+      - `schema:MusicAlbum`
+      - `schema:MusicRelease`
+    - `schema:MusicRecording`
+    - `schema:Painting`
+    - `schema:Photograph`
+    - `schema:Play`
+    - `schema:Poster`
+    - `schema:PublicationIssue`
+      - `schema:ComicIssue`
+    - `schema:PublicationVolume`
+    - `schema:Quotation`
+    - `schema:Review`
+      - `schema:ClaimReview`
+      - `schema:CriticReview`
+      - `schema:EmployerReview`
+      - `schema:MediaReview`
+      - `schema:Recommendation`
+      - `schema:UserReview`
+    - `schema:Sculpture`
+    - `schema:Season`
+    - `schema:SheetMusic`
+    - `schema:ShortStory`
+    - `schema:SoftwareApplication`
+      - `schema:MobileApplication`
+      - `schema:OperatingSystem`
+      - `schema:RuntimePlatform`
+      - `schema:WebApplication`
+    - `schema:SoftwareSourceCode`
+    - `schema:SpecialAnnouncement`
+    - `schema:Statement`
+    - `schema:Thesis`
+    - `schema:VisualArtwork`
+      - `schema:CoverArt`
+    - `schema:WebContent`
+      - `schema:HealthTopicContent`
+    - `schema:WebPage`
+      - `schema:AboutPage`
+      - `schema:CheckoutPage`
+      - `schema:CollectionPage`
+        - `schema:MediaGallery`
+          - `schema:ImageGallery`
+          - `schema:VideoGallery`
+      - `schema:ContactPage`
+      - `schema:FAQPage`
+      - `schema:ItemPage`
+      - `schema:MedicalWebPage`
+      - `schema:ProfilePage`
+      - `schema:QAPage`
+      - `schema:RealEstateListing`
+      - `schema:SearchResultsPage`
+    - `schema:WebPageElement`
+      - `schema:SiteNavigationElement`
+      - `schema:Table`
+      - `schema:WPAdBlock`
+      - `schema:WPFooter`
+      - `schema:WPHeader`
+      - `schema:WPSideBar`
+    - `schema:WebSite`
+  - `schema:Event`
+    - `schema:BusinessEvent`
+    - `schema:ChildrensEvent`
+    - `schema:ComedyEvent`
+    - `schema:ConferenceEvent`
+    - `schema:CourseInstance`
+    - `schema:DanceEvent`
+    - `schema:DeliveryEvent`
+    - `schema:EducationEvent`
+    - `schema:EventSeries`
+    - `schema:ExhibitionEvent`
+    - `schema:Festival`
+    - `schema:FoodEvent`
+    - `schema:Hackathon`
+    - `schema:LiteraryEvent`
+    - `schema:MusicEvent`
+    - `schema:PerformingArtsEvent`
+    - `schema:PublicationEvent`
+      - `schema:BroadcastEvent`
+      - `schema:OnDemandEvent`
+    - `schema:SaleEvent`
+    - `schema:ScreeningEvent`
+    - `schema:SocialEvent`
+    - `schema:SportsEvent`
+    - `schema:TheaterEvent`
+    - `schema:UserInteraction`
+      - `schema:UserBlocks`
+      - `schema:UserCheckins`
+      - `schema:UserComments`
+      - `schema:UserDownloads`
+      - `schema:UserLikes`
+      - `schema:UserPageVisits`
+      - `schema:UserPlays`
+      - `schema:UserPlusOnes`
+      - `schema:UserTweets`
+    - `schema:VisualArtsEvent`
+  - `schema:Intangible`
+    - `schema:ActionAccessSpecification`
+    - `schema:AlignmentObject`
+    - `schema:Audience`
+      - `schema:BusinessAudience`
+      - `schema:EducationalAudience`
+      - `schema:MedicalAudience`
+        - `schema:Patient`
+      - `schema:PeopleAudience`
+        - `schema:ParentAudience`
+      - `schema:Researcher`
+    - `schema:BedDetails`
+    - `schema:Brand`
+    - `schema:BroadcastChannel`
+      - `schema:RadioChannel`
+        - `schema:AMRadioChannel`
+        - `schema:FMRadioChannel`
+      - `schema:TelevisionChannel`
+    - `schema:BroadcastFrequencySpecification`
+    - `schema:Class`
+    - `schema:ComputerLanguage`
+    - `schema:ConstraintNode`
+      - `schema:StatisticalVariable`
+    - `schema:DataFeedItem`
+    - `schema:DefinedTerm`
+      - `schema:CategoryCode`
+        - `schema:MedicalCode`
+    - `schema:Demand`
+    - `schema:DigitalDocumentPermission`
+    - `schema:EducationalOccupationalProgram`
+      - `schema:WorkBasedProgram`
+    - `schema:EnergyConsumptionDetails`
+    - `schema:EntryPoint`
+    - `schema:Enumeration`
+      - `schema:AdultOrientedEnumeration`
+      - `schema:BoardingPolicyType`
+      - `schema:BookFormatType`
+      - `schema:BusinessEntityType`
+      - `schema:BusinessFunction`
+      - `schema:CarUsageType`
+      - `schema:CertificationStatusEnumeration`
+      - `schema:ContactPointOption`
+      - `schema:DayOfWeek`
+      - `schema:DeliveryMethod`
+      - `schema:DigitalDocumentPermissionType`
+      - `schema:DigitalPlatformEnumeration`
+      - `schema:EnergyEfficiencyEnumeration`
+        - `schema:EnergyStarEnergyEfficiencyEnumeration`
+        - `schema:EUEnergyEfficiencyEnumeration`
+      - `schema:EventAttendanceModeEnumeration`
+      - `schema:FulfillmentTypeEnumeration`
+      - `schema:GameAvailabilityEnumeration`
+      - `schema:GamePlayMode`
+      - `schema:GenderType`
+      - `schema:GovernmentBenefitsType`
+      - `schema:HealthAspectEnumeration`
+      - `schema:IncentiveQualifiedExpenseType`
+      - `schema:IncentiveStatus`
+      - `schema:IncentiveType`
+      - `schema:ItemAvailability`
+      - `schema:ItemListOrderType`
+      - `schema:LegalValueLevel`
+      - `schema:MapCategoryType`
+      - `schema:MeasurementMethodEnum`
+      - `schema:MeasurementTypeEnumeration`
+        - `schema:BodyMeasurementTypeEnumeration`
+        - `schema:WearableMeasurementTypeEnumeration`
+      - `schema:MediaEnumeration`
+        - `schema:IPTCDigitalSourceEnumeration`
+      - `schema:MediaManipulationRatingEnumeration`
+      - `schema:MedicalEnumeration`
+        - `schema:DrugCostCategory`
+        - `schema:DrugPregnancyCategory`
+        - `schema:DrugPrescriptionStatus`
+        - `schema:InfectiousAgentClass`
+        - `schema:MedicalAudienceType`
+        - `schema:MedicalDevicePurpose`
+        - `schema:MedicalEvidenceLevel`
+        - `schema:MedicalImagingTechnique`
+        - `schema:MedicalObservationalStudyDesign`
+        - `schema:MedicalProcedureType`
+        - `schema:MedicalSpecialty`
+        - `schema:MedicalStudyStatus`
+        - `schema:MedicalTrialDesign`
+        - `schema:MedicineSystem`
+        - `schema:PhysicalExam`
+      - `schema:MerchantReturnEnumeration`
+      - `schema:MusicAlbumProductionType`
+      - `schema:MusicAlbumReleaseType`
+      - `schema:MusicReleaseFormatType`
+      - `schema:NonprofitType`
+        - `schema:NLNonprofitType`
+        - `schema:UKNonprofitType`
+        - `schema:USNonprofitType`
+      - `schema:OfferItemCondition`
+      - `schema:PaymentMethodType`
+      - `schema:PhysicalActivityCategory`
+      - `schema:PriceComponentTypeEnumeration`
+      - `schema:PriceTypeEnumeration`
+      - `schema:PurchaseType`
+      - `schema:QualitativeValue`
+        - `schema:BedType`
+        - `schema:DriveWheelConfigurationValue`
+        - `schema:SizeSpecification`
+        - `schema:SteeringPositionValue`
+      - `schema:RefundTypeEnumeration`
+      - `schema:RestrictedDiet`
+      - `schema:ReturnFeesEnumeration`
+      - `schema:ReturnLabelSourceEnumeration`
+      - `schema:ReturnMethodEnumeration`
+      - `schema:RsvpResponseType`
+      - `schema:SizeGroupEnumeration`
+        - `schema:WearableSizeGroupEnumeration`
+      - `schema:SizeSystemEnumeration`
+        - `schema:WearableSizeSystemEnumeration`
+      - `schema:Specialty`
+      - `schema:StatusEnumeration`
+        - `schema:ActionStatusType`
+        - `schema:EventStatusType`
+        - `schema:GameServerStatus`
+        - `schema:LegalForceStatus`
+        - `schema:OrderStatus`
+        - `schema:PaymentStatusType`
+        - `schema:ReservationStatusType`
+      - `schema:TierBenefitEnumeration`
+      - `schema:WarrantyScope`
+    - `schema:FinancialIncentive`
+    - `schema:FloorPlan`
+    - `schema:GameServer`
+    - `schema:GeospatialGeometry`
+    - `schema:Grant`
+      - `schema:MonetaryGrant`
+    - `schema:HealthInsurancePlan`
+    - `schema:HealthPlanCostSharingSpecification`
+    - `schema:HealthPlanFormulary`
+    - `schema:HealthPlanNetwork`
+    - `schema:Invoice`
+    - `schema:ItemList`
+      - `schema:BreadcrumbList`
+      - `schema:OfferCatalog`
+    - `schema:JobPosting`
+    - `schema:Language`
+    - `schema:ListItem`
+      - `schema:HowToItem`
+        - `schema:HowToSupply`
+        - `schema:HowToTool`
+    - `schema:MediaSubscription`
+    - `schema:MemberProgram`
+    - `schema:MemberProgramTier`
+    - `schema:MenuItem`
+    - `schema:MerchantReturnPolicy`
+    - `schema:MerchantReturnPolicySeasonalOverride`
+    - `schema:Observation`
+    - `schema:Occupation`
+    - `schema:OccupationalExperienceRequirements`
+    - `schema:Offer`
+      - `schema:AggregateOffer`
+      - `schema:OfferForLease`
+      - `schema:OfferForPurchase`
+    - `schema:Order`
+    - `schema:ParcelDelivery`
+    - `schema:PaymentMethod`
+      - `schema:PaymentCard`
+        - `schema:CreditCard`
+      - `schema:PaymentService`
+    - `schema:Permit`
+      - `schema:GovernmentPermit`
+    - `schema:ProgramMembership`
+    - `schema:Property`
+    - `schema:PropertyValueSpecification`
+    - `schema:Quantity`
+      - `schema:Distance`
+      - `schema:Duration`
+      - `schema:Energy`
+      - `schema:Mass`
+    - `schema:Rating`
+      - `schema:AggregateRating`
+        - `schema:EmployerAggregateRating`
+      - `schema:EndorsementRating`
+    - `schema:Reservation`
+      - `schema:BoatReservation`
+      - `schema:BusReservation`
+      - `schema:EventReservation`
+      - `schema:FlightReservation`
+      - `schema:FoodEstablishmentReservation`
+      - `schema:LodgingReservation`
+      - `schema:RentalCarReservation`
+      - `schema:ReservationPackage`
+      - `schema:TaxiReservation`
+      - `schema:TrainReservation`
+    - `schema:Role`
+      - `schema:LinkRole`
+      - `schema:OrganizationRole`
+        - `schema:EmployeeRole`
+      - `schema:PerformanceRole`
+    - `schema:Schedule`
+    - `schema:Seat`
+    - `schema:Series`
+    - `schema:Service`
+      - `schema:BroadcastService`
+        - `schema:RadioBroadcastService`
+      - `schema:CableOrSatelliteService`
+      - `schema:FinancialProduct`
+        - `schema:BankAccount`
+          - `schema:DepositAccount`
+        - `schema:CurrencyConversionService`
+        - `schema:InvestmentOrDeposit`
+          - `schema:BrokerageAccount`
+          - `schema:InvestmentFund`
+        - `schema:LoanOrCredit`
+          - `schema:MortgageLoan`
+      - `schema:FoodService`
+      - `schema:GovernmentService`
+      - `schema:Taxi`
+      - `schema:TaxiService`
+      - `schema:WebAPI`
+    - `schema:ServiceChannel`
+    - `schema:SpeakableSpecification`
+    - `schema:StatisticalPopulation`
+    - `schema:StructuredValue`
+      - `schema:CDCPMDRecord`
+      - `schema:ContactPoint`
+        - `schema:PostalAddress`
+      - `schema:DatedMoneySpecification`
+      - `schema:DefinedRegion`
+      - `schema:EngineSpecification`
+      - `schema:ExchangeRateSpecification`
+      - `schema:GeoCoordinates`
+      - `schema:GeoShape`
+        - `schema:GeoCircle`
+      - `schema:InstantaneousEvent`
+        - `schema:Error`
+      - `schema:InteractionCounter`
+      - `schema:MonetaryAmount`
+      - `schema:NutritionInformation`
+      - `schema:OfferShippingDetails`
+      - `schema:OpeningHoursSpecification`
+      - `schema:OrderItem`
+      - `schema:OwnershipInfo`
+      - `schema:PostalCodeRangeSpecification`
+      - `schema:PriceSpecification`
+        - `schema:CompoundPriceSpecification`
+        - `schema:DeliveryChargeSpecification`
+        - `schema:PaymentChargeSpecification`
+        - `schema:UnitPriceSpecification`
+      - `schema:PropertyValue`
+        - `schema:LocationFeatureSpecification`
+      - `schema:QuantitativeValue`
+      - `schema:QuantitativeValueDistribution`
+        - `schema:MonetaryAmountDistribution`
+      - `schema:RepaymentSpecification`
+      - `schema:ServicePeriod`
+      - `schema:ShippingConditions`
+      - `schema:ShippingDeliveryTime`
+      - `schema:ShippingRateSettings`
+      - `schema:ShippingService`
+      - `schema:TypeAndQuantityNode`
+      - `schema:WarrantyPromise`
+    - `schema:Ticket`
+    - `schema:Trip`
+      - `schema:BoatTrip`
+      - `schema:BusTrip`
+      - `schema:Flight`
+      - `schema:TouristTrip`
+      - `schema:TrainTrip`
+    - `schema:VirtualLocation`
+  - `schema:MedicalEntity`
+    - `schema:AnatomicalStructure`
+      - `schema:Bone`
+      - `schema:BrainStructure`
+      - `schema:Joint`
+      - `schema:Ligament`
+      - `schema:Muscle`
+      - `schema:Nerve`
+      - `schema:Vessel`
+        - `schema:Artery`
+        - `schema:LymphaticVessel`
+        - `schema:Vein`
+    - `schema:AnatomicalSystem`
+    - `schema:DrugClass`
+    - `schema:DrugCost`
+    - `schema:LifestyleModification`
+      - `schema:PhysicalActivity`
+    - `schema:MedicalCause`
+    - `schema:MedicalCondition`
+      - `schema:InfectiousDisease`
+      - `schema:MedicalSignOrSymptom`
+        - `schema:MedicalSign`
+          - `schema:VitalSign`
+        - `schema:MedicalSymptom`
+    - `schema:MedicalContraindication`
+    - `schema:MedicalDevice`
+    - `schema:MedicalGuideline`
+      - `schema:MedicalGuidelineContraindication`
+      - `schema:MedicalGuidelineRecommendation`
+    - `schema:MedicalIndication`
+      - `schema:ApprovedIndication`
+      - `schema:PreventionIndication`
+      - `schema:TreatmentIndication`
+    - `schema:MedicalIntangible`
+      - `schema:DDxElement`
+      - `schema:DoseSchedule`
+        - `schema:MaximumDoseSchedule`
+        - `schema:RecommendedDoseSchedule`
+        - `schema:ReportedDoseSchedule`
+      - `schema:DrugLegalStatus`
+      - `schema:DrugStrength`
+      - `schema:MedicalConditionStage`
+    - `schema:MedicalProcedure`
+      - `schema:DiagnosticProcedure`
+      - `schema:PalliativeProcedure`
+      - `schema:SurgicalProcedure`
+      - `schema:TherapeuticProcedure`
+        - `schema:MedicalTherapy`
+          - `schema:OccupationalTherapy`
+          - `schema:PhysicalTherapy`
+          - `schema:RadiationTherapy`
+        - `schema:PsychologicalTreatment`
+    - `schema:MedicalRiskEstimator`
+      - `schema:MedicalRiskCalculator`
+      - `schema:MedicalRiskScore`
+    - `schema:MedicalRiskFactor`
+    - `schema:MedicalStudy`
+      - `schema:MedicalObservationalStudy`
+      - `schema:MedicalTrial`
+    - `schema:MedicalTest`
+      - `schema:BloodTest`
+      - `schema:ImagingTest`
+      - `schema:MedicalTestPanel`
+      - `schema:PathologyTest`
+    - `schema:Substance`
+      - `schema:DietarySupplement`
+      - `schema:Drug`
+    - `schema:SuperficialAnatomy`
+  - `schema:Organization`
+    - `schema:Airline`
+    - `schema:Consortium`
+    - `schema:Cooperative`
+    - `schema:Corporation`
+    - `schema:EducationalOrganization`
+      - `schema:CollegeOrUniversity`
+      - `schema:ElementarySchool`
+      - `schema:HighSchool`
+      - `schema:MiddleSchool`
+      - `schema:Preschool`
+      - `schema:School`
+    - `schema:FundingScheme`
+    - `schema:GovernmentOrganization`
+    - `schema:LibrarySystem`
+    - `schema:LocalBusiness`
+      - `schema:AnimalShelter`
+      - `schema:ArchiveOrganization`
+      - `schema:AutomotiveBusiness`
+        - `schema:AutoBodyShop`
+        - `schema:AutoDealer`
+        - `schema:AutoPartsStore`
+        - `schema:AutoRental`
+        - `schema:AutoRepair`
+        - `schema:AutoWash`
+        - `schema:GasStation`
+        - `schema:MotorcycleDealer`
+        - `schema:MotorcycleRepair`
+      - `schema:ChildCare`
+      - `schema:Dentist`
+      - `schema:DryCleaningOrLaundry`
+      - `schema:EmergencyService`
+        - `schema:FireStation`
+        - `schema:Hospital`
+        - `schema:PoliceStation`
+      - `schema:EmploymentAgency`
+      - `schema:EntertainmentBusiness`
+        - `schema:AdultEntertainment`
+        - `schema:AmusementPark`
+        - `schema:ArtGallery`
+        - `schema:Casino`
+        - `schema:ComedyClub`
+        - `schema:MovieTheater`
+        - `schema:NightClub`
+      - `schema:FinancialService`
+        - `schema:AccountingService`
+        - `schema:AutomatedTeller`
+        - `schema:BankOrCreditUnion`
+        - `schema:InsuranceAgency`
+      - `schema:FoodEstablishment`
+        - `schema:Bakery`
+        - `schema:BarOrPub`
+        - `schema:Brewery`
+        - `schema:CafeOrCoffeeShop`
+        - `schema:Distillery`
+        - `schema:FastFoodRestaurant`
+        - `schema:IceCreamShop`
+        - `schema:Restaurant`
+        - `schema:Winery`
+      - `schema:GovernmentOffice`
+        - `schema:PostOffice`
+      - `schema:HealthAndBeautyBusiness`
+        - `schema:BeautySalon`
+        - `schema:DaySpa`
+        - `schema:HairSalon`
+        - `schema:HealthClub`
+        - `schema:NailSalon`
+        - `schema:TattooParlor`
+      - `schema:HomeAndConstructionBusiness`
+        - `schema:Electrician`
+        - `schema:GeneralContractor`
+        - `schema:HousePainter`
+        - `schema:HVACBusiness`
+        - `schema:Locksmith`
+        - `schema:MovingCompany`
+        - `schema:Plumber`
+        - `schema:RoofingContractor`
+      - `schema:InternetCafe`
+      - `schema:LegalService`
+        - `schema:Attorney`
+        - `schema:Notary`
+      - `schema:Library`
+      - `schema:LodgingBusiness`
+        - `schema:BedAndBreakfast`
+        - `schema:Campground`
+        - `schema:Hostel`
+        - `schema:Hotel`
+        - `schema:Motel`
+        - `schema:Resort`
+          - `schema:SkiResort`
+        - `schema:VacationRental`
+      - `schema:MedicalBusiness`
+        - `schema:MedicalClinic`
+          - `schema:CovidTestingFacility`
+        - `schema:Optician`
+        - `schema:Pharmacy`
+        - `schema:Physician`
+          - `schema:IndividualPhysician`
+          - `schema:PhysiciansOffice`
+      - `schema:ProfessionalService`
+      - `schema:RadioStation`
+      - `schema:RealEstateAgent`
+      - `schema:RecyclingCenter`
+      - `schema:SelfStorage`
+      - `schema:ShoppingCenter`
+      - `schema:SportsActivityLocation`
+        - `schema:BowlingAlley`
+        - `schema:ExerciseGym`
+        - `schema:GolfCourse`
+        - `schema:PublicSwimmingPool`
+        - `schema:SportsClub`
+        - `schema:StadiumOrArena`
+        - `schema:TennisComplex`
+      - `schema:Store`
+        - `schema:BikeStore`
+        - `schema:BookStore`
+        - `schema:ClothingStore`
+        - `schema:ComputerStore`
+        - `schema:ConvenienceStore`
+        - `schema:DepartmentStore`
+        - `schema:ElectronicsStore`
+        - `schema:Florist`
+        - `schema:FurnitureStore`
+        - `schema:GardenStore`
+        - `schema:GroceryStore`
+        - `schema:HardwareStore`
+        - `schema:HobbyShop`
+        - `schema:HomeGoodsStore`
+        - `schema:JewelryStore`
+        - `schema:LiquorStore`
+        - `schema:MensClothingStore`
+        - `schema:MobilePhoneStore`
+        - `schema:MovieRentalStore`
+        - `schema:MusicStore`
+        - `schema:OfficeEquipmentStore`
+        - `schema:OutletStore`
+        - `schema:PawnShop`
+        - `schema:PetStore`
+        - `schema:ShoeStore`
+        - `schema:SportingGoodsStore`
+        - `schema:TireShop`
+        - `schema:ToyStore`
+        - `schema:WholesaleStore`
+      - `schema:TelevisionStation`
+      - `schema:TouristInformationCenter`
+      - `schema:TravelAgency`
+    - `schema:MedicalOrganization`
+      - `schema:DiagnosticLab`
+      - `schema:VeterinaryCare`
+    - `schema:NewsMediaOrganization`
+    - `schema:NGO`
+    - `schema:OnlineBusiness`
+      - `schema:OnlineStore`
+        - `schema:OnlineMarketplace`
+    - `schema:PerformingGroup`
+      - `schema:DanceGroup`
+      - `schema:MusicGroup`
+      - `schema:TheaterGroup`
+    - `schema:PoliticalParty`
+    - `schema:Project`
+      - `schema:FundingAgency`
+      - `schema:ResearchProject`
+    - `schema:ResearchOrganization`
+    - `schema:SearchRescueOrganization`
+    - `schema:SportsOrganization`
+      - `schema:SportsTeam`
+    - `schema:WorkersUnion`
+  - `schema:Person`
+  - `schema:Place`
+    - `schema:Accommodation`
+      - `schema:Apartment`
+      - `schema:CampingPitch`
+      - `schema:House`
+        - `schema:SingleFamilyResidence`
+      - `schema:Room`
+        - `schema:HotelRoom`
+        - `schema:MeetingRoom`
+      - `schema:Suite`
+    - `schema:AdministrativeArea`
+      - `schema:City`
+      - `schema:Country`
+      - `schema:SchoolDistrict`
+      - `schema:State`
+    - `schema:CivicStructure`
+      - `schema:Airport`
+      - `schema:Aquarium`
+      - `schema:Beach`
+      - `schema:BoatTerminal`
+      - `schema:Bridge`
+      - `schema:BusStation`
+      - `schema:BusStop`
+      - `schema:Cemetery`
+      - `schema:Crematorium`
+      - `schema:EventVenue`
+      - `schema:GovernmentBuilding`
+        - `schema:CityHall`
+        - `schema:Courthouse`
+        - `schema:DefenceEstablishment`
+        - `schema:Embassy`
+        - `schema:LegislativeBuilding`
+      - `schema:Museum`
+      - `schema:MusicVenue`
+      - `schema:Park`
+      - `schema:ParkingFacility`
+      - `schema:PerformingArtsTheater`
+      - `schema:PlaceOfWorship`
+        - `schema:BuddhistTemple`
+        - `schema:Church`
+          - `schema:CatholicChurch`
+        - `schema:HinduTemple`
+        - `schema:Mosque`
+        - `schema:Synagogue`
+      - `schema:Playground`
+      - `schema:PublicToilet`
+      - `schema:RVPark`
+      - `schema:SubwayStation`
+      - `schema:TaxiStand`
+      - `schema:TrainStation`
+      - `schema:Zoo`
+    - `schema:Landform`
+      - `schema:BodyOfWater`
+        - `schema:Canal`
+        - `schema:LakeBodyOfWater`
+        - `schema:OceanBodyOfWater`
+        - `schema:Pond`
+        - `schema:Reservoir`
+        - `schema:RiverBodyOfWater`
+        - `schema:SeaBodyOfWater`
+        - `schema:Waterfall`
+      - `schema:Continent`
+      - `schema:Mountain`
+      - `schema:Volcano`
+    - `schema:LandmarksOrHistoricalBuildings`
+    - `schema:Residence`
+      - `schema:ApartmentComplex`
+      - `schema:GatedResidenceCommunity`
+    - `schema:TouristAttraction`
+    - `schema:TouristDestination`
+  - `schema:Product`
+    - `schema:IndividualProduct`
+    - `schema:ProductGroup`
+    - `schema:ProductModel`
+    - `schema:SomeProducts`
+    - `schema:Vehicle`
+      - `schema:BusOrCoach`
+      - `schema:Car`
+      - `schema:Motorcycle`
+      - `schema:MotorizedBicycle`
+  - `schema:Taxon`
+- `schema:Time`
+
+## sioc
+
+- `sioc:Community`
+- `sioc:Container`
+  - `sioc:Forum`
+  - `sioc:Thread`
+- `sioc:Item`
+  - `sioc:Post`
+- `sioc:Role`
+- `sioc:Space`
+  - `sioc:Site`
+- `sioc:Usergroup`
+
+## skos
+
+- `skos:Collection`
+  - `skos:OrderedCollection`
+- `skos:Concept`
+  - `dcat:Role`
+  - `org:Role`
+- `skos:ConceptScheme`
+
+## sosa
+
+- `sosa:ActuatableProperty`
+- `sosa:Actuation`
+- `sosa:Actuator`
+- `sosa:FeatureOfInterest`
+- `sosa:ObservableProperty`
+- `sosa:Observation`
+- `sosa:Platform`
+- `sosa:Procedure`
+- `sosa:Result`
+- `sosa:Sample`
+- `sosa:Sampler`
+- `sosa:Sampling`
+- `sosa:Sensor`
+
+## time
+
+- `time:TemporalDuration`
+  - `time:Duration`
+  - `time:GeneralDurationDescription`
+    - `time:DurationDescription`
+      - `time:Year`
+  - `time:TemporalUnit`
+- `time:TemporalPosition`
+  - `time:GeneralDateTimeDescription`
+    - `time:DateTimeDescription`
+      - `time:January`
+      - `time:MonthOfYear`
+  - `time:TimePosition`
+- `time:TimeZone`
+- `time:TRS`
+
+## vcard
+
+- `vcard:Address`
+- `vcard:Email`
+- `vcard:Gender`
+  - `vcard:Female`
+  - `vcard:Male`
+  - `vcard:None`
+  - `vcard:Other`
+  - `vcard:Unknown`
+- `vcard:Kind`
+  - `vcard:Group`
+  - `vcard:Individual`
+  - `vcard:Location`
+  - `vcard:Organization`
+- `vcard:Name`
+- `vcard:RelatedType`
+  - `vcard:Acquaintance`
+  - `vcard:Agent`
+  - `vcard:Child`
+  - `vcard:Colleague`
+  - `vcard:Contact`
+  - `vcard:Coresident`
+  - `vcard:Coworker`
+  - `vcard:Crush`
+  - `vcard:Date`
+  - `vcard:Emergency`
+  - `vcard:Friend`
+  - `vcard:Kin`
+  - `vcard:Me`
+  - `vcard:Met`
+  - `vcard:Muse`
+  - `vcard:Neighbor`
+  - `vcard:Parent`
+  - `vcard:Sibling`
+  - `vcard:Spouse`
+  - `vcard:Sweetheart`
+- `vcard:Tel`
+- `vcard:TelephoneType`
+  - `vcard:BBS`
+  - `vcard:Car`
+  - `vcard:Cell`
+  - `vcard:Fax`
+  - `vcard:Modem`
+  - `vcard:Msg`
+  - `vcard:Pager`
+  - `vcard:PCS`
+  - `vcard:Text`
+  - `vcard:TextPhone`
+  - `vcard:Video`
+  - `vcard:Voice`
+- `vcard:Type`
+  - `vcard:Dom`
+  - `vcard:Home`
+  - `vcard:Internet`
+  - `vcard:Intl`
+  - `vcard:ISDN`
+  - `vcard:Label`
+  - `vcard:Parcel`
+  - `vcard:Postal`
+  - `vcard:Pref`
+  - `vcard:Work`
+  - `vcard:X400`
+- `vcard:VCard`

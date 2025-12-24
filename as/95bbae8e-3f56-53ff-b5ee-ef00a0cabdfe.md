@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[b3777b45-b144-523a-b2d6-e15f1cb20b6d]]"
+predicate: "[[84d654c0-420b-5a08-ad64-1f16d51de0b2]]"
+object: "[[96e448ce-1ac7-54a0-aa4d-d8a5085405f6]]"
+aliases:
+  - "as:bto rdfs:domain as:Object"
+---

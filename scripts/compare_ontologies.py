@@ -14,67 +14,66 @@ Examples:
 
 import sys
 from pathlib import Path
-from typing import Dict, Set, Tuple, Optional, List
+from typing import Dict, Set, Tuple, Optional
 from collections import defaultdict
 
 try:
-    from rdflib import Graph, Namespace, URIRef, Literal, BNode
-    from rdflib.namespace import RDF, RDFS, OWL, XSD
-    from rdflib.compare import isomorphic, to_canonical_graph
+    from rdflib import Graph, URIRef, Literal, BNode
+    from rdflib.compare import isomorphic
 except ImportError:
     print("Error: rdflib is required. Install with: pip install rdflib")
     sys.exit(1)
 
 # Import export function from export_rdf
 sys.path.insert(0, str(Path(__file__).parent))
-from export_rdf import export_namespace, PREFIX_TO_URI
+from export_rdf import export_namespace, PREFIX_TO_URI  # noqa: E402
 
 REPO_ROOT = Path(__file__).parent.parent
-ORIGINALS_DIR = REPO_ROOT / 'originals'
-EXPORTS_DIR = REPO_ROOT / 'exports'
+ORIGINALS_DIR = REPO_ROOT / "originals"
+EXPORTS_DIR = REPO_ROOT / "exports"
 
 # Mapping from namespace to original file
 ORIGINAL_FILES = {
-    'time': 'time.rdf',
-    'prov': 'prov.rdf',
-    'owl': 'owl.rdf',
-    'rdf': 'rdf.rdf',
-    'rdfs': 'rdfs.rdf',
-    'skos': 'skos.rdf',
-    'dc': 'dc.ttl',
-    'dcterms': 'dcterms.ttl',
-    'geo': 'geo.rdf',
+    "time": "time.rdf",
+    "prov": "prov.rdf",
+    "owl": "owl.rdf",
+    "rdf": "rdf.rdf",
+    "rdfs": "rdfs.rdf",
+    "skos": "skos.rdf",
+    "dc": "dc.ttl",
+    "dcterms": "dcterms.ttl",
+    "geo": "geo.rdf",
 }
 
 
 def detect_format(filepath: Path) -> str:
     """Detect RDF format by inspecting file content."""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             first_lines = f.read(500)
 
         # Check content patterns
-        if first_lines.strip().startswith('@prefix') or first_lines.strip().startswith('@base'):
-            return 'turtle'
-        elif first_lines.strip().startswith('<?xml') or first_lines.strip().startswith('<rdf:RDF'):
-            return 'xml'
-        elif first_lines.strip().startswith('#') and '@prefix' in first_lines:
-            return 'turtle'  # Turtle with comment header
-        elif '<' in first_lines and '>' in first_lines and ' .\n' in first_lines:
-            return 'nt'  # N-Triples
+        if first_lines.strip().startswith("@prefix") or first_lines.strip().startswith("@base"):
+            return "turtle"
+        elif first_lines.strip().startswith("<?xml") or first_lines.strip().startswith("<rdf:RDF"):
+            return "xml"
+        elif first_lines.strip().startswith("#") and "@prefix" in first_lines:
+            return "turtle"  # Turtle with comment header
+        elif "<" in first_lines and ">" in first_lines and " .\n" in first_lines:
+            return "nt"  # N-Triples
 
         # Fallback to extension
         ext = filepath.suffix.lower()
-        if ext == '.ttl':
-            return 'turtle'
-        elif ext in ('.rdf', '.xml', '.owl'):
-            return 'xml'
-        elif ext == '.nt':
-            return 'nt'
+        if ext == ".ttl":
+            return "turtle"
+        elif ext in (".rdf", ".xml", ".owl"):
+            return "xml"
+        elif ext == ".nt":
+            return "nt"
 
-        return 'turtle'  # Default to turtle as it's more common
+        return "turtle"  # Default to turtle as it's more common
     except Exception:
-        return 'xml'
+        return "xml"
 
 
 def load_original(namespace: str) -> Optional[Graph]:
@@ -101,7 +100,7 @@ def load_original(namespace: str) -> Optional[Graph]:
     except Exception as e:
         print(f"  ⚠️  Error parsing original as {fmt}: {e}")
         # Try alternative formats
-        for alt_fmt in ['turtle', 'xml', 'nt']:
+        for alt_fmt in ["turtle", "xml", "nt"]:
             if alt_fmt != fmt:
                 try:
                     g.parse(str(filepath), format=alt_fmt)
@@ -113,6 +112,7 @@ def load_original(namespace: str) -> Optional[Graph]:
 
 def normalize_triple(triple: Tuple, blank_map: Dict[BNode, str]) -> Tuple:
     """Normalize a triple for comparison, replacing blank nodes with canonical IDs."""
+
     def normalize_term(term):
         if isinstance(term, BNode):
             if term not in blank_map:
@@ -142,20 +142,20 @@ def get_triple_signature(triple: Tuple) -> Tuple:
     """
     s, p, o = triple
 
-    s_sig = 'BLANK' if isinstance(s, BNode) else str(s)
+    s_sig = "BLANK" if isinstance(s, BNode) else str(s)
     p_sig = str(p)
 
     if isinstance(o, BNode):
-        o_sig = ('BLANK', None)
+        o_sig = ("BLANK", None)
     elif isinstance(o, Literal):
         if o.language:
-            o_sig = ('LITERAL', f'{o}@{o.language}')
+            o_sig = ("LITERAL", f"{o}@{o.language}")
         elif o.datatype:
-            o_sig = ('LITERAL', f'{o}^^{o.datatype}')
+            o_sig = ("LITERAL", f"{o}^^{o.datatype}")
         else:
-            o_sig = ('LITERAL', str(o))
+            o_sig = ("LITERAL", str(o))
     else:
-        o_sig = ('URI', str(o))
+        o_sig = ("URI", str(o))
 
     return (s_sig, p_sig, o_sig)
 
@@ -167,7 +167,7 @@ def build_blank_node_structures(g: Graph) -> Dict[BNode, Set[Tuple]]:
     for s, p, o in g:
         if isinstance(s, BNode):
             # Use signature that handles nested blank nodes
-            o_sig = 'BLANK' if isinstance(o, BNode) else str(o) if isinstance(o, URIRef) else repr(o)
+            o_sig = "BLANK" if isinstance(o, BNode) else str(o) if isinstance(o, URIRef) else repr(o)
             blank_structures[s].add((str(p), o_sig))
 
     return blank_structures
@@ -177,19 +177,19 @@ def compare_graphs(original: Graph, exported: Graph, verbose: bool = False) -> D
     """Compare two RDF graphs semantically."""
 
     results = {
-        'original_triples': len(original),
-        'exported_triples': len(exported),
-        'missing_triples': [],  # In original but not in exported
-        'extra_triples': [],    # In exported but not in original
-        'isomorphic': False,
-        'matched_triples': 0,
+        "original_triples": len(original),
+        "exported_triples": len(exported),
+        "missing_triples": [],  # In original but not in exported
+        "extra_triples": [],  # In exported but not in original
+        "isomorphic": False,
+        "matched_triples": 0,
     }
 
     # Try isomorphic comparison first (handles blank nodes correctly)
     try:
-        results['isomorphic'] = isomorphic(original, exported)
-        if results['isomorphic']:
-            results['matched_triples'] = len(original)
+        results["isomorphic"] = isomorphic(original, exported)
+        if results["isomorphic"]:
+            results["matched_triples"] = len(original)
             return results
     except Exception:
         pass
@@ -217,13 +217,13 @@ def compare_graphs(original: Graph, exported: Graph, verbose: bool = False) -> D
     # Find differences in named triples
     for sig, triple in original_named.items():
         if sig in exported_named:
-            results['matched_triples'] += 1
+            results["matched_triples"] += 1
         else:
-            results['missing_triples'].append(triple)
+            results["missing_triples"].append(triple)
 
     for sig, triple in exported_named.items():
         if sig not in original_named:
-            results['extra_triples'].append(triple)
+            results["extra_triples"].append(triple)
 
     # For blank node triples, do structural matching
     # This is a simplified approach - matches by (predicate, object_signature)
@@ -231,15 +231,15 @@ def compare_graphs(original: Graph, exported: Graph, verbose: bool = False) -> D
 
     for sig, triple in original_blank.items():
         if sig in exported_blank:
-            results['matched_triples'] += 1
+            results["matched_triples"] += 1
             matched_blank_sigs.add(sig)
         else:
             # Try to find a structural match
-            results['missing_triples'].append(triple)
+            results["missing_triples"].append(triple)
 
     for sig, triple in exported_blank.items():
         if sig not in original_blank and sig not in matched_blank_sigs:
-            results['extra_triples'].append(triple)
+            results["extra_triples"].append(triple)
 
     return results
 
@@ -276,7 +276,7 @@ def format_triple(triple: Tuple) -> str:
 
 
 # Languages to keep (filter out all others)
-ALLOWED_LANGUAGES = {'en', 'ru', None}  # None = no language tag
+ALLOWED_LANGUAGES = {"en", "ru", None}  # None = no language tag
 
 
 def filter_graph_by_language(g: Graph) -> Graph:
@@ -301,7 +301,7 @@ def compare_ontology(namespace: str, verbose: bool = False) -> Optional[Dict]:
     print(f"{'='*60}")
 
     # Load original
-    print(f"\nLoading original...")
+    print("\nLoading original...")
     original = load_original(namespace)
     if original is None:
         return None
@@ -311,54 +311,54 @@ def compare_ontology(namespace: str, verbose: bool = False) -> Optional[Dict]:
     print(f"  Original: {len(original)} triples (filtered to @en/@ru)")
 
     # Export our version
-    print(f"\nExporting file-based version...")
+    print("\nExporting file-based version...")
     exported = export_namespace(namespace, verbose=False)
     print(f"  Exported: {len(exported)} triples")
 
     # Compare
-    print(f"\nComparing...")
+    print("\nComparing...")
     results = compare_graphs(original, exported, verbose)
 
     # Report
-    print(f"\n--- Results ---")
+    print("\n--- Results ---")
     print(f"  Original triples:  {results['original_triples']}")
     print(f"  Exported triples:  {results['exported_triples']}")
     print(f"  Matched triples:   {results['matched_triples']}")
 
-    if results['isomorphic']:
-        print(f"\n  ✅ Graphs are ISOMORPHIC (semantically identical)")
+    if results["isomorphic"]:
+        print("\n  ✅ Graphs are ISOMORPHIC (semantically identical)")
     else:
-        diff = results['original_triples'] - results['matched_triples']
-        if diff == 0 and len(results['extra_triples']) == 0:
-            print(f"\n  ✅ All triples matched!")
+        diff = results["original_triples"] - results["matched_triples"]
+        if diff == 0 and len(results["extra_triples"]) == 0:
+            print("\n  ✅ All triples matched!")
         else:
-            print(f"\n  ⚠️  Differences found:")
+            print("\n  ⚠️  Differences found:")
 
-            if results['missing_triples']:
+            if results["missing_triples"]:
                 print(f"\n  Missing from export ({len(results['missing_triples'])}):")
-                for triple in results['missing_triples'][:20]:  # Limit output
+                for triple in results["missing_triples"][:20]:  # Limit output
                     print(format_triple(triple))
-                if len(results['missing_triples']) > 20:
+                if len(results["missing_triples"]) > 20:
                     print(f"  ... and {len(results['missing_triples']) - 20} more")
 
-            if results['extra_triples']:
+            if results["extra_triples"]:
                 print(f"\n  Extra in export ({len(results['extra_triples'])}):")
-                for triple in results['extra_triples'][:20]:
+                for triple in results["extra_triples"][:20]:
                     print(format_triple(triple))
-                if len(results['extra_triples']) > 20:
+                if len(results["extra_triples"]) > 20:
                     print(f"  ... and {len(results['extra_triples']) - 20} more")
 
     return results
 
 
 def main():
-    verbose = '--verbose' in sys.argv or '-v' in sys.argv
-    compare_all = '--all' in sys.argv
+    verbose = "--verbose" in sys.argv or "-v" in sys.argv
+    compare_all = "--all" in sys.argv
 
     # Get namespaces to compare
     namespaces = []
     for arg in sys.argv[1:]:
-        if not arg.startswith('-') and arg in ORIGINAL_FILES:
+        if not arg.startswith("-") and arg in ORIGINAL_FILES:
             namespaces.append(arg)
 
     if compare_all:
@@ -380,11 +380,11 @@ def main():
     for namespace in namespaces:
         results = compare_ontology(namespace, verbose)
         if results:
-            total_original += results['original_triples']
-            total_exported += results['exported_triples']
-            total_matched += results['matched_triples']
-            total_missing += len(results['missing_triples'])
-            total_extra += len(results['extra_triples'])
+            total_original += results["original_triples"]
+            total_exported += results["exported_triples"]
+            total_matched += results["matched_triples"]
+            total_missing += len(results["missing_triples"])
+            total_extra += len(results["extra_triples"])
 
     # Summary
     print("\n" + "=" * 60)
@@ -398,11 +398,11 @@ def main():
     print(f"  Total extra:         {total_extra}")
 
     if total_missing == 0 and total_extra == 0:
-        print(f"\n  ✅ All ontologies match!")
+        print("\n  ✅ All ontologies match!")
     else:
         match_pct = (total_matched / total_original * 100) if total_original > 0 else 0
         print(f"\n  Match rate: {match_pct:.1f}%")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -8,11 +8,11 @@ import argparse
 import uuid
 from pathlib import Path
 from rdflib import Graph, URIRef, Literal, BNode
-from rdflib.namespace import RDF, RDFS, OWL, XSD
+from rdflib.namespace import XSD
 import re
 import yaml
 
-URL_NAMESPACE = uuid.UUID('6ba7b811-9dad-11d1-80b4-00c04fd430c8')
+URL_NAMESPACE = uuid.UUID("6ba7b811-9dad-11d1-80b4-00c04fd430c8")
 
 
 def uri_to_uuid(uri_str: str) -> str:
@@ -22,9 +22,9 @@ def uri_to_uuid(uri_str: str) -> str:
 
 def extract_frontmatter(content: str) -> dict:
     """Extract YAML frontmatter from markdown file."""
-    if not content.startswith('---'):
+    if not content.startswith("---"):
         return {}
-    parts = content.split('---', 2)
+    parts = content.split("---", 2)
     if len(parts) < 3:
         return {}
     try:
@@ -46,70 +46,70 @@ def load_triples_from_files(ontology_dir: Path) -> tuple:
     blank_node_skolems = {}  # {uuid: skolem_iri}
 
     for f in ontology_dir.iterdir():
-        if not f.is_file() or not f.name.endswith('.md'):
+        if not f.is_file() or not f.name.endswith(".md"):
             continue
-        content = f.read_text(encoding='utf-8')
+        content = f.read_text(encoding="utf-8")
         fm = extract_frontmatter(content)
 
-        if fm.get('metadata') == 'namespace':
+        if fm.get("metadata") == "namespace":
             # URI can be under 'uri' or '!' key
-            uri = fm.get('uri') or fm.get('!')
+            uri = fm.get("uri") or fm.get("!")
             if uri:
                 # Map both UUID (new format) and !prefix (legacy) to URI
                 file_uuid = f.stem
                 namespace_uris[file_uuid] = uri
                 # Also support legacy !prefix format
-                if f.name.startswith('!'):
+                if f.name.startswith("!"):
                     namespace_uris[f.stem] = uri
 
-        elif fm.get('metadata') == 'blank_node':
+        elif fm.get("metadata") == "blank_node":
             # New format: blank_node files have skolem_iri in frontmatter
-            skolem_iri = fm.get('skolem_iri')
+            skolem_iri = fm.get("skolem_iri")
             if skolem_iri:
                 blank_node_skolems[f.stem] = skolem_iri
                 blank_node_uuids.add(f.stem)
 
     for f in ontology_dir.iterdir():
-        if not f.is_file() or not f.name.endswith('.md'):
+        if not f.is_file() or not f.name.endswith(".md"):
             continue
-        if f.name == '_index.md':
+        if f.name == "_index.md":
             continue  # Skip index file
 
-        content = f.read_text(encoding='utf-8')
+        content = f.read_text(encoding="utf-8")
         fm = extract_frontmatter(content)
 
         # Skip non-statement files (namespace, blank_node, anchor)
-        if fm.get('metadata') != 'statement':
+        if fm.get("metadata") != "statement":
             continue
 
-        subj = fm.get('rdf__subject', '')
-        pred = fm.get('rdf__predicate', '')
-        obj = fm.get('rdf__object', '')
+        subj = fm.get("subject", "") or fm.get("rdf__subject", "")
+        pred = fm.get("predicate", "") or fm.get("rdf__predicate", "")
+        obj = fm.get("object", "") or fm.get("rdf__object", "")
 
         if subj and pred and obj:
             # Clean up wikilinks
-            subj = subj.strip('[]')
-            pred = pred.strip('[]')
+            subj = subj.strip("[]")
+            pred = pred.strip("[]")
             # Handle rdf:type alias: [[uuid|a]] -> uuid
-            if '|' in pred:
-                pred = pred.split('|')[0]
+            if "|" in pred:
+                pred = pred.split("|")[0]
             # Handle external URI predicate like <http://...> -> convert to UUID
-            if pred.startswith('<') and pred.endswith('>'):
+            if pred.startswith("<") and pred.endswith(">"):
                 pred = uri_to_uuid(pred[1:-1])
 
             # Process object
-            if obj.startswith('[[') and obj.endswith(']]'):
+            if obj.startswith("[[") and obj.endswith("]]"):
                 obj = obj[2:-2]
                 # Handle alias in object too
-                if '|' in obj:
-                    obj = obj.split('|')[0]
+                if "|" in obj:
+                    obj = obj.split("|")[0]
                 # Handle namespace reference (legacy !dc or UUID)
-                if obj.startswith('!') and obj in namespace_uris:
+                if obj.startswith("!") and obj in namespace_uris:
                     obj = uri_to_uuid(namespace_uris[obj])
                 # Handle blank node reference (UUID -> skolem IRI -> UUID)
                 elif obj in blank_node_skolems:
                     obj = uri_to_uuid(blank_node_skolems[obj])
-            elif obj.startswith('<') and obj.endswith('>'):
+            elif obj.startswith("<") and obj.endswith(">"):
                 # External URI like <http://...> -> convert to UUID
                 obj = uri_to_uuid(obj[1:-1])
             else:
@@ -125,13 +125,13 @@ def load_triples_from_files(ontology_dir: Path) -> tuple:
 
             # Process subject
             # Handle namespace reference (legacy !prefix or UUID)
-            if subj.startswith('!') and subj in namespace_uris:
+            if subj.startswith("!") and subj in namespace_uris:
                 subj = uri_to_uuid(namespace_uris[subj])
             # Handle blank node reference (UUID -> skolem IRI -> UUID)
             elif subj in blank_node_skolems:
                 subj = uri_to_uuid(blank_node_skolems[subj])
             # Handle external URI subject like <http://...> -> convert to UUID
-            elif subj.startswith('<') and subj.endswith('>'):
+            elif subj.startswith("<") and subj.endswith(">"):
                 subj = uri_to_uuid(subj[1:-1])
 
             triples.add((subj, pred, obj))
@@ -152,7 +152,7 @@ def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> tuple:
     blank_node_uuids = set()
 
     # Build base URI for skolem IRIs
-    base_uri = namespace_uri.rstrip('#/') if namespace_uri else ''
+    base_uri = namespace_uri.rstrip("#/") if namespace_uri else ""
 
     for s, p, o in g:
         # Convert subject
@@ -197,7 +197,7 @@ def load_triples_from_rdf(rdf_path: Path, namespace_uri: str) -> tuple:
             # Format literal similar to import script
             val = str(o)
             # Normalize line endings (CRLF -> LF)
-            val = val.replace('\r\n', '\n').replace('\r', '\n')
+            val = val.replace("\r\n", "\n").replace("\r", "\n")
             if o.language:
                 obj = f'"{val}"@{o.language}'
             elif o.datatype and o.datatype != XSD.string:
@@ -235,7 +235,8 @@ def normalize_literal(lit: str) -> str:
 def is_uuid(s: str) -> bool:
     """Check if a string looks like a UUID."""
     import re
-    return bool(re.match(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$', s))
+
+    return bool(re.match(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", s))
 
 
 def compare_triples(file_triples: set, rdf_triples: set, rdf_blank_uuids: set, file_blank_uuids: set) -> tuple:
@@ -246,6 +247,7 @@ def compare_triples(file_triples: set, rdf_triples: set, rdf_blank_uuids: set, f
     1. Non-blank triples: exact match
     2. Blank node triples: structural match (same predicate-object patterns)
     """
+
     def is_blank_triple(triple, blank_uuids):
         """Check if any element of the triple is a blank node UUID."""
         s, p, o = triple
@@ -256,8 +258,8 @@ def compare_triples(file_triples: set, rdf_triples: set, rdf_blank_uuids: set, f
         Replace blank node UUIDs with 'BLANK' marker.
         """
         s, p, o = triple
-        ns = 'BLANK' if s in blank_uuids else s
-        no = 'BLANK' if o in blank_uuids else o
+        ns = "BLANK" if s in blank_uuids else s
+        no = "BLANK" if o in blank_uuids else o
         return (ns, p, no)
 
     # Separate non-blank and blank triples
@@ -275,17 +277,17 @@ def compare_triples(file_triples: set, rdf_triples: set, rdf_blank_uuids: set, f
     file_patterns = {get_triple_pattern(t, file_blank_uuids) for t in file_blank}
     rdf_patterns = {get_triple_pattern(t, rdf_blank_uuids) for t in rdf_blank}
 
-    patterns_match = (file_patterns == rdf_patterns)
+    patterns_match = file_patterns == rdf_patterns
 
     return only_in_files_nonblank, only_in_rdf_nonblank, len(file_blank), len(rdf_blank), patterns_match
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Verify imported ontology matches original RDF')
-    parser.add_argument('rdf_file', help='Path to original RDF file')
-    parser.add_argument('ontology_dir', help='Path to imported ontology directory')
-    parser.add_argument('--namespace', '-n', help='Namespace URI for the ontology')
-    parser.add_argument('-v', '--verbose', action='store_true', help='Verbose output')
+    parser = argparse.ArgumentParser(description="Verify imported ontology matches original RDF")
+    parser.add_argument("rdf_file", help="Path to original RDF file")
+    parser.add_argument("ontology_dir", help="Path to imported ontology directory")
+    parser.add_argument("--namespace", "-n", help="Namespace URI for the ontology")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     rdf_path = Path(args.rdf_file)
@@ -299,7 +301,7 @@ def main():
         return 1
 
     print(f"Loading triples from RDF: {rdf_path}")
-    rdf_triples, rdf_blank_uuids = load_triples_from_rdf(rdf_path, args.namespace or '')
+    rdf_triples, rdf_blank_uuids = load_triples_from_rdf(rdf_path, args.namespace or "")
     print(f"  Found {len(rdf_triples)} triples ({len(rdf_blank_uuids)} blank nodes)")
 
     print(f"\nLoading triples from files: {ont_dir}")
@@ -349,5 +351,5 @@ def main():
         return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(main())

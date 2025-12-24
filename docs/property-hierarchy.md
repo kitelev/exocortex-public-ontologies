@@ -1,0 +1,2477 @@
+# Property Hierarchy
+
+Complete property hierarchy across all ontologies.
+
+*Generated automatically. Total properties: 2399*
+
+**Legend:** 🔗 ObjectProperty | 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
+
+## as
+
+- 📝 `as:accuracy`
+- 📝 `as:altitude`
+- 🔗 `as:anyOf`
+- 🔗 `as:attachment`
+- 🔗 `as:attachments`
+- 🔗 `as:attributedTo`
+  - 🔗 `as:actor`
+  - 🔗 `as:author`
+- 🔗 `as:audience`
+- 🔗 `as:bcc`
+- 🔗 `as:bto`
+- 🔗 `as:cc`
+- 📝 `as:content`
+- 🔗 `as:context`
+- 🔗 `as:current`
+- 📝 `as:deleted`
+- 🔗 `as:describes`
+- 📝 `as:downstreamDuplicates`
+- 📝 `as:duration`
+- 📝 `as:endTime`
+- 🔗 `as:first`
+- 🔗 `as:formerType`
+- 🔗 `as:generator`
+- 📝 `as:height`
+- 📝 `as:href`
+- 📝 `as:hreflang`
+- 🔗 `as:icon`
+- 📝 `as:id`
+- 🔗 `as:image`
+- 🔗 `as:inReplyTo`
+- 🔗 `as:instrument`
+- 🔗 `as:items`
+- 🔗 `as:last`
+- 📝 `as:latitude`
+- 🔗 `as:location`
+- 📝 `as:longitude`
+- 📝 `as:mediaType`
+- 📝 `as:name`
+- 🔗 `as:next`
+- 🔗 `as:object`
+- 📝 `as:objectType`
+- 🔗 `as:oneOf`
+- 🔗 `as:origin`
+- 🔗 `as:partOf`
+- 🔗 `as:prev`
+- 🔗 `as:preview`
+- 🔗 `as:provider`
+- 📝 `as:published`
+- 📝 `as:radius`
+- 📝 `as:rating`
+- 📝 `as:rel`
+- 🔗 `as:replies`
+- 🔗 `as:result`
+- 📝 `as:startIndex`
+- 📝 `as:startTime`
+- 📝 `as:summary`
+- 🔗 `as:tag`
+- 🔗 `as:tags`
+- 🔗 `as:target`
+- 🔗 `as:to`
+- 📝 `as:totalItems`
+- 📝 `as:units`
+- 📝 `as:updated`
+- 📝 `as:upstreamDuplicates`
+- 🔗 `as:url`
+- 📝 `as:verb`
+- 📝 `as:width`
+
+## dc
+
+- ⚙️ `dc:contributor`
+  - ⚙️ `dcterms:contributor`
+    - ⚙️ `dcterms:creator`
+- ⚙️ `dc:coverage`
+  - ⚙️ `dcterms:coverage`
+    - ⚙️ `dcterms:spatial`
+    - ⚙️ `dcterms:temporal`
+- ⚙️ `dc:creator`
+  - ⚙️ `dcterms:creator`
+- ⚙️ `dc:date`
+  - ⚙️ `dcterms:available`
+  - ⚙️ `dcterms:created`
+  - ⚙️ `dcterms:date`
+    - ⚙️ `dcterms:dateAccepted`
+    - ⚙️ `dcterms:dateCopyrighted`
+    - ⚙️ `dcterms:dateSubmitted`
+    - ⚙️ `dcterms:issued`
+    - ⚙️ `dcterms:modified`
+    - ⚙️ `dcterms:valid`
+    - 📝 `sioc:last_activity_date`
+    - 📝 `sioc:last_item_date`
+    - 📝 `sioc:last_reply_date`
+- ⚙️ `dc:description`
+  - ⚙️ `dcterms:abstract`
+  - ⚙️ `dcterms:description`
+    - ⚙️ `dcterms:tableOfContents`
+- ⚙️ `dc:format`
+  - ⚙️ `dcterms:extent`
+  - ⚙️ `dcterms:format`
+    - 🔗 `dcat:compressFormat`
+    - ⚙️ `dcat:mediaType`
+    - 🔗 `dcat:packageFormat`
+    - ⚙️ `dcterms:medium`
+- ⚙️ `dc:identifier`
+  - ⚙️ `dcterms:bibliographicCitation`
+  - ⚙️ `dcterms:identifier`
+- ⚙️ `dc:language`
+  - ⚙️ `dcterms:language`
+- ⚙️ `dc:publisher`
+  - ⚙️ `dcterms:publisher`
+- ⚙️ `dc:relation`
+  - ⚙️ `dcterms:conformsTo`
+  - ⚙️ `dcterms:hasFormat`
+  - ⚙️ `dcterms:hasPart`
+    - 🔗 `dcat:catalog`
+    - ⚙️ `dcat:dataset`
+    - 🔗 `dcat:service`
+    - 🔗 `sioc:container_of`
+    - 🔗 `sioc:parent_of`
+    - 🔗 `sioc:space_of`
+      - 🔗 `sioc:host_of`
+  - ⚙️ `dcterms:hasVersion`
+  - ⚙️ `dcterms:isFormatOf`
+  - ⚙️ `dcterms:isPartOf`
+  - ⚙️ `dcterms:isReferencedBy`
+  - ⚙️ `dcterms:isReplacedBy`
+  - ⚙️ `dcterms:isRequiredBy`
+  - ⚙️ `dcterms:isVersionOf`
+  - ⚙️ `dcterms:references`
+    - 🔗 `sioc:links_to`
+  - ⚙️ `dcterms:relation`
+    - ⚙️ `dcat:distribution`
+    - ⚙️ `dcterms:replaces`
+    - ⚙️ `dcterms:requires`
+    - ⚙️ `dcterms:source`
+- ⚙️ `dc:rights`
+  - ⚙️ `dcterms:accessRights`
+  - ⚙️ `dcterms:license`
+  - ⚙️ `dcterms:rights`
+- ⚙️ `dc:source`
+  - ⚙️ `dcterms:source`
+- ⚙️ `dc:subject`
+  - ⚙️ `dcterms:subject`
+    - ⚙️ `dcat:keyword`
+    - ⚙️ `dcat:theme`
+    - 🔗 `sioc:topic`
+- ⚙️ `dc:title`
+  - ⚙️ `dcterms:alternative`
+  - ⚙️ `dcterms:title`
+- ⚙️ `dc:type`
+  - ⚙️ `dcterms:type`
+
+## dcam
+
+- ⚙️ `dcam:domainIncludes`
+- ⚙️ `dcam:memberOf`
+- ⚙️ `dcam:rangeIncludes`
+
+## dcat
+
+- 🔗 `dcat:accessService`
+- ⚙️ `dcat:accessURL`
+- ⚙️ `dcat:bbox`
+- 📝 `dcat:byteSize`
+- ⚙️ `dcat:centroid`
+- ⚙️ `dcat:contactPoint`
+- 🔗 `dcat:downloadURL`
+- ⚙️ `dcat:endDate`
+- 🔗 `dcat:endpointDescription`
+- 🔗 `dcat:endpointURL`
+- 🔗 `dcat:hadRole`
+- 🔗 `dcat:qualifiedRelation`
+- 🔗 `dcat:record`
+- 🔗 `dcat:servesDataset`
+- 📝 `dcat:spatialResolutionInMeters`
+- ⚙️ `dcat:startDate`
+- 📝 `dcat:temporalResolution`
+- ⚙️ `dcat:themeTaxonomy`
+
+## dcterms
+
+- ⚙️ `dcterms:accrualMethod`
+- ⚙️ `dcterms:accrualPeriodicity`
+- ⚙️ `dcterms:accrualPolicy`
+- ⚙️ `dcterms:audience`
+  - ⚙️ `dcterms:educationLevel`
+  - ⚙️ `dcterms:mediator`
+- ⚙️ `dcterms:instructionalMethod`
+- ⚙️ `dcterms:provenance`
+- ⚙️ `dcterms:rightsHolder`
+
+## doap
+
+- ⚙️ `doap:anon-root`
+- ⚙️ `doap:audience`
+- ⚙️ `doap:blog`
+- ⚙️ `doap:browse`
+- ⚙️ `doap:bug-database`
+- ⚙️ `doap:category`
+- ⚙️ `doap:created`
+- ⚙️ `doap:description`
+- ⚙️ `doap:developer`
+- ⚙️ `doap:developer-forum`
+- ⚙️ `doap:documentation`
+- ⚙️ `doap:documenter`
+- ⚙️ `doap:download-mirror`
+- ⚙️ `doap:download-page`
+- ⚙️ `doap:file-release`
+- ⚙️ `doap:helper`
+- ⚙️ `doap:implements`
+- ⚙️ `doap:language`
+- ⚙️ `doap:license`
+- ⚙️ `doap:location`
+- ⚙️ `doap:mailing-list`
+- ⚙️ `doap:maintainer`
+- ⚙️ `doap:module`
+- ⚙️ `doap:os`
+- ⚙️ `doap:platform`
+- ⚙️ `doap:programming-language`
+- ⚙️ `doap:release`
+- ⚙️ `doap:repository`
+- ⚙️ `doap:repositoryOf`
+- ⚙️ `doap:revision`
+- ⚙️ `doap:screenshots`
+- ⚙️ `doap:security-contact`
+- ⚙️ `doap:service-endpoint`
+- ⚙️ `doap:shortdesc`
+- ⚙️ `doap:support-forum`
+- ⚙️ `doap:tester`
+- ⚙️ `doap:translator`
+- ⚙️ `doap:vendor`
+- ⚙️ `doap:wiki`
+
+## foaf
+
+- 🔗 `foaf:account`
+- ⚙️ `foaf:accountName`
+- ⚙️ `foaf:accountServiceHomepage`
+- ⚙️ `foaf:age`
+- 🔗 `foaf:based_near`
+  - ⚙️ `geo:location`
+- 📝 `foaf:birthday`
+- ⚙️ `foaf:currentProject`
+- ⚙️ `foaf:depiction`
+  - ⚙️ `foaf:img`
+  - 🔗 `sioc:avatar`
+- 🔗 `foaf:depicts`
+- ⚙️ `foaf:dnaChecksum`
+- 📝 `foaf:family_name`
+- ⚙️ `foaf:familyName`
+- 📝 `foaf:firstName`
+- 🔗 `foaf:focus`
+- ⚙️ `foaf:fundedBy`
+- ⚙️ `foaf:geekcode`
+- 📝 `foaf:gender`
+- 📝 `foaf:givenName`
+- ⚙️ `foaf:givenname`
+- 🔗 `foaf:holdsAccount`
+- 🔗 `foaf:interest`
+- 📝 `foaf:jabberID`
+- 🔗 `foaf:knows`
+- ⚙️ `foaf:lastName`
+- 🔗 `foaf:logo`
+- 🔗 `foaf:made`
+- 🔗 `foaf:maker`
+- ⚙️ `foaf:mbox`
+- 📝 `foaf:mbox_sha1sum`
+- 🔗 `foaf:member`
+- ⚙️ `foaf:membershipClass`
+- ⚙️ `foaf:myersBriggs`
+- 📝 `foaf:nick`
+  - ⚙️ `foaf:aimChatID`
+  - 📝 `foaf:icqChatID`
+  - 📝 `foaf:msnChatID`
+  - ⚙️ `foaf:skypeID`
+  - ⚙️ `foaf:yahooChatID`
+- ⚙️ `foaf:page`
+  - ⚙️ `dcat:landingPage`
+  - ⚙️ `doap:security-policy`
+  - 🔗 `foaf:homepage`
+    - ⚙️ `doap:homepage`
+    - ⚙️ `doap:old-homepage`
+  - ⚙️ `foaf:isPrimaryTopicOf`
+    - ⚙️ `foaf:openid`
+  - ⚙️ `foaf:tipjar`
+  - 🔗 `foaf:weblog`
+- ⚙️ `foaf:pastProject`
+- ⚙️ `foaf:phone`
+- 📝 `foaf:plan`
+- 🔗 `foaf:primaryTopic`
+- ⚙️ `foaf:publications`
+- ⚙️ `foaf:schoolHomepage`
+- 📝 `foaf:sha1`
+- 📝 `foaf:status`
+- 📝 `foaf:surname`
+- 🔗 `foaf:theme`
+- ⚙️ `foaf:thumbnail`
+- ⚙️ `foaf:title`
+- ⚙️ `foaf:topic`
+- ⚙️ `foaf:topic_interest`
+- 🔗 `foaf:workInfoHomepage`
+- ⚙️ `foaf:workplaceHomepage`
+
+## geo
+
+- ⚙️ `geo:alt`
+- ⚙️ `geo:lat`
+- ⚙️ `geo:lat_long`
+- ⚙️ `geo:long`
+
+## geosparql
+
+- ⚙️ `geosparql:coordinateDimension`
+- ⚙️ `geosparql:dimension`
+- 🔗 `geosparql:ehContains`
+- 🔗 `geosparql:ehCoveredBy`
+- 🔗 `geosparql:ehCovers`
+- 🔗 `geosparql:ehDisjoint`
+- 🔗 `geosparql:ehEquals`
+- 🔗 `geosparql:ehInside`
+- ⚙️ `geosparql:ehMeet`
+- 🔗 `geosparql:ehOverlap`
+- ⚙️ `geosparql:hasGeometry`
+  - 🔗 `geosparql:defaultGeometry`
+  - 🔗 `geosparql:hasBoundingBox`
+  - 🔗 `geosparql:hasCentroid`
+  - 🔗 `geosparql:hasDefaultGeometry`
+- ⚙️ `geosparql:hasMetricSize`
+  - ⚙️ `geosparql:hasMetricArea`
+  - ⚙️ `geosparql:hasMetricLength`
+  - 📝 `geosparql:hasMetricPerimeterLength`
+  - ⚙️ `geosparql:hasMetricVolume`
+- 📝 `geosparql:hasMetricSpatialAccuracy`
+- ⚙️ `geosparql:hasMetricSpatialResolution`
+- ⚙️ `geosparql:hasSerialization`
+  - ⚙️ `geosparql:asDGGS`
+  - 📝 `geosparql:asGeoJSON`
+  - 📝 `geosparql:asGML`
+  - 📝 `geosparql:asKML`
+  - 📝 `geosparql:asWKT`
+- 🔗 `geosparql:hasSize`
+  - 🔗 `geosparql:hasArea`
+  - ⚙️ `geosparql:hasLength`
+  - 🔗 `geosparql:hasPerimeterLength`
+  - ⚙️ `geosparql:hasVolume`
+- 🔗 `geosparql:hasSpatialAccuracy`
+- ⚙️ `geosparql:hasSpatialResolution`
+- ⚙️ `geosparql:isEmpty`
+- ⚙️ `geosparql:isSimple`
+- ⚙️ `geosparql:rcc8dc`
+- ⚙️ `geosparql:rcc8ec`
+- 🔗 `geosparql:rcc8eq`
+- 🔗 `geosparql:rcc8ntpp`
+- 🔗 `geosparql:rcc8ntppi`
+- ⚙️ `geosparql:rcc8po`
+- 🔗 `geosparql:rcc8tpp`
+- 🔗 `geosparql:rcc8tppi`
+- 🔗 `geosparql:sfContains`
+- ⚙️ `geosparql:sfCrosses`
+- 🔗 `geosparql:sfDisjoint`
+- ⚙️ `geosparql:sfEquals`
+- 🔗 `geosparql:sfIntersects`
+- ⚙️ `geosparql:sfOverlaps`
+- 🔗 `geosparql:sfTouches`
+- 🔗 `geosparql:sfWithin`
+- ⚙️ `geosparql:spatialDimension`
+
+## org
+
+- ⚙️ `org:basedAt`
+- ⚙️ `org:changedBy`
+- ⚙️ `org:classification`
+- ⚙️ `org:hasMember`
+- ⚙️ `org:hasMembership`
+- ⚙️ `org:hasPost`
+- ⚙️ `org:hasSite`
+  - 🔗 `org:hasPrimarySite`
+    - ⚙️ `org:hasRegisteredSite`
+- 🔗 `org:hasSubOrganization`
+  - ⚙️ `org:hasUnit`
+- ⚙️ `org:heldBy`
+- ⚙️ `org:holds`
+- 🔗 `org:linkedTo`
+- 📝 `org:location`
+- ⚙️ `org:member`
+- ⚙️ `org:memberDuring`
+- ⚙️ `org:memberOf`
+  - ⚙️ `org:headOf`
+- 🔗 `org:organization`
+- ⚙️ `org:postIn`
+- ⚙️ `org:purpose`
+- 🔗 `org:remuneration`
+- ⚙️ `org:reportsTo`
+- ⚙️ `org:resultingOrganization`
+- 🔗 `org:role`
+- ⚙️ `org:roleProperty`
+- ⚙️ `org:siteAddress`
+- ⚙️ `org:siteOf`
+- ⚙️ `org:transitiveSubOrganizationOf`
+  - ⚙️ `org:subOrganizationOf`
+    - 🔗 `org:unitOf`
+
+## owl
+
+- ⚙️ `owl:allValuesFrom`
+- ⚙️ `owl:annotatedProperty`
+- ⚙️ `owl:annotatedSource`
+- ⚙️ `owl:annotatedTarget`
+- ⚙️ `owl:assertionProperty`
+- 📎 `owl:backwardCompatibleWith`
+- 📝 `owl:bottomDataProperty`
+- 🔗 `owl:bottomObjectProperty`
+- ⚙️ `owl:cardinality`
+- ⚙️ `owl:complementOf`
+- ⚙️ `owl:datatypeComplementOf`
+- 📎 `owl:deprecated`
+- ⚙️ `owl:differentFrom`
+- ⚙️ `owl:disjointUnionOf`
+- ⚙️ `owl:disjointWith`
+- ⚙️ `owl:distinctMembers`
+- ⚙️ `owl:equivalentClass`
+- ⚙️ `owl:equivalentProperty`
+- ⚙️ `owl:hasKey`
+- ⚙️ `owl:hasSelf`
+- ⚙️ `owl:hasValue`
+- 📎 `owl:incompatibleWith`
+- ⚙️ `owl:intersectionOf`
+- ⚙️ `owl:inverseOf`
+- ⚙️ `owl:maxCardinality`
+- ⚙️ `owl:maxQualifiedCardinality`
+- ⚙️ `owl:members`
+- ⚙️ `owl:minCardinality`
+- ⚙️ `owl:minQualifiedCardinality`
+- ⚙️ `owl:onClass`
+- ⚙️ `owl:onDataRange`
+- ⚙️ `owl:onDatatype`
+- ⚙️ `owl:oneOf`
+- ⚙️ `owl:onProperties`
+- ⚙️ `owl:onProperty`
+- 📎 `owl:priorVersion`
+- ⚙️ `owl:propertyChainAxiom`
+- ⚙️ `owl:propertyDisjointWith`
+- ⚙️ `owl:qualifiedCardinality`
+- ⚙️ `owl:sameAs`
+- ⚙️ `owl:someValuesFrom`
+- ⚙️ `owl:sourceIndividual`
+- ⚙️ `owl:targetIndividual`
+- ⚙️ `owl:targetValue`
+- 📝 `owl:topDataProperty`
+- 🔗 `owl:topObjectProperty`
+- ⚙️ `owl:unionOf`
+- 📎 `owl:versionInfo`
+- ⚙️ `owl:withRestrictions`
+
+## prov
+
+- 🔗 `prov:alternateOf`
+  - 📎 `prov:specializationOf`
+- 🔗 `prov:atLocation`
+- 📝 `prov:atTime`
+- 📎 `prov:category`
+- 📎 `prov:component`
+- 📎 `prov:definition`
+  - 📎 `prov:editorsDefinition`
+- 📎 `prov:editorialNote`
+- 📝 `prov:endedAtTime`
+- 📝 `prov:generatedAtTime`
+- 🔗 `prov:hadActivity`
+- 🔗 `prov:hadGeneration`
+- 🔗 `prov:hadPlan`
+- 🔗 `prov:hadRole`
+- 🔗 `prov:hadUsage`
+- 🔗 `prov:influenced`
+  - 🔗 `prov:generated`
+  - 🔗 `prov:invalidated`
+- 🔗 `prov:influencer`
+  - 🔗 `prov:activity`
+  - 🔗 `prov:agent`
+  - 🔗 `prov:entity`
+- 📝 `prov:invalidatedAtTime`
+- 📎 `prov:inverse`
+- 📎 `prov:order`
+- 🔗 `prov:qualifiedInfluence`
+  - 🔗 `prov:qualifiedAssociation`
+  - 🔗 `prov:qualifiedAttribution`
+  - 🔗 `prov:qualifiedCommunication`
+  - 🔗 `prov:qualifiedDelegation`
+  - 🔗 `prov:qualifiedDerivation`
+  - 🔗 `prov:qualifiedEnd`
+  - 🔗 `prov:qualifiedGeneration`
+  - 🔗 `prov:qualifiedInvalidation`
+  - 🔗 `prov:qualifiedPrimarySource`
+  - 🔗 `prov:qualifiedQuotation`
+  - 🔗 `prov:qualifiedRevision`
+  - 🔗 `prov:qualifiedStart`
+  - 🔗 `prov:qualifiedUsage`
+- 📝 `prov:startedAtTime`
+- 📎 `prov:todo`
+- 📝 `prov:value`
+- 🔗 `prov:wasInfluencedBy`
+  - 🔗 `prov:actedOnBehalfOf`
+  - 🔗 `prov:hadMember`
+  - 🔗 `prov:used`
+    - ⚙️ `org:originalOrganization`
+  - 🔗 `prov:wasAssociatedWith`
+  - 🔗 `prov:wasAttributedTo`
+  - 🔗 `prov:wasDerivedFrom`
+    - 🔗 `prov:hadPrimarySource`
+    - 🔗 `prov:wasQuotedFrom`
+    - 📎 `prov:wasRevisionOf`
+  - 🔗 `prov:wasEndedBy`
+  - 🔗 `prov:wasGeneratedBy`
+    - 🔗 `org:resultedFrom`
+  - 🔗 `prov:wasInformedBy`
+  - 🔗 `prov:wasInvalidatedBy`
+  - 🔗 `prov:wasStartedBy`
+
+## rdf
+
+- ⚙️ `rdf:direction`
+- ⚙️ `rdf:first`
+- ⚙️ `rdf:language`
+- ⚙️ `rdf:object`
+- ⚙️ `rdf:predicate`
+  - 🔗 `as:relationship`
+- ⚙️ `rdf:rest`
+- ⚙️ `rdf:subject`
+  - 🔗 `as:subject`
+- ⚙️ `rdf:type`
+  - ⚙️ `schema:additionalType`
+- ⚙️ `rdf:value`
+
+## rdfs
+
+- ⚙️ `rdfs:comment`
+- ⚙️ `rdfs:domain`
+- ⚙️ `rdfs:label`
+  - ⚙️ `doap:name`
+  - 📝 `foaf:name`
+  - ⚙️ `schema:name`
+  - 📎 `skos:altLabel`
+  - 📎 `skos:hiddenLabel`
+  - ⚙️ `skos:prefLabel`
+- ⚙️ `rdfs:member`
+  - 🔗 `dcat:catalog`
+  - ⚙️ `dcat:dataset`
+  - 🔗 `dcat:service`
+- ⚙️ `rdfs:range`
+- ⚙️ `rdfs:seeAlso`
+  - 📎 `prov:aq`
+  - 📎 `prov:constraints`
+  - 📎 `prov:dm`
+  - 📎 `prov:n`
+  - 📎 `prov:qualifiedForm`
+  - 📎 `prov:sharesDefinitionWith`
+  - 📎 `prov:unqualifiedForm`
+  - ⚙️ `rdfs:isDefinedBy`
+- ⚙️ `rdfs:subClassOf`
+- ⚙️ `rdfs:subPropertyOf`
+
+## schema
+
+- ⚙️ `schema:about`
+  - ⚙️ `schema:mainEntity`
+- ⚙️ `schema:abridged`
+- ⚙️ `schema:abstract`
+- ⚙️ `schema:accelerationTime`
+- ⚙️ `schema:acceptedOffer`
+- ⚙️ `schema:acceptedPaymentMethod`
+- ⚙️ `schema:acceptsReservations`
+- ⚙️ `schema:accessCode`
+- ⚙️ `schema:accessibilityAPI`
+- ⚙️ `schema:accessibilityControl`
+- ⚙️ `schema:accessibilityFeature`
+- ⚙️ `schema:accessibilityHazard`
+- ⚙️ `schema:accessibilitySummary`
+- ⚙️ `schema:accessMode`
+- ⚙️ `schema:accessModeSufficient`
+- ⚙️ `schema:accommodationFloorPlan`
+- ⚙️ `schema:accountablePerson`
+- ⚙️ `schema:accountMinimumInflow`
+- ⚙️ `schema:accountOverdraftLimit`
+- ⚙️ `schema:acquiredFrom`
+- ⚙️ `schema:acrissCode`
+- ⚙️ `schema:actionAccessibilityRequirement`
+- ⚙️ `schema:actionApplication`
+- ⚙️ `schema:actionPlatform`
+- ⚙️ `schema:actionProcess`
+- ⚙️ `schema:actionStatus`
+- ⚙️ `schema:activeIngredient`
+- ⚙️ `schema:activityDuration`
+- ⚙️ `schema:activityFrequency`
+- ⚙️ `schema:actor`
+  - ⚙️ `schema:readBy`
+- ⚙️ `schema:actors`
+- ⚙️ `schema:additionalNumberOfGuests`
+- ⚙️ `schema:additionalProperty`
+- ⚙️ `schema:additionalVariable`
+- ⚙️ `schema:addOn`
+- ⚙️ `schema:address`
+- ⚙️ `schema:addressCountry`
+- ⚙️ `schema:addressLocality`
+- ⚙️ `schema:addressRegion`
+- ⚙️ `schema:administrationRoute`
+- ⚙️ `schema:advanceBookingRequirement`
+- ⚙️ `schema:adverseOutcome`
+- ⚙️ `schema:affectedBy`
+- ⚙️ `schema:afterMedia`
+- ⚙️ `schema:agent`
+- ⚙️ `schema:agentInteractionStatistic`
+- ⚙️ `schema:aggregateElement`
+- ⚙️ `schema:aggregateRating`
+- ⚙️ `schema:aircraft`
+- ⚙️ `schema:album`
+- ⚙️ `schema:albumProductionType`
+- ⚙️ `schema:albumRelease`
+- ⚙️ `schema:albumReleaseType`
+- ⚙️ `schema:albums`
+- ⚙️ `schema:alcoholWarning`
+- ⚙️ `schema:algorithm`
+- ⚙️ `schema:alignmentType`
+- ⚙️ `schema:alternateName`
+  - ⚙️ `schema:additionalName`
+- ⚙️ `schema:alternativeHeadline`
+- ⚙️ `schema:alternativeOf`
+- ⚙️ `schema:alumni`
+- ⚙️ `schema:alumniOf`
+- ⚙️ `schema:amenityFeature`
+- ⚙️ `schema:amount`
+- ⚙️ `schema:amountOfThisGood`
+- ⚙️ `schema:annualPercentageRate`
+- ⚙️ `schema:answerCount`
+- ⚙️ `schema:answerExplanation`
+- ⚙️ `schema:antagonist`
+- ⚙️ `schema:applicableCountry`
+- ⚙️ `schema:applicableLocation`
+- ⚙️ `schema:applicantLocationRequirements`
+- ⚙️ `schema:application`
+- ⚙️ `schema:applicationCategory`
+- ⚙️ `schema:applicationContact`
+- ⚙️ `schema:applicationDeadline`
+- ⚙️ `schema:applicationStartDate`
+- ⚙️ `schema:applicationSubCategory`
+- ⚙️ `schema:applicationSuite`
+- ⚙️ `schema:appliesToDeliveryMethod`
+- ⚙️ `schema:appliesToPaymentMethod`
+- ⚙️ `schema:archivedAt`
+- ⚙️ `schema:archiveHeld`
+- ⚙️ `schema:area`
+- ⚙️ `schema:areaServed`
+  - ⚙️ `schema:availableAtOrFrom`
+  - ⚙️ `schema:eligibleRegion`
+- ⚙️ `schema:arrivalAirport`
+- ⚙️ `schema:arrivalBoatTerminal`
+- ⚙️ `schema:arrivalBusStop`
+- ⚙️ `schema:arrivalGate`
+- ⚙️ `schema:arrivalPlatform`
+- ⚙️ `schema:arrivalStation`
+- ⚙️ `schema:arrivalTerminal`
+- ⚙️ `schema:arrivalTime`
+- ⚙️ `schema:artEdition`
+- ⚙️ `schema:arterialBranch`
+- ⚙️ `schema:artform`
+- ⚙️ `schema:articleBody`
+- ⚙️ `schema:articleSection`
+- ⚙️ `schema:artist`
+- ⚙️ `schema:artworkSurface`
+- ⚙️ `schema:aspect`
+- ⚙️ `schema:assembly`
+- ⚙️ `schema:assemblyVersion`
+- ⚙️ `schema:assesses`
+- ⚙️ `schema:associatedAnatomy`
+- ⚙️ `schema:associatedArticle`
+- ⚙️ `schema:associatedDisease`
+- ⚙️ `schema:associatedMedia`
+- ⚙️ `schema:associatedPathophysiology`
+- ⚙️ `schema:associatedReview`
+  - ⚙️ `schema:associatedClaimReview`
+  - ⚙️ `schema:associatedMediaReview`
+- ⚙️ `schema:athlete`
+- ⚙️ `schema:attendee`
+- ⚙️ `schema:attendees`
+- ⚙️ `schema:audience`
+- ⚙️ `schema:audienceType`
+- ⚙️ `schema:audio`
+- ⚙️ `schema:auditDate`
+- ⚙️ `schema:authenticator`
+- ⚙️ `schema:author`
+- ⚙️ `schema:availability`
+- ⚙️ `schema:availabilityEnds`
+- ⚙️ `schema:availabilityStarts`
+- ⚙️ `schema:availableChannel`
+- ⚙️ `schema:availableDeliveryMethod`
+- ⚙️ `schema:availableFrom`
+- ⚙️ `schema:availableIn`
+- ⚙️ `schema:availableLanguage`
+- ⚙️ `schema:availableOnDevice`
+- ⚙️ `schema:availableService`
+- ⚙️ `schema:availableStrength`
+- ⚙️ `schema:availableTest`
+- ⚙️ `schema:availableThrough`
+- ⚙️ `schema:award`
+- ⚙️ `schema:awards`
+- ⚙️ `schema:backstory`
+- ⚙️ `schema:bankAccountType`
+- ⚙️ `schema:baseSalary`
+- ⚙️ `schema:bed`
+- ⚙️ `schema:beforeMedia`
+- ⚙️ `schema:beneficiaryBank`
+- ⚙️ `schema:benefits`
+- ⚙️ `schema:benefitsSummaryUrl`
+- ⚙️ `schema:bestRating`
+- ⚙️ `schema:billingAddress`
+- ⚙️ `schema:billingDuration`
+- ⚙️ `schema:billingIncrement`
+- ⚙️ `schema:billingPeriod`
+- ⚙️ `schema:billingStart`
+- ⚙️ `schema:bioChemInteraction`
+- ⚙️ `schema:bioChemSimilarity`
+- ⚙️ `schema:biologicalRole`
+- ⚙️ `schema:biomechnicalClass`
+- ⚙️ `schema:birthDate`
+- ⚙️ `schema:birthPlace`
+- ⚙️ `schema:bitrate`
+- ⚙️ `schema:blogPost`
+- ⚙️ `schema:blogPosts`
+- ⚙️ `schema:bloodSupply`
+- ⚙️ `schema:boardingGroup`
+- ⚙️ `schema:boardingPolicy`
+- ⚙️ `schema:bodyLocation`
+- ⚙️ `schema:bodyType`
+- ⚙️ `schema:bookEdition`
+- ⚙️ `schema:bookFormat`
+- ⚙️ `schema:bookingAgent`
+- ⚙️ `schema:bookingTime`
+- ⚙️ `schema:box`
+- ⚙️ `schema:branch`
+- ⚙️ `schema:branchCode`
+- ⚙️ `schema:branchOf`
+- ⚙️ `schema:brand`
+- ⚙️ `schema:breadcrumb`
+- ⚙️ `schema:breastfeedingWarning`
+- ⚙️ `schema:broadcastAffiliateOf`
+- ⚙️ `schema:broadcastChannelId`
+- ⚙️ `schema:broadcastDisplayName`
+- ⚙️ `schema:broadcaster`
+- ⚙️ `schema:broadcastFrequency`
+- ⚙️ `schema:broadcastFrequencyValue`
+- ⚙️ `schema:broadcastOfEvent`
+- ⚙️ `schema:broadcastServiceTier`
+- ⚙️ `schema:broadcastSignalModulation`
+- ⚙️ `schema:broadcastSubChannel`
+- ⚙️ `schema:broadcastTimezone`
+- ⚙️ `schema:broker`
+- ⚙️ `schema:browserRequirements`
+- ⚙️ `schema:businessDays`
+- ⚙️ `schema:businessFunction`
+- ⚙️ `schema:busName`
+- ⚙️ `schema:busNumber`
+- ⚙️ `schema:byArtist`
+- ⚙️ `schema:byDay`
+- ⚙️ `schema:byMonth`
+- ⚙️ `schema:byMonthDay`
+- ⚙️ `schema:byMonthWeek`
+- ⚙️ `schema:calories`
+- ⚙️ `schema:caption`
+  - ⚙️ `schema:embeddedTextCaption`
+- ⚙️ `schema:carbohydrateContent`
+- ⚙️ `schema:cargoVolume`
+- ⚙️ `schema:carrier`
+- ⚙️ `schema:carrierRequirements`
+- ⚙️ `schema:cashBack`
+- ⚙️ `schema:catalog`
+- ⚙️ `schema:catalogNumber`
+- ⚙️ `schema:category`
+  - ⚙️ `schema:accommodationCategory`
+- ⚙️ `schema:cause`
+- ⚙️ `schema:causeOf`
+- ⚙️ `schema:certificationIdentification`
+- ⚙️ `schema:certificationRating`
+- ⚙️ `schema:certificationStatus`
+- ⚙️ `schema:character`
+- ⚙️ `schema:characterAttribute`
+- ⚙️ `schema:characterName`
+- ⚙️ `schema:cheatCode`
+- ⚙️ `schema:checkinTime`
+- ⚙️ `schema:checkoutPageURLTemplate`
+- ⚙️ `schema:checkoutTime`
+- ⚙️ `schema:chemicalComposition`
+- ⚙️ `schema:chemicalRole`
+- ⚙️ `schema:childMaxAge`
+- ⚙️ `schema:childMinAge`
+- ⚙️ `schema:children`
+- ⚙️ `schema:childTaxon`
+- ⚙️ `schema:cholesterolContent`
+- ⚙️ `schema:circle`
+- ⚙️ `schema:citation`
+- ⚙️ `schema:claimInterpreter`
+- ⚙️ `schema:claimReviewed`
+- ⚙️ `schema:clincalPharmacology`
+- ⚙️ `schema:clinicalPharmacology`
+- ⚙️ `schema:closes`
+- ⚙️ `schema:coach`
+- ⚙️ `schema:code`
+- ⚙️ `schema:codeRepository`
+- ⚙️ `schema:codeSampleType`
+- ⚙️ `schema:codingSystem`
+- ⚙️ `schema:colleague`
+- ⚙️ `schema:colleagues`
+- ⚙️ `schema:collectionSize`
+- ⚙️ `schema:color`
+- ⚙️ `schema:colorist`
+- ⚙️ `schema:comment`
+- ⚙️ `schema:commentCount`
+- ⚙️ `schema:commentText`
+- ⚙️ `schema:commentTime`
+- ⚙️ `schema:companyRegistration`
+- ⚙️ `schema:competencyRequired`
+- ⚙️ `schema:competitor`
+  - ⚙️ `schema:awayTeam`
+  - ⚙️ `schema:homeTeam`
+- ⚙️ `schema:composer`
+- ⚙️ `schema:comprisedOf`
+- ⚙️ `schema:conditionsOfAccess`
+- ⚙️ `schema:connectedTo`
+- ⚙️ `schema:constraintProperty`
+- ⚙️ `schema:contactlessPayment`
+- ⚙️ `schema:contactOption`
+- ⚙️ `schema:contactPoint`
+- ⚙️ `schema:contactPoints`
+- ⚙️ `schema:contactType`
+- ⚙️ `schema:containedIn`
+- ⚙️ `schema:containedInPlace`
+- ⚙️ `schema:containsPlace`
+- ⚙️ `schema:contentLocation`
+  - ⚙️ `schema:spatialCoverage`
+    - ⚙️ `schema:announcementLocation`
+    - ⚙️ `schema:legislationJurisdiction`
+- ⚙️ `schema:contentRating`
+- ⚙️ `schema:contentReferenceTime`
+- ⚙️ `schema:contentSize`
+- ⚙️ `schema:contentType`
+- ⚙️ `schema:contentUrl`
+- ⚙️ `schema:contraindication`
+- ⚙️ `schema:contributor`
+- ⚙️ `schema:cookingMethod`
+- ⚙️ `schema:copyrightHolder`
+- ⚙️ `schema:copyrightNotice`
+- ⚙️ `schema:copyrightYear`
+- ⚙️ `schema:correction`
+- ⚙️ `schema:costCategory`
+- ⚙️ `schema:costCurrency`
+- ⚙️ `schema:costOrigin`
+- ⚙️ `schema:costPerUnit`
+- ⚙️ `schema:countriesNotSupported`
+- ⚙️ `schema:countriesSupported`
+- ⚙️ `schema:countryOfAssembly`
+- ⚙️ `schema:countryOfLastProcessing`
+- ⚙️ `schema:countryOfOrigin`
+- ⚙️ `schema:courseCode`
+- ⚙️ `schema:courseMode`
+- ⚙️ `schema:coursePrerequisites`
+- ⚙️ `schema:courseSchedule`
+- ⚙️ `schema:courseWorkload`
+- ⚙️ `schema:coverageEndTime`
+- ⚙️ `schema:coverageStartTime`
+- ⚙️ `schema:creativeWorkStatus`
+- ⚙️ `schema:creator`
+  - ⚙️ `schema:legislationPassedBy`
+- ⚙️ `schema:credentialCategory`
+- ⚙️ `schema:creditedTo`
+- ⚙️ `schema:creditText`
+- ⚙️ `schema:cssSelector`
+- ⚙️ `schema:currenciesAccepted`
+- ⚙️ `schema:currency`
+- ⚙️ `schema:currentExchangeRate`
+- ⚙️ `schema:customer`
+- ⚙️ `schema:customerRemorseReturnFees`
+- ⚙️ `schema:customerRemorseReturnLabelSource`
+- ⚙️ `schema:customerRemorseReturnShippingFeesAmount`
+- ⚙️ `schema:cutoffTime`
+- ⚙️ `schema:cvdCollectionDate`
+- ⚙️ `schema:cvdFacilityCounty`
+- ⚙️ `schema:cvdFacilityId`
+- ⚙️ `schema:cvdNumBeds`
+- ⚙️ `schema:cvdNumBedsOcc`
+- ⚙️ `schema:cvdNumC19Died`
+- ⚙️ `schema:cvdNumC19HOPats`
+- ⚙️ `schema:cvdNumC19HospPats`
+- ⚙️ `schema:cvdNumC19MechVentPats`
+- ⚙️ `schema:cvdNumC19OFMechVentPats`
+- ⚙️ `schema:cvdNumC19OverflowPats`
+- ⚙️ `schema:cvdNumICUBeds`
+- ⚙️ `schema:cvdNumICUBedsOcc`
+- ⚙️ `schema:cvdNumTotBeds`
+- ⚙️ `schema:cvdNumVent`
+- ⚙️ `schema:cvdNumVentUse`
+- ⚙️ `schema:data`
+- ⚙️ `schema:dataFeedElement`
+- ⚙️ `schema:dataset`
+- ⚙️ `schema:datasetTimeInterval`
+- ⚙️ `schema:dateCreated`
+  - ⚙️ `schema:legislationDate`
+- ⚙️ `schema:dateDeleted`
+- ⚙️ `schema:dateIssued`
+- ⚙️ `schema:dateline`
+- ⚙️ `schema:dateModified`
+- ⚙️ `schema:datePosted`
+- ⚙️ `schema:datePublished`
+- ⚙️ `schema:dateRead`
+- ⚙️ `schema:dateReceived`
+- ⚙️ `schema:dateSent`
+- ⚙️ `schema:dateVehicleFirstRegistered`
+- ⚙️ `schema:dayOfWeek`
+- ⚙️ `schema:deathDate`
+- ⚙️ `schema:deathPlace`
+- ⚙️ `schema:defaultValue`
+- ⚙️ `schema:deliveryAddress`
+- ⚙️ `schema:deliveryLeadTime`
+- ⚙️ `schema:deliveryStatus`
+- ⚙️ `schema:deliveryTime`
+- ⚙️ `schema:department`
+- ⚙️ `schema:departureAirport`
+- ⚙️ `schema:departureBoatTerminal`
+- ⚙️ `schema:departureBusStop`
+- ⚙️ `schema:departureGate`
+- ⚙️ `schema:departurePlatform`
+- ⚙️ `schema:departureStation`
+- ⚙️ `schema:departureTerminal`
+- ⚙️ `schema:departureTime`
+- ⚙️ `schema:dependencies`
+- ⚙️ `schema:depth`
+- ⚙️ `schema:description`
+  - ⚙️ `schema:disambiguatingDescription`
+  - ⚙️ `schema:interpretedAsClaim`
+  - ⚙️ `schema:originalMediaContextDescription`
+  - ⚙️ `schema:sha256`
+- ⚙️ `schema:device`
+- ⚙️ `schema:diagnosis`
+- ⚙️ `schema:diagram`
+- ⚙️ `schema:dietFeatures`
+- ⚙️ `schema:differentialDiagnosis`
+- ⚙️ `schema:digitalSourceType`
+- ⚙️ `schema:directApply`
+- ⚙️ `schema:director`
+- ⚙️ `schema:directors`
+- ⚙️ `schema:discount`
+- ⚙️ `schema:discountCode`
+- ⚙️ `schema:discountCurrency`
+- ⚙️ `schema:discusses`
+- ⚙️ `schema:discussionUrl`
+- ⚙️ `schema:diseasePreventionInfo`
+- ⚙️ `schema:diseaseSpreadStatistics`
+- ⚙️ `schema:displayLocation`
+- ⚙️ `schema:dissolutionDate`
+- ⚙️ `schema:distance`
+- ⚙️ `schema:distinguishingSign`
+- ⚙️ `schema:distribution`
+- ⚙️ `schema:diversityPolicy`
+- ⚙️ `schema:documentation`
+- ⚙️ `schema:doesNotShip`
+- ⚙️ `schema:domainIncludes`
+- ⚙️ `schema:domiciledMortgage`
+- ⚙️ `schema:doorTime`
+- ⚙️ `schema:dosageForm`
+- ⚙️ `schema:doseSchedule`
+- ⚙️ `schema:doseUnit`
+- ⚙️ `schema:doseValue`
+- ⚙️ `schema:downloadUrl`
+- ⚙️ `schema:downPayment`
+- ⚙️ `schema:downvoteCount`
+- ⚙️ `schema:drainsTo`
+- ⚙️ `schema:driveWheelConfiguration`
+- ⚙️ `schema:dropoffLocation`
+- ⚙️ `schema:dropoffTime`
+- ⚙️ `schema:drug`
+- ⚙️ `schema:drugClass`
+- ⚙️ `schema:drugUnit`
+- ⚙️ `schema:duplicateTherapy`
+- ⚙️ `schema:duration`
+  - ⚙️ `schema:durationOfWarranty`
+  - ⚙️ `schema:handlingTime`
+  - ⚙️ `schema:loanTerm`
+- ⚙️ `schema:duringMedia`
+- ⚙️ `schema:earlyPrepaymentPenalty`
+- ⚙️ `schema:editor`
+- ⚙️ `schema:educationalAlignment`
+- ⚙️ `schema:educationalCredentialAwarded`
+- ⚙️ `schema:educationalFramework`
+- ⚙️ `schema:educationalLevel`
+- ⚙️ `schema:educationalProgramMode`
+- ⚙️ `schema:educationalRole`
+- ⚙️ `schema:educationalUse`
+- ⚙️ `schema:educationRequirements`
+- ⚙️ `schema:eduQuestionType`
+- ⚙️ `schema:elevation`
+- ⚙️ `schema:eligibilityToWorkRequirement`
+- ⚙️ `schema:eligibleCustomerType`
+- ⚙️ `schema:eligibleDuration`
+- ⚙️ `schema:eligibleQuantity`
+- ⚙️ `schema:eligibleTransactionVolume`
+- ⚙️ `schema:eligibleWithSupplier`
+- ⚙️ `schema:email`
+- ⚙️ `schema:embedUrl`
+- ⚙️ `schema:emissionsCO2`
+- ⚙️ `schema:employee`
+- ⚙️ `schema:employees`
+- ⚙️ `schema:employerOverview`
+- ⚙️ `schema:employmentType`
+- ⚙️ `schema:employmentUnit`
+- ⚙️ `schema:encodesBioChemEntity`
+- ⚙️ `schema:encodesCreativeWork`
+- ⚙️ `schema:encoding`
+- ⚙️ `schema:encodingFormat`
+- ⚙️ `schema:encodings`
+- ⚙️ `schema:encodingType`
+- ⚙️ `schema:endDate`
+  - ⚙️ `schema:priceValidUntil`
+- ⚙️ `schema:endOffset`
+- ⚙️ `schema:endorsers`
+- ⚙️ `schema:endTime`
+- ⚙️ `schema:energyEfficiencyScaleMax`
+- ⚙️ `schema:energyEfficiencyScaleMin`
+- ⚙️ `schema:engineDisplacement`
+- ⚙️ `schema:enginePower`
+- ⚙️ `schema:engineType`
+- ⚙️ `schema:epidemiology`
+- ⚙️ `schema:episodes`
+- ⚙️ `schema:equal`
+- ⚙️ `schema:error`
+- ⚙️ `schema:errorCode`
+- ⚙️ `schema:estimatedCost`
+- ⚙️ `schema:estimatedFlightDuration`
+- ⚙️ `schema:estimatedSalary`
+- ⚙️ `schema:estimatesRiskOf`
+- ⚙️ `schema:ethicsPolicy`
+- ⚙️ `schema:event`
+- ⚙️ `schema:eventAttendanceMode`
+- ⚙️ `schema:events`
+- ⚙️ `schema:eventSchedule`
+- ⚙️ `schema:eventStatus`
+- ⚙️ `schema:evidenceLevel`
+- ⚙️ `schema:evidenceOrigin`
+- ⚙️ `schema:exampleOfWork`
+- ⚙️ `schema:exceptDate`
+- ⚙️ `schema:exchangeRateSpread`
+- ⚙️ `schema:executableLibraryName`
+- ⚙️ `schema:exerciseType`
+- ⚙️ `schema:exifData`
+- ⚙️ `schema:expectedArrivalFrom`
+- ⚙️ `schema:expectedArrivalUntil`
+- ⚙️ `schema:expectedPrognosis`
+- ⚙️ `schema:expectsAcceptanceOf`
+- ⚙️ `schema:experienceInPlaceOfEducation`
+- ⚙️ `schema:experienceRequirements`
+- ⚙️ `schema:expertConsiderations`
+- ⚙️ `schema:expires`
+- ⚙️ `schema:expressedIn`
+- ⚙️ `schema:extendedAddress`
+- ⚙️ `schema:familyName`
+- ⚙️ `schema:fatContent`
+- ⚙️ `schema:faxNumber`
+- ⚙️ `schema:featureList`
+- ⚙️ `schema:feesAndCommissionsSpecification`
+- ⚙️ `schema:fiberContent`
+- ⚙️ `schema:fileFormat`
+- ⚙️ `schema:fileSize`
+- ⚙️ `schema:financialAidEligible`
+- ⚙️ `schema:firstPerformance`
+- ⚙️ `schema:flightDistance`
+- ⚙️ `schema:floorLevel`
+- ⚙️ `schema:floorLimit`
+- ⚙️ `schema:floorSize`
+- ⚙️ `schema:follows`
+- ⚙️ `schema:followup`
+- ⚙️ `schema:foodWarning`
+- ⚙️ `schema:founder`
+- ⚙️ `schema:founders`
+- ⚙️ `schema:foundingDate`
+- ⚙️ `schema:foundingLocation`
+- ⚙️ `schema:free`
+- ⚙️ `schema:freeShippingThreshold`
+- ⚙️ `schema:frequency`
+  - ⚙️ `schema:repeatFrequency`
+- ⚙️ `schema:fuelCapacity`
+- ⚙️ `schema:fuelConsumption`
+- ⚙️ `schema:fuelEfficiency`
+- ⚙️ `schema:fuelType`
+- ⚙️ `schema:fulfillmentType`
+- ⚙️ `schema:functionalClass`
+- ⚙️ `schema:fundedItem`
+- ⚙️ `schema:funding`
+- ⚙️ `schema:game`
+- ⚙️ `schema:gameAvailabilityType`
+- ⚙️ `schema:gameEdition`
+- ⚙️ `schema:gameItem`
+- ⚙️ `schema:gameLocation`
+- ⚙️ `schema:gamePlatform`
+- ⚙️ `schema:gameServer`
+- ⚙️ `schema:gameTip`
+- ⚙️ `schema:gender`
+- ⚙️ `schema:genre`
+  - ⚙️ `schema:legislationType`
+- ⚙️ `schema:geo`
+- ⚙️ `schema:geoContains`
+- ⚙️ `schema:geoCoveredBy`
+- ⚙️ `schema:geoCovers`
+- ⚙️ `schema:geoCrosses`
+- ⚙️ `schema:geoDisjoint`
+- ⚙️ `schema:geoEquals`
+- ⚙️ `schema:geographicArea`
+- ⚙️ `schema:geoIntersects`
+- ⚙️ `schema:geoMidpoint`
+- ⚙️ `schema:geoOverlaps`
+- ⚙️ `schema:geoRadius`
+- ⚙️ `schema:geoTouches`
+- ⚙️ `schema:geoWithin`
+- ⚙️ `schema:gettingTestedInfo`
+- ⚙️ `schema:givenName`
+- ⚙️ `schema:governmentBenefitsInfo`
+- ⚙️ `schema:gracePeriod`
+- ⚙️ `schema:grantee`
+- ⚙️ `schema:greater`
+- ⚙️ `schema:greaterOrEqual`
+- ⚙️ `schema:guideline`
+- ⚙️ `schema:guidelineDate`
+- ⚙️ `schema:guidelineSubject`
+- ⚙️ `schema:hasAdultConsideration`
+- ⚙️ `schema:hasBioChemEntityPart`
+- ⚙️ `schema:hasBroadcastChannel`
+- ⚙️ `schema:hasCertification`
+- ⚙️ `schema:hasCourse`
+- ⚙️ `schema:hasCourseInstance`
+- ⚙️ `schema:hasCredential`
+- ⚙️ `schema:hasDefinedTerm`
+  - ⚙️ `schema:hasCategoryCode`
+- ⚙️ `schema:hasDeliveryMethod`
+- ⚙️ `schema:hasDigitalDocumentPermission`
+- ⚙️ `schema:hasDriveThroughService`
+- ⚙️ `schema:hasEnergyConsumptionDetails`
+- ⚙️ `schema:hasEnergyEfficiencyCategory`
+- ⚙️ `schema:hasHealthAspect`
+- ⚙️ `schema:hasMap`
+- ⚙️ `schema:hasMeasurement`
+- ⚙️ `schema:hasMemberProgram`
+- ⚙️ `schema:hasMenu`
+- ⚙️ `schema:hasMenuItem`
+- ⚙️ `schema:hasMenuSection`
+- ⚙️ `schema:hasMerchantReturnPolicy`
+- ⚙️ `schema:hasMolecularFunction`
+- ⚙️ `schema:hasOccupation`
+- ⚙️ `schema:hasOfferCatalog`
+- ⚙️ `schema:hasPart`
+  - ⚙️ `schema:containsSeason`
+  - ⚙️ `schema:episode`
+  - ⚙️ `schema:season`
+  - ⚙️ `schema:tocEntry`
+- ⚙️ `schema:hasParticipationOffer`
+- ⚙️ `schema:hasPOS`
+- ⚙️ `schema:hasRepresentation`
+  - ⚙️ `schema:hasBioPolymerSequence`
+  - ⚙️ `schema:inChI`
+  - ⚙️ `schema:inChIKey`
+  - ⚙️ `schema:smiles`
+- ⚙️ `schema:hasShippingService`
+- ⚙️ `schema:hasSponsorshipOffer`
+- ⚙️ `schema:hasStore`
+- ⚙️ `schema:hasTierBenefit`
+- ⚙️ `schema:hasTierRequirement`
+- ⚙️ `schema:hasTiers`
+- ⚙️ `schema:hasVariant`
+- ⚙️ `schema:headline`
+- ⚙️ `schema:healthcareReportingData`
+- ⚙️ `schema:healthCondition`
+- ⚙️ `schema:healthPlanCoinsuranceOption`
+- ⚙️ `schema:healthPlanCoinsuranceRate`
+- ⚙️ `schema:healthPlanCopay`
+- ⚙️ `schema:healthPlanCopayOption`
+- ⚙️ `schema:healthPlanCostSharing`
+- ⚙️ `schema:healthPlanDrugOption`
+- ⚙️ `schema:healthPlanDrugTier`
+- ⚙️ `schema:healthPlanId`
+- ⚙️ `schema:healthPlanMarketingUrl`
+- ⚙️ `schema:healthPlanNetworkId`
+- ⚙️ `schema:healthPlanNetworkTier`
+- ⚙️ `schema:healthPlanPharmacyCategory`
+- ⚙️ `schema:height`
+- ⚙️ `schema:highPrice`
+- ⚙️ `schema:hiringOrganization`
+- ⚙️ `schema:holdingArchive`
+- ⚙️ `schema:honorificPrefix`
+- ⚙️ `schema:honorificSuffix`
+- ⚙️ `schema:hospitalAffiliation`
+- ⚙️ `schema:hostingOrganization`
+- ⚙️ `schema:hoursAvailable`
+- ⚙️ `schema:howPerformed`
+- ⚙️ `schema:httpMethod`
+- ⚙️ `schema:iataCode`
+- ⚙️ `schema:icaoCode`
+- ⚙️ `schema:identifier`
+  - ⚙️ `schema:accountId`
+  - ⚙️ `schema:asin`
+  - ⚙️ `schema:callSign`
+  - ⚙️ `schema:confirmationNumber`
+  - ⚙️ `schema:duns`
+  - ⚙️ `schema:editEIDR`
+  - ⚙️ `schema:flightNumber`
+  - ⚙️ `schema:globalLocationNumber`
+  - ⚙️ `schema:gtin`
+    - ⚙️ `schema:gtin12`
+    - ⚙️ `schema:gtin13`
+    - ⚙️ `schema:gtin14`
+    - ⚙️ `schema:gtin8`
+  - ⚙️ `schema:hasGS1DigitalLink`
+  - ⚙️ `schema:isbn`
+  - ⚙️ `schema:issn`
+  - ⚙️ `schema:legislationIdentifier`
+  - ⚙️ `schema:leiCode`
+  - ⚙️ `schema:nsn`
+  - ⚙️ `schema:orderNumber`
+  - ⚙️ `schema:productID`
+  - ⚙️ `schema:serialNumber`
+    - ⚙️ `schema:vehicleIdentificationNumber`
+  - ⚙️ `schema:sku`
+  - ⚙️ `schema:taxID`
+  - ⚙️ `schema:titleEIDR`
+  - ⚙️ `schema:usNPI`
+- ⚙️ `schema:identifyingExam`
+- ⚙️ `schema:identifyingTest`
+- ⚙️ `schema:illustrator`
+- ⚙️ `schema:image`
+  - ⚙️ `schema:colorSwatch`
+  - ⚙️ `schema:layoutImage`
+  - ⚙️ `schema:logo`
+  - ⚙️ `schema:photo`
+- ⚙️ `schema:imagingTechnique`
+- ⚙️ `schema:inAlbum`
+- ⚙️ `schema:inBroadcastLineup`
+- ⚙️ `schema:incentiveAmount`
+- ⚙️ `schema:incentiveCompensation`
+- ⚙️ `schema:incentives`
+- ⚙️ `schema:incentiveStatus`
+- ⚙️ `schema:incentiveType`
+- ⚙️ `schema:incentivizedItem`
+- ⚙️ `schema:includedComposition`
+- ⚙️ `schema:includedDataCatalog`
+- ⚙️ `schema:includedInDataCatalog`
+- ⚙️ `schema:includedInHealthInsurancePlan`
+- ⚙️ `schema:includedRiskFactor`
+- ⚙️ `schema:includesAttraction`
+- ⚙️ `schema:includesHealthPlanFormulary`
+- ⚙️ `schema:includesHealthPlanNetwork`
+- ⚙️ `schema:includesObject`
+- ⚙️ `schema:incomeLimit`
+- ⚙️ `schema:increasesRiskOf`
+- ⚙️ `schema:industry`
+- ⚙️ `schema:ineligibleRegion`
+- ⚙️ `schema:infectiousAgent`
+- ⚙️ `schema:infectiousAgentClass`
+- ⚙️ `schema:inker`
+- ⚙️ `schema:inLanguage`
+- ⚙️ `schema:inPlaylist`
+- ⚙️ `schema:inProductGroupWithID`
+- ⚙️ `schema:insertion`
+- ⚙️ `schema:installUrl`
+- ⚙️ `schema:inStoreReturnsOffered`
+- ⚙️ `schema:instructor`
+- ⚙️ `schema:instrument`
+  - ⚙️ `schema:deliveryMethod`
+  - ⚙️ `schema:diet`
+  - ⚙️ `schema:exercisePlan`
+  - ⚙️ `schema:exerciseRelatedDiet`
+  - ⚙️ `schema:language`
+  - ⚙️ `schema:query`
+  - ⚙️ `schema:recipe`
+  - ⚙️ `schema:supply`
+    - ⚙️ `schema:ingredients`
+    - ⚙️ `schema:recipeIngredient`
+  - ⚙️ `schema:tool`
+- ⚙️ `schema:inSupportOf`
+- ⚙️ `schema:intensity`
+- ⚙️ `schema:interactingDrug`
+- ⚙️ `schema:interactionCount`
+- ⚙️ `schema:interactionService`
+- ⚙️ `schema:interactionStatistic`
+- ⚙️ `schema:interactionType`
+- ⚙️ `schema:interactivityType`
+- ⚙️ `schema:interestRate`
+- ⚙️ `schema:inventoryLevel`
+- ⚙️ `schema:inverseOf`
+- ⚙️ `schema:isAcceptingNewPatients`
+- ⚙️ `schema:isAccessibleForFree`
+- ⚙️ `schema:isAccessoryOrSparePartFor`
+- ⚙️ `schema:isAvailableGenerically`
+- ⚙️ `schema:isBasedOn`
+- ⚙️ `schema:isBasedOnUrl`
+- ⚙️ `schema:isConsumableFor`
+- ⚙️ `schema:isEncodedByBioChemEntity`
+- ⚙️ `schema:isFamilyFriendly`
+- ⚙️ `schema:isGift`
+- ⚙️ `schema:isicV4`
+- ⚙️ `schema:isInvolvedInBiologicalProcess`
+- ⚙️ `schema:isLiveBroadcast`
+- ⚙️ `schema:isLocatedInSubcellularLocation`
+- ⚙️ `schema:iso6523Code`
+- ⚙️ `schema:isPartOf`
+  - ⚙️ `schema:inDefinedTermSet`
+    - ⚙️ `schema:inCodeSet`
+  - ⚙️ `schema:partOfEpisode`
+  - ⚙️ `schema:partOfSeason`
+  - ⚙️ `schema:partOfSeries`
+  - ⚙️ `schema:partOfTVSeries`
+- ⚙️ `schema:isPartOfBioChemEntity`
+- ⚙️ `schema:isPlanForApartment`
+- ⚙️ `schema:isProprietary`
+- ⚙️ `schema:isrcCode`
+- ⚙️ `schema:isRelatedTo`
+- ⚙️ `schema:isResizable`
+- ⚙️ `schema:isSimilarTo`
+- ⚙️ `schema:isStoreOn`
+- ⚙️ `schema:issuedBy`
+- ⚙️ `schema:issuedThrough`
+- ⚙️ `schema:isTierOf`
+- ⚙️ `schema:isUnlabelledFallback`
+- ⚙️ `schema:iswcCode`
+- ⚙️ `schema:item`
+- ⚙️ `schema:itemCondition`
+- ⚙️ `schema:itemDefectReturnFees`
+- ⚙️ `schema:itemDefectReturnLabelSource`
+- ⚙️ `schema:itemDefectReturnShippingFeesAmount`
+- ⚙️ `schema:itemListElement`
+- ⚙️ `schema:itemListOrder`
+- ⚙️ `schema:itemOffered`
+- ⚙️ `schema:itemReviewed`
+- ⚙️ `schema:itemShipped`
+- ⚙️ `schema:itinerary`
+- ⚙️ `schema:iupacName`
+- ⚙️ `schema:jobBenefits`
+- ⚙️ `schema:jobImmediateStart`
+- ⚙️ `schema:jobLocation`
+- ⚙️ `schema:jobLocationType`
+- ⚙️ `schema:jobStartDate`
+- ⚙️ `schema:jobTitle`
+- ⚙️ `schema:jurisdiction`
+  - ⚙️ `schema:legislationJurisdiction`
+- ⚙️ `schema:keywords`
+- ⚙️ `schema:knownVehicleDamages`
+- ⚙️ `schema:knows`
+- ⚙️ `schema:knowsAbout`
+- ⚙️ `schema:knowsLanguage`
+- ⚙️ `schema:labelDetails`
+- ⚙️ `schema:lastReviewed`
+- ⚙️ `schema:latitude`
+- ⚙️ `schema:learningResourceType`
+- ⚙️ `schema:leaseLength`
+- ⚙️ `schema:legalAddress`
+- ⚙️ `schema:legalName`
+- ⚙️ `schema:legalRepresentative`
+- ⚙️ `schema:legalStatus`
+- ⚙️ `schema:legislationApplies`
+  - ⚙️ `schema:legislationEnsuresImplementationOf`
+  - ⚙️ `schema:legislationTransposes`
+- ⚙️ `schema:legislationChanges`
+  - ⚙️ `schema:legislationAmends`
+  - ⚙️ `schema:legislationCommences`
+  - ⚙️ `schema:legislationRepeals`
+- ⚙️ `schema:legislationConsolidates`
+- ⚙️ `schema:legislationCorrects`
+- ⚙️ `schema:legislationCountersignedBy`
+- ⚙️ `schema:legislationDateOfApplicability`
+- ⚙️ `schema:legislationDateVersion`
+- ⚙️ `schema:legislationLegalForce`
+- ⚙️ `schema:legislationLegalValue`
+- ⚙️ `schema:legislationResponsible`
+- ⚙️ `schema:lesser`
+- ⚙️ `schema:lesserOrEqual`
+- ⚙️ `schema:letterer`
+- ⚙️ `schema:license`
+- ⚙️ `schema:lifeEvent`
+- ⚙️ `schema:line`
+- ⚙️ `schema:linkRelationship`
+- ⚙️ `schema:liveBlogUpdate`
+- ⚙️ `schema:loanMortgageMandateAmount`
+- ⚙️ `schema:loanPaymentAmount`
+- ⚙️ `schema:loanPaymentFrequency`
+- ⚙️ `schema:loanRepaymentForm`
+- ⚙️ `schema:loanType`
+- ⚙️ `schema:location`
+  - ⚙️ `schema:course`
+  - ⚙️ `schema:entertainmentBusiness`
+  - ⚙️ `schema:exerciseCourse`
+  - ⚙️ `schema:foodEstablishment`
+  - ⚙️ `schema:foodEvent`
+  - ⚙️ `schema:fromLocation`
+  - ⚙️ `schema:homeLocation`
+  - ⚙️ `schema:itemLocation`
+  - ⚙️ `schema:sportsActivityLocation`
+  - ⚙️ `schema:sportsEvent`
+  - ⚙️ `schema:toLocation`
+  - ⚙️ `schema:workLocation`
+- ⚙️ `schema:locationCreated`
+- ⚙️ `schema:lodgingUnitDescription`
+- ⚙️ `schema:lodgingUnitType`
+- ⚙️ `schema:longitude`
+- ⚙️ `schema:lowPrice`
+- ⚙️ `schema:lyricist`
+- ⚙️ `schema:lyrics`
+- ⚙️ `schema:mainContentOfPage`
+- ⚙️ `schema:mainEntityOfPage`
+- ⚙️ `schema:maintainer`
+- ⚙️ `schema:makesOffer`
+- ⚙️ `schema:manufacturer`
+- ⚙️ `schema:map`
+- ⚙️ `schema:maps`
+- ⚙️ `schema:mapType`
+- ⚙️ `schema:marginOfError`
+- ⚙️ `schema:material`
+  - ⚙️ `schema:artMedium`
+  - ⚙️ `schema:surface`
+- ⚙️ `schema:materialExtent`
+- ⚙️ `schema:mathExpression`
+- ⚙️ `schema:maximumAttendeeCapacity`
+- ⚙️ `schema:maximumEnrollment`
+- ⚙️ `schema:maximumIntake`
+- ⚙️ `schema:maximumPhysicalAttendeeCapacity`
+- ⚙️ `schema:maximumVirtualAttendeeCapacity`
+- ⚙️ `schema:maxPrice`
+- ⚙️ `schema:maxValue`
+- ⚙️ `schema:mealService`
+- ⚙️ `schema:measuredProperty`
+- ⚙️ `schema:measurementDenominator`
+- ⚙️ `schema:measurementQualifier`
+- ⚙️ `schema:measurementTechnique`
+  - ⚙️ `schema:measurementMethod`
+- ⚙️ `schema:mechanismOfAction`
+- ⚙️ `schema:mediaAuthenticityCategory`
+- ⚙️ `schema:mediaItemAppearance`
+- ⚙️ `schema:median`
+- ⚙️ `schema:medicalAudience`
+- ⚙️ `schema:medicalSpecialty`
+- ⚙️ `schema:medicineSystem`
+- ⚙️ `schema:meetsEmissionStandard`
+- ⚙️ `schema:member`
+- ⚙️ `schema:memberOf`
+  - ⚙️ `schema:affiliation`
+- ⚙️ `schema:members`
+- ⚙️ `schema:membershipNumber`
+- ⚙️ `schema:membershipPointsEarned`
+- ⚙️ `schema:memoryRequirements`
+- ⚙️ `schema:mentions`
+- ⚙️ `schema:menu`
+- ⚙️ `schema:menuAddOn`
+- ⚙️ `schema:merchant`
+- ⚙️ `schema:merchantReturnDays`
+- ⚙️ `schema:merchantReturnLink`
+- ⚙️ `schema:messageAttachment`
+- ⚙️ `schema:mileageFromOdometer`
+- ⚙️ `schema:minimumPaymentDue`
+- ⚙️ `schema:minPrice`
+- ⚙️ `schema:minValue`
+- ⚙️ `schema:mobileUrl`
+- ⚙️ `schema:model`
+- ⚙️ `schema:modelDate`
+- ⚙️ `schema:modifiedTime`
+- ⚙️ `schema:molecularFormula`
+- ⚙️ `schema:molecularWeight`
+- ⚙️ `schema:monoisotopicMolecularWeight`
+- ⚙️ `schema:monthlyMinimumRepaymentAmount`
+- ⚙️ `schema:monthsOfExperience`
+- ⚙️ `schema:mpn`
+- ⚙️ `schema:multipleValues`
+- ⚙️ `schema:muscleAction`
+- ⚙️ `schema:musicalKey`
+- ⚙️ `schema:musicArrangement`
+- ⚙️ `schema:musicBy`
+- ⚙️ `schema:musicCompositionForm`
+- ⚙️ `schema:musicGroupMember`
+- ⚙️ `schema:musicReleaseFormat`
+- ⚙️ `schema:naics`
+- ⚙️ `schema:namedPosition`
+- ⚙️ `schema:nationality`
+- ⚙️ `schema:naturalProgression`
+- ⚙️ `schema:negativeNotes`
+- ⚙️ `schema:nerve`
+- ⚙️ `schema:nerveMotor`
+- ⚙️ `schema:netWorth`
+- ⚙️ `schema:newsUpdatesAndGuidelines`
+- ⚙️ `schema:nextItem`
+- ⚙️ `schema:nonEqual`
+- ⚙️ `schema:nonprofitStatus`
+- ⚙️ `schema:nonProprietaryName`
+- ⚙️ `schema:normalRange`
+- ⚙️ `schema:numAdults`
+- ⚙️ `schema:numberedPosition`
+- ⚙️ `schema:numberOfAccommodationUnits`
+- ⚙️ `schema:numberOfAirbags`
+- ⚙️ `schema:numberOfAvailableAccommodationUnits`
+- ⚙️ `schema:numberOfAxles`
+- ⚙️ `schema:numberOfBathroomsTotal`
+- ⚙️ `schema:numberOfBedrooms`
+- ⚙️ `schema:numberOfBeds`
+- ⚙️ `schema:numberOfCredits`
+- ⚙️ `schema:numberOfDoors`
+- ⚙️ `schema:numberOfEmployees`
+- ⚙️ `schema:numberOfEpisodes`
+- ⚙️ `schema:numberOfForwardGears`
+- ⚙️ `schema:numberOfFullBathrooms`
+- ⚙️ `schema:numberOfItems`
+- ⚙️ `schema:numberOfLoanPayments`
+- ⚙️ `schema:numberOfPages`
+- ⚙️ `schema:numberOfPartialBathrooms`
+- ⚙️ `schema:numberOfPlayers`
+- ⚙️ `schema:numberOfPreviousOwners`
+- ⚙️ `schema:numberOfRooms`
+- ⚙️ `schema:numberOfSeasons`
+- ⚙️ `schema:numChildren`
+- ⚙️ `schema:numConstraints`
+- ⚙️ `schema:numItems`
+- ⚙️ `schema:numTracks`
+- ⚙️ `schema:nutrition`
+- ⚙️ `schema:object`
+  - ⚙️ `schema:actionOption`
+  - ⚙️ `schema:candidate`
+  - ⚙️ `schema:collection`
+  - ⚙️ `schema:followee`
+  - ⚙️ `schema:option`
+  - ⚙️ `schema:question`
+  - ⚙️ `schema:replacee`
+  - ⚙️ `schema:replacer`
+  - ⚙️ `schema:targetCollection`
+- ⚙️ `schema:observationAbout`
+- ⚙️ `schema:observationDate`
+- ⚙️ `schema:observationPeriod`
+- ⚙️ `schema:occupancy`
+- ⚙️ `schema:occupationalCategory`
+- ⚙️ `schema:occupationalCredentialAwarded`
+- ⚙️ `schema:occupationLocation`
+- ⚙️ `schema:offerCount`
+- ⚙️ `schema:offeredBy`
+- ⚙️ `schema:offers`
+- ⚙️ `schema:offersPrescriptionByMail`
+- ⚙️ `schema:openingHours`
+- ⚙️ `schema:openingHoursSpecification`
+- ⚙️ `schema:opens`
+- ⚙️ `schema:operatingSystem`
+- ⚙️ `schema:orderDate`
+- ⚙️ `schema:orderDelivery`
+- ⚙️ `schema:orderedItem`
+- ⚙️ `schema:orderItemNumber`
+- ⚙️ `schema:orderItemStatus`
+- ⚙️ `schema:orderPercentage`
+- ⚙️ `schema:orderQuantity`
+- ⚙️ `schema:orderStatus`
+- ⚙️ `schema:orderValue`
+- ⚙️ `schema:organizer`
+- ⚙️ `schema:originAddress`
+- ⚙️ `schema:originalMediaLink`
+- ⚙️ `schema:originatesFrom`
+- ⚙️ `schema:overdosage`
+- ⚙️ `schema:ownedFrom`
+- ⚙️ `schema:ownedThrough`
+- ⚙️ `schema:owner`
+- ⚙️ `schema:owns`
+- ⚙️ `schema:pageEnd`
+- ⚙️ `schema:pageStart`
+- ⚙️ `schema:pagination`
+- ⚙️ `schema:parent`
+- ⚙️ `schema:parentItem`
+- ⚙️ `schema:parentOrganization`
+- ⚙️ `schema:parents`
+- ⚙️ `schema:parentService`
+- ⚙️ `schema:parentTaxon`
+- ⚙️ `schema:participant`
+  - ⚙️ `schema:borrower`
+  - ⚙️ `schema:buyer`
+  - ⚙️ `schema:endorsee`
+  - ⚙️ `schema:landlord`
+  - ⚙️ `schema:lender`
+  - ⚙️ `schema:loser`
+  - ⚙️ `schema:opponent`
+  - ⚙️ `schema:realEstateAgent`
+  - ⚙️ `schema:recipient`
+    - ⚙️ `schema:bccRecipient`
+    - ⚙️ `schema:ccRecipient`
+    - ⚙️ `schema:toRecipient`
+  - ⚙️ `schema:seller`
+  - ⚙️ `schema:sender`
+  - ⚙️ `schema:sportsTeam`
+  - ⚙️ `schema:vendor`
+  - ⚙️ `schema:winner`
+- ⚙️ `schema:partOfInvoice`
+- ⚙️ `schema:partOfOrder`
+- ⚙️ `schema:partOfSystem`
+- ⚙️ `schema:partOfTrip`
+- ⚙️ `schema:partySize`
+- ⚙️ `schema:passengerPriorityStatus`
+- ⚙️ `schema:passengerSequenceNumber`
+- ⚙️ `schema:pathophysiology`
+- ⚙️ `schema:pattern`
+- ⚙️ `schema:payload`
+- ⚙️ `schema:paymentAccepted`
+- ⚙️ `schema:paymentDue`
+- ⚙️ `schema:paymentDueDate`
+- ⚙️ `schema:paymentMethod`
+- ⚙️ `schema:paymentMethodId`
+- ⚙️ `schema:paymentMethodType`
+- ⚙️ `schema:paymentStatus`
+- ⚙️ `schema:paymentUrl`
+- ⚙️ `schema:penciler`
+- ⚙️ `schema:percentile10`
+- ⚙️ `schema:percentile25`
+- ⚙️ `schema:percentile75`
+- ⚙️ `schema:percentile90`
+- ⚙️ `schema:performer`
+- ⚙️ `schema:performerIn`
+- ⚙️ `schema:performers`
+- ⚙️ `schema:performTime`
+  - ⚙️ `schema:cookTime`
+- ⚙️ `schema:permissions`
+- ⚙️ `schema:permissionType`
+- ⚙️ `schema:permitAudience`
+- ⚙️ `schema:permittedUsage`
+- ⚙️ `schema:petsAllowed`
+- ⚙️ `schema:phoneticText`
+- ⚙️ `schema:photos`
+- ⚙️ `schema:physicalRequirement`
+- ⚙️ `schema:physiologicalBenefits`
+- ⚙️ `schema:pickupLocation`
+- ⚙️ `schema:pickupTime`
+- ⚙️ `schema:playersOnline`
+- ⚙️ `schema:playerType`
+- ⚙️ `schema:playMode`
+- ⚙️ `schema:polygon`
+- ⚙️ `schema:populationType`
+- ⚙️ `schema:position`
+  - ⚙️ `schema:clipNumber`
+  - ⚙️ `schema:episodeNumber`
+  - ⚙️ `schema:issueNumber`
+  - ⚙️ `schema:seasonNumber`
+  - ⚙️ `schema:volumeNumber`
+- ⚙️ `schema:positiveNotes`
+- ⚙️ `schema:possibleComplication`
+- ⚙️ `schema:possibleTreatment`
+- ⚙️ `schema:postalCode`
+- ⚙️ `schema:postalCodeBegin`
+- ⚙️ `schema:postalCodeEnd`
+- ⚙️ `schema:postalCodePrefix`
+- ⚙️ `schema:postalCodeRange`
+- ⚙️ `schema:postOfficeBoxNumber`
+- ⚙️ `schema:postOp`
+- ⚙️ `schema:potentialAction`
+- ⚙️ `schema:potentialUse`
+- ⚙️ `schema:practicesAt`
+- ⚙️ `schema:predecessorOf`
+- ⚙️ `schema:pregnancyCategory`
+- ⚙️ `schema:pregnancyWarning`
+- ⚙️ `schema:preOp`
+- ⚙️ `schema:preparation`
+- ⚙️ `schema:prepTime`
+- ⚙️ `schema:prescribingInfo`
+- ⚙️ `schema:prescriptionStatus`
+- ⚙️ `schema:previousItem`
+- ⚙️ `schema:previousStartDate`
+- ⚙️ `schema:price`
+- ⚙️ `schema:priceComponent`
+- ⚙️ `schema:priceComponentType`
+- ⚙️ `schema:priceCurrency`
+- ⚙️ `schema:priceRange`
+- ⚙️ `schema:priceSpecification`
+- ⚙️ `schema:priceType`
+- ⚙️ `schema:primaryImageOfPage`
+- ⚙️ `schema:primaryPrevention`
+- ⚙️ `schema:printColumn`
+- ⚙️ `schema:printEdition`
+- ⚙️ `schema:printPage`
+- ⚙️ `schema:printSection`
+- ⚙️ `schema:procedure`
+- ⚙️ `schema:procedureType`
+- ⚙️ `schema:processingTime`
+- ⚙️ `schema:processorRequirements`
+- ⚙️ `schema:producer`
+- ⚙️ `schema:produces`
+- ⚙️ `schema:productGroupID`
+- ⚙️ `schema:productionCompany`
+- ⚙️ `schema:productionDate`
+- ⚙️ `schema:productSupported`
+- ⚙️ `schema:proficiencyLevel`
+- ⚙️ `schema:program`
+- ⚙️ `schema:programMembershipUsed`
+- ⚙️ `schema:programmingLanguage`
+- ⚙️ `schema:programmingModel`
+- ⚙️ `schema:programName`
+- ⚙️ `schema:programPrerequisites`
+- ⚙️ `schema:programType`
+- ⚙️ `schema:pronouns`
+- ⚙️ `schema:propertyID`
+- ⚙️ `schema:proprietaryName`
+- ⚙️ `schema:proteinContent`
+- ⚙️ `schema:provider`
+- ⚙️ `schema:providerMobility`
+- ⚙️ `schema:providesBroadcastService`
+- ⚙️ `schema:providesService`
+- ⚙️ `schema:publicAccess`
+- ⚙️ `schema:publication`
+- ⚙️ `schema:publicationType`
+- ⚙️ `schema:publicTransportClosuresInfo`
+- ⚙️ `schema:publishedBy`
+- ⚙️ `schema:publishedOn`
+- ⚙️ `schema:publisher`
+- ⚙️ `schema:publisherImprint`
+- ⚙️ `schema:publishingPrinciples`
+  - ⚙️ `schema:actionableFeedbackPolicy`
+  - ⚙️ `schema:correctionsPolicy`
+  - ⚙️ `schema:diversityStaffingReport`
+  - ⚙️ `schema:masthead`
+  - ⚙️ `schema:missionCoveragePrioritiesPolicy`
+  - ⚙️ `schema:noBylinesPolicy`
+  - ⚙️ `schema:ownershipFundingInfo`
+  - ⚙️ `schema:unnamedSourcesPolicy`
+  - ⚙️ `schema:verificationFactCheckingPolicy`
+- ⚙️ `schema:purchaseDate`
+- ⚙️ `schema:purchasePriceLimit`
+- ⚙️ `schema:purchaseType`
+- ⚙️ `schema:qualifications`
+- ⚙️ `schema:qualifiedExpense`
+- ⚙️ `schema:quarantineGuidelines`
+- ⚙️ `schema:quest`
+- ⚙️ `schema:rangeIncludes`
+- ⚙️ `schema:ratingCount`
+- ⚙️ `schema:ratingExplanation`
+- ⚙️ `schema:ratingValue`
+- ⚙️ `schema:readonlyValue`
+- ⚙️ `schema:recipeCategory`
+- ⚙️ `schema:recipeCuisine`
+- ⚙️ `schema:recognizedBy`
+- ⚙️ `schema:recognizingAuthority`
+- ⚙️ `schema:recommendationStrength`
+- ⚙️ `schema:recommendedIntake`
+- ⚙️ `schema:recordedAs`
+- ⚙️ `schema:recordedAt`
+- ⚙️ `schema:recordedIn`
+- ⚙️ `schema:recordingOf`
+- ⚙️ `schema:recordLabel`
+- ⚙️ `schema:recourseLoan`
+- ⚙️ `schema:referee`
+- ⚙️ `schema:referenceQuantity`
+- ⚙️ `schema:referencesOrder`
+- ⚙️ `schema:refundType`
+- ⚙️ `schema:regionDrained`
+- ⚙️ `schema:regionsAllowed`
+- ⚙️ `schema:relatedAnatomy`
+- ⚙️ `schema:relatedCondition`
+- ⚙️ `schema:relatedDrug`
+- ⚙️ `schema:relatedLink`
+- ⚙️ `schema:relatedStructure`
+- ⚙️ `schema:relatedTherapy`
+- ⚙️ `schema:relatedTo`
+- ⚙️ `schema:releaseDate`
+- ⚙️ `schema:releasedEvent`
+- ⚙️ `schema:releaseNotes`
+- ⚙️ `schema:releaseOf`
+- ⚙️ `schema:relevantOccupation`
+- ⚙️ `schema:relevantSpecialty`
+- ⚙️ `schema:remainingAttendeeCapacity`
+- ⚙️ `schema:renegotiableLoan`
+- ⚙️ `schema:repeatCount`
+- ⚙️ `schema:repetitions`
+- ⚙️ `schema:replyToUrl`
+- ⚙️ `schema:reportNumber`
+- ⚙️ `schema:representativeOfPage`
+- ⚙️ `schema:requiredCollateral`
+- ⚙️ `schema:requiredGender`
+- ⚙️ `schema:requiredMaxAge`
+- ⚙️ `schema:requiredMinAge`
+- ⚙️ `schema:requiredQuantity`
+- ⚙️ `schema:requirements`
+- ⚙️ `schema:requiresSubscription`
+- ⚙️ `schema:reservationFor`
+- ⚙️ `schema:reservationId`
+- ⚙️ `schema:reservationStatus`
+- ⚙️ `schema:reservedTicket`
+- ⚙️ `schema:responsibilities`
+- ⚙️ `schema:restockingFee`
+- ⚙️ `schema:restPeriods`
+- ⚙️ `schema:result`
+  - ⚙️ `schema:resultComment`
+  - ⚙️ `schema:resultReview`
+- ⚙️ `schema:returnFees`
+- ⚙️ `schema:returnLabelSource`
+- ⚙️ `schema:returnMethod`
+- ⚙️ `schema:returnPolicyCategory`
+- ⚙️ `schema:returnPolicyCountry`
+- ⚙️ `schema:returnPolicySeasonalOverride`
+- ⚙️ `schema:returnShippingFeesAmount`
+- ⚙️ `schema:review`
+- ⚙️ `schema:reviewAspect`
+- ⚙️ `schema:reviewBody`
+- ⚙️ `schema:reviewCount`
+- ⚙️ `schema:reviewedBy`
+- ⚙️ `schema:reviewRating`
+- ⚙️ `schema:reviews`
+- ⚙️ `schema:riskFactor`
+- ⚙️ `schema:risks`
+- ⚙️ `schema:roleName`
+- ⚙️ `schema:roofLoad`
+- ⚙️ `schema:rsvpResponse`
+- ⚙️ `schema:runsTo`
+- ⚙️ `schema:runtime`
+- ⚙️ `schema:runtimePlatform`
+- ⚙️ `schema:rxcui`
+- ⚙️ `schema:safetyConsideration`
+- ⚙️ `schema:salaryCurrency`
+- ⚙️ `schema:salaryUponCompletion`
+- ⚙️ `schema:sameAs`
+- ⚙️ `schema:sampleType`
+- ⚙️ `schema:saturatedFatContent`
+- ⚙️ `schema:scheduledPaymentDate`
+- ⚙️ `schema:scheduledTime`
+- ⚙️ `schema:scheduleTimezone`
+- ⚙️ `schema:schemaVersion`
+- ⚙️ `schema:schoolClosuresInfo`
+- ⚙️ `schema:screenCount`
+- ⚙️ `schema:screenshot`
+- ⚙️ `schema:sdDatePublished`
+- ⚙️ `schema:sdLicense`
+- ⚙️ `schema:sdPublisher`
+- ⚙️ `schema:seasonalOverride`
+- ⚙️ `schema:seasons`
+- ⚙️ `schema:seatingCapacity`
+- ⚙️ `schema:seatingType`
+- ⚙️ `schema:seatNumber`
+- ⚙️ `schema:seatRow`
+- ⚙️ `schema:seatSection`
+- ⚙️ `schema:secondaryPrevention`
+- ⚙️ `schema:securityClearanceRequirement`
+- ⚙️ `schema:securityScreening`
+- ⚙️ `schema:seeks`
+- ⚙️ `schema:sensoryRequirement`
+- ⚙️ `schema:sensoryUnit`
+- ⚙️ `schema:seriousAdverseOutcome`
+- ⚙️ `schema:serverStatus`
+- ⚙️ `schema:servesCuisine`
+- ⚙️ `schema:serviceArea`
+- ⚙️ `schema:serviceAudience`
+- ⚙️ `schema:serviceLocation`
+- ⚙️ `schema:serviceOperator`
+- ⚙️ `schema:serviceOutput`
+- ⚙️ `schema:servicePhone`
+- ⚙️ `schema:servicePostalAddress`
+- ⚙️ `schema:serviceSmsNumber`
+- ⚙️ `schema:serviceType`
+- ⚙️ `schema:serviceUrl`
+- ⚙️ `schema:servingSize`
+- ⚙️ `schema:sharedContent`
+- ⚙️ `schema:shippingConditions`
+- ⚙️ `schema:shippingDestination`
+- ⚙️ `schema:shippingDetails`
+- ⚙️ `schema:shippingOrigin`
+- ⚙️ `schema:shippingRate`
+- ⚙️ `schema:sibling`
+- ⚙️ `schema:siblings`
+- ⚙️ `schema:signDetected`
+- ⚙️ `schema:significance`
+- ⚙️ `schema:significantLink`
+- ⚙️ `schema:significantLinks`
+- ⚙️ `schema:signOrSymptom`
+- ⚙️ `schema:size`
+- ⚙️ `schema:sizeGroup`
+- ⚙️ `schema:sizeSystem`
+- ⚙️ `schema:skills`
+- ⚙️ `schema:slogan`
+- ⚙️ `schema:smokingAllowed`
+- ⚙️ `schema:sodiumContent`
+- ⚙️ `schema:softwareAddOn`
+- ⚙️ `schema:softwareHelp`
+- ⚙️ `schema:softwareRequirements`
+- ⚙️ `schema:softwareVersion`
+- ⚙️ `schema:source`
+- ⚙️ `schema:sourcedFrom`
+- ⚙️ `schema:sourceOrganization`
+- ⚙️ `schema:spatial`
+- ⚙️ `schema:speakable`
+- ⚙️ `schema:specialCommitments`
+- ⚙️ `schema:specialOpeningHoursSpecification`
+- ⚙️ `schema:specialty`
+- ⚙️ `schema:speechToTextMarkup`
+- ⚙️ `schema:speed`
+- ⚙️ `schema:spokenByCharacter`
+- ⚙️ `schema:sponsor`
+  - ⚙️ `schema:funder`
+- ⚙️ `schema:sport`
+- ⚙️ `schema:spouse`
+- ⚙️ `schema:stage`
+- ⚙️ `schema:stageAsNumber`
+- ⚙️ `schema:starRating`
+- ⚙️ `schema:startDate`
+- ⚙️ `schema:startOffset`
+- ⚙️ `schema:startTime`
+- ⚙️ `schema:statType`
+- ⚙️ `schema:status`
+- ⚙️ `schema:steeringPosition`
+- ⚙️ `schema:step`
+  - ⚙️ `schema:recipeInstructions`
+- ⚙️ `schema:steps`
+- ⚙️ `schema:stepValue`
+- ⚙️ `schema:storageRequirements`
+- ⚙️ `schema:streetAddress`
+- ⚙️ `schema:strengthUnit`
+- ⚙️ `schema:strengthValue`
+- ⚙️ `schema:structuralClass`
+- ⚙️ `schema:study`
+- ⚙️ `schema:studyDesign`
+- ⚙️ `schema:studyLocation`
+- ⚙️ `schema:studySubject`
+- ⚙️ `schema:subEvent`
+- ⚙️ `schema:subEvents`
+- ⚙️ `schema:subjectOf`
+- ⚙️ `schema:subOrganization`
+- ⚙️ `schema:subReservation`
+- ⚙️ `schema:subStageSuffix`
+- ⚙️ `schema:subStructure`
+- ⚙️ `schema:subTest`
+- ⚙️ `schema:subtitleLanguage`
+- ⚙️ `schema:subTrip`
+- ⚙️ `schema:successorOf`
+- ⚙️ `schema:sugarContent`
+- ⚙️ `schema:suggestedAge`
+- ⚙️ `schema:suggestedAnswer`
+  - ⚙️ `schema:acceptedAnswer`
+- ⚙️ `schema:suggestedGender`
+- ⚙️ `schema:suggestedMaxAge`
+- ⚙️ `schema:suggestedMeasurement`
+- ⚙️ `schema:suggestedMinAge`
+- ⚙️ `schema:suitableForDiet`
+- ⚙️ `schema:superEvent`
+- ⚙️ `schema:supersededBy`
+- ⚙️ `schema:supplyTo`
+- ⚙️ `schema:supportingData`
+- ⚙️ `schema:syllabusSections`
+- ⚙️ `schema:target`
+- ⚙️ `schema:targetDescription`
+- ⚙️ `schema:targetName`
+- ⚙️ `schema:targetPlatform`
+- ⚙️ `schema:targetPopulation`
+- ⚙️ `schema:targetProduct`
+- ⚙️ `schema:targetUrl`
+- ⚙️ `schema:taxonomicRange`
+- ⚙️ `schema:taxonRank`
+- ⚙️ `schema:teaches`
+- ⚙️ `schema:telephone`
+- ⚙️ `schema:temporal`
+- ⚙️ `schema:temporalCoverage`
+- ⚙️ `schema:termCode`
+  - ⚙️ `schema:codeValue`
+- ⚙️ `schema:termDuration`
+- ⚙️ `schema:termsOfService`
+- ⚙️ `schema:termsPerYear`
+- ⚙️ `schema:text`
+- ⚙️ `schema:textValue`
+- ⚙️ `schema:thumbnail`
+- ⚙️ `schema:thumbnailUrl`
+- ⚙️ `schema:tickerSymbol`
+- ⚙️ `schema:ticketedSeat`
+- ⚙️ `schema:ticketNumber`
+- ⚙️ `schema:ticketToken`
+- ⚙️ `schema:timeOfDay`
+- ⚙️ `schema:timeRequired`
+- ⚙️ `schema:timestamp`
+- ⚙️ `schema:timeToComplete`
+- ⚙️ `schema:tissueSample`
+- ⚙️ `schema:title`
+- ⚙️ `schema:tocContinuation`
+- ⚙️ `schema:tongueWeight`
+- ⚙️ `schema:torque`
+- ⚙️ `schema:totalHistoricalEnrollment`
+- ⚙️ `schema:totalJobOpenings`
+- ⚙️ `schema:totalPaymentDue`
+- ⚙️ `schema:totalPrice`
+- ⚙️ `schema:totalTime`
+- ⚙️ `schema:tourBookingPage`
+- ⚙️ `schema:touristType`
+- ⚙️ `schema:track`
+- ⚙️ `schema:trackingNumber`
+- ⚙️ `schema:trackingUrl`
+- ⚙️ `schema:tracks`
+- ⚙️ `schema:trailer`
+- ⚙️ `schema:trailerWeight`
+- ⚙️ `schema:trainingSalary`
+- ⚙️ `schema:trainName`
+- ⚙️ `schema:trainNumber`
+- ⚙️ `schema:transcript`
+- ⚙️ `schema:transFatContent`
+- ⚙️ `schema:transitTime`
+- ⚙️ `schema:translationOfWork`
+- ⚙️ `schema:translator`
+- ⚙️ `schema:transmissionMethod`
+- ⚙️ `schema:travelBans`
+- ⚙️ `schema:trialDesign`
+- ⚙️ `schema:tributary`
+- ⚙️ `schema:tripOrigin`
+- ⚙️ `schema:typeOfBed`
+- ⚙️ `schema:typeOfGood`
+- ⚙️ `schema:typicalAgeRange`
+- ⚙️ `schema:typicalCreditsPerTerm`
+- ⚙️ `schema:typicalTest`
+- ⚙️ `schema:underName`
+- ⚙️ `schema:unitCode`
+- ⚙️ `schema:unitText`
+- ⚙️ `schema:unsaturatedFatContent`
+- ⚙️ `schema:uploadDate`
+- ⚙️ `schema:upvoteCount`
+- ⚙️ `schema:url`
+- ⚙️ `schema:urlTemplate`
+- ⚙️ `schema:usageInfo`
+  - ⚙️ `schema:acquireLicensePage`
+- ⚙️ `schema:usedToDiagnose`
+- ⚙️ `schema:userInteractionCount`
+- ⚙️ `schema:usesDevice`
+- ⚙️ `schema:usesHealthPlanIdStandard`
+- ⚙️ `schema:utterances`
+- ⚙️ `schema:validFor`
+- ⚙️ `schema:validForMemberTier`
+- ⚙️ `schema:validFrom`
+- ⚙️ `schema:validIn`
+- ⚙️ `schema:validThrough`
+- ⚙️ `schema:validUntil`
+- ⚙️ `schema:value`
+- ⚙️ `schema:valueAddedTaxIncluded`
+- ⚙️ `schema:valueMaxLength`
+- ⚙️ `schema:valueMinLength`
+- ⚙️ `schema:valueName`
+- ⚙️ `schema:valuePattern`
+- ⚙️ `schema:valueReference`
+- ⚙️ `schema:valueRequired`
+- ⚙️ `schema:variableMeasured`
+- ⚙️ `schema:variantCover`
+- ⚙️ `schema:variesBy`
+- ⚙️ `schema:vatID`
+- ⚙️ `schema:vehicleConfiguration`
+- ⚙️ `schema:vehicleEngine`
+- ⚙️ `schema:vehicleInteriorColor`
+- ⚙️ `schema:vehicleInteriorType`
+- ⚙️ `schema:vehicleModelDate`
+- ⚙️ `schema:vehicleSeatingCapacity`
+- ⚙️ `schema:vehicleSpecialUsage`
+- ⚙️ `schema:vehicleTransmission`
+- ⚙️ `schema:version`
+- ⚙️ `schema:video`
+- ⚙️ `schema:videoFormat`
+- ⚙️ `schema:videoFrameSize`
+- ⚙️ `schema:videoQuality`
+- ⚙️ `schema:warning`
+- ⚙️ `schema:warranty`
+- ⚙️ `schema:warrantyPromise`
+- ⚙️ `schema:warrantyScope`
+- ⚙️ `schema:webCheckinTime`
+- ⚙️ `schema:webFeed`
+- ⚙️ `schema:weight`
+- ⚙️ `schema:weightPercentage`
+- ⚙️ `schema:weightTotal`
+- ⚙️ `schema:wheelbase`
+- ⚙️ `schema:width`
+- ⚙️ `schema:wordCount`
+- ⚙️ `schema:workExample`
+  - ⚙️ `schema:appearance`
+  - ⚙️ `schema:firstAppearance`
+- ⚙️ `schema:workFeatured`
+  - ⚙️ `schema:workPerformed`
+  - ⚙️ `schema:workPresented`
+- ⚙️ `schema:workHours`
+- ⚙️ `schema:workload`
+- ⚙️ `schema:worksFor`
+- ⚙️ `schema:workTranslation`
+- ⚙️ `schema:worstRating`
+- ⚙️ `schema:xpath`
+- ⚙️ `schema:yearBuilt`
+- ⚙️ `schema:yearlyRevenue`
+- ⚙️ `schema:yearsInOperation`
+- ⚙️ `schema:yield`
+  - ⚙️ `schema:recipeYield`
+
+## sh
+
+- ⚙️ `sh:alternativePath`
+- ⚙️ `sh:and`
+- ⚙️ `sh:annotationProperty`
+- ⚙️ `sh:annotationValue`
+- ⚙️ `sh:annotationVarName`
+- ⚙️ `sh:ask`
+- ⚙️ `sh:class`
+- ⚙️ `sh:closed`
+- ⚙️ `sh:condition`
+- ⚙️ `sh:conforms`
+- ⚙️ `sh:construct`
+- ⚙️ `sh:datatype`
+- ⚙️ `sh:deactivated`
+- ⚙️ `sh:declare`
+- ⚙️ `sh:defaultValue`
+- ⚙️ `sh:description`
+- ⚙️ `sh:detail`
+- ⚙️ `sh:disjoint`
+- ⚙️ `sh:entailment`
+- ⚙️ `sh:equals`
+- ⚙️ `sh:expression`
+- ⚙️ `sh:filterShape`
+- ⚙️ `sh:flags`
+- ⚙️ `sh:focusNode`
+- ⚙️ `sh:group`
+- ⚙️ `sh:hasValue`
+- ⚙️ `sh:ignoredProperties`
+- ⚙️ `sh:in`
+- ⚙️ `sh:intersection`
+- ⚙️ `sh:inversePath`
+- ⚙️ `sh:js`
+- ⚙️ `sh:jsFunctionName`
+- ⚙️ `sh:jsLibrary`
+- ⚙️ `sh:jsLibraryURL`
+- ⚙️ `sh:labelTemplate`
+- ⚙️ `sh:languageIn`
+- ⚙️ `sh:lessThan`
+- ⚙️ `sh:lessThanOrEquals`
+- ⚙️ `sh:maxCount`
+- ⚙️ `sh:maxExclusive`
+- ⚙️ `sh:maxInclusive`
+- ⚙️ `sh:maxLength`
+- ⚙️ `sh:message`
+- ⚙️ `sh:minCount`
+- ⚙️ `sh:minExclusive`
+- ⚙️ `sh:minInclusive`
+- ⚙️ `sh:minLength`
+- ⚙️ `sh:name`
+- ⚙️ `sh:namespace`
+- ⚙️ `sh:node`
+- ⚙️ `sh:nodeKind`
+- ⚙️ `sh:nodes`
+- ⚙️ `sh:nodeValidator`
+- ⚙️ `sh:not`
+- ⚙️ `sh:object`
+- ⚙️ `sh:oneOrMorePath`
+- ⚙️ `sh:optional`
+- ⚙️ `sh:or`
+- ⚙️ `sh:order`
+- ⚙️ `sh:parameter`
+- ⚙️ `sh:path`
+- ⚙️ `sh:pattern`
+- ⚙️ `sh:predicate`
+- ⚙️ `sh:prefix`
+- ⚙️ `sh:prefixes`
+- ⚙️ `sh:property`
+- ⚙️ `sh:propertyValidator`
+- ⚙️ `sh:qualifiedMaxCount`
+- ⚙️ `sh:qualifiedMinCount`
+- ⚙️ `sh:qualifiedValueShape`
+- ⚙️ `sh:qualifiedValueShapesDisjoint`
+- ⚙️ `sh:result`
+- ⚙️ `sh:resultAnnotation`
+- ⚙️ `sh:resultMessage`
+- ⚙️ `sh:resultPath`
+- ⚙️ `sh:resultSeverity`
+- ⚙️ `sh:returnType`
+- ⚙️ `sh:rule`
+- ⚙️ `sh:select`
+- ⚙️ `sh:severity`
+- ⚙️ `sh:shapesGraph`
+- ⚙️ `sh:shapesGraphWellFormed`
+- ⚙️ `sh:sourceConstraint`
+- ⚙️ `sh:sourceConstraintComponent`
+- ⚙️ `sh:sourceShape`
+- ⚙️ `sh:sparql`
+- ⚙️ `sh:subject`
+- ⚙️ `sh:suggestedShapesGraph`
+- ⚙️ `sh:target`
+- ⚙️ `sh:targetClass`
+- ⚙️ `sh:targetNode`
+- ⚙️ `sh:targetObjectsOf`
+- ⚙️ `sh:targetSubjectsOf`
+- ⚙️ `sh:union`
+- ⚙️ `sh:uniqueLang`
+- ⚙️ `sh:update`
+- ⚙️ `sh:validator`
+- ⚙️ `sh:value`
+- ⚙️ `sh:xone`
+- ⚙️ `sh:zeroOrMorePath`
+- ⚙️ `sh:zeroOrOnePath`
+
+## sioc
+
+- 🔗 `sioc:about`
+- 🔗 `sioc:account_of`
+- 🔗 `sioc:addressed_to`
+- 🔗 `sioc:administrator_of`
+- 🔗 `sioc:attachment`
+- 📝 `sioc:content`
+- 📝 `sioc:content_encoded`
+- 📝 `sioc:created_at`
+- 🔗 `sioc:creator_of`
+- 🔗 `sioc:delivered_at`
+- 📝 `sioc:description`
+- 🔗 `sioc:discussion_of`
+- 🔗 `sioc:email`
+- 📝 `sioc:email_sha1`
+- 🔗 `sioc:embeds_knowledge`
+- 🔗 `sioc:feed`
+- 📝 `sioc:first_name`
+- 🔗 `sioc:follows`
+- 🔗 `sioc:function_of`
+- 🔗 `sioc:generator`
+- 🔗 `sioc:group_of`
+- 🔗 `sioc:has_administrator`
+- 🔗 `sioc:has_container`
+- 🔗 `sioc:has_creator`
+- 🔗 `sioc:has_discussion`
+- 🔗 `sioc:has_function`
+- 🔗 `sioc:has_group`
+- 🔗 `sioc:has_member`
+- 🔗 `sioc:has_moderator`
+- 🔗 `sioc:has_modifier`
+- 🔗 `sioc:has_owner`
+- 🔗 `sioc:has_parent`
+- 🔗 `sioc:has_part`
+- 🔗 `sioc:has_scope`
+- 🔗 `sioc:has_space`
+  - 🔗 `sioc:has_host`
+- 🔗 `sioc:has_subscriber`
+- 🔗 `sioc:has_usergroup`
+- 📝 `sioc:id`
+- 📝 `sioc:ip_address`
+- 📝 `sioc:last_name`
+- 🔗 `sioc:latest_version`
+- 🔗 `sioc:likes`
+- 🔗 `sioc:link`
+- 🔗 `sioc:member_of`
+- 🔗 `sioc:mentions`
+- 🔗 `sioc:moderator_of`
+- 📝 `sioc:modified_at`
+- 🔗 `sioc:modifier_of`
+- 📝 `sioc:name`
+- 🔗 `sioc:next_by_date`
+- 🔗 `sioc:next_version`
+- 📝 `sioc:note`
+- 📝 `sioc:num_authors`
+- 📝 `sioc:num_items`
+- 📝 `sioc:num_replies`
+- 📝 `sioc:num_threads`
+- 📝 `sioc:num_views`
+- 🔗 `sioc:owner_of`
+- 🔗 `sioc:part_of`
+- 🔗 `sioc:previous_by_date`
+- 🔗 `sioc:previous_version`
+- 📝 `sioc:read_at`
+- 🔗 `sioc:reference`
+- 🔗 `sioc:related_to`
+  - 🔗 `sioc:has_reply`
+  - 🔗 `sioc:reply_of`
+- 🔗 `sioc:respond_to`
+- 🔗 `sioc:scope_of`
+- 🔗 `sioc:shared_by`
+- 📝 `sioc:subject`
+- 🔗 `sioc:subscriber_of`
+- 📝 `sioc:title`
+- 🔗 `sioc:usergroup_of`
+
+## skos
+
+- 🔗 `skos:hasTopConcept`
+- 🔗 `skos:inScheme`
+  - 🔗 `skos:topConceptOf`
+- 🔗 `skos:member`
+- 🔗 `skos:memberList`
+- ⚙️ `skos:notation`
+  - 📝 `org:identifier`
+- ⚙️ `skos:note`
+  - ⚙️ `skos:changeNote`
+  - ⚙️ `skos:definition`
+  - 📎 `skos:editorialNote`
+  - ⚙️ `skos:example`
+  - ⚙️ `skos:historyNote`
+  - ⚙️ `skos:scopeNote`
+- ⚙️ `skos:semanticRelation`
+  - 🔗 `skos:broaderTransitive`
+    - 🔗 `skos:broader`
+      - ⚙️ `schema:isVariantOf`
+      - 🔗 `skos:broadMatch`
+  - 🔗 `skos:mappingRelation`
+    - 🔗 `skos:closeMatch`
+      - ⚙️ `skos:exactMatch`
+    - 🔗 `skos:narrowMatch`
+    - ⚙️ `skos:relatedMatch`
+  - ⚙️ `skos:narrowerTransitive`
+    - 🔗 `skos:narrower`
+  - ⚙️ `skos:related`
+
+## sosa
+
+- 🔗 `sosa:actsOnProperty`
+- 🔗 `sosa:hasFeatureOfInterest`
+- 🔗 `sosa:hasResult`
+- 🔗 `sosa:hasSample`
+- 📝 `sosa:hasSimpleResult`
+- 🔗 `sosa:hosts`
+- 🔗 `sosa:isActedOnBy`
+- 🔗 `sosa:isFeatureOfInterestOf`
+- 🔗 `sosa:isHostedBy`
+- 🔗 `sosa:isObservedBy`
+- 🔗 `sosa:isResultOf`
+- 🔗 `sosa:isSampleOf`
+- 🔗 `sosa:madeActuation`
+- 🔗 `sosa:madeByActuator`
+- 🔗 `sosa:madeBySampler`
+- 🔗 `sosa:madeBySensor`
+- 🔗 `sosa:madeObservation`
+- 🔗 `sosa:madeSampling`
+- 🔗 `sosa:observedProperty`
+- 🔗 `sosa:observes`
+- 🔗 `sosa:phenomenonTime`
+- 📝 `sosa:resultTime`
+- 🔗 `sosa:usedProcedure`
+
+## time
+
+- 🔗 `time:after`
+  - 🔗 `time:intervalAfter`
+- 🔗 `time:before`
+  - 🔗 `time:intervalBefore`
+- 📝 `time:day`
+- 🔗 `time:dayOfWeek`
+- 📝 `time:dayOfYear`
+- 📝 `time:days`
+- 🔗 `time:hasDateTimeDescription`
+- 🔗 `time:hasTemporalDuration`
+  - 🔗 `time:hasDuration`
+  - 🔗 `time:hasDurationDescription`
+- 🔗 `time:hasTime`
+  - 🔗 `time:hasBeginning`
+  - 🔗 `time:hasEnd`
+- 🔗 `time:hasTRS`
+- 📝 `time:hasXSDDuration`
+- 📝 `time:hour`
+- 📝 `time:hours`
+- 🔗 `time:inside`
+- 🔗 `time:inTemporalPosition`
+  - 🔗 `time:inDateTime`
+  - 🔗 `time:inTimePosition`
+- 🔗 `time:intervalContains`
+- 🔗 `time:intervalDisjoint`
+  - 🔗 `time:intervalAfter`
+  - 🔗 `time:intervalBefore`
+- 🔗 `time:intervalEquals`
+- 🔗 `time:intervalFinishedBy`
+- 🔗 `time:intervalIn`
+  - 🔗 `time:intervalDuring`
+  - 🔗 `time:intervalFinishes`
+  - 🔗 `time:intervalStarts`
+- 🔗 `time:intervalMeets`
+- 🔗 `time:intervalMetBy`
+- 🔗 `time:intervalOverlappedBy`
+- 🔗 `time:intervalOverlaps`
+- 🔗 `time:intervalStartedBy`
+- 📝 `time:inXSDDate`
+- 📝 `time:inXSDDateTime`
+- 📝 `time:inXSDDateTimeStamp`
+- 📝 `time:inXSDgYear`
+- 📝 `time:inXSDgYearMonth`
+- 📝 `time:minute`
+- 📝 `time:minutes`
+- 📝 `time:month`
+- 🔗 `time:monthOfYear`
+- 📝 `time:months`
+- 📝 `time:nominalPosition`
+- 📝 `time:numericDuration`
+- 📝 `time:numericPosition`
+- 📝 `time:second`
+- 📝 `time:seconds`
+- 🔗 `time:timeZone`
+- 🔗 `time:unitType`
+- 📝 `time:week`
+- 📝 `time:weeks`
+- 📝 `time:xsdDateTime`
+- 📝 `time:year`
+- 📝 `time:years`
+
+## vcard
+
+- 📝 `vcard:additional-name`
+- 🔗 `vcard:adr`
+- 🔗 `vcard:agent`
+- 📝 `vcard:anniversary`
+- 📝 `vcard:bday`
+- 📝 `vcard:category`
+- 📝 `vcard:class`
+- 📝 `vcard:country-name`
+- 🔗 `vcard:email`
+- 📝 `vcard:extended-address`
+- 📝 `vcard:family-name`
+- 📝 `vcard:fn`
+- 🔗 `vcard:geo`
+- 📝 `vcard:given-name`
+- 🔗 `vcard:hasAdditionalName`
+- 🔗 `vcard:hasAddress`
+- 🔗 `vcard:hasCalendarBusy`
+- 🔗 `vcard:hasCalendarLink`
+- 🔗 `vcard:hasCalendarRequest`
+- 🔗 `vcard:hasCategory`
+- 🔗 `vcard:hasCountryName`
+- 🔗 `vcard:hasEmail`
+- 🔗 `vcard:hasFamilyName`
+- 🔗 `vcard:hasFN`
+- 🔗 `vcard:hasGender`
+- 🔗 `vcard:hasGeo`
+- 🔗 `vcard:hasGivenName`
+- 🔗 `vcard:hasHonorificPrefix`
+- 🔗 `vcard:hasHonorificSuffix`
+- 🔗 `vcard:hasInstantMessage`
+- 🔗 `vcard:hasKey`
+- 🔗 `vcard:hasLanguage`
+- 🔗 `vcard:hasLocality`
+- 🔗 `vcard:hasLogo`
+- 🔗 `vcard:hasMember`
+- 🔗 `vcard:hasName`
+- 🔗 `vcard:hasNickname`
+- 🔗 `vcard:hasNote`
+- 🔗 `vcard:hasOrganizationName`
+- 🔗 `vcard:hasOrganizationUnit`
+- 🔗 `vcard:hasPhoto`
+- 🔗 `vcard:hasPostalCode`
+- 🔗 `vcard:hasRegion`
+- 🔗 `vcard:hasRelated`
+- 🔗 `vcard:hasRole`
+- 🔗 `vcard:hasSound`
+- 🔗 `vcard:hasSource`
+- 🔗 `vcard:hasStreetAddress`
+- 🔗 `vcard:hasTelephone`
+- 🔗 `vcard:hasTitle`
+- 🔗 `vcard:hasUID`
+- 🔗 `vcard:hasURL`
+- 🔗 `vcard:hasValue`
+- 📝 `vcard:honorific-prefix`
+- 📝 `vcard:honorific-suffix`
+- 🔗 `vcard:key`
+- 📝 `vcard:label`
+- 📝 `vcard:language`
+- 📝 `vcard:latitude`
+- 📝 `vcard:locality`
+- 🔗 `vcard:logo`
+- 📝 `vcard:longitude`
+- 📝 `vcard:mailer`
+- 🔗 `vcard:n`
+- 📝 `vcard:nickname`
+- 📝 `vcard:note`
+- 🔗 `vcard:org`
+- 📝 `vcard:organization-name`
+  - 📝 `vcard:organization-unit`
+- 🔗 `vcard:photo`
+- 📝 `vcard:post-office-box`
+- 📝 `vcard:postal-code`
+- 📝 `vcard:prodid`
+- 📝 `vcard:region`
+- 📝 `vcard:rev`
+- 📝 `vcard:role`
+- 📝 `vcard:sort-string`
+- 🔗 `vcard:sound`
+- 📝 `vcard:street-address`
+- 🔗 `vcard:tel`
+- 📝 `vcard:title`
+- 📝 `vcard:tz`
+- 🔗 `vcard:url`
+- 📝 `vcard:value`

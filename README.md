@@ -22,7 +22,9 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | Schema.org | `schema` | `https://schema.org/` | 17,606 | 20,596 | ✅ |
 | DCAT | `dcat` | `http://www.w3.org/ns/dcat#` | 1,338 | 1,407 | ✅ |
 | TIME | `time` | `http://www.w3.org/2006/time#` | 1,295 | 1,465 | ✅ |
+| SHACL | `sh` | `http://www.w3.org/ns/shacl#` | 1,128 | 1,357 | ✅ |
 | PROV-O | `prov` | `http://www.w3.org/ns/prov#` | 1,126 | 1,290 | ✅ |
+| ActivityStreams | `as` | `https://www.w3.org/ns/activitystreams#` | 948 | 1,253 | ✅ |
 | VCARD | `vcard` | `http://www.w3.org/2006/vcard/ns#` | 882 | 1,111 | ✅ |
 | ORG | `org` | `http://www.w3.org/ns/org#` | 746 | 817 | ✅ |
 | DOAP | `doap` | `http://usefulinc.com/ns/doap#` | 741 | 803 | ✅ |
@@ -30,14 +32,17 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | SIOC | `sioc` | `http://rdfs.org/sioc/ns#` | 658 | 758 | ✅ |
 | FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 620 | 696 | ✅ |
 | OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 529 | ✅ |
+| SOSA | `sosa` | `http://www.w3.org/ns/sosa/` | 328 | 366 | ✅ |
 | SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 289 | ✅ |
 | RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 | ✅ |
 | Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 | ✅ |
 | RDFS | `rdfs` | `http://www.w3.org/2000/01/rdf-schema#` | 87 | 103 | ✅ |
 | GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 | ✅ |
 | Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 31 | ✅ |
+| GeoSPARQL | `geosparql` | `http://www.opengis.net/ont/geosparql#` | 774 | 853 | ✅ |
+| VOID | `void` | `http://rdfs.org/ns/void#` | 57 | 69 | ✅ |
 
-**Total: 26,794 triples, 31,010 files — 17 ontologies**
+**Total: 30,463 triples, 35,551 files — 24 ontologies**
 
 ### Additional
 
@@ -69,7 +74,14 @@ exocortex-public-ontologies/
 ├── dcat/                   # DCAT (Data Catalog Vocabulary)
 ├── org/                    # ORG (Organization Ontology)
 ├── schema/                 # Schema.org vocabulary
+├── sh/                     # SHACL (Shapes Constraint Language)
+├── sosa/                   # SOSA (Sensor, Observation, Sample, Actuator)
+├── as/                     # ActivityStreams 2.0
 ├── xsd/                    # XSD (XML Schema datatypes)
+├── vs/                     # Vocabulary Status (term status)
+├── void/                   # VOID (Vocabulary of Interlinked Datasets)
+├── geosparql/              # GeoSPARQL (Geospatial queries)
+├── tests/                  # pytest test suite
 ├── scripts/                # Tools
 │   ├── import_ontology.py  # RDF → file-based converter
 │   ├── validate.py         # Integrity checker (runs on pre-commit)
@@ -77,7 +89,10 @@ exocortex-public-ontologies/
 │   ├── export_rdf.py       # Export back to RDF format
 │   ├── add_aliases.py      # Add human-readable aliases
 │   ├── compare_ontologies.py # Compare ontology directories
-│   └── stats.py            # Generate ontology statistics
+│   ├── stats.py            # Generate ontology statistics
+│   ├── check_consistency.py # Cross-namespace consistency checks
+│   ├── test_consistency.py  # Semantic consistency tests
+│   └── generate_class_hierarchy.py # Generate class hierarchy docs
 └── ~templates/             # Obsidian templates
 ```
 
@@ -368,6 +383,8 @@ For more granular control, filter by specific predicate UUIDs:
 
 ### Querying Triples with Dataview
 
+#### Basic Queries
+
 Find all triples where a resource is the subject:
 
 ```dataview
@@ -394,6 +411,76 @@ Filter by metadata type:
 ```dataview
 LIST
 WHERE metadata = "anchor"
+```
+
+#### Advanced Queries
+
+**Find all Classes (resources with rdf:type rdfs:Class):**
+```dataview
+TABLE WITHOUT ID
+    subject AS "Class",
+    object
+WHERE predicate = [[73b69787-81ea-563e-8e09-9c84cad4cf2b]]
+  AND object = [[30488677-f427-5947-8a14-02903ca20a7e]]
+```
+
+**Find all Properties with their domains and ranges:**
+```dataview
+TABLE WITHOUT ID
+    subject AS "Property",
+    predicate AS "Relation",
+    object AS "Value"
+WHERE (predicate = [[c29ac1cb-6937-5aa2-a8c1-68f2e1b7e39f]]
+    OR predicate = [[f4d4a1a9-d8e5-5f47-a2a9-c8d9e0f1a2b3]])
+```
+
+**Find all rdfs:label values:**
+```dataview
+TABLE WITHOUT ID
+    subject AS "Resource",
+    object AS "Label"
+WHERE predicate = [[d0e9e696-d3f2-5966-a62f-d8358cbde741]]
+  AND metadata = "statement"
+```
+
+**Find class hierarchy (rdfs:subClassOf):**
+```dataview
+TABLE WITHOUT ID
+    subject AS "Subclass",
+    object AS "Superclass"
+WHERE predicate = [[55ff3aec-8d5b-5d4d-a0e1-d3f1c7d3c8d2]]
+```
+
+**Count triples by predicate:**
+```dataview
+TABLE WITHOUT ID
+    predicate AS "Predicate",
+    length(rows) AS "Count"
+WHERE metadata = "statement"
+GROUP BY predicate
+SORT length(rows) DESC
+```
+
+**Find all resources in a namespace (by alias prefix):**
+```dataview
+LIST
+WHERE metadata = "anchor"
+  AND contains(aliases, "foaf:")
+```
+
+**Find all blank nodes:**
+```dataview
+LIST
+WHERE metadata = "blank_node"
+```
+
+**Find owl:ObjectProperty resources:**
+```dataview
+TABLE WITHOUT ID
+    subject AS "Property",
+    object AS "Type"
+WHERE predicate = [[73b69787-81ea-563e-8e09-9c84cad4cf2b]]
+  AND contains(string(object), "ObjectProperty")
 ```
 
 ### Templates
@@ -570,6 +657,117 @@ python scripts/validate.py <prefix>
 python scripts/verify_import.py originals/<source_file> <ontology_dir>
 ```
 
+## Tutorial: Importing Your Own Ontology
+
+This guide walks you through importing a custom ontology into the file-based format.
+
+### Step 1: Prepare Your Ontology
+
+Ensure your ontology file is in a supported format:
+- RDF/XML (`.rdf`, `.owl`)
+- Turtle (`.ttl`)
+- N-Triples (`.nt`)
+- JSON-LD (`.jsonld`)
+
+Place the file in the `originals/` directory:
+```bash
+cp ~/myontology.ttl originals/myonto.ttl
+```
+
+### Step 2: Choose a Prefix
+
+Select a short, unique prefix for your ontology (2-8 lowercase letters):
+- Good: `myonto`, `proj`, `bio`, `geo`
+- Bad: `my-ontology`, `MyOntology`, `123ont`
+
+### Step 3: Add Namespace Mapping
+
+Edit the scripts to add your namespace. Add to all PREFIXES lists and namespace mappings:
+
+**scripts/import_ontology.py:**
+```python
+NAMESPACE_URI_TO_PREFIX = {
+    # ... existing entries ...
+    "http://example.org/myonto#": "myonto",
+}
+```
+
+**scripts/validate.py, stats.py, add_aliases.py, check_consistency.py, export_rdf.py:**
+```python
+PREFIXES = [
+    # ... existing entries ...
+    "myonto",
+]
+```
+
+### Step 4: Run the Import
+
+```bash
+python scripts/import_ontology.py originals/myonto.ttl myonto --prefix myonto -v
+```
+
+**Expected output:**
+```
+Importing originals/myonto.ttl to myonto/
+Done!
+  Triples imported: 150
+  Anchors created: 25
+  Files created: 176
+```
+
+### Step 5: Validate
+
+```bash
+# Check structural integrity
+python scripts/validate.py myonto
+
+# Verify semantic equivalence
+python scripts/verify_import.py originals/myonto.ttl myonto --namespace "http://example.org/myonto#"
+```
+
+### Step 6: Add Aliases (Optional Enhancement)
+
+If aliases weren't generated correctly, update them:
+```bash
+python scripts/add_aliases.py --dry-run  # Preview
+python scripts/add_aliases.py            # Apply
+```
+
+### Step 7: Open in Obsidian
+
+1. Open your vault in Obsidian
+2. Navigate to the `myonto/` folder
+3. Use Graph View to explore relationships
+4. Use Dataview queries to analyze triples
+
+### Troubleshooting Import Issues
+
+| Problem | Solution |
+|---------|----------|
+| "Namespace not found" | Add namespace mapping to all scripts |
+| Zero triples imported | Check if namespace URI matches ontology |
+| "External wikilinks" warnings | Normal - references to other ontologies |
+| Parse errors | Verify RDF file is valid with `rapper -c file.ttl` |
+
+### Advanced: Custom Import Options
+
+**Specify namespace explicitly:**
+```bash
+python scripts/import_ontology.py file.owl myonto -p myonto -n "http://example.org/ns#"
+```
+
+**Import ontology with different ontology URI vs namespace:**
+```bash
+# The script auto-detects owl:Ontology declarations
+python scripts/import_ontology.py complex.owl myonto -p myonto
+```
+
+**Re-import (update existing):**
+```bash
+rm -rf myonto/  # Remove old version
+python scripts/import_ontology.py originals/myonto.ttl myonto -p myonto
+```
+
 ### Test All Ontologies
 
 Run comprehensive test on all ontologies:
@@ -613,7 +811,8 @@ The hook blocks commits if validation fails.
 |--------|---------|-------|
 | `add_aliases.py` | Add/update human-readable aliases | `python scripts/add_aliases.py [--dry-run]` |
 | `compare_ontologies.py` | Compare two ontology directories | `python scripts/compare_ontologies.py <dir1> <dir2>` |
-| `stats.py` | Generate statistics for all ontologies | `python scripts/stats.py [--json\|--markdown]` |
+| `stats.py` | Generate statistics for all ontologies | `python scripts/stats.py [--json]` |
+| `check_consistency.py` | Cross-namespace consistency checks | `python scripts/check_consistency.py [-v]` |
 
 ### Key UUIDs Reference
 
@@ -629,6 +828,47 @@ Common predicate UUIDs for reference:
 | `rdfs:range` | `f4d4a1a9-d8e5-5f47-a2a9-c8d9e0f1a2b3` |
 | `rdfs:isDefinedBy` | `2e218ab8-518d-5cd0-a660-f575a101e5d8` |
 | `owl:imports` | `532c87f0-8cfa-5ff5-990f-aac1562178eb` |
+
+## Testing
+
+Run the full test suite:
+
+```bash
+# Run all tests
+python -m pytest tests/ -v
+
+# Run specific test file
+python -m pytest tests/test_validate.py -v
+
+# Run tests with coverage
+python -m pytest tests/ --cov=scripts
+```
+
+### Test Categories
+
+| Test File | Coverage |
+|-----------|----------|
+| `test_validate.py` | Validation functions and rules |
+| `test_import_ontology.py` | Import functions and UUID generation |
+| `test_stats.py` | Statistics collection and reporting |
+| `test_consistency.py` | Cross-namespace consistency checks |
+| `test_integration.py` | Full import → validate cycle |
+| `test_export.py` | Export functions and round-trip verification |
+
+**Total: 97 tests**
+
+### Code Quality
+
+```bash
+# Format code with black
+black scripts/
+
+# Check with flake8
+flake8 scripts/
+
+# Type checking with mypy
+mypy scripts/
+```
 
 ## Contributing
 
