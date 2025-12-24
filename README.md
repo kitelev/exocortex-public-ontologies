@@ -13,6 +13,18 @@ This repository contains standard W3C and Dublin Core ontologies converted to a 
 
 Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge management ecosystem.
 
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Glossary](docs/glossary.md) | RDF/RDFS/OWL terminology with examples |
+| [Cheat Sheet](docs/cheat-sheet.md) | Quick reference for all ontologies |
+| [Class Hierarchy](docs/class-hierarchy.md) | All classes with rdfs:subClassOf tree |
+| [Property Hierarchy](docs/property-hierarchy.md) | All properties with rdfs:subPropertyOf tree |
+| [Cross-References](docs/cross-references.md) | Inter-ontology reference matrix |
+| [Lint Report](docs/lint-report.md) | Quality assessment (labels, comments, domain/range) |
+| [Diagrams](docs/diagrams/) | Mermaid UML diagrams for each ontology |
+
 ## Included Ontologies
 
 ### Verified (semantically equivalent to originals)
