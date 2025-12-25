@@ -371,6 +371,13 @@ def export_namespace(namespace: str, verbose: bool = False) -> Graph:
                 continue
             predicate = resolve_uuid_to_uri(pred_anchor, uuid_map, blank_nodes)
 
+            # RDF predicates MUST be URIs, not blank nodes
+            if isinstance(predicate, BNode):
+                if verbose:
+                    print(f"  ⚠️  Skipping statement with unresolved predicate in {filepath.name}: {pred_anchor}")
+                error_count += 1
+                continue
+
             # Parse object
             obj = parse_rdf_object_uuid(obj_val, uuid_map, blank_nodes)
 
