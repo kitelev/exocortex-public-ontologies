@@ -49,18 +49,18 @@ PROPERTY_TYPES = {
 def parse_frontmatter_fast(filepath: Path) -> Optional[dict]:
     """Parse YAML frontmatter from a markdown file (optimized)."""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             first_line = f.readline()
-            if not first_line.startswith('---'):
+            if not first_line.startswith("---"):
                 return None
 
             lines = [first_line]
             for line in f:
                 lines.append(line)
-                if line.strip() == '---':
+                if line.strip() == "---":
                     break
 
-            yaml_content = ''.join(lines[1:-1])
+            yaml_content = "".join(lines[1:-1])
             return yaml.safe_load(yaml_content) or {}
     except Exception:
         return None
@@ -76,9 +76,9 @@ def extract_wikilink_uuid(value: str) -> Optional[str]:
 
 def sanitize_mermaid_id(text: str) -> str:
     """Convert text to valid Mermaid identifier."""
-    sanitized = re.sub(r'[^a-zA-Z0-9_]', '_', text)
+    sanitized = re.sub(r"[^a-zA-Z0-9_]", "_", text)
     if sanitized and sanitized[0].isdigit():
-        sanitized = '_' + sanitized
+        sanitized = "_" + sanitized
     return sanitized
 
 
@@ -310,8 +310,8 @@ def generate_documentation(data: Dict, namespace: Optional[str] = None) -> str:
     lines.append(f"| Properties | {len(data['properties'])} |")
     lines.append(f"| Inheritance relationships | {sum(len(p) for p in data['subclass_of'].values())} |")
 
-    props_with_domain = sum(1 for p in data['properties'].values() if p.get('domain'))
-    props_with_range = sum(1 for p in data['properties'].values() if p.get('range'))
+    props_with_domain = sum(1 for p in data["properties"].values() if p.get("domain"))
+    props_with_range = sum(1 for p in data["properties"].values() if p.get("range"))
     lines.append(f"| Properties with domain | {props_with_domain} |")
     lines.append(f"| Properties with range | {props_with_range} |")
     lines.append("")
@@ -321,14 +321,10 @@ def generate_documentation(data: Dict, namespace: Optional[str] = None) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate Mermaid diagrams for ontologies")
-    parser.add_argument("-o", "--output", type=str, default="docs/diagrams",
-                        help="Output directory or file path")
-    parser.add_argument("-n", "--namespace", type=str, default=None,
-                        help="Generate for specific namespace only")
-    parser.add_argument("--all", action="store_true",
-                        help="Generate separate diagram for each namespace")
-    parser.add_argument("-v", "--verbose", action="store_true",
-                        help="Verbose output")
+    parser.add_argument("-o", "--output", type=str, default="docs/diagrams", help="Output directory or file path")
+    parser.add_argument("-n", "--namespace", type=str, default=None, help="Generate for specific namespace only")
+    parser.add_argument("--all", action="store_true", help="Generate separate diagram for each namespace")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     output_path = REPO_ROOT / args.output

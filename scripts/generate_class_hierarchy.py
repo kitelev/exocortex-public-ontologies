@@ -50,7 +50,7 @@ def parse_frontmatter(filepath: Path) -> Optional[dict]:
         if not end_match:
             return None
 
-    yaml_content = content[4:3 + end_match.start()]
+    yaml_content = content[4 : 3 + end_match.start()]
 
     try:
         data = yaml.safe_load(yaml_content)
@@ -70,8 +70,8 @@ def extract_wikilink_uuid(value: str) -> Optional[str]:
 def collect_class_data(repo_root: Path, namespace_filter: Optional[str] = None) -> Dict:
     """Collect class and subclass data from ontologies."""
     data = {
-        "classes": {},       # uuid -> {uri, prefix, local, label}
-        "subclass_of": {},   # child_uuid -> [parent_uuid, ...]
+        "classes": {},  # uuid -> {uri, prefix, local, label}
+        "subclass_of": {},  # child_uuid -> [parent_uuid, ...]
         "uuid_to_info": {},  # uuid -> {uri, prefix, local, label, aliases}
     }
 
@@ -165,8 +165,7 @@ def collect_class_data(repo_root: Path, namespace_filter: Optional[str] = None) 
             if subj_uuid and obj_uuid:
                 # Only include relationships where child is in our filtered set
                 if namespace_filter is None or (
-                    subj_uuid in data["uuid_to_info"]
-                    and data["uuid_to_info"][subj_uuid]["prefix"] == namespace_filter
+                    subj_uuid in data["uuid_to_info"] and data["uuid_to_info"][subj_uuid]["prefix"] == namespace_filter
                 ):
                     if subj_uuid not in data["subclass_of"]:
                         data["subclass_of"][subj_uuid] = []
@@ -214,11 +213,7 @@ def get_class_label(uuid: str, data: Dict) -> str:
 
 
 def generate_tree_markdown(
-    root_uuid: str,
-    children_of: Dict[str, List[str]],
-    data: Dict,
-    indent: int = 0,
-    visited: Optional[Set[str]] = None
+    root_uuid: str, children_of: Dict[str, List[str]], data: Dict, indent: int = 0, visited: Optional[Set[str]] = None
 ) -> List[str]:
     """Generate markdown tree for a class and its descendants."""
     if visited is None:
@@ -240,9 +235,7 @@ def generate_tree_markdown(
 
     for child_uuid in children_sorted:
         if child_uuid in data["classes"]:  # Only show classes in our set
-            lines.extend(generate_tree_markdown(
-                child_uuid, children_of, data, indent + 1, visited
-            ))
+            lines.extend(generate_tree_markdown(child_uuid, children_of, data, indent + 1, visited))
 
     return lines
 
@@ -313,12 +306,9 @@ def generate_documentation(data: Dict, namespace_filter: Optional[str] = None) -
 
 def main():
     parser = argparse.ArgumentParser(description="Generate class hierarchy documentation")
-    parser.add_argument("-o", "--output", type=str, default="docs/class-hierarchy.md",
-                        help="Output file path")
-    parser.add_argument("-n", "--namespace", type=str, default=None,
-                        help="Filter to specific namespace")
-    parser.add_argument("-v", "--verbose", action="store_true",
-                        help="Verbose output")
+    parser.add_argument("-o", "--output", type=str, default="docs/class-hierarchy.md", help="Output file path")
+    parser.add_argument("-n", "--namespace", type=str, default=None, help="Filter to specific namespace")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     print("Collecting class data...")

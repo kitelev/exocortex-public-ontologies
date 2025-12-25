@@ -27,18 +27,18 @@ PREFIXES = get_prefix_dirs()
 def parse_frontmatter_fast(filepath: Path) -> Optional[dict]:
     """Parse YAML frontmatter from a markdown file (optimized)."""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             first_line = f.readline()
-            if not first_line.startswith('---'):
+            if not first_line.startswith("---"):
                 return None
 
             lines = [first_line]
             for line in f:
                 lines.append(line)
-                if line.strip() == '---':
+                if line.strip() == "---":
                     break
 
-            yaml_content = ''.join(lines[1:-1])
+            yaml_content = "".join(lines[1:-1])
             return yaml.safe_load(yaml_content) or {}
     except Exception:
         return None
@@ -46,7 +46,7 @@ def parse_frontmatter_fast(filepath: Path) -> Optional[dict]:
 
 def extract_wikilink_uuids(text: str) -> Set[str]:
     """Extract all UUIDs from wikilinks in text."""
-    return set(re.findall(r'\[\[([a-f0-9-]{36})(?:\|[^\]]+)?\]\]', text))
+    return set(re.findall(r"\[\[([a-f0-9-]{36})(?:\|[^\]]+)?\]\]", text))
 
 
 def collect_uuid_to_namespace(repo_root: Path) -> Dict[str, str]:
@@ -199,10 +199,8 @@ def generate_matrix_markdown(refs: Dict[str, Dict[str, int]]) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate cross-reference matrix")
-    parser.add_argument("-o", "--output", type=str, default="docs/cross-references.md",
-                        help="Output file path")
-    parser.add_argument("-v", "--verbose", action="store_true",
-                        help="Verbose output")
+    parser.add_argument("-o", "--output", type=str, default="docs/cross-references.md", help="Output file path")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     print("Collecting cross-references...")

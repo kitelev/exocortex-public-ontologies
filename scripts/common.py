@@ -106,11 +106,7 @@ def get_primary_prefixes(prefixes: Optional[Dict[str, str]] = None) -> Dict[str,
     if prefixes is None:
         prefixes = load_prefixes()
 
-    return {
-        prefix: uri
-        for prefix, uri in prefixes.items()
-        if not prefix.endswith("-ontology")
-    }
+    return {prefix: uri for prefix, uri in prefixes.items() if not prefix.endswith("-ontology")}
 
 
 def get_ontology_uri_to_prefix(prefixes: Optional[Dict[str, str]] = None) -> Dict[str, str]:
@@ -195,6 +191,7 @@ def uri_to_curie(uri: str, uri_to_prefix: Optional[Dict[str, str]] = None) -> st
 
 # Common frontmatter parsing utilities
 
+
 def parse_frontmatter(content: str) -> Tuple[Optional[Dict[str, Any]], str]:
     """
     Parse YAML frontmatter and body from markdown content.
@@ -216,7 +213,7 @@ def parse_frontmatter(content: str) -> Tuple[Optional[Dict[str, Any]], str]:
         return None, content
 
     yaml_content = "\n".join(lines[1:yaml_end])
-    body = "\n".join(lines[yaml_end + 1:])
+    body = "\n".join(lines[yaml_end + 1 :])
 
     try:
         fm = yaml.safe_load(yaml_content)
