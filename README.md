@@ -52,9 +52,11 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | GEO | `geo` | `http://www.w3.org/2003/01/geo/wgs84_pos#` | 33 | 41 | ✅ |
 | Dublin Core Abstract Model | `dcam` | `http://purl.org/dc/dcam/` | 26 | 31 | ✅ |
 | GeoSPARQL | `geosparql` | `http://www.opengis.net/ont/geosparql#` | 774 | 853 | ✅ |
-| VOID | `void` | `http://rdfs.org/ns/void#` | 57 | 69 | ✅ |
+| ADMS | `adms` | `http://www.w3.org/ns/adms#` | 151 | 175 | ✅ |
+| VOID | `void` | `http://vocab.deri.ie/void#` | 57 | 69 | ✅ |
+| VANN | `vann` | `http://purl.org/vocab/vann/` | 38 | 46 | ✅ |
 
-**Total: 30,463 triples, 35,551 files — 24 ontologies**
+**Total: 30,652 triples, 35,772 files — 25 ontologies**
 
 ### Additional
 
@@ -88,9 +90,11 @@ exocortex-public-ontologies/
 ├── schema/                 # Schema.org vocabulary
 ├── sh/                     # SHACL (Shapes Constraint Language)
 ├── sosa/                   # SOSA (Sensor, Observation, Sample, Actuator)
+├── adms/                   # ADMS (Asset Description Metadata Schema)
 ├── as/                     # ActivityStreams 2.0
 ├── xsd/                    # XSD (XML Schema datatypes)
 ├── vs/                     # Vocabulary Status (term status)
+├── vann/                   # VANN (Vocabulary Annotation)
 ├── void/                   # VOID (Vocabulary of Interlinked Datasets)
 ├── geosparql/              # GeoSPARQL (Geospatial queries)
 ├── tests/                  # pytest test suite
