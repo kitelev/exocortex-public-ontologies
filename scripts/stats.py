@@ -20,36 +20,13 @@ from pathlib import Path
 from collections import Counter, defaultdict
 from typing import Any, Dict, Optional, Set
 
-# Repository root (relative to script location)
-REPO_ROOT = Path(__file__).parent.parent
+from common import get_prefix_dirs, get_repo_root
 
-# Namespace prefixes
-PREFIXES = [
-    "rdf",
-    "rdfs",
-    "owl",
-    "dc",
-    "dcterms",
-    "dcam",
-    "skos",
-    "foaf",
-    "prov",
-    "time",
-    "geo",
-    "vcard",
-    "doap",
-    "sioc",
-    "xsd",
-    "dcat",
-    "org",
-    "schema",
-    "vs",
-    "sh",
-    "sosa",
-    "as",
-    "void",
-    "geosparql",
-]
+# Repository root (relative to script location)
+REPO_ROOT = get_repo_root()
+
+# Namespace prefixes loaded from _prefixes.yaml
+PREFIXES = get_prefix_dirs()
 
 
 def parse_frontmatter(filepath: Path) -> Optional[Dict[str, Any]]:

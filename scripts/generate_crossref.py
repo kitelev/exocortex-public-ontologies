@@ -15,15 +15,13 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, Optional, Set
 
-# Repository root
-REPO_ROOT = Path(__file__).parent.parent
+from common import get_prefix_dirs, get_repo_root
 
-# Namespace prefixes
-PREFIXES = [
-    "rdf", "rdfs", "owl", "dc", "dcterms", "dcam", "skos", "foaf",
-    "prov", "time", "geo", "vcard", "doap", "sioc", "xsd", "dcat",
-    "org", "schema", "vs", "sh", "sosa", "as", "void", "geosparql",
-]
+# Repository root
+REPO_ROOT = get_repo_root()
+
+# Namespace prefixes loaded from _prefixes.yaml
+PREFIXES = get_prefix_dirs()
 
 
 def parse_frontmatter_fast(filepath: Path) -> Optional[dict]:

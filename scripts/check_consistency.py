@@ -20,64 +20,15 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from common import get_prefix_dirs, get_uri_to_prefix, get_repo_root, load_prefixes
+
 # Repository root (relative to script location)
-REPO_ROOT = Path(__file__).parent.parent
+REPO_ROOT = get_repo_root()
 
-# Namespace prefixes
-PREFIXES = [
-    "rdf",
-    "rdfs",
-    "owl",
-    "dc",
-    "dcterms",
-    "dcam",
-    "skos",
-    "foaf",
-    "prov",
-    "time",
-    "geo",
-    "vcard",
-    "doap",
-    "sioc",
-    "xsd",
-    "dcat",
-    "org",
-    "schema",
-    "vs",
-    "sh",
-    "sosa",
-    "as",
-    "void",
-    "geosparql",
-]
-
-# Namespace URI to prefix mapping
-NS_URI_TO_PREFIX = {
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#": "rdf",
-    "http://www.w3.org/2000/01/rdf-schema#": "rdfs",
-    "http://www.w3.org/2002/07/owl#": "owl",
-    "http://purl.org/dc/elements/1.1/": "dc",
-    "http://purl.org/dc/terms/": "dcterms",
-    "http://purl.org/dc/dcam/": "dcam",
-    "http://www.w3.org/2004/02/skos/core#": "skos",
-    "http://xmlns.com/foaf/0.1/": "foaf",
-    "http://www.w3.org/ns/prov#": "prov",
-    "http://www.w3.org/2006/time#": "time",
-    "http://www.w3.org/2003/01/geo/wgs84_pos#": "geo",
-    "http://www.w3.org/2006/vcard/ns#": "vcard",
-    "http://usefulinc.com/ns/doap#": "doap",
-    "http://rdfs.org/sioc/ns#": "sioc",
-    "http://www.w3.org/2001/XMLSchema#": "xsd",
-    "http://www.w3.org/ns/dcat#": "dcat",
-    "http://www.w3.org/ns/org#": "org",
-    "https://schema.org/": "schema",
-    "http://www.w3.org/2003/06/sw-vocab-status/ns#": "vs",
-    "http://www.w3.org/ns/shacl#": "sh",
-    "http://www.w3.org/ns/sosa/": "sosa",
-    "https://www.w3.org/ns/activitystreams#": "as",
-    "http://rdfs.org/ns/void#": "void",
-    "http://www.opengis.net/ont/geosparql#": "geosparql",
-}
+# Load prefix mappings from _prefixes.yaml
+_PREFIXES_MAP = load_prefixes()
+PREFIXES = get_prefix_dirs()
+NS_URI_TO_PREFIX = get_uri_to_prefix(_PREFIXES_MAP)
 
 
 def parse_frontmatter(filepath: Path) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:

@@ -19,15 +19,13 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, Set
 
-# Repository root
-REPO_ROOT = Path(__file__).parent.parent
+from common import get_prefix_dirs, get_repo_root
 
-# Namespace prefixes
-PREFIXES = [
-    "rdf", "rdfs", "owl", "dc", "dcterms", "dcam", "skos", "foaf",
-    "prov", "time", "geo", "vcard", "doap", "sioc", "xsd", "dcat",
-    "org", "schema", "vs", "sh", "sosa", "as", "void", "geosparql",
-]
+# Repository root
+REPO_ROOT = get_repo_root()
+
+# Namespace prefixes loaded from _prefixes.yaml
+PREFIXES = get_prefix_dirs()
 
 # Well-known UUIDs
 RDF_TYPE_UUID = "73b69787-81ea-563e-8e09-9c84cad4cf2b"
