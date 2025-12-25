@@ -21,34 +21,11 @@ from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Dict, List, Set, Tuple, Optional
 
+from common import get_prefix_dirs, get_repo_root
+
 # Repository root (relative to script location)
-REPO_ROOT = Path(__file__).parent.parent
-PREFIXES = [
-    "rdf",
-    "rdfs",
-    "owl",
-    "dc",
-    "dcterms",
-    "dcam",
-    "skos",
-    "foaf",
-    "prov",
-    "time",
-    "geo",
-    "vcard",
-    "doap",
-    "sioc",
-    "xsd",
-    "dcat",
-    "org",
-    "schema",
-    "vs",
-    "sh",
-    "sosa",
-    "as",
-    "void",
-    "geosparql",
-]
+REPO_ROOT = get_repo_root()
+PREFIXES = get_prefix_dirs()
 
 # Well-known predicate UUIDs
 PREDICATES = {

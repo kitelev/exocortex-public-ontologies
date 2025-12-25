@@ -18,74 +18,22 @@ import yaml
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
-# Namespace prefixes (short names for namespace URIs)
-PREFIXES = [
-    "rdf",
-    "rdfs",
-    "owl",
-    "dc",
-    "dcterms",
-    "dcam",
-    "skos",
-    "foaf",
-    "prov",
-    "time",
-    "geo",
-    "vcard",
-    "doap",
-    "sioc",
-    "xsd",
-    "dcat",
-    "org",
-    "schema",
-    "vs",
-    "sh",
-    "sosa",
-    "as",
-    "void",
-    "geosparql",
-]
+from common import (
+    get_prefix_dirs,
+    get_uri_to_prefix,
+    get_ontology_uri_to_prefix,
+    get_primary_prefixes,
+    get_repo_root,
+    load_prefixes,
+)
 
-# Namespace URI to prefix mapping (canonical)
-NS_URI_TO_PREFIX = {
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#": "rdf",
-    "http://www.w3.org/2000/01/rdf-schema#": "rdfs",
-    "http://www.w3.org/2002/07/owl#": "owl",
-    "http://purl.org/dc/elements/1.1/": "dc",
-    "http://purl.org/dc/terms/": "dcterms",
-    "http://purl.org/dc/dcam/": "dcam",
-    "http://www.w3.org/2004/02/skos/core#": "skos",
-    "http://xmlns.com/foaf/0.1/": "foaf",
-    "http://www.w3.org/ns/prov#": "prov",
-    "http://www.w3.org/2006/time#": "time",
-    "http://www.w3.org/2003/01/geo/wgs84_pos#": "geo",
-    "http://www.w3.org/2006/vcard/ns#": "vcard",
-    "http://usefulinc.com/ns/doap#": "doap",
-    "http://rdfs.org/sioc/ns#": "sioc",
-    "http://www.w3.org/2001/XMLSchema#": "xsd",
-    "http://www.w3.org/ns/dcat#": "dcat",
-    "http://www.w3.org/ns/org#": "org",
-    "https://schema.org/": "schema",
-    "http://www.w3.org/2003/06/sw-vocab-status/ns#": "vs",
-    "http://www.w3.org/ns/shacl#": "sh",
-    "http://www.w3.org/ns/sosa/": "sosa",
-    "https://www.w3.org/ns/activitystreams#": "as",
-    "http://rdfs.org/ns/void#": "void",
-    "http://www.opengis.net/ont/geosparql#": "geosparql",
-}
-
-# Ontology URIs (without #) that map to the same prefix
-# These are used when owl:Ontology URI differs from namespace URI
-ONTOLOGY_URI_TO_PREFIX = {
-    "http://www.w3.org/2002/07/owl": "owl",
-    "http://www.w3.org/2004/02/skos/core": "skos",
-    "http://www.w3.org/2006/time": "time",
-    "http://www.w3.org/2006/vcard/ns": "vcard",
-    "http://www.w3.org/ns/dcat": "dcat",
-    "http://www.w3.org/ns/shacl": "sh",
-    "http://www.w3.org/ns/sosa": "sosa",
-    "https://www.w3.org/ns/activitystreams": "as",
-}
+# Load prefix mappings from _prefixes.yaml
+_PREFIXES_MAP = load_prefixes()
+PREFIXES = get_prefix_dirs()
+# Use primary prefixes (without -ontology variants) for namespace URI matching
+NS_URI_TO_PREFIX = get_uri_to_prefix(get_primary_prefixes(_PREFIXES_MAP))
+# Ontology URIs map to base prefix (e.g., "owl-ontology" URI → "owl")
+ONTOLOGY_URI_TO_PREFIX = get_ontology_uri_to_prefix(_PREFIXES_MAP)
 
 # Maximum length for statement aliases
 MAX_ALIAS_LENGTH = 100

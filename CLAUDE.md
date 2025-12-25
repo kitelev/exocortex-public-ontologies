@@ -144,12 +144,34 @@ Literals in YAML frontmatter:
 - Typed: `"\"value\"^^[[xsd-type-uuid]]"`
 - Multiline: `\n` (CRLF normalized to LF during import)
 
+## Prefix Registry
+
+All namespace URI → prefix mappings are stored in `_prefixes.yaml` (single source of truth). Scripts use `scripts/common.py` to load this registry.
+
+**Structure:**
+```yaml
+# Primary namespaces (directories in repo)
+rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+rdfs: "http://www.w3.org/2000/01/rdf-schema#"
+owl: "http://www.w3.org/2002/07/owl#"
+void: "http://rdfs.org/ns/void#"
+
+# External namespaces (referenced but not imported)
+deri-void: "http://vocab.deri.ie/void#"
+vann: "http://purl.org/vocab/vann/"
+
+# Ontology URIs (owl:Ontology subjects, without trailing #)
+owl-ontology: "http://www.w3.org/2002/07/owl"
+```
+
+**Key principle:** 1 prefix = 1 URI (strict). Different URIs require different prefixes.
+
 ## Import Workflow
 
 1. **Download** original ontology (RDF/XML, Turtle, etc.) to `originals/`
 2. **Import**: `python scripts/import_ontology.py originals/onto.rdf onto --prefix onto`
 3. **Verify**: `python scripts/verify_import.py originals/onto.rdf onto`
-4. **Add to scripts**: Update PREFIXES in `validate.py`, `add_aliases.py`, `import_ontology.py`
+4. **Register prefix**: Add `onto: "http://example.org/onto#"` to `_prefixes.yaml`
 5. **Validate**: `python scripts/validate.py onto`
 6. **Commit**: `git add -A && git commit -m "feat: add onto ontology"`
 

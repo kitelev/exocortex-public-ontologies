@@ -1,0 +1,70 @@
+# _prefixes.yaml
+# Единственный источник истины для namespace URI → prefix маппинга
+# Все скрипты читают из этого файла вместо хардкода констант
+#
+# Формат: prefix: namespace_uri
+# Правило: 1 prefix = 1 URI (строгое соответствие)
+
+# ============================================================================
+# Импортированные онтологии (есть директории в репозитории)
+# ============================================================================
+
+rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+rdfs: "http://www.w3.org/2000/01/rdf-schema#"
+owl: "http://www.w3.org/2002/07/owl#"
+xsd: "http://www.w3.org/2001/XMLSchema#"
+
+# Dublin Core
+dc: "http://purl.org/dc/elements/1.1/"
+dcterms: "http://purl.org/dc/terms/"
+dcam: "http://purl.org/dc/dcam/"
+
+# SKOS & FOAF
+skos: "http://www.w3.org/2004/02/skos/core#"
+foaf: "http://xmlns.com/foaf/0.1/"
+
+# W3C vocabularies
+prov: "http://www.w3.org/ns/prov#"
+time: "http://www.w3.org/2006/time#"
+geo: "http://www.w3.org/2003/01/geo/wgs84_pos#"
+vcard: "http://www.w3.org/2006/vcard/ns#"
+dcat: "http://www.w3.org/ns/dcat#"
+org: "http://www.w3.org/ns/org#"
+sh: "http://www.w3.org/ns/shacl#"
+sosa: "http://www.w3.org/ns/sosa/"
+as: "https://www.w3.org/ns/activitystreams#"
+
+# Other vocabularies
+doap: "http://usefulinc.com/ns/doap#"
+sioc: "http://rdfs.org/sioc/ns#"
+void: "http://vocab.deri.ie/void#"
+vs: "http://www.w3.org/2003/06/sw-vocab-status/ns#"
+geosparql: "http://www.opengis.net/ont/geosparql#"
+
+# Schema.org
+schema: "https://schema.org/"
+
+# ============================================================================
+# Внешние namespace'ы (нет директорий, но есть ссылки на ресурсы)
+# ============================================================================
+
+# VANN vocabulary annotation
+vann: "http://purl.org/vocab/vann/"
+
+# ADMS (Asset Description Metadata Schema)
+adms: "http://www.w3.org/ns/adms#"
+
+# ============================================================================
+# Альтернативные URI онтологий (owl:Ontology URI без #)
+# Используются когда URI онтологии отличается от namespace URI
+# ============================================================================
+
+owl-ontology: "http://www.w3.org/2002/07/owl"
+skos-ontology: "http://www.w3.org/2004/02/skos/core"
+time-ontology: "http://www.w3.org/2006/time"
+vcard-ontology: "http://www.w3.org/2006/vcard/ns"
+dcat-ontology: "http://www.w3.org/ns/dcat"
+sh-ontology: "http://www.w3.org/ns/shacl"
+sosa-ontology: "http://www.w3.org/ns/sosa"
+as-ontology: "https://www.w3.org/ns/activitystreams"
+void-ontology: "http://vocab.deri.ie/void"

@@ -23,35 +23,12 @@ from pathlib import Path
 from typing import List, Optional, Set, Tuple
 from dataclasses import dataclass, field
 
+from common import get_prefix_dirs, get_repo_root
+
 # Repository root (relative to script location)
-REPO_ROOT = Path(__file__).parent.parent
-# Namespace prefixes (short names for namespace URIs, e.g., 'rdf' for http://www.w3.org/1999/02/22-rdf-syntax-ns#)
-PREFIXES = [
-    "rdf",
-    "rdfs",
-    "owl",
-    "dc",
-    "dcterms",
-    "dcam",
-    "skos",
-    "foaf",
-    "prov",
-    "time",
-    "geo",
-    "vcard",
-    "doap",
-    "sioc",
-    "xsd",
-    "dcat",
-    "org",
-    "schema",
-    "vs",
-    "sh",
-    "sosa",
-    "as",
-    "void",
-    "geosparql",
-]
+REPO_ROOT = get_repo_root()
+# Namespace prefixes loaded from _prefixes.yaml
+PREFIXES = get_prefix_dirs(REPO_ROOT)
 EXCLUDED_DIRS = ["~templates", "scripts", ".git"]
 
 
