@@ -40,19 +40,11 @@ sioc: "http://rdfs.org/sioc/ns#"
 void: "http://vocab.deri.ie/void#"
 vs: "http://www.w3.org/2003/06/sw-vocab-status/ns#"
 geosparql: "http://www.opengis.net/ont/geosparql#"
+vann: "http://purl.org/vocab/vann/"
+adms: "http://www.w3.org/ns/adms#"
 
 # Schema.org
 schema: "https://schema.org/"
-
-# ============================================================================
-# Внешние namespace'ы (нет директорий, но есть ссылки на ресурсы)
-# ============================================================================
-
-# VANN vocabulary annotation
-vann: "http://purl.org/vocab/vann/"
-
-# ADMS (Asset Description Metadata Schema)
-adms: "http://www.w3.org/ns/adms#"
 
 # ============================================================================
 # Альтернативные URI онтологий (owl:Ontology URI без #)
@@ -68,3 +60,4 @@ sh-ontology: "http://www.w3.org/ns/shacl"
 sosa-ontology: "http://www.w3.org/ns/sosa"
 as-ontology: "https://www.w3.org/ns/activitystreams"
 void-ontology: "http://vocab.deri.ie/void"
+adms-ontology: "http://www.w3.org/ns/adms"

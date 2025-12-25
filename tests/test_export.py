@@ -114,9 +114,7 @@ class TestParseRdfObjectUuid:
         """Test datatyped literal with full URI."""
         uuid_map = {}
         blank_nodes = {}
-        term = parse_rdf_object_uuid(
-            '"2024"^^<http://www.w3.org/2001/XMLSchema#gYear>', uuid_map, blank_nodes
-        )
+        term = parse_rdf_object_uuid('"2024"^^<http://www.w3.org/2001/XMLSchema#gYear>', uuid_map, blank_nodes)
         assert isinstance(term, Literal)
         assert str(term) == "2024"
         assert "gYear" in str(term.datatype)

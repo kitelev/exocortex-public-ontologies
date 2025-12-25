@@ -1,8 +1,8 @@
-# Class Hierarchy
-
-Complete class hierarchy across all ontologies.
-
-*Generated automatically. Total classes: 1278*
+Collecting class data...
+  Found 1282 classes
+  Found 1226 subclass relationships
+Generating documentation...
+Written to docs/class-hierarchy.md
 
 ## as
 
@@ -71,11 +71,14 @@ Complete class hierarchy across all ontologies.
 
 - `dcat:CatalogRecord`
 - `dcat:Distribution`
+  - `adms:AssetDistribution`
 - `dcat:Relationship`
 - `dcat:Resource`
   - `dcat:DataService`
   - `dcat:Dataset`
+    - `adms:Asset`
     - `dcat:Catalog`
+      - `adms:AssetRepository`
 
 ## dcterms
 

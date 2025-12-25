@@ -54,7 +54,7 @@ def parse_frontmatter(filepath: Path) -> Optional[dict]:
         if not end_match:
             return None
 
-    yaml_content = content[4:3 + end_match.start()]
+    yaml_content = content[4 : 3 + end_match.start()]
 
     try:
         data = yaml.safe_load(yaml_content)
@@ -74,9 +74,9 @@ def extract_wikilink_uuid(value: str) -> Optional[str]:
 def collect_property_data(repo_root: Path, namespace_filter: Optional[str] = None) -> Dict:
     """Collect property and subPropertyOf data from ontologies."""
     data = {
-        "properties": {},      # uuid -> {uri, prefix, local, type}
+        "properties": {},  # uuid -> {uri, prefix, local, type}
         "subproperty_of": {},  # child_uuid -> [parent_uuid, ...]
-        "uuid_to_info": {},    # uuid -> {uri, prefix, local, aliases, type}
+        "uuid_to_info": {},  # uuid -> {uri, prefix, local, aliases, type}
     }
 
     # First pass: collect all anchors and their info
@@ -169,8 +169,7 @@ def collect_property_data(repo_root: Path, namespace_filter: Optional[str] = Non
 
             if subj_uuid and obj_uuid:
                 if namespace_filter is None or (
-                    subj_uuid in data["uuid_to_info"]
-                    and data["uuid_to_info"][subj_uuid]["prefix"] == namespace_filter
+                    subj_uuid in data["uuid_to_info"] and data["uuid_to_info"][subj_uuid]["prefix"] == namespace_filter
                 ):
                     if subj_uuid not in data["subproperty_of"]:
                         data["subproperty_of"][subj_uuid] = []
@@ -229,11 +228,7 @@ def get_property_type_emoji(uuid: str, data: Dict) -> str:
 
 
 def generate_tree_markdown(
-    root_uuid: str,
-    children_of: Dict[str, List[str]],
-    data: Dict,
-    indent: int = 0,
-    visited: Optional[Set[str]] = None
+    root_uuid: str, children_of: Dict[str, List[str]], data: Dict, indent: int = 0, visited: Optional[Set[str]] = None
 ) -> List[str]:
     """Generate markdown tree for a property and its descendants."""
     if visited is None:
@@ -256,9 +251,7 @@ def generate_tree_markdown(
 
     for child_uuid in children_sorted:
         if child_uuid in data["properties"]:
-            lines.extend(generate_tree_markdown(
-                child_uuid, children_of, data, indent + 1, visited
-            ))
+            lines.extend(generate_tree_markdown(child_uuid, children_of, data, indent + 1, visited))
 
     return lines
 
@@ -339,12 +332,9 @@ def generate_documentation(data: Dict, namespace_filter: Optional[str] = None) -
 
 def main():
     parser = argparse.ArgumentParser(description="Generate property hierarchy documentation")
-    parser.add_argument("-o", "--output", type=str, default="docs/property-hierarchy.md",
-                        help="Output file path")
-    parser.add_argument("-n", "--namespace", type=str, default=None,
-                        help="Filter to specific namespace")
-    parser.add_argument("-v", "--verbose", action="store_true",
-                        help="Verbose output")
+    parser.add_argument("-o", "--output", type=str, default="docs/property-hierarchy.md", help="Output file path")
+    parser.add_argument("-n", "--namespace", type=str, default=None, help="Filter to specific namespace")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     print("Collecting property data...")

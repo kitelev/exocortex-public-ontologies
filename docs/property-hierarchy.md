@@ -1,10 +1,25 @@
-# Property Hierarchy
+Collecting property data...
+  Found 2418 properties
+  Found 399 subPropertyOf relationships
+Generating documentation...
+Written to docs/property-hierarchy.md
+ 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
 
-Complete property hierarchy across all ontologies.
+## adms
 
-*Generated automatically. Total properties: 2399*
-
-**Legend:** 🔗 ObjectProperty | 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
+- 🔗 `adms:identifier`
+- ⚙️ `adms:includedAsset`
+- 🔗 `adms:interoperabilityLevel`
+- 🔗 `adms:last`
+- ⚙️ `adms:next`
+- 🔗 `adms:prev`
+- ⚙️ `adms:representationTechnique`
+- ⚙️ `adms:sample`
+- ⚙️ `adms:schemeAgency`
+- 🔗 `adms:status`
+- ⚙️ `adms:supportedSchema`
+- 🔗 `adms:translation`
+- ⚙️ `adms:versionNotes`
 
 ## as
 
@@ -263,8 +278,8 @@ Complete property hierarchy across all ontologies.
 - ⚙️ `foaf:fundedBy`
 - ⚙️ `foaf:geekcode`
 - 📝 `foaf:gender`
-- 📝 `foaf:givenName`
 - ⚙️ `foaf:givenname`
+- 📝 `foaf:givenName`
 - 🔗 `foaf:holdsAccount`
 - 🔗 `foaf:interest`
 - 📝 `foaf:jabberID`
@@ -565,6 +580,9 @@ Complete property hierarchy across all ontologies.
   - 📎 `prov:sharesDefinitionWith`
   - 📎 `prov:unqualifiedForm`
   - ⚙️ `rdfs:isDefinedBy`
+  - 📎 `vann:changes`
+  - 📎 `vann:example`
+  - 📎 `vann:usageNote`
 - ⚙️ `rdfs:subClassOf`
 - ⚙️ `rdfs:subPropertyOf`
 
@@ -2388,6 +2406,12 @@ Complete property hierarchy across all ontologies.
 - 📝 `time:xsdDateTime`
 - 📝 `time:year`
 - 📝 `time:years`
+
+## vann
+
+- 📎 `vann:preferredNamespacePrefix`
+- 📎 `vann:preferredNamespaceUri`
+- 📎 `vann:termGroup`
 
 ## vcard
 

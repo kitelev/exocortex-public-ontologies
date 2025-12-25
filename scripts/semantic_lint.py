@@ -51,18 +51,18 @@ PROPERTY_TYPES = {
 def parse_frontmatter_fast(filepath: Path) -> Optional[dict]:
     """Parse YAML frontmatter from a markdown file."""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             first_line = f.readline()
-            if not first_line.startswith('---'):
+            if not first_line.startswith("---"):
                 return None
 
             lines = [first_line]
             for line in f:
                 lines.append(line)
-                if line.strip() == '---':
+                if line.strip() == "---":
                     break
 
-            yaml_content = ''.join(lines[1:-1])
+            yaml_content = "".join(lines[1:-1])
             return yaml.safe_load(yaml_content) or {}
     except Exception:
         return None
@@ -78,6 +78,7 @@ def extract_wikilink_uuid(value: str) -> Optional[str]:
 
 class LintIssue:
     """Represents a lint issue."""
+
     def __init__(self, severity: str, category: str, resource: str, message: str):
         self.severity = severity  # "error", "warning", "info"
         self.category = category
@@ -175,39 +176,34 @@ def lint_namespace(repo_root: Path, namespace: str) -> Tuple[Dict, List[LintIssu
 
     # Classes without labels
     for cls in classes - has_label:
-        issues.append(LintIssue("warning", "missing-label", get_alias(cls),
-                                f"Class missing rdfs:label"))
+        issues.append(LintIssue("warning", "missing-label", get_alias(cls), f"Class missing rdfs:label"))
 
     # Classes without comments
     for cls in classes - has_comment:
-        issues.append(LintIssue("info", "missing-comment", get_alias(cls),
-                                f"Class missing rdfs:comment"))
+        issues.append(LintIssue("info", "missing-comment", get_alias(cls), f"Class missing rdfs:comment"))
 
     # Properties without labels
     for prop in properties - has_label:
-        issues.append(LintIssue("warning", "missing-label", get_alias(prop),
-                                f"Property missing rdfs:label"))
+        issues.append(LintIssue("warning", "missing-label", get_alias(prop), f"Property missing rdfs:label"))
 
     # Properties without comments
     for prop in properties - has_comment:
-        issues.append(LintIssue("info", "missing-comment", get_alias(prop),
-                                f"Property missing rdfs:comment"))
+        issues.append(LintIssue("info", "missing-comment", get_alias(prop), f"Property missing rdfs:comment"))
 
     # Properties without domain
     for prop in properties - has_domain:
-        issues.append(LintIssue("info", "missing-domain", get_alias(prop),
-                                f"Property missing rdfs:domain"))
+        issues.append(LintIssue("info", "missing-domain", get_alias(prop), f"Property missing rdfs:domain"))
 
     # Properties without range
     for prop in properties - has_range:
-        issues.append(LintIssue("info", "missing-range", get_alias(prop),
-                                f"Property missing rdfs:range"))
+        issues.append(LintIssue("info", "missing-range", get_alias(prop), f"Property missing rdfs:range"))
 
     return stats, issues
 
 
-def generate_report(all_stats: Dict[str, Dict], all_issues: Dict[str, List[LintIssue]],
-                    namespace_filter: Optional[str] = None) -> str:
+def generate_report(
+    all_stats: Dict[str, Dict], all_issues: Dict[str, List[LintIssue]], namespace_filter: Optional[str] = None
+) -> str:
     """Generate markdown lint report."""
     lines = []
 
@@ -266,7 +262,9 @@ def generate_report(all_stats: Dict[str, Dict], all_issues: Dict[str, List[LintI
         prop_domain_pct = f"{100*s['properties_with_domain']/s['properties']:.0f}%" if s["properties"] > 0 else "-"
         prop_range_pct = f"{100*s['properties_with_range']/s['properties']:.0f}%" if s["properties"] > 0 else "-"
 
-        lines.append(f"| {ns} | {s['classes']} | {s['properties']} | {cls_label_pct} | {cls_comment_pct} | {prop_domain_pct} | {prop_range_pct} |")
+        lines.append(
+            f"| {ns} | {s['classes']} | {s['properties']} | {cls_label_pct} | {cls_comment_pct} | {prop_domain_pct} | {prop_range_pct} |"
+        )
 
     lines.append("")
 
@@ -338,12 +336,9 @@ def generate_report(all_stats: Dict[str, Dict], all_issues: Dict[str, List[LintI
 
 def main():
     parser = argparse.ArgumentParser(description="Semantic linter for ontologies")
-    parser.add_argument("-o", "--output", type=str, default="docs/lint-report.md",
-                        help="Output file path")
-    parser.add_argument("-n", "--namespace", type=str, default=None,
-                        help="Lint specific namespace only")
-    parser.add_argument("-v", "--verbose", action="store_true",
-                        help="Verbose output")
+    parser.add_argument("-o", "--output", type=str, default="docs/lint-report.md", help="Output file path")
+    parser.add_argument("-n", "--namespace", type=str, default=None, help="Lint specific namespace only")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     namespaces = [args.namespace] if args.namespace else PREFIXES

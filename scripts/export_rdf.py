@@ -257,7 +257,9 @@ def resolve_uuid_to_uri(uuid_str: str, uuid_map: Dict[str, str], blank_nodes: Di
     return blank_nodes[uuid_str]
 
 
-def parse_rdf_object_uuid(value: str, uuid_map: Dict[str, str], blank_nodes: Dict[str, BNode]) -> URIRef | BNode | Literal:
+def parse_rdf_object_uuid(
+    value: str, uuid_map: Dict[str, str], blank_nodes: Dict[str, BNode]
+) -> URIRef | BNode | Literal:
     """Parse an object value with UUID resolution."""
     stripped = value.strip()
 
