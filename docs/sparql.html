@@ -163,21 +163,23 @@ async function initEngine() {
 
     statusText.textContent = 'Loading ontology data (this may take a moment)...';
 
-    // Load N-Triples data
-    const response = await fetch('ontologies.nt');
+    // Get the absolute URL for the N-Triples file
+    const baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+    store = baseUrl + 'ontologies.nt';
+
+    // Verify file is accessible
+    const response = await fetch(store, { method: 'HEAD' });
     if (!response.ok) {
       throw new Error(`Failed to load data: ${response.status}`);
     }
 
-    const ntData = await response.text();
-    const lines = ntData.trim().split('\n').length;
+    // Get file size for display
+    const contentLength = response.headers.get('content-length');
+    const sizeMB = contentLength ? (parseInt(contentLength) / (1024 * 1024)).toFixed(1) : '?';
 
     statusIcon.textContent = '✅';
-    statusText.textContent = `Ready! Loaded ${lines.toLocaleString()} triples.`;
+    statusText.textContent = `Ready! Data source: ${sizeMB} MB. Run a query to load data.`;
     loadingStatus.style.background = '#e8f5e9';
-
-    // Store data URL for queries
-    store = 'data:application/n-triples,' + encodeURIComponent(ntData);
 
     runBtn.disabled = false;
   } catch (e) {
