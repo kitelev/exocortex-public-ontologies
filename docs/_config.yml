@@ -1,0 +1,16 @@
+title: Exocortex Public Ontologies
+description: File-based RDF ontologies for knowledge management
+theme: jekyll-theme-cayman
+baseurl: "/exocortex-public-ontologies"
+url: "https://kitelev.github.io"
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
