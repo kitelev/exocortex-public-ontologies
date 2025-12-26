@@ -1,5 +1,7 @@
 # Exocortex Public Ontologies
 
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://kitelev.github.io/exocortex-public-ontologies/)
+
 File-based RDF ontologies for knowledge management in Obsidian.
 
 ## Overview
