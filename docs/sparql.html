@@ -1,0 +1,367 @@
+---
+layout: default
+title: SPARQL Query Interface
+---
+
+<h1>SPARQL Query Interface</h1>
+
+<p>Execute SPARQL queries against the ontology data ({{ site.data.stats.total_triples | default: "30,000+" }} triples).</p>
+
+<div id="loading-status" style="padding: 10px; background: #e3f2fd; border-radius: 4px; margin-bottom: 20px;">
+  <span id="status-icon">⏳</span> <span id="status-text">Loading ontology data...</span>
+</div>
+
+<h3>Example Queries</h3>
+<div style="margin-bottom: 20px;">
+  <button class="example-btn" data-query="classes">All Classes</button>
+  <button class="example-btn" data-query="properties">All Properties</button>
+  <button class="example-btn" data-query="subclasses">Subclass Hierarchy</button>
+  <button class="example-btn" data-query="labels">Resources with Labels</button>
+  <button class="example-btn" data-query="namespaces">Namespace Statistics</button>
+</div>
+
+<h3>Query</h3>
+<textarea id="query-input" rows="12" style="width: 100%; font-family: monospace; font-size: 14px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?class ?label
+WHERE {
+  ?class a owl:Class .
+  OPTIONAL { ?class rdfs:label ?label }
+}
+LIMIT 20</textarea>
+
+<div style="margin: 15px 0;">
+  <button id="run-btn" onclick="runQuery()" style="padding: 10px 20px; font-size: 16px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;" disabled>
+    Run Query
+  </button>
+  <span id="query-time" style="margin-left: 15px; color: #666;"></span>
+</div>
+
+<h3>Results</h3>
+<div id="results-container" style="overflow-x: auto;">
+  <table id="results-table" style="width: 100%; border-collapse: collapse; display: none;">
+    <thead id="results-head" style="background: #f5f5f5;"></thead>
+    <tbody id="results-body"></tbody>
+  </table>
+  <div id="results-message" style="padding: 20px; color: #666;">Run a query to see results</div>
+</div>
+
+<h3>Prefixes Reference</h3>
+<details>
+  <summary style="cursor: pointer; color: #1976d2;">Show common prefixes</summary>
+  <pre style="background: #f5f5f5; padding: 15px; border-radius: 4px; font-size: 12px; overflow-x: auto;">
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX prov: &lt;http://www.w3.org/ns/prov#&gt;
+PREFIX time: &lt;http://www.w3.org/2006/time#&gt;
+PREFIX schema: &lt;http://schema.org/&gt;
+PREFIX dcat: &lt;http://www.w3.org/ns/dcat#&gt;
+PREFIX org: &lt;http://www.w3.org/ns/org#&gt;
+PREFIX vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt;
+PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;
+PREFIX sh: &lt;http://www.w3.org/ns/shacl#&gt;
+PREFIX as: &lt;https://www.w3.org/ns/activitystreams#&gt;
+PREFIX sioc: &lt;http://rdfs.org/sioc/ns#&gt;
+PREFIX doap: &lt;http://usefulinc.com/ns/doap#&gt;
+PREFIX sosa: &lt;http://www.w3.org/ns/sosa/&gt;
+  </pre>
+</details>
+
+<!-- Comunica SPARQL Engine -->
+<script src="https://cdn.jsdelivr.net/npm/@comunica/query-sparql@3/comunica-browser.js"></script>
+
+<script>
+// Example queries
+const EXAMPLES = {
+  classes: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?class ?label
+WHERE {
+  { ?class a owl:Class }
+  UNION
+  { ?class a rdfs:Class }
+  OPTIONAL { ?class rdfs:label ?label }
+}
+ORDER BY ?class
+LIMIT 50`,
+
+  properties: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?property ?label ?domain ?range
+WHERE {
+  { ?property a rdf:Property }
+  UNION
+  { ?property a owl:ObjectProperty }
+  UNION
+  { ?property a owl:DatatypeProperty }
+  OPTIONAL { ?property rdfs:label ?label }
+  OPTIONAL { ?property rdfs:domain ?domain }
+  OPTIONAL { ?property rdfs:range ?range }
+}
+ORDER BY ?property
+LIMIT 50`,
+
+  subclasses: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?subclass ?superclass
+WHERE {
+  ?subclass rdfs:subClassOf ?superclass .
+  FILTER(isURI(?superclass))
+}
+ORDER BY ?superclass ?subclass
+LIMIT 100`,
+
+  labels: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?resource ?label
+WHERE {
+  ?resource rdfs:label ?label .
+  FILTER(LANG(?label) = "en" || LANG(?label) = "")
+}
+ORDER BY ?label
+LIMIT 50`,
+
+  namespaces: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?type (COUNT(?s) AS ?count)
+WHERE {
+  ?s a ?type .
+}
+GROUP BY ?type
+ORDER BY DESC(?count)
+LIMIT 30`
+};
+
+let engine = null;
+let store = null;
+
+async function initEngine() {
+  const statusIcon = document.getElementById('status-icon');
+  const statusText = document.getElementById('status-text');
+  const runBtn = document.getElementById('run-btn');
+  const loadingStatus = document.getElementById('loading-status');
+
+  try {
+    statusText.textContent = 'Initializing SPARQL engine...';
+
+    // Create Comunica engine
+    engine = new Comunica.QueryEngine();
+
+    statusText.textContent = 'Loading ontology data (this may take a moment)...';
+
+    // Load N-Triples data
+    const response = await fetch('ontologies.nt');
+    if (!response.ok) {
+      throw new Error(`Failed to load data: ${response.status}`);
+    }
+
+    const ntData = await response.text();
+    const lines = ntData.trim().split('\n').length;
+
+    statusIcon.textContent = '✅';
+    statusText.textContent = `Ready! Loaded ${lines.toLocaleString()} triples.`;
+    loadingStatus.style.background = '#e8f5e9';
+
+    // Store data URL for queries
+    store = 'data:application/n-triples,' + encodeURIComponent(ntData);
+
+    runBtn.disabled = false;
+  } catch (e) {
+    statusIcon.textContent = '❌';
+    statusText.textContent = `Error: ${e.message}`;
+    loadingStatus.style.background = '#ffebee';
+    console.error(e);
+  }
+}
+
+async function runQuery() {
+  const queryInput = document.getElementById('query-input');
+  const resultsHead = document.getElementById('results-head');
+  const resultsBody = document.getElementById('results-body');
+  const resultsTable = document.getElementById('results-table');
+  const resultsMessage = document.getElementById('results-message');
+  const queryTime = document.getElementById('query-time');
+  const runBtn = document.getElementById('run-btn');
+
+  const query = queryInput.value.trim();
+  if (!query) return;
+
+  runBtn.disabled = true;
+  runBtn.textContent = 'Running...';
+  queryTime.textContent = '';
+  resultsMessage.textContent = 'Executing query...';
+  resultsTable.style.display = 'none';
+
+  const startTime = performance.now();
+
+  try {
+    const bindingsStream = await engine.queryBindings(query, {
+      sources: [store]
+    });
+
+    const bindings = await bindingsStream.toArray();
+    const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+
+    if (bindings.length === 0) {
+      resultsMessage.textContent = 'No results found.';
+      queryTime.textContent = `(${elapsed}s)`;
+      runBtn.disabled = false;
+      runBtn.textContent = 'Run Query';
+      return;
+    }
+
+    // Get variable names
+    const vars = [...bindings[0].keys()].map(v => v.value);
+
+    // Build header
+    resultsHead.innerHTML = '<tr>' + vars.map(v =>
+      `<th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">${escapeHtml(v)}</th>`
+    ).join('') + '</tr>';
+
+    // Build body
+    resultsBody.innerHTML = bindings.map(binding => {
+      return '<tr style="border-bottom: 1px solid #eee;">' + vars.map(v => {
+        const term = binding.get(v);
+        const value = term ? formatTerm(term) : '';
+        return `<td style="padding: 10px; word-break: break-all; max-width: 400px;">${value}</td>`;
+      }).join('') + '</tr>';
+    }).join('');
+
+    resultsTable.style.display = 'table';
+    resultsMessage.textContent = '';
+    queryTime.textContent = `${bindings.length} results (${elapsed}s)`;
+  } catch (e) {
+    resultsMessage.textContent = `Error: ${e.message}`;
+    resultsMessage.style.color = '#c62828';
+    console.error(e);
+  }
+
+  runBtn.disabled = false;
+  runBtn.textContent = 'Run Query';
+}
+
+function formatTerm(term) {
+  if (term.termType === 'NamedNode') {
+    const uri = term.value;
+    // Try to shorten with known prefixes
+    const short = shortenUri(uri);
+    return `<code title="${escapeHtml(uri)}">${escapeHtml(short)}</code>`;
+  } else if (term.termType === 'Literal') {
+    let value = escapeHtml(term.value);
+    if (term.language) {
+      return `"${value}"@${term.language}`;
+    } else if (term.datatype && term.datatype.value !== 'http://www.w3.org/2001/XMLSchema#string') {
+      const dtype = shortenUri(term.datatype.value);
+      return `"${value}"^^${dtype}`;
+    }
+    return `"${value}"`;
+  } else if (term.termType === 'BlankNode') {
+    return `_:${escapeHtml(term.value)}`;
+  }
+  return escapeHtml(term.value);
+}
+
+function shortenUri(uri) {
+  const prefixes = {
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#': 'rdf:',
+    'http://www.w3.org/2000/01/rdf-schema#': 'rdfs:',
+    'http://www.w3.org/2002/07/owl#': 'owl:',
+    'http://www.w3.org/2001/XMLSchema#': 'xsd:',
+    'http://purl.org/dc/elements/1.1/': 'dc:',
+    'http://purl.org/dc/terms/': 'dcterms:',
+    'http://www.w3.org/2004/02/skos/core#': 'skos:',
+    'http://xmlns.com/foaf/0.1/': 'foaf:',
+    'http://www.w3.org/ns/prov#': 'prov:',
+    'http://www.w3.org/2006/time#': 'time:',
+    'http://schema.org/': 'schema:',
+    'http://www.w3.org/ns/dcat#': 'dcat:',
+    'http://www.w3.org/ns/org#': 'org:',
+    'http://www.w3.org/2006/vcard/ns#': 'vcard:',
+    'http://www.w3.org/2003/01/geo/wgs84_pos#': 'geo:',
+    'http://www.w3.org/ns/shacl#': 'sh:',
+    'https://www.w3.org/ns/activitystreams#': 'as:',
+    'http://rdfs.org/sioc/ns#': 'sioc:',
+    'http://usefulinc.com/ns/doap#': 'doap:',
+    'http://www.w3.org/ns/sosa/': 'sosa:',
+    'http://ogp.me/ns#': 'ogp:',
+    'http://www.w3.org/ns/adms#': 'adms:',
+    'http://purl.org/vocab/vann/': 'vann:',
+    'http://rdfs.org/ns/void#': 'void:',
+    'http://www.opengis.net/ont/geosparql#': 'geosparql:'
+  };
+
+  for (const [prefix, short] of Object.entries(prefixes)) {
+    if (uri.startsWith(prefix)) {
+      return short + uri.slice(prefix.length);
+    }
+  }
+  return uri;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Example button handlers
+document.querySelectorAll('.example-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const queryName = btn.dataset.query;
+    if (EXAMPLES[queryName]) {
+      document.getElementById('query-input').value = EXAMPLES[queryName];
+    }
+  });
+
+  // Style buttons
+  btn.style.cssText = 'margin: 2px; padding: 8px 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;';
+  btn.onmouseover = () => btn.style.background = '#e0e0e0';
+  btn.onmouseout = () => btn.style.background = '#f5f5f5';
+});
+
+// Keyboard shortcut: Ctrl+Enter to run query
+document.getElementById('query-input').addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    if (!document.getElementById('run-btn').disabled) {
+      runQuery();
+    }
+  }
+});
+
+// Initialize on load
+initEngine();
+</script>
+
+<style>
+  #query-input:focus {
+    outline: 2px solid #1976d2;
+  }
+  #run-btn:hover:not(:disabled) {
+    background: #1565c0;
+  }
+  #run-btn:disabled {
+    background: #bdbdbd;
+    cursor: not-allowed;
+  }
+  code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+</style>
