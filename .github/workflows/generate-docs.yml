@@ -48,6 +48,9 @@ jobs:
             python scripts/generate_lint_report.py
           fi
 
+      - name: Generate statistics
+        run: python scripts/generate_stats.py
+
       - name: Check for changes
         id: changes
         run: |
