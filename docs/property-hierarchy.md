@@ -1,23 +1,24 @@
-Collecting property data...
-  Found 2418 properties
-  Found 399 subPropertyOf relationships
-Generating documentation...
-Written to docs/property-hierarchy.md
- 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
+# Property Hierarchy
+
+Complete property hierarchy across all ontologies.
+
+*Generated automatically. Total properties: 2422*
+
+**Legend:** 🔗 ObjectProperty | 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
 
 ## adms
 
 - 🔗 `adms:identifier`
-- ⚙️ `adms:includedAsset`
+- 🔗 `adms:includedAsset`
 - 🔗 `adms:interoperabilityLevel`
 - 🔗 `adms:last`
 - ⚙️ `adms:next`
 - 🔗 `adms:prev`
-- ⚙️ `adms:representationTechnique`
-- ⚙️ `adms:sample`
-- ⚙️ `adms:schemeAgency`
-- 🔗 `adms:status`
-- ⚙️ `adms:supportedSchema`
+- 🔗 `adms:representationTechnique`
+- 🔗 `adms:sample`
+- 📝 `adms:schemeAgency`
+- ⚙️ `adms:status`
+- 🔗 `adms:supportedSchema`
 - 🔗 `adms:translation`
 - ⚙️ `adms:versionNotes`
 
@@ -138,7 +139,7 @@ Written to docs/property-hierarchy.md
   - ⚙️ `dcterms:hasFormat`
   - ⚙️ `dcterms:hasPart`
     - 🔗 `dcat:catalog`
-    - ⚙️ `dcat:dataset`
+    - 🔗 `dcat:dataset`
     - 🔗 `dcat:service`
     - 🔗 `sioc:container_of`
     - 🔗 `sioc:parent_of`
@@ -166,7 +167,7 @@ Written to docs/property-hierarchy.md
   - ⚙️ `dcterms:source`
 - ⚙️ `dc:subject`
   - ⚙️ `dcterms:subject`
-    - ⚙️ `dcat:keyword`
+    - 📝 `dcat:keyword`
     - ⚙️ `dcat:theme`
     - 🔗 `sioc:topic`
 - ⚙️ `dc:title`
@@ -184,12 +185,12 @@ Written to docs/property-hierarchy.md
 ## dcat
 
 - 🔗 `dcat:accessService`
-- ⚙️ `dcat:accessURL`
-- ⚙️ `dcat:bbox`
+- 🔗 `dcat:accessURL`
+- 📝 `dcat:bbox`
 - 📝 `dcat:byteSize`
 - ⚙️ `dcat:centroid`
 - ⚙️ `dcat:contactPoint`
-- 🔗 `dcat:downloadURL`
+- ⚙️ `dcat:downloadURL`
 - ⚙️ `dcat:endDate`
 - 🔗 `dcat:endpointDescription`
 - 🔗 `dcat:endpointURL`
@@ -258,73 +259,73 @@ Written to docs/property-hierarchy.md
 
 ## foaf
 
-- 🔗 `foaf:account`
-- ⚙️ `foaf:accountName`
+- ⚙️ `foaf:account`
+- 📝 `foaf:accountName`
 - ⚙️ `foaf:accountServiceHomepage`
 - ⚙️ `foaf:age`
 - 🔗 `foaf:based_near`
   - ⚙️ `geo:location`
 - 📝 `foaf:birthday`
 - ⚙️ `foaf:currentProject`
-- ⚙️ `foaf:depiction`
+- 🔗 `foaf:depiction`
   - ⚙️ `foaf:img`
   - 🔗 `sioc:avatar`
-- 🔗 `foaf:depicts`
-- ⚙️ `foaf:dnaChecksum`
+- ⚙️ `foaf:depicts`
+- 📝 `foaf:dnaChecksum`
 - 📝 `foaf:family_name`
-- ⚙️ `foaf:familyName`
-- 📝 `foaf:firstName`
+- 📝 `foaf:familyName`
+- ⚙️ `foaf:firstName`
 - 🔗 `foaf:focus`
 - ⚙️ `foaf:fundedBy`
-- ⚙️ `foaf:geekcode`
-- 📝 `foaf:gender`
-- ⚙️ `foaf:givenname`
-- 📝 `foaf:givenName`
+- 📝 `foaf:geekcode`
+- ⚙️ `foaf:gender`
+- ⚙️ `foaf:givenName`
+- 📝 `foaf:givenname`
 - 🔗 `foaf:holdsAccount`
-- 🔗 `foaf:interest`
-- 📝 `foaf:jabberID`
-- 🔗 `foaf:knows`
+- ⚙️ `foaf:interest`
+- ⚙️ `foaf:jabberID`
+- ⚙️ `foaf:knows`
 - ⚙️ `foaf:lastName`
 - 🔗 `foaf:logo`
 - 🔗 `foaf:made`
 - 🔗 `foaf:maker`
-- ⚙️ `foaf:mbox`
+- 🔗 `foaf:mbox`
 - 📝 `foaf:mbox_sha1sum`
 - 🔗 `foaf:member`
-- ⚙️ `foaf:membershipClass`
-- ⚙️ `foaf:myersBriggs`
-- 📝 `foaf:nick`
-  - ⚙️ `foaf:aimChatID`
+- 📎 `foaf:membershipClass`
+- 📝 `foaf:myersBriggs`
+- ⚙️ `foaf:nick`
+  - 📝 `foaf:aimChatID`
   - 📝 `foaf:icqChatID`
-  - 📝 `foaf:msnChatID`
-  - ⚙️ `foaf:skypeID`
-  - ⚙️ `foaf:yahooChatID`
+  - ⚙️ `foaf:msnChatID`
+  - 📝 `foaf:skypeID`
+  - 📝 `foaf:yahooChatID`
 - ⚙️ `foaf:page`
   - ⚙️ `dcat:landingPage`
   - ⚙️ `doap:security-policy`
-  - 🔗 `foaf:homepage`
+  - ⚙️ `foaf:homepage`
     - ⚙️ `doap:homepage`
     - ⚙️ `doap:old-homepage`
   - ⚙️ `foaf:isPrimaryTopicOf`
-    - ⚙️ `foaf:openid`
+    - 🔗 `foaf:openid`
   - ⚙️ `foaf:tipjar`
   - 🔗 `foaf:weblog`
-- ⚙️ `foaf:pastProject`
+- 🔗 `foaf:pastProject`
 - ⚙️ `foaf:phone`
-- 📝 `foaf:plan`
-- 🔗 `foaf:primaryTopic`
-- ⚙️ `foaf:publications`
+- ⚙️ `foaf:plan`
+- ⚙️ `foaf:primaryTopic`
+- 🔗 `foaf:publications`
 - ⚙️ `foaf:schoolHomepage`
 - 📝 `foaf:sha1`
-- 📝 `foaf:status`
-- 📝 `foaf:surname`
+- ⚙️ `foaf:status`
+- ⚙️ `foaf:surname`
 - 🔗 `foaf:theme`
 - ⚙️ `foaf:thumbnail`
 - ⚙️ `foaf:title`
 - ⚙️ `foaf:topic`
 - ⚙️ `foaf:topic_interest`
 - 🔗 `foaf:workInfoHomepage`
-- ⚙️ `foaf:workplaceHomepage`
+- 🔗 `foaf:workplaceHomepage`
 
 ## geo
 
@@ -335,92 +336,99 @@ Written to docs/property-hierarchy.md
 
 ## geosparql
 
-- ⚙️ `geosparql:coordinateDimension`
-- ⚙️ `geosparql:dimension`
-- 🔗 `geosparql:ehContains`
+- 📝 `geosparql:coordinateDimension`
+- 📝 `geosparql:dimension`
+- ⚙️ `geosparql:ehContains`
 - 🔗 `geosparql:ehCoveredBy`
-- 🔗 `geosparql:ehCovers`
-- 🔗 `geosparql:ehDisjoint`
+- ⚙️ `geosparql:ehCovers`
+- ⚙️ `geosparql:ehDisjoint`
 - 🔗 `geosparql:ehEquals`
 - 🔗 `geosparql:ehInside`
-- ⚙️ `geosparql:ehMeet`
-- 🔗 `geosparql:ehOverlap`
+- 🔗 `geosparql:ehMeet`
+- ⚙️ `geosparql:ehOverlap`
 - ⚙️ `geosparql:hasGeometry`
   - 🔗 `geosparql:defaultGeometry`
   - 🔗 `geosparql:hasBoundingBox`
   - 🔗 `geosparql:hasCentroid`
-  - 🔗 `geosparql:hasDefaultGeometry`
-- ⚙️ `geosparql:hasMetricSize`
+  - ⚙️ `geosparql:hasDefaultGeometry`
+- 📝 `geosparql:hasMetricSize`
   - ⚙️ `geosparql:hasMetricArea`
-  - ⚙️ `geosparql:hasMetricLength`
+  - 📝 `geosparql:hasMetricLength`
   - 📝 `geosparql:hasMetricPerimeterLength`
-  - ⚙️ `geosparql:hasMetricVolume`
-- 📝 `geosparql:hasMetricSpatialAccuracy`
+  - 📝 `geosparql:hasMetricVolume`
+- ⚙️ `geosparql:hasMetricSpatialAccuracy`
 - ⚙️ `geosparql:hasMetricSpatialResolution`
 - ⚙️ `geosparql:hasSerialization`
   - ⚙️ `geosparql:asDGGS`
   - 📝 `geosparql:asGeoJSON`
-  - 📝 `geosparql:asGML`
-  - 📝 `geosparql:asKML`
-  - 📝 `geosparql:asWKT`
+  - ⚙️ `geosparql:asGML`
+  - ⚙️ `geosparql:asKML`
+  - ⚙️ `geosparql:asWKT`
 - 🔗 `geosparql:hasSize`
-  - 🔗 `geosparql:hasArea`
+  - ⚙️ `geosparql:hasArea`
   - ⚙️ `geosparql:hasLength`
-  - 🔗 `geosparql:hasPerimeterLength`
+  - ⚙️ `geosparql:hasPerimeterLength`
   - ⚙️ `geosparql:hasVolume`
-- 🔗 `geosparql:hasSpatialAccuracy`
+- ⚙️ `geosparql:hasSpatialAccuracy`
 - ⚙️ `geosparql:hasSpatialResolution`
-- ⚙️ `geosparql:isEmpty`
-- ⚙️ `geosparql:isSimple`
-- ⚙️ `geosparql:rcc8dc`
-- ⚙️ `geosparql:rcc8ec`
-- 🔗 `geosparql:rcc8eq`
-- 🔗 `geosparql:rcc8ntpp`
-- 🔗 `geosparql:rcc8ntppi`
-- ⚙️ `geosparql:rcc8po`
-- 🔗 `geosparql:rcc8tpp`
+- 📝 `geosparql:isEmpty`
+- 📝 `geosparql:isSimple`
+- 🔗 `geosparql:rcc8dc`
+- 🔗 `geosparql:rcc8ec`
+- ⚙️ `geosparql:rcc8eq`
+- ⚙️ `geosparql:rcc8ntpp`
+- ⚙️ `geosparql:rcc8ntppi`
+- 🔗 `geosparql:rcc8po`
+- ⚙️ `geosparql:rcc8tpp`
 - 🔗 `geosparql:rcc8tppi`
 - 🔗 `geosparql:sfContains`
-- ⚙️ `geosparql:sfCrosses`
+- 🔗 `geosparql:sfCrosses`
 - 🔗 `geosparql:sfDisjoint`
-- ⚙️ `geosparql:sfEquals`
+- 🔗 `geosparql:sfEquals`
 - 🔗 `geosparql:sfIntersects`
 - ⚙️ `geosparql:sfOverlaps`
-- 🔗 `geosparql:sfTouches`
+- ⚙️ `geosparql:sfTouches`
 - 🔗 `geosparql:sfWithin`
-- ⚙️ `geosparql:spatialDimension`
+- 📝 `geosparql:spatialDimension`
+
+## grddl
+
+- ⚙️ `grddl:namespaceTransformation`
+- ⚙️ `grddl:profileTransformation`
+- ⚙️ `grddl:result`
+- ⚙️ `grddl:transformation`
 
 ## org
 
-- ⚙️ `org:basedAt`
+- 🔗 `org:basedAt`
 - ⚙️ `org:changedBy`
 - ⚙️ `org:classification`
-- ⚙️ `org:hasMember`
+- 🔗 `org:hasMember`
 - ⚙️ `org:hasMembership`
-- ⚙️ `org:hasPost`
+- 🔗 `org:hasPost`
 - ⚙️ `org:hasSite`
   - 🔗 `org:hasPrimarySite`
-    - ⚙️ `org:hasRegisteredSite`
+    - 🔗 `org:hasRegisteredSite`
 - 🔗 `org:hasSubOrganization`
   - ⚙️ `org:hasUnit`
 - ⚙️ `org:heldBy`
 - ⚙️ `org:holds`
-- 🔗 `org:linkedTo`
+- ⚙️ `org:linkedTo`
 - 📝 `org:location`
 - ⚙️ `org:member`
 - ⚙️ `org:memberDuring`
-- ⚙️ `org:memberOf`
-  - ⚙️ `org:headOf`
+- 🔗 `org:memberOf`
+  - 🔗 `org:headOf`
 - 🔗 `org:organization`
-- ⚙️ `org:postIn`
+- 🔗 `org:postIn`
 - ⚙️ `org:purpose`
 - 🔗 `org:remuneration`
-- ⚙️ `org:reportsTo`
-- ⚙️ `org:resultingOrganization`
+- 🔗 `org:reportsTo`
+- 🔗 `org:resultingOrganization`
 - 🔗 `org:role`
-- ⚙️ `org:roleProperty`
+- 📎 `org:roleProperty`
 - ⚙️ `org:siteAddress`
-- ⚙️ `org:siteOf`
+- 🔗 `org:siteOf`
 - ⚙️ `org:transitiveSubOrganizationOf`
   - ⚙️ `org:subOrganizationOf`
     - 🔗 `org:unitOf`
@@ -532,7 +540,7 @@ Written to docs/property-hierarchy.md
   - 🔗 `prov:wasDerivedFrom`
     - 🔗 `prov:hadPrimarySource`
     - 🔗 `prov:wasQuotedFrom`
-    - 📎 `prov:wasRevisionOf`
+    - 🔗 `prov:wasRevisionOf`
   - 🔗 `prov:wasEndedBy`
   - 🔗 `prov:wasGeneratedBy`
     - 🔗 `org:resultedFrom`
@@ -565,10 +573,10 @@ Written to docs/property-hierarchy.md
   - ⚙️ `schema:name`
   - 📎 `skos:altLabel`
   - 📎 `skos:hiddenLabel`
-  - ⚙️ `skos:prefLabel`
+  - 📎 `skos:prefLabel`
 - ⚙️ `rdfs:member`
   - 🔗 `dcat:catalog`
-  - ⚙️ `dcat:dataset`
+  - 🔗 `dcat:dataset`
   - 🔗 `dcat:service`
 - ⚙️ `rdfs:range`
 - ⚙️ `rdfs:seeAlso`
@@ -2222,7 +2230,7 @@ Written to docs/property-hierarchy.md
 - 📝 `sioc:content_encoded`
 - 📝 `sioc:created_at`
 - 🔗 `sioc:creator_of`
-- 🔗 `sioc:delivered_at`
+- 📝 `sioc:delivered_at`
 - 📝 `sioc:description`
 - 🔗 `sioc:discussion_of`
 - 🔗 `sioc:email`
@@ -2291,30 +2299,30 @@ Written to docs/property-hierarchy.md
 ## skos
 
 - 🔗 `skos:hasTopConcept`
-- 🔗 `skos:inScheme`
+- ⚙️ `skos:inScheme`
   - 🔗 `skos:topConceptOf`
-- 🔗 `skos:member`
-- 🔗 `skos:memberList`
-- ⚙️ `skos:notation`
-  - 📝 `org:identifier`
-- ⚙️ `skos:note`
+- ⚙️ `skos:member`
+- ⚙️ `skos:memberList`
+- 📝 `skos:notation`
+  - ⚙️ `org:identifier`
+- 📎 `skos:note`
   - ⚙️ `skos:changeNote`
-  - ⚙️ `skos:definition`
-  - 📎 `skos:editorialNote`
+  - 📎 `skos:definition`
+  - ⚙️ `skos:editorialNote`
   - ⚙️ `skos:example`
   - ⚙️ `skos:historyNote`
-  - ⚙️ `skos:scopeNote`
-- ⚙️ `skos:semanticRelation`
+  - 📎 `skos:scopeNote`
+- 🔗 `skos:semanticRelation`
   - 🔗 `skos:broaderTransitive`
-    - 🔗 `skos:broader`
+    - ⚙️ `skos:broader`
       - ⚙️ `schema:isVariantOf`
-      - 🔗 `skos:broadMatch`
+      - ⚙️ `skos:broadMatch`
   - 🔗 `skos:mappingRelation`
     - 🔗 `skos:closeMatch`
       - ⚙️ `skos:exactMatch`
     - 🔗 `skos:narrowMatch`
-    - ⚙️ `skos:relatedMatch`
-  - ⚙️ `skos:narrowerTransitive`
+    - 🔗 `skos:relatedMatch`
+  - 🔗 `skos:narrowerTransitive`
     - 🔗 `skos:narrower`
   - ⚙️ `skos:related`
 

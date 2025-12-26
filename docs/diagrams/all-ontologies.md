@@ -2,7 +2,7 @@
 
 UML-style class diagram showing ontology structure.
 
-*Generated automatically. Classes: 1417, Properties: 2418*
+*Generated automatically. Classes: 1422, Properties: 2422*
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
@@ -11,30 +11,19 @@ UML-style class diagram showing ontology structure.
 
 ```mermaid
 classDiagram
-    class time_TemporalEntity
-    class skos_Collection
-    class sh_ResultAnnotation
-    class sh_SPARQLConstructExecutable
-    class sh_PrefixDeclaration
-    class prov_Communication
-    class prov_Invalidation
-    class prov_InstantaneousEvent
-    class prov_Revision
-    class prov_Entity
-    class prov_Influence
     class prov_Role
-    class prov_Activity
-    class _8d31565d
-    class xsd_anyURI
-    class ffe2bb9e
-    class xsd_dateTime
-    class as_Profile
-    class as_Collection
-    class a944e7dc
-    class xsd_string
-    class cc257c19
+    class _7874a001
+    class a2645612
+    class e3c847e6
     class xsd_duration
-    class dd501307
+    class a4da0fb1
+    class as_CollectionPage
+    class as_Profile
+    class _80fa0681
+    class as_Relationship
+    class fea6fe82
+    class xsd_anyURI
+    class as_Activity
     class as_Object
     class _00a269aa
     class _0143e1ca
@@ -86,44 +75,31 @@ classDiagram
     class _5cbfe49e
     class _5da60c63
     class _5df0710c
-    as_Object --> _16f99ad1 : as:context
-    as_Object --> dd501307 : as:generator
-    as_Object ..> xsd_duration : as:duration
-    as_Object --> cc257c19 : as:location
-    _11e388fe ..> xsd_string : as:mediaType
-    _50e31cbb --> a944e7dc : as:preview
-    as_Object --> _46c57ee3 : as:image
-    as_Collection --> _209eb1e6 : as:current
-    as_Profile --> as_Object : as:describes
-    as_Object ..> xsd_dateTime : as:startTime
-    as_Object ..> ffe2bb9e : as:content
+    as_Object --> _0143e1ca : as:icon
+    as_Activity --> _5cbfe49e : as:result
+    as_Activity ..> xsd_anyURI : as:verb
+    as_Object --> fea6fe82 : as:tags
+    as_Relationship --> _072d42ab : as:subject
+    as_Object --> _80fa0681 : as:bcc
     as_Object ..> xsd_anyURI : as:upstreamDuplicates
-    as_Object --> _295da6b8 : as:inReplyTo
-    as_Object --> _8d31565d : as:audience
-    prov_Activity ..> xsd_dateTime : prov:startedAtTime
+    as_Object --> _4dc60cd1 : as:url
+    as_Activity --> _19807b5a : as:actor
+    as_Profile --> as_Object : as:describes
+    as_CollectionPage --> _2a2171fa : as:next
+    as_Object --> a4da0fb1 : as:bto
+    as_Object ..> xsd_duration : as:duration
+    as_Object ..> e3c847e6 : as:summary
+    as_Object --> a2645612 : as:attachment
+    _2c962624 --> _7874a001 : org:reportsTo
     _08e29461 --> prov_Role : prov:hadRole
-    _54ca8a65 --> prov_Influence : prov:qualifiedInfluence
-    prov_Entity ..> xsd_dateTime : prov:generatedAtTime
-    prov_Entity --> prov_Entity : prov:wasDerivedFrom
-    prov_Entity --> prov_Revision : prov:qualifiedRevision
-    prov_InstantaneousEvent ..> xsd_dateTime : prov:atTime
-    prov_Entity ..> xsd_dateTime : prov:invalidatedAtTime
-    prov_Entity --> prov_Invalidation : prov:qualifiedInvalidation
-    prov_Activity --> prov_Communication : prov:qualifiedCommunication
-    sh_PrefixDeclaration ..> xsd_string : sh:prefix
-    sh_PrefixDeclaration ..> xsd_anyURI : sh:namespace
-    sh_SPARQLConstructExecutable ..> xsd_string : sh:construct
-    sh_ResultAnnotation ..> xsd_string : sh:annotationVarName
-    skos_Collection --> _3886acbb : skos:member
-    time_TemporalEntity ..> xsd_duration : time:hasXSDDuration
 ```
 
 ## Statistics
 
 | Metric | Count |
 |--------|-------|
-| Classes | 1417 |
-| Properties | 2418 |
-| Inheritance relationships | 1375 |
-| Properties with domain | 242 |
-| Properties with range | 311 |
+| Classes | 1422 |
+| Properties | 2422 |
+| Inheritance relationships | 1377 |
+| Properties with domain | 266 |
+| Properties with range | 287 |

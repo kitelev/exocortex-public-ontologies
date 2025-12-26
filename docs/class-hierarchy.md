@@ -1,8 +1,12 @@
-Collecting class data...
-  Found 1282 classes
-  Found 1226 subclass relationships
-Generating documentation...
-Written to docs/class-hierarchy.md
+# Class Hierarchy
+
+Complete class hierarchy across all ontologies.
+
+*Generated automatically. Total classes: 1287*
+
+## adms
+
+- `adms:Identifier`
 
 ## as
 
@@ -148,6 +152,13 @@ Written to docs/class-hierarchy.md
   - `geosparql:Feature`
   - `geosparql:Geometry`
 
+## grddl
+
+- `grddl:InformationResource`
+  - `grddl:Transformation`
+- `grddl:RDFGraph`
+- `grddl:RootNode`
+
 ## org
 
 - `org:Membership`
@@ -228,6 +239,7 @@ Written to docs/class-hierarchy.md
     - `owl:DatatypeProperty`
     - `owl:DeprecatedProperty`
     - `owl:FunctionalProperty`
+      - `grddl:TransformationProperty`
     - `owl:ObjectProperty`
       - `owl:AsymmetricProperty`
       - `owl:InverseFunctionalProperty`

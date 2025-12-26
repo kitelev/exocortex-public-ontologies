@@ -5,7 +5,7 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2025-12-26 18:44 UTC*
+*Auto-generated on 2025-12-26 18:50 UTC*
 
 ## Overview
 
@@ -67,4 +67,4 @@ title: Statistics
 | `skos:definition` | 518 |
 | `rdfs:subPropertyOf` | 456 |
 | `schema:contributor` | 388 |
-| `rdf:rest` | 361 |
+| `rdf:first` | 361 |
