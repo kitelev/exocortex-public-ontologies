@@ -19,6 +19,7 @@ File-based RDF ontologies for knowledge management in Obsidian.
 | [Property Hierarchy](property-hierarchy.md) | All properties with rdfs:subPropertyOf tree |
 | [Cross-References](cross-references.md) | Inter-ontology reference matrix |
 | [Lint Report](lint-report.md) | Quality assessment (labels, comments, domain/range) |
+| [Statistics](stats.md) | Auto-updated ontology metrics |
 
 ## Diagrams
 
