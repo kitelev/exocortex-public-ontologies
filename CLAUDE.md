@@ -6,7 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 File-based RDF ontologies for the Exocortex knowledge management ecosystem. Converts W3C and Dublin Core ontologies into a Markdown/YAML format where each RDF triple is a separate file. This enables Obsidian graph navigation, Dataview queries, and human-readable knowledge representation.
 
-**19 namespaces, 31,030 files, 26,794 triples** (RDF, RDFS, OWL, Dublin Core, SKOS, FOAF, PROV-O, TIME, GEO, VCARD, DOAP, SIOC, DCAT, ORG, Schema.org, XSD types, VS vocab-status).
+**26 namespaces, 35,841 files, 30,707 triples** (RDF, RDFS, OWL, Dublin Core, SKOS, FOAF, PROV-O, TIME, GEO, VCARD, DOAP, SIOC, DCAT, ORG, Schema.org, SHACL, SOSA, ActivityStreams, GeoSPARQL, ADMS, VANN, VOID, GRDDL, XSD types, VS vocab-status).
+
+**Documentation**: [GitHub Pages](https://kitelev.github.io/exocortex-public-ontologies/)
 
 ## Commands
 
@@ -154,14 +156,12 @@ All namespace URI → prefix mappings are stored in `_prefixes.yaml` (single sou
 rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 rdfs: "http://www.w3.org/2000/01/rdf-schema#"
 owl: "http://www.w3.org/2002/07/owl#"
-void: "http://rdfs.org/ns/void#"
-
-# External namespaces (referenced but not imported)
-deri-void: "http://vocab.deri.ie/void#"
-vann: "http://purl.org/vocab/vann/"
+void: "http://vocab.deri.ie/void#"
+grddl: "http://www.w3.org/2003/g/data-view#"
 
 # Ontology URIs (owl:Ontology subjects, without trailing #)
 owl-ontology: "http://www.w3.org/2002/07/owl"
+void-ontology: "http://vocab.deri.ie/void"
 ```
 
 **Key principle:** 1 prefix = 1 URI (strict). Different URIs require different prefixes.
@@ -181,3 +181,51 @@ Python with `rdflib` for import/export scripts:
 ```bash
 pip install rdflib
 ```
+
+## Troubleshooting
+
+### Export produces invalid RDF (BNode as predicate)
+
+**Symptom:** `export_rdf.py` generates triples like `_:Nxxx _:Nyyy _:Nzzz .` where predicate is a blank node.
+
+**Cause:** Predicate UUID not found in `uuid_map` → fallback to BNode. This happens when:
+- Predicate comes from an ontology not yet imported (e.g., `grddl:namespaceTransformation`)
+- UUID file is missing or has wrong format
+
+**Solution:**
+1. Find the missing predicate URI:
+   ```python
+   import uuid
+   uuid_str = "6d6b5f1d-cf35-58dc-b20a-bb6f61a4bfb6"  # from error
+   # Search for anchor file with this UUID
+   ```
+2. Import the missing ontology:
+   ```bash
+   python scripts/import_ontology.py originals/grddl.rdf grddl --prefix grddl
+   ```
+3. Re-run export — predicate should now resolve correctly
+
+**Prevention:** The exporter skips statements with unresolved predicates (BNode) and logs a warning.
+
+### Adding new ontology
+
+1. Download source to `originals/`
+2. Add prefix to `_prefixes.yaml` **before** import
+3. Import: `python scripts/import_ontology.py originals/file.rdf prefix --prefix prefix`
+4. Run aliases: `python scripts/add_aliases.py`
+5. Validate: `python scripts/validate.py prefix`
+6. Update README with new ontology
+7. Commit all changes
+
+### Centralized prefix registry
+
+All scripts MUST use `_prefixes.yaml` via `scripts/common.py`:
+
+```python
+from common import load_prefixes, get_primary_prefixes
+
+PREFIX_TO_URI = load_prefixes()  # All prefixes
+PRIMARY_PREFIXES = get_primary_prefixes()  # Only directories in repo
+```
+
+**Never hardcode** namespace URIs in scripts — always read from registry.
