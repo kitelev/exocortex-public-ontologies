@@ -16,7 +16,7 @@ import sys
 import re
 import yaml
 from pathlib import Path
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Union
 
 try:
     from rdflib import Graph, Namespace, URIRef, Literal, BNode
@@ -94,7 +94,7 @@ def parse_wikilink(wikilink: str) -> Optional[str]:
     return None
 
 
-def anchor_to_term(anchor: str, blank_nodes: Dict[str, BNode]) -> URIRef | BNode:
+def anchor_to_term(anchor: str, blank_nodes: Dict[str, BNode]) -> Union[URIRef, BNode]:
     """
     Convert an anchor name to an RDF term.
 
@@ -129,7 +129,7 @@ def anchor_to_term(anchor: str, blank_nodes: Dict[str, BNode]) -> URIRef | BNode
     return URIRef(unescape_case(anchor))
 
 
-def parse_rdf_object(value: str, blank_nodes: Dict[str, BNode]) -> URIRef | BNode | Literal:
+def parse_rdf_object(value: str, blank_nodes: Dict[str, BNode]) -> Union[URIRef, BNode, Literal]:
     """
     Parse an rdf__object value and return the appropriate RDF term.
 
@@ -226,7 +226,7 @@ def build_uuid_map(repo_root: Path) -> Dict[str, str]:
     return uuid_map
 
 
-def resolve_uuid_to_uri(uuid_str: str, uuid_map: Dict[str, str], blank_nodes: Dict[str, BNode]) -> URIRef | BNode:
+def resolve_uuid_to_uri(uuid_str: str, uuid_map: Dict[str, str], blank_nodes: Dict[str, BNode]) -> Union[URIRef, BNode]:
     """Resolve a UUID to a URI using the uuid_map, or create a BNode for blank nodes."""
     if uuid_str in uuid_map:
         return URIRef(uuid_map[uuid_str])
@@ -239,7 +239,7 @@ def resolve_uuid_to_uri(uuid_str: str, uuid_map: Dict[str, str], blank_nodes: Di
 
 def parse_rdf_object_uuid(
     value: str, uuid_map: Dict[str, str], blank_nodes: Dict[str, BNode]
-) -> URIRef | BNode | Literal:
+) -> Union[URIRef, BNode, Literal]:
     """Parse an object value with UUID resolution."""
     stripped = value.strip()
 
