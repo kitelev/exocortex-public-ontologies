@@ -54,6 +54,9 @@ jobs:
       - name: Generate search index
         run: python scripts/generate_search_index.py
 
+      - name: Generate SPARQL data
+        run: python scripts/generate_sparql_data.py
+
       - name: Check for changes
         id: changes
         run: |
