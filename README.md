@@ -1,5 +1,6 @@
 # Exocortex Public Ontologies
 
+[![CI](https://github.com/kitelev/exocortex-public-ontologies/actions/workflows/ci.yml/badge.svg)](https://github.com/kitelev/exocortex-public-ontologies/actions/workflows/ci.yml)
 [![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://kitelev.github.io/exocortex-public-ontologies/)
 
 File-based RDF ontologies for knowledge management in Obsidian.
