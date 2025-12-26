@@ -1,0 +1,63 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*/**.md'  # Any ontology file
+      - 'scripts/generate*.py'
+      - '_prefixes.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml rdflib
+
+      - name: Generate class hierarchy
+        run: python scripts/generate_class_hierarchy.py
+
+      - name: Generate property hierarchy
+        run: python scripts/generate_property_hierarchy.py
+
+      - name: Generate cross-references
+        run: python scripts/generate_crossref.py
+
+      - name: Generate Mermaid diagrams
+        run: python scripts/generate_mermaid.py
+
+      - name: Generate lint report
+        run: |
+          if [ -f scripts/generate_lint_report.py ]; then
+            python scripts/generate_lint_report.py
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet docs/ || echo "has_changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "docs: auto-generate documentation [skip ci]"
+          git push
