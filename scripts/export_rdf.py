@@ -24,33 +24,13 @@ except ImportError:
     print("Error: rdflib is required. Install with: pip install rdflib")
     sys.exit(1)
 
+from common import load_prefixes, get_primary_prefixes
+
 REPO_ROOT = Path(__file__).parent.parent
 EXPORTS_DIR = REPO_ROOT / "exports"
 
-# Namespace URIs
-NAMESPACE_URIS = {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "owl": "http://www.w3.org/2002/07/owl#",
-    "dc": "http://purl.org/dc/elements/1.1/",
-    "dcterms": "http://purl.org/dc/terms/",
-    "dcam": "http://purl.org/dc/dcam/",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "foaf": "http://xmlns.com/foaf/0.1/",
-    "prov": "http://www.w3.org/ns/prov#",
-    "prov_o": "http://www.w3.org/ns/prov-o#",  # PROV-O ontology IRI
-    "time": "http://www.w3.org/2006/time#",
-    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
-    "vcard": "http://www.w3.org/2006/vcard/ns#",
-    "doap": "http://usefulinc.com/ns/doap#",
-    "sioc": "http://rdfs.org/sioc/ns#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "void": "http://rdfs.org/ns/void#",
-    "geosparql": "http://www.opengis.net/ont/geosparql#",
-}
-
-# Reverse mapping for quick lookup
-PREFIX_TO_URI = NAMESPACE_URIS
+# Load namespace URIs from centralized registry
+PREFIX_TO_URI = load_prefixes()
 
 # Blank node pattern: prefix!hexid (e.g., time!a1b2c3d4, skos!00000001)
 BLANK_NODE_PATTERN = re.compile(r"^([a-z]+)!([a-f0-9]{8})$")
@@ -443,17 +423,17 @@ def main():
     # Get namespaces to export
     namespaces = []
     for arg in sys.argv[1:]:
-        if not arg.startswith("-") and arg in NAMESPACE_URIS:
+        if not arg.startswith("-") and arg in PREFIX_TO_URI:
             namespaces.append(arg)
 
     if export_all:
         # Export all namespaces that have directories
-        namespaces = [ns for ns in NAMESPACE_URIS.keys() if (REPO_ROOT / ns).exists()]
+        namespaces = [ns for ns in PREFIX_TO_URI.keys() if (REPO_ROOT / ns).exists()]
 
     if not namespaces:
         print("Usage: python scripts/export_rdf.py [namespace] [--all] [--format turtle|ntriples]")
         print("\nAvailable namespaces:")
-        for ns in sorted(NAMESPACE_URIS.keys()):
+        for ns in sorted(PREFIX_TO_URI.keys()):
             if (REPO_ROOT / ns).exists():
                 print(f"  {ns}")
         sys.exit(1)
