@@ -42,6 +42,7 @@ vs: "http://www.w3.org/2003/06/sw-vocab-status/ns#"
 geosparql: "http://www.opengis.net/ont/geosparql#"
 vann: "http://purl.org/vocab/vann/"
 adms: "http://www.w3.org/ns/adms#"
+grddl: "http://www.w3.org/2003/g/data-view#"
 
 # Schema.org
 schema: "https://schema.org/"
