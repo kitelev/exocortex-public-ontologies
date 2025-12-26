@@ -51,6 +51,9 @@ jobs:
       - name: Generate statistics
         run: python scripts/generate_stats.py
 
+      - name: Generate search index
+        run: python scripts/generate_search_index.py
+
       - name: Check for changes
         id: changes
         run: |

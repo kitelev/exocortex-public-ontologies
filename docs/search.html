@@ -1,0 +1,120 @@
+---
+layout: default
+title: Search Ontologies
+---
+
+<h1>Search Ontologies</h1>
+
+<div style="margin: 20px 0;">
+  <input type="text" id="search-input" placeholder="Search by name or URI... (e.g. rdfs:Class, Thing, label)"
+         style="width: 100%; max-width: 600px; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;">
+</div>
+
+<div id="results-count" style="margin: 10px 0; color: #666;"></div>
+
+<table id="results-table" style="width: 100%; border-collapse: collapse; display: none;">
+  <thead>
+    <tr style="background: #f5f5f5;">
+      <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Resource</th>
+      <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">URI</th>
+      <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Namespace</th>
+    </tr>
+  </thead>
+  <tbody id="results-body">
+  </tbody>
+</table>
+
+<div id="loading" style="color: #666; padding: 20px 0;">Loading search index...</div>
+
+<script>
+let searchIndex = [];
+
+async function loadIndex() {
+  try {
+    const response = await fetch('search-index.json');
+    searchIndex = await response.json();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results-count').textContent =
+      `${searchIndex.length.toLocaleString()} resources indexed. Type to search.`;
+    document.getElementById('search-input').focus();
+  } catch (e) {
+    document.getElementById('loading').textContent = 'Error loading search index';
+    console.error(e);
+  }
+}
+
+function search(query) {
+  if (!query || query.length < 2) {
+    document.getElementById('results-table').style.display = 'none';
+    document.getElementById('results-count').textContent =
+      `${searchIndex.length.toLocaleString()} resources indexed. Type to search.`;
+    return;
+  }
+
+  const q = query.toLowerCase();
+  const results = searchIndex.filter(item => {
+    return (
+      (item.a && item.a.toLowerCase().includes(q)) ||
+      (item.u && item.u.toLowerCase().includes(q))
+    );
+  }).slice(0, 100);
+
+  displayResults(results, query);
+}
+
+function displayResults(results, query) {
+  const tbody = document.getElementById('results-body');
+  const table = document.getElementById('results-table');
+  const count = document.getElementById('results-count');
+
+  if (results.length === 0) {
+    table.style.display = 'none';
+    count.textContent = `No results for "${query}"`;
+    return;
+  }
+
+  count.textContent = `Found ${results.length}${results.length === 100 ? '+' : ''} results for "${query}"`;
+
+  tbody.innerHTML = results.map(item => {
+    const alias = escapeHtml(item.a || '?');
+    const prefix = escapeHtml(item.p || '?');
+    const uri = escapeHtml(item.u || '');
+    const isNamespace = item.t === 'n';
+
+    return `<tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 10px;">
+        <code style="font-size: 14px; ${isNamespace ? 'font-weight: bold;' : ''}">${alias}</code>
+        ${isNamespace ? ' <small style="color: #888;">(namespace)</small>' : ''}
+      </td>
+      <td style="padding: 10px;">
+        <small style="color: #666; word-break: break-all;">${uri}</small>
+      </td>
+      <td style="padding: 10px;">
+        <code>${prefix}</code>
+      </td>
+    </tr>`;
+  }).join('');
+
+  table.style.display = 'table';
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+  search(e.target.value);
+});
+
+// Handle enter key
+document.getElementById('search-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    e.target.value = '';
+    search('');
+  }
+});
+
+loadIndex();
+</script>

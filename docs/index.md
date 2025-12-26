@@ -9,6 +9,10 @@ File-based RDF ontologies for knowledge management in Obsidian.
 
 **26 ontologies, 30,707 triples, 35,841 files**
 
+## Quick Links
+
+- **[Search Ontologies](search.html)** - Find any resource by name or URI
+
 ## Documentation
 
 | Document | Description |
