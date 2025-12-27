@@ -32,6 +32,7 @@ dcat: "http://www.w3.org/ns/dcat#"
 org: "http://www.w3.org/ns/org#"
 sh: "http://www.w3.org/ns/shacl#"
 sosa: "http://www.w3.org/ns/sosa/"
+ssn: "http://www.w3.org/ns/ssn/"
 as: "https://www.w3.org/ns/activitystreams#"
 
 # Other vocabularies
