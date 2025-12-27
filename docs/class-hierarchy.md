@@ -2,7 +2,7 @@
 
 Complete class hierarchy across all ontologies.
 
-*Generated automatically. Total classes: 1287*
+*Generated automatically. Total classes: 1293*
 
 ## adms
 
@@ -1276,6 +1276,15 @@ Complete class hierarchy across all ontologies.
 - `sosa:Sampler`
 - `sosa:Sampling`
 - `sosa:Sensor`
+
+## ssn
+
+- `18e03a6e`
+- `5d8f9d66`
+- `74d34d2e`
+- `9ba01d68`
+- `b365258d`
+- `dd94e637`
 
 ## time
 

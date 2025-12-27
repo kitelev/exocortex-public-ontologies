@@ -2,7 +2,7 @@
 
 UML-style class diagram showing ontology structure.
 
-*Generated automatically. Classes: 1424, Properties: 2422*
+*Generated automatically. Classes: 1430, Properties: 2437*
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
@@ -25,6 +25,8 @@ classDiagram
     class xsd_anyURI
     class as_Activity
     class as_Object
+    class fe0b17d2
+    class d12911c6
     class _00a269aa
     class _0143e1ca
     class _01fb90c2
@@ -43,6 +45,7 @@ classDiagram
     class _1583faea
     class _16f92030
     class _16f99ad1
+    class _18e03a6e
     class _190c48bc
     class _19807b5a
     class _1e8f15a8
@@ -74,7 +77,8 @@ classDiagram
     class _57609c96
     class _5ca151b2
     class _5cbfe49e
-    class _5da60c63
+    d12911c6 <|-- _18e03a6e
+    fe0b17d2 <|-- _18e03a6e
     as_Object --> _0143e1ca : as:icon
     as_Activity --> _5cbfe49e : as:result
     as_Activity ..> xsd_anyURI : as:verb
@@ -98,8 +102,8 @@ classDiagram
 
 | Metric | Count |
 |--------|-------|
-| Classes | 1424 |
-| Properties | 2422 |
-| Inheritance relationships | 1377 |
+| Classes | 1430 |
+| Properties | 2437 |
+| Inheritance relationships | 1393 |
 | Properties with domain | 266 |
 | Properties with range | 287 |

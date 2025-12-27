@@ -2,7 +2,7 @@
 
 Complete property hierarchy across all ontologies.
 
-*Generated automatically. Total properties: 2422*
+*Generated automatically. Total properties: 2437*
 
 **Legend:** 🔗 ObjectProperty | 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
 
@@ -279,8 +279,8 @@ Complete property hierarchy across all ontologies.
 - ⚙️ `foaf:fundedBy`
 - 📝 `foaf:geekcode`
 - ⚙️ `foaf:gender`
-- ⚙️ `foaf:givenName`
 - 📝 `foaf:givenname`
+- ⚙️ `foaf:givenName`
 - 🔗 `foaf:holdsAccount`
 - ⚙️ `foaf:interest`
 - ⚙️ `foaf:jabberID`
@@ -2351,6 +2351,24 @@ Complete property hierarchy across all ontologies.
 - 🔗 `sosa:phenomenonTime`
 - 📝 `sosa:resultTime`
 - 🔗 `sosa:usedProcedure`
+
+## ssn
+
+- 🔗 `3154f0e3`
+- 🔗 `51a957ac`
+- 🔗 `611866b9`
+- 🔗 `6b3e821e`
+- 🔗 `6d9a5296`
+- 🔗 `82650300`
+- 🔗 `927d471e`
+- 🔗 `a72bc15a`
+- 🔗 `c1183b7d`
+- 🔗 `d0275b62`
+- 🔗 `d696ac8b`
+- 🔗 `dd9aa6ac`
+- 🔗 `e08e674f`
+- 🔗 `f012e19e`
+- 🔗 `fcae51d2`
 
 ## time
 
