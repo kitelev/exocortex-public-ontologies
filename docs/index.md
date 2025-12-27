@@ -7,7 +7,7 @@ title: Exocortex Public Ontologies
 
 File-based RDF ontologies for knowledge management in Obsidian.
 
-**26 ontologies, 30,707 triples, 35,841 files**
+**27 ontologies, 31,332 triples, 36,860 files**
 
 ## Quick Links
 
@@ -54,6 +54,7 @@ File-based RDF ontologies for knowledge management in Obsidian.
 | GeoSPARQL | `geosparql` | 774 |
 | ORG | `org` | 746 |
 | DOAP | `doap` | 741 |
+| QUDT | `qudt` | 724 |
 | Dublin Core Terms | `dcterms` | 700 |
 | SIOC | `sioc` | 658 |
 | FOAF | `foaf` | 620 |
