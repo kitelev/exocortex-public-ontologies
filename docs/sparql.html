@@ -32,11 +32,17 @@ title: SPARQL Query Interface
   <button class="example-btn" data-query="comments">With Comments</button>
   <button class="example-btn" data-query="inverse">Inverse Props</button>
 </div>
-<div style="margin-bottom: 20px;">
+<div style="margin-bottom: 10px;">
   <strong>CONSTRUCT:</strong>
   <button class="example-btn" data-query="construct_foaf">FOAF Graph</button>
   <button class="example-btn" data-query="construct_hierarchy">Class Hierarchy</button>
   <button class="example-btn" data-query="describe">DESCRIBE</button>
+</div>
+<div style="margin-bottom: 20px;">
+  <strong>ASK:</strong>
+  <button class="example-btn" data-query="ask_class">Has owl:Class?</button>
+  <button class="example-btn" data-query="ask_label">Label Exists?</button>
+  <button class="example-btn" data-query="ask_deprecated">Any Deprecated?</button>
 </div>
 
 <h3>Query</h3>
@@ -94,6 +100,10 @@ PREFIX as: &lt;https://www.w3.org/ns/activitystreams#&gt;
 PREFIX sioc: &lt;http://rdfs.org/sioc/ns#&gt;
 PREFIX doap: &lt;http://usefulinc.com/ns/doap#&gt;
 PREFIX sosa: &lt;http://www.w3.org/ns/sosa/&gt;
+PREFIX qudt: &lt;http://qudt.org/schema/qudt/&gt;
+PREFIX geosparql: &lt;http://www.opengis.net/ont/geosparql#&gt;
+PREFIX adms: &lt;http://www.w3.org/ns/adms#&gt;
+PREFIX vann: &lt;http://purl.org/vocab/vann/&gt;
   </pre>
 </details>
 
@@ -259,7 +269,26 @@ LIMIT 50`,
 
   describe: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-DESCRIBE <http://www.w3.org/2000/01/rdf-schema#Class>`
+DESCRIBE <http://www.w3.org/2000/01/rdf-schema#Class>`,
+
+  ask_class: `PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+ASK {
+  ?x a owl:Class .
+}`,
+
+  ask_label: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+ASK {
+  foaf:Person rdfs:label ?label .
+}`,
+
+  ask_deprecated: `PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+ASK {
+  ?x owl:deprecated true .
+}`
 };
 
 // Store last results for CSV export
@@ -416,6 +445,28 @@ async function runQuery() {
       }));
       document.getElementById('export-btn').style.display = 'inline-block';
 
+    } else if (queryType === 'boolean') {
+      // ASK query
+      const result = await engine.queryBoolean(query, { sources: [store] });
+      const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+
+      // Display ASK result as a styled box
+      const resultText = result ? '✅ YES (true)' : '❌ NO (false)';
+      const bgColor = result ? '#e8f5e9' : '#ffebee';
+
+      resultsMessage.innerHTML = `
+        <div style="padding: 30px; text-align: center; background: ${bgColor}; border-radius: 8px; font-size: 24px; font-weight: bold;">
+          ${resultText}
+        </div>
+      `;
+      resultsMessage.style.color = '';
+      queryTime.textContent = `ASK result (${elapsed}s)`;
+
+      // No CSV export for ASK
+      lastResults = null;
+      lastVars = null;
+      document.getElementById('export-btn').style.display = 'none';
+
     } else {
       resultsMessage.textContent = `Unsupported query type: ${queryType}`;
     }
@@ -476,7 +527,9 @@ function shortenUri(uri) {
     'http://www.w3.org/ns/adms#': 'adms:',
     'http://purl.org/vocab/vann/': 'vann:',
     'http://rdfs.org/ns/void#': 'void:',
-    'http://www.opengis.net/ont/geosparql#': 'geosparql:'
+    'http://www.opengis.net/ont/geosparql#': 'geosparql:',
+    'http://qudt.org/schema/qudt/': 'qudt:',
+    'http://www.w3.org/2003/g/data-view#': 'grddl:'
   };
 
   for (const [prefix, short] of Object.entries(prefixes)) {

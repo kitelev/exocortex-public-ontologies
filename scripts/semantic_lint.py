@@ -201,6 +201,25 @@ def lint_namespace(repo_root: Path, namespace: str) -> Tuple[Dict, List[LintIssu
     return stats, issues
 
 
+def progress_bar(percent: float, width: int = 10) -> str:
+    """Generate a text progress bar."""
+    filled = int(percent / 100 * width)
+    empty = width - filled
+    return "█" * filled + "░" * empty
+
+
+def calculate_grade(label_pct: float, comment_pct: float) -> Tuple[str, str]:
+    """Calculate quality grade based on label and comment coverage."""
+    if label_pct >= 90 and comment_pct >= 80:
+        return "A", "🟢"
+    elif label_pct >= 80 and comment_pct >= 60:
+        return "B", "🟡"
+    elif label_pct >= 60:
+        return "C", "🟠"
+    else:
+        return "D", "🔴"
+
+
 def generate_report(
     all_stats: Dict[str, Dict], all_issues: Dict[str, List[LintIssue]], namespace_filter: Optional[str] = None
 ) -> str:
@@ -231,31 +250,48 @@ def generate_report(
     total_prop_domain = sum(s["properties_with_domain"] for s in all_stats.values())
     total_prop_range = sum(s["properties_with_range"] for s in all_stats.values())
 
-    lines.append("| Metric | Count | Percentage |")
-    lines.append("|--------|-------|------------|")
-    lines.append(f"| Total Classes | {total_classes} | - |")
+    lines.append("| Metric | Count | Percentage | Coverage |")
+    lines.append("|--------|-------|------------|----------|")
+    lines.append(f"| Total Classes | {total_classes:,} | - | - |")
     if total_classes > 0:
-        lines.append(f"| Classes with label | {total_cls_label} | {100*total_cls_label/total_classes:.1f}% |")
-        lines.append(f"| Classes with comment | {total_cls_comment} | {100*total_cls_comment/total_classes:.1f}% |")
-    lines.append(f"| Total Properties | {total_props} | - |")
+        pct = 100*total_cls_label/total_classes
+        lines.append(f"| Classes with label | {total_cls_label:,} | {pct:.1f}% | {progress_bar(pct)} |")
+        pct = 100*total_cls_comment/total_classes
+        lines.append(f"| Classes with comment | {total_cls_comment:,} | {pct:.1f}% | {progress_bar(pct)} |")
+    lines.append(f"| Total Properties | {total_props:,} | - | - |")
     if total_props > 0:
-        lines.append(f"| Properties with label | {total_prop_label} | {100*total_prop_label/total_props:.1f}% |")
-        lines.append(f"| Properties with comment | {total_prop_comment} | {100*total_prop_comment/total_props:.1f}% |")
-        lines.append(f"| Properties with domain | {total_prop_domain} | {100*total_prop_domain/total_props:.1f}% |")
-        lines.append(f"| Properties with range | {total_prop_range} | {100*total_prop_range/total_props:.1f}% |")
+        pct = 100*total_prop_label/total_props
+        lines.append(f"| Properties with label | {total_prop_label:,} | {pct:.1f}% | {progress_bar(pct)} |")
+        pct = 100*total_prop_comment/total_props
+        lines.append(f"| Properties with comment | {total_prop_comment:,} | {pct:.1f}% | {progress_bar(pct)} |")
+        pct = 100*total_prop_domain/total_props
+        lines.append(f"| Properties with domain | {total_prop_domain:,} | {pct:.1f}% | {progress_bar(pct)} |")
+        pct = 100*total_prop_range/total_props
+        lines.append(f"| Properties with range | {total_prop_range:,} | {pct:.1f}% | {progress_bar(pct)} |")
 
     lines.append("")
 
-    # Per-namespace breakdown
+    # Per-namespace breakdown with grades
     lines.append("## By Namespace")
     lines.append("")
-    lines.append("| Namespace | Classes | Props | Labels | Comments | Domain | Range |")
-    lines.append("|-----------|---------|-------|--------|----------|--------|-------|")
+    lines.append("| Namespace | Grade | Classes | Props | Labels | Comments | Domain | Range |")
+    lines.append("|-----------|:-----:|---------|-------|--------|----------|--------|-------|")
 
+    ns_grades = {}
     for ns in sorted(all_stats.keys()):
         s = all_stats[ns]
         if s["classes"] == 0 and s["properties"] == 0:
             continue
+
+        # Calculate label and comment coverage for this namespace
+        total = s["classes"] + s["properties"]
+        label_count = s["classes_with_label"] + s["properties_with_label"]
+        comment_count = s["classes_with_comment"] + s["properties_with_comment"]
+        label_pct = 100 * label_count / total if total > 0 else 0
+        comment_pct = 100 * comment_count / total if total > 0 else 0
+
+        grade, icon = calculate_grade(label_pct, comment_pct)
+        ns_grades[ns] = grade
 
         cls_label_pct = f"{100*s['classes_with_label']/s['classes']:.0f}%" if s["classes"] > 0 else "-"
         cls_comment_pct = f"{100*s['classes_with_comment']/s['classes']:.0f}%" if s["classes"] > 0 else "-"
@@ -263,9 +299,22 @@ def generate_report(
         prop_range_pct = f"{100*s['properties_with_range']/s['properties']:.0f}%" if s["properties"] > 0 else "-"
 
         lines.append(
-            f"| {ns} | {s['classes']} | {s['properties']} | {cls_label_pct} | {cls_comment_pct} | {prop_domain_pct} | {prop_range_pct} |"
+            f"| {ns} | {icon} {grade} | {s['classes']} | {s['properties']} | {cls_label_pct} | {cls_comment_pct} | {prop_domain_pct} | {prop_range_pct} |"
         )
 
+    lines.append("")
+
+    # Grade distribution
+    grade_counts = {"A": 0, "B": 0, "C": 0, "D": 0}
+    for grade in ns_grades.values():
+        grade_counts[grade] += 1
+
+    lines.append("### Grade Distribution")
+    lines.append("")
+    lines.append(f"- 🟢 **A** (Excellent): {grade_counts['A']} namespaces")
+    lines.append(f"- 🟡 **B** (Good): {grade_counts['B']} namespaces")
+    lines.append(f"- 🟠 **C** (Fair): {grade_counts['C']} namespaces")
+    lines.append(f"- 🔴 **D** (Needs work): {grade_counts['D']} namespaces")
     lines.append("")
 
     # Issue counts
