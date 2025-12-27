@@ -43,10 +43,7 @@ jobs:
         run: python scripts/generate_mermaid.py
 
       - name: Generate lint report
-        run: |
-          if [ -f scripts/generate_lint_report.py ]; then
-            python scripts/generate_lint_report.py
-          fi
+        run: python scripts/semantic_lint.py
 
       - name: Generate statistics
         run: python scripts/generate_stats.py
