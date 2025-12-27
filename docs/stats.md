@@ -5,17 +5,17 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2025-12-26 19:39 UTC*
+*Auto-generated on 2025-12-27 09:41 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **35,841** |
-| Statements (triples) | 30,707 |
-| Anchors (resources) | 4,437 |
-| Blank Nodes | 671 |
-| Namespaces | 26 |
+| Total Files | **36,829** |
+| Statements (triples) | 31,439 |
+| Anchors (resources) | 4,438 |
+| Blank Nodes | 925 |
+| Namespaces | 27 |
 
 ## By Namespace
 
@@ -31,6 +31,7 @@ title: Statistics
 | `geosparql` | 774 | 66 | 12 | 853 |
 | `org` | 746 | 46 | 25 | 818 |
 | `doap` | 741 | 56 | 5 | 803 |
+| `qudt` | 732 | 1 | 254 | 988 |
 | `dcterms` | 700 | 99 | 0 | 800 |
 | `sioc` | 658 | 99 | 0 | 758 |
 | `foaf` | 620 | 75 | 0 | 696 |
@@ -53,18 +54,18 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdf:type` | 5,022 |
-| `rdfs:label` | 4,894 |
+| `rdf:type` | 5,243 |
+| `rdfs:label` | 4,895 |
 | `rdfs:comment` | 4,825 |
 | `schema:domainIncludes` | 2,309 |
 | `schema:rangeIncludes` | 2,120 |
 | `rdfs:subClassOf` | 1,377 |
 | `schema:isPartOf` | 1,269 |
-| `rdfs:isDefinedBy` | 1,251 |
+| `rdfs:isDefinedBy` | 1,252 |
 | `schema:source` | 1,001 |
 | `rdfs:range` | 675 |
 | `rdfs:domain` | 590 |
 | `skos:definition` | 518 |
 | `rdfs:subPropertyOf` | 456 |
-| `schema:contributor` | 388 |
-| `rdf:first` | 361 |
+| `rdf:first` | 389 |
+| `rdf:rest` | 389 |
