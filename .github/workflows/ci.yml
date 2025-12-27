@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -31,7 +32,6 @@ jobs:
 
       - name: Lint with flake8
         run: flake8 scripts/ tests/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Only check for critical errors (syntax errors, undefined names)
 
       - name: Run tests
         run: pytest tests/ -v --tb=short
@@ -47,6 +47,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -58,6 +59,15 @@ jobs:
 
       - name: Check consistency
         run: python scripts/check_consistency.py
+
+      - name: Run semantic lint
+        run: python scripts/semantic_lint.py --output /dev/null
+
+      - name: Verify RDF export (sample)
+        run: |
+          python scripts/export_rdf.py rdf exports/rdf-test.nt
+          python scripts/export_rdf.py owl exports/owl-test.nt
+          rm -f exports/*-test.nt
 
       - name: Generate statistics
         run: python scripts/stats.py

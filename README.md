@@ -59,8 +59,9 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | VOID | `void` | `http://vocab.deri.ie/void#` | 57 | 69 | ✅ |
 | GRDDL | `grddl` | `http://www.w3.org/2003/g/data-view#` | 55 | 69 | ✅ |
 | VANN | `vann` | `http://purl.org/vocab/vann/` | 38 | 46 | ✅ |
+| QUDT | `qudt` | `http://qudt.org/schema/qudt/` | 724 | 988 | ✅ |
 
-**Total: 30,707 triples, 35,841 files — 26 ontologies**
+**Total: 31,431 triples, 36,829 files — 27 ontologies**
 
 ### Additional
 
@@ -102,6 +103,7 @@ exocortex-public-ontologies/
 ├── void/                   # VOID (Vocabulary of Interlinked Datasets)
 ├── grddl/                  # GRDDL (Gleaning Resource Descriptions)
 ├── geosparql/              # GeoSPARQL (Geospatial queries)
+├── qudt/                   # QUDT (Quantities, Units, Dimensions, Types)
 ├── tests/                  # pytest test suite
 ├── scripts/                # Tools
 │   ├── import_ontology.py  # RDF → file-based converter
