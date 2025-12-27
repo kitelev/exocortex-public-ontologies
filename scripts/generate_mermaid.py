@@ -89,6 +89,7 @@ def collect_ontology_data(repo_root: Path, namespace_filter: Optional[str] = Non
         "classes": set(),
         "properties": {},
         "subclass_of": {},
+        "blank_nodes": set(),  # Track blank nodes to filter them from diagrams
     }
 
     target_prefixes = [namespace_filter] if namespace_filter else PREFIXES
@@ -116,6 +117,10 @@ def collect_ontology_data(repo_root: Path, namespace_filter: Optional[str] = Non
                     if ":" in alias:
                         prefix_local = alias
                         local = alias.split(":", 1)[1]
+                    else:
+                        # Alias without prefix (e.g., "System" instead of "ssn:System")
+                        local = alias
+                        prefix_local = f"{prefix}:{alias}"
 
                 data["uuid_to_info"][uuid] = {
                     "prefix": prefix,
@@ -123,6 +128,10 @@ def collect_ontology_data(repo_root: Path, namespace_filter: Optional[str] = Non
                     "prefix_local": prefix_local,
                     "type": None,
                 }
+
+            elif metadata_type == "blank_node":
+                # Track blank nodes to filter them from diagrams (OWL restrictions, unions, etc.)
+                data["blank_nodes"].add(uuid)
 
             elif metadata_type == "statement":
                 pred_uuid = extract_wikilink_uuid(fm.get("predicate", ""))
@@ -193,6 +202,10 @@ def collect_ontology_data(repo_root: Path, namespace_filter: Optional[str] = Non
                     if ":" in alias:
                         prefix_local = alias
                         local = alias.split(":", 1)[1]
+                    else:
+                        # Alias without prefix (e.g., "System" instead of "ssn:System")
+                        local = alias
+                        prefix_local = f"{prefix}:{alias}"
 
                 data["uuid_to_info"][uuid] = {
                     "prefix": prefix,
@@ -218,9 +231,13 @@ def generate_class_diagram(data: Dict, max_items: int = 50) -> str:
     lines = ["classDiagram"]
 
     classes_in_diagram = set()
+    blank_nodes = data.get("blank_nodes", set())
+
+    # Filter out blank nodes from classes (they are OWL constructs, not named classes)
+    named_classes = data["classes"] - blank_nodes
 
     # Add classes (limit for readability)
-    sorted_classes = sorted(data["classes"], key=lambda u: get_label(u, data).lower())[:max_items]
+    sorted_classes = sorted(named_classes, key=lambda u: get_label(u, data).lower())[:max_items]
 
     for cls_uuid in sorted_classes:
         label = get_label(cls_uuid, data)
@@ -228,14 +245,20 @@ def generate_class_diagram(data: Dict, max_items: int = 50) -> str:
         classes_in_diagram.add(cls_uuid)
         lines.append(f"    class {mermaid_id}")
 
-    # Add inheritance
+    # Add inheritance (skip blank nodes - they are OWL restrictions, not classes)
     for child_uuid, parents in data["subclass_of"].items():
         if child_uuid not in classes_in_diagram:
+            continue
+        if child_uuid in blank_nodes:
             continue
         child_label = get_label(child_uuid, data)
         child_id = sanitize_mermaid_id(child_label)
 
         for parent_uuid in parents:
+            # Skip blank node parents (OWL restrictions, unions, intersections)
+            if parent_uuid in blank_nodes:
+                continue
+
             parent_label = get_label(parent_uuid, data)
             parent_id = sanitize_mermaid_id(parent_label)
 

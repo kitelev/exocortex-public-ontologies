@@ -11,16 +11,10 @@ UML-style class diagram for the **prov** namespace.
 
 ```mermaid
 classDiagram
-    class xsd_dateTime
-    class b1791eb1
-    class _08e29461
-    class _16f92030
-    class _2e97a557
     class _54ca8a65
-    class _5df0710c
-    class _8231af0e
-    class e675e13f
     class efdc0db0
+    class _08e29461
+    class xsd_dateTime
     class prov_Activity
     class prov_ActivityInfluence
     class prov_Agent
@@ -74,7 +68,6 @@ classDiagram
     prov_EntityInfluence <|-- prov_Derivation
     prov_AgentInfluence <|-- prov_Attribution
     prov_Influence <|-- prov_ActivityInfluence
-    b1791eb1 <|-- prov_ActivityInfluence
     prov_Entity <|-- prov_Bundle
     prov_Influence <|-- prov_EntityInfluence
     prov_AgentInfluence <|-- prov_Association

@@ -6,8 +6,8 @@ UML-style class diagram for the **geo** namespace.
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
-- `-->` Object Property (owl:ObjectProperty)
-- `..>` Datatype Property (owl:DatatypeProperty)
+- `-->` Object Property
+- `..>` Datatype Property
 
 ```mermaid
 classDiagram
@@ -23,5 +23,5 @@ classDiagram
 | Classes | 2 |
 | Properties | 5 |
 | Inheritance relationships | 1 |
-| Properties with domain | 3 |
-| Properties with range | 1 |
+| Properties with domain | 2 |
+| Properties with range | 0 |

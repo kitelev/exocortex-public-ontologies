@@ -11,8 +11,6 @@ UML-style class diagram for the **qudt** namespace.
 
 ```mermaid
 classDiagram
-    class _11af25ee
-    class c3767404
 ```
 
 ## Statistics

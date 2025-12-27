@@ -6,8 +6,8 @@ UML-style class diagram for the **sosa** namespace.
 
 **Legend:**
 - `<|--` Inheritance (rdfs:subClassOf)
-- `-->` Object Property (owl:ObjectProperty)
-- `..>` Datatype Property (owl:DatatypeProperty)
+- `-->` Object Property
+- `..>` Datatype Property
 
 ```mermaid
 classDiagram
