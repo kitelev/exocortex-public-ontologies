@@ -47,6 +47,9 @@ grddl: "http://www.w3.org/2003/g/data-view#"
 # Schema.org
 schema: "https://schema.org/"
 
+# QUDT (Quantities, Units, Dimensions, Types)
+qudt: "http://qudt.org/schema/qudt/"
+
 # ============================================================================
 # Альтернативные URI онтологий (owl:Ontology URI без #)
 # Используются когда URI онтологии отличается от namespace URI
