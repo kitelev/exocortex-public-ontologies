@@ -48,6 +48,7 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | FOAF | `foaf` | `http://xmlns.com/foaf/0.1/` | 620 | 696 | ✅ |
 | OWL 2 | `owl` | `http://www.w3.org/2002/07/owl#` | 450 | 529 | ✅ |
 | SOSA | `sosa` | `http://www.w3.org/ns/sosa/` | 328 | 366 | ✅ |
+| SSN | `ssn` | `http://www.w3.org/ns/ssn/` | 397 | 510 | ✅ |
 | SKOS | `skos` | `http://www.w3.org/2004/02/skos/core#` | 252 | 289 | ✅ |
 | RDF | `rdf` | `http://www.w3.org/1999/02/22-rdf-syntax-ns#` | 127 | 150 | ✅ |
 | Dublin Core Elements | `dc` | `http://purl.org/dc/elements/1.1/` | 107 | 123 | ✅ |
@@ -61,7 +62,7 @@ Part of the [Exocortex](https://github.com/kitelev/exocortex) knowledge manageme
 | VANN | `vann` | `http://purl.org/vocab/vann/` | 38 | 46 | ✅ |
 | QUDT | `qudt` | `http://qudt.org/schema/qudt/` | 724 | 988 | ✅ |
 
-**Total: 31,431 triples, 36,829 files — 27 ontologies**
+**Total: 31,828 triples, 37,339 files — 28 ontologies**
 
 ### Additional
 
@@ -95,6 +96,7 @@ exocortex-public-ontologies/
 ├── schema/                 # Schema.org vocabulary
 ├── sh/                     # SHACL (Shapes Constraint Language)
 ├── sosa/                   # SOSA (Sensor, Observation, Sample, Actuator)
+├── ssn/                    # SSN (Semantic Sensor Network)
 ├── adms/                   # ADMS (Asset Description Metadata Schema)
 ├── as/                     # ActivityStreams 2.0
 ├── xsd/                    # XSD (XML Schema datatypes)
