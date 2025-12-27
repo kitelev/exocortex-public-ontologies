@@ -12,12 +12,25 @@ title: SPARQL Query Interface
 </div>
 
 <h3>Example Queries</h3>
+<div style="margin-bottom: 10px;">
+  <strong>Basic:</strong>
+  <button class="example-btn" data-query="classes">Classes</button>
+  <button class="example-btn" data-query="properties">Properties</button>
+  <button class="example-btn" data-query="subclasses">Subclass Tree</button>
+  <button class="example-btn" data-query="domains">Domain/Range</button>
+</div>
+<div style="margin-bottom: 10px;">
+  <strong>Ontologies:</strong>
+  <button class="example-btn" data-query="schema">Schema.org</button>
+  <button class="example-btn" data-query="foaf">FOAF</button>
+  <button class="example-btn" data-query="skos">SKOS</button>
+  <button class="example-btn" data-query="prov">PROV-O</button>
+</div>
 <div style="margin-bottom: 20px;">
-  <button class="example-btn" data-query="classes">All Classes</button>
-  <button class="example-btn" data-query="properties">All Properties</button>
-  <button class="example-btn" data-query="subclasses">Subclass Hierarchy</button>
-  <button class="example-btn" data-query="labels">Resources with Labels</button>
-  <button class="example-btn" data-query="namespaces">Namespace Statistics</button>
+  <strong>Analytics:</strong>
+  <button class="example-btn" data-query="stats">Type Stats</button>
+  <button class="example-btn" data-query="comments">With Comments</button>
+  <button class="example-btn" data-query="inverse">Inverse Props</button>
 </div>
 
 <h3>Query</h3>
@@ -35,6 +48,9 @@ LIMIT 20</textarea>
 <div style="margin: 15px 0;">
   <button id="run-btn" onclick="runQuery()" style="padding: 10px 20px; font-size: 16px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer;" disabled>
     Run Query
+  </button>
+  <button id="export-btn" onclick="exportCSV()" style="padding: 10px 20px; font-size: 16px; background: #43a047; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px; display: none;">
+    Export CSV
   </button>
   <span id="query-time" style="margin-left: 15px; color: #666;"></span>
 </div>
@@ -81,16 +97,14 @@ PREFIX sosa: &lt;http://www.w3.org/ns/sosa/&gt;
 <script>
 // Example queries
 const EXAMPLES = {
-  classes: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  classes: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
-SELECT ?class ?label
+SELECT ?class ?label ?comment
 WHERE {
-  { ?class a owl:Class }
-  UNION
-  { ?class a rdfs:Class }
-  OPTIONAL { ?class rdfs:label ?label }
+  { ?class a owl:Class } UNION { ?class a rdfs:Class }
+  OPTIONAL { ?class rdfs:label ?label . FILTER(LANG(?label) = "en" || LANG(?label) = "") }
+  OPTIONAL { ?class rdfs:comment ?comment . FILTER(LANG(?comment) = "en" || LANG(?comment) = "") }
 }
 ORDER BY ?class
 LIMIT 50`,
@@ -99,43 +113,88 @@ LIMIT 50`,
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
-SELECT ?property ?label ?domain ?range
+SELECT ?property ?type ?label
 WHERE {
-  { ?property a rdf:Property }
-  UNION
-  { ?property a owl:ObjectProperty }
-  UNION
-  { ?property a owl:DatatypeProperty }
+  ?property a ?type .
+  FILTER(?type IN (rdf:Property, owl:ObjectProperty, owl:DatatypeProperty, owl:AnnotationProperty))
   OPTIONAL { ?property rdfs:label ?label }
-  OPTIONAL { ?property rdfs:domain ?domain }
-  OPTIONAL { ?property rdfs:range ?range }
 }
-ORDER BY ?property
+ORDER BY ?type ?property
 LIMIT 50`,
 
   subclasses: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?subclass ?superclass
+SELECT ?child ?parent
 WHERE {
-  ?subclass rdfs:subClassOf ?superclass .
-  FILTER(isURI(?superclass))
+  ?child rdfs:subClassOf ?parent .
+  FILTER(isURI(?parent))
 }
-ORDER BY ?superclass ?subclass
+ORDER BY ?parent ?child
 LIMIT 100`,
 
-  labels: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+  domains: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?resource ?label
+SELECT ?property ?domain ?range
 WHERE {
-  ?resource rdfs:label ?label .
-  FILTER(LANG(?label) = "en" || LANG(?label) = "")
+  { ?property rdfs:domain ?domain } UNION { ?property rdfs:range ?range }
+}
+ORDER BY ?property
+LIMIT 100`,
+
+  schema: `PREFIX schema: <http://schema.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?class ?label ?comment
+WHERE {
+  ?class a rdfs:Class .
+  FILTER(STRSTARTS(STR(?class), "http://schema.org/"))
+  OPTIONAL { ?class rdfs:label ?label }
+  OPTIONAL { ?class rdfs:comment ?comment }
 }
 ORDER BY ?label
 LIMIT 50`,
 
-  namespaces: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+  foaf: `PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?resource ?type ?label
+WHERE {
+  ?resource ?p ?o .
+  FILTER(STRSTARTS(STR(?resource), "http://xmlns.com/foaf/"))
+  ?resource a ?type .
+  OPTIONAL { ?resource rdfs:label ?label }
+}
+ORDER BY ?type ?resource
+LIMIT 50`,
+
+  skos: `PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?resource ?type ?label
+WHERE {
+  ?resource a ?type .
+  FILTER(STRSTARTS(STR(?resource), "http://www.w3.org/2004/02/skos/"))
+  OPTIONAL { ?resource rdfs:label ?label }
+}
+ORDER BY ?type
+LIMIT 50`,
+
+  prov: `PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?resource ?type ?label
+WHERE {
+  ?resource a ?type .
+  FILTER(STRSTARTS(STR(?resource), "http://www.w3.org/ns/prov"))
+  FILTER(?type IN (owl:Class, rdfs:Class, owl:ObjectProperty, owl:DatatypeProperty))
+  OPTIONAL { ?resource rdfs:label ?label }
+}
+ORDER BY ?type ?resource
+LIMIT 50`,
+
+  stats: `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT ?type (COUNT(?s) AS ?count)
 WHERE {
@@ -143,8 +202,31 @@ WHERE {
 }
 GROUP BY ?type
 ORDER BY DESC(?count)
-LIMIT 30`
+LIMIT 30`,
+
+  comments: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?resource ?comment
+WHERE {
+  ?resource rdfs:comment ?comment .
+  FILTER(LANG(?comment) = "en" || LANG(?comment) = "")
+}
+LIMIT 30`,
+
+  inverse: `PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?prop1 ?prop2
+WHERE {
+  ?prop1 owl:inverseOf ?prop2 .
+}
+ORDER BY ?prop1
+LIMIT 50`
 };
+
+// Store last results for CSV export
+let lastResults = null;
+let lastVars = null;
 
 let engine = null;
 let store = null;
@@ -246,6 +328,11 @@ async function runQuery() {
     resultsTable.style.display = 'table';
     resultsMessage.textContent = '';
     queryTime.textContent = `${bindings.length} results (${elapsed}s)`;
+
+    // Store for CSV export
+    lastResults = bindings;
+    lastVars = vars;
+    document.getElementById('export-btn').style.display = 'inline-block';
   } catch (e) {
     resultsMessage.textContent = `Error: ${e.message}`;
     resultsMessage.style.color = '#c62828';
@@ -328,11 +415,6 @@ document.querySelectorAll('.example-btn').forEach(btn => {
       document.getElementById('query-input').value = EXAMPLES[queryName];
     }
   });
-
-  // Style buttons
-  btn.style.cssText = 'margin: 2px; padding: 8px 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;';
-  btn.onmouseover = () => btn.style.background = '#e0e0e0';
-  btn.onmouseout = () => btn.style.background = '#f5f5f5';
 });
 
 // Keyboard shortcut: Ctrl+Enter to run query
@@ -344,6 +426,43 @@ document.getElementById('query-input').addEventListener('keydown', (e) => {
     }
   }
 });
+
+// CSV Export function
+function exportCSV() {
+  if (!lastResults || !lastVars) return;
+
+  // Build CSV content
+  const rows = [];
+
+  // Header row
+  rows.push(lastVars.join(','));
+
+  // Data rows
+  lastResults.forEach(binding => {
+    const row = lastVars.map(v => {
+      const term = binding.get(v);
+      if (!term) return '';
+      let value = term.value;
+      // Escape quotes and wrap in quotes if contains comma/quote/newline
+      if (value.includes(',') || value.includes('"') || value.includes('\n')) {
+        value = '"' + value.replace(/"/g, '""') + '"';
+      }
+      return value;
+    });
+    rows.push(row.join(','));
+  });
+
+  const csv = rows.join('\n');
+
+  // Download
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'sparql-results.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
 
 // Initialize on load
 initEngine();
@@ -360,10 +479,25 @@ initEngine();
     background: #bdbdbd;
     cursor: not-allowed;
   }
+  #export-btn:hover {
+    background: #388e3c;
+  }
   code {
     background: #f5f5f5;
     padding: 2px 6px;
     border-radius: 3px;
     font-size: 13px;
+  }
+  .example-btn {
+    margin: 2px;
+    padding: 6px 10px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .example-btn:hover {
+    background: #e0e0e0;
   }
 </style>
