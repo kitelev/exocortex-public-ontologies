@@ -26,11 +26,17 @@ title: SPARQL Query Interface
   <button class="example-btn" data-query="skos">SKOS</button>
   <button class="example-btn" data-query="prov">PROV-O</button>
 </div>
-<div style="margin-bottom: 20px;">
+<div style="margin-bottom: 10px;">
   <strong>Analytics:</strong>
   <button class="example-btn" data-query="stats">Type Stats</button>
   <button class="example-btn" data-query="comments">With Comments</button>
   <button class="example-btn" data-query="inverse">Inverse Props</button>
+</div>
+<div style="margin-bottom: 20px;">
+  <strong>CONSTRUCT:</strong>
+  <button class="example-btn" data-query="construct_foaf">FOAF Graph</button>
+  <button class="example-btn" data-query="construct_hierarchy">Class Hierarchy</button>
+  <button class="example-btn" data-query="describe">DESCRIBE</button>
 </div>
 
 <h3>Query</h3>
@@ -221,7 +227,39 @@ WHERE {
   ?prop1 owl:inverseOf ?prop2 .
 }
 ORDER BY ?prop1
-LIMIT 50`
+LIMIT 50`,
+
+  construct_foaf: `PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+  ?class rdf:type rdfs:Class .
+  ?class rdfs:label ?label .
+}
+WHERE {
+  ?class a rdfs:Class .
+  FILTER(STRSTARTS(STR(?class), "http://xmlns.com/foaf/"))
+  OPTIONAL { ?class rdfs:label ?label }
+}
+LIMIT 20`,
+
+  construct_hierarchy: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+CONSTRUCT {
+  ?child rdfs:subClassOf ?parent .
+}
+WHERE {
+  ?child rdfs:subClassOf ?parent .
+  ?child a owl:Class .
+  FILTER(isURI(?parent))
+}
+LIMIT 50`,
+
+  describe: `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+DESCRIBE <http://www.w3.org/2000/01/rdf-schema#Class>`
 };
 
 // Store last results for CSV export
@@ -289,50 +327,98 @@ async function runQuery() {
   queryTime.textContent = '';
   resultsMessage.textContent = 'Executing query...';
   resultsTable.style.display = 'none';
+  document.getElementById('export-btn').style.display = 'none';
 
   const startTime = performance.now();
 
+  // Detect query type
+  const queryType = await engine.queryType(query, { sources: [store] });
+
   try {
-    const bindingsStream = await engine.queryBindings(query, {
-      sources: [store]
-    });
+    if (queryType === 'bindings') {
+      // SELECT query
+      const bindingsStream = await engine.queryBindings(query, { sources: [store] });
+      const bindings = await bindingsStream.toArray();
+      const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
 
-    const bindings = await bindingsStream.toArray();
-    const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+      if (bindings.length === 0) {
+        resultsMessage.textContent = 'No results found.';
+        queryTime.textContent = `(${elapsed}s)`;
+        runBtn.disabled = false;
+        runBtn.textContent = 'Run Query';
+        return;
+      }
 
-    if (bindings.length === 0) {
-      resultsMessage.textContent = 'No results found.';
-      queryTime.textContent = `(${elapsed}s)`;
-      runBtn.disabled = false;
-      runBtn.textContent = 'Run Query';
-      return;
+      // Get variable names
+      const vars = [...bindings[0].keys()].map(v => v.value);
+
+      // Build header
+      resultsHead.innerHTML = '<tr>' + vars.map(v =>
+        `<th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">${escapeHtml(v)}</th>`
+      ).join('') + '</tr>';
+
+      // Build body
+      resultsBody.innerHTML = bindings.map(binding => {
+        return '<tr style="border-bottom: 1px solid #eee;">' + vars.map(v => {
+          const term = binding.get(v);
+          const value = term ? formatTerm(term) : '';
+          return `<td style="padding: 10px; word-break: break-all; max-width: 400px;">${value}</td>`;
+        }).join('') + '</tr>';
+      }).join('');
+
+      resultsTable.style.display = 'table';
+      resultsMessage.textContent = '';
+      queryTime.textContent = `${bindings.length} results (${elapsed}s)`;
+
+      // Store for CSV export
+      lastResults = bindings;
+      lastVars = vars;
+      document.getElementById('export-btn').style.display = 'inline-block';
+
+    } else if (queryType === 'quads') {
+      // CONSTRUCT/DESCRIBE query
+      const quadsStream = await engine.queryQuads(query, { sources: [store] });
+      const quads = await quadsStream.toArray();
+      const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+
+      if (quads.length === 0) {
+        resultsMessage.textContent = 'No triples constructed.';
+        queryTime.textContent = `(${elapsed}s)`;
+        runBtn.disabled = false;
+        runBtn.textContent = 'Run Query';
+        return;
+      }
+
+      // Build header for triples
+      resultsHead.innerHTML = '<tr>' +
+        '<th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Subject</th>' +
+        '<th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Predicate</th>' +
+        '<th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Object</th>' +
+        '</tr>';
+
+      // Build body
+      resultsBody.innerHTML = quads.map(quad => {
+        return '<tr style="border-bottom: 1px solid #eee;">' +
+          `<td style="padding: 10px; word-break: break-all; max-width: 300px;">${formatTerm(quad.subject)}</td>` +
+          `<td style="padding: 10px; word-break: break-all; max-width: 300px;">${formatTerm(quad.predicate)}</td>` +
+          `<td style="padding: 10px; word-break: break-all; max-width: 300px;">${formatTerm(quad.object)}</td>` +
+          '</tr>';
+      }).join('');
+
+      resultsTable.style.display = 'table';
+      resultsMessage.textContent = '';
+      queryTime.textContent = `${quads.length} triples (${elapsed}s)`;
+
+      // Store for CSV export (as pseudo-bindings)
+      lastVars = ['subject', 'predicate', 'object'];
+      lastResults = quads.map(q => ({
+        get: (v) => v === 'subject' ? q.subject : v === 'predicate' ? q.predicate : q.object
+      }));
+      document.getElementById('export-btn').style.display = 'inline-block';
+
+    } else {
+      resultsMessage.textContent = `Unsupported query type: ${queryType}`;
     }
-
-    // Get variable names
-    const vars = [...bindings[0].keys()].map(v => v.value);
-
-    // Build header
-    resultsHead.innerHTML = '<tr>' + vars.map(v =>
-      `<th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">${escapeHtml(v)}</th>`
-    ).join('') + '</tr>';
-
-    // Build body
-    resultsBody.innerHTML = bindings.map(binding => {
-      return '<tr style="border-bottom: 1px solid #eee;">' + vars.map(v => {
-        const term = binding.get(v);
-        const value = term ? formatTerm(term) : '';
-        return `<td style="padding: 10px; word-break: break-all; max-width: 400px;">${value}</td>`;
-      }).join('') + '</tr>';
-    }).join('');
-
-    resultsTable.style.display = 'table';
-    resultsMessage.textContent = '';
-    queryTime.textContent = `${bindings.length} results (${elapsed}s)`;
-
-    // Store for CSV export
-    lastResults = bindings;
-    lastVars = vars;
-    document.getElementById('export-btn').style.display = 'inline-block';
   } catch (e) {
     resultsMessage.textContent = `Error: ${e.message}`;
     resultsMessage.style.color = '#c62828';
