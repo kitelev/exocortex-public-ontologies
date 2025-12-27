@@ -39,7 +39,8 @@ python scripts/test_all_ontologies.py
 ./scripts/install-hooks.sh
 
 # Generate statistics report
-python scripts/stats.py [--json]
+python scripts/stats.py [--json] [--markdown] [-o OUTPUT_FILE]
+# Example: python scripts/stats.py --markdown -o docs/stats.md
 
 # Run tests
 pip install pytest

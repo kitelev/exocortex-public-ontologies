@@ -146,8 +146,104 @@ def get_alias_for_uuid(uuid: str, repo_root: Path) -> str:
     return uuid[:8] + "..."
 
 
-def print_stats(stats: Dict[str, Any], repo_root: Path, as_json: bool = False) -> None:
-    """Print statistics in human-readable or JSON format."""
+def print_stats_markdown(stats: Dict[str, Any], repo_root: Path) -> None:
+    """Print statistics in markdown format for docs/stats.md."""
+    from datetime import datetime, timezone
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+    print("---")
+    print("layout: default")
+    print("title: Statistics")
+    print("---")
+    print()
+    print("# Ontology Statistics")
+    print()
+    print(f"*Auto-generated on {timestamp}*")
+    print()
+
+    # Overview table
+    print("## Overview")
+    print()
+    print("| Metric | Count |")
+    print("|--------|-------|")
+    print(f"| Total Files | **{stats['total_files']:,}** |")
+    print(f"| Statements (triples) | {stats['by_type'].get('statement', 0):,} |")
+    print(f"| Anchors (resources) | {len(stats['all_anchors']):,} |")
+    print(f"| Blank Nodes | {stats['by_type'].get('blank_node', 0):,} |")
+    print(f"| Namespaces | {len(stats['by_namespace'])} |")
+    print()
+
+    # By namespace table
+    print("## By Namespace")
+    print()
+    print("| Namespace | Triples | Anchors | Blank Nodes | Total Files |")
+    print("|-----------|---------|---------|-------------|-------------|")
+
+    for ns in sorted(stats["by_namespace"].keys(),
+                     key=lambda x: -stats["by_namespace"][x]["files"]):
+        ns_stats = stats["by_namespace"][ns]
+        stmts = ns_stats["statements"]
+        anchors = ns_stats["anchors"]
+        bnodes = ns_stats["blank_nodes"]
+        files = ns_stats["files"]
+        print(f"| `{ns}` | {stmts:,} | {anchors:,} | {bnodes:,} | {files:,} |")
+    print()
+
+    # Top predicates table
+    print("## Top Predicates")
+    print()
+    print("| Predicate | Usage Count |")
+    print("|-----------|-------------|")
+
+    for uuid, count in stats["predicates"].most_common(15):
+        alias = get_alias_for_uuid(uuid, repo_root)
+        print(f"| `{alias}` | {count:,} |")
+    print()
+
+    # SPARQL Endpoint section
+    print("## SPARQL Endpoint")
+    print()
+    print("The ontology data is available for client-side SPARQL queries via the [SPARQL Query Interface](sparql.html).")
+    print()
+    print("| Metric | Value |")
+    print("|--------|-------|")
+    print("| Data Format | N-Triples (`.nt`) |")
+    print(f"| Total Triples | ~{stats['by_type'].get('statement', 0) // 100 * 100:,} |")
+    print("| File Size | ~4.2 MB |")
+    print("| Query Engine | [Comunica](https://comunica.dev/) (browser-based) |")
+    print("| SPARQL Version | 1.1 |")
+    print()
+    print("### Query Features")
+    print()
+    print("- **SELECT** — Tabular results with bindings")
+    print("- **ASK** — Boolean yes/no queries")
+    print("- **CONSTRUCT** — Create RDF graphs from patterns")
+    print(f"- **Prefix Support** — All {len(stats['by_namespace'])} ontology prefixes pre-loaded")
+    print()
+    print("### Example Queries")
+    print()
+    print("```sparql")
+    print("# Count all classes")
+    print("SELECT (COUNT(?c) AS ?count)")
+    print("WHERE { ?c a owl:Class . }")
+    print("```")
+    print()
+    print("```sparql")
+    print("# Check if a resource exists")
+    print("ASK { foaf:Person rdfs:label ?label . }")
+    print("```")
+    print()
+    print("See [SPARQL Query Interface](sparql.html) for more examples.")
+    print()
+
+
+def print_stats(stats: Dict[str, Any], repo_root: Path, as_json: bool = False, as_markdown: bool = False) -> None:
+    """Print statistics in human-readable, JSON, or markdown format."""
+    if as_markdown:
+        print_stats_markdown(stats, repo_root)
+        return
+
     if as_json:
         # Convert sets and counters to JSON-serializable format
         output = {
@@ -221,10 +317,24 @@ def print_stats(stats: Dict[str, Any], repo_root: Path, as_json: bool = False) -
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate ontology statistics")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
+    parser.add_argument("--markdown", action="store_true", help="Output as markdown for docs/stats.md")
+    parser.add_argument("-o", "--output", type=str, help="Write output to file instead of stdout")
     args = parser.parse_args()
 
     stats = collect_stats(REPO_ROOT)
-    print_stats(stats, REPO_ROOT, args.json)
+
+    if args.output:
+        import sys
+        from io import StringIO
+        old_stdout = sys.stdout
+        sys.stdout = StringIO()
+        print_stats(stats, REPO_ROOT, args.json, args.markdown)
+        output = sys.stdout.getvalue()
+        sys.stdout = old_stdout
+        Path(args.output).write_text(output, encoding="utf-8")
+        print(f"Written to {args.output}")
+    else:
+        print_stats(stats, REPO_ROOT, args.json, args.markdown)
 
 
 if __name__ == "__main__":
