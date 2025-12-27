@@ -279,8 +279,8 @@ Complete property hierarchy across all ontologies.
 - ⚙️ `foaf:fundedBy`
 - 📝 `foaf:geekcode`
 - ⚙️ `foaf:gender`
-- 📝 `foaf:givenname`
 - ⚙️ `foaf:givenName`
+- 📝 `foaf:givenname`
 - 🔗 `foaf:holdsAccount`
 - ⚙️ `foaf:interest`
 - ⚙️ `foaf:jabberID`

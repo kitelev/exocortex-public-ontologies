@@ -5,7 +5,7 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2025-12-27 09:41 UTC*
+*Auto-generated on 2025-12-27 10:23 UTC*
 
 ## Overview
 
