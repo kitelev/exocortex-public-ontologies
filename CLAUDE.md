@@ -42,6 +42,11 @@ python scripts/test_all_ontologies.py
 python scripts/stats.py [--json] [--markdown] [-o OUTPUT_FILE]
 # Example: python scripts/stats.py --markdown -o docs/stats.md
 
+# Lint SPARQL queries
+python scripts/sparql_lint.py "SELECT ?s WHERE { ?s ?p ?o } LIMIT 10"
+python scripts/sparql_lint.py -f query.sparql  # from file
+echo "SELECT * WHERE { ?s ?p ?o }" | python scripts/sparql_lint.py -  # from stdin
+
 # Run tests
 pip install pytest
 pytest tests/ -v
