@@ -42,7 +42,7 @@ echo "Installing simple pre-commit hook..."
 
 cat > "$HOOKS_DIR/pre-commit" << 'EOF'
 #!/bin/bash
-# Pre-commit hook: validate ontology integrity
+# Pre-commit hook: validate ontology integrity and SPARQL examples
 
 echo "Running ontology validation..."
 
@@ -51,12 +51,27 @@ exit_code=$?
 
 if [ $exit_code -ne 0 ]; then
     echo ""
-    echo "❌ Commit blocked: validation failed"
+    echo "❌ Commit blocked: ontology validation failed"
     echo "Fix the issues above and try again."
     exit 1
 fi
 
 echo "✅ Validation passed"
+
+# Check SPARQL examples in documentation
+echo ""
+echo "Checking SPARQL examples in documentation..."
+
+python3 scripts/lint_sparql_examples.py
+sparql_exit_code=$?
+
+if [ $sparql_exit_code -ne 0 ]; then
+    echo ""
+    echo "❌ Commit blocked: SPARQL examples have errors"
+    echo "Fix the issues above and try again."
+    exit 1
+fi
+
 exit 0
 EOF
 
