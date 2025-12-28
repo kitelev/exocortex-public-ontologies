@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[93e3c78d-157e-5cca-8a76-cd3dd38635a1]]"
+predicate: "[[dc0b7002-165a-5d8d-be11-a10c11eadf18]]"
+object: "\"kt\""
+aliases:
+  - "? skos:altLabel kt"
+---

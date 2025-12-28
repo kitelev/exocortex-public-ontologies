@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[2b1e97f1-edd6-50c0-88ab-be8896fe0333]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Amper pe Metru Pătrat\"@ro"
+aliases:
+  - "? rdfs:label Amper pe Metru Pătrat"
+---

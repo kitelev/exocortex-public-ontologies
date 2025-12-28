@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[e5cd7529-eb77-56f8-ba71-79afa21337ed]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Ounce Mass per Imperial Gallon\""
+aliases:
+  - "? rdfs:label Ounce Mass per Imperial Gallon"
+---

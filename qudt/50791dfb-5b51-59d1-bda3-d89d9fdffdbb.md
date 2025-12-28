@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[8b444fd6-85d6-56a8-a6b7-f8f73de31524]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Number per Square Metre\""
+aliases:
+  - "? rdfs:label Number per Square Metre"
+---

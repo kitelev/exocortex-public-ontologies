@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[f634b73e-674e-5cc5-a9b8-66cd4c03a6f0]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Statcoulomb\"@en"
+aliases:
+  - "? rdfs:label Statcoulomb"
+---

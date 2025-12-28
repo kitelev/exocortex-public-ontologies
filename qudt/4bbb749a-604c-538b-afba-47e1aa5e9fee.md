@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[0ab2af45-d05c-527d-8fe2-0509629f9ae3]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilogram na Dżul\"@pl"
+aliases:
+  - "? rdfs:label Kilogram na Dżul"
+---

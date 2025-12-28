@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[63d8dead-85d7-5919-9163-19814ee81bbc]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Thermochemical Calorie per Square Centimetre\"@en"
+aliases:
+  - "? rdfs:label Thermochemical Calorie per Squ..."
+---

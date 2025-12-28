@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[31a2c5ae-09d1-578a-8432-67fef44c2cdb]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilogramo por Mol\"@es"
+aliases:
+  - "? rdfs:label Kilogramo por Mol"
+---

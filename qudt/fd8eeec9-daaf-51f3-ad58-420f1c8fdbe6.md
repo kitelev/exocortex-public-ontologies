@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[c9d37b64-92ce-5f17-ad6c-524c68aa02e6]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Jamaican Dollar\"@en"
+aliases:
+  - "? rdfs:label Jamaican Dollar"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[d0c0db76-a81f-55ce-8763-8a3ee16f53bb]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Arcsecond\""
+aliases:
+  - "? rdfs:label Arcsecond"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[3caecf6a-4b09-5fe6-93ff-789164f69434]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilogram per Metre Hour\""
+aliases:
+  - "? rdfs:label Kilogram per Metre Hour"
+---

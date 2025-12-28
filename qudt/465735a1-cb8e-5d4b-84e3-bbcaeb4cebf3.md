@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[b0d95c96-4b23-58b0-831a-183ed84aa1ef]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Ounce Mass\"@en"
+aliases:
+  - "? rdfs:label Ounce Mass"
+---

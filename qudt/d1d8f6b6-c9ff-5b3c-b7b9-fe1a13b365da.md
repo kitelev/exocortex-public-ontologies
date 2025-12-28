@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[fba895ef-a6d1-591b-8429-486ae3282d77]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Number per Cubic Millimeter\"@en-US"
+aliases:
+  - "? rdfs:label Number per Cubic Millimeter"
+---

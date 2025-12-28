@@ -1,0 +1,6 @@
+---
+metadata: anchor
+uri: http://qudt.org/vocab/unit/OZ-HR-PER-IN3-YD3
+aliases:
+  - OZ-HR-PER-IN3-YD3
+---

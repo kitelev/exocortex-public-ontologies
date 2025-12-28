@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[b2902ae1-df0b-5616-82bf-c174af5ff039]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Gram per Square Metre Day\""
+aliases:
+  - "? rdfs:label Gram per Square Metre Day"
+---

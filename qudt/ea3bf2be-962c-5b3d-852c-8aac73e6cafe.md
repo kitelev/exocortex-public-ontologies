@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[1db4ecd0-ff69-55a5-b089-3ad0e00d1290]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Metr Kwadratowy na Metr Kwadratowy\"@pl"
+aliases:
+  - "? rdfs:label Metr Kwadratowy na Metr Kwadra..."
+---

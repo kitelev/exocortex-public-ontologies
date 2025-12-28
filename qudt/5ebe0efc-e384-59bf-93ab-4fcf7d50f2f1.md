@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[fd719bb3-60b7-5793-87bf-6ca029b2cfdf]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Milliosmole\""
+aliases:
+  - "? rdfs:label Milliosmole"
+---

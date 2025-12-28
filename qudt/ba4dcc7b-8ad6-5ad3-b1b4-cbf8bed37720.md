@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[c45e1c5e-4909-5d4d-805e-a836290790b7]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Microfarad par Mètre\"@fr"
+aliases:
+  - "? rdfs:label Microfarad par Mètre"
+---

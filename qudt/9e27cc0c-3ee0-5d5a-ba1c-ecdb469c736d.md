@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[ae889a06-480a-5a0b-a336-966fb1f19724]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilohertz Metru\"@ro"
+aliases:
+  - "? rdfs:label Kilohertz Metru"
+---

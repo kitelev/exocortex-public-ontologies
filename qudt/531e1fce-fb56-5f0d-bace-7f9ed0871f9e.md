@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[3b9b7dca-35ec-5f79-95ba-76de650fcadf]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Millijoule per Meter Persegi\"@ms"
+aliases:
+  - "? rdfs:label Millijoule per Meter Persegi"
+---

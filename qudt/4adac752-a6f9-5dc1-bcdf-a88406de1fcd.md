@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[89ebf5ab-8ba9-56fe-83a3-6ea3c80755f4]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Foot per Hour\""
+aliases:
+  - "? rdfs:label Foot per Hour"
+---

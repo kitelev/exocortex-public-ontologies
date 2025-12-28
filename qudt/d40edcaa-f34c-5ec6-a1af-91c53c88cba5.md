@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[78798aa1-bdcb-57f0-aea8-d4eb86ff3355]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Megavolt\"@de"
+aliases:
+  - "? rdfs:label Megavolt"
+---

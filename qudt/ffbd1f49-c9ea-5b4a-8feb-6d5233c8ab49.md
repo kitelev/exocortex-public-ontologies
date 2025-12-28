@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[d3fc3766-e5c0-5e0c-b845-b81a590bbd9d]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"प्रति मीटर सीमैन्स\"@hi"
+aliases:
+  - "? rdfs:label प्रति मीटर सीमैन्स"
+---

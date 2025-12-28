@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[d62e66bb-f4cf-5a42-9f6f-561f105dd9c6]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Degree Brix\"@en"
+aliases:
+  - "? rdfs:label Degree Brix"
+---

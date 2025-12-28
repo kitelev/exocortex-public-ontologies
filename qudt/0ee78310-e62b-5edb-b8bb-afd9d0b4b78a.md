@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[9f39e960-2c64-53e3-bc65-4374f39b5f51]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Metrology Year\"@en"
+aliases:
+  - "? rdfs:label Metrology Year"
+---

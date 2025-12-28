@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[27784b13-f8b7-5b47-875a-87f13de1cde9]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Millijoule pro Gramm\"@de"
+aliases:
+  - "? rdfs:label Millijoule pro Gramm"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[167de6aa-22ae-5b79-8f99-14c5468307c3]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Ampere pro Grad Celsius\"@de"
+aliases:
+  - "? rdfs:label Ampere pro Grad Celsius"
+---

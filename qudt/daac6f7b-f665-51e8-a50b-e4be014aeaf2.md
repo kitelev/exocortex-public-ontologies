@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[268d6942-6d57-5bac-9042-f4cf615d72f3]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Pebibit per Metre\"@en"
+aliases:
+  - "? rdfs:label Pebibit per Metre"
+---

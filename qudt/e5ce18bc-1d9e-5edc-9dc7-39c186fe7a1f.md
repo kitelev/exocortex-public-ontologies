@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[ca14d08a-41b6-5ac5-9d79-d96be1351305]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Luks\"@pl"
+aliases:
+  - "? rdfs:label Luks"
+---

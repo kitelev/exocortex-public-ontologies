@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[1e936211-6408-5cd5-8893-663c44d43e70]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilomole per Minute\""
+aliases:
+  - "? rdfs:label Kilomole per Minute"
+---

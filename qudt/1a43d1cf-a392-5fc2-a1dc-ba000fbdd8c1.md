@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[a79818cf-51c0-54be-a81e-b0f4d6cc10a7]]"
+predicate: "[[4ef8b6c4-6afb-534f-8410-49cb8f09b3ec]]"
+object: "[[e728730c-00ea-5cf9-af66-a550e51b9717]]"
+aliases:
+  - "? ? ?"
+---

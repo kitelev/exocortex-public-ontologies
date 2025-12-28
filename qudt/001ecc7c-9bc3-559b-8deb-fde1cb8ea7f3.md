@@ -1,0 +1,6 @@
+---
+metadata: blank_node
+uri: http://qudt.org/vocab/unit/.well-known/genid/0b844528
+aliases:
+  - "_:genid-0b844528"
+---

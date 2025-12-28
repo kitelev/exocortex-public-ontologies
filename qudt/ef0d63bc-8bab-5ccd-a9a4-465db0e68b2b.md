@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[3e7b4b97-5daa-5655-b971-316419980c03]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Volt Ampere Reactive Hour\""
+aliases:
+  - "? rdfs:label Volt Ampere Reactive Hour"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[03b25e9a-7cef-5ade-b7f3-d5f82115dfc3]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Becquerel pe Kilogram\"@ro"
+aliases:
+  - "? rdfs:label Becquerel pe Kilogram"
+---

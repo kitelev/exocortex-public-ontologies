@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[7e66beee-f6b0-5637-a554-d3506d689000]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Joule na Mol\"@sl"
+aliases:
+  - "? rdfs:label Joule na Mol"
+---

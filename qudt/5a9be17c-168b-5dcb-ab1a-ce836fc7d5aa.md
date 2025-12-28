@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[c423f830-6660-5d01-ab4d-cc6929ac58fb]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Degree Fahrenheit Second per British Thermal Unit (thermochemical Definition)\""
+aliases:
+  - "? rdfs:label Degree Fahrenheit Second per B..."
+---

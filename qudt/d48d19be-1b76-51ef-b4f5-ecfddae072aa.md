@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[a1666768-6ce7-5a2f-ac1a-10e8ab3d5b2c]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Bangladeshi Taka\""
+aliases:
+  - "? rdfs:label Bangladeshi Taka"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[ad7f8f2d-15e8-561b-be1f-373ac83ec0b9]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Gallon (UK) per Hour\"@en"
+aliases:
+  - "? rdfs:label Gallon (UK) per Hour"
+---

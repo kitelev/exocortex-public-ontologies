@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[e299bb79-004b-52b3-a4c9-f8a739b881bf]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kiloamper pe Metru\"@ro"
+aliases:
+  - "? rdfs:label Kiloamper pe Metru"
+---

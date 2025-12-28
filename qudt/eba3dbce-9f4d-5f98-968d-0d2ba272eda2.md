@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[725905c5-564b-595d-aaaa-8feb32fe20eb]]"
+predicate: "[[7ca27fa6-5155-5f73-97ae-5997374856a2]]"
+object: "\"Tbl\""
+aliases:
+  - "? ? Tbl"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[7cfb1c8e-b59c-5065-8148-81811a44fa09]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Milligray\"@ms"
+aliases:
+  - "? rdfs:label Milligray"
+---

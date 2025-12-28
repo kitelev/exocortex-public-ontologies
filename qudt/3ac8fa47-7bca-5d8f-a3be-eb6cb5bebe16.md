@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[f6450e8a-db14-5e3a-8cc3-104122cdc667]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Coulomb per Square Centimetre\""
+aliases:
+  - "? rdfs:label Coulomb per Square Centimetre"
+---

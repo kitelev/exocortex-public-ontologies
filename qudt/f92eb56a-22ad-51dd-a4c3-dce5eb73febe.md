@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[2d9dcd0c-d1f9-57b7-a278-e39552b24cfd]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Pound Mass Hour per Gallon (UK) Cubic Foot\"@en"
+aliases:
+  - "? rdfs:label Pound Mass Hour per Gallon (UK..."
+---

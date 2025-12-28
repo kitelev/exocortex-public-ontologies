@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[031bb99e-e99a-5794-a24c-66e6203c21db]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Centimètre Carré par Seconde\"@fr"
+aliases:
+  - "? rdfs:label Centimètre Carré par Seconde"
+---

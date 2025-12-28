@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[ed582476-6199-5736-86d8-5638e095883b]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Mol na Kilogram Kelwin\"@pl"
+aliases:
+  - "? rdfs:label Mol na Kilogram Kelwin"
+---

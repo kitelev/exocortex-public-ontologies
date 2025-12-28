@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[7094e296-ddc6-511e-8f2a-a1e9273db72a]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Dalasi\""
+aliases:
+  - "? rdfs:label Dalasi"
+---

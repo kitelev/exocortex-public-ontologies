@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[32d8a6e4-889b-5092-9f9a-13c152b88e05]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Litre per Hectare\"@en"
+aliases:
+  - "? rdfs:label Litre per Hectare"
+---

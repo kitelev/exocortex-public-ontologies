@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[abb39bf7-7e53-590a-afd8-5088c14233eb]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilocoulomb per Cubic Meter\"@en-US"
+aliases:
+  - "? rdfs:label Kilocoulomb per Cubic Meter"
+---

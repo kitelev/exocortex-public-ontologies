@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[80a423e7-17c3-546f-8085-fa732b37409e]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Microradián\"@es"
+aliases:
+  - "? rdfs:label Microradián"
+---

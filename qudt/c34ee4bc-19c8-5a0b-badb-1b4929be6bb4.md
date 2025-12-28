@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[eb17891a-3f4a-57f7-91ae-5364603ffba0]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Weber per Millimetro\"@it"
+aliases:
+  - "? rdfs:label Weber per Millimetro"
+---

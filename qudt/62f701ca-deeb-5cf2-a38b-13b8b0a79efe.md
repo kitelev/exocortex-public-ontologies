@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[469e9d6f-62ff-53a0-9ace-4582ec961838]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Newton Metre per Arcminute\"@en"
+aliases:
+  - "? rdfs:label Newton Metre per Arcminute"
+---

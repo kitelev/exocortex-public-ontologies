@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[82c716e8-954c-527f-a755-f64c88150efd]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Kilogram Kvadratni Centimeter\"@sl"
+aliases:
+  - "? rdfs:label Kilogram Kvadratni Centimeter"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[29d0041d-ce12-5b3c-97fe-f10a11e5a600]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Statampere per Square Centimeter\"@en-US"
+aliases:
+  - "? rdfs:label Statampere per Square Centimet..."
+---

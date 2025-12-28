@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[60bdefc5-b50c-5020-95c7-e1f8f8a7d03e]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Килограм на Квадратен Метър Паскал Секунда\"@bg"
+aliases:
+  - "? rdfs:label Килограм на Квадратен Метър Па..."
+---

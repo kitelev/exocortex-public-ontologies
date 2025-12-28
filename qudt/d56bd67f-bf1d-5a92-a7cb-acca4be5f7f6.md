@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[206210a1-2177-5a3c-a015-36cafbf3a5ab]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Gamma\""
+aliases:
+  - "? rdfs:label Gamma"
+---

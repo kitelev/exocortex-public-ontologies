@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[f6d64151-fc83-5995-b48c-0fc8bb64a36a]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Na Centimetr Sześcienny\"@pl"
+aliases:
+  - "? rdfs:label Na Centimetr Sześcienny"
+---

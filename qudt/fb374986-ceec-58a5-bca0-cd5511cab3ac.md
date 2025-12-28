@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[f9b7fd9f-6d9a-5b1e-bbb7-ac2adda29b10]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Megacoulomb\"@tr"
+aliases:
+  - "? rdfs:label Megacoulomb"
+---

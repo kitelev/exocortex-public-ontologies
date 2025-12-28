@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[3e319845-3a27-527e-ad13-a1e41cd9d0f0]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Κέλβιν ανά Βατ\"@el"
+aliases:
+  - "? rdfs:label Κέλβιν ανά Βατ"
+---

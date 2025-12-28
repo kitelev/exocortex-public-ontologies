@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[baab989b-018e-5d5e-954c-7cf0b49b1683]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Denar\""
+aliases:
+  - "? rdfs:label Denar"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[85f51fc6-962e-5c5e-a5e5-41ad1bdce849]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Joule pro Kilogramm Kelvin Pascal\"@de"
+aliases:
+  - "? rdfs:label Joule pro Kilogramm Kelvin Pas..."
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[c611b97c-5c43-5405-9113-fb8f17a26f2f]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"Megaampere\""
+aliases:
+  - "? rdfs:label Megaampere"
+---
