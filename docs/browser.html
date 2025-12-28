@@ -112,11 +112,29 @@
             pointer-events: none;
         }
         .link {
-            stroke-opacity: 0.4;
+            stroke-opacity: 0.6;
             fill: none;
+            cursor: pointer;
         }
         .link:hover {
             stroke-opacity: 1;
+            stroke-width: 3px !important;
+        }
+        .link.subClassOf {
+            stroke: #f0883e;
+        }
+        .link.subPropertyOf {
+            stroke: #a371f7;
+        }
+        .link.domain {
+            stroke: #3fb950;
+        }
+        .link.range {
+            stroke: #58a6ff;
+        }
+        .link.type {
+            stroke: #8b949e;
+            stroke-dasharray: 2,2;
         }
         #tooltip {
             position: absolute;
@@ -241,6 +259,7 @@
             </div>
 
             <div class="legend">
+                <div style="margin-bottom: 8px; color: #8b949e; font-weight: bold;">Node Types</div>
                 <div class="legend-item">
                     <div class="legend-circle" style="background: #388bfd;"></div>
                     <span>Classes</span>
@@ -252,6 +271,27 @@
                 <div class="legend-item">
                     <div class="legend-circle" style="background: #f78166;"></div>
                     <span>Datatypes</span>
+                </div>
+                <div style="margin: 12px 0 8px; color: #8b949e; font-weight: bold;">Relationships</div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 2px; background: #f0883e;"></div>
+                    <span>subClassOf</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 2px; background: #a371f7;"></div>
+                    <span>subPropertyOf</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 2px; background: #3fb950;"></div>
+                    <span>domain</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 2px; background: #58a6ff;"></div>
+                    <span>range</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 2px; background: #8b949e; border-style: dashed;"></div>
+                    <span>type</span>
                 </div>
             </div>
         </div>
@@ -286,12 +326,25 @@
             return 'class';
         }
 
+        // Relationship colors
+        const relationColors = {
+            'subClassOf': '#f0883e',
+            'subPropertyOf': '#a371f7',
+            'domain': '#3fb950',
+            'range': '#58a6ff',
+            'type': '#8b949e'
+        };
+
         // Main app
         class OntologyBrowser {
             constructor() {
-                this.data = [];
-                this.filteredData = [];
+                this.nodes = [];
+                this.links = [];
+                this.nodeMap = new Map();
+                this.filteredNodes = [];
+                this.filteredLinks = [];
                 this.selectedNamespaces = new Set();
+                this.selectedRelTypes = new Set(['subClassOf', 'subPropertyOf', 'domain', 'range']);
                 this.simulation = null;
                 this.svg = null;
                 this.g = null;
@@ -303,6 +356,7 @@
             async init() {
                 await this.loadData();
                 this.setupNamespaces();
+                this.setupRelationFilters();
                 this.setupSearch();
                 this.setupGraph();
                 this.setupControls();
@@ -311,10 +365,12 @@
 
             async loadData() {
                 try {
-                    const response = await fetch('search-index.json');
-                    this.data = await response.json();
-                    // Filter out namespaces (t:'n'), keep only anchors (t:'a')
-                    this.data = this.data.filter(d => d.t === 'a');
+                    const response = await fetch('graph-data.json');
+                    const data = await response.json();
+                    this.nodes = data.nodes;
+                    this.links = data.links;
+                    // Build node lookup map
+                    this.nodes.forEach(n => this.nodeMap.set(n.id, n));
                     document.getElementById('loading').style.display = 'none';
                 } catch (error) {
                     console.error('Failed to load data:', error);
@@ -324,7 +380,7 @@
             }
 
             setupNamespaces() {
-                const namespaces = [...new Set(this.data.map(d => d.p))].sort();
+                const namespaces = [...new Set(this.nodes.map(d => d.prefix))].sort();
                 const container = document.getElementById('namespace-list');
 
                 namespaces.forEach(ns => {
@@ -334,6 +390,39 @@
                     btn.style.borderColor = namespaceColors[ns] || '#30363d';
                     btn.onclick = () => this.toggleNamespace(ns, btn);
                     container.appendChild(btn);
+                });
+            }
+
+            setupRelationFilters() {
+                // Insert relation type checkboxes into sidebar
+                const sidebar = document.getElementById('sidebar');
+                const statsDiv = document.getElementById('stats');
+
+                const relSection = document.createElement('div');
+                relSection.innerHTML = `
+                    <h2>Relationship Types</h2>
+                    <div id="rel-filters" style="display: flex; flex-direction: column; gap: 4px;">
+                        ${Object.keys(relationColors).map(rel => `
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                <input type="checkbox" value="${rel}" ${rel !== 'type' ? 'checked' : ''}>
+                                <span style="width: 16px; height: 2px; background: ${relationColors[rel]};${rel === 'type' ? 'border-style: dashed;' : ''}"></span>
+                                <span style="font-size: 12px;">${rel}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                sidebar.insertBefore(relSection, statsDiv);
+
+                // Add event listeners
+                relSection.querySelectorAll('input').forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        if (cb.checked) {
+                            this.selectedRelTypes.add(cb.value);
+                        } else {
+                            this.selectedRelTypes.delete(cb.value);
+                        }
+                        this.updateGraph();
+                    });
                 });
             }
 
@@ -407,25 +496,44 @@
             }
 
             updateGraph() {
-                // Filter data
-                let filtered = this.data.filter(d =>
-                    this.selectedNamespaces.has(d.p)
+                // Filter nodes by selected namespaces
+                let filteredNodes = this.nodes.filter(n =>
+                    this.selectedNamespaces.has(n.prefix)
                 );
 
                 if (this.searchQuery) {
-                    filtered = filtered.filter(d =>
-                        d.a.toLowerCase().includes(this.searchQuery) ||
-                        d.u.toLowerCase().includes(this.searchQuery)
+                    filteredNodes = filteredNodes.filter(n =>
+                        n.alias.toLowerCase().includes(this.searchQuery) ||
+                        n.uri.toLowerCase().includes(this.searchQuery)
                     );
                 }
 
-                // Limit nodes for performance
-                const maxNodes = 200;
-                if (filtered.length > maxNodes) {
-                    filtered = filtered.slice(0, maxNodes);
+                // Build set of visible node IDs
+                const visibleNodeIds = new Set(filteredNodes.map(n => n.id));
+
+                // Filter links: both source and target must be visible, and type must be selected
+                let filteredLinks = this.links.filter(l =>
+                    visibleNodeIds.has(l.source) &&
+                    visibleNodeIds.has(l.target) &&
+                    this.selectedRelTypes.has(l.type)
+                );
+
+                // Limit for performance
+                const maxNodes = 300;
+                const maxLinks = 500;
+                if (filteredNodes.length > maxNodes) {
+                    filteredNodes = filteredNodes.slice(0, maxNodes);
+                    const limitedIds = new Set(filteredNodes.map(n => n.id));
+                    filteredLinks = filteredLinks.filter(l =>
+                        limitedIds.has(l.source) && limitedIds.has(l.target)
+                    );
+                }
+                if (filteredLinks.length > maxLinks) {
+                    filteredLinks = filteredLinks.slice(0, maxLinks);
                 }
 
-                this.filteredData = filtered;
+                this.filteredNodes = filteredNodes;
+                this.filteredLinks = filteredLinks;
                 this.renderGraph();
                 this.updateStats();
             }
@@ -435,27 +543,26 @@
                 const width = container.clientWidth;
                 const height = container.clientHeight;
 
-                // Create nodes
-                const nodes = this.filteredData.map(d => ({
-                    id: d.a,
-                    alias: d.a,
-                    uri: d.u,
-                    prefix: d.p,
-                    type: getNodeType(d.a)
+                // Create nodes with type info
+                const nodes = this.filteredNodes.map(n => ({
+                    id: n.id,
+                    alias: n.alias,
+                    uri: n.uri,
+                    prefix: n.prefix,
+                    type: getNodeType(n.alias)
                 }));
 
-                // Create links (simplified - connect nodes in same namespace)
-                const links = [];
-                const nodesByPrefix = d3.group(nodes, d => d.prefix);
-
-                nodesByPrefix.forEach((prefixNodes, prefix) => {
-                    for (let i = 0; i < Math.min(prefixNodes.length - 1, 50); i++) {
-                        links.push({
-                            source: prefixNodes[i].id,
-                            target: prefixNodes[i + 1].id
-                        });
-                    }
-                });
+                // Create links from real RDF relationships
+                const nodeIdSet = new Set(nodes.map(n => n.id));
+                const links = this.filteredLinks
+                    .filter(l => nodeIdSet.has(l.source) && nodeIdSet.has(l.target))
+                    .map(l => ({
+                        source: l.source,
+                        target: l.target,
+                        type: l.type,
+                        sourceAlias: l.source_alias,
+                        targetAlias: l.target_alias
+                    }));
 
                 // Clear previous
                 this.g.selectAll('*').remove();
@@ -466,18 +573,21 @@
 
                 // Create simulation
                 this.simulation = d3.forceSimulation(nodes)
-                    .force('link', d3.forceLink(links).id(d => d.id).distance(50))
-                    .force('charge', d3.forceManyBody().strength(-100))
+                    .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+                    .force('charge', d3.forceManyBody().strength(-150))
                     .force('center', d3.forceCenter(width / 2, height / 2))
-                    .force('collision', d3.forceCollide().radius(30));
+                    .force('collision', d3.forceCollide().radius(35));
 
-                // Draw links
+                // Draw links with relationship type colors
                 const link = this.g.append('g')
                     .selectAll('line')
                     .data(links)
                     .join('line')
-                    .attr('class', 'link')
-                    .attr('stroke', '#30363d');
+                    .attr('class', d => `link ${d.type}`)
+                    .attr('stroke', d => relationColors[d.type] || '#30363d')
+                    .attr('stroke-width', d => d.type === 'subClassOf' ? 2 : 1.5)
+                    .on('mouseover', (event, d) => this.showLinkTooltip(event, d))
+                    .on('mouseout', () => this.hideTooltip());
 
                 // Draw nodes
                 const node = this.g.append('g')
@@ -537,6 +647,18 @@
                 });
             }
 
+            showLinkTooltip(event, d) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.innerHTML = `
+                    <h3>${d.type}</h3>
+                    <div style="margin: 4px 0;">${d.sourceAlias} → ${d.targetAlias}</div>
+                    <div class="type" style="background: ${relationColors[d.type]}; color: white;">${d.type}</div>
+                `;
+                tooltip.style.left = (event.pageX + 10) + 'px';
+                tooltip.style.top = (event.pageY + 10) + 'px';
+                tooltip.classList.add('visible');
+            }
+
             showTooltip(event, d) {
                 const tooltip = document.getElementById('tooltip');
                 tooltip.innerHTML = `
@@ -555,15 +677,18 @@
 
             updateStats() {
                 const stats = document.getElementById('stats');
-                const total = this.data.length;
-                const shown = this.filteredData.length;
+                const totalNodes = this.nodes.length;
+                const totalLinks = this.links.length;
+                const shownNodes = this.filteredNodes.length;
+                const shownLinks = this.filteredLinks.length;
                 const namespaces = this.selectedNamespaces.size;
 
                 stats.innerHTML = `
-                    <div><strong>${shown}</strong> of ${total} resources shown</div>
+                    <div><strong>${shownNodes}</strong> of ${totalNodes} resources</div>
+                    <div><strong>${shownLinks}</strong> of ${totalLinks} relationships</div>
                     <div><strong>${namespaces}</strong> namespace(s) selected</div>
                     <div style="margin-top: 8px; color: #8b949e;">
-                        Click nodes to open URI. Drag to rearrange.
+                        Click nodes to open URI. Hover links for details.
                     </div>
                 `;
             }
