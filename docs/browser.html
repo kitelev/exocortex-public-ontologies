@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontology Browser - Exocortex</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            overflow: hidden;
+        }
+        #app {
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar {
+            width: 280px;
+            background: #161b22;
+            border-right: 1px solid #30363d;
+            padding: 16px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        #sidebar h1 {
+            font-size: 18px;
+            color: #58a6ff;
+            margin-bottom: 16px;
+        }
+        #sidebar h2 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #8b949e;
+            margin: 16px 0 8px;
+            letter-spacing: 0.5px;
+        }
+        .namespace-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .namespace-btn {
+            padding: 4px 8px;
+            font-size: 12px;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            background: #21262d;
+            color: #c9d1d9;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .namespace-btn:hover {
+            background: #30363d;
+            border-color: #58a6ff;
+        }
+        .namespace-btn.active {
+            background: #388bfd;
+            border-color: #58a6ff;
+            color: white;
+        }
+        #search {
+            width: 100%;
+            padding: 8px 12px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        #search:focus {
+            outline: none;
+            border-color: #58a6ff;
+        }
+        .stats {
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: 16px;
+            padding: 12px;
+            background: #0d1117;
+            border-radius: 6px;
+        }
+        .stats strong {
+            color: #c9d1d9;
+        }
+        #graph-container {
+            flex: 1;
+            position: relative;
+        }
+        #graph {
+            width: 100%;
+            height: 100%;
+        }
+        .node circle {
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: stroke-width 0.2s;
+        }
+        .node circle:hover {
+            stroke-width: 4px;
+        }
+        .node text {
+            font-size: 10px;
+            fill: #c9d1d9;
+            pointer-events: none;
+        }
+        .link {
+            stroke-opacity: 0.4;
+            fill: none;
+        }
+        .link:hover {
+            stroke-opacity: 1;
+        }
+        #tooltip {
+            position: absolute;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 300px;
+            z-index: 100;
+        }
+        #tooltip.visible {
+            opacity: 1;
+        }
+        #tooltip h3 {
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+        #tooltip .uri {
+            color: #8b949e;
+            font-size: 11px;
+            word-break: break-all;
+        }
+        #tooltip .type {
+            margin-top: 8px;
+            padding: 2px 6px;
+            background: #30363d;
+            border-radius: 3px;
+            display: inline-block;
+        }
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 11px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 4px 0;
+        }
+        .legend-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        .control-btn {
+            padding: 8px 12px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .control-btn:hover {
+            background: #30363d;
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #30363d;
+            border-top-color: #58a6ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar">
+            <h1>Ontology Browser</h1>
+
+            <input type="text" id="search" placeholder="Search classes and properties...">
+
+            <h2>Namespaces</h2>
+            <div class="namespace-list" id="namespace-list"></div>
+
+            <div class="stats" id="stats">
+                <div>Loading...</div>
+            </div>
+        </div>
+
+        <div id="graph-container">
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <div>Loading ontology data...</div>
+            </div>
+            <svg id="graph"></svg>
+            <div id="tooltip"></div>
+
+            <div class="controls">
+                <button class="control-btn" id="zoom-in">+</button>
+                <button class="control-btn" id="zoom-out">-</button>
+                <button class="control-btn" id="reset">Reset</button>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-circle" style="background: #388bfd;"></div>
+                    <span>Classes</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="background: #56d364;"></div>
+                    <span>Properties</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="background: #f78166;"></div>
+                    <span>Datatypes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Namespace colors
+        const namespaceColors = {
+            'rdf': '#e6194b', 'rdfs': '#3cb44b', 'owl': '#ffe119',
+            'xsd': '#4363d8', 'dc': '#f58231', 'dcterms': '#911eb4',
+            'skos': '#46f0f0', 'foaf': '#f032e6', 'prov': '#bcf60c',
+            'time': '#fabebe', 'geo': '#008080', 'vcard': '#e6beff',
+            'dcat': '#9a6324', 'org': '#fffac8', 'sh': '#800000',
+            'sosa': '#aaffc3', 'ssn': '#808000', 'as': '#ffd8b1',
+            'doap': '#000075', 'sioc': '#808080', 'void': '#ff6b6b',
+            'schema': '#4ecdc4', 'qudt': '#45b7d1', 'geosparql': '#96ceb4',
+            'vann': '#dda0dd', 'adms': '#98d8c8', 'grddl': '#f7dc6f'
+        };
+
+        // Type detection
+        function getNodeType(alias) {
+            const lower = alias.toLowerCase();
+            if (lower.includes('class') || /^[A-Z]/.test(alias.split(':')[1] || '')) {
+                return 'class';
+            }
+            if (lower.includes('property') || lower.includes('datatype')) {
+                return 'property';
+            }
+            if (alias.startsWith('xsd:')) {
+                return 'datatype';
+            }
+            return 'class';
+        }
+
+        // Main app
+        class OntologyBrowser {
+            constructor() {
+                this.data = [];
+                this.filteredData = [];
+                this.selectedNamespaces = new Set();
+                this.simulation = null;
+                this.svg = null;
+                this.g = null;
+                this.zoom = null;
+
+                this.init();
+            }
+
+            async init() {
+                await this.loadData();
+                this.setupNamespaces();
+                this.setupSearch();
+                this.setupGraph();
+                this.setupControls();
+                this.selectNamespace('rdfs');
+            }
+
+            async loadData() {
+                try {
+                    const response = await fetch('search-index.json');
+                    this.data = await response.json();
+                    // Filter out namespaces (t:'n'), keep only anchors (t:'a')
+                    this.data = this.data.filter(d => d.t === 'a');
+                    document.getElementById('loading').style.display = 'none';
+                } catch (error) {
+                    console.error('Failed to load data:', error);
+                    document.getElementById('loading').innerHTML =
+                        '<div style="color: #f85149;">Failed to load data</div>';
+                }
+            }
+
+            setupNamespaces() {
+                const namespaces = [...new Set(this.data.map(d => d.p))].sort();
+                const container = document.getElementById('namespace-list');
+
+                namespaces.forEach(ns => {
+                    const btn = document.createElement('button');
+                    btn.className = 'namespace-btn';
+                    btn.textContent = ns;
+                    btn.style.borderColor = namespaceColors[ns] || '#30363d';
+                    btn.onclick = () => this.toggleNamespace(ns, btn);
+                    container.appendChild(btn);
+                });
+            }
+
+            toggleNamespace(ns, btn) {
+                if (this.selectedNamespaces.has(ns)) {
+                    this.selectedNamespaces.delete(ns);
+                    btn.classList.remove('active');
+                } else {
+                    this.selectedNamespaces.add(ns);
+                    btn.classList.add('active');
+                }
+                this.updateGraph();
+            }
+
+            selectNamespace(ns) {
+                const btn = [...document.querySelectorAll('.namespace-btn')]
+                    .find(b => b.textContent === ns);
+                if (btn && !this.selectedNamespaces.has(ns)) {
+                    this.toggleNamespace(ns, btn);
+                }
+            }
+
+            setupSearch() {
+                const search = document.getElementById('search');
+                search.addEventListener('input', () => {
+                    this.searchQuery = search.value.toLowerCase();
+                    this.updateGraph();
+                });
+            }
+
+            setupGraph() {
+                const container = document.getElementById('graph-container');
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+
+                this.svg = d3.select('#graph')
+                    .attr('width', width)
+                    .attr('height', height);
+
+                this.zoom = d3.zoom()
+                    .scaleExtent([0.1, 4])
+                    .on('zoom', (event) => {
+                        this.g.attr('transform', event.transform);
+                    });
+
+                this.svg.call(this.zoom);
+                this.g = this.svg.append('g');
+
+                // Resize handler
+                window.addEventListener('resize', () => {
+                    const w = container.clientWidth;
+                    const h = container.clientHeight;
+                    this.svg.attr('width', w).attr('height', h);
+                    if (this.simulation) {
+                        this.simulation.force('center', d3.forceCenter(w / 2, h / 2));
+                        this.simulation.alpha(0.3).restart();
+                    }
+                });
+            }
+
+            setupControls() {
+                document.getElementById('zoom-in').onclick = () => {
+                    this.svg.transition().call(this.zoom.scaleBy, 1.5);
+                };
+                document.getElementById('zoom-out').onclick = () => {
+                    this.svg.transition().call(this.zoom.scaleBy, 0.67);
+                };
+                document.getElementById('reset').onclick = () => {
+                    this.svg.transition().call(this.zoom.transform, d3.zoomIdentity);
+                };
+            }
+
+            updateGraph() {
+                // Filter data
+                let filtered = this.data.filter(d =>
+                    this.selectedNamespaces.has(d.p)
+                );
+
+                if (this.searchQuery) {
+                    filtered = filtered.filter(d =>
+                        d.a.toLowerCase().includes(this.searchQuery) ||
+                        d.u.toLowerCase().includes(this.searchQuery)
+                    );
+                }
+
+                // Limit nodes for performance
+                const maxNodes = 200;
+                if (filtered.length > maxNodes) {
+                    filtered = filtered.slice(0, maxNodes);
+                }
+
+                this.filteredData = filtered;
+                this.renderGraph();
+                this.updateStats();
+            }
+
+            renderGraph() {
+                const container = document.getElementById('graph-container');
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+
+                // Create nodes
+                const nodes = this.filteredData.map(d => ({
+                    id: d.a,
+                    alias: d.a,
+                    uri: d.u,
+                    prefix: d.p,
+                    type: getNodeType(d.a)
+                }));
+
+                // Create links (simplified - connect nodes in same namespace)
+                const links = [];
+                const nodesByPrefix = d3.group(nodes, d => d.prefix);
+
+                nodesByPrefix.forEach((prefixNodes, prefix) => {
+                    for (let i = 0; i < Math.min(prefixNodes.length - 1, 50); i++) {
+                        links.push({
+                            source: prefixNodes[i].id,
+                            target: prefixNodes[i + 1].id
+                        });
+                    }
+                });
+
+                // Clear previous
+                this.g.selectAll('*').remove();
+
+                if (nodes.length === 0) {
+                    return;
+                }
+
+                // Create simulation
+                this.simulation = d3.forceSimulation(nodes)
+                    .force('link', d3.forceLink(links).id(d => d.id).distance(50))
+                    .force('charge', d3.forceManyBody().strength(-100))
+                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    .force('collision', d3.forceCollide().radius(30));
+
+                // Draw links
+                const link = this.g.append('g')
+                    .selectAll('line')
+                    .data(links)
+                    .join('line')
+                    .attr('class', 'link')
+                    .attr('stroke', '#30363d');
+
+                // Draw nodes
+                const node = this.g.append('g')
+                    .selectAll('g')
+                    .data(nodes)
+                    .join('g')
+                    .attr('class', 'node')
+                    .call(d3.drag()
+                        .on('start', (event, d) => {
+                            if (!event.active) this.simulation.alphaTarget(0.3).restart();
+                            d.fx = d.x;
+                            d.fy = d.y;
+                        })
+                        .on('drag', (event, d) => {
+                            d.fx = event.x;
+                            d.fy = event.y;
+                        })
+                        .on('end', (event, d) => {
+                            if (!event.active) this.simulation.alphaTarget(0);
+                            d.fx = null;
+                            d.fy = null;
+                        })
+                    );
+
+                node.append('circle')
+                    .attr('r', d => d.type === 'class' ? 8 : 6)
+                    .attr('fill', d => {
+                        if (d.type === 'datatype') return '#f78166';
+                        if (d.type === 'property') return '#56d364';
+                        return namespaceColors[d.prefix] || '#388bfd';
+                    })
+                    .attr('stroke', d => {
+                        if (d.type === 'datatype') return '#f78166';
+                        if (d.type === 'property') return '#56d364';
+                        return namespaceColors[d.prefix] || '#388bfd';
+                    })
+                    .on('mouseover', (event, d) => this.showTooltip(event, d))
+                    .on('mouseout', () => this.hideTooltip())
+                    .on('click', (event, d) => {
+                        window.open(d.uri, '_blank');
+                    });
+
+                node.append('text')
+                    .attr('dx', 12)
+                    .attr('dy', 4)
+                    .text(d => d.alias.split(':')[1] || d.alias);
+
+                // Update positions
+                this.simulation.on('tick', () => {
+                    link
+                        .attr('x1', d => d.source.x)
+                        .attr('y1', d => d.source.y)
+                        .attr('x2', d => d.target.x)
+                        .attr('y2', d => d.target.y);
+
+                    node.attr('transform', d => `translate(${d.x},${d.y})`);
+                });
+            }
+
+            showTooltip(event, d) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.innerHTML = `
+                    <h3>${d.alias}</h3>
+                    <div class="uri">${d.uri}</div>
+                    <div class="type">${d.type}</div>
+                `;
+                tooltip.style.left = (event.pageX + 10) + 'px';
+                tooltip.style.top = (event.pageY + 10) + 'px';
+                tooltip.classList.add('visible');
+            }
+
+            hideTooltip() {
+                document.getElementById('tooltip').classList.remove('visible');
+            }
+
+            updateStats() {
+                const stats = document.getElementById('stats');
+                const total = this.data.length;
+                const shown = this.filteredData.length;
+                const namespaces = this.selectedNamespaces.size;
+
+                stats.innerHTML = `
+                    <div><strong>${shown}</strong> of ${total} resources shown</div>
+                    <div><strong>${namespaces}</strong> namespace(s) selected</div>
+                    <div style="margin-top: 8px; color: #8b949e;">
+                        Click nodes to open URI. Drag to rearrange.
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        new OntologyBrowser();
+    </script>
+</body>
+</html>

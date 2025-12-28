@@ -13,6 +13,7 @@ File-based RDF ontologies for knowledge management in Obsidian.
 
 - **[Search Ontologies](search.html)** - Find any resource by name or URI
 - **[SPARQL Query](sparql.html)** - Execute SPARQL queries in browser
+- **[Visual Browser](browser.html)** - Interactive D3.js graph visualization
 
 ## Documentation
 
