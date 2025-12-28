@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOAF - Ontology Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; }
+        .property-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .property-table th, .property-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .property-table th { background: var(--header-bg); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .badge-datatype { background: #f7816633; color: #f78166; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .nav { display: flex; gap: 20px; margin-bottom: 30px; }
+        .nav a { padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Ontologies</a> / foaf
+    </div>
+    <h1>FOAF Ontology</h1>
+    <p>76 resources defined</p>
+
+    <h2>Classes (13)</h2>
+    <ul class='resource-list'><li><a href="Agent.html"><span class="badge badge-class">Agent</span></a> Agent</li><li><a href="Document.html"><span class="badge badge-class">Document</span></a> Document</li><li><a href="Group.html"><span class="badge badge-class">Group</span></a> Group</li><li><a href="Image.html"><span class="badge badge-class">Image</span></a> Image</li><li><a href="LabelProperty.html"><span class="badge badge-class">LabelProperty</span></a> Label Property</li><li><a href="OnlineAccount.html"><span class="badge badge-class">OnlineAccount</span></a> Online Account</li><li><a href="OnlineChatAccount.html"><span class="badge badge-class">OnlineChatAccount</span></a> Online Chat Account</li><li><a href="OnlineEcommerceAccount.html"><span class="badge badge-class">OnlineEcommerceAccount</span></a> Online E-commerce Account</li><li><a href="OnlineGamingAccount.html"><span class="badge badge-class">OnlineGamingAccount</span></a> Online Gaming Account</li><li><a href="Organization.html"><span class="badge badge-class">Organization</span></a> Organization</li><li><a href="Person.html"><span class="badge badge-class">Person</span></a> Person</li><li><a href="PersonalProfileDocument.html"><span class="badge badge-class">PersonalProfileDocument</span></a> PersonalProfileDocument</li><li><a href="Project.html"><span class="badge badge-class">Project</span></a> Project</li></ul>
+
+    <h2>Properties (63)</h2>
+    <ul class='resource-list'><li><a href="!foaf.html"><span class="badge badge-property">!foaf</span></a> !foaf</li><li><a href="account.html"><span class="badge badge-property">account</span></a> account</li><li><a href="accountName.html"><span class="badge badge-property">accountName</span></a> account name</li><li><a href="accountServiceHomepage.html"><span class="badge badge-property">accountServiceHomepage</span></a> account service homepage</li><li><a href="age.html"><span class="badge badge-property">age</span></a> age</li><li><a href="aimChatID.html"><span class="badge badge-property">aimChatID</span></a> AIM chat ID</li><li><a href="based_near.html"><span class="badge badge-property">based_near</span></a> based near</li><li><a href="birthday.html"><span class="badge badge-property">birthday</span></a> birthday</li><li><a href="currentProject.html"><span class="badge badge-property">currentProject</span></a> current project</li><li><a href="depiction.html"><span class="badge badge-property">depiction</span></a> depiction</li><li><a href="depicts.html"><span class="badge badge-property">depicts</span></a> depicts</li><li><a href="dnaChecksum.html"><span class="badge badge-property">dnaChecksum</span></a> DNA checksum</li><li><a href="familyName.html"><span class="badge badge-property">familyName</span></a> familyName</li><li><a href="family_name.html"><span class="badge badge-property">family_name</span></a> family_name</li><li><a href="firstName.html"><span class="badge badge-property">firstName</span></a> firstName</li><li><a href="focus.html"><span class="badge badge-property">focus</span></a> focus</li><li><a href="fundedBy.html"><span class="badge badge-property">fundedBy</span></a> funded by</li><li><a href="geekcode.html"><span class="badge badge-property">geekcode</span></a> geekcode</li><li><a href="gender.html"><span class="badge badge-property">gender</span></a> gender</li><li><a href="givenName.html"><span class="badge badge-property">givenName</span></a> Given name</li><li><a href="givenname.html"><span class="badge badge-property">givenname</span></a> Given name</li><li><a href="holdsAccount.html"><span class="badge badge-property">holdsAccount</span></a> account</li><li><a href="homepage.html"><span class="badge badge-property">homepage</span></a> homepage</li><li><a href="icqChatID.html"><span class="badge badge-property">icqChatID</span></a> ICQ chat ID</li><li><a href="img.html"><span class="badge badge-property">img</span></a> image</li><li><a href="interest.html"><span class="badge badge-property">interest</span></a> interest</li><li><a href="isPrimaryTopicOf.html"><span class="badge badge-property">isPrimaryTopicOf</span></a> is primary topic of</li><li><a href="jabberID.html"><span class="badge badge-property">jabberID</span></a> jabber ID</li><li><a href="knows.html"><span class="badge badge-property">knows</span></a> knows</li><li><a href="lastName.html"><span class="badge badge-property">lastName</span></a> lastName</li><li><a href="logo.html"><span class="badge badge-property">logo</span></a> logo</li><li><a href="made.html"><span class="badge badge-property">made</span></a> made</li><li><a href="maker.html"><span class="badge badge-property">maker</span></a> maker</li><li><a href="mbox.html"><span class="badge badge-property">mbox</span></a> personal mailbox</li><li><a href="mbox_sha1sum.html"><span class="badge badge-property">mbox_sha1sum</span></a> sha1sum of a personal mailbox URI name</li><li><a href="member.html"><span class="badge badge-property">member</span></a> member</li><li><a href="membershipClass.html"><span class="badge badge-property">membershipClass</span></a> membershipClass</li><li><a href="msnChatID.html"><span class="badge badge-property">msnChatID</span></a> MSN chat ID</li><li><a href="myersBriggs.html"><span class="badge badge-property">myersBriggs</span></a> myersBriggs</li><li><a href="name.html"><span class="badge badge-property">name</span></a> name</li><li><a href="nick.html"><span class="badge badge-property">nick</span></a> nickname</li><li><a href="openid.html"><span class="badge badge-property">openid</span></a> openid</li><li><a href="page.html"><span class="badge badge-property">page</span></a> page</li><li><a href="pastProject.html"><span class="badge badge-property">pastProject</span></a> past project</li><li><a href="phone.html"><span class="badge badge-property">phone</span></a> phone</li><li><a href="plan.html"><span class="badge badge-property">plan</span></a> plan</li><li><a href="primaryTopic.html"><span class="badge badge-property">primaryTopic</span></a> primary topic</li><li><a href="publications.html"><span class="badge badge-property">publications</span></a> publications</li><li><a href="schoolHomepage.html"><span class="badge badge-property">schoolHomepage</span></a> schoolHomepage</li><li><a href="sha1.html"><span class="badge badge-property">sha1</span></a> sha1sum (hex)</li><li><a href="skypeID.html"><span class="badge badge-property">skypeID</span></a> Skype ID</li><li><a href="status.html"><span class="badge badge-property">status</span></a> status</li><li><a href="surname.html"><span class="badge badge-property">surname</span></a> Surname</li><li><a href="theme.html"><span class="badge badge-property">theme</span></a> theme</li><li><a href="thumbnail.html"><span class="badge badge-property">thumbnail</span></a> thumbnail</li><li><a href="tipjar.html"><span class="badge badge-property">tipjar</span></a> tipjar</li><li><a href="title.html"><span class="badge badge-property">title</span></a> title</li><li><a href="topic.html"><span class="badge badge-property">topic</span></a> topic</li><li><a href="topic_interest.html"><span class="badge badge-property">topic_interest</span></a> topic_interest</li><li><a href="weblog.html"><span class="badge badge-property">weblog</span></a> weblog</li><li><a href="workInfoHomepage.html"><span class="badge badge-property">workInfoHomepage</span></a> work info homepage</li><li><a href="workplaceHomepage.html"><span class="badge badge-property">workplaceHomepage</span></a> workplace homepage</li><li><a href="yahooChatID.html"><span class="badge badge-property">yahooChatID</span></a> Yahoo chat ID</li></ul>
+
+    <h2>Datatypes (0)</h2>
+    <p>None</p>
+    
+</body>
+</html>

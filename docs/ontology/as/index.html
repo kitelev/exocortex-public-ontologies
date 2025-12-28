@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AS - Ontology Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; }
+        .property-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .property-table th, .property-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .property-table th { background: var(--header-bg); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .badge-datatype { background: #f7816633; color: #f78166; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .nav { display: flex; gap: 20px; margin-bottom: 30px; }
+        .nav a { padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Ontologies</a> / as
+    </div>
+    <h1>AS Ontology</h1>
+    <p>125 resources defined</p>
+
+    <h2>Classes (55)</h2>
+    <ul class='resource-list'><li><a href="Accept.html"><span class="badge badge-class">Accept</span></a> Accept&quot;</li><li><a href="Activity.html"><span class="badge badge-class">Activity</span></a> Activity&quot;</li><li><a href="Add.html"><span class="badge badge-class">Add</span></a> Add&quot;</li><li><a href="Announce.html"><span class="badge badge-class">Announce</span></a> Announce&quot;</li><li><a href="Application.html"><span class="badge badge-class">Application</span></a> Application&quot;</li><li><a href="Arrive.html"><span class="badge badge-class">Arrive</span></a> Arrive&quot;</li><li><a href="Article.html"><span class="badge badge-class">Article</span></a> Article&quot;</li><li><a href="Audio.html"><span class="badge badge-class">Audio</span></a> Audio&quot;</li><li><a href="Block.html"><span class="badge badge-class">Block</span></a> Block&quot;</li><li><a href="Collection.html"><span class="badge badge-class">Collection</span></a> Collection&quot;</li><li><a href="CollectionPage.html"><span class="badge badge-class">CollectionPage</span></a> CollectionPage&quot;</li><li><a href="Create.html"><span class="badge badge-class">Create</span></a> Create&quot;</li><li><a href="Delete.html"><span class="badge badge-class">Delete</span></a> Delete&quot;</li><li><a href="Dislike.html"><span class="badge badge-class">Dislike</span></a> Dislike&quot;</li><li><a href="Document.html"><span class="badge badge-class">Document</span></a> Document&quot;</li><li><a href="Event.html"><span class="badge badge-class">Event</span></a> Event&quot;</li><li><a href="Flag.html"><span class="badge badge-class">Flag</span></a> Flag&quot;</li><li><a href="Follow.html"><span class="badge badge-class">Follow</span></a> Follow&quot;</li><li><a href="Group.html"><span class="badge badge-class">Group</span></a> Group&quot;</li><li><a href="Ignore.html"><span class="badge badge-class">Ignore</span></a> Ignore&quot;</li><li><a href="Image.html"><span class="badge badge-class">Image</span></a> Image&quot;</li><li><a href="IntransitiveActivity.html"><span class="badge badge-class">IntransitiveActivity</span></a> IntransitiveActivity&quot;</li><li><a href="Invite.html"><span class="badge badge-class">Invite</span></a> Invite&quot;</li><li><a href="Join.html"><span class="badge badge-class">Join</span></a> Join&quot;</li><li><a href="Leave.html"><span class="badge badge-class">Leave</span></a> Leave&quot;</li><li><a href="Like.html"><span class="badge badge-class">Like</span></a> Like&quot;</li><li><a href="Link.html"><span class="badge badge-class">Link</span></a> Link&quot;</li><li><a href="Listen.html"><span class="badge badge-class">Listen</span></a> Listen&quot;</li><li><a href="Mention.html"><span class="badge badge-class">Mention</span></a> Mention&quot;</li><li><a href="Move.html"><span class="badge badge-class">Move</span></a> Move&quot;</li><li><a href="Note.html"><span class="badge badge-class">Note</span></a> Note&quot;</li><li><a href="Object.html"><span class="badge badge-class">Object</span></a> Object&quot;</li><li><a href="Offer.html"><span class="badge badge-class">Offer</span></a> Offer&quot;</li><li><a href="OrderedCollection.html"><span class="badge badge-class">OrderedCollection</span></a> OrderedCollection&quot;</li><li><a href="OrderedCollectionPage.html"><span class="badge badge-class">OrderedCollectionPage</span></a> OrderedCollectionPage&quot;</li><li><a href="OrderedItems.html"><span class="badge badge-class">OrderedItems</span></a> OrderedItems&quot;</li><li><a href="Organization.html"><span class="badge badge-class">Organization</span></a> Organization&quot;</li><li><a href="Page.html"><span class="badge badge-class">Page</span></a> Page&quot;</li><li><a href="Person.html"><span class="badge badge-class">Person</span></a> Person&quot;</li><li><a href="Place.html"><span class="badge badge-class">Place</span></a> Place&quot;</li><li><a href="Profile.html"><span class="badge badge-class">Profile</span></a> Profile&quot;</li><li><a href="Question.html"><span class="badge badge-class">Question</span></a> Question&quot;</li><li><a href="Read.html"><span class="badge badge-class">Read</span></a> Read&quot;</li><li><a href="Reject.html"><span class="badge badge-class">Reject</span></a> Reject&quot;</li><li><a href="Relationship.html"><span class="badge badge-class">Relationship</span></a> Relationship&quot;</li><li><a href="Remove.html"><span class="badge badge-class">Remove</span></a> Remove&quot;</li><li><a href="Service.html"><span class="badge badge-class">Service</span></a> Service&quot;</li><li><a href="TentativeAccept.html"><span class="badge badge-class">TentativeAccept</span></a> TentativeAccept&quot;</li><li><a href="TentativeReject.html"><span class="badge badge-class">TentativeReject</span></a> TentativeReject&quot;</li><li><a href="Tombstone.html"><span class="badge badge-class">Tombstone</span></a> Tombstone&quot;</li><li><a href="Travel.html"><span class="badge badge-class">Travel</span></a> Travel&quot;</li><li><a href="Undo.html"><span class="badge badge-class">Undo</span></a> Undo&quot;</li><li><a href="Update.html"><span class="badge badge-class">Update</span></a> Update&quot;</li><li><a href="Video.html"><span class="badge badge-class">Video</span></a> Video&quot;</li><li><a href="View.html"><span class="badge badge-class">View</span></a> View&quot;</li></ul>
+
+    <h2>Properties (70)</h2>
+    <ul class='resource-list'><li><a href="!as.html"><span class="badge badge-property">!as</span></a> Activity Streams 2.0&quot;</li><li><a href="accuracy.html"><span class="badge badge-property">accuracy</span></a> accuracy&quot;</li><li><a href="actor.html"><span class="badge badge-property">actor</span></a> actor&quot;</li><li><a href="altitude.html"><span class="badge badge-property">altitude</span></a> altitude&quot;</li><li><a href="anyOf.html"><span class="badge badge-property">anyOf</span></a> oneOf&quot;</li><li><a href="attachment.html"><span class="badge badge-property">attachment</span></a> attachment&quot;</li><li><a href="attachments.html"><span class="badge badge-property">attachments</span></a> attachments&quot;</li><li><a href="attributedTo.html"><span class="badge badge-property">attributedTo</span></a> attributedTo&quot;</li><li><a href="audience.html"><span class="badge badge-property">audience</span></a> audience&quot;</li><li><a href="author.html"><span class="badge badge-property">author</span></a> author&quot;</li><li><a href="bcc.html"><span class="badge badge-property">bcc</span></a> bcc&quot;</li><li><a href="bto.html"><span class="badge badge-property">bto</span></a> bto&quot;</li><li><a href="cc.html"><span class="badge badge-property">cc</span></a> cc&quot;</li><li><a href="content.html"><span class="badge badge-property">content</span></a> content&quot;</li><li><a href="context.html"><span class="badge badge-property">context</span></a> context&quot;</li><li><a href="current.html"><span class="badge badge-property">current</span></a> current&quot;</li><li><a href="deleted.html"><span class="badge badge-property">deleted</span></a> deleted&quot;</li><li><a href="describes.html"><span class="badge badge-property">describes</span></a> describes&quot;</li><li><a href="downstreamDuplicates.html"><span class="badge badge-property">downstreamDuplicates</span></a> downstreamDuplicates&quot;</li><li><a href="duration.html"><span class="badge badge-property">duration</span></a> duration&quot;</li><li><a href="endTime.html"><span class="badge badge-property">endTime</span></a> endTime&quot;</li><li><a href="first.html"><span class="badge badge-property">first</span></a> first&quot;</li><li><a href="formerType.html"><span class="badge badge-property">formerType</span></a> formerType&quot;</li><li><a href="generator.html"><span class="badge badge-property">generator</span></a> generator&quot;</li><li><a href="height.html"><span class="badge badge-property">height</span></a> height&quot;</li><li><a href="href.html"><span class="badge badge-property">href</span></a> href&quot;</li><li><a href="hreflang.html"><span class="badge badge-property">hreflang</span></a> hreflang&quot;</li><li><a href="icon.html"><span class="badge badge-property">icon</span></a> icon&quot;</li><li><a href="id.html"><span class="badge badge-property">id</span></a> id&quot;</li><li><a href="image.html"><span class="badge badge-property">image</span></a> image&quot;</li><li><a href="inReplyTo.html"><span class="badge badge-property">inReplyTo</span></a> inReplyTo&quot;</li><li><a href="instrument.html"><span class="badge badge-property">instrument</span></a> instrument&quot;</li><li><a href="items.html"><span class="badge badge-property">items</span></a> items&quot;</li><li><a href="last.html"><span class="badge badge-property">last</span></a> last&quot;</li><li><a href="latitude.html"><span class="badge badge-property">latitude</span></a> latitude&quot;</li><li><a href="location.html"><span class="badge badge-property">location</span></a> location&quot;</li><li><a href="longitude.html"><span class="badge badge-property">longitude</span></a> longitude&quot;</li><li><a href="mediaType.html"><span class="badge badge-property">mediaType</span></a> mediaType&quot;</li><li><a href="name.html"><span class="badge badge-property">name</span></a> name&quot;</li><li><a href="next.html"><span class="badge badge-property">next</span></a> next&quot;</li><li><a href="object.html"><span class="badge badge-property">object</span></a> object&quot;</li><li><a href="objectType.html"><span class="badge badge-property">objectType</span></a> objectType&quot;</li><li><a href="oneOf.html"><span class="badge badge-property">oneOf</span></a> oneOf&quot;</li><li><a href="origin.html"><span class="badge badge-property">origin</span></a> origin&quot;</li><li><a href="partOf.html"><span class="badge badge-property">partOf</span></a> partOf&quot;</li><li><a href="prev.html"><span class="badge badge-property">prev</span></a> prev&quot;</li><li><a href="preview.html"><span class="badge badge-property">preview</span></a> preview&quot;</li><li><a href="provider.html"><span class="badge badge-property">provider</span></a> provider&quot;</li><li><a href="published.html"><span class="badge badge-property">published</span></a> published&quot;</li><li><a href="radius.html"><span class="badge badge-property">radius</span></a> radius&quot;</li><li><a href="rating.html"><span class="badge badge-property">rating</span></a> rating&quot;</li><li><a href="rel.html"><span class="badge badge-property">rel</span></a> rel&quot;</li><li><a href="relationship.html"><span class="badge badge-property">relationship</span></a> relationship&quot;</li><li><a href="replies.html"><span class="badge badge-property">replies</span></a> replies&quot;</li><li><a href="result.html"><span class="badge badge-property">result</span></a> result&quot;</li><li><a href="startIndex.html"><span class="badge badge-property">startIndex</span></a> startIndex&quot;</li><li><a href="startTime.html"><span class="badge badge-property">startTime</span></a> startTime&quot;</li><li><a href="subject.html"><span class="badge badge-property">subject</span></a> a&quot;</li><li><a href="summary.html"><span class="badge badge-property">summary</span></a> summary&quot;</li><li><a href="tag.html"><span class="badge badge-property">tag</span></a> tag&quot;</li><li><a href="tags.html"><span class="badge badge-property">tags</span></a> tags&quot;</li><li><a href="target.html"><span class="badge badge-property">target</span></a> target&quot;</li><li><a href="to.html"><span class="badge badge-property">to</span></a> to&quot;</li><li><a href="totalItems.html"><span class="badge badge-property">totalItems</span></a> totalItems&quot;</li><li><a href="units.html"><span class="badge badge-property">units</span></a> units&quot;</li><li><a href="updated.html"><span class="badge badge-property">updated</span></a> updated&quot;</li><li><a href="upstreamDuplicates.html"><span class="badge badge-property">upstreamDuplicates</span></a> upstreamDuplicates&quot;</li><li><a href="url.html"><span class="badge badge-property">url</span></a> url&quot;</li><li><a href="verb.html"><span class="badge badge-property">verb</span></a> verb&quot;</li><li><a href="width.html"><span class="badge badge-property">width</span></a> width&quot;</li></ul>
+
+    <h2>Datatypes (0)</h2>
+    <p>None</p>
+    
+</body>
+</html>

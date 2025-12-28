@@ -242,6 +242,11 @@
             <div class="stats" id="stats">
                 <div>Loading...</div>
             </div>
+
+            <h2>SPARQL Query</h2>
+            <textarea id="sparql-input" placeholder="SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10" rows="4" style="width: 100%; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font-family: monospace; font-size: 12px; padding: 8px; resize: vertical;"></textarea>
+            <button id="run-sparql" class="control-btn" style="width: 100%; margin-top: 8px;">▶ Run Query</button>
+            <div id="sparql-results" style="margin-top: 12px; font-size: 11px; max-height: 200px; overflow-y: auto;"></div>
         </div>
 
         <div id="graph-container">
@@ -256,6 +261,8 @@
                 <button class="control-btn" id="zoom-in">+</button>
                 <button class="control-btn" id="zoom-out">-</button>
                 <button class="control-btn" id="reset">Reset</button>
+                <button class="control-btn" id="export-svg">📥 SVG</button>
+                <button class="control-btn" id="export-png">📥 PNG</button>
             </div>
 
             <div class="legend">
@@ -360,6 +367,7 @@
                 this.setupSearch();
                 this.setupGraph();
                 this.setupControls();
+                this.setupSparql();
                 this.selectNamespace('rdfs');
             }
 
@@ -371,12 +379,105 @@
                     this.links = data.links;
                     // Build node lookup map
                     this.nodes.forEach(n => this.nodeMap.set(n.id, n));
+
+                    // Build triples for SPARQL queries (subject, predicate, object)
+                    this.triples = this.links.map(l => ({
+                        s: l.source_alias,
+                        p: l.type,
+                        o: l.target_alias
+                    }));
+
                     document.getElementById('loading').style.display = 'none';
                 } catch (error) {
                     console.error('Failed to load data:', error);
                     document.getElementById('loading').innerHTML =
                         '<div style="color: #f85149;">Failed to load data</div>';
                 }
+            }
+
+            setupSparql() {
+                document.getElementById('run-sparql').onclick = () => this.runSparql();
+                document.getElementById('sparql-input').addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.key === 'Enter') this.runSparql();
+                });
+            }
+
+            runSparql() {
+                const query = document.getElementById('sparql-input').value;
+                const resultsDiv = document.getElementById('sparql-results');
+
+                try {
+                    const results = this.executeSparql(query);
+                    this.displaySparqlResults(results, resultsDiv);
+                } catch (error) {
+                    resultsDiv.innerHTML = `<div style="color: #f85149;">Error: ${error.message}</div>`;
+                }
+            }
+
+            executeSparql(query) {
+                // Simple SPARQL parser for SELECT queries
+                const selectMatch = query.match(/SELECT\s+([\s\S]*?)\s+WHERE\s*\{([\s\S]*?)\}/i);
+                if (!selectMatch) throw new Error('Only SELECT ... WHERE { } queries supported');
+
+                const varsStr = selectMatch[1].trim();
+                const pattern = selectMatch[2].trim();
+
+                // Parse LIMIT
+                const limitMatch = query.match(/LIMIT\s+(\d+)/i);
+                const limit = limitMatch ? parseInt(limitMatch[1]) : 100;
+
+                // Parse variables
+                const vars = varsStr.split(/\s+/).filter(v => v.startsWith('?'));
+
+                // Parse pattern (simple triple pattern: ?s ?p ?o)
+                const triplePattern = pattern.match(/(\??\S+)\s+(\??\S+)\s+(\??\S+)/);
+                if (!triplePattern) throw new Error('Invalid pattern');
+
+                const [, sPattern, pPattern, oPattern] = triplePattern;
+
+                // Match triples
+                const results = [];
+                for (const triple of this.triples) {
+                    const bindings = {};
+
+                    // Match subject
+                    if (sPattern.startsWith('?')) {
+                        bindings[sPattern] = triple.s;
+                    } else if (sPattern !== triple.s) continue;
+
+                    // Match predicate
+                    if (pPattern.startsWith('?')) {
+                        bindings[pPattern] = triple.p;
+                    } else if (pPattern !== triple.p && !pPattern.endsWith(':' + triple.p)) continue;
+
+                    // Match object
+                    if (oPattern.startsWith('?')) {
+                        bindings[oPattern] = triple.o;
+                    } else if (oPattern !== triple.o) continue;
+
+                    results.push(bindings);
+                    if (results.length >= limit) break;
+                }
+
+                return { vars, results };
+            }
+
+            displaySparqlResults({ vars, results }, container) {
+                if (results.length === 0) {
+                    container.innerHTML = '<div style="color: #8b949e;">No results</div>';
+                    return;
+                }
+
+                let html = `<div style="color: #3fb950; margin-bottom: 8px;">${results.length} result(s)</div>`;
+                html += '<table style="width: 100%; border-collapse: collapse; font-size: 10px;">';
+                html += '<tr>' + vars.map(v => `<th style="text-align: left; padding: 4px; border-bottom: 1px solid #30363d;">${v}</th>`).join('') + '</tr>';
+
+                for (const row of results) {
+                    html += '<tr>' + vars.map(v => `<td style="padding: 4px; border-bottom: 1px solid #21262d;">${row[v] || ''}</td>`).join('') + '</tr>';
+                }
+
+                html += '</table>';
+                container.innerHTML = html;
             }
 
             setupNamespaces() {
@@ -493,6 +594,75 @@
                 document.getElementById('reset').onclick = () => {
                     this.svg.transition().call(this.zoom.transform, d3.zoomIdentity);
                 };
+                document.getElementById('export-svg').onclick = () => this.exportSVG();
+                document.getElementById('export-png').onclick = () => this.exportPNG();
+            }
+
+            exportSVG() {
+                const svgElement = document.getElementById('graph');
+                const serializer = new XMLSerializer();
+
+                // Clone SVG and add styles
+                const clone = svgElement.cloneNode(true);
+                clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+                // Add inline styles for export
+                const style = document.createElement('style');
+                style.textContent = `
+                    .node text { font-family: sans-serif; font-size: 10px; fill: #c9d1d9; }
+                    .link { stroke-opacity: 0.6; }
+                    .link.subClassOf { stroke: #f0883e; }
+                    .link.subPropertyOf { stroke: #a371f7; }
+                    .link.domain { stroke: #3fb950; }
+                    .link.range { stroke: #58a6ff; }
+                    .link.type { stroke: #8b949e; stroke-dasharray: 2,2; }
+                `;
+                clone.insertBefore(style, clone.firstChild);
+
+                // Add background
+                const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                bg.setAttribute('width', '100%');
+                bg.setAttribute('height', '100%');
+                bg.setAttribute('fill', '#0d1117');
+                clone.insertBefore(bg, clone.firstChild);
+
+                const svgString = serializer.serializeToString(clone);
+                const blob = new Blob([svgString], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ontology-graph.svg';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+
+            exportPNG() {
+                const svgElement = document.getElementById('graph');
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                const svgData = new XMLSerializer().serializeToString(svgElement);
+                const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(svgBlob);
+
+                const img = new Image();
+                img.onload = () => {
+                    canvas.width = svgElement.clientWidth * 2;  // 2x for retina
+                    canvas.height = svgElement.clientHeight * 2;
+                    ctx.scale(2, 2);
+                    ctx.fillStyle = '#0d1117';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0);
+
+                    const pngUrl = canvas.toDataURL('image/png');
+                    const a = document.createElement('a');
+                    a.href = pngUrl;
+                    a.download = 'ontology-graph.png';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                };
+                img.src = url;
             }
 
             updateGraph() {

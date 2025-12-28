@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>time:xsdDateTime - Ontology Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; }
+        .property-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .property-table th, .property-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .property-table th { background: var(--header-bg); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .badge-datatype { background: #f7816633; color: #f78166; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .nav { display: flex; gap: 20px; margin-bottom: 30px; }
+        .nav a { padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Ontologies</a> / <a href="index.html">time</a> / xsdDateTime
+    </div>
+    <h1><span class="badge badge-property">Property</span> has XSD date-time&quot;</h1>
+    <div class="uri">http://www.w3.org/2006/time#xsdDateTime</div>
+
+    <div class='description'>Valor de &#x27;intervalo de fecha-hora&#x27; expresado como un valor compacto.&quot;</div>
+
+    <h2>Properties</h2>
+    <table class="property-table">
+        <tr><th>Predicate</th><th>Value</th></tr>
+        <tr><td><code>16b80bfd</code></td><td><a href="../xsd/boolean.html">xsd:boolean</a></td></tr><tr><td><code>rdfs:domain</code></td><td><a href="../time/DateTimeInterval.html">time:DateTimeInterval</a></td></tr><tr><td><code>e99c8f27</code></td><td>Utilizando xsd:dateTime en este lugar significa que la duración del intervalo está implícita: se corresponde con la longitud del elemento más pequeño distinto de cero del literal fecha-hora. Sin embargo, esta regla no se puede utilizar para intervalos cuya duración es mayor que un rango más pequeño que el tiempo de comienzo - p.ej. el primer minuto o segundo del día, la primera hora del mes, o el primer día del año. En estos casos el intervalo deseado no se puede distinguir del intervalo correspondiente al próximo rango más alto. Debido a esta ambigüedad esencial, no se recomienda el uso de esta propiedad y está desaprobada.</td></tr><tr><td><code>e99c8f27</code></td><td>Using xsd:dateTime in this place means that the duration of the interval is implicit: it corresponds to the length of the smallest non-zero element of the date-time literal. However, this rule cannot be used for intervals whose duration is more than one rank smaller than the starting time - e.g. the first minute or second of a day, the first hour of a month, or the first day of a year. In these cases the desired interval cannot be distinguished from the interval corresponding to the next rank up. Because of this essential ambiguity, use of this property is not recommended and it is deprecated.&quot;</td></tr><tr><td><code>rdfs:range</code></td><td><a href="../xsd/dateTime.html">xsd:dateTime</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/DeprecatedProperty.html">owl:DeprecatedProperty</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/DatatypeProperty.html">owl:DatatypeProperty</a></td></tr>
+    </table>
+    
+</body>
+</html>

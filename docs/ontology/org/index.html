@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORG - Ontology Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; }
+        .property-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .property-table th, .property-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .property-table th { background: var(--header-bg); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .badge-datatype { background: #f7816633; color: #f78166; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .nav { display: flex; gap: 20px; margin-bottom: 30px; }
+        .nav a { padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Ontologies</a> / org
+    </div>
+    <h1>ORG Ontology</h1>
+    <p>47 resources defined</p>
+
+    <h2>Classes (9)</h2>
+    <ul class='resource-list'><li><a href="ChangeEvent.html"><span class="badge badge-class">ChangeEvent</span></a> Change Event&quot;</li><li><a href="FormalOrganization.html"><span class="badge badge-class">FormalOrganization</span></a> Organisation Formelle&quot;</li><li><a href="Membership.html"><span class="badge badge-class">Membership</span></a> membresía&quot;</li><li><a href="Organization.html"><span class="badge badge-class">Organization</span></a> Organizzazione&quot;</li><li><a href="OrganizationalCollaboration.html"><span class="badge badge-class">OrganizationalCollaboration</span></a> Partenariat&quot;</li><li><a href="OrganizationalUnit.html"><span class="badge badge-class">OrganizationalUnit</span></a> unidad organizativa&quot;</li><li><a href="Post.html"><span class="badge badge-class">Post</span></a> puesto&quot;</li><li><a href="Role.html"><span class="badge badge-class">Role</span></a> Role&quot;</li><li><a href="Site.html"><span class="badge badge-class">Site</span></a> sede&quot;</li></ul>
+
+    <h2>Properties (38)</h2>
+    <ul class='resource-list'><li><a href="!org.html"><span class="badge badge-property">!org</span></a> Ontología de organizaciones&quot;</li><li><a href=".html"><span class="badge badge-property"></span></a> </li><li><a href="Head.html"><span class="badge badge-property">Head</span></a> director ejecutivo&quot;</li><li><a href="basedAt.html"><span class="badge badge-property">basedAt</span></a> basata a&quot;</li><li><a href="changedBy.html"><span class="badge badge-property">changedBy</span></a> cambiata da&quot;</li><li><a href="classification.html"><span class="badge badge-property">classification</span></a> classification&quot;</li><li><a href="hasMember.html"><span class="badge badge-property">hasMember</span></a> has member&quot;</li><li><a href="hasMembership.html"><span class="badge badge-property">hasMembership</span></a> engagement&quot;</li><li><a href="hasPost.html"><span class="badge badge-property">hasPost</span></a> post&quot;</li><li><a href="hasPrimarySite.html"><span class="badge badge-property">hasPrimarySite</span></a> sede principale&quot;</li><li><a href="hasRegisteredSite.html"><span class="badge badge-property">hasRegisteredSite</span></a> registered Site&quot;</li><li><a href="hasSite.html"><span class="badge badge-property">hasSite</span></a> tiene sede en&quot;</li><li><a href="hasSubOrganization.html"><span class="badge badge-property">hasSubOrganization</span></a> a une Sous-Organization&quot;</li><li><a href="hasUnit.html"><span class="badge badge-property">hasUnit</span></a> has Unit&quot;</li><li><a href="headOf.html"><span class="badge badge-property">headOf</span></a> head of&quot;</li><li><a href="heldBy.html"><span class="badge badge-property">heldBy</span></a> occupé par&quot;</li><li><a href="holds.html"><span class="badge badge-property">holds</span></a> ricopre&quot;</li><li><a href="identifier.html"><span class="badge badge-property">identifier</span></a> tiene identificador&quot;</li><li><a href="linkedTo.html"><span class="badge badge-property">linkedTo</span></a> está relacionada con&quot;</li><li><a href="location.html"><span class="badge badge-property">location</span></a> luogo&quot;</li><li><a href="member.html"><span class="badge badge-property">member</span></a> membro&quot;</li><li><a href="memberDuring.html"><span class="badge badge-property">memberDuring</span></a> membro durante&quot;</li><li><a href="memberOf.html"><span class="badge badge-property">memberOf</span></a> es miembro de&quot;</li><li><a href="organization.html"><span class="badge badge-property">organization</span></a> organisation&quot;</li><li><a href="originalOrganization.html"><span class="badge badge-property">originalOrganization</span></a> organizzazione originale&quot;</li><li><a href="postIn.html"><span class="badge badge-property">postIn</span></a> es un puesto en&quot;</li><li><a href="purpose.html"><span class="badge badge-property">purpose</span></a> but&quot;</li><li><a href="remuneration.html"><span class="badge badge-property">remuneration</span></a> remuneration&quot;</li><li><a href="reportsTo.html"><span class="badge badge-property">reportsTo</span></a> est subordonné à&quot;</li><li><a href="resultedFrom.html"><span class="badge badge-property">resultedFrom</span></a> es el resultado de&quot;</li><li><a href="resultingOrganization.html"><span class="badge badge-property">resultingOrganization</span></a> a donné naissance à&quot;</li><li><a href="role.html"><span class="badge badge-property">role</span></a> desempeña la actividad de&quot;</li><li><a href="roleProperty.html"><span class="badge badge-property">roleProperty</span></a> role (property)&quot;</li><li><a href="siteAddress.html"><span class="badge badge-property">siteAddress</span></a> site Address&quot;</li><li><a href="siteOf.html"><span class="badge badge-property">siteOf</span></a> site Of&quot;</li><li><a href="subOrganizationOf.html"><span class="badge badge-property">subOrganizationOf</span></a> subOrganization of&quot;</li><li><a href="transitiveSubOrganizationOf.html"><span class="badge badge-property">transitiveSubOrganizationOf</span></a> transitive sub-organization&quot;</li><li><a href="unitOf.html"><span class="badge badge-property">unitOf</span></a> unità di&quot;</li></ul>
+
+    <h2>Datatypes (0)</h2>
+    <p>None</p>
+    
+</body>
+</html>

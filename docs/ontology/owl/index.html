@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWL - Ontology Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; }
+        .property-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .property-table th, .property-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .property-table th { background: var(--header-bg); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .badge-datatype { background: #f7816633; color: #f78166; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .nav { display: flex; gap: 20px; margin-bottom: 30px; }
+        .nav a { padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Ontologies</a> / owl
+    </div>
+    <h1>OWL Ontology</h1>
+    <p>79 resources defined</p>
+
+    <h2>Classes (26)</h2>
+    <ul class='resource-list'><li><a href="AllDifferent.html"><span class="badge badge-class">AllDifferent</span></a> AllDifferent</li><li><a href="AllDisjointClasses.html"><span class="badge badge-class">AllDisjointClasses</span></a> AllDisjointClasses</li><li><a href="AllDisjointProperties.html"><span class="badge badge-class">AllDisjointProperties</span></a> AllDisjointProperties</li><li><a href="Annotation.html"><span class="badge badge-class">Annotation</span></a> Annotation</li><li><a href="AnnotationProperty.html"><span class="badge badge-class">AnnotationProperty</span></a> AnnotationProperty</li><li><a href="AsymmetricProperty.html"><span class="badge badge-class">AsymmetricProperty</span></a> AsymmetricProperty</li><li><a href="Axiom.html"><span class="badge badge-class">Axiom</span></a> Axiom</li><li><a href="Class.html"><span class="badge badge-class">Class</span></a> Class</li><li><a href="DataRange.html"><span class="badge badge-class">DataRange</span></a> DataRange</li><li><a href="DatatypeProperty.html"><span class="badge badge-class">DatatypeProperty</span></a> DatatypeProperty</li><li><a href="DeprecatedClass.html"><span class="badge badge-class">DeprecatedClass</span></a> DeprecatedClass</li><li><a href="DeprecatedProperty.html"><span class="badge badge-class">DeprecatedProperty</span></a> DeprecatedProperty</li><li><a href="FunctionalProperty.html"><span class="badge badge-class">FunctionalProperty</span></a> FunctionalProperty</li><li><a href="InverseFunctionalProperty.html"><span class="badge badge-class">InverseFunctionalProperty</span></a> InverseFunctionalProperty</li><li><a href="IrreflexiveProperty.html"><span class="badge badge-class">IrreflexiveProperty</span></a> IrreflexiveProperty</li><li><a href="NamedIndividual.html"><span class="badge badge-class">NamedIndividual</span></a> NamedIndividual</li><li><a href="NegativePropertyAssertion.html"><span class="badge badge-class">NegativePropertyAssertion</span></a> NegativePropertyAssertion</li><li><a href="Nothing.html"><span class="badge badge-class">Nothing</span></a> Nothing</li><li><a href="ObjectProperty.html"><span class="badge badge-class">ObjectProperty</span></a> ObjectProperty</li><li><a href="Ontology.html"><span class="badge badge-class">Ontology</span></a> Ontology</li><li><a href="OntologyProperty.html"><span class="badge badge-class">OntologyProperty</span></a> OntologyProperty</li><li><a href="ReflexiveProperty.html"><span class="badge badge-class">ReflexiveProperty</span></a> ReflexiveProperty</li><li><a href="Restriction.html"><span class="badge badge-class">Restriction</span></a> Restriction</li><li><a href="SymmetricProperty.html"><span class="badge badge-class">SymmetricProperty</span></a> SymmetricProperty</li><li><a href="Thing.html"><span class="badge badge-class">Thing</span></a> Thing</li><li><a href="TransitiveProperty.html"><span class="badge badge-class">TransitiveProperty</span></a> TransitiveProperty</li></ul>
+
+    <h2>Properties (53)</h2>
+    <ul class='resource-list'><li><a href="!owl.html"><span class="badge badge-property">!owl</span></a> !owl</li><li><a href=".html"><span class="badge badge-property"></span></a> </li><li><a href="allValuesFrom.html"><span class="badge badge-property">allValuesFrom</span></a> allValuesFrom</li><li><a href="annotatedProperty.html"><span class="badge badge-property">annotatedProperty</span></a> annotatedProperty</li><li><a href="annotatedSource.html"><span class="badge badge-property">annotatedSource</span></a> annotatedSource</li><li><a href="annotatedTarget.html"><span class="badge badge-property">annotatedTarget</span></a> annotatedTarget</li><li><a href="assertionProperty.html"><span class="badge badge-property">assertionProperty</span></a> assertionProperty</li><li><a href="backwardCompatibleWith.html"><span class="badge badge-property">backwardCompatibleWith</span></a> backwardCompatibleWith</li><li><a href="bottomDataProperty.html"><span class="badge badge-property">bottomDataProperty</span></a> bottomDataProperty</li><li><a href="bottomObjectProperty.html"><span class="badge badge-property">bottomObjectProperty</span></a> bottomObjectProperty</li><li><a href="cardinality.html"><span class="badge badge-property">cardinality</span></a> cardinality</li><li><a href="complementOf.html"><span class="badge badge-property">complementOf</span></a> complementOf</li><li><a href="datatypeComplementOf.html"><span class="badge badge-property">datatypeComplementOf</span></a> datatypeComplementOf</li><li><a href="deprecated.html"><span class="badge badge-property">deprecated</span></a> deprecated</li><li><a href="differentFrom.html"><span class="badge badge-property">differentFrom</span></a> differentFrom</li><li><a href="disjointUnionOf.html"><span class="badge badge-property">disjointUnionOf</span></a> disjointUnionOf</li><li><a href="disjointWith.html"><span class="badge badge-property">disjointWith</span></a> disjointWith</li><li><a href="distinctMembers.html"><span class="badge badge-property">distinctMembers</span></a> distinctMembers</li><li><a href="equivalentClass.html"><span class="badge badge-property">equivalentClass</span></a> equivalentClass</li><li><a href="equivalentProperty.html"><span class="badge badge-property">equivalentProperty</span></a> equivalentProperty</li><li><a href="hasKey.html"><span class="badge badge-property">hasKey</span></a> hasKey</li><li><a href="hasSelf.html"><span class="badge badge-property">hasSelf</span></a> hasSelf</li><li><a href="hasValue.html"><span class="badge badge-property">hasValue</span></a> hasValue</li><li><a href="imports.html"><span class="badge badge-property">imports</span></a> imports</li><li><a href="incompatibleWith.html"><span class="badge badge-property">incompatibleWith</span></a> incompatibleWith</li><li><a href="intersectionOf.html"><span class="badge badge-property">intersectionOf</span></a> intersectionOf</li><li><a href="inverseOf.html"><span class="badge badge-property">inverseOf</span></a> inverseOf</li><li><a href="maxCardinality.html"><span class="badge badge-property">maxCardinality</span></a> maxCardinality</li><li><a href="maxQualifiedCardinality.html"><span class="badge badge-property">maxQualifiedCardinality</span></a> maxQualifiedCardinality</li><li><a href="members.html"><span class="badge badge-property">members</span></a> members</li><li><a href="minCardinality.html"><span class="badge badge-property">minCardinality</span></a> minCardinality</li><li><a href="minQualifiedCardinality.html"><span class="badge badge-property">minQualifiedCardinality</span></a> minQualifiedCardinality</li><li><a href="onClass.html"><span class="badge badge-property">onClass</span></a> onClass</li><li><a href="onDataRange.html"><span class="badge badge-property">onDataRange</span></a> onDataRange</li><li><a href="onDatatype.html"><span class="badge badge-property">onDatatype</span></a> onDatatype</li><li><a href="onProperties.html"><span class="badge badge-property">onProperties</span></a> onProperties</li><li><a href="onProperty.html"><span class="badge badge-property">onProperty</span></a> onProperty</li><li><a href="oneOf.html"><span class="badge badge-property">oneOf</span></a> oneOf</li><li><a href="priorVersion.html"><span class="badge badge-property">priorVersion</span></a> priorVersion</li><li><a href="propertyChainAxiom.html"><span class="badge badge-property">propertyChainAxiom</span></a> propertyChainAxiom</li><li><a href="propertyDisjointWith.html"><span class="badge badge-property">propertyDisjointWith</span></a> propertyDisjointWith</li><li><a href="qualifiedCardinality.html"><span class="badge badge-property">qualifiedCardinality</span></a> qualifiedCardinality</li><li><a href="sameAs.html"><span class="badge badge-property">sameAs</span></a> sameAs</li><li><a href="someValuesFrom.html"><span class="badge badge-property">someValuesFrom</span></a> someValuesFrom</li><li><a href="sourceIndividual.html"><span class="badge badge-property">sourceIndividual</span></a> sourceIndividual</li><li><a href="targetIndividual.html"><span class="badge badge-property">targetIndividual</span></a> targetIndividual</li><li><a href="targetValue.html"><span class="badge badge-property">targetValue</span></a> targetValue</li><li><a href="topDataProperty.html"><span class="badge badge-property">topDataProperty</span></a> topDataProperty</li><li><a href="topObjectProperty.html"><span class="badge badge-property">topObjectProperty</span></a> topObjectProperty</li><li><a href="unionOf.html"><span class="badge badge-property">unionOf</span></a> unionOf</li><li><a href="versionIRI.html"><span class="badge badge-property">versionIRI</span></a> versionIRI</li><li><a href="versionInfo.html"><span class="badge badge-property">versionInfo</span></a> versionInfo</li><li><a href="withRestrictions.html"><span class="badge badge-property">withRestrictions</span></a> withRestrictions</li></ul>
+
+    <h2>Datatypes (0)</h2>
+    <p>None</p>
+    
+</body>
+</html>

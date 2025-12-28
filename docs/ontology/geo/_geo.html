@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!geo - Ontology Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; }
+        .property-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .property-table th, .property-table td {
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .property-table th { background: var(--header-bg); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .badge-datatype { background: #f7816633; color: #f78166; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .nav { display: flex; gap: 20px; margin-bottom: 30px; }
+        .nav a { padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <div class="breadcrumb">
+        <a href="../index.html">Ontologies</a> / <a href="index.html">geo</a> / !geo
+    </div>
+    <h1><span class="badge badge-property">Property</span> geo</h1>
+    <div class="uri">http://www.w3.org/2003/01/geo/wgs84_pos#</div>
+
+    <div class='description'> Recent changes to this namespace: $Log: wgs84_pos.rdf,v $ Revision 1.22  2009/04/20 15:00:30  timbl Remove the time bits which have been deal with elsewhere eg in iCal. Revision 1.21  2009/04/20 12:52:47  timbl try again Revision 1.20  2009/04/20 12:42:11  timbl Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09) Revision 1.19  2009/04/20 12:36:31  timbl Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09) Revision 1.18  2006/02/01 22:01:04  danbri Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid Revision 1.17  2004/02/06 17:38:12  danbri Fixed a bad commit screwup Revision 1.15  2003/04/19 11:24:08  danbri Fixed the typo even more. Revision 1.14  2003/04/19 11:16:56  danbri fixed a typo Revision 1.13  2003/02/19 22:27:27  connolly relaxed domain constraints on lat/long/alt from Point to SpatialThing Revision 1.12  2003/01/12 01:41:41  danbri Trying local copy of XSLT doc. Revision 1.11  2003/01/12 01:20:18  danbri added a link to morten&#x27;s xslt rdfs viewer. Revision 1.10  2003/01/11 18:56:49  danbri Removed datatype range from lat and long properties, since they would have required each occurance of the property to mention the datatype. Revision 1.9  2003/01/11 11:41:31  danbri Another typo; repaired rdfs:Property to rdf:Property x4 Revision 1.8  2003/01/11 11:05:02  danbri Added an rdfs:range for each lat/long/alt property, http://www.w3.org/2001/XMLSchema#float Revision 1.7  2003/01/10 20:25:16  danbri Longer rdfs:comment for Point, trying to be Earth-centric and neutral about coordinate system(s) at the same time. Feedback welcomed. Revision 1.6  2003/01/10 20:18:30  danbri Added CVS log comments into the RDF/XML as an rdfs:comment property of the vocabulary. Note that this is not common practice (but seems both harmless and potentially useful). revision 1.5 date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5 Updated schema: Added a dc:date, added url for more info. Changed the rdfs:label of the namespace from gp to geo. Added a class Point, set as the rdfs:domain of each property. Added XML comment on the lat_long property suggesting that we might not need it (based on #rdfig commentary from implementors). revision 1.4 date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5 Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in #rdfig for catching this error. revision 1.3 date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3 fixed buglet in vocab, added more wgs links revision 1.2 date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4 Removed alt from the as-a-flat-string property, and switched from space separated to comma separated. revision 1.1 date: 2003/01/10 10:53:23;  author: danbri;  state: Exp; basic geo vocab </div>
+
+    <h2>Properties</h2>
+    <table class="property-table">
+        <tr><th>Predicate</th><th>Value</th></tr>
+        <tr><td><code>4465a328</code></td><td>A vocabulary for representing latitude, longitude and altitude information in the WGS84 geodetic reference datum. Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.</td></tr><tr><td><code>b46685e7</code></td><td>$Date: 2009/04/20 15:00:30 $</td></tr><tr><td><code>de47ef62</code></td><td>WGS84 Geo Positioning: an RDF vocabulary</td></tr>
+    </table>
+    
+</body>
+</html>
