@@ -34,7 +34,7 @@ PREDICATES = {
     "2e218ab8-518d-5cd0-a660-f575a101e5d8": ("isDefinedBy", "rdfs:isDefinedBy"),
 }
 
-# HTML template
+# HTML template with search and navigation
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,21 +49,100 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             --border: #30363d;
             --header-bg: #161b22;
             --code-bg: #21262d;
+            --accent: #238636;
         }}
+        * {{ box-sizing: border-box; }}
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
             color: var(--fg);
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
         }}
+        .layout {{
+            display: flex;
+            min-height: 100vh;
+        }}
+        .sidebar {{
+            width: 280px;
+            background: var(--header-bg);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }}
+        .sidebar-hidden .sidebar {{ display: none; }}
+        .sidebar-hidden .main {{ margin-left: 0; max-width: 100%; }}
+        .main {{
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px 40px;
+            max-width: 900px;
+        }}
+        .search-box {{
+            width: 100%;
+            padding: 10px 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--fg);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }}
+        .search-box:focus {{
+            outline: none;
+            border-color: var(--link);
+        }}
+        .search-results {{
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+            display: none;
+        }}
+        .search-results.active {{ display: block; }}
+        .search-result {{
+            padding: 8px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }}
+        .search-result:hover {{ background: var(--bg); }}
+        .search-result .prefix {{ color: #8b949e; }}
+        .filter-group {{
+            margin-bottom: 16px;
+        }}
+        .filter-group label {{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            cursor: pointer;
+            font-size: 13px;
+        }}
+        .filter-group input[type="checkbox"] {{
+            accent-color: var(--accent);
+        }}
+        .sidebar-nav {{
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }}
+        .sidebar-nav a {{
+            display: block;
+            padding: 6px 0;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 13px;
+        }}
+        .sidebar-nav a:hover {{ color: var(--link); }}
+        .sidebar-nav a.active {{ color: var(--link); font-weight: 600; }}
         a {{ color: var(--link); text-decoration: none; }}
         a:hover {{ text-decoration: underline; }}
         h1, h2, h3 {{ color: #fff; }}
         h1 {{ border-bottom: 1px solid var(--border); padding-bottom: 10px; }}
-        .uri {{ color: #8b949e; font-family: monospace; font-size: 14px; }}
+        .uri {{ color: #8b949e; font-family: monospace; font-size: 14px; word-break: break-all; }}
         .property-table {{ width: 100%; border-collapse: collapse; margin: 20px 0; }}
         .property-table th, .property-table td {{
             text-align: left;
@@ -81,17 +160,132 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         .badge-class {{ background: #388bfd33; color: #388bfd; }}
         .badge-property {{ background: #56d36433; color: #56d364; }}
         .badge-datatype {{ background: #f7816633; color: #f78166; }}
+        .badge-namespace {{ background: #a371f733; color: #a371f7; }}
         .breadcrumb {{ color: #8b949e; margin-bottom: 20px; }}
         .resource-list {{ list-style: none; padding: 0; }}
         .resource-list li {{ padding: 8px 0; border-bottom: 1px solid var(--border); }}
+        .resource-list li.hidden {{ display: none; }}
         .description {{ background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }}
         code {{ background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }}
-        .nav {{ display: flex; gap: 20px; margin-bottom: 30px; }}
+        .nav {{ display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }}
         .nav a {{ padding: 8px 16px; background: var(--header-bg); border-radius: 6px; }}
+        .toggle-sidebar {{
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+        }}
+        .stats {{ display: flex; gap: 20px; margin: 16px 0; flex-wrap: wrap; }}
+        .stat {{ background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }}
+        .stat-value {{ font-size: 24px; font-weight: 600; color: #fff; }}
+        .stat-label {{ font-size: 12px; color: #8b949e; }}
+        @media (max-width: 768px) {{
+            .sidebar {{ display: none; }}
+            .main {{ margin-left: 0; padding: 16px; }}
+            .toggle-sidebar {{ display: block; }}
+            body.sidebar-open .sidebar {{ display: block; position: fixed; z-index: 999; }}
+        }}
     </style>
 </head>
 <body>
-{content}
+    <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
+    <div class="layout">
+        <nav class="sidebar">
+            <input type="text" class="search-box" id="search" placeholder="Search terms..." autocomplete="off">
+            <div class="search-results" id="searchResults"></div>
+            <div class="filter-group" id="filters">
+                <strong style="font-size: 12px; color: #8b949e;">FILTER BY TYPE</strong>
+                <label><input type="checkbox" checked data-filter="class"> Classes</label>
+                <label><input type="checkbox" checked data-filter="property"> Properties</label>
+                <label><input type="checkbox" checked data-filter="datatype"> Datatypes</label>
+            </div>
+            <div class="sidebar-nav" id="sidebarNav">
+                {sidebar_nav}
+            </div>
+        </nav>
+        <main class="main">
+            {content}
+        </main>
+    </div>
+    <script>
+        // Search functionality
+        const searchIndex = {search_index};
+        const searchInput = document.getElementById('search');
+        const searchResults = document.getElementById('searchResults');
+
+        if (searchInput && searchIndex.length > 0) {{
+            searchInput.addEventListener('input', function() {{
+                const query = this.value.toLowerCase().trim();
+                if (query.length < 2) {{
+                    searchResults.classList.remove('active');
+                    return;
+                }}
+                const matches = searchIndex.filter(item =>
+                    item.label.toLowerCase().includes(query) ||
+                    item.alias.toLowerCase().includes(query)
+                ).slice(0, 20);
+
+                if (matches.length === 0) {{
+                    searchResults.innerHTML = '<div class="search-result">No results</div>';
+                }} else {{
+                    searchResults.innerHTML = matches.map(m =>
+                        `<a href="${{m.url}}" class="search-result">
+                            <span class="badge badge-${{m.type}}">${{m.type[0].toUpperCase()}}</span>
+                            ${{m.label}} <span class="prefix">${{m.prefix}}</span>
+                        </a>`
+                    ).join('');
+                }}
+                searchResults.classList.add('active');
+            }});
+
+            // Hide results on outside click
+            document.addEventListener('click', function(e) {{
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {{
+                    searchResults.classList.remove('active');
+                }}
+            }});
+
+            // Keyboard navigation
+            searchInput.addEventListener('keydown', function(e) {{
+                if (e.key === 'Escape') {{
+                    searchResults.classList.remove('active');
+                    this.blur();
+                }}
+            }});
+        }}
+
+        // Filter functionality
+        const filters = document.querySelectorAll('[data-filter]');
+        const resourceItems = document.querySelectorAll('.resource-list li[data-type]');
+
+        filters.forEach(filter => {{
+            filter.addEventListener('change', function() {{
+                const activeFilters = Array.from(filters)
+                    .filter(f => f.checked)
+                    .map(f => f.dataset.filter);
+
+                resourceItems.forEach(item => {{
+                    const type = item.dataset.type;
+                    item.classList.toggle('hidden', !activeFilters.includes(type));
+                }});
+            }});
+        }});
+
+        // Keyboard shortcut for search
+        document.addEventListener('keydown', function(e) {{
+            if (e.key === '/' && document.activeElement !== searchInput) {{
+                e.preventDefault();
+                searchInput?.focus();
+            }}
+        }});
+    </script>
 </body>
 </html>
 """
@@ -186,7 +380,38 @@ def get_resource_type(resource: dict) -> str:
     return "property"
 
 
-def generate_resource_page(resource: dict, resources: dict) -> str:
+def build_search_index(resources: dict) -> list:
+    """Build search index for all resources."""
+    index = []
+    for uuid, r in resources.items():
+        if r["type"] == "namespace":
+            continue
+        rtype = get_resource_type(r)
+        local = r["alias"].split(":")[-1]
+        label = r["properties"].get("label", [{"value": local}])[0]["value"]
+        index.append({
+            "label": label,
+            "alias": r["alias"],
+            "prefix": r["prefix"],
+            "type": rtype,
+            "url": f"{r['prefix']}/{local}.html",
+        })
+    return index
+
+
+def build_sidebar_nav(prefixes: list, resources: dict, current_prefix: str = "") -> str:
+    """Build sidebar navigation HTML."""
+    nav = '<strong style="font-size: 12px; color: #8b949e;">NAMESPACES</strong>'
+    for prefix in sorted(prefixes):
+        ns_count = len([r for r in resources.values() if r["prefix"] == prefix])
+        if ns_count == 0:
+            continue
+        active = ' class="active"' if prefix == current_prefix else ''
+        nav += f'<a href="../{prefix}/index.html"{active}>{prefix} ({ns_count})</a>'
+    return nav
+
+
+def generate_resource_page(resource: dict, resources: dict, prefixes: list) -> str:
     """Generate HTML page for a single resource."""
     alias = resource["alias"]
     prefix = resource["prefix"]
@@ -226,10 +451,18 @@ def generate_resource_page(resource: dict, resources: dict) -> str:
     </table>
     """
 
-    return HTML_TEMPLATE.format(title=f"{alias} - Ontology Documentation", content=content)
+    search_index = build_search_index(resources)
+    sidebar_nav = build_sidebar_nav(prefixes, resources, prefix)
+
+    return HTML_TEMPLATE.format(
+        title=f"{alias} - Ontology Documentation",
+        content=content,
+        search_index=json.dumps(search_index),
+        sidebar_nav=sidebar_nav
+    )
 
 
-def generate_namespace_page(prefix: str, resources: dict) -> str:
+def generate_namespace_page(prefix: str, resources: dict, prefixes: list) -> str:
     """Generate HTML page for a namespace."""
     ns_resources = [r for r in resources.values() if r["prefix"] == prefix]
 
@@ -238,14 +471,14 @@ def generate_namespace_page(prefix: str, resources: dict) -> str:
     properties = [r for r in ns_resources if get_resource_type(r) == "property"]
     datatypes = [r for r in ns_resources if get_resource_type(r) == "datatype"]
 
-    def resource_list(items, badge_class):
+    def resource_list(items, badge_class, rtype):
         if not items:
             return "<p>None</p>"
         html = "<ul class='resource-list'>"
         for r in sorted(items, key=lambda x: x["alias"]):
             local = r["alias"].split(":")[-1]
             label = r["properties"].get("label", [{"value": local}])[0]["value"]
-            html += f'<li><a href="{local}.html"><span class="badge {badge_class}">{local}</span></a> {escape(label)}</li>'
+            html += f'<li data-type="{rtype}"><a href="{local}.html"><span class="badge {badge_class}">{local}</span></a> {escape(label)}</li>'
         html += "</ul>"
         return html
 
@@ -254,23 +487,42 @@ def generate_namespace_page(prefix: str, resources: dict) -> str:
         <a href="../index.html">Ontologies</a> / {prefix}
     </div>
     <h1>{prefix.upper()} Ontology</h1>
-    <p>{len(ns_resources)} resources defined</p>
+
+    <div class="stats">
+        <div class="stat"><div class="stat-value">{len(classes)}</div><div class="stat-label">Classes</div></div>
+        <div class="stat"><div class="stat-value">{len(properties)}</div><div class="stat-label">Properties</div></div>
+        <div class="stat"><div class="stat-value">{len(datatypes)}</div><div class="stat-label">Datatypes</div></div>
+    </div>
 
     <h2>Classes ({len(classes)})</h2>
-    {resource_list(classes, "badge-class")}
+    {resource_list(classes, "badge-class", "class")}
 
     <h2>Properties ({len(properties)})</h2>
-    {resource_list(properties, "badge-property")}
+    {resource_list(properties, "badge-property", "property")}
 
     <h2>Datatypes ({len(datatypes)})</h2>
-    {resource_list(datatypes, "badge-datatype")}
+    {resource_list(datatypes, "badge-datatype", "datatype")}
     """
 
-    return HTML_TEMPLATE.format(title=f"{prefix.upper()} - Ontology Documentation", content=content)
+    search_index = build_search_index(resources)
+    sidebar_nav = build_sidebar_nav(prefixes, resources, prefix)
+
+    return HTML_TEMPLATE.format(
+        title=f"{prefix.upper()} - Ontology Documentation",
+        content=content,
+        search_index=json.dumps(search_index),
+        sidebar_nav=sidebar_nav
+    )
 
 
 def generate_index_page(prefixes: list, resources: dict) -> str:
     """Generate main index page."""
+    # Calculate totals
+    total_classes = len([r for r in resources.values() if get_resource_type(r) == "class"])
+    total_props = len([r for r in resources.values() if get_resource_type(r) == "property"])
+    total_datatypes = len([r for r in resources.values() if get_resource_type(r) == "datatype"])
+    total_ns = len([p for p in prefixes if any(r["prefix"] == p for r in resources.values())])
+
     ns_list = ""
     for prefix in sorted(prefixes):
         ns_resources = [r for r in resources.values() if r["prefix"] == prefix]
@@ -278,24 +530,40 @@ def generate_index_page(prefixes: list, resources: dict) -> str:
             continue
         classes = len([r for r in ns_resources if get_resource_type(r) == "class"])
         props = len([r for r in ns_resources if get_resource_type(r) == "property"])
-        ns_list += f'<li><a href="{prefix}/index.html"><strong>{prefix}</strong></a> - {classes} classes, {props} properties</li>'
+        ns_list += f'<li data-type="namespace"><a href="{prefix}/index.html"><span class="badge badge-namespace">{prefix}</span></a> {classes} classes, {props} properties</li>'
 
     content = f"""
     <h1>Exocortex Public Ontologies</h1>
     <p>Documentation for RDF ontologies in the Exocortex knowledge management ecosystem.</p>
+    <p><kbd>/</kbd> to search &bull; Filter by type in sidebar</p>
 
     <div class="nav">
         <a href="../browser.html">Visual Browser</a>
         <a href="https://github.com/kitelev/exocortex-public-ontologies">GitHub</a>
     </div>
 
-    <h2>Available Ontologies</h2>
+    <div class="stats">
+        <div class="stat"><div class="stat-value">{total_ns}</div><div class="stat-label">Namespaces</div></div>
+        <div class="stat"><div class="stat-value">{total_classes}</div><div class="stat-label">Classes</div></div>
+        <div class="stat"><div class="stat-value">{total_props}</div><div class="stat-label">Properties</div></div>
+        <div class="stat"><div class="stat-value">{total_datatypes}</div><div class="stat-label">Datatypes</div></div>
+    </div>
+
+    <h2>Available Ontologies ({total_ns})</h2>
     <ul class="resource-list">
         {ns_list}
     </ul>
     """
 
-    return HTML_TEMPLATE.format(title="Exocortex Public Ontologies", content=content)
+    search_index = build_search_index(resources)
+    sidebar_nav = build_sidebar_nav(prefixes, resources)
+
+    return HTML_TEMPLATE.format(
+        title="Exocortex Public Ontologies",
+        content=content,
+        search_index=json.dumps(search_index),
+        sidebar_nav=sidebar_nav
+    )
 
 
 def main():
@@ -331,7 +599,7 @@ def main():
 
         # Namespace index
         with open(ns_dir / "index.html", "w", encoding="utf-8") as f:
-            f.write(generate_namespace_page(prefix, resources))
+            f.write(generate_namespace_page(prefix, resources, prefix_dirs))
 
         # Individual resource pages
         for r in ns_resources:
@@ -339,7 +607,7 @@ def main():
             # Sanitize filename
             safe_local = "".join(c if c.isalnum() or c in "-_" else "_" for c in local)
             with open(ns_dir / f"{safe_local}.html", "w", encoding="utf-8") as f:
-                f.write(generate_resource_page(r, resources))
+                f.write(generate_resource_page(r, resources, prefix_dirs))
 
     print(f"\n✅ Generated documentation in {output_dir}")
     print(f"   Open {output_dir}/index.html to browse")
