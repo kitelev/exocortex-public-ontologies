@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:ExercisePlan - Ontology Documentation</title>
+    <title>schema:exercisePlan - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / ExercisePlan
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / exercisePlan
     </div>
-    <h1><span class="badge badge-class">Class</span> ExercisePlan</h1>
-    <div class="uri">https://schema.org/ExercisePlan</div>
+    <h1><span class="badge badge-property">Property</span> exercisePlan</h1>
+    <div class="uri">https://schema.org/exercisePlan</div>
 
-    <div class='description'>Fitness-related activity designed for a specific health-related purpose, including defined exercise routines as well as activity prescribed by a clinician.</div>
+    <div class='description'>A sub property of instrument. The exercise plan used on this action.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/PhysicalActivity.html" data-tooltip="Any bodily activity that enhances or maintains physical fitness and overall health and wellness. Includes activity that is part of daily living and...">schema:PhysicalActivity</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>2e21a917</code></td><td><a href="../schema/ExercisePlan.html" data-tooltip="Fitness-related activity designed for a specific health-related purpose, including defined exercise routines as well as activity prescribed by a cl...">schema:ExercisePlan</a></td></tr><tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/ExerciseAction.html" data-tooltip="The act of participating in exertive activity for the purposes of improving health and fitness.">schema:ExerciseAction</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/instrument.html" data-tooltip="The object that helped the agent perform the action. E.g. John wrote a book with *a pen*.">schema:instrument</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "4d8802a3-d553-512a-8d6f-6ed3adb99c02", "label": "ExercisePlan", "type": "class", "center": true, "url": null}, {"id": "f1526c75-5d48-59f3-8685-4da0ee449ce1", "label": "PhysicalActivity", "type": "class", "center": false, "url": "../schema/PhysicalActivity.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}], "links": [{"source": "4d8802a3-d553-512a-8d6f-6ed3adb99c02", "target": "f1526c75-5d48-59f3-8685-4da0ee449ce1", "label": "subClassOf", "direction": "out"}, {"source": "4d8802a3-d553-512a-8d6f-6ed3adb99c02", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "4d8802a3-d553-512a-8d6f-6ed3adb99c02", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "8970cf52-f0ba-5fea-aa99-755f68e0b11d", "label": "exercisePlan", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "aa9a435e-bfaa-5eda-9527-ba4c8ff38259", "label": "instrument", "type": "property", "center": false, "url": "../schema/instrument.html"}], "links": [{"source": "8970cf52-f0ba-5fea-aa99-755f68e0b11d", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "8970cf52-f0ba-5fea-aa99-755f68e0b11d", "target": "aa9a435e-bfaa-5eda-9527-ba4c8ff38259", "label": "subPropertyOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

@@ -5,22 +5,23 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2025-12-28 13:18 UTC*
+*Auto-generated on 2025-12-29 17:17 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **37,339** |
-| Statements (triples) | 31,836 |
-| Anchors (resources) | 4,459 |
-| Blank Nodes | 1,016 |
-| Namespaces | 28 |
+| Total Files | **126,158** |
+| Statements (triples) | 112,934 |
+| Anchors (resources) | 7,372 |
+| Blank Nodes | 5,823 |
+| Namespaces | 29 |
 
 ## By Namespace
 
 | Namespace | Triples | Anchors | Blank Nodes | Total Files |
 |-----------|---------|---------|-------------|-------------|
+| `qudt` | 81,830 | 2914 | 5061 | 89,807 |
 | `schema` | 17,606 | 2994 | 0 | 20,601 |
 | `as` | 1,363 | 124 | 360 | 1,848 |
 | `dcat` | 1,338 | 37 | 31 | 1,407 |
@@ -31,7 +32,6 @@ title: Statistics
 | `geosparql` | 774 | 66 | 12 | 853 |
 | `org` | 746 | 46 | 25 | 818 |
 | `doap` | 741 | 56 | 5 | 803 |
-| `qudt` | 732 | 1 | 254 | 988 |
 | `dcterms` | 700 | 99 | 0 | 800 |
 | `sioc` | 658 | 99 | 0 | 758 |
 | `foaf` | 620 | 75 | 0 | 696 |
@@ -55,18 +55,18 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdf:type` | 5,341 |
-| `rdfs:label` | 4,916 |
-| `rdfs:comment` | 4,847 |
-| `schema:domainIncludes` | 2,309 |
-| `schema:rangeIncludes` | 2,120 |
-| `rdfs:subClassOf` | 1,393 |
-| `rdfs:isDefinedBy` | 1,273 |
-| `schema:isPartOf` | 1,269 |
-| `schema:source` | 1,001 |
-| `rdfs:range` | 675 |
-| `rdfs:domain` | 590 |
-| `skos:definition` | 539 |
-| `rdfs:subPropertyOf` | 456 |
-| `rdf:first` | 397 |
-| `rdf:rest` | 397 |
+| `rdfs:label` | 23,094 |
+| `rdf:type` | 13,731 |
+| `0aa3d93f...` | 4,865 |
+| `rdfs:comment` | 4,853 |
+| `58430877...` | 4,807 |
+| `4d8181f6...` | 4,807 |
+| `4ef8b6c4...` | 4,807 |
+| `rdfs:isDefinedBy` | 4,172 |
+| `a6fa8785...` | 4,096 |
+| `e7e09266...` | 2,899 |
+| `d2af0991...` | 2,899 |
+| `92f7c89b...` | 2,899 |
+| `ec23d74f...` | 2,739 |
+| `61901538...` | 2,481 |
+| `dcterms:description` | 2,478 |

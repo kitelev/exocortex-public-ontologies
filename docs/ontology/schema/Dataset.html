@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:dataset - Ontology Documentation</title>
+    <title>schema:Dataset - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / dataset
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Dataset
     </div>
-    <h1><span class="badge badge-property">Property</span> dataset</h1>
-    <div class="uri">https://schema.org/dataset</div>
+    <h1><span class="badge badge-class">Class</span> Dataset</h1>
+    <div class="uri">https://schema.org/Dataset</div>
 
-    <div class='description'>A dataset contained in this catalog.</div>
+    <div class='description'>A body of structured information describing some topic(s) of interest.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/Dataset.html" data-tooltip="A body of structured information describing some topic(s) of interest.">schema:Dataset</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/DataCatalog.html" data-tooltip="A collection of datasets.">schema:DataCatalog</a></td></tr><tr><td><code>cd961300</code></td><td><a href="../schema/includedInDataCatalog.html" data-tooltip="A data catalog which contains this dataset.">schema:includedInDataCatalog</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>4b5dec71</code></td><td>9ee50e5d-3b39-5ef4-bf78-e9d47eb22a27</td></tr><tr><td><code>4b5dec71</code></td><td>8d8a3cbe-f6d7-5257-8618-1e08fbb0cbce</td></tr><tr><td><code>4b5dec71</code></td><td><a href="../dcat/Dataset.html" data-tooltip="Kolekce dat poskytovaná či řízená jedním zdrojem, která je k dispozici pro přístup či stažení v jednom či více formátech.&quot;">dcat:Dataset</a></td></tr><tr><td><code>e99ba2db</code></td><td><a href="../schema/DatasetClass.html">schema:DatasetClass</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "ede261d5-2a4a-5dcf-8d43-f41bd277cd29", "label": "dataset", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "ede261d5-2a4a-5dcf-8d43-f41bd277cd29", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "1c90276c-f69c-5517-bd5a-a1a0f5961eec", "label": "Dataset", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}, {"id": "c1d27d7d-b51f-596d-b8d9-3063229823e5", "label": "DataFeed", "type": "class", "center": false, "url": "../schema/DataFeed.html"}], "links": [{"source": "1c90276c-f69c-5517-bd5a-a1a0f5961eec", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "1c90276c-f69c-5517-bd5a-a1a0f5961eec", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}, {"source": "c1d27d7d-b51f-596d-b8d9-3063229823e5", "target": "1c90276c-f69c-5517-bd5a-a1a0f5961eec", "label": "subClassOf", "direction": "in"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

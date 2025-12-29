@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:distance - Ontology Documentation</title>
+    <title>schema:Distance - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / distance
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Distance
     </div>
-    <h1><span class="badge badge-property">Property</span> distance</h1>
-    <div class="uri">https://schema.org/distance</div>
+    <h1><span class="badge badge-class">Class</span> Distance</h1>
+    <div class="uri">https://schema.org/Distance</div>
 
-    <div class='description'>The distance travelled, e.g. exercising or travelling.</div>
+    <div class='description'>Properties that take Distances as values are of the form &#x27;&amp;lt;Number&amp;gt; &amp;lt;Length unit of measure&amp;gt;&#x27;. E.g., &#x27;7 ft&#x27;.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/Distance.html" data-tooltip="Properties that take Distances as values are of the form &#x27;&amp;lt;Number&amp;gt; &amp;lt;Length unit of measure&amp;gt;&#x27;. E.g., &#x27;7 ft&#x27;.">schema:Distance</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/TravelAction.html" data-tooltip="The act of traveling from a fromLocation to a destination by a specified mode of transport, optionally with participants.">schema:TravelAction</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/ExerciseAction.html" data-tooltip="The act of participating in exertive activity for the purposes of improving health and fitness.">schema:ExerciseAction</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Quantity.html" data-tooltip="Quantities such as distance, time, mass, weight, etc. Particular instances of say Mass are entities like &#x27;3 kg&#x27; or &#x27;4 milligrams&#x27;.">schema:Quantity</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "c6f94389-e43a-55ce-8de4-b8f3ab365073", "label": "distance", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "c6f94389-e43a-55ce-8de4-b8f3ab365073", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "d2fd3b46-dd64-5730-bc56-2f3ce015b8f2", "label": "Distance", "type": "class", "center": true, "url": null}, {"id": "46f15fef-cd4b-5f91-b5e9-e79a2816b724", "label": "Quantity", "type": "class", "center": false, "url": "../schema/Quantity.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "d2fd3b46-dd64-5730-bc56-2f3ce015b8f2", "target": "46f15fef-cd4b-5f91-b5e9-e79a2816b724", "label": "subClassOf", "direction": "out"}, {"source": "d2fd3b46-dd64-5730-bc56-2f3ce015b8f2", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

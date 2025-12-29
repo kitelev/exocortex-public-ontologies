@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:priceSpecification - Ontology Documentation</title>
+    <title>schema:PriceSpecification - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / priceSpecification
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / PriceSpecification
     </div>
-    <h1><span class="badge badge-property">Property</span> priceSpecification</h1>
-    <div class="uri">https://schema.org/priceSpecification</div>
+    <h1><span class="badge badge-class">Class</span> PriceSpecification</h1>
+    <div class="uri">https://schema.org/PriceSpecification</div>
 
-    <div class='description'>One or more detailed price specifications, indicating the unit price and delivery or payment charges.</div>
+    <div class='description'>MonetaryAmount</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/PriceSpecification.html" data-tooltip="MonetaryAmount">schema:PriceSpecification</a></td></tr><tr><td><code>4b5dec71</code></td><td>a427ef25-8330-557b-9e98-75cb2aad1ec7</td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Demand.html" data-tooltip="A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a cert...">schema:Demand</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/TradeAction.html" data-tooltip="The act of participating in an exchange of goods and services for monetary compensation. An agent trades an object, product or service with a parti...">schema:TradeAction</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Offer.html" data-tooltip="businessFunction">schema:Offer</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/DonateAction.html" data-tooltip="The act of providing goods, services, or money without compensation, often for philanthropic reasons.">schema:DonateAction</a></td></tr><tr><td><code>e99ba2db</code></td><td><a href="../schema/GoodRelationsTerms.html">schema:GoodRelationsTerms</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>4b5dec71</code></td><td>14c8018a-0406-52d6-a6ed-8d59ea28f0f6</td></tr><tr><td><code>e99ba2db</code></td><td>e1876a82-6599-564b-8354-abc497b21d5a</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/StructuredValue.html" data-tooltip="Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another th...">schema:StructuredValue</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "41d7b6ad-4d20-5564-a86b-38f4da347e08", "label": "priceSpecification", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "41d7b6ad-4d20-5564-a86b-38f4da347e08", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "610ed47a-272e-530f-afa3-01364858ed5f", "label": "PriceSpecification", "type": "class", "center": true, "url": null}, {"id": "72c237a3-43dd-5ff8-ae98-2ab3863dadff", "label": "CompoundPriceSpecification", "type": "class", "center": false, "url": "../schema/CompoundPriceSpecification.html"}, {"id": "1dd80562-1acb-5146-ab88-f6940fcd26e0", "label": "UnitPriceSpecification", "type": "class", "center": false, "url": "../schema/UnitPriceSpecification.html"}, {"id": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "StructuredValue", "type": "class", "center": false, "url": "../schema/StructuredValue.html"}, {"id": "82f084a1-0f6c-56c8-9185-933350b7aea9", "label": "DeliveryChargeSpecification", "type": "class", "center": false, "url": "../schema/DeliveryChargeSpecification.html"}, {"id": "83238583-50d2-5f76-bde0-3032ba5f29d8", "label": "PaymentChargeSpecification", "type": "class", "center": false, "url": "../schema/PaymentChargeSpecification.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "72c237a3-43dd-5ff8-ae98-2ab3863dadff", "target": "610ed47a-272e-530f-afa3-01364858ed5f", "label": "subClassOf", "direction": "in"}, {"source": "1dd80562-1acb-5146-ab88-f6940fcd26e0", "target": "610ed47a-272e-530f-afa3-01364858ed5f", "label": "subClassOf", "direction": "in"}, {"source": "610ed47a-272e-530f-afa3-01364858ed5f", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "out"}, {"source": "82f084a1-0f6c-56c8-9185-933350b7aea9", "target": "610ed47a-272e-530f-afa3-01364858ed5f", "label": "subClassOf", "direction": "in"}, {"source": "83238583-50d2-5f76-bde0-3032ba5f29d8", "target": "610ed47a-272e-530f-afa3-01364858ed5f", "label": "subClassOf", "direction": "in"}, {"source": "610ed47a-272e-530f-afa3-01364858ed5f", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

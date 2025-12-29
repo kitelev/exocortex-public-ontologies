@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sh:JSLibrary - Ontology Documentation</title>
+    <title>sh:jsLibrary - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">sh</a> / JSLibrary
+        <a href="../index.html">Ontologies</a> / <a href="index.html">sh</a> / jsLibrary
     </div>
-    <h1><span class="badge badge-class">Class</span> JavaScript library&quot;</h1>
-    <div class="uri">http://www.w3.org/ns/shacl#JSLibrary</div>
+    <h1><span class="badge badge-property">Property</span> JavaScript library&quot;</h1>
+    <div class="uri">http://www.w3.org/ns/shacl#jsLibrary</div>
 
-    <div class='description'>Represents a JavaScript library, typically identified by one or more URLs of files to include.&quot;</div>
+    <div class='description'>Declares which JavaScript libraries are needed to execute this.&quot;</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../sh/!sh.html">!sh</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/Resource.html" data-tooltip="The class resource, everything.">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../sh/!sh.html">!sh</a></td></tr><tr><td><code>rdfs:range</code></td><td><a href="../sh/JSLibrary.html" data-tooltip="Represents a JavaScript library, typically identified by one or more URLs of files to include.&quot;">sh:JSLibrary</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "label": "JSLibrary", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "6d82ebc4-d692-518b-bb8f-9b872271bdba", "label": "jsLibraryURL", "type": "property", "center": false, "url": "../sh/jsLibraryURL.html"}, {"id": "85552756-bd75-5ae4-9298-daa2c489db8d", "label": "jsLibrary", "type": "property", "center": false, "url": "../sh/jsLibrary.html"}, {"id": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "Resource", "type": "class", "center": false, "url": "../rdfs/Resource.html"}], "links": [{"source": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "6d82ebc4-d692-518b-bb8f-9b872271bdba", "target": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "label": "domain", "direction": "in"}, {"source": "85552756-bd75-5ae4-9298-daa2c489db8d", "target": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "label": "range", "direction": "in"}, {"source": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "target": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "subClassOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "85552756-bd75-5ae4-9298-daa2c489db8d", "label": "jsLibrary", "type": "property", "center": true, "url": null}, {"id": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "label": "JSLibrary", "type": "class", "center": false, "url": "../sh/JSLibrary.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "85552756-bd75-5ae4-9298-daa2c489db8d", "target": "21278eeb-4d2a-587b-9d7d-62bb794f9b7a", "label": "range", "direction": "out"}, {"source": "85552756-bd75-5ae4-9298-daa2c489db8d", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

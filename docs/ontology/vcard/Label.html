@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vcard:label - Ontology Documentation</title>
+    <title>vcard:Label - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">vcard</a> / label
+        <a href="../index.html">Ontologies</a> / <a href="index.html">vcard</a> / Label
     </div>
-    <h1><span class="badge badge-property">Property</span> label&quot;</h1>
-    <div class="uri">http://www.w3.org/2006/vcard/ns#label</div>
+    <h1><span class="badge badge-class">Class</span> Label&quot;</h1>
+    <div class="uri">http://www.w3.org/2006/vcard/ns#Label</div>
 
-    <div class='description'>This data property has been deprecated&quot;</div>
+    <div class='description'>This class is deprecated&quot;</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>16b80bfd</code></td><td><a href="../xsd/boolean.html">xsd:boolean</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../vcard/.html" data-tooltip="Ontology for vCard based on RFC6350&quot;">vcard:</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/DatatypeProperty.html" data-tooltip="The class of data properties.">owl:DatatypeProperty</a></td></tr>
+        <tr><td><code>16b80bfd</code></td><td><a href="../xsd/boolean.html">xsd:boolean</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../vcard/.html" data-tooltip="Ontology for vCard based on RFC6350&quot;">vcard:</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../vcard/Type.html" data-tooltip="Used for type codes. The URI of the type code must be used as the value for Type.&quot;">vcard:Type</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "37e727a5-8a9a-58f1-9feb-0e8a0386bb0f", "label": "label", "type": "property", "center": true, "url": null}, {"id": "73d101aa-9788-5397-ac46-4569ceaae23d", "label": "DatatypeProperty", "type": "class", "center": false, "url": "../owl/DatatypeProperty.html"}], "links": [{"source": "37e727a5-8a9a-58f1-9feb-0e8a0386bb0f", "target": "73d101aa-9788-5397-ac46-4569ceaae23d", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "35f7162b-f0b0-5f5c-91ff-e4c90721f6ce", "label": "Label", "type": "class", "center": true, "url": null}, {"id": "0e4e6243-8554-5ce5-8d98-dd223c69a459", "label": "Type", "type": "class", "center": false, "url": "../vcard/Type.html"}, {"id": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "Class", "type": "class", "center": false, "url": "../owl/Class.html"}], "links": [{"source": "35f7162b-f0b0-5f5c-91ff-e4c90721f6ce", "target": "0e4e6243-8554-5ce5-8d98-dd223c69a459", "label": "subClassOf", "direction": "out"}, {"source": "35f7162b-f0b0-5f5c-91ff-e4c90721f6ce", "target": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

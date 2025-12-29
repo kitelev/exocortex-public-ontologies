@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:course - Ontology Documentation</title>
+    <title>schema:Course - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / course
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Course
     </div>
-    <h1><span class="badge badge-property">Property</span> course</h1>
-    <div class="uri">https://schema.org/course</div>
+    <h1><span class="badge badge-class">Class</span> Course</h1>
+    <div class="uri">https://schema.org/Course</div>
 
-    <div class='description'>A sub property of location. The course where this action was taken.</div>
+    <div class='description'>A description of an educational course which may be offered as distinct instances which take place at different times or take place at different locations, or be offered through different media or modes of study. An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/Place.html" data-tooltip="Entities that have a somewhat fixed, physical extension.">schema:Place</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/ExerciseAction.html" data-tooltip="The act of participating in exertive activity for the purposes of improving health and fitness.">schema:ExerciseAction</a></td></tr><tr><td><code>6c382066</code></td><td><a href="../schema/exerciseCourse.html" data-tooltip="A sub property of location. The course where this action was taken.">schema:exerciseCourse</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/location.html" data-tooltip="The location of, for example, where an event is happening, where an organization is located, or where an action takes place.">schema:location</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/LearningResource.html" data-tooltip="CreativeWork">schema:LearningResource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "58a5b359-17dd-52ec-8b4a-71171e782731", "label": "course", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "5bb56527-62a7-5af7-b36b-f418a9e09cf8", "label": "location", "type": "property", "center": false, "url": "../schema/location.html"}], "links": [{"source": "58a5b359-17dd-52ec-8b4a-71171e782731", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "58a5b359-17dd-52ec-8b4a-71171e782731", "target": "5bb56527-62a7-5af7-b36b-f418a9e09cf8", "label": "subPropertyOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "22b10ffe-9559-5a48-ae7a-c43cc2ab1bb0", "label": "Course", "type": "class", "center": true, "url": null}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}, {"id": "f3bed244-de3b-5aa5-a127-e12f96dc4ab0", "label": "LearningResource", "type": "class", "center": false, "url": "../schema/LearningResource.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "22b10ffe-9559-5a48-ae7a-c43cc2ab1bb0", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}, {"source": "22b10ffe-9559-5a48-ae7a-c43cc2ab1bb0", "target": "f3bed244-de3b-5aa5-a127-e12f96dc4ab0", "label": "subClassOf", "direction": "out"}, {"source": "22b10ffe-9559-5a48-ae7a-c43cc2ab1bb0", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

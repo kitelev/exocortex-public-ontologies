@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sh:nodeKind - Ontology Documentation</title>
+    <title>sh:NodeKind - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">sh</a> / nodeKind
+        <a href="../index.html">Ontologies</a> / <a href="index.html">sh</a> / NodeKind
     </div>
-    <h1><span class="badge badge-property">Property</span> node kind&quot;</h1>
-    <div class="uri">http://www.w3.org/ns/shacl#nodeKind</div>
+    <h1><span class="badge badge-class">Class</span> Node kind&quot;</h1>
+    <div class="uri">http://www.w3.org/ns/shacl#NodeKind</div>
 
-    <div class='description'>Specifies the node kind (e.g. IRI or literal) each value node.&quot;</div>
+    <div class='description'>The class of all node kinds, including sh:BlankNode, sh:IRI, sh:Literal or the combinations of these: sh:BlankNodeOrIRI, sh:BlankNodeOrLiteral, sh:IRIOrLiteral.&quot;</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../sh/!sh.html">!sh</a></td></tr><tr><td><code>rdfs:range</code></td><td><a href="../sh/NodeKind.html" data-tooltip="The class of all node kinds, including sh:BlankNode, sh:IRI, sh:Literal or the combinations of these: sh:BlankNodeOrIRI, sh:BlankNodeOrLiteral, sh:...">sh:NodeKind</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../sh/!sh.html">!sh</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/Resource.html" data-tooltip="The class resource, everything.">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "a5782a97-a6d9-59e4-b437-2fb436226786", "label": "nodeKind", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "NodeKind", "type": "class", "center": false, "url": "../sh/NodeKind.html"}], "links": [{"source": "a5782a97-a6d9-59e4-b437-2fb436226786", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "a5782a97-a6d9-59e4-b437-2fb436226786", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "range", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "NodeKind", "type": "class", "center": true, "url": null}, {"id": "5d611837-af07-5a8c-9fbc-427b4567be2f", "label": "BlankNode", "type": "property", "center": false, "url": "../sh/BlankNode.html"}, {"id": "a21fc377-70e1-5065-be88-3c17fad1d030", "label": "IRI", "type": "property", "center": false, "url": "../sh/IRI.html"}, {"id": "18ec88ab-319b-5186-9132-f7e683789ebb", "label": "BlankNodeOrLiteral", "type": "property", "center": false, "url": "../sh/BlankNodeOrLiteral.html"}, {"id": "22f1ccdf-2c6d-58e0-bdca-2eb63bffed6d", "label": "BlankNodeOrIRI", "type": "property", "center": false, "url": "../sh/BlankNodeOrIRI.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "a5782a97-a6d9-59e4-b437-2fb436226786", "label": "nodeKind", "type": "property", "center": false, "url": "../sh/nodeKind.html"}, {"id": "38349f16-6555-5730-a348-8390df6e1d62", "label": "Literal", "type": "property", "center": false, "url": "../sh/Literal.html"}, {"id": "09d85924-c26f-5aa3-a307-b2faa8a50602", "label": "IRIOrLiteral", "type": "property", "center": false, "url": "../sh/IRIOrLiteral.html"}, {"id": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "Resource", "type": "class", "center": false, "url": "../rdfs/Resource.html"}], "links": [{"source": "5d611837-af07-5a8c-9fbc-427b4567be2f", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "type", "direction": "in"}, {"source": "a21fc377-70e1-5065-be88-3c17fad1d030", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "type", "direction": "in"}, {"source": "18ec88ab-319b-5186-9132-f7e683789ebb", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "type", "direction": "in"}, {"source": "22f1ccdf-2c6d-58e0-bdca-2eb63bffed6d", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "type", "direction": "in"}, {"source": "c84e6318-7a06-59b2-8933-3e6b56f83440", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "a5782a97-a6d9-59e4-b437-2fb436226786", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "range", "direction": "in"}, {"source": "38349f16-6555-5730-a348-8390df6e1d62", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "type", "direction": "in"}, {"source": "09d85924-c26f-5aa3-a307-b2faa8a50602", "target": "c84e6318-7a06-59b2-8933-3e6b56f83440", "label": "type", "direction": "in"}, {"source": "c84e6318-7a06-59b2-8933-3e6b56f83440", "target": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "subClassOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

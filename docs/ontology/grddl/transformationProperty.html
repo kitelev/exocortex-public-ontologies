@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>grddl:TransformationProperty - Ontology Documentation</title>
+    <title>grddl:transformationProperty - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">grddl</a> / TransformationProperty
+        <a href="../index.html">Ontologies</a> / <a href="index.html">grddl</a> / transformationProperty
     </div>
-    <h1><span class="badge badge-class">Class</span> TransformationProperty</h1>
-    <div class="uri">http://www.w3.org/2003/g/data-view#TransformationProperty</div>
+    <h1><span class="badge badge-property">Property</span> transformationProperty</h1>
+    <div class="uri">http://www.w3.org/2003/g/data-view#transformationProperty</div>
 
-    <div class='description'>a FunctionalProperty that relates XML document root nodes to RDF graphs</div>
+    <div class='description'>relates a transformation to the algorithm specified by the property that computes an RDF graph from an XML document node</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:domain</code></td><td><a href="../grddl/RootNode.html" data-tooltip="the root of the tree in the XPath data model">grddl:RootNode</a></td></tr><tr><td><code>rdfs:range</code></td><td><a href="../grddl/RDFGraph.html" data-tooltip="a set of RDF triples">grddl:RDFGraph</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../owl/FunctionalProperty.html" data-tooltip="The class of functional properties.">owl:FunctionalProperty</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:domain</code></td><td><a href="../grddl/Transformation.html" data-tooltip="an InformationResource that specifies a transformation from a set of XML documents to RDF graphs">grddl:Transformation</a></td></tr><tr><td><code>rdfs:range</code></td><td><a href="../grddl/TransformationProperty.html" data-tooltip="a FunctionalProperty that relates XML document root nodes to RDF graphs">grddl:TransformationProperty</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/FunctionalProperty.html" data-tooltip="The class of functional properties.">owl:FunctionalProperty</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "label": "TransformationProperty", "type": "class", "center": true, "url": null}, {"id": "aa2cfb78-d40c-521f-a483-d14a111eddef", "label": "transformationProperty", "type": "property", "center": false, "url": "../grddl/transformationProperty.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "0658b9bf-7597-5aee-a44b-629e6f1d843e", "label": "RDFGraph", "type": "class", "center": false, "url": "../grddl/RDFGraph.html"}, {"id": "8fa80a6e-cc95-5b09-b8b4-ef12745f2c41", "label": "FunctionalProperty", "type": "class", "center": false, "url": "../owl/FunctionalProperty.html"}, {"id": "4c26fc99-e42f-53e7-9c8d-1c597cb4cb7e", "label": "RootNode", "type": "class", "center": false, "url": "../grddl/RootNode.html"}], "links": [{"source": "aa2cfb78-d40c-521f-a483-d14a111eddef", "target": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "label": "range", "direction": "in"}, {"source": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "target": "0658b9bf-7597-5aee-a44b-629e6f1d843e", "label": "range", "direction": "out"}, {"source": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "target": "8fa80a6e-cc95-5b09-b8b4-ef12745f2c41", "label": "subClassOf", "direction": "out"}, {"source": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "target": "4c26fc99-e42f-53e7-9c8d-1c597cb4cb7e", "label": "domain", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "aa2cfb78-d40c-521f-a483-d14a111eddef", "label": "transformationProperty", "type": "property", "center": true, "url": null}, {"id": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "label": "TransformationProperty", "type": "class", "center": false, "url": "../grddl/TransformationProperty.html"}, {"id": "eddeab05-afbd-5a1f-9157-d883989b2a0d", "label": "Transformation", "type": "class", "center": false, "url": "../grddl/Transformation.html"}, {"id": "8fa80a6e-cc95-5b09-b8b4-ef12745f2c41", "label": "FunctionalProperty", "type": "class", "center": false, "url": "../owl/FunctionalProperty.html"}], "links": [{"source": "aa2cfb78-d40c-521f-a483-d14a111eddef", "target": "d600db64-bef3-52c1-a1fd-5cc27171dc8f", "label": "range", "direction": "out"}, {"source": "aa2cfb78-d40c-521f-a483-d14a111eddef", "target": "eddeab05-afbd-5a1f-9157-d883989b2a0d", "label": "domain", "direction": "out"}, {"source": "aa2cfb78-d40c-521f-a483-d14a111eddef", "target": "8fa80a6e-cc95-5b09-b8b4-ef12745f2c41", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

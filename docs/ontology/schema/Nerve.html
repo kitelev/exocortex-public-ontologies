@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:nerve - Ontology Documentation</title>
+    <title>schema:Nerve - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / nerve
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Nerve
     </div>
-    <h1><span class="badge badge-property">Property</span> nerve</h1>
-    <div class="uri">https://schema.org/nerve</div>
+    <h1><span class="badge badge-class">Class</span> Nerve</h1>
+    <div class="uri">https://schema.org/Nerve</div>
 
-    <div class='description'>The underlying innervation associated with the muscle.</div>
+    <div class='description'>A common pathway for the electrochemical nerve impulses that are transmitted along each of the axons.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/Nerve.html" data-tooltip="A common pathway for the electrochemical nerve impulses that are transmitted along each of the axons.">schema:Nerve</a></td></tr><tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Muscle.html" data-tooltip="A muscle is an anatomical structure consisting of a contractile form of tissue that animals use to effect movement.">schema:Muscle</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/AnatomicalStructure.html" data-tooltip="Any part of the human body, typically a component of an anatomical system. Organs, tissues, and cells are all anatomical structures.">schema:AnatomicalStructure</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "f9e08884-3c2f-5c17-bc6e-4bb7bcf756a2", "label": "nerve", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "f9e08884-3c2f-5c17-bc6e-4bb7bcf756a2", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "53de6e27-084a-5362-aacf-81ad20b246a2", "label": "Nerve", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "44fd1f64-b706-50d5-aaf2-7b817c17e9f4", "label": "AnatomicalStructure", "type": "class", "center": false, "url": "../schema/AnatomicalStructure.html"}], "links": [{"source": "53de6e27-084a-5362-aacf-81ad20b246a2", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "53de6e27-084a-5362-aacf-81ad20b246a2", "target": "44fd1f64-b706-50d5-aaf2-7b817c17e9f4", "label": "subClassOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

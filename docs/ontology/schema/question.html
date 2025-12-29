@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:Question - Ontology Documentation</title>
+    <title>schema:question - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Question
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / question
     </div>
-    <h1><span class="badge badge-class">Class</span> Question</h1>
-    <div class="uri">https://schema.org/Question</div>
+    <h1><span class="badge badge-property">Property</span> question</h1>
+    <div class="uri">https://schema.org/question</div>
 
-    <div class='description'>A specific question - e.g. from a user seeking answers online, or collected in a Frequently Asked Questions (FAQ) document.</div>
+    <div class='description'>A sub property of object. A question.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>e99ba2db</code></td><td><a href="../schema/QAStackExchange.html">schema:QAStackExchange</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Comment.html" data-tooltip="text">schema:Comment</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>2e21a917</code></td><td><a href="../schema/Question.html" data-tooltip="A specific question - e.g. from a user seeking answers online, or collected in a Frequently Asked Questions (FAQ) document.">schema:Question</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/AskAction.html" data-tooltip="ReplyAction">schema:AskAction</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/object.html" data-tooltip="The object upon which the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or under...">schema:object</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "32ef02ba-aec6-5318-a4cc-5b5fb1a7523c", "label": "Question", "type": "class", "center": true, "url": null}, {"id": "0997570e-bdec-52a3-b4e5-74e8e55111f0", "label": "Comment", "type": "class", "center": false, "url": "../schema/Comment.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "32ef02ba-aec6-5318-a4cc-5b5fb1a7523c", "target": "0997570e-bdec-52a3-b4e5-74e8e55111f0", "label": "subClassOf", "direction": "out"}, {"source": "32ef02ba-aec6-5318-a4cc-5b5fb1a7523c", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "e6f03ed6-0445-5883-a743-9aebc6c33eb4", "label": "question", "type": "property", "center": true, "url": null}, {"id": "2959f06d-190b-5465-93f6-509eb94b50b5", "label": "object", "type": "property", "center": false, "url": "../schema/object.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "e6f03ed6-0445-5883-a743-9aebc6c33eb4", "target": "2959f06d-190b-5465-93f6-509eb94b50b5", "label": "subPropertyOf", "direction": "out"}, {"source": "e6f03ed6-0445-5883-a743-9aebc6c33eb4", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:BusinessFunction - Ontology Documentation</title>
+    <title>schema:businessFunction - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / BusinessFunction
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / businessFunction
     </div>
-    <h1><span class="badge badge-class">Class</span> BusinessFunction</h1>
-    <div class="uri">https://schema.org/BusinessFunction</div>
+    <h1><span class="badge badge-property">Property</span> businessFunction</h1>
+    <div class="uri">https://schema.org/businessFunction</div>
 
-    <div class='description'>The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the organization or business person through the offer. Typical are sell, rental or lease, maintenance or repair, manufacture / produce, recycle / dispose, engineering / construction, or installation. Proprietary specifications of access rights are also instances of this class.\n\nCommonly used values:\n\n* http://purl.org/goodrelations/v1#ConstructionInstallation\n* http://purl.org/goodrelations/v1#Dispose\n* http://purl.org/goodrelations/v1#LeaseOut\n* http://purl.org/goodrelations/v1#Maintain\n* http://purl.org/goodrelations/v1#ProvideService\n* http://purl.org/goodrelations/v1#Repair\n* http://purl.org/goodrelations/v1#Sell\n* http://purl.org/goodrelations/v1#Buy </div>
+    <div class='description'>The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>e99ba2db</code></td><td>e1876a82-6599-564b-8354-abc497b21d5a</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Enumeration.html" data-tooltip="Lists or enumerations—for example, a list of cuisines or music genres, etc.">schema:Enumeration</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>2e21a917</code></td><td><a href="../schema/BusinessFunction.html" data-tooltip="The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the organization or business person through ...">schema:BusinessFunction</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Offer.html" data-tooltip="businessFunction">schema:Offer</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/TypeAndQuantityNode.html" data-tooltip="A structured value indicating the quantity, unit of measurement, and business function of goods included in a bundle offer.">schema:TypeAndQuantityNode</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Demand.html" data-tooltip="A demand entity represents the public, not necessarily binding, not necessarily exclusive, announcement by an organization or person to seek a cert...">schema:Demand</a></td></tr><tr><td><code>e99ba2db</code></td><td><a href="../schema/GoodRelationsTerms.html">schema:GoodRelationsTerms</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "8c3f5a72-07f6-5d9c-b4a6-156d6236a5ac", "label": "BusinessFunction", "type": "class", "center": true, "url": null}, {"id": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "Enumeration", "type": "class", "center": false, "url": "../schema/Enumeration.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "8c3f5a72-07f6-5d9c-b4a6-156d6236a5ac", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "out"}, {"source": "8c3f5a72-07f6-5d9c-b4a6-156d6236a5ac", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "21ee5d96-0aab-5eda-9971-e8f190251687", "label": "businessFunction", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "21ee5d96-0aab-5eda-9971-e8f190251687", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

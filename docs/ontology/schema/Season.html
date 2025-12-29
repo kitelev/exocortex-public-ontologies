@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:season - Ontology Documentation</title>
+    <title>schema:Season - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / season
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Season
     </div>
-    <h1><span class="badge badge-property">Property</span> season</h1>
-    <div class="uri">https://schema.org/season</div>
+    <h1><span class="badge badge-class">Class</span> Season</h1>
+    <div class="uri">https://schema.org/Season</div>
 
-    <div class='description'>A season in a media series.</div>
+    <div class='description'>A media season, e.g. TV, radio, video game etc.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/URL.html" data-tooltip="Data type: URL.">schema:URL</a></td></tr><tr><td><code>2e21a917</code></td><td><a href="../schema/CreativeWorkSeason.html" data-tooltip="A media season, e.g. TV, radio, video game etc.">schema:CreativeWorkSeason</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/TVSeries.html" data-tooltip="CreativeWorkSeries dedicated to TV broadcast and associated online delivery.">schema:TVSeries</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/RadioSeries.html" data-tooltip="CreativeWorkSeries dedicated to radio broadcast and associated online delivery.">schema:RadioSeries</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/VideoGameSeries.html" data-tooltip="A video game series.">schema:VideoGameSeries</a></td></tr><tr><td><code>6c382066</code></td><td><a href="../schema/containsSeason.html" data-tooltip="A season that is part of the media series.">schema:containsSeason</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/hasPart.html" data-tooltip="Indicates an item or CreativeWork that is part of this item, or CreativeWork (in some sense).">schema:hasPart</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>6c382066</code></td><td><a href="../schema/CreativeWorkSeason.html" data-tooltip="A media season, e.g. TV, radio, video game etc.">schema:CreativeWorkSeason</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "e02205b6-d16b-52d1-a36f-542437870b5e", "label": "season", "type": "property", "center": true, "url": null}, {"id": "0d0ab3e7-39e9-5559-99e0-c657a9837a78", "label": "hasPart", "type": "property", "center": false, "url": "../schema/hasPart.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "e02205b6-d16b-52d1-a36f-542437870b5e", "target": "0d0ab3e7-39e9-5559-99e0-c657a9837a78", "label": "subPropertyOf", "direction": "out"}, {"source": "e02205b6-d16b-52d1-a36f-542437870b5e", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "3d3d9adb-da85-5fa7-872c-f3c1bb53b2df", "label": "Season", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}], "links": [{"source": "3d3d9adb-da85-5fa7-872c-f3c1bb53b2df", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "3d3d9adb-da85-5fa7-872c-f3c1bb53b2df", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

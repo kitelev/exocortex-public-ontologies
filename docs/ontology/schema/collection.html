@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:Collection - Ontology Documentation</title>
+    <title>schema:collection - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Collection
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / collection
     </div>
-    <h1><span class="badge badge-class">Class</span> Collection</h1>
-    <div class="uri">https://schema.org/Collection</div>
+    <h1><span class="badge badge-property">Property</span> collection</h1>
+    <div class="uri">https://schema.org/collection</div>
 
-    <div class='description'>A collection of items, e.g. creative works or products.</div>
+    <div class='description'>A sub property of object. The collection target of the action.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>5d561108</code></td><td><a href="../schema/bib.schema.org.html">bib.schema.org</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>2e21a917</code></td><td><a href="../schema/Thing.html" data-tooltip="The most generic type of item.">schema:Thing</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/UpdateAction.html" data-tooltip="The act of managing by changing/editing the state of the object.">schema:UpdateAction</a></td></tr><tr><td><code>6c382066</code></td><td><a href="../schema/targetCollection.html" data-tooltip="A sub property of object. The collection target of the action.">schema:targetCollection</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/object.html" data-tooltip="The object upon which the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or under...">schema:object</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "6476ab49-d5e6-57a0-9e24-3619eae0e92e", "label": "Collection", "type": "class", "center": true, "url": null}, {"id": "49d3c861-7cac-5ee4-b7fa-f081b7d535de", "label": "ProductCollection", "type": "class", "center": false, "url": "../schema/ProductCollection.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}], "links": [{"source": "49d3c861-7cac-5ee4-b7fa-f081b7d535de", "target": "6476ab49-d5e6-57a0-9e24-3619eae0e92e", "label": "subClassOf", "direction": "in"}, {"source": "6476ab49-d5e6-57a0-9e24-3619eae0e92e", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "6476ab49-d5e6-57a0-9e24-3619eae0e92e", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "91960f90-880d-56e7-bd1c-71eefd47b7bf", "label": "collection", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "2959f06d-190b-5465-93f6-509eb94b50b5", "label": "object", "type": "property", "center": false, "url": "../schema/object.html"}], "links": [{"source": "91960f90-880d-56e7-bd1c-71eefd47b7bf", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "91960f90-880d-56e7-bd1c-71eefd47b7bf", "target": "2959f06d-190b-5465-93f6-509eb94b50b5", "label": "subPropertyOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

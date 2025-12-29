@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:PaymentMethod - Ontology Documentation</title>
+    <title>schema:paymentMethod - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / PaymentMethod
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / paymentMethod
     </div>
-    <h1><span class="badge badge-class">Class</span> PaymentMethod</h1>
-    <div class="uri">https://schema.org/PaymentMethod</div>
+    <h1><span class="badge badge-property">Property</span> paymentMethod</h1>
+    <div class="uri">https://schema.org/paymentMethod</div>
 
-    <div class='description'>A payment method is a standardized procedure for transferring the monetary amount for a purchase. Payment methods are characterized by the legal and technical structures used, and by the organization or group carrying out the transaction. The following legacy values should be accepted: \n\n* http://purl.org/goodrelations/v1#ByBankTransferInAdvance\n* http://purl.org/goodrelations/v1#ByInvoice\n* http://purl.org/goodrelations/v1#Cash\n* http://purl.org/goodrelations/v1#CheckInAdvance\n* http://purl.org/goodrelations/v1#COD\n* http://purl.org/goodrelations/v1#DirectDebit\n* http://purl.org/goodrelations/v1#GoogleCheckout\n* http://purl.org/goodrelations/v1#PayPal\n* http://purl.org/goodrelations/v1#PaySwarm\n\nStructured values, or [UNCE payment means](https://vocabulary.uncefact.org/PaymentMeans) are recommended or for newer annotations.</div>
+    <div class='description'>The name of the credit card or other method of payment for the order.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>4b5dec71</code></td><td>c2023561-b5ed-518b-b434-dcd2c19128b3</td></tr><tr><td><code>4b5dec71</code></td><td>317a83ea-8ca5-5461-b0fe-f2164efc4de2</td></tr><tr><td><code>d8f0ad25</code></td><td>1db158d0-b59c-521a-9519-31b244a1d730</td></tr><tr><td><code>e99ba2db</code></td><td>e1876a82-6599-564b-8354-abc497b21d5a</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Intangible.html" data-tooltip="A utility class that serves as the umbrella for a number of &#x27;intangible&#x27; things such as quantities, structured values, etc.">schema:Intangible</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>2e21a917</code></td><td><a href="../schema/PaymentMethod.html" data-tooltip="A payment method is a standardized procedure for transferring the monetary amount for a purchase. Payment methods are characterized by the legal an...">schema:PaymentMethod</a></td></tr><tr><td><code>2e21a917</code></td><td><a href="../schema/Text.html" data-tooltip="Data type: Text.">schema:Text</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Invoice.html" data-tooltip="A statement of the money due for goods or services; a bill.">schema:Invoice</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Order.html" data-tooltip="An order is a confirmation of a transaction (a receipt), which can contain multiple line items, each represented by an Offer that has been accepted...">schema:Order</a></td></tr><tr><td><code>d8f0ad25</code></td><td>1db158d0-b59c-521a-9519-31b244a1d730</td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td>9a1fcb2a-5bf8-51b3-869a-814bafc2ca28</td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "53691762-e4aa-56b3-943d-31d2aff0570f", "label": "PaymentMethod", "type": "class", "center": true, "url": null}, {"id": "4ec71b7d-d4b7-5c97-8550-5efc1a61c42b", "label": "PaymentCard", "type": "class", "center": false, "url": "../schema/PaymentCard.html"}, {"id": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "Intangible", "type": "class", "center": false, "url": "../schema/Intangible.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "87b3b6ea-7bfa-5028-966b-08857d30d67e", "label": "PaymentService", "type": "class", "center": false, "url": "../schema/PaymentService.html"}], "links": [{"source": "4ec71b7d-d4b7-5c97-8550-5efc1a61c42b", "target": "53691762-e4aa-56b3-943d-31d2aff0570f", "label": "subClassOf", "direction": "in"}, {"source": "53691762-e4aa-56b3-943d-31d2aff0570f", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "out"}, {"source": "53691762-e4aa-56b3-943d-31d2aff0570f", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "87b3b6ea-7bfa-5028-966b-08857d30d67e", "target": "53691762-e4aa-56b3-943d-31d2aff0570f", "label": "subClassOf", "direction": "in"}]};
+        const graphData = {"nodes": [{"id": "4ec27c3d-fe85-57d3-887e-e30a529eb9fd", "label": "paymentMethod", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "4ec27c3d-fe85-57d3-887e-e30a529eb9fd", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

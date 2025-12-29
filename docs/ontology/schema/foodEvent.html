@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:FoodEvent - Ontology Documentation</title>
+    <title>schema:foodEvent - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / FoodEvent
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / foodEvent
     </div>
-    <h1><span class="badge badge-class">Class</span> FoodEvent</h1>
-    <div class="uri">https://schema.org/FoodEvent</div>
+    <h1><span class="badge badge-property">Property</span> foodEvent</h1>
+    <div class="uri">https://schema.org/foodEvent</div>
 
-    <div class='description'>Event type: Food event.</div>
+    <div class='description'>A sub property of location. The specific food event where the action occurred.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Event.html" data-tooltip="offers">schema:Event</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
+        <tr><td><code>2e21a917</code></td><td><a href="../schema/FoodEvent.html" data-tooltip="Event type: Food event.">schema:FoodEvent</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/CookAction.html" data-tooltip="The act of producing/preparing food.">schema:CookAction</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/location.html" data-tooltip="The location of, for example, where an event is happening, where an organization is located, or where an action takes place.">schema:location</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "0a389396-545b-5cd9-97bc-f7458d9eb35d", "label": "FoodEvent", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "a0fbf7c0-2543-5abf-b0bc-41f468f43380", "label": "Event", "type": "class", "center": false, "url": "../schema/Event.html"}], "links": [{"source": "0a389396-545b-5cd9-97bc-f7458d9eb35d", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "0a389396-545b-5cd9-97bc-f7458d9eb35d", "target": "a0fbf7c0-2543-5abf-b0bc-41f468f43380", "label": "subClassOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "ff2cf971-09d7-533d-9824-26ace19bb474", "label": "foodEvent", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "5bb56527-62a7-5af7-b36b-f418a9e09cf8", "label": "location", "type": "property", "center": false, "url": "../schema/location.html"}], "links": [{"source": "ff2cf971-09d7-533d-9824-26ace19bb474", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "ff2cf971-09d7-533d-9824-26ace19bb474", "target": "5bb56527-62a7-5af7-b36b-f418a9e09cf8", "label": "subPropertyOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

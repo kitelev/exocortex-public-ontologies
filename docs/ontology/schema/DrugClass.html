@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:drugClass - Ontology Documentation</title>
+    <title>schema:DrugClass - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / drugClass
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / DrugClass
     </div>
-    <h1><span class="badge badge-property">Property</span> drugClass</h1>
-    <div class="uri">https://schema.org/drugClass</div>
+    <h1><span class="badge badge-class">Class</span> DrugClass</h1>
+    <div class="uri">https://schema.org/DrugClass</div>
 
-    <div class='description'>The class of drug this belongs to (e.g., statins).</div>
+    <div class='description'>A class of medical drugs, e.g., statins. Classes can represent general pharmacological class, common mechanisms of action, common physiological effects, etc.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/DrugClass.html" data-tooltip="A class of medical drugs, e.g., statins. Classes can represent general pharmacological class, common mechanisms of action, common physiological eff...">schema:DrugClass</a></td></tr><tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/Drug.html" data-tooltip="A chemical or biologic substance, used as a medical therapy, that has a physiological effect on an organism. Here the term drug is used interchange...">schema:Drug</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/MedicalEntity.html" data-tooltip="The most generic type of entity related to health and the practice of medicine.">schema:MedicalEntity</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "1f75f9e6-4f7e-5643-a64d-5b924ec1b12a", "label": "drugClass", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "1f75f9e6-4f7e-5643-a64d-5b924ec1b12a", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "3b6ce417-81c7-5898-ba62-62019bb1bad4", "label": "DrugClass", "type": "class", "center": true, "url": null}, {"id": "e703e175-b590-52f7-8ae3-28a29269339b", "label": "MedicalEntity", "type": "class", "center": false, "url": "../schema/MedicalEntity.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "3b6ce417-81c7-5898-ba62-62019bb1bad4", "target": "e703e175-b590-52f7-8ae3-28a29269339b", "label": "subClassOf", "direction": "out"}, {"source": "3b6ce417-81c7-5898-ba62-62019bb1bad4", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

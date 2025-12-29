@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:game - Ontology Documentation</title>
+    <title>schema:Game - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / game
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Game
     </div>
-    <h1><span class="badge badge-property">Property</span> game</h1>
-    <div class="uri">https://schema.org/game</div>
+    <h1><span class="badge badge-class">Class</span> Game</h1>
+    <div class="uri">https://schema.org/Game</div>
 
-    <div class='description'>Video game which is played on this server.</div>
+    <div class='description'>The Game type represents things which are games. These are typically rule-governed recreational activities, e.g. role-playing games in which players assume the role of characters in a fictional setting.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/VideoGame.html" data-tooltip="A video game is an electronic game that involves human interaction with a user interface to generate visual feedback on a video device.">schema:VideoGame</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/GameServer.html" data-tooltip="Server that provides game interaction in a multiplayer game.">schema:GameServer</a></td></tr><tr><td><code>cd961300</code></td><td><a href="../schema/gameServer.html" data-tooltip="The server on which  it is possible to play the game.">schema:gameServer</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "af0da9fa-652d-5a9e-9d8c-f7fff4250d71", "label": "game", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "af0da9fa-652d-5a9e-9d8c-f7fff4250d71", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "4aa4ab47-173a-54ec-bd4f-b9a09e41ee62", "label": "Game", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}, {"id": "45f8ba53-bc70-5b53-a331-efa325518ee2", "label": "VideoGame", "type": "class", "center": false, "url": "../schema/VideoGame.html"}], "links": [{"source": "4aa4ab47-173a-54ec-bd4f-b9a09e41ee62", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "4aa4ab47-173a-54ec-bd4f-b9a09e41ee62", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}, {"source": "45f8ba53-bc70-5b53-a331-efa325518ee2", "target": "4aa4ab47-173a-54ec-bd4f-b9a09e41ee62", "label": "subClassOf", "direction": "in"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

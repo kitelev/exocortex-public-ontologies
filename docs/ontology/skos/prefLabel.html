@@ -280,7 +280,7 @@
     <h1><span class="badge badge-property">Property</span> preferred label&quot;</h1>
     <div class="uri">http://www.w3.org/2004/02/skos/core#prefLabel</div>
 
-    <div class='description'>The range of skos:prefLabel is the class of RDF plain literals.&quot;</div>
+    <div class='description'>A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag.&quot;</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>4c823ec0</code></td><td>The preferred lexical label for a resource, in a given language.&quot;</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../skos/.html">skos:</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../rdfs/label.html" data-tooltip="A human-readable name for the subject.">rdfs:label</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/AnnotationProperty.html" data-tooltip="The class of annotation properties.">owl:AnnotationProperty</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>4c823ec0</code></td><td>The preferred lexical label for a resource, in a given language.&quot;</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../skos/.html">skos:</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../rdfs/label.html" data-tooltip="A human-readable name for the subject.">rdfs:label</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/AnnotationProperty.html" data-tooltip="The class of annotation properties.">owl:AnnotationProperty</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "label": "prefLabel", "type": "property", "center": true, "url": null}, {"id": "d0e9e696-d3f2-5966-a62f-d8358cbde741", "label": "label", "type": "property", "center": false, "url": "../rdfs/label.html"}, {"id": "c4d46947-b828-50f4-871e-f29b15045aa5", "label": "AnnotationProperty", "type": "class", "center": false, "url": "../owl/AnnotationProperty.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "target": "d0e9e696-d3f2-5966-a62f-d8358cbde741", "label": "subPropertyOf", "direction": "out"}, {"source": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "target": "c4d46947-b828-50f4-871e-f29b15045aa5", "label": "type", "direction": "out"}, {"source": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "label": "prefLabel", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "c4d46947-b828-50f4-871e-f29b15045aa5", "label": "AnnotationProperty", "type": "class", "center": false, "url": "../owl/AnnotationProperty.html"}, {"id": "d0e9e696-d3f2-5966-a62f-d8358cbde741", "label": "label", "type": "property", "center": false, "url": "../rdfs/label.html"}], "links": [{"source": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "target": "c4d46947-b828-50f4-871e-f29b15045aa5", "label": "type", "direction": "out"}, {"source": "2db0199c-c05f-51cd-b1d4-6c0ca7bb7485", "target": "d0e9e696-d3f2-5966-a62f-d8358cbde741", "label": "subPropertyOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

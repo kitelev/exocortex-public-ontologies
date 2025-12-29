@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:realEstateAgent - Ontology Documentation</title>
+    <title>schema:RealEstateAgent - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / realEstateAgent
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / RealEstateAgent
     </div>
-    <h1><span class="badge badge-property">Property</span> realEstateAgent</h1>
-    <div class="uri">https://schema.org/realEstateAgent</div>
+    <h1><span class="badge badge-class">Class</span> RealEstateAgent</h1>
+    <div class="uri">https://schema.org/RealEstateAgent</div>
 
-    <div class='description'>A sub property of participant. The real estate agent involved in the action.</div>
+    <div class='description'>A real-estate agent.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/RealEstateAgent.html" data-tooltip="A real-estate agent.">schema:RealEstateAgent</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/RentAction.html" data-tooltip="The act of giving money in return for temporary use, but not ownership, of an object such as a vehicle or property. For example, an agent rents a p...">schema:RentAction</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/participant.html" data-tooltip="Other co-agents that participated in the action indirectly. E.g. John wrote a book with *Steve*.">schema:participant</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/LocalBusiness.html" data-tooltip="A particular physical business or branch of an organization. Examples of LocalBusiness include a restaurant, a particular branch of a restaurant ch...">schema:LocalBusiness</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "c88b4ac1-da5e-5e54-a1b8-527da7ec2d35", "label": "realEstateAgent", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "ac94f71a-eabd-5d88-bd6b-c8d461d09df3", "label": "participant", "type": "property", "center": false, "url": "../schema/participant.html"}], "links": [{"source": "c88b4ac1-da5e-5e54-a1b8-527da7ec2d35", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "c88b4ac1-da5e-5e54-a1b8-527da7ec2d35", "target": "ac94f71a-eabd-5d88-bd6b-c8d461d09df3", "label": "subPropertyOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "fc860b09-315c-5cd7-a66a-4e4b2f94d0ad", "label": "RealEstateAgent", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "f2cae488-0ea3-5b12-8579-cee608c66ec2", "label": "LocalBusiness", "type": "class", "center": false, "url": "../schema/LocalBusiness.html"}], "links": [{"source": "fc860b09-315c-5cd7-a66a-4e4b2f94d0ad", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "fc860b09-315c-5cd7-a66a-4e4b2f94d0ad", "target": "f2cae488-0ea3-5b12-8579-cee608c66ec2", "label": "subClassOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

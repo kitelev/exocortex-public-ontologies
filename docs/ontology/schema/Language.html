@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:language - Ontology Documentation</title>
+    <title>schema:Language - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / language
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Language
     </div>
-    <h1><span class="badge badge-property">Property</span> language</h1>
-    <div class="uri">https://schema.org/language</div>
+    <h1><span class="badge badge-class">Class</span> Language</h1>
+    <div class="uri">https://schema.org/Language</div>
 
-    <div class='description'>A sub property of instrument. The language used on this action.</div>
+    <div class='description'>alternateName</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/Language.html" data-tooltip="alternateName">schema:Language</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/CommunicateAction.html" data-tooltip="The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation.">schema:CommunicateAction</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/WriteAction.html" data-tooltip="The act of authoring written creative content.">schema:WriteAction</a></td></tr><tr><td><code>6c382066</code></td><td><a href="../schema/inLanguage.html" data-tooltip="availableLanguage">schema:inLanguage</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../schema/instrument.html" data-tooltip="The object that helped the agent perform the action. E.g. John wrote a book with *a pen*.">schema:instrument</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Intangible.html" data-tooltip="A utility class that serves as the umbrella for a number of &#x27;intangible&#x27; things such as quantities, structured values, etc.">schema:Intangible</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "427d58fa-da70-519f-b30f-42454af54b01", "label": "language", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "aa9a435e-bfaa-5eda-9527-ba4c8ff38259", "label": "instrument", "type": "property", "center": false, "url": "../schema/instrument.html"}], "links": [{"source": "427d58fa-da70-519f-b30f-42454af54b01", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "427d58fa-da70-519f-b30f-42454af54b01", "target": "aa9a435e-bfaa-5eda-9527-ba4c8ff38259", "label": "subPropertyOf", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "b54b7fae-a849-5fe9-b818-f0f027f0931d", "label": "Language", "type": "class", "center": true, "url": null}, {"id": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "Intangible", "type": "class", "center": false, "url": "../schema/Intangible.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "b54b7fae-a849-5fe9-b818-f0f027f0931d", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "out"}, {"source": "b54b7fae-a849-5fe9-b818-f0f027f0931d", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');

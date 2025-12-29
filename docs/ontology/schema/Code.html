@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>schema:code - Ontology Documentation</title>
+    <title>schema:Code - Ontology Documentation</title>
     <style>
         :root {
             --bg: #0d1117;
@@ -275,12 +275,12 @@
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / code
+        <a href="../index.html">Ontologies</a> / <a href="index.html">schema</a> / Code
     </div>
-    <h1><span class="badge badge-property">Property</span> code</h1>
-    <div class="uri">https://schema.org/code</div>
+    <h1><span class="badge badge-class">Class</span> Code</h1>
+    <div class="uri">https://schema.org/Code</div>
 
-    <div class='description'>A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc.</div>
+    <div class='description'>Computer programming source code. Example: Full (compile ready) solutions, code snippet samples, scripts, templates.</div>
 
     
         <h2>Relationships</h2>
@@ -302,7 +302,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>2e21a917</code></td><td><a href="../schema/MedicalCode.html" data-tooltip="A code for a medical entity.">schema:MedicalCode</a></td></tr><tr><td><code>5d561108</code></td><td><a href="../schema/health-lifesci.schema.org.html">health-lifesci.schema.org</a></td></tr><tr><td><code>668d3000</code></td><td><a href="../schema/MedicalEntity.html" data-tooltip="The most generic type of entity related to health and the practice of medicine.">schema:MedicalEntity</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>6c382066</code></td><td><a href="../schema/SoftwareSourceCode.html" data-tooltip="Computer programming source code. Example: Full (compile ready) solutions, code snippet samples, scripts, templates.">schema:SoftwareSourceCode</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/CreativeWork.html" data-tooltip="The most generic kind of creative work, including books, movies, photographs, software programs, etc.">schema:CreativeWork</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -382,7 +382,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "e379943c-580d-5c80-bd09-7472a420a1c3", "label": "code", "type": "property", "center": true, "url": null}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "e379943c-580d-5c80-bd09-7472a420a1c3", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "a4db2bb5-ee06-59c9-9751-3f25dc903a19", "label": "Code", "type": "class", "center": true, "url": null}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "CreativeWork", "type": "class", "center": false, "url": "../schema/CreativeWork.html"}], "links": [{"source": "a4db2bb5-ee06-59c9-9751-3f25dc903a19", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "a4db2bb5-ee06-59c9-9751-3f25dc903a19", "target": "8c7763d8-05a7-59ae-8098-013d97f95e07", "label": "subClassOf", "direction": "out"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');
