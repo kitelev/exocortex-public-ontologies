@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>An instance of prov:Influence provides additional descriptions about the binary prov:wasInfluencedBy relation from some influenced Activity, Entity, or Agent to the influencing Activity, Entity, or Agent. For example, :stomach_ache prov:wasInfluencedBy :spoon; prov:qualifiedInfluence [ a prov:Influence; prov:entity :spoon; :foo :bar ] . Because prov:Influence is a broad relation, the more specific relations (Communication, Delegation, End, etc.) should be used when applicable.&quot;</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>080b3c2d</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>10aaf0be</code></td><td>derivations</td></tr><tr><td><code>36418357</code></td><td>qualified</td></tr><tr><td><code>3f5548f8</code></td><td>Influence is the capacity of an entity, activity, or agent to have an effect on the character, development, or behavior of another by means of usage, start, end, generation, invalidation, communication, derivation, attribution, association, or delegation.&quot;</td></tr><tr><td><code>afffb597</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>c7e2a3b6</code></td><td><a href="../prov/wasInfluencedBy.html">prov:wasInfluencedBy</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../prov/.html">prov-o:</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html">owl:Class</a></td></tr>
+        <tr><td><code>080b3c2d</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>10aaf0be</code></td><td>derivations</td></tr><tr><td><code>36418357</code></td><td>qualified</td></tr><tr><td><code>3f5548f8</code></td><td>Influence is the capacity of an entity, activity, or agent to have an effect on the character, development, or behavior of another by means of usage, start, end, generation, invalidation, communication, derivation, attribution, association, or delegation.&quot;</td></tr><tr><td><code>afffb597</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>c7e2a3b6</code></td><td><a href="../prov/wasInfluencedBy.html" data-tooltip="This property has multiple RDFS domains to suit multiple OWL Profiles. See &lt;a href=&quot;#owl-profile&quot;&gt;PROV-O OWL Profile&lt;/a&gt;.">prov:wasInfluencedBy</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../prov/.html">prov-o:</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "Influence", "type": "class", "center": true, "url": null}, {"id": "d2f619bc-a4ca-5ede-bf7c-e4905960f528", "label": "hadActivity", "type": "property", "center": false, "url": "../prov/hadActivity.html"}, {"id": "8f873c02-558c-5e4b-be74-554d38404c0c", "label": "qualifiedInfluence", "type": "property", "center": false, "url": "../prov/qualifiedInfluence.html"}, {"id": "938c88e1-7746-588e-b7c1-4383f0202256", "label": "hadRole", "type": "property", "center": false, "url": "../prov/hadRole.html"}, {"id": "7f563552-d3f6-5cb5-bec7-4ee24e97bbd8", "label": "influencer", "type": "property", "center": false, "url": "../prov/influencer.html"}, {"id": "4f2183e2-785d-5eb2-ba9d-e45a1534f4fa", "label": "ActivityInfluence", "type": "class", "center": false, "url": "../prov/ActivityInfluence.html"}, {"id": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "Class", "type": "class", "center": false, "url": "../owl/Class.html"}, {"id": "d78a1a13-9588-55ca-8fc1-2d4261eb3f48", "label": "EntityInfluence", "type": "class", "center": false, "url": "../prov/EntityInfluence.html"}, {"id": "1e5f14a8-5346-544b-ac96-ac3180397ed9", "label": "AgentInfluence", "type": "class", "center": false, "url": "../prov/AgentInfluence.html"}], "links": [{"source": "d2f619bc-a4ca-5ede-bf7c-e4905960f528", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "domain", "direction": "in"}, {"source": "8f873c02-558c-5e4b-be74-554d38404c0c", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "range", "direction": "in"}, {"source": "938c88e1-7746-588e-b7c1-4383f0202256", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "domain", "direction": "in"}, {"source": "7f563552-d3f6-5cb5-bec7-4ee24e97bbd8", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "domain", "direction": "in"}, {"source": "4f2183e2-785d-5eb2-ba9d-e45a1534f4fa", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "subClassOf", "direction": "in"}, {"source": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "target": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "type", "direction": "out"}, {"source": "d78a1a13-9588-55ca-8fc1-2d4261eb3f48", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "subClassOf", "direction": "in"}, {"source": "1e5f14a8-5346-544b-ac96-ac3180397ed9", "target": "3ad6d7a7-d304-5020-bdc1-810d731e0b5b", "label": "subClassOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

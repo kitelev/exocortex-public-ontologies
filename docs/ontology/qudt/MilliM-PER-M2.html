@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,12 @@
 
     
 
+    
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>058ec2e0</code></td><td>5cfb030b-07e0-5a6f-91fe-69dc853a3892</td></tr><tr><td><code>0aa3d93f</code></td><td>d748a05e-5866-5a9d-b07b-6c3029393593</td></tr><tr><td><code>0aa3d93f</code></td><td>b3c4d635-9d14-50b6-86cc-63636a615f3d</td></tr><tr><td><code>0aa3d93f</code></td><td>3b67d951-360f-52e1-a484-4a9b4801c942</td></tr><tr><td><code>0aa3d93f</code></td><td>456bc913-96c9-5d7d-ab2e-1dd4964acc9e</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html">rdf:HTML</a></td></tr><tr><td><code>4c20fcc6</code></td><td>0,001-fold of the SI base unit meter divided by the power of the SI base unit metre with the exponent 2</td></tr><tr><td><code>58430877</code></td><td>29214f3c-b68a-515b-8ca7-933f2e2e10ed</td></tr><tr><td><code>58430877</code></td><td>674cdf8d-9bb0-5d1b-aea7-421f21b2280f</td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>3cd45a82-398c-535c-8d52-065d80ce2baa</td></tr><tr><td><code>a6fa8785</code></td><td>2efbbc89-0c2c-5b01-af84-c480c9285ee5</td></tr><tr><td><code>b2ba8123</code></td><td>dde75f38-1915-5098-9f5d-8e37068727ac</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>mm/m²</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
+        <tr><td><code>058ec2e0</code></td><td>5cfb030b-07e0-5a6f-91fe-69dc853a3892</td></tr><tr><td><code>0aa3d93f</code></td><td>d748a05e-5866-5a9d-b07b-6c3029393593</td></tr><tr><td><code>0aa3d93f</code></td><td>b3c4d635-9d14-50b6-86cc-63636a615f3d</td></tr><tr><td><code>0aa3d93f</code></td><td>3b67d951-360f-52e1-a484-4a9b4801c942</td></tr><tr><td><code>0aa3d93f</code></td><td>456bc913-96c9-5d7d-ab2e-1dd4964acc9e</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html" data-tooltip="The datatype of RDF literals storing fragments of HTML content">rdf:HTML</a></td></tr><tr><td><code>4c20fcc6</code></td><td>0,001-fold of the SI base unit meter divided by the power of the SI base unit metre with the exponent 2</td></tr><tr><td><code>58430877</code></td><td>29214f3c-b68a-515b-8ca7-933f2e2e10ed</td></tr><tr><td><code>58430877</code></td><td>674cdf8d-9bb0-5d1b-aea7-421f21b2280f</td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>3cd45a82-398c-535c-8d52-065d80ce2baa</td></tr><tr><td><code>a6fa8785</code></td><td>2efbbc89-0c2c-5b01-af84-c480c9285ee5</td></tr><tr><td><code>b2ba8123</code></td><td>dde75f38-1915-5098-9f5d-8e37068727ac</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>mm/m²</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
     </table>
     
         </main>
@@ -263,5 +345,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

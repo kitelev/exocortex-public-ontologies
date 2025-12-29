@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>USNonprofitType: Non-profit organization type originating from the United States.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>5d561108</code></td><td><a href="../schema/pending.schema.org.html">pending.schema.org</a></td></tr><tr><td><code>d8f0ad25</code></td><td>5f373a4b-dc7d-5258-aed0-0b0679686cf7</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/NonprofitType.html">schema:NonprofitType</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>5d561108</code></td><td><a href="../schema/pending.schema.org.html">pending.schema.org</a></td></tr><tr><td><code>d8f0ad25</code></td><td>5f373a4b-dc7d-5258-aed0-0b0679686cf7</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/NonprofitType.html" data-tooltip="NonprofitType enumerates several kinds of official non-profit types of which a non-profit organization can be.">schema:NonprofitType</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "USNonprofitType", "type": "class", "center": true, "url": null}, {"id": "a3a2e9ac-a9f2-50b6-8050-4f94715f2be7", "label": "Nonprofit501k", "type": "property", "center": false, "url": "../schema/Nonprofit501k.html"}, {"id": "3e9fe577-4e82-5fe6-bf39-5d63a61bb36d", "label": "Nonprofit501e", "type": "property", "center": false, "url": "../schema/Nonprofit501e.html"}, {"id": "21e6a165-bba4-5df4-ba0c-cdb1b6f93406", "label": "Nonprofit501c22", "type": "property", "center": false, "url": "../schema/Nonprofit501c22.html"}, {"id": "1bd8d52c-e48c-5f40-b2df-a9905ccfa16a", "label": "Nonprofit501c1", "type": "property", "center": false, "url": "../schema/Nonprofit501c1.html"}, {"id": "3ad286db-6990-5a18-be01-de8e0e505bc1", "label": "Nonprofit501c10", "type": "property", "center": false, "url": "../schema/Nonprofit501c10.html"}, {"id": "9d016a17-a7ac-5108-ac2f-1159aaa89809", "label": "Nonprofit501c2", "type": "property", "center": false, "url": "../schema/Nonprofit501c2.html"}, {"id": "b5d257c5-5048-5860-9c9b-2340850b8190", "label": "Nonprofit501d", "type": "property", "center": false, "url": "../schema/Nonprofit501d.html"}, {"id": "20ad41ca-0f05-5758-9618-38fa9c359d4e", "label": "Nonprofit501c18", "type": "property", "center": false, "url": "../schema/Nonprofit501c18.html"}, {"id": "c0b5f7c6-f740-52d9-bcb4-24201c209a89", "label": "Nonprofit501c24", "type": "property", "center": false, "url": "../schema/Nonprofit501c24.html"}, {"id": "be539651-5d55-5280-b113-93e2dc2ff267", "label": "Nonprofit501c28", "type": "property", "center": false, "url": "../schema/Nonprofit501c28.html"}, {"id": "0d3a69db-aa99-5c5f-8ae8-3284a2fad82c", "label": "Nonprofit501c4", "type": "property", "center": false, "url": "../schema/Nonprofit501c4.html"}, {"id": "3677a6fd-feaa-5562-ab68-c36373bdf372", "label": "Nonprofit501c14", "type": "property", "center": false, "url": "../schema/Nonprofit501c14.html"}, {"id": "08b80d86-0e3d-5c74-af10-c397f4a57908", "label": "Nonprofit501c6", "type": "property", "center": false, "url": "../schema/Nonprofit501c6.html"}, {"id": "4d82f8e9-3a5d-5a12-8776-e3e074491279", "label": "Nonprofit501c5", "type": "property", "center": false, "url": "../schema/Nonprofit501c5.html"}, {"id": "da3b382e-f4c5-58b9-b0b2-08262bd2e7e2", "label": "Nonprofit501n", "type": "property", "center": false, "url": "../schema/Nonprofit501n.html"}, {"id": "a5f9bbb2-ae93-5451-a1e1-a730beee78cc", "label": "Nonprofit501c3", "type": "property", "center": false, "url": "../schema/Nonprofit501c3.html"}, {"id": "0101d944-e0d6-52da-b478-b4182024ba44", "label": "Nonprofit501q", "type": "property", "center": false, "url": "../schema/Nonprofit501q.html"}, {"id": "58889c32-9851-526b-b333-0487b6597a63", "label": "Nonprofit501c17", "type": "property", "center": false, "url": "../schema/Nonprofit501c17.html"}, {"id": "a5b6d58f-22a7-53bf-91c0-77b5a879b5a2", "label": "Nonprofit501a", "type": "property", "center": false, "url": "../schema/Nonprofit501a.html"}], "links": [{"source": "a3a2e9ac-a9f2-50b6-8050-4f94715f2be7", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "3e9fe577-4e82-5fe6-bf39-5d63a61bb36d", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "21e6a165-bba4-5df4-ba0c-cdb1b6f93406", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "1bd8d52c-e48c-5f40-b2df-a9905ccfa16a", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "3ad286db-6990-5a18-be01-de8e0e505bc1", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "9d016a17-a7ac-5108-ac2f-1159aaa89809", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "b5d257c5-5048-5860-9c9b-2340850b8190", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "20ad41ca-0f05-5758-9618-38fa9c359d4e", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "c0b5f7c6-f740-52d9-bcb4-24201c209a89", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "be539651-5d55-5280-b113-93e2dc2ff267", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "0d3a69db-aa99-5c5f-8ae8-3284a2fad82c", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "3677a6fd-feaa-5562-ab68-c36373bdf372", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "08b80d86-0e3d-5c74-af10-c397f4a57908", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "4d82f8e9-3a5d-5a12-8776-e3e074491279", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "da3b382e-f4c5-58b9-b0b2-08262bd2e7e2", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "a5f9bbb2-ae93-5451-a1e1-a730beee78cc", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "0101d944-e0d6-52da-b478-b4182024ba44", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "58889c32-9851-526b-b333-0487b6597a63", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}, {"source": "a5b6d58f-22a7-53bf-91c0-77b5a879b5a2", "target": "02264310-f944-5c84-a2c6-c6cdb357b714", "label": "type", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

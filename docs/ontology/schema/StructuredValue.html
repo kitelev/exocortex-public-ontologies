@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Intangible.html">schema:Intangible</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Intangible.html" data-tooltip="A utility class that serves as the umbrella for a number of &#x27;intangible&#x27; things such as quantities, structured values, etc.">schema:Intangible</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "StructuredValue", "type": "class", "center": true, "url": null}, {"id": "41bde39d-0307-5666-9302-1747dc8422b1", "label": "InstantaneousEvent", "type": "class", "center": false, "url": "../schema/InstantaneousEvent.html"}, {"id": "4dc96da5-a85f-5fd4-be20-82f87652329e", "label": "WarrantyPromise", "type": "class", "center": false, "url": "../schema/WarrantyPromise.html"}, {"id": "c6afeded-de52-5a3c-b018-651a7ff13610", "label": "DefinedRegion", "type": "class", "center": false, "url": "../schema/DefinedRegion.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "cc94e4d0-7e3d-574d-9102-e093e0acd330", "label": "PostalCodeRangeSpecification", "type": "class", "center": false, "url": "../schema/PostalCodeRangeSpecification.html"}, {"id": "1c4a8b0a-7495-59cd-aa64-cf9bd3d78ef7", "label": "QuantitativeValueDistribution", "type": "class", "center": false, "url": "../schema/QuantitativeValueDistribution.html"}, {"id": "b4382867-ba2e-59c2-afa1-2c8d54b5435d", "label": "OpeningHoursSpecification", "type": "class", "center": false, "url": "../schema/OpeningHoursSpecification.html"}, {"id": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "Intangible", "type": "class", "center": false, "url": "../schema/Intangible.html"}, {"id": "853f7462-5ae8-5e4f-ad99-44ad3f1fa0d5", "label": "MonetaryAmount", "type": "class", "center": false, "url": "../schema/MonetaryAmount.html"}, {"id": "817f7fb9-bf93-5860-aa60-764227884691", "label": "ExchangeRateSpecification", "type": "class", "center": false, "url": "../schema/ExchangeRateSpecification.html"}, {"id": "c3a3fd4a-caba-555d-adaf-8a843c954999", "label": "QuantitativeValue", "type": "class", "center": false, "url": "../schema/QuantitativeValue.html"}, {"id": "7ec6c3b4-e24b-595f-b35d-22c869a205f1", "label": "GeoCoordinates", "type": "class", "center": false, "url": "../schema/GeoCoordinates.html"}, {"id": "fd277376-d6fe-510b-b9a9-731207323250", "label": "NutritionInformation", "type": "class", "center": false, "url": "../schema/NutritionInformation.html"}, {"id": "f762e95a-749c-58bb-90cc-0445f7cbafea", "label": "ServicePeriod", "type": "class", "center": false, "url": "../schema/ServicePeriod.html"}, {"id": "13d8d963-15bc-5a6a-bf1e-bbc8456945c0", "label": "DatedMoneySpecification", "type": "class", "center": false, "url": "../schema/DatedMoneySpecification.html"}, {"id": "610ed47a-272e-530f-afa3-01364858ed5f", "label": "PriceSpecification", "type": "class", "center": false, "url": "../schema/PriceSpecification.html"}, {"id": "72f23b14-aab6-555b-aba5-76c41990aaff", "label": "ContactPoint", "type": "class", "center": false, "url": "../schema/ContactPoint.html"}, {"id": "23182273-4f9d-585d-9498-f203ed6a2cee", "label": "CDCPMDRecord", "type": "class", "center": false, "url": "../schema/CDCPMDRecord.html"}, {"id": "f7ba94e7-b05d-5346-8f84-2d6f13944f46", "label": "TypeAndQuantityNode", "type": "class", "center": false, "url": "../schema/TypeAndQuantityNode.html"}], "links": [{"source": "41bde39d-0307-5666-9302-1747dc8422b1", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "4dc96da5-a85f-5fd4-be20-82f87652329e", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "c6afeded-de52-5a3c-b018-651a7ff13610", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "cc94e4d0-7e3d-574d-9102-e093e0acd330", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "1c4a8b0a-7495-59cd-aa64-cf9bd3d78ef7", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "b4382867-ba2e-59c2-afa1-2c8d54b5435d", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "out"}, {"source": "853f7462-5ae8-5e4f-ad99-44ad3f1fa0d5", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "817f7fb9-bf93-5860-aa60-764227884691", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "c3a3fd4a-caba-555d-adaf-8a843c954999", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "7ec6c3b4-e24b-595f-b35d-22c869a205f1", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "fd277376-d6fe-510b-b9a9-731207323250", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "f762e95a-749c-58bb-90cc-0445f7cbafea", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "13d8d963-15bc-5a6a-bf1e-bbc8456945c0", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "610ed47a-272e-530f-afa3-01364858ed5f", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "72f23b14-aab6-555b-aba5-76c41990aaff", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "23182273-4f9d-585d-9498-f203ed6a2cee", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}, {"source": "f7ba94e7-b05d-5346-8f84-2d6f13944f46", "target": "be5c7d53-2f50-5cac-a195-f49860b3ef8c", "label": "subClassOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

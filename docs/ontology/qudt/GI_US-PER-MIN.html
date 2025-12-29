@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,12 @@
 
     
 
+    
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>0aa3d93f</code></td><td>857a95af-641e-5e37-bf69-b8ae41df9595</td></tr><tr><td><code>1b28733c</code></td><td>K38</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html">rdf:HTML</a></td></tr><tr><td><code>4c20fcc6</code></td><td>unit of the volume gill (US) for fluids according to the Anglo-American system of units divided by the unit for time minute</td></tr><tr><td><code>58430877</code></td><td>2fa6573d-2b51-5814-87a9-58c46ac33f1c</td></tr><tr><td><code>58430877</code></td><td>390ce467-8c87-5901-9970-792a148ceb12</td></tr><tr><td><code>61901538</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>c91b9975-5b13-5b8b-b804-5ec6830a971e</td></tr><tr><td><code>a6fa8785</code></td><td>e2f4e7c7-b4a6-53c7-b74c-5e3ba58983bc</td></tr><tr><td><code>a6fa8785</code></td><td>c9ebf4eb-2f8f-5c48-b96d-c774acf03139</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>gill{US}/min</td></tr><tr><td><code>fcedc3bc</code></td><td>0112/2///62720#UAA519</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
+        <tr><td><code>0aa3d93f</code></td><td>857a95af-641e-5e37-bf69-b8ae41df9595</td></tr><tr><td><code>1b28733c</code></td><td>K38</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html" data-tooltip="The datatype of RDF literals storing fragments of HTML content">rdf:HTML</a></td></tr><tr><td><code>4c20fcc6</code></td><td>unit of the volume gill (US) for fluids according to the Anglo-American system of units divided by the unit for time minute</td></tr><tr><td><code>58430877</code></td><td>2fa6573d-2b51-5814-87a9-58c46ac33f1c</td></tr><tr><td><code>58430877</code></td><td>390ce467-8c87-5901-9970-792a148ceb12</td></tr><tr><td><code>61901538</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>c91b9975-5b13-5b8b-b804-5ec6830a971e</td></tr><tr><td><code>a6fa8785</code></td><td>e2f4e7c7-b4a6-53c7-b74c-5e3ba58983bc</td></tr><tr><td><code>a6fa8785</code></td><td>c9ebf4eb-2f8f-5c48-b96d-c774acf03139</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>gill{US}/min</td></tr><tr><td><code>fcedc3bc</code></td><td>0112/2///62720#UAA519</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
     </table>
     
         </main>
@@ -263,5 +345,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

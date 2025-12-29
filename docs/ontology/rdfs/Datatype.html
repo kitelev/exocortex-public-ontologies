@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>The class of RDF datatypes.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../rdfs/!rdfs.html">!rdfs</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../rdfs/!rdfs.html">!rdfs</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "Datatype", "type": "class", "center": true, "url": null}, {"id": "20c2eb6c-cab7-54d2-8ded-0615c34a8bb3", "label": "ISO639-2", "type": "datatype", "center": false, "url": "../dcterms/ISO639-2.html"}, {"id": "5bbc0b47-71b6-5552-a8c4-1174d3fcd906", "label": "Period", "type": "datatype", "center": false, "url": "../dcterms/Period.html"}, {"id": "4fbfc7d4-6d77-5be0-8add-93220c31b1c2", "label": "URI", "type": "datatype", "center": false, "url": "../dcterms/URI.html"}, {"id": "26bade58-d8d3-5722-815b-a89b6e311629", "label": "ISO639-3", "type": "datatype", "center": false, "url": "../dcterms/ISO639-3.html"}, {"id": "c86d0731-e3be-50ac-afc9-cc6353784efa", "label": "RFC4646", "type": "datatype", "center": false, "url": "../dcterms/RFC4646.html"}, {"id": "950200ca-b3fb-5207-a60b-3b8c8d69692b", "label": "RFC5646", "type": "datatype", "center": false, "url": "../dcterms/RFC5646.html"}, {"id": "3e52da35-19c9-59fd-ad49-fe28ee70af9e", "label": "Point", "type": "datatype", "center": false, "url": "../dcterms/Point.html"}, {"id": "2f525532-994c-5db4-9ac6-8ae146bccce3", "label": "ISO3166", "type": "datatype", "center": false, "url": "../dcterms/ISO3166.html"}, {"id": "3108fd3f-90f5-51f9-a84b-2127fabfef08", "label": "W3CDTF", "type": "datatype", "center": false, "url": "../dcterms/W3CDTF.html"}, {"id": "e3c0d38a-3b15-5714-bf73-7426fcc0e881", "label": "RFC1766", "type": "datatype", "center": false, "url": "../dcterms/RFC1766.html"}, {"id": "7a3742e7-c3d6-5295-9676-2c843977cf40", "label": "Box", "type": "datatype", "center": false, "url": "../dcterms/Box.html"}, {"id": "e435ce19-e275-5eb5-b671-40b2fa0acda2", "label": "RFC3066", "type": "datatype", "center": false, "url": "../dcterms/RFC3066.html"}, {"id": "1e6c22b3-8066-541d-bc6c-fa5e56551d33", "label": "wktLiteral", "type": "datatype", "center": false, "url": "../geosparql/wktLiteral.html"}, {"id": "589a6cdc-296e-5f2a-b893-864d8248b766", "label": "gmlLiteral", "type": "datatype", "center": false, "url": "../geosparql/gmlLiteral.html"}, {"id": "94db998b-b456-5538-8a48-18997196c130", "label": "kmlLiteral", "type": "datatype", "center": false, "url": "../geosparql/kmlLiteral.html"}, {"id": "be61d2a6-8099-5f10-9593-96dd76c36b6f", "label": "geoJSONLiteral", "type": "datatype", "center": false, "url": "../geosparql/geoJSONLiteral.html"}, {"id": "bf5e4750-baf7-5c4b-a875-7c5cf40e3f44", "label": "onDatatype", "type": "property", "center": false, "url": "../owl/onDatatype.html"}, {"id": "45648867-7fe7-54ab-89dd-0bd8d58bae46", "label": "datatypeComplementOf", "type": "property", "center": false, "url": "../owl/datatypeComplementOf.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}], "links": [{"source": "20c2eb6c-cab7-54d2-8ded-0615c34a8bb3", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "5bbc0b47-71b6-5552-a8c4-1174d3fcd906", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "4fbfc7d4-6d77-5be0-8add-93220c31b1c2", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "26bade58-d8d3-5722-815b-a89b6e311629", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "c86d0731-e3be-50ac-afc9-cc6353784efa", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "950200ca-b3fb-5207-a60b-3b8c8d69692b", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "3e52da35-19c9-59fd-ad49-fe28ee70af9e", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "2f525532-994c-5db4-9ac6-8ae146bccce3", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "3108fd3f-90f5-51f9-a84b-2127fabfef08", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "e3c0d38a-3b15-5714-bf73-7426fcc0e881", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "7a3742e7-c3d6-5295-9676-2c843977cf40", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "e435ce19-e275-5eb5-b671-40b2fa0acda2", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "1e6c22b3-8066-541d-bc6c-fa5e56551d33", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "589a6cdc-296e-5f2a-b893-864d8248b766", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "94db998b-b456-5538-8a48-18997196c130", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "be61d2a6-8099-5f10-9593-96dd76c36b6f", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "type", "direction": "in"}, {"source": "bf5e4750-baf7-5c4b-a875-7c5cf40e3f44", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "range", "direction": "in"}, {"source": "45648867-7fe7-54ab-89dd-0bd8d58bae46", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "domain", "direction": "in"}, {"source": "45648867-7fe7-54ab-89dd-0bd8d58bae46", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "range", "direction": "in"}, {"source": "bf5e4750-baf7-5c4b-a875-7c5cf40e3f44", "target": "925c76c0-596b-56ec-b768-ce3924a53bdf", "label": "domain", "direction": "in"}, {"source": "925c76c0-596b-56ec-b768-ce3924a53bdf", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "subClassOf", "direction": "out"}, {"source": "925c76c0-596b-56ec-b768-ce3924a53bdf", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

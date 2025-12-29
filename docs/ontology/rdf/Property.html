@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>The class of RDF properties.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../rdf/!rdf.html">!rdf</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/Resource.html">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../rdf/!rdf.html">!rdf</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/Resource.html" data-tooltip="The class resource, everything.">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": true, "url": null}, {"id": "b4102c5c-c6a4-52da-8285-47ddc5c6c659", "label": "translation", "type": "property", "center": false, "url": "../adms/translation.html"}, {"id": "86abcc65-a02f-5c74-83b3-1e1c38d33032", "label": "sample", "type": "property", "center": false, "url": "../adms/sample.html"}, {"id": "4526c34d-0395-5090-a482-5e297598b048", "label": "last", "type": "property", "center": false, "url": "../adms/last.html"}, {"id": "e9ed7414-5eaa-5efc-9cbb-783512aaa56b", "label": "prev", "type": "property", "center": false, "url": "../adms/prev.html"}, {"id": "db88224e-86fd-537b-b9ca-2f20f29f5ba7", "label": "roleProperty", "type": "property", "center": false, "url": "../org/roleProperty.html"}, {"id": "3a3aa57c-4d2e-5167-a372-4021303d483c", "label": "propertyDisjointWith", "type": "property", "center": false, "url": "../owl/propertyDisjointWith.html"}, {"id": "dc5ab355-dc11-5048-a0e1-af14dec683aa", "label": "equivalentProperty", "type": "property", "center": false, "url": "../owl/equivalentProperty.html"}, {"id": "968b4bed-6ef7-5cdd-af89-c5aed928cec1", "label": "assertionProperty", "type": "property", "center": false, "url": "../owl/assertionProperty.html"}, {"id": "0113b13b-fb4a-551d-ba7b-d224c026e80e", "label": "onProperty", "type": "property", "center": false, "url": "../owl/onProperty.html"}, {"id": "84d654c0-420b-5a08-ad64-1f16d51de0b2", "label": "domain", "type": "property", "center": false, "url": "../rdfs/domain.html"}, {"id": "4b368645-5f7a-551b-940f-acebfe3d0bd2", "label": "subPropertyOf", "type": "property", "center": false, "url": "../rdfs/subPropertyOf.html"}, {"id": "c6a11966-a018-5be8-95a0-eba182c2fd93", "label": "range", "type": "property", "center": false, "url": "../rdfs/range.html"}, {"id": "37ddb7f7-d558-5c8d-8011-7e6d5f73f13d", "label": "lessThan", "type": "property", "center": false, "url": "../sh/lessThan.html"}, {"id": "773f92c4-6b89-55ce-9cf1-babbab8c6572", "label": "annotationProperty", "type": "property", "center": false, "url": "../sh/annotationProperty.html"}, {"id": "648e5a2f-083b-5dd1-b00a-f4d7db5e8c05", "label": "lessThanOrEquals", "type": "property", "center": false, "url": "../sh/lessThanOrEquals.html"}, {"id": "46ab4b18-e20b-5b7a-aa4f-e821ddd889cd", "label": "targetSubjectsOf", "type": "property", "center": false, "url": "../sh/targetSubjectsOf.html"}, {"id": "c11b9a10-68b7-5f95-8cc9-848c2b79df95", "label": "targetObjectsOf", "type": "property", "center": false, "url": "../sh/targetObjectsOf.html"}, {"id": "1ae46703-1141-5221-b075-54774151799e", "label": "disjoint", "type": "property", "center": false, "url": "../sh/disjoint.html"}, {"id": "9f63fa11-8032-5dc0-aa2c-2dd4ace183a4", "label": "equals", "type": "property", "center": false, "url": "../sh/equals.html"}], "links": [{"source": "b4102c5c-c6a4-52da-8285-47ddc5c6c659", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "86abcc65-a02f-5c74-83b3-1e1c38d33032", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "4526c34d-0395-5090-a482-5e297598b048", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "e9ed7414-5eaa-5efc-9cbb-783512aaa56b", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "db88224e-86fd-537b-b9ca-2f20f29f5ba7", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "db88224e-86fd-537b-b9ca-2f20f29f5ba7", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "3a3aa57c-4d2e-5167-a372-4021303d483c", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "dc5ab355-dc11-5048-a0e1-af14dec683aa", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "3a3aa57c-4d2e-5167-a372-4021303d483c", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "dc5ab355-dc11-5048-a0e1-af14dec683aa", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "968b4bed-6ef7-5cdd-af89-c5aed928cec1", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "3a3aa57c-4d2e-5167-a372-4021303d483c", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "domain", "direction": "in"}, {"source": "dc5ab355-dc11-5048-a0e1-af14dec683aa", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "domain", "direction": "in"}, {"source": "0113b13b-fb4a-551d-ba7b-d224c026e80e", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "968b4bed-6ef7-5cdd-af89-c5aed928cec1", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "0113b13b-fb4a-551d-ba7b-d224c026e80e", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "84d654c0-420b-5a08-ad64-1f16d51de0b2", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "domain", "direction": "in"}, {"source": "4b368645-5f7a-551b-940f-acebfe3d0bd2", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "domain", "direction": "in"}, {"source": "84d654c0-420b-5a08-ad64-1f16d51de0b2", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "c6a11966-a018-5be8-95a0-eba182c2fd93", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "c6a11966-a018-5be8-95a0-eba182c2fd93", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "domain", "direction": "in"}, {"source": "4b368645-5f7a-551b-940f-acebfe3d0bd2", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "4b368645-5f7a-551b-940f-acebfe3d0bd2", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "37ddb7f7-d558-5c8d-8011-7e6d5f73f13d", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "773f92c4-6b89-55ce-9cf1-babbab8c6572", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "648e5a2f-083b-5dd1-b00a-f4d7db5e8c05", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "46ab4b18-e20b-5b7a-aa4f-e821ddd889cd", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "648e5a2f-083b-5dd1-b00a-f4d7db5e8c05", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "c11b9a10-68b7-5f95-8cc9-848c2b79df95", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "46ab4b18-e20b-5b7a-aa4f-e821ddd889cd", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "1ae46703-1141-5221-b075-54774151799e", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "773f92c4-6b89-55ce-9cf1-babbab8c6572", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "9f63fa11-8032-5dc0-aa2c-2dd4ace183a4", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "37ddb7f7-d558-5c8d-8011-7e6d5f73f13d", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}, {"source": "c11b9a10-68b7-5f95-8cc9-848c2b79df95", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "9f63fa11-8032-5dc0-aa2c-2dd4ace183a4", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "range", "direction": "in"}, {"source": "1ae46703-1141-5221-b075-54774151799e", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

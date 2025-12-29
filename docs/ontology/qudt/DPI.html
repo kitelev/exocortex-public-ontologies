@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,12 @@
 
     
 
+    
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>1b28733c</code></td><td>E39</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html">rdf:HTML</a></td></tr><tr><td><code>4c20fcc6</code></td><td>point density as amount of the picture base element divided by the unit inch according to the Anglo-American and the Imperial system of units</td></tr><tr><td><code>58430877</code></td><td>11c48c4b-6dba-5ec0-83ce-3a90a489bced</td></tr><tr><td><code>58430877</code></td><td>8a3b5f12-7ee2-541c-b5f1-ffe8526e535d</td></tr><tr><td><code>61901538</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>3cd45a82-398c-535c-8d52-065d80ce2baa</td></tr><tr><td><code>a566f0ac</code></td><td>f74d32ca-fc5c-5e3f-b663-14b99948d4d2</td></tr><tr><td><code>a6fa8785</code></td><td>698f6fc2-4c19-5e7d-8899-3671c5d90e5c</td></tr><tr><td><code>a6fa8785</code></td><td>99367013-9be0-5c79-86d2-760f62768652</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>DPI</td></tr><tr><td><code>fcedc3bc</code></td><td>0112/2///62720#UAA421</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>32eaf019-58dc-5131-973e-7047944ad2fb</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
+        <tr><td><code>1b28733c</code></td><td>E39</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html" data-tooltip="The datatype of RDF literals storing fragments of HTML content">rdf:HTML</a></td></tr><tr><td><code>4c20fcc6</code></td><td>point density as amount of the picture base element divided by the unit inch according to the Anglo-American and the Imperial system of units</td></tr><tr><td><code>58430877</code></td><td>11c48c4b-6dba-5ec0-83ce-3a90a489bced</td></tr><tr><td><code>58430877</code></td><td>8a3b5f12-7ee2-541c-b5f1-ffe8526e535d</td></tr><tr><td><code>61901538</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>3cd45a82-398c-535c-8d52-065d80ce2baa</td></tr><tr><td><code>a566f0ac</code></td><td>f74d32ca-fc5c-5e3f-b663-14b99948d4d2</td></tr><tr><td><code>a6fa8785</code></td><td>698f6fc2-4c19-5e7d-8899-3671c5d90e5c</td></tr><tr><td><code>a6fa8785</code></td><td>99367013-9be0-5c79-86d2-760f62768652</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>DPI</td></tr><tr><td><code>fcedc3bc</code></td><td>0112/2///62720#UAA421</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>32eaf019-58dc-5131-973e-7047944ad2fb</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
     </table>
     
         </main>
@@ -263,5 +345,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

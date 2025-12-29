@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,12 @@
 
     
 
+    
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>4b738bbd</code></td><td>0.000000000000001-fold of the unit ampere</td></tr><tr><td><code>61901538</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>8fd40afa-8c65-551f-bb4f-ffb5627af6e2</td></tr><tr><td><code>a6fa8785</code></td><td>d577070c-496e-574b-97b5-cd6aaf0d3f78</td></tr><tr><td><code>a6fa8785</code></td><td>da64e303-38dd-5c3f-add2-32b7708f3b1f</td></tr><tr><td><code>a6fa8785</code></td><td>0642b832-db7b-59ee-9fde-43a478fbb881</td></tr><tr><td><code>a6fa8785</code></td><td>1e7d8ef8-6615-550d-8eb8-67313f74ec15</td></tr><tr><td><code>a6fa8785</code></td><td>83793677-c811-56cb-91be-254b9953f5e0</td></tr><tr><td><code>a6fa8785</code></td><td>7cf6b891-1ab5-5441-8065-da387018f36a</td></tr><tr><td><code>a6fa8785</code></td><td>a4b4a4b8-a0d9-5cbd-b2d8-9785a3802f4b</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7b20823</code></td><td>2f368b1d-7dd7-5bc3-b26b-54395883820a</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>fA</td></tr><tr><td><code>fa5aaa70</code></td><td><a href="../qudt/A.html">A</a></td></tr><tr><td><code>fcedc3bc</code></td><td>0112/2///62720#UAB638</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
+        <tr><td><code>4b738bbd</code></td><td>0.000000000000001-fold of the unit ampere</td></tr><tr><td><code>61901538</code></td><td><a href="../xsd/anyURI.html">xsd:anyURI</a></td></tr><tr><td><code>6320684c</code></td><td>c8f343fc-e177-565b-8de9-2124477c3b04</td></tr><tr><td><code>92f7c89b</code></td><td>8fd40afa-8c65-551f-bb4f-ffb5627af6e2</td></tr><tr><td><code>a6fa8785</code></td><td>d577070c-496e-574b-97b5-cd6aaf0d3f78</td></tr><tr><td><code>a6fa8785</code></td><td>da64e303-38dd-5c3f-add2-32b7708f3b1f</td></tr><tr><td><code>a6fa8785</code></td><td>0642b832-db7b-59ee-9fde-43a478fbb881</td></tr><tr><td><code>a6fa8785</code></td><td>1e7d8ef8-6615-550d-8eb8-67313f74ec15</td></tr><tr><td><code>a6fa8785</code></td><td>83793677-c811-56cb-91be-254b9953f5e0</td></tr><tr><td><code>a6fa8785</code></td><td>7cf6b891-1ab5-5441-8065-da387018f36a</td></tr><tr><td><code>a6fa8785</code></td><td>a4b4a4b8-a0d9-5cbd-b2d8-9785a3802f4b</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7b20823</code></td><td>2f368b1d-7dd7-5bc3-b26b-54395883820a</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>fA</td></tr><tr><td><code>fa5aaa70</code></td><td><a href="../qudt/A.html" data-tooltip="Hectopascal is commonly used in meteorology to report values for atmospheric pressure. It is equivalent to millibar.">A</a></td></tr><tr><td><code>fcedc3bc</code></td><td>0112/2///62720#UAB638</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
     </table>
     
         </main>
@@ -263,5 +345,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

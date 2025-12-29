@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>Un ruolo è la funzione di una risorsa o di un agente rispetto ad un&#x27;altra risorsa, nel contesto dell&#x27;attribuzione delle risorse o delle relazioni tra risorse.&quot;</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>3d53ee9b</code></td><td>New class added in DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Nuova classe aggiunta in DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Ny klasse tilføjet i DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Nová třída přidaná ve verzi DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Nueva clase agregada en DCAT 2.0.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Un ruolo è la funzione di una risorsa o di un agente rispetto ad un&#x27;altra risorsa, nel contesto dell&#x27;attribuzione delle risorse o delle relazioni tra risorse.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Role je funkce zdroje či agenta ve vztahu k jinému zdroji, v kontextu přiřazení zdrojů či vztahů mezi zdroji.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>En rolle er den funktion en ressource eller aktør har i forhold til en anden ressource, i forbindelse med ressourcekreditering eller ressourcerelationer.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Un rol es la función de un recurso o agente con respecto a otro recuros, en el contexto de atribución del recurso o de las relaciones entre recursos.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>A role is the function of a resource or agent with respect to another resource, in the context of resource attribution or resource relationships.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Utilizzato in una relazione qualificata per specificare il ruolo di un&#x27;entità rispetto a un&#x27;altra entità. Si raccomanda che il valore sia preso da un vocabolario controllato di ruoli di entità come ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode, IANA Registry of Link Relations https://www.iana.org/assignments/link-relation, DataCite metadata schema, o MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Se usa en una relación cualificada para especificar el rol de una Entidad con respecto a otra Entidad. Se recomienda que los valores se administren como los valores de un vocabulario controlado de roles de entidad como por ejemplo: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation; el esquema de metadatos de DataCite; MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Použito v kvalifikovaném vztahu pro specifikaci role Entity ve vztahu k jiné Entitě. Je doporučeno množinu hodnot spravovat jako řízený slovník rolí entit, jako například ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode, IANA Registry of Link Relations https://www.iana.org/assignments/link-relation, DataCite metadata schema, či MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Anvendes i forbindelse med kvalificerede krediteringer til at angive aktørens rolle i forhold til en entitet. Det anbefales at værdierne styres som et kontrolleret udfaldsrum med aktørroller, såsom http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Used in a qualified-attribution to specify the role of an Agent with respect to an Entity. It is recommended that the values be managed as a controlled vocabulary of agent roles, such as http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Použito v kvalifikovaném přiřazení pro specifikaci role Agenta ve vztahu k Entitě. Je doporučeno množinu hodnot spravovat jako řízený slovník rolí agentů, jako například http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Utilizzato in un&#x27;attribuzione qualificata per specificare il ruolo di un agente rispetto a un&#x27;entità. Si consiglia di attribuire i valori considerando un vocabolario controllato dei ruoli dell&#x27;agente, ad esempio http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Se usa en una atribución cualificada para especificar el rol de un Agente con respecto a una Entidad. Se recomienda que los valores se administren como un vocabulario controlado de roles de agente, como por ejemplo http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Used in a qualified-relation to specify the role of an Entity with respect to another Entity. It is recommended that the values be managed as a controlled vocabulary of entity roles such as: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation;  DataCite metadata schema;  MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Anvendes i forbindelse med kvalificerede relationer til at specificere en entitets rolle i forhold til en anden entitet. Det anbefales at værdierne styres med et kontrolleret udfaldsrum for for entitetsroller såsom: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation;  DataCite metadata schema;  MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>df572217</code></td><td>Přidáno do DCAT pro doplnění třídy prov:Role (jejíž užití je omezeno na role v kontextu aktivit, jakožto obor hodnot vlastnosti prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Introdotta in DCAT per completare prov:Role (il cui uso è limitato ai ruoli nel contesto di un&#x27;attività, in conseguenza alla definizione del codominio di prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Introduceret i DCAT for at supplere prov:Role (hvis anvendelse er begrænset til roller i forbindelse med en aktivitet, som er rækkevidde for prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Introduced into DCAT to complement prov:Role (whose use is limited to roles in the context of an activity, as the range of prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Incluída en DCAT para complementar prov:Role (cuyo uso está limitado a roles en el contexto de una actividad, ya que es el rango es prov:hadRole).&quot;</td></tr><tr><td><code>ec554dd3</code></td><td><a href="../dcat/hadRole.html">dcat:hadRole</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../skos/Concept.html">skos:Concept</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html">owl:Class</a></td></tr>
+        <tr><td><code>3d53ee9b</code></td><td>New class added in DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Nuova classe aggiunta in DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Ny klasse tilføjet i DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Nová třída přidaná ve verzi DCAT 2.0.&quot;</td></tr><tr><td><code>3d53ee9b</code></td><td>Nueva clase agregada en DCAT 2.0.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Un ruolo è la funzione di una risorsa o di un agente rispetto ad un&#x27;altra risorsa, nel contesto dell&#x27;attribuzione delle risorse o delle relazioni tra risorse.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Role je funkce zdroje či agenta ve vztahu k jinému zdroji, v kontextu přiřazení zdrojů či vztahů mezi zdroji.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>En rolle er den funktion en ressource eller aktør har i forhold til en anden ressource, i forbindelse med ressourcekreditering eller ressourcerelationer.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Un rol es la función de un recurso o agente con respecto a otro recuros, en el contexto de atribución del recurso o de las relaciones entre recursos.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>A role is the function of a resource or agent with respect to another resource, in the context of resource attribution or resource relationships.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Utilizzato in una relazione qualificata per specificare il ruolo di un&#x27;entità rispetto a un&#x27;altra entità. Si raccomanda che il valore sia preso da un vocabolario controllato di ruoli di entità come ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode, IANA Registry of Link Relations https://www.iana.org/assignments/link-relation, DataCite metadata schema, o MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Se usa en una relación cualificada para especificar el rol de una Entidad con respecto a otra Entidad. Se recomienda que los valores se administren como los valores de un vocabulario controlado de roles de entidad como por ejemplo: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation; el esquema de metadatos de DataCite; MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Použito v kvalifikovaném vztahu pro specifikaci role Entity ve vztahu k jiné Entitě. Je doporučeno množinu hodnot spravovat jako řízený slovník rolí entit, jako například ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode, IANA Registry of Link Relations https://www.iana.org/assignments/link-relation, DataCite metadata schema, či MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Anvendes i forbindelse med kvalificerede krediteringer til at angive aktørens rolle i forhold til en entitet. Det anbefales at værdierne styres som et kontrolleret udfaldsrum med aktørroller, såsom http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Used in a qualified-attribution to specify the role of an Agent with respect to an Entity. It is recommended that the values be managed as a controlled vocabulary of agent roles, such as http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Použito v kvalifikovaném přiřazení pro specifikaci role Agenta ve vztahu k Entitě. Je doporučeno množinu hodnot spravovat jako řízený slovník rolí agentů, jako například http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Utilizzato in un&#x27;attribuzione qualificata per specificare il ruolo di un agente rispetto a un&#x27;entità. Si consiglia di attribuire i valori considerando un vocabolario controllato dei ruoli dell&#x27;agente, ad esempio http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Se usa en una atribución cualificada para especificar el rol de un Agente con respecto a una Entidad. Se recomienda que los valores se administren como un vocabulario controlado de roles de agente, como por ejemplo http://registry.it.csiro.au/def/isotc211/CI_RoleCode.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Used in a qualified-relation to specify the role of an Entity with respect to another Entity. It is recommended that the values be managed as a controlled vocabulary of entity roles such as: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation;  DataCite metadata schema;  MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Anvendes i forbindelse med kvalificerede relationer til at specificere en entitets rolle i forhold til en anden entitet. Det anbefales at værdierne styres med et kontrolleret udfaldsrum for for entitetsroller såsom: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation;  DataCite metadata schema;  MARC relators https://id.loc.gov/vocabulary/relators.&quot;</td></tr><tr><td><code>df572217</code></td><td>Přidáno do DCAT pro doplnění třídy prov:Role (jejíž užití je omezeno na role v kontextu aktivit, jakožto obor hodnot vlastnosti prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Introdotta in DCAT per completare prov:Role (il cui uso è limitato ai ruoli nel contesto di un&#x27;attività, in conseguenza alla definizione del codominio di prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Introduceret i DCAT for at supplere prov:Role (hvis anvendelse er begrænset til roller i forbindelse med en aktivitet, som er rækkevidde for prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Introduced into DCAT to complement prov:Role (whose use is limited to roles in the context of an activity, as the range of prov:hadRole).&quot;</td></tr><tr><td><code>df572217</code></td><td>Incluída en DCAT para complementar prov:Role (cuyo uso está limitado a roles en el contexto de una actividad, ya que es el rango es prov:hadRole).&quot;</td></tr><tr><td><code>ec554dd3</code></td><td><a href="../dcat/hadRole.html" data-tooltip="La funzione di un&#x27;entità o un agente rispetto ad un&#x27;altra entità o risorsa.&quot;">dcat:hadRole</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../skos/Concept.html">skos:Concept</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "b6b92b3d-227d-52a2-931c-2bbc9ced8298", "label": "Role", "type": "class", "center": true, "url": null}, {"id": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "Class", "type": "class", "center": false, "url": "../owl/Class.html"}, {"id": "375fb881-e2ed-5329-b08d-fc4c5ed6d8e2", "label": "hadRole", "type": "property", "center": false, "url": "../dcat/hadRole.html"}, {"id": "681c0a7a-ecbb-55b2-9b63-05784383cb0d", "label": "Concept", "type": "class", "center": false, "url": "../skos/Concept.html"}], "links": [{"source": "b6b92b3d-227d-52a2-931c-2bbc9ced8298", "target": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "type", "direction": "out"}, {"source": "375fb881-e2ed-5329-b08d-fc4c5ed6d8e2", "target": "b6b92b3d-227d-52a2-931c-2bbc9ced8298", "label": "range", "direction": "in"}, {"source": "b6b92b3d-227d-52a2-931c-2bbc9ced8298", "target": "681c0a7a-ecbb-55b2-9b63-05784383cb0d", "label": "subClassOf", "direction": "out"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

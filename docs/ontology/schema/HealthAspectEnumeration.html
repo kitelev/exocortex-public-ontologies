@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>hasHealthAspect</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>5d561108</code></td><td><a href="../schema/pending.schema.org.html">pending.schema.org</a></td></tr><tr><td><code>d8f0ad25</code></td><td>827089b9-7d25-5555-bfa5-25dbd1510444</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Enumeration.html">schema:Enumeration</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>5d561108</code></td><td><a href="../schema/pending.schema.org.html">pending.schema.org</a></td></tr><tr><td><code>d8f0ad25</code></td><td>827089b9-7d25-5555-bfa5-25dbd1510444</td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Enumeration.html" data-tooltip="Lists or enumerations—for example, a list of cuisines or music genres, etc.">schema:Enumeration</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "HealthAspectEnumeration", "type": "class", "center": true, "url": null}, {"id": "8711dd6f-029e-5b21-a620-e5aa7287903c", "label": "MisconceptionsHealthAspect", "type": "property", "center": false, "url": "../schema/MisconceptionsHealthAspect.html"}, {"id": "a420211e-84fa-5dc8-9054-7c7bff787448", "label": "SymptomsHealthAspect", "type": "property", "center": false, "url": "../schema/SymptomsHealthAspect.html"}, {"id": "b9dece6d-99c9-5d38-8f6d-af9bd26bb0d5", "label": "PatientExperienceHealthAspect", "type": "property", "center": false, "url": "../schema/PatientExperienceHealthAspect.html"}, {"id": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "Enumeration", "type": "class", "center": false, "url": "../schema/Enumeration.html"}, {"id": "b51c1065-19a0-51c3-a197-2b3f466be86b", "label": "TreatmentsHealthAspect", "type": "property", "center": false, "url": "../schema/TreatmentsHealthAspect.html"}, {"id": "25cef548-daa9-5fc1-b690-6544e1afe727", "label": "HowOrWhereHealthAspect", "type": "property", "center": false, "url": "../schema/HowOrWhereHealthAspect.html"}, {"id": "5f6b4de7-0ef6-55d8-91e8-4c21b9b28bc4", "label": "LivingWithHealthAspect", "type": "property", "center": false, "url": "../schema/LivingWithHealthAspect.html"}, {"id": "08ba5a7a-7a8d-5497-a447-9d93e9e25a83", "label": "HowItWorksHealthAspect", "type": "property", "center": false, "url": "../schema/HowItWorksHealthAspect.html"}, {"id": "9dccf727-553a-53b2-9be3-f716a97b1c8f", "label": "RisksOrComplicationsHealthAspect", "type": "property", "center": false, "url": "../schema/RisksOrComplicationsHealthAspect.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "17012744-549c-5629-b7bf-2380aad7d4a6", "label": "UsageOrScheduleHealthAspect", "type": "property", "center": false, "url": "../schema/UsageOrScheduleHealthAspect.html"}, {"id": "4d8a48e1-b255-57b0-8544-3adaebbe0824", "label": "PrognosisHealthAspect", "type": "property", "center": false, "url": "../schema/PrognosisHealthAspect.html"}, {"id": "2289c970-9149-5d3f-91b5-28050fe39e1c", "label": "SafetyHealthAspect", "type": "property", "center": false, "url": "../schema/SafetyHealthAspect.html"}, {"id": "c58973e3-364d-5edc-8c17-e4583850e60b", "label": "IngredientsHealthAspect", "type": "property", "center": false, "url": "../schema/IngredientsHealthAspect.html"}, {"id": "06059684-9168-50b6-852a-24a89aebbbbc", "label": "RelatedTopicsHealthAspect", "type": "property", "center": false, "url": "../schema/RelatedTopicsHealthAspect.html"}, {"id": "dbe4e961-11a1-5403-95a4-4dbcdddbdc32", "label": "SelfCareHealthAspect", "type": "property", "center": false, "url": "../schema/SelfCareHealthAspect.html"}, {"id": "4e98d045-eccd-5ea3-8693-0b6ed2effd0e", "label": "OverviewHealthAspect", "type": "property", "center": false, "url": "../schema/OverviewHealthAspect.html"}, {"id": "7e63706e-65c7-5c5c-9626-d804edea4021", "label": "GettingAccessHealthAspect", "type": "property", "center": false, "url": "../schema/GettingAccessHealthAspect.html"}, {"id": "1b9a67b0-9aef-55e5-aa46-a5ac62f200cb", "label": "TypesHealthAspect", "type": "property", "center": false, "url": "../schema/TypesHealthAspect.html"}], "links": [{"source": "8711dd6f-029e-5b21-a620-e5aa7287903c", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "a420211e-84fa-5dc8-9054-7c7bff787448", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "b9dece6d-99c9-5d38-8f6d-af9bd26bb0d5", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "out"}, {"source": "b51c1065-19a0-51c3-a197-2b3f466be86b", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "25cef548-daa9-5fc1-b690-6544e1afe727", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "5f6b4de7-0ef6-55d8-91e8-4c21b9b28bc4", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "08ba5a7a-7a8d-5497-a447-9d93e9e25a83", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "9dccf727-553a-53b2-9be3-f716a97b1c8f", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "17012744-549c-5629-b7bf-2380aad7d4a6", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "4d8a48e1-b255-57b0-8544-3adaebbe0824", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "2289c970-9149-5d3f-91b5-28050fe39e1c", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "c58973e3-364d-5edc-8c17-e4583850e60b", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "06059684-9168-50b6-852a-24a89aebbbbc", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "dbe4e961-11a1-5403-95a4-4dbcdddbdc32", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "4e98d045-eccd-5ea3-8693-0b6ed2effd0e", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "7e63706e-65c7-5c5c-9626-d804edea4021", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}, {"source": "1b9a67b0-9aef-55e5-aa46-a5ac62f200cb", "target": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "type", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

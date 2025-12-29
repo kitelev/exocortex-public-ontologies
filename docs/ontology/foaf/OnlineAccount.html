@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>An online account.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>eaf1f83f</code></td><td>testing</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../foaf/!foaf.html">!foaf</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../owl/Thing.html">owl:Thing</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html">owl:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>eaf1f83f</code></td><td>testing</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../foaf/!foaf.html">!foaf</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../owl/Thing.html" data-tooltip="The class of OWL individuals.">owl:Thing</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "OnlineAccount", "type": "class", "center": true, "url": null}, {"id": "bcf4201f-8cd9-5b70-9647-24ad6aad9262", "label": "accountName", "type": "property", "center": false, "url": "../foaf/accountName.html"}, {"id": "cff37fac-6841-5343-b424-3353205f13f7", "label": "OnlineEcommerceAccount", "type": "class", "center": false, "url": "../foaf/OnlineEcommerceAccount.html"}, {"id": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "Class", "type": "class", "center": false, "url": "../owl/Class.html"}, {"id": "b22c0139-6920-5c58-b334-d3f397fd1fe7", "label": "accountServiceHomepage", "type": "property", "center": false, "url": "../foaf/accountServiceHomepage.html"}, {"id": "4a3d2a34-d168-5c0f-8799-36070244afd8", "label": "OnlineGamingAccount", "type": "class", "center": false, "url": "../foaf/OnlineGamingAccount.html"}, {"id": "57351e0c-7039-5698-ae38-7c96c46af4ff", "label": "Thing", "type": "class", "center": false, "url": "../owl/Thing.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/Class.html"}, {"id": "176d8ca8-41d7-5954-acd9-8a45424dfa4f", "label": "OnlineChatAccount", "type": "class", "center": false, "url": "../foaf/OnlineChatAccount.html"}, {"id": "26130b65-a24f-58fd-a0e2-989afe5a1a9d", "label": "account", "type": "property", "center": false, "url": "../foaf/account.html"}, {"id": "bbdbb13f-1308-54e0-8bdc-4c9dea92571b", "label": "holdsAccount", "type": "property", "center": false, "url": "../foaf/holdsAccount.html"}, {"id": "7abeb141-f7b8-54bc-a043-f470a0ece8c6", "label": "User", "type": "class", "center": false, "url": "../sioc/User.html"}, {"id": "237a5dc0-0663-5ac1-a8b0-1795bd3af6f1", "label": "UserAccount", "type": "class", "center": false, "url": "../sioc/UserAccount.html"}], "links": [{"source": "bcf4201f-8cd9-5b70-9647-24ad6aad9262", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "domain", "direction": "in"}, {"source": "cff37fac-6841-5343-b424-3353205f13f7", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "subClassOf", "direction": "in"}, {"source": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "target": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "type", "direction": "out"}, {"source": "b22c0139-6920-5c58-b334-d3f397fd1fe7", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "domain", "direction": "in"}, {"source": "4a3d2a34-d168-5c0f-8799-36070244afd8", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "subClassOf", "direction": "in"}, {"source": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "target": "57351e0c-7039-5698-ae38-7c96c46af4ff", "label": "subClassOf", "direction": "out"}, {"source": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "176d8ca8-41d7-5954-acd9-8a45424dfa4f", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "subClassOf", "direction": "in"}, {"source": "26130b65-a24f-58fd-a0e2-989afe5a1a9d", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "range", "direction": "in"}, {"source": "bbdbb13f-1308-54e0-8bdc-4c9dea92571b", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "range", "direction": "in"}, {"source": "7abeb141-f7b8-54bc-a043-f470a0ece8c6", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "subClassOf", "direction": "in"}, {"source": "237a5dc0-0663-5ac1-a8b0-1795bd3af6f1", "target": "17a9d413-af7f-5e64-a69e-bea2c9c92f07", "label": "subClassOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

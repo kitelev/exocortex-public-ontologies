@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,12 @@
 
     
 
+    
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>0aa3d93f</code></td><td>857a95af-641e-5e37-bf69-b8ae41df9595</td></tr><tr><td><code>0aa3d93f</code></td><td>01d985c9-9bce-5652-a02b-976b42bbab6e</td></tr><tr><td><code>0aa3d93f</code></td><td>3b67d951-360f-52e1-a484-4a9b4801c942</td></tr><tr><td><code>0aa3d93f</code></td><td>b3c4d635-9d14-50b6-86cc-63636a615f3d</td></tr><tr><td><code>0aa3d93f</code></td><td>456bc913-96c9-5d7d-ab2e-1dd4964acc9e</td></tr><tr><td><code>0aa3d93f</code></td><td>d748a05e-5866-5a9d-b07b-6c3029393593</td></tr><tr><td><code>1b28733c</code></td><td>C62</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html">rdf:HTML</a></td></tr><tr><td><code>92f7c89b</code></td><td>8db9d833-2920-53e0-96e6-263eb7f05681</td></tr><tr><td><code>a566f0ac</code></td><td>c0879fb1-6f8d-5a62-80af-d1ea3926b55e</td></tr><tr><td><code>a6fa8785</code></td><td>8ec0c162-3be1-5729-a7bb-8a2f42d203b7</td></tr><tr><td><code>a6fa8785</code></td><td>fd8b2731-3c6d-5584-ae24-098eef84abc0</td></tr><tr><td><code>a6fa8785</code></td><td>f52cf480-f565-59a1-9571-58812770a260</td></tr><tr><td><code>a6fa8785</code></td><td>b3b42211-11ae-5dc6-94df-37aced0c7d29</td></tr><tr><td><code>a6fa8785</code></td><td>37526b83-c50d-573f-bc03-7acecfac80ed</td></tr><tr><td><code>a6fa8785</code></td><td>210c4031-7474-5a6b-81da-0e477604adf4</td></tr><tr><td><code>a6fa8785</code></td><td>bdbc03b9-3474-5b09-bc6f-95b5212e0ab4</td></tr><tr><td><code>a6fa8785</code></td><td>61425332-400a-574a-a9f4-59da12d7b333</td></tr><tr><td><code>a6fa8785</code></td><td>6127ee63-a99f-5556-9de5-c93e6e27acb6</td></tr><tr><td><code>a6fa8785</code></td><td>9717d827-085b-582f-be82-d51b67b38694</td></tr><tr><td><code>a6fa8785</code></td><td>52ca4a42-55ba-59c4-bfce-f9da16135986</td></tr><tr><td><code>a6fa8785</code></td><td>4f89dc03-afdb-56b2-809d-65bb24c3787d</td></tr><tr><td><code>a6fa8785</code></td><td>aa2bc33f-0e03-5f1b-b312-23c0e87d2232</td></tr><tr><td><code>a6fa8785</code></td><td>638f3e15-82b0-58cb-9c37-46f7e41decea</td></tr><tr><td><code>a6fa8785</code></td><td>febe9bfa-263c-57c3-9ff7-a140d21fb619</td></tr><tr><td><code>a6fa8785</code></td><td>314b8690-2d9f-5992-b42e-33f0dd92ec24</td></tr><tr><td><code>a6fa8785</code></td><td>35d33170-6e56-559e-8c8d-6e417b53563d</td></tr><tr><td><code>a6fa8785</code></td><td>51b8060e-36d6-59f1-aa0a-35d444989a32</td></tr><tr><td><code>a6fa8785</code></td><td>965164dd-264c-5d5a-b0a5-90561f7ebc0b</td></tr><tr><td><code>a6fa8785</code></td><td>3e77f022-92e5-53cb-a8a8-ffff5d34a6e7</td></tr><tr><td><code>a6fa8785</code></td><td>3d60d375-0ea7-5ea7-a3ab-916b4028e4cd</td></tr><tr><td><code>a6fa8785</code></td><td>da9dee1b-4cc4-54b2-aaca-611ccfeaf148</td></tr><tr><td><code>a6fa8785</code></td><td>2e79e7bb-f090-50b8-b62a-197ea5788d3b</td></tr><tr><td><code>a6fa8785</code></td><td>3e5ece29-44ef-5715-9bfd-90c741e5676a</td></tr><tr><td><code>a6fa8785</code></td><td>15da8393-96bc-50db-a29d-c0e2482b0ee5</td></tr><tr><td><code>a6fa8785</code></td><td>06a8244f-b6d7-54ba-8b49-51ffec3219df</td></tr><tr><td><code>a6fa8785</code></td><td>970f0edb-65cf-5222-bac6-5d505201bba6</td></tr><tr><td><code>a6fa8785</code></td><td>71776787-ee0c-51f2-bad6-f3e18b045b84</td></tr><tr><td><code>a6fa8785</code></td><td>bf7a8e94-7cf3-5c9d-be13-c6cf43537d06</td></tr><tr><td><code>a6fa8785</code></td><td>38222e1d-591f-5c8b-b4a9-725da404f33c</td></tr><tr><td><code>a6fa8785</code></td><td>7bc235a0-738f-52c3-89ea-e8c9620645de</td></tr><tr><td><code>a6fa8785</code></td><td>ba6046bd-7f0e-5a85-a5b3-8afa25136ea5</td></tr><tr><td><code>a6fa8785</code></td><td>2bd97839-8277-5561-99ae-36a717b53629</td></tr><tr><td><code>a6fa8785</code></td><td>933403b2-a001-591b-8685-ccfcb95b4993</td></tr><tr><td><code>a6fa8785</code></td><td>ce5c2234-0c92-5138-9ee0-babaa083fc34</td></tr><tr><td><code>a6fa8785</code></td><td>5527ed92-7c89-5870-a344-c8ff94353b20</td></tr><tr><td><code>a6fa8785</code></td><td>c6755cfe-5251-5f7c-973f-0c43cdb6c74b</td></tr><tr><td><code>a6fa8785</code></td><td>b601e929-40ae-5a9f-b4b7-b991d11f00b2</td></tr><tr><td><code>a6fa8785</code></td><td>d7150af3-94d3-5335-b2c3-d26cff14246e</td></tr><tr><td><code>a6fa8785</code></td><td>13f39eed-ddb8-5458-a44c-1a7e72f8ec0f</td></tr><tr><td><code>a6fa8785</code></td><td>d3e24762-ddac-5094-b373-12b85b5e30e1</td></tr><tr><td><code>a6fa8785</code></td><td>789f4871-8b2e-5314-8f7e-ee43d0adfd4c</td></tr><tr><td><code>a6fa8785</code></td><td>1204bac7-0138-50c1-8e78-824c1e91991e</td></tr><tr><td><code>a6fa8785</code></td><td>39e3d48c-7d86-5645-9f39-f89245c8b072</td></tr><tr><td><code>a6fa8785</code></td><td>83c56c42-8586-5954-b7d3-7195fde24ce4</td></tr><tr><td><code>a6fa8785</code></td><td>e5b0de99-07b9-5f76-b47f-8ebbce44b707</td></tr><tr><td><code>a6fa8785</code></td><td>d58d9d34-14cf-5581-8c1c-ece87f69a134</td></tr><tr><td><code>a6fa8785</code></td><td>01d16d37-ef7c-500f-8ce2-a268d06c4cfd</td></tr><tr><td><code>a6fa8785</code></td><td>34c155cb-20b8-52f4-a2d2-716a67ac47b9</td></tr><tr><td><code>a6fa8785</code></td><td>28c19feb-d7d7-5236-ac86-fe7563ba398b</td></tr><tr><td><code>a6fa8785</code></td><td>e3c46286-8388-57e1-9de4-904fe58301bd</td></tr><tr><td><code>a6fa8785</code></td><td>0a855f94-b0f2-5002-beb7-b8fbf0285505</td></tr><tr><td><code>a6fa8785</code></td><td>6476ee0e-f4ea-59c7-bd86-e0713fcef1dd</td></tr><tr><td><code>a6fa8785</code></td><td>d9c69b1b-848f-5213-a5f3-0b6c0946ec4c</td></tr><tr><td><code>a6fa8785</code></td><td>df82f3df-1afd-5436-bb7a-c02f3025523a</td></tr><tr><td><code>a6fa8785</code></td><td>e860de9f-52d0-5a1d-9392-54a75fea135f</td></tr><tr><td><code>a6fa8785</code></td><td>4b47532d-4100-5a12-b442-504ad9b4d5c3</td></tr><tr><td><code>a6fa8785</code></td><td>5d7576c6-a2a3-523c-bc90-d532bc24324d</td></tr><tr><td><code>a6fa8785</code></td><td>aea8af51-9df3-53da-9bf2-1432980e507f</td></tr><tr><td><code>a6fa8785</code></td><td>a28d22a0-99ab-56f6-8ec9-f1cabfa898b5</td></tr><tr><td><code>a6fa8785</code></td><td>a87154da-2233-5e29-a521-636c59030d75</td></tr><tr><td><code>a6fa8785</code></td><td>9a1710d2-1a80-581d-9fdc-ae699bd1ff54</td></tr><tr><td><code>a6fa8785</code></td><td>25d565d7-82c1-57a8-b15f-626ce205f91f</td></tr><tr><td><code>a6fa8785</code></td><td>fc400148-e558-50a7-80a2-f049c081c498</td></tr><tr><td><code>a6fa8785</code></td><td>269a29f6-6430-5224-b7c7-a767ee5d65d7</td></tr><tr><td><code>a6fa8785</code></td><td>b4da0a50-f80e-57c4-9faf-268e810326c2</td></tr><tr><td><code>a6fa8785</code></td><td>4394f852-d713-5a5d-b500-f3580815efb2</td></tr><tr><td><code>a6fa8785</code></td><td>d460339d-0057-5e26-999c-f28bd0f527de</td></tr><tr><td><code>a6fa8785</code></td><td>9ce751b7-6ef9-5820-9ed2-0487548a0f4b</td></tr><tr><td><code>a6fa8785</code></td><td>5411d677-796e-5cca-9441-21a1cb8b655e</td></tr><tr><td><code>a6fa8785</code></td><td>51852f10-1647-5cb3-998c-a4f6f5f5cb5b</td></tr><tr><td><code>a6fa8785</code></td><td>6f322a1d-a9a1-5492-8163-c50f86553868</td></tr><tr><td><code>a6fa8785</code></td><td>70211233-588f-5475-88d0-09a384a368ea</td></tr><tr><td><code>a6fa8785</code></td><td>9f7c523b-ffd0-5f58-8e34-9010eba60e9b</td></tr><tr><td><code>a6fa8785</code></td><td>77c5c016-8401-5f27-a559-39604f139353</td></tr><tr><td><code>a6fa8785</code></td><td>548da163-1b70-5adb-8b66-4afee2fa6c61</td></tr><tr><td><code>a6fa8785</code></td><td>23de5840-1e4b-5c7f-88e3-dc330f524dc9</td></tr><tr><td><code>a6fa8785</code></td><td>dc82ca22-d1dc-529d-a501-3304600cbbda</td></tr><tr><td><code>a6fa8785</code></td><td>5b915705-1ae0-5f60-a097-78099a497369</td></tr><tr><td><code>a6fa8785</code></td><td>66bf48ca-1cd0-5f00-a6ea-26e28a3ad778</td></tr><tr><td><code>a6fa8785</code></td><td>5a3197af-eb08-5ac1-a2fe-4f05cb87963e</td></tr><tr><td><code>a6fa8785</code></td><td>9879fc12-87c5-5923-ac73-720166ef9fd7</td></tr><tr><td><code>a6fa8785</code></td><td>0e7da31c-f467-508b-8397-fdfc54863557</td></tr><tr><td><code>a6fa8785</code></td><td>cbd1957d-7567-54f8-86ef-98126d02cb64</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>一</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>241d6450-9ac6-5389-b832-835fdb5e9a59</td></tr><tr><td><code>rdf:type</code></td><td>3e753735-4a80-524e-a7aa-bec1e410a28d</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
+        <tr><td><code>0aa3d93f</code></td><td>857a95af-641e-5e37-bf69-b8ae41df9595</td></tr><tr><td><code>0aa3d93f</code></td><td>01d985c9-9bce-5652-a02b-976b42bbab6e</td></tr><tr><td><code>0aa3d93f</code></td><td>3b67d951-360f-52e1-a484-4a9b4801c942</td></tr><tr><td><code>0aa3d93f</code></td><td>b3c4d635-9d14-50b6-86cc-63636a615f3d</td></tr><tr><td><code>0aa3d93f</code></td><td>456bc913-96c9-5d7d-ab2e-1dd4964acc9e</td></tr><tr><td><code>0aa3d93f</code></td><td>d748a05e-5866-5a9d-b07b-6c3029393593</td></tr><tr><td><code>1b28733c</code></td><td>C62</td></tr><tr><td><code>4b738bbd</code></td><td><a href="../rdf/HTML.html" data-tooltip="The datatype of RDF literals storing fragments of HTML content">rdf:HTML</a></td></tr><tr><td><code>92f7c89b</code></td><td>8db9d833-2920-53e0-96e6-263eb7f05681</td></tr><tr><td><code>a566f0ac</code></td><td>c0879fb1-6f8d-5a62-80af-d1ea3926b55e</td></tr><tr><td><code>a6fa8785</code></td><td>8ec0c162-3be1-5729-a7bb-8a2f42d203b7</td></tr><tr><td><code>a6fa8785</code></td><td>fd8b2731-3c6d-5584-ae24-098eef84abc0</td></tr><tr><td><code>a6fa8785</code></td><td>f52cf480-f565-59a1-9571-58812770a260</td></tr><tr><td><code>a6fa8785</code></td><td>b3b42211-11ae-5dc6-94df-37aced0c7d29</td></tr><tr><td><code>a6fa8785</code></td><td>37526b83-c50d-573f-bc03-7acecfac80ed</td></tr><tr><td><code>a6fa8785</code></td><td>210c4031-7474-5a6b-81da-0e477604adf4</td></tr><tr><td><code>a6fa8785</code></td><td>bdbc03b9-3474-5b09-bc6f-95b5212e0ab4</td></tr><tr><td><code>a6fa8785</code></td><td>61425332-400a-574a-a9f4-59da12d7b333</td></tr><tr><td><code>a6fa8785</code></td><td>6127ee63-a99f-5556-9de5-c93e6e27acb6</td></tr><tr><td><code>a6fa8785</code></td><td>9717d827-085b-582f-be82-d51b67b38694</td></tr><tr><td><code>a6fa8785</code></td><td>52ca4a42-55ba-59c4-bfce-f9da16135986</td></tr><tr><td><code>a6fa8785</code></td><td>4f89dc03-afdb-56b2-809d-65bb24c3787d</td></tr><tr><td><code>a6fa8785</code></td><td>aa2bc33f-0e03-5f1b-b312-23c0e87d2232</td></tr><tr><td><code>a6fa8785</code></td><td>638f3e15-82b0-58cb-9c37-46f7e41decea</td></tr><tr><td><code>a6fa8785</code></td><td>febe9bfa-263c-57c3-9ff7-a140d21fb619</td></tr><tr><td><code>a6fa8785</code></td><td>314b8690-2d9f-5992-b42e-33f0dd92ec24</td></tr><tr><td><code>a6fa8785</code></td><td>35d33170-6e56-559e-8c8d-6e417b53563d</td></tr><tr><td><code>a6fa8785</code></td><td>51b8060e-36d6-59f1-aa0a-35d444989a32</td></tr><tr><td><code>a6fa8785</code></td><td>965164dd-264c-5d5a-b0a5-90561f7ebc0b</td></tr><tr><td><code>a6fa8785</code></td><td>3e77f022-92e5-53cb-a8a8-ffff5d34a6e7</td></tr><tr><td><code>a6fa8785</code></td><td>3d60d375-0ea7-5ea7-a3ab-916b4028e4cd</td></tr><tr><td><code>a6fa8785</code></td><td>da9dee1b-4cc4-54b2-aaca-611ccfeaf148</td></tr><tr><td><code>a6fa8785</code></td><td>2e79e7bb-f090-50b8-b62a-197ea5788d3b</td></tr><tr><td><code>a6fa8785</code></td><td>3e5ece29-44ef-5715-9bfd-90c741e5676a</td></tr><tr><td><code>a6fa8785</code></td><td>15da8393-96bc-50db-a29d-c0e2482b0ee5</td></tr><tr><td><code>a6fa8785</code></td><td>06a8244f-b6d7-54ba-8b49-51ffec3219df</td></tr><tr><td><code>a6fa8785</code></td><td>970f0edb-65cf-5222-bac6-5d505201bba6</td></tr><tr><td><code>a6fa8785</code></td><td>71776787-ee0c-51f2-bad6-f3e18b045b84</td></tr><tr><td><code>a6fa8785</code></td><td>bf7a8e94-7cf3-5c9d-be13-c6cf43537d06</td></tr><tr><td><code>a6fa8785</code></td><td>38222e1d-591f-5c8b-b4a9-725da404f33c</td></tr><tr><td><code>a6fa8785</code></td><td>7bc235a0-738f-52c3-89ea-e8c9620645de</td></tr><tr><td><code>a6fa8785</code></td><td>ba6046bd-7f0e-5a85-a5b3-8afa25136ea5</td></tr><tr><td><code>a6fa8785</code></td><td>2bd97839-8277-5561-99ae-36a717b53629</td></tr><tr><td><code>a6fa8785</code></td><td>933403b2-a001-591b-8685-ccfcb95b4993</td></tr><tr><td><code>a6fa8785</code></td><td>ce5c2234-0c92-5138-9ee0-babaa083fc34</td></tr><tr><td><code>a6fa8785</code></td><td>5527ed92-7c89-5870-a344-c8ff94353b20</td></tr><tr><td><code>a6fa8785</code></td><td>c6755cfe-5251-5f7c-973f-0c43cdb6c74b</td></tr><tr><td><code>a6fa8785</code></td><td>b601e929-40ae-5a9f-b4b7-b991d11f00b2</td></tr><tr><td><code>a6fa8785</code></td><td>d7150af3-94d3-5335-b2c3-d26cff14246e</td></tr><tr><td><code>a6fa8785</code></td><td>13f39eed-ddb8-5458-a44c-1a7e72f8ec0f</td></tr><tr><td><code>a6fa8785</code></td><td>d3e24762-ddac-5094-b373-12b85b5e30e1</td></tr><tr><td><code>a6fa8785</code></td><td>789f4871-8b2e-5314-8f7e-ee43d0adfd4c</td></tr><tr><td><code>a6fa8785</code></td><td>1204bac7-0138-50c1-8e78-824c1e91991e</td></tr><tr><td><code>a6fa8785</code></td><td>39e3d48c-7d86-5645-9f39-f89245c8b072</td></tr><tr><td><code>a6fa8785</code></td><td>83c56c42-8586-5954-b7d3-7195fde24ce4</td></tr><tr><td><code>a6fa8785</code></td><td>e5b0de99-07b9-5f76-b47f-8ebbce44b707</td></tr><tr><td><code>a6fa8785</code></td><td>d58d9d34-14cf-5581-8c1c-ece87f69a134</td></tr><tr><td><code>a6fa8785</code></td><td>01d16d37-ef7c-500f-8ce2-a268d06c4cfd</td></tr><tr><td><code>a6fa8785</code></td><td>34c155cb-20b8-52f4-a2d2-716a67ac47b9</td></tr><tr><td><code>a6fa8785</code></td><td>28c19feb-d7d7-5236-ac86-fe7563ba398b</td></tr><tr><td><code>a6fa8785</code></td><td>e3c46286-8388-57e1-9de4-904fe58301bd</td></tr><tr><td><code>a6fa8785</code></td><td>0a855f94-b0f2-5002-beb7-b8fbf0285505</td></tr><tr><td><code>a6fa8785</code></td><td>6476ee0e-f4ea-59c7-bd86-e0713fcef1dd</td></tr><tr><td><code>a6fa8785</code></td><td>d9c69b1b-848f-5213-a5f3-0b6c0946ec4c</td></tr><tr><td><code>a6fa8785</code></td><td>df82f3df-1afd-5436-bb7a-c02f3025523a</td></tr><tr><td><code>a6fa8785</code></td><td>e860de9f-52d0-5a1d-9392-54a75fea135f</td></tr><tr><td><code>a6fa8785</code></td><td>4b47532d-4100-5a12-b442-504ad9b4d5c3</td></tr><tr><td><code>a6fa8785</code></td><td>5d7576c6-a2a3-523c-bc90-d532bc24324d</td></tr><tr><td><code>a6fa8785</code></td><td>aea8af51-9df3-53da-9bf2-1432980e507f</td></tr><tr><td><code>a6fa8785</code></td><td>a28d22a0-99ab-56f6-8ec9-f1cabfa898b5</td></tr><tr><td><code>a6fa8785</code></td><td>a87154da-2233-5e29-a521-636c59030d75</td></tr><tr><td><code>a6fa8785</code></td><td>9a1710d2-1a80-581d-9fdc-ae699bd1ff54</td></tr><tr><td><code>a6fa8785</code></td><td>25d565d7-82c1-57a8-b15f-626ce205f91f</td></tr><tr><td><code>a6fa8785</code></td><td>fc400148-e558-50a7-80a2-f049c081c498</td></tr><tr><td><code>a6fa8785</code></td><td>269a29f6-6430-5224-b7c7-a767ee5d65d7</td></tr><tr><td><code>a6fa8785</code></td><td>b4da0a50-f80e-57c4-9faf-268e810326c2</td></tr><tr><td><code>a6fa8785</code></td><td>4394f852-d713-5a5d-b500-f3580815efb2</td></tr><tr><td><code>a6fa8785</code></td><td>d460339d-0057-5e26-999c-f28bd0f527de</td></tr><tr><td><code>a6fa8785</code></td><td>9ce751b7-6ef9-5820-9ed2-0487548a0f4b</td></tr><tr><td><code>a6fa8785</code></td><td>5411d677-796e-5cca-9441-21a1cb8b655e</td></tr><tr><td><code>a6fa8785</code></td><td>51852f10-1647-5cb3-998c-a4f6f5f5cb5b</td></tr><tr><td><code>a6fa8785</code></td><td>6f322a1d-a9a1-5492-8163-c50f86553868</td></tr><tr><td><code>a6fa8785</code></td><td>70211233-588f-5475-88d0-09a384a368ea</td></tr><tr><td><code>a6fa8785</code></td><td>9f7c523b-ffd0-5f58-8e34-9010eba60e9b</td></tr><tr><td><code>a6fa8785</code></td><td>77c5c016-8401-5f27-a559-39604f139353</td></tr><tr><td><code>a6fa8785</code></td><td>548da163-1b70-5adb-8b66-4afee2fa6c61</td></tr><tr><td><code>a6fa8785</code></td><td>23de5840-1e4b-5c7f-88e3-dc330f524dc9</td></tr><tr><td><code>a6fa8785</code></td><td>dc82ca22-d1dc-529d-a501-3304600cbbda</td></tr><tr><td><code>a6fa8785</code></td><td>5b915705-1ae0-5f60-a097-78099a497369</td></tr><tr><td><code>a6fa8785</code></td><td>66bf48ca-1cd0-5f00-a6ea-26e28a3ad778</td></tr><tr><td><code>a6fa8785</code></td><td>5a3197af-eb08-5ac1-a2fe-4f05cb87963e</td></tr><tr><td><code>a6fa8785</code></td><td>9879fc12-87c5-5923-ac73-720166ef9fd7</td></tr><tr><td><code>a6fa8785</code></td><td>0e7da31c-f467-508b-8397-fdfc54863557</td></tr><tr><td><code>a6fa8785</code></td><td>cbd1957d-7567-54f8-86ef-98126d02cb64</td></tr><tr><td><code>d2af0991</code></td><td>ca079f4f-4ab3-5dc4-8934-2962935a0ddb</td></tr><tr><td><code>e7e09266</code></td><td><a href="../xsd/decimal.html">xsd:decimal</a></td></tr><tr><td><code>ec23d74f</code></td><td>一</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>31fa0dfd-eafc-5313-8fec-4f3fd19d65f6</td></tr><tr><td><code>rdf:type</code></td><td>241d6450-9ac6-5389-b832-835fdb5e9a59</td></tr><tr><td><code>rdf:type</code></td><td>3e753735-4a80-524e-a7aa-bec1e410a28d</td></tr><tr><td><code>rdf:type</code></td><td>b54bda13-6193-54e6-8012-4b6475bc9af5</td></tr>
     </table>
     
         </main>
@@ -263,5 +345,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

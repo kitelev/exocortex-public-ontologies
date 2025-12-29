@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>This property has multiple RDFS domains to suit multiple OWL Profiles. See &lt;a href=&quot;#owl-profile&quot;&gt;PROV-O OWL Profile&lt;/a&gt;.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>10aaf0be</code></td><td>agents-responsibility</td></tr><tr><td><code>1f54e9bc</code></td><td>influenced</td></tr><tr><td><code>36418357</code></td><td>qualified</td></tr><tr><td><code>919ce707</code></td><td><a href="../prov/qualifiedInfluence.html">prov:qualifiedInfluence</a></td></tr><tr><td><code>919ce707</code></td><td><a href="../prov/Influence.html">prov:Influence</a></td></tr><tr><td><code>c6d0dc8e</code></td><td><a href="../prov/Influence.html">prov:Influence</a></td></tr><tr><td><code>d04ee33b</code></td><td>The sub-properties of prov:wasInfluencedBy can be elaborated in more detail using the Qualification Pattern. For example, the binary relation :baking prov:used :spoon can be qualified by asserting :baking prov:qualifiedUsage [ a prov:Usage; prov:entity :spoon; prov:atLocation :kitchen ] . Subproperties of prov:wasInfluencedBy may also be asserted directly without being qualified. prov:wasInfluencedBy should not be used without also using one of its subproperties. &quot;</td></tr><tr><td><code>rdfs:domain</code></td><td>e675e13f-3fe3-558d-b787-b344e1dfe1e1</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../prov/.html">prov-o:</a></td></tr><tr><td><code>rdfs:range</code></td><td>16f92030-0e00-545c-8721-9eb4b5d48293</td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/ObjectProperty.html">owl:ObjectProperty</a></td></tr>
+        <tr><td><code>10aaf0be</code></td><td>agents-responsibility</td></tr><tr><td><code>1f54e9bc</code></td><td>influenced</td></tr><tr><td><code>36418357</code></td><td>qualified</td></tr><tr><td><code>919ce707</code></td><td><a href="../prov/qualifiedInfluence.html" data-tooltip="Because prov:qualifiedInfluence is a broad relation, the more specific relations (qualifiedCommunication, qualifiedDelegation, qualifiedEnd, etc.) ...">prov:qualifiedInfluence</a></td></tr><tr><td><code>919ce707</code></td><td><a href="../prov/Influence.html" data-tooltip="An instance of prov:Influence provides additional descriptions about the binary prov:wasInfluencedBy relation from some influenced Activity, Entity...">prov:Influence</a></td></tr><tr><td><code>c6d0dc8e</code></td><td><a href="../prov/Influence.html" data-tooltip="An instance of prov:Influence provides additional descriptions about the binary prov:wasInfluencedBy relation from some influenced Activity, Entity...">prov:Influence</a></td></tr><tr><td><code>d04ee33b</code></td><td>The sub-properties of prov:wasInfluencedBy can be elaborated in more detail using the Qualification Pattern. For example, the binary relation :baking prov:used :spoon can be qualified by asserting :baking prov:qualifiedUsage [ a prov:Usage; prov:entity :spoon; prov:atLocation :kitchen ] . Subproperties of prov:wasInfluencedBy may also be asserted directly without being qualified. prov:wasInfluencedBy should not be used without also using one of its subproperties. &quot;</td></tr><tr><td><code>rdfs:domain</code></td><td>e675e13f-3fe3-558d-b787-b344e1dfe1e1</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../prov/.html">prov-o:</a></td></tr><tr><td><code>rdfs:range</code></td><td>16f92030-0e00-545c-8721-9eb4b5d48293</td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/ObjectProperty.html" data-tooltip="The class of object properties.">owl:ObjectProperty</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "wasInfluencedBy", "type": "property", "center": true, "url": null}, {"id": "3f1882b7-d398-5273-aea5-7c087534c20a", "label": "wasInvalidatedBy", "type": "property", "center": false, "url": "../prov/wasInvalidatedBy.html"}, {"id": "9b893ce5-6a69-5972-97a7-c56b68fb6306", "label": "wasAttributedTo", "type": "property", "center": false, "url": "../prov/wasAttributedTo.html"}, {"id": "bee2a79a-5486-5f1f-ace2-cb3df6ed92c3", "label": "wasDerivedFrom", "type": "property", "center": false, "url": "../prov/wasDerivedFrom.html"}, {"id": "600e4f65-c3a5-58d5-83be-a7ffa0f89ec3", "label": "hadMember", "type": "property", "center": false, "url": "../prov/hadMember.html"}, {"id": "3707e8ab-bab5-5cc9-89c3-09b156e42279", "label": "actedOnBehalfOf", "type": "property", "center": false, "url": "../prov/actedOnBehalfOf.html"}, {"id": "aeccddd2-32e1-591f-817c-7f5e5854f1d6", "label": "wasStartedBy", "type": "property", "center": false, "url": "../prov/wasStartedBy.html"}, {"id": "29d3ffe9-f96c-5504-b759-8e8dfc812d5b", "label": "wasEndedBy", "type": "property", "center": false, "url": "../prov/wasEndedBy.html"}, {"id": "10c95009-d278-5dd6-a39a-6cd484aeea7a", "label": "used", "type": "property", "center": false, "url": "../prov/used.html"}, {"id": "1ca4d39e-3c44-575a-8e82-b745bf274777", "label": "ObjectProperty", "type": "class", "center": false, "url": "../owl/ObjectProperty.html"}, {"id": "bd0aec65-fd99-58c2-9b3e-ea9dd9609a80", "label": "wasAssociatedWith", "type": "property", "center": false, "url": "../prov/wasAssociatedWith.html"}, {"id": "f152fcff-a33d-5149-9df5-0bf79711d889", "label": "wasInformedBy", "type": "property", "center": false, "url": "../prov/wasInformedBy.html"}, {"id": "66b3a550-e716-57aa-b49a-dd5498aaae4e", "label": "wasGeneratedBy", "type": "property", "center": false, "url": "../prov/wasGeneratedBy.html"}], "links": [{"source": "3f1882b7-d398-5273-aea5-7c087534c20a", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "9b893ce5-6a69-5972-97a7-c56b68fb6306", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "bee2a79a-5486-5f1f-ace2-cb3df6ed92c3", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "600e4f65-c3a5-58d5-83be-a7ffa0f89ec3", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "3707e8ab-bab5-5cc9-89c3-09b156e42279", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "aeccddd2-32e1-591f-817c-7f5e5854f1d6", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "29d3ffe9-f96c-5504-b759-8e8dfc812d5b", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "10c95009-d278-5dd6-a39a-6cd484aeea7a", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "target": "1ca4d39e-3c44-575a-8e82-b745bf274777", "label": "type", "direction": "out"}, {"source": "bd0aec65-fd99-58c2-9b3e-ea9dd9609a80", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "f152fcff-a33d-5149-9df5-0bf79711d889", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}, {"source": "66b3a550-e716-57aa-b49a-dd5498aaae4e", "target": "92a82a41-cd4b-5e84-8d7e-7980f91ba43b", "label": "subPropertyOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

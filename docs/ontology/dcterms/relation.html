@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>A related resource.&quot;</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>3e98087c</code></td><td><a href="../xsd/date.html">xsd:date</a></td></tr><tr><td><code>4b738bbd</code></td><td>Recommended practice is to identify the related resource by means of a URI.  If this is not possible or feasible, a string conforming to a formal identification system may be provided.&quot;</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../dcterms/!dcterms.html">!dcterms</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../dc/relation.html">dc:relation</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html">rdf:Property</a></td></tr>
+        <tr><td><code>3e98087c</code></td><td><a href="../xsd/date.html">xsd:date</a></td></tr><tr><td><code>4b738bbd</code></td><td>Recommended practice is to identify the related resource by means of a URI.  If this is not possible or feasible, a string conforming to a formal identification system may be provided.&quot;</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../dcterms/!dcterms.html">!dcterms</a></td></tr><tr><td><code>rdfs:subPropertyOf</code></td><td><a href="../dc/relation.html" data-tooltip="A related resource.&quot;">dc:relation</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "relation", "type": "property", "center": true, "url": null}, {"id": "c6fa5e10-b9cd-5f9c-bb1d-c1047f538449", "label": "distribution", "type": "property", "center": false, "url": "../dcat/distribution.html"}, {"id": "574b84c8-4341-5788-8d93-3731af701622", "label": "replaces", "type": "property", "center": false, "url": "../dcterms/replaces.html"}, {"id": "8133df2a-54ee-50a1-9e3e-556ad6b6ca25", "label": "hasFormat", "type": "property", "center": false, "url": "../dcterms/hasFormat.html"}, {"id": "647b7e1d-7570-5bdc-8b20-334c9e06ed69", "label": "hasPart", "type": "property", "center": false, "url": "../dcterms/hasPart.html"}, {"id": "747036aa-cc24-57a5-9a14-b3142021a13f", "label": "isFormatOf", "type": "property", "center": false, "url": "../dcterms/isFormatOf.html"}, {"id": "339e4f2e-23a9-5f6f-8072-a4434c175a60", "label": "isVersionOf", "type": "property", "center": false, "url": "../dcterms/isVersionOf.html"}, {"id": "c6b38dbf-04a5-51fa-b575-433dc6e7fad1", "label": "isRequiredBy", "type": "property", "center": false, "url": "../dcterms/isRequiredBy.html"}, {"id": "39451f44-f59d-516c-a4fa-8f4931ff655d", "label": "references", "type": "property", "center": false, "url": "../dcterms/references.html"}, {"id": "26951f5c-7114-561b-9176-a603fede9732", "label": "relation", "type": "property", "center": false, "url": "../dc/relation.html"}, {"id": "c9a9d2b0-24d9-54e3-989b-fdb5fd5ef903", "label": "isReplacedBy", "type": "property", "center": false, "url": "../dcterms/isReplacedBy.html"}, {"id": "9b8f9a5d-261d-5af0-bccc-d3912cbbe899", "label": "isPartOf", "type": "property", "center": false, "url": "../dcterms/isPartOf.html"}, {"id": "5000d1d1-a667-582b-9c97-f2b685a61e57", "label": "requires", "type": "property", "center": false, "url": "../dcterms/requires.html"}, {"id": "ba3ace87-cab5-5e97-8b21-9a4f8d1500a0", "label": "conformsTo", "type": "property", "center": false, "url": "../dcterms/conformsTo.html"}, {"id": "d6bdce35-5eaa-58ee-9ed4-ffa0f11aabc0", "label": "source", "type": "property", "center": false, "url": "../dcterms/source.html"}, {"id": "f79e214b-5070-5e3b-835d-5363de55e877", "label": "isReferencedBy", "type": "property", "center": false, "url": "../dcterms/isReferencedBy.html"}, {"id": "e43d8080-da97-5847-a006-fcb0a6dbb46b", "label": "hasVersion", "type": "property", "center": false, "url": "../dcterms/hasVersion.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}], "links": [{"source": "c6fa5e10-b9cd-5f9c-bb1d-c1047f538449", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "574b84c8-4341-5788-8d93-3731af701622", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "8133df2a-54ee-50a1-9e3e-556ad6b6ca25", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "647b7e1d-7570-5bdc-8b20-334c9e06ed69", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "747036aa-cc24-57a5-9a14-b3142021a13f", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "339e4f2e-23a9-5f6f-8072-a4434c175a60", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "c6b38dbf-04a5-51fa-b575-433dc6e7fad1", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "39451f44-f59d-516c-a4fa-8f4931ff655d", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "81524f19-cb4c-5712-ab17-08463a46e5ee", "target": "26951f5c-7114-561b-9176-a603fede9732", "label": "subPropertyOf", "direction": "out"}, {"source": "c9a9d2b0-24d9-54e3-989b-fdb5fd5ef903", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "9b8f9a5d-261d-5af0-bccc-d3912cbbe899", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "5000d1d1-a667-582b-9c97-f2b685a61e57", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "ba3ace87-cab5-5e97-8b21-9a4f8d1500a0", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "d6bdce35-5eaa-58ee-9ed4-ffa0f11aabc0", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "f79e214b-5070-5e3b-835d-5363de55e877", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "e43d8080-da97-5847-a006-fcb0a6dbb46b", "target": "81524f19-cb4c-5712-ab17-08463a46e5ee", "label": "subPropertyOf", "direction": "in"}, {"source": "81524f19-cb4c-5712-ab17-08463a46e5ee", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

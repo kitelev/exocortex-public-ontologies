@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>A utility class that serves as the umbrella for a number of &#x27;intangible&#x27; things such as quantities, structured values, etc.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Thing.html">schema:Thing</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Thing.html" data-tooltip="The most generic type of item.">schema:Thing</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "Intangible", "type": "class", "center": true, "url": null}, {"id": "505a635a-d3fc-5f6c-8870-c6a68ac2910a", "label": "Order", "type": "class", "center": false, "url": "../schema/Order.html"}, {"id": "b8a6b3e8-150a-52f4-bbf8-7120f3971a6a", "label": "Audience", "type": "class", "center": false, "url": "../schema/Audience.html"}, {"id": "51e1b73e-5b94-50a6-8e21-4831adb6c328", "label": "VirtualLocation", "type": "class", "center": false, "url": "../schema/VirtualLocation.html"}, {"id": "f0c93e17-e15c-54c9-b294-1f07c5b755c9", "label": "ServiceChannel", "type": "class", "center": false, "url": "../schema/ServiceChannel.html"}, {"id": "7e9efb17-f667-5f82-b123-eec3e2a50316", "label": "GameServer", "type": "class", "center": false, "url": "../schema/GameServer.html"}, {"id": "86603b62-1c04-584f-bb8e-9df9edb87d15", "label": "ParcelDelivery", "type": "class", "center": false, "url": "../schema/ParcelDelivery.html"}, {"id": "ad5f6966-e0df-579d-b095-571ec009e071", "label": "Role", "type": "class", "center": false, "url": "../schema/Role.html"}, {"id": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "Enumeration", "type": "class", "center": false, "url": "../schema/Enumeration.html"}, {"id": "aba564ac-ad3a-570a-b89e-af12358f92f9", "label": "EntryPoint", "type": "class", "center": false, "url": "../schema/EntryPoint.html"}, {"id": "f5da1315-6987-522c-bb41-3ff70b83128e", "label": "DataFeedItem", "type": "class", "center": false, "url": "../schema/DataFeedItem.html"}, {"id": "f0767aba-5f79-5eb3-a2b3-9f62fc416965", "label": "Property", "type": "class", "center": false, "url": "../schema/Property.html"}, {"id": "bdf8cfbb-e9e0-5ee3-b195-b6942d0f6e82", "label": "FinancialIncentive", "type": "class", "center": false, "url": "../schema/FinancialIncentive.html"}, {"id": "f417bcf6-84f8-50a6-ba94-8d958ce898bb", "label": "Service", "type": "class", "center": false, "url": "../schema/Service.html"}, {"id": "780a7d95-7786-557a-8575-19d3f52727fc", "label": "DefinedTerm", "type": "class", "center": false, "url": "../schema/DefinedTerm.html"}, {"id": "e628f3c0-aa3d-5c76-9c82-4b5dd667d99e", "label": "HealthPlanFormulary", "type": "class", "center": false, "url": "../schema/HealthPlanFormulary.html"}, {"id": "3c2aeb50-9e61-5a41-8416-47818b0dc228", "label": "BroadcastFrequencySpecification", "type": "class", "center": false, "url": "../schema/BroadcastFrequencySpecification.html"}, {"id": "94b6e805-caac-594b-a863-8dd8d74d1ab8", "label": "Reservation", "type": "class", "center": false, "url": "../schema/Reservation.html"}, {"id": "baaa95cb-ca4a-532f-b1c8-7a8445ba6b4b", "label": "BedDetails", "type": "class", "center": false, "url": "../schema/BedDetails.html"}, {"id": "81080d78-0b0c-535e-bac2-3bdff7dd7b11", "label": "Observation", "type": "class", "center": false, "url": "../schema/Observation.html"}], "links": [{"source": "505a635a-d3fc-5f6c-8870-c6a68ac2910a", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "b8a6b3e8-150a-52f4-bbf8-7120f3971a6a", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "51e1b73e-5b94-50a6-8e21-4831adb6c328", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "f0c93e17-e15c-54c9-b294-1f07c5b755c9", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "7e9efb17-f667-5f82-b123-eec3e2a50316", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "86603b62-1c04-584f-bb8e-9df9edb87d15", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "ad5f6966-e0df-579d-b095-571ec009e071", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "0eaad240-b361-5b35-937b-2370b032a9eb", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "aba564ac-ad3a-570a-b89e-af12358f92f9", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "f5da1315-6987-522c-bb41-3ff70b83128e", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "f0767aba-5f79-5eb3-a2b3-9f62fc416965", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "bdf8cfbb-e9e0-5ee3-b195-b6942d0f6e82", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "f417bcf6-84f8-50a6-ba94-8d958ce898bb", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "780a7d95-7786-557a-8575-19d3f52727fc", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "e628f3c0-aa3d-5c76-9c82-4b5dd667d99e", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "3c2aeb50-9e61-5a41-8416-47818b0dc228", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "94b6e805-caac-594b-a863-8dd8d74d1ab8", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "baaa95cb-ca4a-532f-b1c8-7a8445ba6b4b", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}, {"source": "81080d78-0b0c-535e-bac2-3bdff7dd7b11", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

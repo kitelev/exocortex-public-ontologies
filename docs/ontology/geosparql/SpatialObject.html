@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>146e552d</code></td><td>38f656c7-86fb-5f8d-a436-7be78cfd4f3f</td></tr><tr><td><code>146e552d</code></td><td>3ceecbae-56d7-5a55-8b92-0f7d324193ab</td></tr><tr><td><code>2db0199c</code></td><td>Spatial Object&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Anything spatial (being or having a shape, position or an extent).&quot;</td></tr><tr><td><code>e99c8f27</code></td><td>Subclasses of this class are expected to be used for instance data.&quot;</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>83d76149-9809-563e-aa79-9e9b362af9f4</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../geosparql/!geosparql.html">!geosparql</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>045ee6a1-2c1d-51d9-a59f-32fd72a2598f</td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html">owl:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>146e552d</code></td><td>38f656c7-86fb-5f8d-a436-7be78cfd4f3f</td></tr><tr><td><code>146e552d</code></td><td>3ceecbae-56d7-5a55-8b92-0f7d324193ab</td></tr><tr><td><code>2db0199c</code></td><td>Spatial Object&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Anything spatial (being or having a shape, position or an extent).&quot;</td></tr><tr><td><code>e99c8f27</code></td><td>Subclasses of this class are expected to be used for instance data.&quot;</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>83d76149-9809-563e-aa79-9e9b362af9f4</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../geosparql/!geosparql.html">!geosparql</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>045ee6a1-2c1d-51d9-a59f-32fd72a2598f</td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "SpatialObject", "type": "class", "center": true, "url": null}, {"id": "df1ba03e-8c8b-586d-8bfe-d82450d9c14e", "label": "sfWithin", "type": "property", "center": false, "url": "../geosparql/sfWithin.html"}, {"id": "c36eb67f-9bfc-5b71-811b-0334c28c9edf", "label": "rcc8tpp", "type": "property", "center": false, "url": "../geosparql/rcc8tpp.html"}, {"id": "ea90757c-897e-51f5-b2c5-0566e8deed6f", "label": "sfOverlaps", "type": "property", "center": false, "url": "../geosparql/sfOverlaps.html"}, {"id": "0fa93316-a1db-505e-8ccf-af3a4c477515", "label": "ehCovers", "type": "property", "center": false, "url": "../geosparql/ehCovers.html"}, {"id": "43bf4ceb-a92e-563d-b781-f39b5e9bc80c", "label": "ehOverlap", "type": "property", "center": false, "url": "../geosparql/ehOverlap.html"}, {"id": "d68b0ace-d9fb-52d3-8590-27b8b34bd400", "label": "rcc8ntppi", "type": "property", "center": false, "url": "../geosparql/rcc8ntppi.html"}, {"id": "c1ae9809-1ef1-577e-adde-3d9d9ef1ac09", "label": "rcc8po", "type": "property", "center": false, "url": "../geosparql/rcc8po.html"}, {"id": "bfb831f5-8e57-50db-a895-f511dd0db688", "label": "ehDisjoint", "type": "property", "center": false, "url": "../geosparql/ehDisjoint.html"}, {"id": "39bc0551-c905-5cf2-b66d-3b2f4b0f6e13", "label": "sfCrosses", "type": "property", "center": false, "url": "../geosparql/sfCrosses.html"}, {"id": "113dfe56-65f2-5d60-b6e7-d5281a29459b", "label": "rcc8dc", "type": "property", "center": false, "url": "../geosparql/rcc8dc.html"}, {"id": "5444d0ce-f308-5904-9047-9d417d3f0aa9", "label": "ehInside", "type": "property", "center": false, "url": "../geosparql/ehInside.html"}, {"id": "2f192d5e-9c83-545b-8c6d-c6488c2a376c", "label": "ehEquals", "type": "property", "center": false, "url": "../geosparql/ehEquals.html"}, {"id": "189c6c82-48cb-5d15-a4a3-bcf80725ca57", "label": "rcc8eq", "type": "property", "center": false, "url": "../geosparql/rcc8eq.html"}, {"id": "055fe6c2-43e3-5845-9ea4-f5aac69cc445", "label": "rcc8tppi", "type": "property", "center": false, "url": "../geosparql/rcc8tppi.html"}, {"id": "e1b46848-d664-5272-bf9b-429ed52d57b4", "label": "sfDisjoint", "type": "property", "center": false, "url": "../geosparql/sfDisjoint.html"}, {"id": "f9e17b43-0402-5b3a-ad35-c6e5ef4fcb1b", "label": "sfIntersects", "type": "property", "center": false, "url": "../geosparql/sfIntersects.html"}, {"id": "ffa261d2-1b13-54ff-a0da-0dfa0c68379f", "label": "ehMeet", "type": "property", "center": false, "url": "../geosparql/ehMeet.html"}, {"id": "102d962d-e8a9-53eb-bbe0-da55bafa7e40", "label": "ehContains", "type": "property", "center": false, "url": "../geosparql/ehContains.html"}, {"id": "3ec70deb-6631-583c-b388-d33ac1631aef", "label": "ehCoveredBy", "type": "property", "center": false, "url": "../geosparql/ehCoveredBy.html"}], "links": [{"source": "df1ba03e-8c8b-586d-8bfe-d82450d9c14e", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "c36eb67f-9bfc-5b71-811b-0334c28c9edf", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "c36eb67f-9bfc-5b71-811b-0334c28c9edf", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "ea90757c-897e-51f5-b2c5-0566e8deed6f", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "0fa93316-a1db-505e-8ccf-af3a4c477515", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "43bf4ceb-a92e-563d-b781-f39b5e9bc80c", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "d68b0ace-d9fb-52d3-8590-27b8b34bd400", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "c1ae9809-1ef1-577e-adde-3d9d9ef1ac09", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "bfb831f5-8e57-50db-a895-f511dd0db688", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "39bc0551-c905-5cf2-b66d-3b2f4b0f6e13", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "113dfe56-65f2-5d60-b6e7-d5281a29459b", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "5444d0ce-f308-5904-9047-9d417d3f0aa9", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "2f192d5e-9c83-545b-8c6d-c6488c2a376c", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "2f192d5e-9c83-545b-8c6d-c6488c2a376c", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "189c6c82-48cb-5d15-a4a3-bcf80725ca57", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "055fe6c2-43e3-5845-9ea4-f5aac69cc445", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "e1b46848-d664-5272-bf9b-429ed52d57b4", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "0fa93316-a1db-505e-8ccf-af3a4c477515", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "055fe6c2-43e3-5845-9ea4-f5aac69cc445", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "f9e17b43-0402-5b3a-ad35-c6e5ef4fcb1b", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "ffa261d2-1b13-54ff-a0da-0dfa0c68379f", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "ffa261d2-1b13-54ff-a0da-0dfa0c68379f", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "102d962d-e8a9-53eb-bbe0-da55bafa7e40", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "3ec70deb-6631-583c-b388-d33ac1631aef", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "df1ba03e-8c8b-586d-8bfe-d82450d9c14e", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "f9e17b43-0402-5b3a-ad35-c6e5ef4fcb1b", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "c1ae9809-1ef1-577e-adde-3d9d9ef1ac09", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "189c6c82-48cb-5d15-a4a3-bcf80725ca57", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "e1b46848-d664-5272-bf9b-429ed52d57b4", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "5444d0ce-f308-5904-9047-9d417d3f0aa9", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "3ec70deb-6631-583c-b388-d33ac1631aef", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "102d962d-e8a9-53eb-bbe0-da55bafa7e40", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "113dfe56-65f2-5d60-b6e7-d5281a29459b", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "d68b0ace-d9fb-52d3-8590-27b8b34bd400", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "bfb831f5-8e57-50db-a895-f511dd0db688", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "39bc0551-c905-5cf2-b66d-3b2f4b0f6e13", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "range", "direction": "in"}, {"source": "43bf4ceb-a92e-563d-b781-f39b5e9bc80c", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}, {"source": "ea90757c-897e-51f5-b2c5-0566e8deed6f", "target": "0b0c5d2f-d09a-5f62-96ce-c3652af1f918", "label": "domain", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>Represents a collection of people organized together into a community or other social, commercial or political structure. The group has some common purpose or reason for existence which goes beyond the set of people belonging to it and can act as an Agent. Organizations are often decomposable into hierarchical structures.  It is recommended that SKOS lexical labels should be used to label the Organization. In particular `skos:prefLabel` for the primary (possibly legally recognized name), `skos:altLabel` for alternative names (trading names, colloquial names) and `skos:notation` to denote a code from a code list. Alternative names: _Collective_ _Body_ _Org_ _Group_&quot;</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>4b5dec71</code></td><td><a href="../foaf/Organization.html">foaf:Organization</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/Role.html">org:Role</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/Site.html">org:Site</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/Membership.html">org:Membership</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/ChangeEvent.html">org:ChangeEvent</a></td></tr><tr><td><code>668ec838</code></td><td>a4773ba2-533a-5a15-9da0-072c355e3ccd</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../org/.html">org:</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../foaf/Agent.html">foaf:Agent</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html">owl:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>4b5dec71</code></td><td><a href="../foaf/Organization.html" data-tooltip="An organization.">foaf:Organization</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/Role.html" data-tooltip="Denotes a role that a Person or other Agent can take in an organization. Instances of this class describe the abstract role; to denote a specific i...">org:Role</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/Site.html" data-tooltip="An office or other premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multi...">org:Site</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/Membership.html" data-tooltip="Indicates the nature of an Agent&#x27;s membership of an organization. Represents an n-ary relation between an Agent, an Organization and a Role. It is ...">org:Membership</a></td></tr><tr><td><code>4d5c4800</code></td><td><a href="../org/ChangeEvent.html" data-tooltip="Rappresenta un evento risultato essere un importante cambiamento per un&#x27;organizzazione come ad esempio una fusione o una riorganizzazione. È pensat...">org:ChangeEvent</a></td></tr><tr><td><code>668ec838</code></td><td>a4773ba2-533a-5a15-9da0-072c355e3ccd</td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../org/.html">org:</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../foaf/Agent.html" data-tooltip="An agent (eg. person, group, software or physical artifact).">foaf:Agent</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "Organization", "type": "class", "center": true, "url": null}, {"id": "f0656685-2e73-588b-a634-ef37e608d566", "label": "resultingOrganization", "type": "property", "center": false, "url": "../org/resultingOrganization.html"}, {"id": "03074383-d84f-5b7a-ae00-f37f8d2e39ff", "label": "memberOf", "type": "property", "center": false, "url": "../org/memberOf.html"}, {"id": "8ff02a13-d4f1-5024-b434-f82d78d979ec", "label": "linkedTo", "type": "property", "center": false, "url": "../org/linkedTo.html"}, {"id": "d8f0e7c4-d311-540c-936f-d3faa6a37c70", "label": "OrganizationalCollaboration", "type": "class", "center": false, "url": "../org/OrganizationalCollaboration.html"}, {"id": "5104a807-6e9d-5b7c-aa4c-f937dba8f8b1", "label": "transitiveSubOrganizationOf", "type": "property", "center": false, "url": "../org/transitiveSubOrganizationOf.html"}, {"id": "64049473-cc6f-5ddc-8d15-dd4762ce0aac", "label": "postIn", "type": "property", "center": false, "url": "../org/postIn.html"}, {"id": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "Class", "type": "class", "center": false, "url": "../owl/Class.html"}, {"id": "95c6d307-9392-5144-9bab-8d5bb2389e80", "label": "Agent", "type": "class", "center": false, "url": "../foaf/Agent.html"}, {"id": "815f349e-fc3e-565a-bce9-0413808ad0e4", "label": "resultedFrom", "type": "property", "center": false, "url": "../org/resultedFrom.html"}, {"id": "31faf148-9506-5a23-a5be-b5022f4c15b8", "label": "subOrganizationOf", "type": "property", "center": false, "url": "../org/subOrganizationOf.html"}, {"id": "707b5eff-adc3-52a7-9f7b-9d4dc331427a", "label": "purpose", "type": "property", "center": false, "url": "../org/purpose.html"}, {"id": "29ebb681-1b01-50b4-9d80-5dbfab5cfc10", "label": "hasSubOrganization", "type": "property", "center": false, "url": "../org/hasSubOrganization.html"}, {"id": "0b821172-6762-5a21-acce-faff7465d866", "label": "siteOf", "type": "property", "center": false, "url": "../org/siteOf.html"}, {"id": "f84d2158-eca6-5185-9bcb-34d6bca60523", "label": "identifier", "type": "property", "center": false, "url": "../org/identifier.html"}, {"id": "206efec5-20c9-5b7f-a809-1188d9073313", "label": "originalOrganization", "type": "property", "center": false, "url": "../org/originalOrganization.html"}, {"id": "33847758-13cd-5dbb-ae10-49a91263d2be", "label": "hasPrimarySite", "type": "property", "center": false, "url": "../org/hasPrimarySite.html"}, {"id": "14fc8610-e7bb-5c49-8304-3e381c506dc6", "label": "hasMember", "type": "property", "center": false, "url": "../org/hasMember.html"}, {"id": "7e5f33da-995a-5dfa-8685-4d0bbb49d063", "label": "FormalOrganization", "type": "class", "center": false, "url": "../org/FormalOrganization.html"}, {"id": "b750fcff-c2bb-51bb-b525-a0622131a982", "label": "classification", "type": "property", "center": false, "url": "../org/classification.html"}], "links": [{"source": "f0656685-2e73-588b-a634-ef37e608d566", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "03074383-d84f-5b7a-ae00-f37f8d2e39ff", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "8ff02a13-d4f1-5024-b434-f82d78d979ec", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "d8f0e7c4-d311-540c-936f-d3faa6a37c70", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "subClassOf", "direction": "in"}, {"source": "5104a807-6e9d-5b7c-aa4c-f937dba8f8b1", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "64049473-cc6f-5ddc-8d15-dd4762ce0aac", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "target": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "type", "direction": "out"}, {"source": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "target": "95c6d307-9392-5144-9bab-8d5bb2389e80", "label": "subClassOf", "direction": "out"}, {"source": "815f349e-fc3e-565a-bce9-0413808ad0e4", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "31faf148-9506-5a23-a5be-b5022f4c15b8", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "707b5eff-adc3-52a7-9f7b-9d4dc331427a", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "29ebb681-1b01-50b4-9d80-5dbfab5cfc10", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "8ff02a13-d4f1-5024-b434-f82d78d979ec", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "0b821172-6762-5a21-acce-faff7465d866", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "f84d2158-eca6-5185-9bcb-34d6bca60523", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "31faf148-9506-5a23-a5be-b5022f4c15b8", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "206efec5-20c9-5b7f-a809-1188d9073313", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}, {"source": "5104a807-6e9d-5b7c-aa4c-f937dba8f8b1", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "33847758-13cd-5dbb-ae10-49a91263d2be", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "14fc8610-e7bb-5c49-8304-3e381c506dc6", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "7e5f33da-995a-5dfa-8685-4d0bbb49d063", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "subClassOf", "direction": "in"}, {"source": "b750fcff-c2bb-51bb-b525-a0622131a982", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "domain", "direction": "in"}, {"source": "29ebb681-1b01-50b4-9d80-5dbfab5cfc10", "target": "a2f57c95-6c09-5dcd-9224-dced714cd09b", "label": "range", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

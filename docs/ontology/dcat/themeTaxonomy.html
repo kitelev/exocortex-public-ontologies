@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>لائحة التصنيفات المستخدمه لتصنيف قوائم البيانات ضمن الفهرس&quot;</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>13d3cab2</code></td><td><a href="../owl/Ontology.html">owl:Ontology</a></td></tr><tr><td><code>13d3cab2</code></td><td><a href="../skos/ConceptScheme.html">skos:ConceptScheme</a></td></tr><tr><td><code>13d3cab2</code></td><td><a href="../skos/Collection.html">skos:Collection</a></td></tr><tr><td><code>4c823ec0</code></td><td>Το σύστημα οργάνωσης γνώσης που χρησιμοποιείται για την κατηγοριοποίηση των συνόλων δεδομένων του καταλόγου.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Vidensorganiseringssystem (KOS) som anvendes til at klassificere datasæt i kataloget.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>El sistema de organización del conocimiento utilizado para clasificar conjuntos de datos de catálogos.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>لائحة التصنيفات المستخدمه لتصنيف قوائم البيانات ضمن الفهرس&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Systém organizace znalostí (KOS) použitý pro klasifikaci datových sad v katalogu.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Il sistema di organizzazione della conoscenza (KOS) usato per classificare i dataset del catalogo.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Le systhème d&#x27;ogranisation de connaissances utilisé pour classifier les jeux de données du catalogue.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>The knowledge organization system (KOS) used to classify catalog&#x27;s datasets.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>カタログのデータセットを分類するために用いられる知識組織化体系（KOS；knowledge organization system）。&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Si raccomanda che la tassonomia sia organizzata in uno skos:ConceptScheme, skos:Collection, owl:Ontology o simili, che permette ad ogni membro di essere indicato da un IRI e pubblicato come linked-data.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>It is recommended that the taxonomy is organized in a skos:ConceptScheme, skos:Collection, owl:Ontology or similar, which allows each member to be denoted by an IRI and published as linked-data.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Je doporučeno, aby byla taxonomie vyjádřena jako skos:ConceptScheme, skos:Collection, owl:Ontology nebo podobné, aby mohla být každá položka identifikována pomocí IRI a publikována jako propojená data.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Se recomienda que la taxonomía se organice como un skos:ConceptScheme, skos:Collection, owl:Ontology o similar, los cuáles permiten que cada miembro se denote con una IRI y se publique como datos enlazados.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Det anbefales at taksonomien organiseres i et skos:ConceptScheme, skos:Collection, owl:Ontology eller lignende, som giver mulighed for at ethvert medlem af taksonomien kan forsynes med en IRI og udgives som linked-data.&quot;</td></tr><tr><td><code>dc0b7002</code></td><td>temataksonomi&quot;</td></tr><tr><td><code>rdfs:domain</code></td><td><a href="../dcat/Catalog.html">dcat:Catalog</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>af49b763-0620-5e41-a0c9-4d635140dcd0</td></tr><tr><td><code>rdfs:range</code></td><td><a href="../rdfs/Resource.html">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/ObjectProperty.html">owl:ObjectProperty</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html">rdf:Property</a></td></tr>
+        <tr><td><code>13d3cab2</code></td><td><a href="../owl/Ontology.html" data-tooltip="The class of ontologies.">owl:Ontology</a></td></tr><tr><td><code>13d3cab2</code></td><td><a href="../skos/ConceptScheme.html">skos:ConceptScheme</a></td></tr><tr><td><code>13d3cab2</code></td><td><a href="../skos/Collection.html">skos:Collection</a></td></tr><tr><td><code>4c823ec0</code></td><td>Το σύστημα οργάνωσης γνώσης που χρησιμοποιείται για την κατηγοριοποίηση των συνόλων δεδομένων του καταλόγου.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Vidensorganiseringssystem (KOS) som anvendes til at klassificere datasæt i kataloget.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>El sistema de organización del conocimiento utilizado para clasificar conjuntos de datos de catálogos.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>لائحة التصنيفات المستخدمه لتصنيف قوائم البيانات ضمن الفهرس&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Systém organizace znalostí (KOS) použitý pro klasifikaci datových sad v katalogu.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Il sistema di organizzazione della conoscenza (KOS) usato per classificare i dataset del catalogo.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>Le systhème d&#x27;ogranisation de connaissances utilisé pour classifier les jeux de données du catalogue.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>The knowledge organization system (KOS) used to classify catalog&#x27;s datasets.&quot;</td></tr><tr><td><code>4c823ec0</code></td><td>カタログのデータセットを分類するために用いられる知識組織化体系（KOS；knowledge organization system）。&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Si raccomanda che la tassonomia sia organizzata in uno skos:ConceptScheme, skos:Collection, owl:Ontology o simili, che permette ad ogni membro di essere indicato da un IRI e pubblicato come linked-data.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>It is recommended that the taxonomy is organized in a skos:ConceptScheme, skos:Collection, owl:Ontology or similar, which allows each member to be denoted by an IRI and published as linked-data.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Je doporučeno, aby byla taxonomie vyjádřena jako skos:ConceptScheme, skos:Collection, owl:Ontology nebo podobné, aby mohla být každá položka identifikována pomocí IRI a publikována jako propojená data.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Se recomienda que la taxonomía se organice como un skos:ConceptScheme, skos:Collection, owl:Ontology o similar, los cuáles permiten que cada miembro se denote con una IRI y se publique como datos enlazados.&quot;</td></tr><tr><td><code>c3ccc014</code></td><td>Det anbefales at taksonomien organiseres i et skos:ConceptScheme, skos:Collection, owl:Ontology eller lignende, som giver mulighed for at ethvert medlem af taksonomien kan forsynes med en IRI og udgives som linked-data.&quot;</td></tr><tr><td><code>dc0b7002</code></td><td>temataksonomi&quot;</td></tr><tr><td><code>rdfs:domain</code></td><td><a href="../dcat/Catalog.html" data-tooltip="مجموعة من توصيفات قوائم البيانات&quot;">dcat:Catalog</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td>af49b763-0620-5e41-a0c9-4d635140dcd0</td></tr><tr><td><code>rdfs:range</code></td><td><a href="../rdfs/Resource.html" data-tooltip="The class resource, everything.">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/ObjectProperty.html" data-tooltip="The class of object properties.">owl:ObjectProperty</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/Property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "45bfb987-2f8b-5906-b3fe-1e20caa7ae36", "label": "themeTaxonomy", "type": "property", "center": true, "url": null}, {"id": "99271cf6-6db6-5f23-baab-5df2fdfff52e", "label": "Catalog", "type": "class", "center": false, "url": "../dcat/Catalog.html"}, {"id": "1ca4d39e-3c44-575a-8e82-b745bf274777", "label": "ObjectProperty", "type": "class", "center": false, "url": "../owl/ObjectProperty.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/Property.html"}, {"id": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "Resource", "type": "class", "center": false, "url": "../rdfs/Resource.html"}], "links": [{"source": "45bfb987-2f8b-5906-b3fe-1e20caa7ae36", "target": "99271cf6-6db6-5f23-baab-5df2fdfff52e", "label": "domain", "direction": "out"}, {"source": "45bfb987-2f8b-5906-b3fe-1e20caa7ae36", "target": "1ca4d39e-3c44-575a-8e82-b745bf274777", "label": "type", "direction": "out"}, {"source": "45bfb987-2f8b-5906-b3fe-1e20caa7ae36", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}, {"source": "45bfb987-2f8b-5906-b3fe-1e20caa7ae36", "target": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "range", "direction": "out"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

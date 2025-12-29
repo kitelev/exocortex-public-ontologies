@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>Lists or enumerations—for example, a list of cuisines or music genres, etc.</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Intangible.html">schema:Intangible</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html">rdfs:Class</a></td></tr>
+        <tr><td><code>rdfs:subClassOf</code></td><td><a href="../schema/Intangible.html" data-tooltip="A utility class that serves as the umbrella for a number of &#x27;intangible&#x27; things such as quantities, structured values, etc.">schema:Intangible</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/Class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "Enumeration", "type": "class", "center": true, "url": null}, {"id": "59485344-7923-566e-ad97-870ee38c8cc5", "label": "GovernmentBenefitsType", "type": "class", "center": false, "url": "../schema/GovernmentBenefitsType.html"}, {"id": "b7a66408-d0cb-5c3c-a6d0-d2b704f0977e", "label": "MediaManipulationRatingEnumeration", "type": "class", "center": false, "url": "../schema/MediaManipulationRatingEnumeration.html"}, {"id": "657a1359-0c7e-51ce-b816-1e6f63cfb2ec", "label": "GenderType", "type": "class", "center": false, "url": "../schema/GenderType.html"}, {"id": "7f979caf-1cd8-5d18-823e-2273c1f27909", "label": "BookFormatType", "type": "class", "center": false, "url": "../schema/BookFormatType.html"}, {"id": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "Intangible", "type": "class", "center": false, "url": "../schema/Intangible.html"}, {"id": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "label": "HealthAspectEnumeration", "type": "class", "center": false, "url": "../schema/HealthAspectEnumeration.html"}, {"id": "c269afba-213e-589e-b819-194eeeece8d6", "label": "RefundTypeEnumeration", "type": "class", "center": false, "url": "../schema/RefundTypeEnumeration.html"}, {"id": "49a68982-ceee-5856-9923-5f003c082bfd", "label": "ReturnFeesEnumeration", "type": "class", "center": false, "url": "../schema/ReturnFeesEnumeration.html"}, {"id": "f81b1d42-2664-585a-900d-c890fbd1ba56", "label": "SizeSystemEnumeration", "type": "class", "center": false, "url": "../schema/SizeSystemEnumeration.html"}, {"id": "9ca3f7a5-8635-576d-b079-f2e9eb5d0550", "label": "IncentiveStatus", "type": "class", "center": false, "url": "../schema/IncentiveStatus.html"}, {"id": "c8b0b7f0-fea0-5e67-9bff-2e19d2cb2672", "label": "MerchantReturnEnumeration", "type": "class", "center": false, "url": "../schema/MerchantReturnEnumeration.html"}, {"id": "fcbd7251-3342-5b68-bd41-da05d0789250", "label": "CarUsageType", "type": "class", "center": false, "url": "../schema/CarUsageType.html"}, {"id": "d1e7ab1d-56b6-5d14-adf8-0b9d4d14f211", "label": "LegalValueLevel", "type": "class", "center": false, "url": "../schema/LegalValueLevel.html"}, {"id": "24947d27-a9e9-5554-aa73-da69d9b56011", "label": "WarrantyScope", "type": "class", "center": false, "url": "../schema/WarrantyScope.html"}, {"id": "20aeb656-3923-535b-a3e5-e5dc1707e299", "label": "MedicalEnumeration", "type": "class", "center": false, "url": "../schema/MedicalEnumeration.html"}, {"id": "91c31546-5766-5452-9f81-9a0904e955fd", "label": "PriceComponentTypeEnumeration", "type": "class", "center": false, "url": "../schema/PriceComponentTypeEnumeration.html"}, {"id": "6e94b7d5-afc7-5db4-b8c9-f3d48dec9686", "label": "ContactPointOption", "type": "class", "center": false, "url": "../schema/ContactPointOption.html"}, {"id": "db0a9211-dec1-5caa-acd8-89faa3753ab7", "label": "PriceTypeEnumeration", "type": "class", "center": false, "url": "../schema/PriceTypeEnumeration.html"}, {"id": "22b672bd-f49d-54c7-99f1-0c08219e9f1e", "label": "StatusEnumeration", "type": "class", "center": false, "url": "../schema/StatusEnumeration.html"}], "links": [{"source": "59485344-7923-566e-ad97-870ee38c8cc5", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "b7a66408-d0cb-5c3c-a6d0-d2b704f0977e", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "657a1359-0c7e-51ce-b816-1e6f63cfb2ec", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "7f979caf-1cd8-5d18-823e-2273c1f27909", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "0eaad240-b361-5b35-937b-2370b032a9eb", "target": "9012be8d-7aee-5633-bbad-5b5d4b77e7fd", "label": "subClassOf", "direction": "out"}, {"source": "bdc6e482-13ff-5ae2-a2ba-6a798efc9295", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "c269afba-213e-589e-b819-194eeeece8d6", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "49a68982-ceee-5856-9923-5f003c082bfd", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "f81b1d42-2664-585a-900d-c890fbd1ba56", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "9ca3f7a5-8635-576d-b079-f2e9eb5d0550", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "c8b0b7f0-fea0-5e67-9bff-2e19d2cb2672", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "fcbd7251-3342-5b68-bd41-da05d0789250", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "d1e7ab1d-56b6-5d14-adf8-0b9d4d14f211", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "24947d27-a9e9-5554-aa73-da69d9b56011", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "20aeb656-3923-535b-a3e5-e5dc1707e299", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "91c31546-5766-5452-9f81-9a0904e955fd", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "6e94b7d5-afc7-5db4-b8c9-f3d48dec9686", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "db0a9211-dec1-5caa-acd8-89faa3753ab7", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}, {"source": "22b672bd-f49d-54c7-99f1-0c08219e9f1e", "target": "0eaad240-b361-5b35-937b-2370b032a9eb", "label": "subClassOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>

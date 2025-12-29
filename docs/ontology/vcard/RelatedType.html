@@ -149,6 +149,85 @@
         .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
         .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
         .stat-label { font-size: 12px; color: #8b949e; }
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        /* Relationship graph */
+        .graph-container {
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }
+        .graph-container svg {
+            width: 100%;
+            height: 250px;
+        }
+        .graph-node {
+            cursor: pointer;
+        }
+        .graph-node circle {
+            stroke: var(--border);
+            stroke-width: 2;
+        }
+        .graph-node.center circle {
+            stroke: var(--link);
+            stroke-width: 3;
+        }
+        .graph-node text {
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+        .graph-link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }
+        .graph-link-label {
+            font-size: 9px;
+            fill: #8b949e;
+        }
+        .graph-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .graph-legend span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .graph-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .main { margin-left: 0; padding: 16px; }
@@ -156,6 +235,7 @@
             body.sidebar-open .sidebar { display: block; position: fixed; z-index: 999; }
         }
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -183,10 +263,20 @@
 
     <div class='description'>Used for relation type codes. The URI of the relation type code must be used as the value for the Relation Type.&quot;</div>
 
+    
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../vcard/.html">vcard:</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html">owl:Class</a></td></tr>
+        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../vcard/.html" data-tooltip="Ontology for vCard based on RFC6350&quot;">vcard:</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../owl/Class.html" data-tooltip="The class of OWL classes.">owl:Class</a></td></tr>
     </table>
     
         </main>
@@ -263,5 +353,97 @@
             }
         });
     </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "23076573-9ae9-518d-af35-b4a062aef996", "label": "RelatedType", "type": "class", "center": true, "url": null}, {"id": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "Class", "type": "class", "center": false, "url": "../owl/Class.html"}, {"id": "088a0e74-3e6e-5e16-b618-d8c6176e7646", "label": "Spouse", "type": "class", "center": false, "url": "../vcard/Spouse.html"}, {"id": "01cb88ba-7111-5cb3-b74f-94821d401690", "label": "Crush", "type": "class", "center": false, "url": "../vcard/Crush.html"}, {"id": "067a7081-56a0-5499-b0f6-a1823023def6", "label": "Met", "type": "class", "center": false, "url": "../vcard/Met.html"}, {"id": "c41fd74c-9c68-58fb-a874-34a61a9c4522", "label": "Sweetheart", "type": "class", "center": false, "url": "../vcard/Sweetheart.html"}, {"id": "009a717f-28fb-535a-b932-9ca6ff6955f1", "label": "Colleague", "type": "class", "center": false, "url": "../vcard/Colleague.html"}, {"id": "54cafa71-13a2-5a0b-aacf-14978615430d", "label": "Neighbor", "type": "class", "center": false, "url": "../vcard/Neighbor.html"}, {"id": "2c91661a-b53b-5acc-b4b2-52ef4296987a", "label": "Date", "type": "class", "center": false, "url": "../vcard/Date.html"}, {"id": "b87357a1-2c20-57ee-a786-6c35f65eed5e", "label": "Muse", "type": "class", "center": false, "url": "../vcard/Muse.html"}, {"id": "c5d2ea66-d8c6-5664-895b-b2d3361e87fa", "label": "Emergency", "type": "class", "center": false, "url": "../vcard/Emergency.html"}, {"id": "3d1e8e3b-8036-525b-8bb0-bfeb5ff47565", "label": "Child", "type": "class", "center": false, "url": "../vcard/Child.html"}, {"id": "1d09f2f6-9a08-555b-8017-cefd59d7cbce", "label": "Me", "type": "class", "center": false, "url": "../vcard/Me.html"}, {"id": "bd736d1e-a275-5e6a-a9ee-768ac42faf1a", "label": "Contact", "type": "class", "center": false, "url": "../vcard/Contact.html"}, {"id": "4743e64d-5fdf-5055-af1c-a388d7849e12", "label": "Sibling", "type": "class", "center": false, "url": "../vcard/Sibling.html"}, {"id": "1f03e5ba-996b-5c97-981f-c9f447ec6d11", "label": "Coresident", "type": "class", "center": false, "url": "../vcard/Coresident.html"}, {"id": "41a6189d-4960-5317-a481-9829b8dde49d", "label": "Parent", "type": "class", "center": false, "url": "../vcard/Parent.html"}, {"id": "afd6030f-bab0-5d8b-846f-5730263e0e3b", "label": "Friend", "type": "class", "center": false, "url": "../vcard/Friend.html"}, {"id": "e65d6312-b3bb-5f03-9f30-e54c6582d96b", "label": "Kin", "type": "class", "center": false, "url": "../vcard/Kin.html"}, {"id": "9fba15f9-40f4-5077-9c7a-f2b72301036b", "label": "Coworker", "type": "class", "center": false, "url": "../vcard/Coworker.html"}], "links": [{"source": "23076573-9ae9-518d-af35-b4a062aef996", "target": "581d50c0-7bc2-5a97-bdc2-9c056f43c807", "label": "type", "direction": "out"}, {"source": "088a0e74-3e6e-5e16-b618-d8c6176e7646", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "01cb88ba-7111-5cb3-b74f-94821d401690", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "067a7081-56a0-5499-b0f6-a1823023def6", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "c41fd74c-9c68-58fb-a874-34a61a9c4522", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "009a717f-28fb-535a-b932-9ca6ff6955f1", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "54cafa71-13a2-5a0b-aacf-14978615430d", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "2c91661a-b53b-5acc-b4b2-52ef4296987a", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "b87357a1-2c20-57ee-a786-6c35f65eed5e", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "c5d2ea66-d8c6-5664-895b-b2d3361e87fa", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "3d1e8e3b-8036-525b-8bb0-bfeb5ff47565", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "1d09f2f6-9a08-555b-8017-cefd59d7cbce", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "bd736d1e-a275-5e6a-a9ee-768ac42faf1a", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "4743e64d-5fdf-5055-af1c-a388d7849e12", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "1f03e5ba-996b-5c97-981f-c9f447ec6d11", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "41a6189d-4960-5317-a481-9829b8dde49d", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "afd6030f-bab0-5d8b-846f-5730263e0e3b", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "e65d6312-b3bb-5f03-9f30-e54c6582d96b", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}, {"source": "9fba15f9-40f4-5077-9c7a-f2b72301036b", "target": "23076573-9ae9-518d-af35-b4a062aef996", "label": "subClassOf", "direction": "in"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
+    </script>
+    
 </body>
 </html>
