@@ -844,8 +844,145 @@ def generate_namespace_page(prefix: str, resources: dict, prefixes: list) -> str
     )
 
 
-def generate_index_page(prefixes: list, resources: dict) -> str:
-    """Generate main index page."""
+def build_namespace_graph_data(resources: dict, statements: list) -> dict:
+    """Build graph data showing relationships between namespaces."""
+    # Count resources per namespace
+    ns_counts = defaultdict(lambda: {"classes": 0, "properties": 0, "total": 0})
+    for r in resources.values():
+        prefix = r["prefix"]
+        rtype = get_resource_type(r)
+        ns_counts[prefix]["total"] += 1
+        if rtype == "class":
+            ns_counts[prefix]["classes"] += 1
+        elif rtype == "property":
+            ns_counts[prefix]["properties"] += 1
+
+    # Count cross-namespace references
+    ns_links = defaultdict(int)  # (source_prefix, target_prefix) -> count
+    for subj_uuid, pred_uuid, obj_value in statements:
+        if subj_uuid not in resources or obj_value not in resources:
+            continue
+        src_prefix = resources[subj_uuid]["prefix"]
+        tgt_prefix = resources[obj_value]["prefix"]
+        if src_prefix != tgt_prefix:
+            ns_links[(src_prefix, tgt_prefix)] += 1
+
+    # Build nodes
+    nodes = []
+    for prefix, counts in ns_counts.items():
+        if counts["total"] == 0:
+            continue
+        nodes.append({
+            "id": prefix,
+            "label": prefix.upper(),
+            "size": min(30, 8 + counts["total"] // 50),  # Size by resource count
+            "classes": counts["classes"],
+            "properties": counts["properties"],
+            "total": counts["total"],
+            "url": f"{prefix}/index.html",
+        })
+
+    # Build links (aggregate both directions, show strongest connections)
+    link_map = {}
+    for (src, tgt), count in ns_links.items():
+        key = tuple(sorted([src, tgt]))
+        if key not in link_map:
+            link_map[key] = {"source": key[0], "target": key[1], "weight": 0}
+        link_map[key]["weight"] += count
+
+    # Keep only significant links (top 50 by weight)
+    links = sorted(link_map.values(), key=lambda x: x["weight"], reverse=True)[:50]
+
+    return {"nodes": nodes, "links": links}
+
+
+def generate_namespace_graph_script(graph_data: dict) -> str:
+    """Generate D3.js script for namespace overview graph."""
+    if not graph_data["nodes"]:
+        return ""
+
+    return f"""
+    <script>
+    (function() {{
+        const graphData = {json.dumps(graph_data)};
+
+        const container = document.getElementById('namespaceGraph');
+        if (!container) return;
+
+        const width = container.clientWidth;
+        const height = 400;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Scale link width by weight
+        const maxWeight = Math.max(...graphData.links.map(l => l.weight), 1);
+        const linkScale = d3.scaleLinear().domain([1, maxWeight]).range([0.5, 4]);
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(100))
+            .force('charge', d3.forceManyBody().strength(-300))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(d => d.size + 10));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('stroke', '#30363d')
+            .attr('stroke-opacity', 0.6)
+            .attr('stroke-width', d => linkScale(d.weight));
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .style('cursor', 'pointer')
+            .on('click', (event, d) => window.location.href = d.url)
+            .call(d3.drag()
+                .on('start', (event, d) => {{
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                }})
+                .on('drag', (event, d) => {{ d.fx = event.x; d.fy = event.y; }})
+                .on('end', (event, d) => {{
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }}));
+
+        node.append('circle')
+            .attr('r', d => d.size)
+            .attr('fill', '#a371f7')
+            .attr('stroke', '#30363d')
+            .attr('stroke-width', 2);
+
+        node.append('text')
+            .attr('dy', d => d.size + 12)
+            .attr('text-anchor', 'middle')
+            .attr('fill', '#c9d1d9')
+            .attr('font-size', '10px')
+            .text(d => d.label);
+
+        node.append('title')
+            .text(d => `${{d.label}}: ${{d.classes}} classes, ${{d.properties}} properties`);
+
+        simulation.on('tick', () => {{
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            node.attr('transform', d => `translate(${{d.x}},${{d.y}})`);
+        }});
+    }})();
+    </script>
+    """
+
+
+def generate_index_page(prefixes: list, resources: dict, statements: list) -> str:
+    """Generate main index page with namespace overview graph."""
     # Calculate totals
     total_classes = len([r for r in resources.values() if get_resource_type(r) == "class"])
     total_props = len([r for r in resources.values() if get_resource_type(r) == "property"])
@@ -860,6 +997,9 @@ def generate_index_page(prefixes: list, resources: dict) -> str:
         classes = len([r for r in ns_resources if get_resource_type(r) == "class"])
         props = len([r for r in ns_resources if get_resource_type(r) == "property"])
         ns_list += f'<li data-type="namespace"><a href="{prefix}/index.html"><span class="badge badge-namespace">{prefix}</span></a> {classes} classes, {props} properties</li>'
+
+    # Build namespace graph
+    ns_graph_data = build_namespace_graph_data(resources, statements)
 
     content = f"""
     <h1>Exocortex Public Ontologies</h1>
@@ -878,6 +1018,12 @@ def generate_index_page(prefixes: list, resources: dict) -> str:
         <div class="stat"><div class="stat-value">{total_datatypes}</div><div class="stat-label">Datatypes</div></div>
     </div>
 
+    <h2>Namespace Relationships</h2>
+    <p style="font-size: 13px; color: #8b949e;">
+        Click a namespace to explore. Node size = resource count. Line thickness = cross-references.
+    </p>
+    <div class="graph-container" id="namespaceGraph" style="min-height: 400px;"></div>
+
     <h2>Available Ontologies ({total_ns})</h2>
     <ul class="resource-list">
         {ns_list}
@@ -886,13 +1032,14 @@ def generate_index_page(prefixes: list, resources: dict) -> str:
 
     search_index = build_search_index(resources)
     sidebar_nav = build_sidebar_nav(prefixes, resources)
+    graph_script = generate_namespace_graph_script(ns_graph_data)
 
     return HTML_TEMPLATE.format(
         title="Exocortex Public Ontologies",
         content=content,
         search_index=json.dumps(search_index),
         sidebar_nav=sidebar_nav,
-        graph_script=""  # No graph on index page
+        graph_script=graph_script
     )
 
 
@@ -919,7 +1066,7 @@ def main():
     # Generate main index
     print("Generating index page...")
     with open(output_dir / "index.html", "w", encoding="utf-8") as f:
-        f.write(generate_index_page(prefix_dirs, resources))
+        f.write(generate_index_page(prefix_dirs, resources, statements))
 
     # Generate namespace pages
     for prefix in prefix_dirs:

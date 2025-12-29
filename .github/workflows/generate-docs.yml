@@ -54,6 +54,9 @@ jobs:
       - name: Generate SPARQL data
         run: python scripts/generate_sparql_data.py
 
+      - name: Generate HTML documentation
+        run: python scripts/generate_docs.py
+
       - name: Check for changes
         id: changes
         run: |
