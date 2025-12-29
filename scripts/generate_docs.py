@@ -34,6 +34,15 @@ PREDICATES = {
     "2e218ab8-518d-5cd0-a660-f575a101e5d8": ("isDefinedBy", "rdfs:isDefinedBy"),
 }
 
+# Predicates to show in relationship graph (important semantic relationships)
+GRAPH_PREDICATES = {
+    "d55dc3fe-9a9f-5908-baae-e67d0fa0eab0": "subClassOf",
+    "4b368645-5f7a-551b-940f-acebfe3d0bd2": "subPropertyOf",
+    "84d654c0-420b-5a08-ad64-1f16d51de0b2": "domain",
+    "c6a11966-a018-5be8-95a0-eba182c2fd93": "range",
+    "73b69787-81ea-563e-8e09-9c84cad4cf2b": "type",
+}
+
 # HTML template with search and navigation
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -186,6 +195,85 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         .stat {{ background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }}
         .stat-value {{ font-size: 24px; font-weight: 600; color: #fff; }}
         .stat-label {{ font-size: 12px; color: #8b949e; }}
+        /* Tooltips */
+        [data-tooltip] {{
+            position: relative;
+        }}
+        [data-tooltip]:hover::after {{
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: normal;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }}
+        /* Relationship graph */
+        .graph-container {{
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 10px;
+            min-height: 250px;
+            position: relative;
+        }}
+        .graph-container svg {{
+            width: 100%;
+            height: 250px;
+        }}
+        .graph-node {{
+            cursor: pointer;
+        }}
+        .graph-node circle {{
+            stroke: var(--border);
+            stroke-width: 2;
+        }}
+        .graph-node.center circle {{
+            stroke: var(--link);
+            stroke-width: 3;
+        }}
+        .graph-node text {{
+            font-size: 10px;
+            fill: var(--fg);
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }}
+        .graph-link {{
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+            fill: none;
+        }}
+        .graph-link-label {{
+            font-size: 9px;
+            fill: #8b949e;
+        }}
+        .graph-legend {{
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #8b949e;
+        }}
+        .graph-legend span {{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }}
+        .graph-legend-dot {{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }}
         @media (max-width: 768px) {{
             .sidebar {{ display: none; }}
             .main {{ margin-left: 0; padding: 16px; }}
@@ -193,6 +281,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             body.sidebar-open .sidebar {{ display: block; position: fixed; z-index: 999; }}
         }}
     </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <button class="toggle-sidebar" onclick="document.body.classList.toggle('sidebar-open')">☰ Menu</button>
@@ -286,13 +375,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             }}
         }});
     </script>
+    {graph_script}
 </body>
 </html>
 """
 
 
-def load_resources(repo_root: Path, prefixes: list) -> dict:
-    """Load all resources with their properties."""
+def load_resources(repo_root: Path, prefixes: list) -> tuple:
+    """Load all resources with their properties.
+
+    Returns:
+        tuple: (resources dict, statements list for graph building)
+    """
     resources = {}  # uuid -> {alias, uri, prefix, type, properties}
     statements = []  # list of (subject_uuid, predicate_uuid, object_value)
 
@@ -358,7 +452,7 @@ def load_resources(repo_root: Path, prefixes: list) -> dict:
             "predicate": pred_label,
         })
 
-    return resources
+    return resources, statements
 
 
 def get_resource_type(resource: dict) -> str:
@@ -378,6 +472,211 @@ def get_resource_type(resource: dict) -> str:
     if "class" in alias or alias[0].isupper():
         return "class"
     return "property"
+
+
+def build_tooltip_index(resources: dict) -> dict:
+    """Build index of resource UUIDs to their descriptions for tooltips."""
+    tooltip_index = {}
+    for uuid, r in resources.items():
+        if r["type"] == "namespace":
+            continue
+        comment = r["properties"].get("comment", [{"value": ""}])[0]["value"]
+        if comment:
+            # Truncate long comments
+            if len(comment) > 150:
+                comment = comment[:147] + "..."
+            tooltip_index[uuid] = comment
+    return tooltip_index
+
+
+def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> dict:
+    """Build graph data for a single resource showing its relationships."""
+    if resource_uuid not in resources:
+        return {"nodes": [], "links": []}
+
+    center = resources[resource_uuid]
+    nodes = {}  # uuid -> node data
+    links = []
+
+    # Add center node
+    nodes[resource_uuid] = {
+        "id": resource_uuid,
+        "label": center["alias"].split(":")[-1],
+        "type": get_resource_type(center),
+        "center": True,
+        "url": None,  # Current page
+    }
+
+    # Find relationships from statements
+    for subj_uuid, pred_uuid, obj_value in statements:
+        pred_name = GRAPH_PREDICATES.get(pred_uuid)
+        if not pred_name:
+            continue
+
+        # Outgoing: this resource -> other
+        if subj_uuid == resource_uuid and obj_value in resources:
+            target = resources[obj_value]
+            if obj_value not in nodes:
+                local = target["alias"].split(":")[-1]
+                nodes[obj_value] = {
+                    "id": obj_value,
+                    "label": local,
+                    "type": get_resource_type(target),
+                    "center": False,
+                    "url": f"../{target['prefix']}/{local}.html",
+                }
+            links.append({
+                "source": resource_uuid,
+                "target": obj_value,
+                "label": pred_name,
+                "direction": "out",
+            })
+
+        # Incoming: other -> this resource
+        elif obj_value == resource_uuid and subj_uuid in resources:
+            source = resources[subj_uuid]
+            if subj_uuid not in nodes:
+                local = source["alias"].split(":")[-1]
+                nodes[subj_uuid] = {
+                    "id": subj_uuid,
+                    "label": local,
+                    "type": get_resource_type(source),
+                    "center": False,
+                    "url": f"../{source['prefix']}/{local}.html",
+                }
+            links.append({
+                "source": subj_uuid,
+                "target": resource_uuid,
+                "label": pred_name,
+                "direction": "in",
+            })
+
+    # Limit to 20 nodes to keep graph readable
+    if len(nodes) > 20:
+        # Keep center + top 19 by link count
+        link_counts = defaultdict(int)
+        for link in links:
+            link_counts[link["source"]] += 1
+            link_counts[link["target"]] += 1
+        sorted_nodes = sorted(
+            [n for n in nodes.values() if not n["center"]],
+            key=lambda x: link_counts[x["id"]],
+            reverse=True
+        )[:19]
+        keep_ids = {resource_uuid} | {n["id"] for n in sorted_nodes}
+        nodes = {k: v for k, v in nodes.items() if k in keep_ids}
+        links = [l for l in links if l["source"] in keep_ids and l["target"] in keep_ids]
+
+    return {
+        "nodes": list(nodes.values()),
+        "links": links,
+    }
+
+
+def generate_graph_script(graph_data: dict) -> str:
+    """Generate D3.js script to render relationship graph."""
+    if not graph_data["nodes"] or len(graph_data["nodes"]) <= 1:
+        return ""
+
+    # Color scheme for node types and link directions
+    colors = {
+        "class": "#388bfd",
+        "property": "#56d364",
+        "datatype": "#f78166",
+    }
+
+    return f"""
+    <script>
+    (function() {{
+        const graphData = {json.dumps(graph_data)};
+        const colors = {json.dumps(colors)};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = svg.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = svg.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => {{ if (d.url) window.location.href = d.url; }})
+            .call(d3.drag()
+                .on('start', (event, d) => {{
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                }})
+                .on('drag', (event, d) => {{ d.fx = event.x; d.fy = event.y; }})
+                .on('end', (event, d) => {{
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }}));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {{
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${{d.x}},${{d.y}})`);
+        }});
+    }})();
+    </script>
+    """
 
 
 def build_search_index(resources: dict) -> list:
@@ -411,7 +710,8 @@ def build_sidebar_nav(prefixes: list, resources: dict, current_prefix: str = "")
     return nav
 
 
-def generate_resource_page(resource: dict, resources: dict, prefixes: list) -> str:
+def generate_resource_page(resource: dict, resources: dict, prefixes: list,
+                           resource_uuid: str, statements: list, tooltip_index: dict) -> str:
     """Generate HTML page for a single resource."""
     alias = resource["alias"]
     prefix = resource["prefix"]
@@ -426,14 +726,38 @@ def generate_resource_page(resource: dict, resources: dict, prefixes: list) -> s
     label = props.get("label", [{"value": alias.split(":")[-1]}])[0]["value"]
     comment = props.get("comment", [{"value": ""}])[0]["value"]
 
-    # Build properties table
+    # Build properties table with tooltips
     prop_rows = ""
     for pred_name, values in sorted(props.items()):
         if pred_name in ("label", "comment"):
             continue
         for v in values:
-            value_html = f'<a href="{v["link"]}">{escape(v["value"])}</a>' if v["link"] else escape(v["value"])
+            if v["link"]:
+                # Try to add tooltip for linked resources
+                # Extract UUID from link path (../prefix/localname.html)
+                tooltip_attr = ""
+                for uuid, desc in tooltip_index.items():
+                    if resources.get(uuid, {}).get("alias", "").endswith(v["value"]):
+                        tooltip_attr = f' data-tooltip="{escape(desc)}"'
+                        break
+                value_html = f'<a href="{v["link"]}"{tooltip_attr}>{escape(v["value"])}</a>'
+            else:
+                value_html = escape(v["value"])
             prop_rows += f'<tr><td><code>{v["predicate"]}</code></td><td>{value_html}</td></tr>'
+
+    # Build relationship graph
+    graph_data = build_graph_data(resource_uuid, resources, statements)
+    graph_html = ""
+    if graph_data["nodes"] and len(graph_data["nodes"]) > 1:
+        graph_html = f"""
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+        </div>
+        """
 
     content = f"""
     <div class="breadcrumb">
@@ -444,6 +768,8 @@ def generate_resource_page(resource: dict, resources: dict, prefixes: list) -> s
 
     {"<div class='description'>" + escape(comment) + "</div>" if comment else ""}
 
+    {graph_html}
+
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
@@ -453,12 +779,14 @@ def generate_resource_page(resource: dict, resources: dict, prefixes: list) -> s
 
     search_index = build_search_index(resources)
     sidebar_nav = build_sidebar_nav(prefixes, resources, prefix)
+    graph_script = generate_graph_script(graph_data)
 
     return HTML_TEMPLATE.format(
         title=f"{alias} - Ontology Documentation",
         content=content,
         search_index=json.dumps(search_index),
-        sidebar_nav=sidebar_nav
+        sidebar_nav=sidebar_nav,
+        graph_script=graph_script
     )
 
 
@@ -511,7 +839,8 @@ def generate_namespace_page(prefix: str, resources: dict, prefixes: list) -> str
         title=f"{prefix.upper()} - Ontology Documentation",
         content=content,
         search_index=json.dumps(search_index),
-        sidebar_nav=sidebar_nav
+        sidebar_nav=sidebar_nav,
+        graph_script=""  # No graph on namespace pages
     )
 
 
@@ -562,7 +891,8 @@ def generate_index_page(prefixes: list, resources: dict) -> str:
         title="Exocortex Public Ontologies",
         content=content,
         search_index=json.dumps(search_index),
-        sidebar_nav=sidebar_nav
+        sidebar_nav=sidebar_nav,
+        graph_script=""  # No graph on index page
     )
 
 
@@ -578,8 +908,13 @@ def main():
     prefix_dirs = get_prefix_dirs(repo_root)
     print(f"Loading resources from {len(prefix_dirs)} namespaces...")
 
-    resources = load_resources(repo_root, prefix_dirs)
+    resources, statements = load_resources(repo_root, prefix_dirs)
     print(f"  Found {len(resources)} resources")
+    print(f"  Found {len(statements)} statements for graph")
+
+    # Build tooltip index
+    tooltip_index = build_tooltip_index(resources)
+    print(f"  Built tooltip index with {len(tooltip_index)} entries")
 
     # Generate main index
     print("Generating index page...")
@@ -588,7 +923,7 @@ def main():
 
     # Generate namespace pages
     for prefix in prefix_dirs:
-        ns_resources = [r for r in resources.values() if r["prefix"] == prefix]
+        ns_resources = [(uuid, r) for uuid, r in resources.items() if r["prefix"] == prefix]
         if not ns_resources:
             continue
 
@@ -602,12 +937,12 @@ def main():
             f.write(generate_namespace_page(prefix, resources, prefix_dirs))
 
         # Individual resource pages
-        for r in ns_resources:
+        for uuid, r in ns_resources:
             local = r["alias"].split(":")[-1]
             # Sanitize filename
             safe_local = "".join(c if c.isalnum() or c in "-_" else "_" for c in local)
             with open(ns_dir / f"{safe_local}.html", "w", encoding="utf-8") as f:
-                f.write(generate_resource_page(r, resources, prefix_dirs))
+                f.write(generate_resource_page(r, resources, prefix_dirs, uuid, statements, tooltip_index))
 
     print(f"\n✅ Generated documentation in {output_dir}")
     print(f"   Open {output_dir}/index.html to browse")
