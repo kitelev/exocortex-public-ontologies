@@ -4,5 +4,5 @@ subject: "[[fce0a134-0479-5388-b25a-021a38e46f6e]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Cubic Centimeter per Minute\"@en-US"
 aliases:
-  - "? rdfs:label Cubic Centimeter per Minute"
+  - "fce0a134... rdfs:label \"Cubic Centimeter per Minute\"@..."
 ---

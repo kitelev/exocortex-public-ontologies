@@ -4,5 +4,5 @@ subject: "[[00bc9057-25a6-5493-b1dc-8c400b79ab41]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Mol por Metro Cuadrado Segundo Estereorradián\"@es"
 aliases:
-  - "? rdfs:label Mol por Metro Cuadrado Segundo..."
+  - "00bc9057... rdfs:label \"Mol por Metro Cuadrado Segund..."
 ---

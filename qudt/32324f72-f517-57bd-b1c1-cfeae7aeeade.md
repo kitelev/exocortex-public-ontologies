@@ -4,5 +4,5 @@ subject: "[[49d3beb1-3f3a-527c-bbea-531660870f15]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"International Mile per Second\"@en"
 aliases:
-  - "? rdfs:label International Mile per Second"
+  - "49d3beb1... rdfs:label \"International Mile per Second..."
 ---

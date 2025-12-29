@@ -4,5 +4,5 @@ subject: "[[75860b6d-dcd1-500f-bd62-0e040bc2afb2]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kelvin Kvadratni Meter na Kilogram Sekunda\"@sl"
 aliases:
-  - "? rdfs:label Kelvin Kvadratni Meter na Kilo..."
+  - "75860b6d... rdfs:label \"Kelvin Kvadratni Meter na Kil..."
 ---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[8d13f210-6e4c-5661-9dba-b347d1701e14]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[9c05eb8a-04b0-57d4-ad88-2f3a885a837a]]"
+aliases:
+  - "quantitykind:NuclearEnergy 7c346f09... 9c05eb8a..."
+---

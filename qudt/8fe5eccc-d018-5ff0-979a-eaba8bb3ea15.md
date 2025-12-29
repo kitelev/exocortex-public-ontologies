@@ -4,5 +4,5 @@ subject: "[[4cf53c81-3d36-501d-b82b-a5b6ac1a48bf]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Wat na Metr\"@pl"
 aliases:
-  - "? rdfs:label Wat na Metr"
+  - "4cf53c81... rdfs:label \"Wat na Metr\"@pl"
 ---

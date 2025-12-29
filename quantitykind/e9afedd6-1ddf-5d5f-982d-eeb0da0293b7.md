@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[13161401-1553-5847-afe0-83c4a0195071]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[6df92296-49a6-5017-8226-75d67c415c23]]"
+aliases:
+  - "quantitykind:Adaptation 7c346f09... 6df92296..."
+---

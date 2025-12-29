@@ -4,5 +4,5 @@ subject: "[[78331234-e1a1-5aee-bd8b-0caa71201939]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metr na Sekunda\"@cs"
 aliases:
-  - "? rdfs:label Metr na Sekunda"
+  - "78331234... rdfs:label \"Metr na Sekunda\"@cs"
 ---

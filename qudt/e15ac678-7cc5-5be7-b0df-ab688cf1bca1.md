@@ -4,5 +4,5 @@ subject: "[[66776d5b-638e-57f3-be06-7e95ebee634c]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilogramme Seconde Carré\"@fr"
 aliases:
-  - "? rdfs:label Kilogramme Seconde Carré"
+  - "66776d5b... rdfs:label \"Kilogramme Seconde Carré\"@fr"
 ---

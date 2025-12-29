@@ -4,5 +4,5 @@ subject: "[[9e8d9ee3-3c37-5483-9379-541dfd21f3fa]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pascal Metro\"@pt"
 aliases:
-  - "? rdfs:label Pascal Metro"
+  - "9e8d9ee3... rdfs:label \"Pascal Metro\"@pt"
 ---

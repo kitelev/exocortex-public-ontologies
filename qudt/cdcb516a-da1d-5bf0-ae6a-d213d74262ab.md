@@ -4,5 +4,5 @@ subject: "[[12866a70-d0a2-5caa-932f-30e99aceaf78]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Henrium per Metrum\"@la"
 aliases:
-  - "? rdfs:label Henrium per Metrum"
+  - "12866a70... rdfs:label \"Henrium per Metrum\"@la"
 ---

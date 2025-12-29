@@ -4,5 +4,5 @@ subject: "[[37fac7e4-bb93-5ce5-a757-0d26750e5a02]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Picoamperio por Hectopascal\"@es"
 aliases:
-  - "? rdfs:label Picoamperio por Hectopascal"
+  - "37fac7e4... rdfs:label \"Picoamperio por Hectopascal\"@..."
 ---

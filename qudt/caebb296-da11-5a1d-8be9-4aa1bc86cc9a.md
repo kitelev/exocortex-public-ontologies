@@ -4,5 +4,5 @@ subject: "[[a16942bc-554b-543b-b954-2f6c941cfe78]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pascal Segundo por Metro\"@pt"
 aliases:
-  - "? rdfs:label Pascal Segundo por Metro"
+  - "a16942bc... rdfs:label \"Pascal Segundo por Metro\"@pt"
 ---

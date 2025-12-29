@@ -4,5 +4,5 @@ subject: "[[230bc714-e6c5-5494-ac23-d85926e8fe90]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Nat\"@en"
 aliases:
-  - "? rdfs:label Nat"
+  - "230bc714... rdfs:label \"Nat\"@en"
 ---

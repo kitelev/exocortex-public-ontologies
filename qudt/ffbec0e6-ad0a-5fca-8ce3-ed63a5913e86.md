@@ -4,5 +4,5 @@ subject: "[[86b6ab5f-70aa-5624-be17-645333d53d51]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilogramm pro Quadratmeter\"@de"
 aliases:
-  - "? rdfs:label Kilogramm pro Quadratmeter"
+  - "86b6ab5f... rdfs:label \"Kilogramm pro Quadratmeter\"@d..."
 ---

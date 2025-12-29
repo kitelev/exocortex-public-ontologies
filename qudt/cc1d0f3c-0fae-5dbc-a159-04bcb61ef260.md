@@ -4,5 +4,5 @@ subject: "[[4ed5503a-56ab-514a-b3d9-25287da52a95]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metro Cubo per Secondo\"@it"
 aliases:
-  - "? rdfs:label Metro Cubo per Secondo"
+  - "4ed5503a... rdfs:label \"Metro Cubo per Secondo\"@it"
 ---

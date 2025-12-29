@@ -4,5 +4,5 @@ subject: "[[03aa8b02-45fe-546d-b836-8809b8a752e1]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Nanogram per Milligram\"@en"
 aliases:
-  - "? rdfs:label Nanogram per Milligram"
+  - "03aa8b02... rdfs:label \"Nanogram per Milligram\"@en"
 ---

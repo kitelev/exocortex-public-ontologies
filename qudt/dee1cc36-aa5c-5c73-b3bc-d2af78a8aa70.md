@@ -4,5 +4,5 @@ subject: "[[8c5615f2-2778-53a4-821d-07507c0ef6f3]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pound Mass Second per Cubic Inch Cubic Yard\"@en"
 aliases:
-  - "? rdfs:label Pound Mass Second per Cubic In..."
+  - "8c5615f2... rdfs:label \"Pound Mass Second per Cubic I..."
 ---

@@ -1,6 +1,6 @@
 ---
 metadata: blank_node
-uri: http://qudt.org/vocab/unit/.well-known/genid/79b90937
+uri: "http://qudt.org/vocab/unit/.well-known/genid/79b90937"
 aliases:
   - "_:genid-79b90937"
 ---

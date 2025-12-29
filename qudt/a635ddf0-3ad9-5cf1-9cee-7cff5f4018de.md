@@ -4,5 +4,5 @@ subject: "[[fabc6224-737a-5f35-b831-471cf367fc1d]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Mebibit\"@en"
 aliases:
-  - "? rdfs:label Mebibit"
+  - "fabc6224... rdfs:label \"Mebibit\"@en"
 ---

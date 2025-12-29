@@ -4,5 +4,5 @@ subject: "[[8d315234-9604-51fa-895c-98b88e9f1b28]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Amper na Centimetr\"@pl"
 aliases:
-  - "? rdfs:label Amper na Centimetr"
+  - "8d315234... rdfs:label \"Amper na Centimetr\"@pl"
 ---

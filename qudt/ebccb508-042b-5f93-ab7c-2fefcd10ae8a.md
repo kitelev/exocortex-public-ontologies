@@ -4,5 +4,5 @@ subject: "[[e299bb79-004b-52b3-a4c9-f8a739b881bf]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kiloamperio por Metro\"@es"
 aliases:
-  - "? rdfs:label Kiloamperio por Metro"
+  - "e299bb79... rdfs:label \"Kiloamperio por Metro\"@es"
 ---

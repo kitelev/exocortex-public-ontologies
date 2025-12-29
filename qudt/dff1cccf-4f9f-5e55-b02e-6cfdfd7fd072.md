@@ -4,5 +4,5 @@ subject: "[[89c2f08b-4360-565c-b2bf-e50f5614a0d4]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Milliwatt\""
 aliases:
-  - "? rdfs:label Milliwatt"
+  - "89c2f08b... rdfs:label \"Milliwatt\""
 ---

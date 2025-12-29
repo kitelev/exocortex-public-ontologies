@@ -4,5 +4,5 @@ subject: "[[72b62870-40f6-5312-a174-3058194a4e31]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilobecquerel por Kilogramo\"@es"
 aliases:
-  - "? rdfs:label Kilobecquerel por Kilogramo"
+  - "72b62870... rdfs:label \"Kilobecquerel por Kilogramo\"@..."
 ---

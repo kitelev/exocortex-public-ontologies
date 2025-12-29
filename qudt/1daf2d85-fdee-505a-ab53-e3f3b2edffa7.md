@@ -4,5 +4,5 @@ subject: "[[b638d159-a724-553e-96d0-17e88e43c249]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Milligramm pro Kelvin\"@de"
 aliases:
-  - "? rdfs:label Milligramm pro Kelvin"
+  - "b638d159... rdfs:label \"Milligramm pro Kelvin\"@de"
 ---

@@ -4,5 +4,5 @@ subject: "[[f9a174b6-598a-52fe-8b9a-c50ee48bf7a1]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Ohmio\"@es"
 aliases:
-  - "? rdfs:label Ohmio"
+  - "f9a174b6... rdfs:label \"Ohmio\"@es"
 ---

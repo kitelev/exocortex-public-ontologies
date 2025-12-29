@@ -4,5 +4,5 @@ subject: "[[a8178412-3511-55ee-a5ff-7170de8040be]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Nanofarad pe Metru\"@ro"
 aliases:
-  - "? rdfs:label Nanofarad pe Metru"
+  - "a8178412... rdfs:label \"Nanofarad pe Metru\"@ro"
 ---

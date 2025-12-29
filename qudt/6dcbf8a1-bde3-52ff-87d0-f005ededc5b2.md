@@ -4,5 +4,5 @@ subject: "[[9f9f7a95-4fa9-5f0b-b12c-21975c722be6]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Decimetr Krychlový na Kilogram\"@cs"
 aliases:
-  - "? rdfs:label Decimetr Krychlový na Kilogram"
+  - "9f9f7a95... rdfs:label \"Decimetr Krychlový na Kilogra..."
 ---

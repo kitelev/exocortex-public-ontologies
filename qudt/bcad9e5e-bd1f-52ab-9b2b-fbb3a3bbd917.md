@@ -4,5 +4,5 @@ subject: "[[56c48812-ad6f-5cef-9ed4-36d03a1a09bc]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Cubic Inch per Hour\"@en"
 aliases:
-  - "? rdfs:label Cubic Inch per Hour"
+  - "56c48812... rdfs:label \"Cubic Inch per Hour\"@en"
 ---

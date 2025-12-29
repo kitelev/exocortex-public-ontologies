@@ -4,5 +4,5 @@ subject: "[[f402befb-bafe-507a-a45f-dadbf0c635c0]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilogram na Kubični Sekunda Kelvin\"@sl"
 aliases:
-  - "? rdfs:label Kilogram na Kubični Sekunda Ke..."
+  - "f402befb... rdfs:label \"Kilogram na Kubični Sekunda K..."
 ---

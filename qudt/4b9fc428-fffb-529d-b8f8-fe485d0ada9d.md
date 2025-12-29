@@ -4,5 +4,5 @@ subject: "[[3437bfed-862a-5ffb-8fce-9c13c175ca41]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Mètre Cube par Pascal\"@fr"
 aliases:
-  - "? rdfs:label Mètre Cube par Pascal"
+  - "3437bfed... rdfs:label \"Mètre Cube par Pascal\"@fr"
 ---

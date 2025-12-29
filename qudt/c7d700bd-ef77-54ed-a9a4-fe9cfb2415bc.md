@@ -4,5 +4,5 @@ subject: "[[1c1f6dfe-de08-5433-b00f-28c4732a1aac]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Millikelvin\"@ro"
 aliases:
-  - "? rdfs:label Millikelvin"
+  - "1c1f6dfe... rdfs:label \"Millikelvin\"@ro"
 ---

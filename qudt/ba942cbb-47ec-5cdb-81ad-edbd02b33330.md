@@ -4,5 +4,5 @@ subject: "[[ccf94a45-98ac-5efa-ad9d-9391df7c512d]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Millimetr na Metr\"@pl"
 aliases:
-  - "? rdfs:label Millimetr na Metr"
+  - "ccf94a45... rdfs:label \"Millimetr na Metr\"@pl"
 ---

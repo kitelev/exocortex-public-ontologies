@@ -4,5 +4,5 @@ subject: "[[dd8d46bf-610f-56a9-87b5-568b9bf287b0]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Million Individuals\"@en"
 aliases:
-  - "? rdfs:label Million Individuals"
+  - "dd8d46bf... rdfs:label \"Million Individuals\"@en"
 ---

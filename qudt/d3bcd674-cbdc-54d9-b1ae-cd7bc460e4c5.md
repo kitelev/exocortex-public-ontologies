@@ -4,5 +4,5 @@ subject: "[[d2434a78-e028-52fc-9426-025f9a4e50ba]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Reciprocal Year\""
 aliases:
-  - "? rdfs:label Reciprocal Year"
+  - "d2434a78... rdfs:label \"Reciprocal Year\""
 ---

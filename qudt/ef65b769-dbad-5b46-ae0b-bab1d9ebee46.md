@@ -4,5 +4,5 @@ subject: "[[17316519-6e29-518a-8cb5-4a5a7be3110c]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Milligramo por Metro Cúbico Segundo\"@es"
 aliases:
-  - "? rdfs:label Milligramo por Metro Cúbico Se..."
+  - "17316519... rdfs:label \"Milligramo por Metro Cúbico S..."
 ---

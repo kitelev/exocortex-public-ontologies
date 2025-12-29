@@ -4,5 +4,5 @@ subject: "[[3cfa1cd0-ef66-51c3-bad4-0ca56ea6878c]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Gigawatt\"@cs"
 aliases:
-  - "? rdfs:label Gigawatt"
+  - "3cfa1cd0... rdfs:label \"Gigawatt\"@cs"
 ---

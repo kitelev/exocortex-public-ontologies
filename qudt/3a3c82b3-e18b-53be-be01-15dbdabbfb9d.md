@@ -4,5 +4,5 @@ subject: "[[ecfc0485-465d-510a-a98f-09bb3aafabef]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Mega Volt Ampere\""
 aliases:
-  - "? rdfs:label Mega Volt Ampere"
+  - "ecfc0485... rdfs:label \"Mega Volt Ampere\""
 ---

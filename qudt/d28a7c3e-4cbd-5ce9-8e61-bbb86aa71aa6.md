@@ -1,6 +1,6 @@
 ---
 metadata: blank_node
-uri: http://qudt.org/vocab/unit/.well-known/genid/2daf3bcd
+uri: "http://qudt.org/vocab/unit/.well-known/genid/2daf3bcd"
 aliases:
   - "_:genid-2daf3bcd"
 ---

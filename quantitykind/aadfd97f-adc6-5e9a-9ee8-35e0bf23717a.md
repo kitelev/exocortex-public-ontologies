@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[52c035fd-3903-5887-97de-e3ba868c42f9]]"
+predicate: "[[dc0b7002-165a-5d8d-be11-a10c11eadf18]]"
+object: "\"thermodynamic energy\"@en"
+aliases:
+  - "quantitykind:EnergyInternal skos:altLabel \"thermodynamic energy\"@en"
+---

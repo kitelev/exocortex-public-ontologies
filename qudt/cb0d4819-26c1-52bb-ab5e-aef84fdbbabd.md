@@ -4,5 +4,5 @@ subject: "[[8d7537ae-a2d6-5223-8516-f2c440970797]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Micrometre per Metre\"@tr"
 aliases:
-  - "? rdfs:label Micrometre per Metre"
+  - "8d7537ae... rdfs:label \"Micrometre per Metre\"@tr"
 ---

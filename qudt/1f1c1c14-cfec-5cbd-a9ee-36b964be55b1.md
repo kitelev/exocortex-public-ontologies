@@ -4,5 +4,5 @@ subject: "[[5b2ef7dc-cd28-5a67-9c73-e4c3dda38b78]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Second per Square Foot\"@en"
 aliases:
-  - "? rdfs:label Second per Square Foot"
+  - "5b2ef7dc... rdfs:label \"Second per Square Foot\"@en"
 ---

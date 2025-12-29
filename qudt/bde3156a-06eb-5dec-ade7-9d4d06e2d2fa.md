@@ -4,5 +4,5 @@ subject: "[[a7ed9138-0d44-5835-bc9c-0ed2b7e5a4e5]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Percent Hour per Litre\""
 aliases:
-  - "? rdfs:label Percent Hour per Litre"
+  - "a7ed9138... rdfs:label \"Percent Hour per Litre\""
 ---

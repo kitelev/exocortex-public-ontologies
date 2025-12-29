@@ -4,5 +4,5 @@ subject: "[[30f80559-b4db-5a9b-8d78-a70a24847f4b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Picojoule\"@ro"
 aliases:
-  - "? rdfs:label Picojoule"
+  - "30f80559... rdfs:label \"Picojoule\"@ro"
 ---

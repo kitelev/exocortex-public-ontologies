@@ -4,5 +4,5 @@ subject: "[[1045127f-ad1a-54b4-bf5c-0a15890fdc8b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metrum Quadratum per Hertzium Quadratum\"@la"
 aliases:
-  - "? rdfs:label Metrum Quadratum per Hertzium ..."
+  - "1045127f... rdfs:label \"Metrum Quadratum per Hertzium..."
 ---

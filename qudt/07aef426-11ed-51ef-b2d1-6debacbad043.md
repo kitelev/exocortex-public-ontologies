@@ -4,5 +4,5 @@ subject: "[[5839524e-349c-5f59-b38c-ae5f4842ee5a]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Gram per Litre Pascal Second\""
 aliases:
-  - "? rdfs:label Gram per Litre Pascal Second"
+  - "5839524e... rdfs:label \"Gram per Litre Pascal Second\""
 ---

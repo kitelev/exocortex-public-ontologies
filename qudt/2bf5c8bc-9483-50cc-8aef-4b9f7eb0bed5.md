@@ -4,5 +4,5 @@ subject: "[[968a3fd5-7529-500f-9eb0-3f4efc083e36]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Grama por Mol\"@pt"
 aliases:
-  - "? rdfs:label Grama por Mol"
+  - "968a3fd5... rdfs:label \"Grama por Mol\"@pt"
 ---

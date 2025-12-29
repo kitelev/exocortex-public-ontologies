@@ -4,5 +4,5 @@ subject: "[[7237c4c9-58d3-5a1c-83a1-d353d2f06629]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metrum per Radian\"@la"
 aliases:
-  - "? rdfs:label Metrum per Radian"
+  - "7237c4c9... rdfs:label \"Metrum per Radian\"@la"
 ---

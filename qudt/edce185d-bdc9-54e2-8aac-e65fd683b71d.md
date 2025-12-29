@@ -4,5 +4,5 @@ subject: "[[0688e8a3-5b77-55d5-ac70-4c4f05682e9e]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Nanowatt per Metro Quadrato\"@it"
 aliases:
-  - "? rdfs:label Nanowatt per Metro Quadrato"
+  - "0688e8a3... rdfs:label \"Nanowatt per Metro Quadrato\"@..."
 ---

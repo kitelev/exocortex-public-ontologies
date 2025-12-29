@@ -4,5 +4,5 @@ subject: "[[e385b197-cb0e-581d-8e25-ce1ec9a73c7a]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Milliampère par Millimètre\"@fr"
 aliases:
-  - "? rdfs:label Milliampère par Millimètre"
+  - "e385b197... rdfs:label \"Milliampère par Millimètre\"@f..."
 ---

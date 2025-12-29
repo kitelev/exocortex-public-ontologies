@@ -4,5 +4,5 @@ subject: "[[c972dccf-c767-5b95-8cef-e642ff6ed7d9]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pixel (area)\"@en"
 aliases:
-  - "? rdfs:label Pixel (area)"
+  - "c972dccf... rdfs:label \"Pixel (area)\"@en"
 ---

@@ -4,5 +4,5 @@ subject: "[[7f0ae94c-96ac-5c02-beda-cdedcfcbdff1]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Chiliogramma Metrum per Secundum\"@la"
 aliases:
-  - "? rdfs:label Chiliogramma Metrum per Secund..."
+  - "7f0ae94c... rdfs:label \"Chiliogramma Metrum per Secun..."
 ---

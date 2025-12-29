@@ -4,5 +4,5 @@ subject: "[[c90e3078-54c4-53be-9583-00304ca8185e]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Day\"@en"
 aliases:
-  - "? rdfs:label Day"
+  - "c90e3078... rdfs:label \"Day\"@en"
 ---

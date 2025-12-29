@@ -4,5 +4,5 @@ subject: "[[a553473c-eb69-5743-8779-040c3e07c200]]"
 predicate: "[[0aa3d93f-ecdb-5531-a6d9-0b90d685ce6f]]"
 object: "[[d748a05e-5866-5a9d-b07b-6c3029393593]]"
 aliases:
-  - "? ? ?"
+  - a553473c... 0aa3d93f... d748a05e...
 ---

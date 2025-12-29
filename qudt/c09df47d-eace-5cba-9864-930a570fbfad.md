@@ -4,5 +4,5 @@ subject: "[[883731d4-42e8-5277-8ae0-0df071dd0719]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Milli Degree Celsius\""
 aliases:
-  - "? rdfs:label Milli Degree Celsius"
+  - "883731d4... rdfs:label \"Milli Degree Celsius\""
 ---

@@ -1,6 +1,6 @@
 ---
 metadata: blank_node
-uri: http://qudt.org/vocab/unit/.well-known/genid/e513bc09
+uri: "http://qudt.org/vocab/unit/.well-known/genid/e513bc09"
 aliases:
   - "_:genid-e513bc09"
 ---

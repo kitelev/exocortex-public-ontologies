@@ -4,5 +4,5 @@ subject: "[[d1f37243-230c-5540-aa0d-369547824b9d]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"One per One\""
 aliases:
-  - "? rdfs:label One per One"
+  - "d1f37243... rdfs:label \"One per One\""
 ---

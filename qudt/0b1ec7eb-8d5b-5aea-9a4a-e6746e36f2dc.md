@@ -4,5 +4,5 @@ subject: "[[abb39bf7-7e53-590a-afd8-5088c14233eb]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilocoulomb pe Metru Cub\"@ro"
 aliases:
-  - "? rdfs:label Kilocoulomb pe Metru Cub"
+  - "abb39bf7... rdfs:label \"Kilocoulomb pe Metru Cub\"@ro"
 ---

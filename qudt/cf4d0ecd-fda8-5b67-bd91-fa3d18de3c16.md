@@ -4,5 +4,5 @@ subject: "[[36316ec9-6974-546b-9cd3-a5068a5f0cb4]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Radián na Metr\"@cs"
 aliases:
-  - "? rdfs:label Radián na Metr"
+  - "36316ec9... rdfs:label \"Radián na Metr\"@cs"
 ---

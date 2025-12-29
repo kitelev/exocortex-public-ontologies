@@ -4,5 +4,5 @@ subject: "[[a74aeeca-a6db-5309-b031-1e7acf6d1fef]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Balboa\"@en"
 aliases:
-  - "? rdfs:label Balboa"
+  - "a74aeeca... rdfs:label \"Balboa\"@en"
 ---

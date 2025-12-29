@@ -4,5 +4,5 @@ subject: "[[233c7ca1-25dc-5092-bdc6-9b05723ba75b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Millifarad\"@ro"
 aliases:
-  - "? rdfs:label Millifarad"
+  - "233c7ca1... rdfs:label \"Millifarad\"@ro"
 ---

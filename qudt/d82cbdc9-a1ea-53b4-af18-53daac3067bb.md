@@ -4,5 +4,5 @@ subject: "[[8e0cd044-0b36-5870-ba04-bc7d2bcb6122]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pascal Metr Krychlový na Sekunda\"@cs"
 aliases:
-  - "? rdfs:label Pascal Metr Krychlový na Sekun..."
+  - "8e0cd044... rdfs:label \"Pascal Metr Krychlový na Seku..."
 ---

@@ -4,5 +4,5 @@ subject: "[[6322452d-139c-591b-ac1a-3bcc4382f514]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Lumen por Metro Quadrado\"@pt"
 aliases:
-  - "? rdfs:label Lumen por Metro Quadrado"
+  - "6322452d... rdfs:label \"Lumen por Metro Quadrado\"@pt"
 ---

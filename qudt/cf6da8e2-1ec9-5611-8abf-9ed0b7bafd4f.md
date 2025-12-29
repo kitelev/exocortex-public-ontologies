@@ -4,5 +4,5 @@ subject: "[[928a2bd0-b7c0-5745-b866-c35c4a12772d]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Square Pascal per Square Second\"@en"
 aliases:
-  - "? rdfs:label Square Pascal per Square Secon..."
+  - "928a2bd0... rdfs:label \"Square Pascal per Square Seco..."
 ---

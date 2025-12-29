@@ -4,5 +4,5 @@ subject: "[[b91fd68d-9337-5855-a57c-795180c429a3]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Meter per Saat Persegi\"@ms"
 aliases:
-  - "? rdfs:label Meter per Saat Persegi"
+  - "b91fd68d... rdfs:label \"Meter per Saat Persegi\"@ms"
 ---

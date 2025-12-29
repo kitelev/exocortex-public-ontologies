@@ -4,5 +4,5 @@ subject: "[[54ba1a65-b3a7-5b70-8a5d-db4089c205b1]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilonewton Metru Pătrat\"@ro"
 aliases:
-  - "? rdfs:label Kilonewton Metru Pătrat"
+  - "54ba1a65... rdfs:label \"Kilonewton Metru Pătrat\"@ro"
 ---

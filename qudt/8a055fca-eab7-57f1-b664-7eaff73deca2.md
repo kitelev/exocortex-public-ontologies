@@ -4,5 +4,5 @@ subject: "[[86b6ab5f-70aa-5624-be17-645333d53d51]]"
 predicate: "[[fa39baa8-e7de-524d-ba06-9343f9f3999b]]"
 object: "\"$kg/m^2$\"^^[[ce59db63-4c64-5bd2-9f95-1e220f8b4891]]"
 aliases:
-  - "? ? $kg/m^2$"
+  - 86b6ab5f... fa39baa8... "$kg/m^2$"^^[[ce59db63-4c64-5b...
 ---

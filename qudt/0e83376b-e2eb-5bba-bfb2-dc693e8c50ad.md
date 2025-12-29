@@ -4,5 +4,5 @@ subject: "[[e278ca4a-77df-5582-ac51-09571287da94]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"British Thermal Unit (international Definition) per Second Square Foot\"@en"
 aliases:
-  - "? rdfs:label British Thermal Unit (internat..."
+  - "e278ca4a... rdfs:label \"British Thermal Unit (interna..."
 ---

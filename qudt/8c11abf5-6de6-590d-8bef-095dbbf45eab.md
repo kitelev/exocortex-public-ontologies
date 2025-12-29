@@ -4,5 +4,5 @@ subject: "[[026fce29-dc07-52e9-b91b-1fdf60115f1f]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Per Voltium Amperium Secundum\"@la"
 aliases:
-  - "? rdfs:label Per Voltium Amperium Secundum"
+  - "026fce29... rdfs:label \"Per Voltium Amperium Secundum..."
 ---

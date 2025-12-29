@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[37e3cadf-092a-5b5f-937f-ee1a6fadf7c2]]"
+predicate: "[[dc0b7002-165a-5d8d-be11-a10c11eadf18]]"
+object: "\"角周波数\"@ja"
+aliases:
+  - "quantitykind:AngularFrequency skos:altLabel \"角周波数\"@ja"
+---

@@ -4,5 +4,5 @@ subject: "[[736c3235-69ea-5b37-a7ca-958e00a76396]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Zeptocoulomb\"@sl"
 aliases:
-  - "? rdfs:label Zeptocoulomb"
+  - "736c3235... rdfs:label \"Zeptocoulomb\"@sl"
 ---

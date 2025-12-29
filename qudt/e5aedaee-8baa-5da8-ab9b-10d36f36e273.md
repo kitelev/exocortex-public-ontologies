@@ -4,5 +4,5 @@ subject: "[[10259e9c-4c74-5962-b608-025d4209a593]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilohenrio\"@es"
 aliases:
-  - "? rdfs:label Kilohenrio"
+  - "10259e9c... rdfs:label \"Kilohenrio\"@es"
 ---

@@ -4,5 +4,5 @@ subject: "[[b0010d0f-4c7a-52e1-8edb-fdc34e4c0653]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"वर्ग मीटर प्रति सैकिण्ड\"@hi"
 aliases:
-  - "? rdfs:label वर्ग मीटर प्रति सैकिण्ड"
+  - "b0010d0f... rdfs:label \"वर्ग मीटर प्रति सैकिण्ड\"@hi"
 ---

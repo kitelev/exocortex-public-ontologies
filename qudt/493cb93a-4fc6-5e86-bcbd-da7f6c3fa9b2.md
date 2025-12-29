@@ -4,5 +4,5 @@ subject: "[[3adb44b7-a27d-5ed0-b969-1b095779cb1f]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pe Metru Pătrat\"@ro"
 aliases:
-  - "? rdfs:label Pe Metru Pătrat"
+  - "3adb44b7... rdfs:label \"Pe Metru Pătrat\"@ro"
 ---

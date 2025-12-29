@@ -4,5 +4,5 @@ subject: "[[b2550b7d-752e-505b-b62e-cc632d6c20f9]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metro per Kelvin\"@it"
 aliases:
-  - "? rdfs:label Metro per Kelvin"
+  - "b2550b7d... rdfs:label \"Metro per Kelvin\"@it"
 ---

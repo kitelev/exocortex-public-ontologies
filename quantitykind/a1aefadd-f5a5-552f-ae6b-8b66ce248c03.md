@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[edc201be-7216-574f-b74e-f7c5975979ab]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[8af3093d-8f75-5a3e-b437-d37a0da3d46f]]"
+aliases:
+  - "quantitykind:CONTROL-MASS 7c346f09... 8af3093d..."
+---

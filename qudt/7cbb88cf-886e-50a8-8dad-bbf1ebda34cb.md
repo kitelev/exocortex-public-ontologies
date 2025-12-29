@@ -4,5 +4,5 @@ subject: "[[c7e9c561-a784-508f-8408-24f65b6ca986]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Gramm Sekunde pro Kubikmeter Kubikcentimeter\"@de"
 aliases:
-  - "? rdfs:label Gramm Sekunde pro Kubikmeter K..."
+  - "c7e9c561... rdfs:label \"Gramm Sekunde pro Kubikmeter ..."
 ---

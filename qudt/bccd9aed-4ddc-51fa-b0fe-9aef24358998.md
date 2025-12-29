@@ -4,5 +4,5 @@ subject: "[[6a9fe2c6-ad00-5ecd-abb6-d666fb242e70]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Megaohm Metr\"@cs"
 aliases:
-  - "? rdfs:label Megaohm Metr"
+  - "6a9fe2c6... rdfs:label \"Megaohm Metr\"@cs"
 ---

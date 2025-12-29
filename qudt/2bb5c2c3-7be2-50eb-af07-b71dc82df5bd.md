@@ -4,5 +4,5 @@ subject: "[[c9be3426-fc31-56fb-abc3-138d323947bc]]"
 predicate: "[[2e218ab8-518d-5cd0-a660-f575a101e5d8]]"
 object: "[[31fa0dfd-eafc-5313-8fec-4f3fd19d65f6]]"
 aliases:
-  - "? rdfs:isDefinedBy ?"
+  - "c9be3426... rdfs:isDefinedBy 31fa0dfd..."
 ---

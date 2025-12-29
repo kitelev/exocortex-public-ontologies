@@ -4,5 +4,5 @@ subject: "[[f4a78378-82ed-5a0b-9b12-8b2d067fc97b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metr Kwadratowy na Mol\"@pl"
 aliases:
-  - "? rdfs:label Metr Kwadratowy na Mol"
+  - "f4a78378... rdfs:label \"Metr Kwadratowy na Mol\"@pl"
 ---

@@ -4,5 +4,5 @@ subject: "[[93d8b6e5-16fd-54f0-9d48-3dee1278e3a8]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Joule per Gram Darjah Celsius\"@ms"
 aliases:
-  - "? rdfs:label Joule per Gram Darjah Celsius"
+  - "93d8b6e5... rdfs:label \"Joule per Gram Darjah Celsius..."
 ---

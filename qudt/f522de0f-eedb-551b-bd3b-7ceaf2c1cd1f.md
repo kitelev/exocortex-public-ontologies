@@ -4,5 +4,5 @@ subject: "[[f6d6f2af-6129-5484-ab10-221fe5922f97]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Metro Quadrado por Segundo Quadrado\"@pt"
 aliases:
-  - "? rdfs:label Metro Quadrado por Segundo Qua..."
+  - "f6d6f2af... rdfs:label \"Metro Quadrado por Segundo Qu..."
 ---

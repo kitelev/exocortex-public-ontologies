@@ -4,5 +4,5 @@ subject: "[[7a217b07-f651-53c1-b98f-9298befae443]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Individual\""
 aliases:
-  - "? rdfs:label Individual"
+  - "7a217b07... rdfs:label \"Individual\""
 ---

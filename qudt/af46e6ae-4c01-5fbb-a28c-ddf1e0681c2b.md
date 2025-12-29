@@ -4,5 +4,5 @@ subject: "[[a83a9294-57f4-50f7-921d-6118177ad22b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Pound Mass Second per Cubic Foot Gallon (UK)\"@en"
 aliases:
-  - "? rdfs:label Pound Mass Second per Cubic Fo..."
+  - "a83a9294... rdfs:label \"Pound Mass Second per Cubic F..."
 ---

@@ -4,5 +4,5 @@ subject: "[[1a1e54cf-a41d-52e6-80e7-8ec75e65f99c]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Milligram per Meter Persegi\"@ms"
 aliases:
-  - "? rdfs:label Milligram per Meter Persegi"
+  - "1a1e54cf... rdfs:label \"Milligram per Meter Persegi\"@..."
 ---

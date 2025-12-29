@@ -4,5 +4,5 @@ subject: "[[21cf512b-0483-5862-8e8c-e57f4cecb9cc]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Wattium Metrum Quadratum per Steradian\"@la"
 aliases:
-  - "? rdfs:label Wattium Metrum Quadratum per S..."
+  - "21cf512b... rdfs:label \"Wattium Metrum Quadratum per ..."
 ---

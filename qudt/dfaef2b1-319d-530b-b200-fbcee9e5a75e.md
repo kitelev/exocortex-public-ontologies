@@ -4,5 +4,5 @@ subject: "[[2e2a377b-f14c-5943-9e62-290c987ba4ac]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilogram na Kilometr Kwadratowy\"@pl"
 aliases:
-  - "? rdfs:label Kilogram na Kilometr Kwadratow..."
+  - "2e2a377b... rdfs:label \"Kilogram na Kilometr Kwadrato..."
 ---

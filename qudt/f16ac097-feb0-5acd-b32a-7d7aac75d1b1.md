@@ -4,5 +4,5 @@ subject: "[[e9e5b5d1-55c9-5fc9-b3bc-6f1ef6a63fa0]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Microvolt per Meter\"@en-US"
 aliases:
-  - "? rdfs:label Microvolt per Meter"
+  - "e9e5b5d1... rdfs:label \"Microvolt per Meter\"@en-US"
 ---

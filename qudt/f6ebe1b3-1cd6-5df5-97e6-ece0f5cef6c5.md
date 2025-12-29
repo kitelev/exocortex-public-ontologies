@@ -4,5 +4,5 @@ subject: "[[124eebfb-89dc-54bc-9cc2-23fd49c40480]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Per Kilometre\"@tr"
 aliases:
-  - "? rdfs:label Per Kilometre"
+  - "124eebfb... rdfs:label \"Per Kilometre\"@tr"
 ---

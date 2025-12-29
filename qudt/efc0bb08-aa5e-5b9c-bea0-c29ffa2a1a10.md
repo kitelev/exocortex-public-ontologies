@@ -4,5 +4,5 @@ subject: "[[2971b3cb-7eca-5161-8428-2ecfa45bfb81]]"
 predicate: "[[d2af0991-0460-5626-840b-d6ebdadf85d8]]"
 object: "\"1000.0\"^^[[ca079f4f-4ab3-5dc4-8934-2962935a0ddb]]"
 aliases:
-  - "? ? 1000.0"
+  - 2971b3cb... d2af0991... "1000.0"^^[[ca079f4f-4ab3-5dc4...
 ---

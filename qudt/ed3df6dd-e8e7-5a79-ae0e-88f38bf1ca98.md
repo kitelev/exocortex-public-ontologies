@@ -4,5 +4,5 @@ subject: "[[7f2c167c-5a39-550d-91c1-f95cc01a9a11]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Wat na Metr Kwadratowy\"@pl"
 aliases:
-  - "? rdfs:label Wat na Metr Kwadratowy"
+  - "7f2c167c... rdfs:label \"Wat na Metr Kwadratowy\"@pl"
 ---

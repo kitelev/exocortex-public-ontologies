@@ -4,5 +4,5 @@ subject: "[[12866a70-d0a2-5caa-932f-30e99aceaf78]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Henr na Metr\"@pl"
 aliases:
-  - "? rdfs:label Henr na Metr"
+  - "12866a70... rdfs:label \"Henr na Metr\"@pl"
 ---

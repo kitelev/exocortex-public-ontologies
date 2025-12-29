@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[60b2a12c-3a26-5574-b478-9845af2f3f6a]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[f3df7559-397e-55aa-9006-e3e1e5bc68b9]]"
+aliases:
+  - "quantitykind:ForcePerArea 7c346f09... f3df7559..."
+---

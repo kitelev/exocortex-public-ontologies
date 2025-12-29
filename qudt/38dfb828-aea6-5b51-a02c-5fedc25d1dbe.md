@@ -4,5 +4,5 @@ subject: "[[86780f1b-4960-5771-b242-9eb339012760]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Zimbabwe Dollar\""
 aliases:
-  - "? rdfs:label Zimbabwe Dollar"
+  - "86780f1b... rdfs:label \"Zimbabwe Dollar\""
 ---

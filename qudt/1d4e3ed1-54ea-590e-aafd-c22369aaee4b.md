@@ -4,5 +4,5 @@ subject: "[[b41c4bc6-8f79-5165-8a66-c7481061c1f2]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"فولت. أمبير\"@ar"
 aliases:
-  - "? rdfs:label فولت. أمبير"
+  - "b41c4bc6... rdfs:label \"فولت. أمبير\"@ar"
 ---

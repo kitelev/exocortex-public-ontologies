@@ -4,5 +4,5 @@ subject: "[[874169f7-ee50-5aef-b106-84fba0e9d877]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Gram per Hectare\""
 aliases:
-  - "? rdfs:label Gram per Hectare"
+  - "874169f7... rdfs:label \"Gram per Hectare\""
 ---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[a28d22a0-99ab-56f6-8ec9-f1cabfa898b5]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"ضریب شکست\"@fa"
+aliases:
+  - "quantitykind:RefractiveIndex rdfs:label \"ضریب شکست\"@fa"
+---

@@ -1,6 +1,6 @@
 ---
 metadata: blank_node
-uri: http://qudt.org/vocab/unit/.well-known/genid/af5653a8
+uri: "http://qudt.org/vocab/unit/.well-known/genid/af5653a8"
 aliases:
   - "_:genid-af5653a8"
 ---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[a4084af4-d8e4-5b2c-80bc-5af83a1418e6]]"
+predicate: "[[dc0b7002-165a-5d8d-be11-a10c11eadf18]]"
+object: "\"momento torcente\"@it"
+aliases:
+  - "quantitykind:Torque skos:altLabel \"momento torcente\"@it"
+---

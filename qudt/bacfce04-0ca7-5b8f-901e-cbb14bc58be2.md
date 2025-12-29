@@ -4,5 +4,5 @@ subject: "[[4c230f1b-70ea-5fe6-b986-6e333059a159]]"
 predicate: "[[61901538-e888-5bc3-a3f4-16b848dd13e0]]"
 object: "\"http://www.efunda.com/glossary/units/units--energy_density--british_thermal_unit_it_per_cubic_foot.cfm\"^^[[762b4689-bb72-5ab1-82fb-fcfc4504ee49]]"
 aliases:
-  - "? ? http://www.efunda.com/glossary..."
+  - "4c230f1b... 61901538... \"http://www.efunda.com/glossar..."
 ---

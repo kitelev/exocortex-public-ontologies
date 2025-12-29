@@ -4,5 +4,5 @@ subject: "[[a0cd208c-cfa7-5938-8597-f5f9ff5c69fc]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Joule per Kilogram Degree Celsius\""
 aliases:
-  - "? rdfs:label Joule per Kilogram Degree Cels..."
+  - "a0cd208c... rdfs:label \"Joule per Kilogram Degree Cel..."
 ---

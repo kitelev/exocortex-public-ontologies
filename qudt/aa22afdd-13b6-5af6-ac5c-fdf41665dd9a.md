@@ -4,5 +4,5 @@ subject: "[[8998763d-5806-5a06-9429-e7e6fe3c153a]]"
 predicate: "[[61901538-e888-5bc3-a3f4-16b848dd13e0]]"
 object: "\"http://www.iso.org/iso/catalogue_detail?csnumber=31897\"^^[[762b4689-bb72-5ab1-82fb-fcfc4504ee49]]"
 aliases:
-  - "? ? http://www.iso.org/iso/catalog..."
+  - "8998763d... 61901538... \"http://www.iso.org/iso/catalo..."
 ---

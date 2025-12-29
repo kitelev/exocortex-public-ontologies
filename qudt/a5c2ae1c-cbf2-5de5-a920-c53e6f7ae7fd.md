@@ -4,5 +4,5 @@ subject: "[[8cf332ce-3aea-5927-8069-ed9b0da20b5c]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Millimol pro Gramm\"@de"
 aliases:
-  - "? rdfs:label Millimol pro Gramm"
+  - "8cf332ce... rdfs:label \"Millimol pro Gramm\"@de"
 ---

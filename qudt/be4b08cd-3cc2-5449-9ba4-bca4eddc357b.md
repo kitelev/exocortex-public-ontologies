@@ -4,5 +4,5 @@ subject: "[[ea3f16aa-263f-52dc-941e-62b9c510ade5]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Microkulomb na Metr Kwadratowy\"@pl"
 aliases:
-  - "? rdfs:label Microkulomb na Metr Kwadratowy"
+  - "ea3f16aa... rdfs:label \"Microkulomb na Metr Kwadratow..."
 ---

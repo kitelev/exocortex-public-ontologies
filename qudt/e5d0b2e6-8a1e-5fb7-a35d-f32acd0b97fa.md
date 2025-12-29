@@ -4,5 +4,5 @@ subject: "[[258e0e8d-a8e1-5fd6-9ec6-810d5b93c7ab]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kelvin Segundo\"@es"
 aliases:
-  - "? rdfs:label Kelvin Segundo"
+  - "258e0e8d... rdfs:label \"Kelvin Segundo\"@es"
 ---

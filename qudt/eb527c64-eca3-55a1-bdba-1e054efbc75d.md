@@ -4,5 +4,5 @@ subject: "[[7c8ab09f-16b4-5f3f-97f9-a94ec65e99c8]]"
 predicate: "[[a6fa8785-a2ee-5cd9-bbc6-df6b9325322c]]"
 object: "[[e2f5705b-1322-5f4b-a330-97a611087944]]"
 aliases:
-  - "? ? ?"
+  - "7c8ab09f... a6fa8785... quantitykind:MolarRefractivity"
 ---

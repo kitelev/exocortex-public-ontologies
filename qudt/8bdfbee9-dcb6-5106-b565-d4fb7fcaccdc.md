@@ -4,5 +4,5 @@ subject: "[[f030abd4-441d-52a7-a8c5-f84950985ea4]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Per Pascal\"@it"
 aliases:
-  - "? rdfs:label Per Pascal"
+  - "f030abd4... rdfs:label \"Per Pascal\"@it"
 ---

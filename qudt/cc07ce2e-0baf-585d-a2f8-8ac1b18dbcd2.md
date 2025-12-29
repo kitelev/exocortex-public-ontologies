@@ -4,5 +4,5 @@ subject: "[[be027215-f7ae-5fe9-8175-5746032cd135]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Megaohm Kilometer\"@en-US"
 aliases:
-  - "? rdfs:label Megaohm Kilometer"
+  - "be027215... rdfs:label \"Megaohm Kilometer\"@en-US"
 ---

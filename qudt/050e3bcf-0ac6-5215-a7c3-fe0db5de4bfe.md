@@ -4,5 +4,5 @@ subject: "[[ca3713c7-96a8-50e2-8929-b34bfe347edb]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilonewton Metr na Čtvereční Metr\"@cs"
 aliases:
-  - "? rdfs:label Kilonewton Metr na Čtvereční M..."
+  - "ca3713c7... rdfs:label \"Kilonewton Metr na Čtvereční ..."
 ---

@@ -4,5 +4,5 @@ subject: "[[3d61fb79-ccca-57b0-a392-906fbff66c76]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Gram per Liter Poise\"@en-US"
 aliases:
-  - "? rdfs:label Gram per Liter Poise"
+  - "3d61fb79... rdfs:label \"Gram per Liter Poise\"@en-US"
 ---

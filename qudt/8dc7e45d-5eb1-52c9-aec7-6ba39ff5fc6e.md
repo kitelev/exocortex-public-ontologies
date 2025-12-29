@@ -4,5 +4,5 @@ subject: "[[9436c27a-48b8-580e-833f-74ecbc407138]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Microamper per Kelvin\"@tr"
 aliases:
-  - "? rdfs:label Microamper per Kelvin"
+  - "9436c27a... rdfs:label \"Microamper per Kelvin\"@tr"
 ---

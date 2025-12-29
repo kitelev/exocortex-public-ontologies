@@ -4,5 +4,5 @@ subject: "[[3e32d5c0-5da6-5edd-a555-930f2545430b]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Radiante per Secondo Quadrato\"@it"
 aliases:
-  - "? rdfs:label Radiante per Secondo Quadrato"
+  - "3e32d5c0... rdfs:label \"Radiante per Secondo Quadrato..."
 ---

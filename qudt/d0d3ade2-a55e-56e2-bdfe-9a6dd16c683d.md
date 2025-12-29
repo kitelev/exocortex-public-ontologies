@@ -4,5 +4,5 @@ subject: "[[52992dd0-def3-5dc9-ae8b-d6b5010d8ee8]]"
 predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
 object: "\"Kilogram per Cubic Metre\""
 aliases:
-  - "? rdfs:label Kilogram per Cubic Metre"
+  - "52992dd0... rdfs:label \"Kilogram per Cubic Metre\""
 ---
