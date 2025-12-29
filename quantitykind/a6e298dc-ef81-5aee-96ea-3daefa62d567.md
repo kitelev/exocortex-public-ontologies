@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[e65d0b3a-fae5-5d37-8eb9-b79f65c4352f]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[8c94dcf0-c2ac-5307-ab56-c5f322f59019]]"
+aliases:
+  - "quantitykind:LinearStiffness 7c346f09... 8c94dcf0..."
+---

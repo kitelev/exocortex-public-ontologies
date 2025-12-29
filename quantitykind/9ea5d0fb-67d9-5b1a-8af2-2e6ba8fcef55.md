@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[075392ed-fd11-55b8-a433-b4a00d6737f4]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[276ae35c-97f0-5a82-9443-b38c0120d134]]"
+aliases:
+  - "quantitykind:SystolicBloodPressure 7c346f09... 276ae35c..."
+---

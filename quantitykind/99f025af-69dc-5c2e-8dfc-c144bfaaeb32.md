@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[f9abc3f8-6f55-52c8-abfc-1274e4b73113]]"
+predicate: "[[dc0b7002-165a-5d8d-be11-a10c11eadf18]]"
+object: "\"massa volumica\"@it"
+aliases:
+  - "quantitykind:MassDensity skos:altLabel \"massa volumica\"@it"
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[fc11456d-7a77-5850-ae09-0382623c69af]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[a0661f2e-ac65-5c55-8d9a-fc4c6d4169d6]]"
+aliases:
+  - "quantitykind:Diameter 7c346f09... a0661f2e..."
+---

@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[7f2408ea-7512-51cd-a9e6-a814e3b8705d]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[ee68a1a9-183e-572e-abbe-579e7793d232]]"
+aliases:
+  - "quantitykind:InitialVehicleMass 7c346f09... ee68a1a9..."
+---

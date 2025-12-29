@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[02a99b8c-4450-5890-a587-073f7c7f1a9c]]"
+predicate: "[[61901538-e888-5bc3-a3f4-16b848dd13e0]]"
+object: "\"http://en.wikipedia.org/wiki/Molar_volume\"^^[[762b4689-bb72-5ab1-82fb-fcfc4504ee49]]"
+aliases:
+  - "quantitykind:MolarVolume 61901538... \"http://en.wikipedia.org/wiki/..."
+---

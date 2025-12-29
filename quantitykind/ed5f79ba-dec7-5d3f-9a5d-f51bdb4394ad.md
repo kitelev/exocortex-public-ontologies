@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[061f644b-6713-5560-9411-045886e2d4f9]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[79839899-c5ca-5bbf-be70-9b943e4786e0]]"
+aliases:
+  - "quantitykind:TotalPressure 7c346f09... 79839899..."
+---

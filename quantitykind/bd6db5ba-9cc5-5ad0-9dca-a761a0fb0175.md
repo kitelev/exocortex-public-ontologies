@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[0b55ec96-42e7-5978-a904-1b0780e71b13]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[aca119a8-4aae-517f-b388-83ffb029b118]]"
+aliases:
+  - "quantitykind:LinearBitDensity 7c346f09... aca119a8..."
+---

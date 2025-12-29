@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[25d565d7-82c1-57a8-b15f-626ce205f91f]]"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+object: "\"Applicable units are those of quantitykind:Short-RangeOrderParameter\""
+aliases:
+  - "quantitykind:Short-RangeOrderParameter rdfs:comment \"Applicable units are those of..."
+---

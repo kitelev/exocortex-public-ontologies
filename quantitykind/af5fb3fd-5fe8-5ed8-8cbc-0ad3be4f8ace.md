@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[ce659c68-0274-5733-9dd6-fd4d796cb71c]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[1d0ddaf0-8bb2-53bf-95fc-d98cabba5c98]]"
+aliases:
+  - "quantitykind:PositionVector 7c346f09... 1d0ddaf0..."
+---

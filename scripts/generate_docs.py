@@ -274,6 +274,25 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             height: 10px;
             border-radius: 50%;
         }}
+        .graph-controls {{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 4px;
+        }}
+        .graph-controls button {{
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }}
+        .graph-controls button:hover {{
+            background: var(--border);
+        }}
         @media (max-width: 768px) {{
             .sidebar {{ display: none; }}
             .main {{ margin-left: 0; padding: 16px; }}
@@ -574,7 +593,7 @@ def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> d
 
 
 def generate_graph_script(graph_data: dict) -> str:
-    """Generate D3.js script to render relationship graph."""
+    """Generate D3.js script to render relationship graph with zoom/pan."""
     if not graph_data["nodes"] or len(graph_data["nodes"]) <= 1:
         return ""
 
@@ -602,6 +621,23 @@ def generate_graph_script(graph_data: dict) -> str:
             .attr('width', width)
             .attr('height', height);
 
+        // Create main group for zoom/pan
+        const g = svg.append('g');
+
+        // Zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 4])
+            .on('zoom', (event) => {{
+                g.attr('transform', event.transform);
+            }});
+
+        svg.call(zoom);
+
+        // Zoom control functions
+        window.zoomIn = () => svg.transition().call(zoom.scaleBy, 1.3);
+        window.zoomOut = () => svg.transition().call(zoom.scaleBy, 0.7);
+        window.resetZoom = () => svg.transition().call(zoom.transform, d3.zoomIdentity);
+
         // Arrow marker for directed edges
         svg.append('defs').selectAll('marker')
             .data(['end'])
@@ -623,21 +659,21 @@ def generate_graph_script(graph_data: dict) -> str:
             .force('center', d3.forceCenter(width / 2, height / 2))
             .force('collision', d3.forceCollide().radius(30));
 
-        const link = svg.append('g')
+        const link = g.append('g')
             .selectAll('line')
             .data(graphData.links)
             .enter().append('line')
             .attr('class', 'graph-link')
             .attr('marker-end', 'url(#arrow)');
 
-        const linkLabel = svg.append('g')
+        const linkLabel = g.append('g')
             .selectAll('text')
             .data(graphData.links)
             .enter().append('text')
             .attr('class', 'graph-link-label')
             .text(d => d.label);
 
-        const node = svg.append('g')
+        const node = g.append('g')
             .selectAll('g')
             .data(graphData.nodes)
             .enter().append('g')
@@ -751,11 +787,18 @@ def generate_resource_page(resource: dict, resources: dict, prefixes: list,
     if graph_data["nodes"] and len(graph_data["nodes"]) > 1:
         graph_html = f"""
         <h2>Relationships</h2>
-        <div class="graph-container" id="relationshipGraph"></div>
+        <div class="graph-container" id="relationshipGraph">
+            <div class="graph-controls">
+                <button onclick="zoomIn()" title="Zoom In">+</button>
+                <button onclick="zoomOut()" title="Zoom Out">−</button>
+                <button onclick="resetZoom()" title="Reset">⟲</button>
+            </div>
+        </div>
         <div class="graph-legend">
             <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
             <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
             <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+            <span style="color: #6e7681; margin-left: 10px;">Scroll to zoom • Drag to pan</span>
         </div>
         """
 
@@ -897,7 +940,7 @@ def build_namespace_graph_data(resources: dict, statements: list) -> dict:
 
 
 def generate_namespace_graph_script(graph_data: dict) -> str:
-    """Generate D3.js script for namespace overview graph."""
+    """Generate D3.js script for namespace overview graph with zoom/pan."""
     if not graph_data["nodes"]:
         return ""
 
@@ -917,6 +960,23 @@ def generate_namespace_graph_script(graph_data: dict) -> str:
             .attr('width', width)
             .attr('height', height);
 
+        // Create main group for zoom/pan
+        const g = svg.append('g');
+
+        // Zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.2, 5])
+            .on('zoom', (event) => {{
+                g.attr('transform', event.transform);
+            }});
+
+        svg.call(zoom);
+
+        // Zoom control functions (with ns prefix to avoid conflict)
+        window.nsZoomIn = () => svg.transition().call(zoom.scaleBy, 1.3);
+        window.nsZoomOut = () => svg.transition().call(zoom.scaleBy, 0.7);
+        window.nsResetZoom = () => svg.transition().call(zoom.transform, d3.zoomIdentity);
+
         // Scale link width by weight
         const maxWeight = Math.max(...graphData.links.map(l => l.weight), 1);
         const linkScale = d3.scaleLinear().domain([1, maxWeight]).range([0.5, 4]);
@@ -927,7 +987,7 @@ def generate_namespace_graph_script(graph_data: dict) -> str:
             .force('center', d3.forceCenter(width / 2, height / 2))
             .force('collision', d3.forceCollide().radius(d => d.size + 10));
 
-        const link = svg.append('g')
+        const link = g.append('g')
             .selectAll('line')
             .data(graphData.links)
             .enter().append('line')
@@ -935,7 +995,7 @@ def generate_namespace_graph_script(graph_data: dict) -> str:
             .attr('stroke-opacity', 0.6)
             .attr('stroke-width', d => linkScale(d.weight));
 
-        const node = svg.append('g')
+        const node = g.append('g')
             .selectAll('g')
             .data(graphData.nodes)
             .enter().append('g')
@@ -1021,8 +1081,15 @@ def generate_index_page(prefixes: list, resources: dict, statements: list) -> st
     <h2>Namespace Relationships</h2>
     <p style="font-size: 13px; color: #8b949e;">
         Click a namespace to explore. Node size = resource count. Line thickness = cross-references.
+        <br>Scroll to zoom • Drag to pan
     </p>
-    <div class="graph-container" id="namespaceGraph" style="min-height: 400px;"></div>
+    <div class="graph-container" id="namespaceGraph" style="min-height: 400px;">
+        <div class="graph-controls">
+            <button onclick="nsZoomIn()" title="Zoom In">+</button>
+            <button onclick="nsZoomOut()" title="Zoom Out">−</button>
+            <button onclick="nsResetZoom()" title="Reset">⟲</button>
+        </div>
+    </div>
 
     <h2>Available Ontologies ({total_ns})</h2>
     <ul class="resource-list">

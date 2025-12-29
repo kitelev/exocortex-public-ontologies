@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[ea1500f2-e982-5aab-988f-465508557620]]"
+predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
+object: "[[bc38445f-00d0-5606-9fef-04f8e25c66f6]]"
+aliases:
+  - "quantitykind:IgnitionIntervalTime 7c346f09... bc38445f..."
+---
