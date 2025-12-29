@@ -25,7 +25,7 @@ Rows = source ontology, Columns = target ontology
 | **org** | | | | | | 25 | | 33 | | | | - | 89 | 3 | | 161 | 552 | | | | 6 | | | | | | | | 12 |
 | **owl** | | | 1 | | | | | | | | 1 | | - | | | 143 | 427 | | | | | | | | | | | | 6 |
 | **prov** | | | | | | | | | | | | | 171 | - | | 239 | 450 | | | | | | | | | | | | 74 |
-| **qudt** | | | | | | 5 | | | | | | | 665 | | - | 290 | 5 | | | | 3 | | | | | | | | 124 |
+| **qudt** | | | | | | 2480 | | | | | | | 665 | 21 | - | 9603 | 21104 | | | | 72 | | | | | | | | 10993 |
 | **rdf** | | | 3 | | | | | | | | | | 1 | | | - | 133 | | | | | | | | | | | | |
 | **rdfs** | | | 1 | | | | | | | | | | 1 | | | 30 | - | | | | | | | | | | | | |
 | **schema** | | | | | 3 | 6 | | 1 | | | | | 188 | 2 | | 4499 | 8090 | - | | | 51 | | | | | 1 | | | |
@@ -47,12 +47,12 @@ Rows = source ontology, Columns = target ontology
 
 | Ontology | Total References |
 |----------|-----------------|
-| rdfs | 15515 |
-| rdf | 8364 |
+| rdfs | 36614 |
+| rdf | 17677 |
+| xsd | 11561 |
 | owl | 3020 |
-| skos | 1392 |
-| xsd | 692 |
-| dcterms | 228 |
+| dcterms | 2703 |
+| skos | 1461 |
 | foaf | 152 |
 | sosa | 82 |
 | vs | 75 |
@@ -62,13 +62,13 @@ Rows = source ontology, Columns = target ontology
 
 | Ontology | References to Others |
 |----------|---------------------|
+| qudt | 44938 |
 | schema | 12841 |
 | as | 1802 |
 | time | 1525 |
 | dcat | 1446 |
 | sh | 1266 |
 | vcard | 1155 |
-| qudt | 1092 |
 | geosparql | 943 |
 | prov | 934 |
 | org | 881 |
@@ -86,7 +86,7 @@ Key dependencies (>100 references):
 - **org** → rdfs (552), rdf (161)
 - **owl** → rdfs (427), rdf (143)
 - **prov** → rdfs (450), rdf (239), owl (171)
-- **qudt** → owl (665), rdf (290), xsd (124)
+- **qudt** → rdfs (21104), xsd (10993), rdf (9603), dcterms (2480), owl (665)
 - **rdf** → rdfs (133)
 - **schema** → rdfs (8090), rdf (4499), owl (188)
 - **sh** → rdfs (842), rdf (363)
