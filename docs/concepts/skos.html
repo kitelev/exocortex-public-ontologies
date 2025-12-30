@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding SKOS - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .meta {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .callout {
+            background: var(--header-bg);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .callout-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .diagram {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .taxonomy-tree {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        .taxonomy-tree ul {
+            list-style: none;
+            padding-left: 25px;
+            margin: 5px 0;
+        }
+        .taxonomy-tree > ul {
+            padding-left: 0;
+        }
+        .taxonomy-tree li {
+            position: relative;
+        }
+        .taxonomy-tree li::before {
+            content: "├── ";
+            color: #8b949e;
+        }
+        .taxonomy-tree li:last-child::before {
+            content: "└── ";
+        }
+        .concept-box {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--code-bg);
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .next-step {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .next-step h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .next-step p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; <a href="index.html">Concepts</a> &gt; SKOS
+        </nav>
+
+        <header>
+            <h1>Understanding SKOS</h1>
+            <p class="meta">12 min read &bull; Intermediate &bull; Vocabulary</p>
+        </header>
+
+        <p><strong>SKOS</strong> (Simple Knowledge Organization System) is a W3C standard for representing thesauri, taxonomies, classification schemes, and other structured vocabularies in RDF.</p>
+
+        <h2>When to Use SKOS</h2>
+
+        <table>
+            <tr>
+                <th>Use SKOS</th>
+                <th>Use OWL</th>
+            </tr>
+            <tr>
+                <td>Organizing content by topics</td>
+                <td>Defining formal ontologies</td>
+            </tr>
+            <tr>
+                <td>Migrating existing thesauri</td>
+                <td>Complex reasoning requirements</td>
+            </tr>
+            <tr>
+                <td>Subject headings for libraries</td>
+                <td>Domain modeling with constraints</td>
+            </tr>
+            <tr>
+                <td>Tag/category systems</td>
+                <td>Data validation</td>
+            </tr>
+            <tr>
+                <td>Fuzzy, overlapping concepts</td>
+                <td>Strict class hierarchies</td>
+            </tr>
+        </table>
+
+        <div class="callout">
+            <div class="callout-title">SKOS vs OWL Classes</div>
+            <p>SKOS concepts are <em>not</em> OWL classes. A <code>skos:Concept</code> represents a unit of thought, while an <code>owl:Class</code> represents a set of individuals. Use SKOS when you're organizing knowledge for humans; use OWL when you need machine reasoning.</p>
+        </div>
+
+        <h2>Core Components</h2>
+
+        <h3>Concepts and Concept Schemes</h3>
+
+        <pre><code>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+
+# A concept scheme is a container for concepts
+:subjects a skos:ConceptScheme ;
+    skos:prefLabel "Library Subject Headings"@en ;
+    skos:hasTopConcept :science, :humanities, :arts .
+
+# Individual concepts
+:science a skos:Concept ;
+    skos:prefLabel "Science"@en ;
+    skos:inScheme :subjects ;
+    skos:topConceptOf :subjects .</code></pre>
+
+        <h3>Hierarchical Relationships</h3>
+
+        <div class="diagram">
+            <div class="taxonomy-tree">
+                <ul>
+                    <li><span class="concept-box">Science</span> (top concept)
+                        <ul>
+                            <li><span class="concept-box">Natural Sciences</span>
+                                <ul>
+                                    <li><span class="concept-box">Physics</span></li>
+                                    <li><span class="concept-box">Chemistry</span></li>
+                                    <li><span class="concept-box">Biology</span></li>
+                                </ul>
+                            </li>
+                            <li><span class="concept-box">Computer Science</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <pre><code>:naturalSciences a skos:Concept ;
+    skos:prefLabel "Natural Sciences"@en ;
+    skos:broader :science ;
+    skos:narrower :physics, :chemistry, :biology .
+
+:physics a skos:Concept ;
+    skos:prefLabel "Physics"@en ;
+    skos:broader :naturalSciences .
+
+:chemistry a skos:Concept ;
+    skos:prefLabel "Chemistry"@en ;
+    skos:broader :naturalSciences .
+
+:biology a skos:Concept ;
+    skos:prefLabel "Biology"@en ;
+    skos:broader :naturalSciences .</code></pre>
+
+        <h2>Labels and Documentation</h2>
+
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Purpose</th>
+                <th>Cardinality</th>
+            </tr>
+            <tr>
+                <td><code>skos:prefLabel</code></td>
+                <td>Preferred/canonical name</td>
+                <td>One per language</td>
+            </tr>
+            <tr>
+                <td><code>skos:altLabel</code></td>
+                <td>Synonyms, abbreviations</td>
+                <td>Any number</td>
+            </tr>
+            <tr>
+                <td><code>skos:hiddenLabel</code></td>
+                <td>Search terms (not displayed)</td>
+                <td>Any number</td>
+            </tr>
+            <tr>
+                <td><code>skos:definition</code></td>
+                <td>Formal definition</td>
+                <td>Any number</td>
+            </tr>
+            <tr>
+                <td><code>skos:scopeNote</code></td>
+                <td>Usage guidance</td>
+                <td>Any number</td>
+            </tr>
+            <tr>
+                <td><code>skos:example</code></td>
+                <td>Examples</td>
+                <td>Any number</td>
+            </tr>
+            <tr>
+                <td><code>skos:notation</code></td>
+                <td>Codes (e.g., DDC numbers)</td>
+                <td>Any number</td>
+            </tr>
+        </table>
+
+        <pre><code>:artificialIntelligence a skos:Concept ;
+    skos:prefLabel "Artificial Intelligence"@en ;
+    skos:prefLabel "Intelligence artificielle"@fr ;
+    skos:altLabel "AI"@en ;
+    skos:altLabel "Machine Intelligence"@en ;
+    skos:hiddenLabel "artifical inteligence"@en ;  # Common misspelling
+    skos:definition "The simulation of human intelligence by machines."@en ;
+    skos:scopeNote "Use for general AI topics. For specific techniques, use narrower concepts."@en ;
+    skos:notation "006.3" .  # Dewey Decimal</code></pre>
+
+        <h2>Associative Relationships</h2>
+
+        <p>Use <code>skos:related</code> for concepts that are associated but not hierarchically:</p>
+
+        <pre><code>:climateChange a skos:Concept ;
+    skos:prefLabel "Climate Change"@en ;
+    skos:related :renewableEnergy ;
+    skos:related :carbonEmissions ;
+    skos:related :environmentalPolicy .
+
+:renewableEnergy a skos:Concept ;
+    skos:prefLabel "Renewable Energy"@en ;
+    skos:related :climateChange .  # Symmetric by convention</code></pre>
+
+        <h2>Mapping Between Vocabularies</h2>
+
+        <p>SKOS provides properties to link concepts across different vocabularies:</p>
+
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td><code>skos:exactMatch</code></td>
+                <td>Concepts are equivalent (transitive)</td>
+            </tr>
+            <tr>
+                <td><code>skos:closeMatch</code></td>
+                <td>Concepts are similar enough to be interchangeable in some contexts</td>
+            </tr>
+            <tr>
+                <td><code>skos:broadMatch</code></td>
+                <td>Target concept is broader</td>
+            </tr>
+            <tr>
+                <td><code>skos:narrowMatch</code></td>
+                <td>Target concept is narrower</td>
+            </tr>
+            <tr>
+                <td><code>skos:relatedMatch</code></td>
+                <td>Concepts are related (cross-scheme)</td>
+            </tr>
+        </table>
+
+        <pre><code>@prefix lcsh: &lt;http://id.loc.gov/authorities/subjects/&gt; .
+@prefix dbr: &lt;http://dbpedia.org/resource/&gt; .
+
+:artificialIntelligence
+    skos:exactMatch lcsh:sh85008180 ;           # Library of Congress
+    skos:closeMatch dbr:Artificial_intelligence . # DBpedia</code></pre>
+
+        <h2>Collections</h2>
+
+        <p>Group concepts without creating a hierarchy:</p>
+
+        <pre><code># Unordered collection
+:europeanCountries a skos:Collection ;
+    skos:prefLabel "European Countries"@en ;
+    skos:member :france, :germany, :spain, :italy .
+
+# Ordered collection (numbered list)
+:priorityLevels a skos:OrderedCollection ;
+    skos:prefLabel "Priority Levels"@en ;
+    skos:memberList ( :critical :high :medium :low ) .</code></pre>
+
+        <h2>Complete Example: Subject Vocabulary</h2>
+
+        <pre><code>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix dct: &lt;http://purl.org/dc/terms/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+# The vocabulary itself
+:techSubjects a skos:ConceptScheme ;
+    skos:prefLabel "Technology Subject Headings"@en ;
+    dct:creator "Example Organization" ;
+    dct:created "2024-01-01"^^xsd:date ;
+    skos:hasTopConcept :computing, :engineering .
+
+# Top-level concept
+:computing a skos:Concept ;
+    skos:prefLabel "Computing"@en ;
+    skos:prefLabel "Informatique"@fr ;
+    skos:definition "The study and use of computers and computational systems."@en ;
+    skos:inScheme :techSubjects ;
+    skos:topConceptOf :techSubjects ;
+    skos:narrower :softwareEngineering, :networking, :dataScience .
+
+# Second-level concepts
+:softwareEngineering a skos:Concept ;
+    skos:prefLabel "Software Engineering"@en ;
+    skos:altLabel "Software Development"@en ;
+    skos:broader :computing ;
+    skos:narrower :programming, :testing, :devops ;
+    skos:related :projectManagement .
+
+:programming a skos:Concept ;
+    skos:prefLabel "Programming"@en ;
+    skos:altLabel "Coding"@en ;
+    skos:broader :softwareEngineering ;
+    skos:narrower :webDevelopment, :mobileDevelopment, :systemsProgramming ;
+    skos:scopeNote "Use for general programming topics. For specific languages, use narrower concepts or language-specific vocabularies."@en .
+
+:webDevelopment a skos:Concept ;
+    skos:prefLabel "Web Development"@en ;
+    skos:broader :programming ;
+    skos:related :networking ;
+    skos:notation "WEB-DEV" .
+
+# Cross-scheme mapping
+:webDevelopment
+    skos:exactMatch &lt;http://id.loc.gov/authorities/subjects/sh2008003477&gt; .</code></pre>
+
+        <h2>Best Practices</h2>
+
+        <div class="callout">
+            <div class="callout-title">SKOS Integrity Constraints</div>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>One <code>skos:prefLabel</code> per language per concept</li>
+                <li>No concept can be <code>skos:broader</code> of itself (no cycles)</li>
+                <li><code>skos:related</code> is symmetric; use consistently in both directions</li>
+                <li><code>skos:exactMatch</code> is transitive; use carefully</li>
+            </ul>
+        </div>
+
+        <h2>Integration with Other Ontologies</h2>
+
+        <ul>
+            <li><strong><a href="dcterms.html">Dublin Core</a></strong> &mdash; Use <code>dct:subject</code> to link resources to SKOS concepts</li>
+            <li><strong><a href="dcat.html">DCAT</a></strong> &mdash; Categorize datasets using SKOS vocabularies</li>
+            <li><strong>Schema.org</strong> &mdash; <code>schema:about</code> can point to SKOS concepts</li>
+            <li><strong>OWL</strong> &mdash; SKOS concepts can be instances of OWL classes</li>
+        </ul>
+
+        <h2>Next Steps</h2>
+
+        <div class="next-steps">
+            <div class="next-step">
+                <h4><a href="../ontology/skos/index.html">SKOS Reference</a></h4>
+                <p>Complete vocabulary with all classes and properties.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../examples.html#taxonomy">Examples</a></h4>
+                <p>Real-world SKOS usage patterns.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="dcterms.html">Dublin Core Guide</a></h4>
+                <p>Metadata and subject indexing.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../sparql.html">SPARQL Playground</a></h4>
+                <p>Query SKOS data interactively.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="index.html">&larr; Back to Conceptual Guides</a></p>
+        </footer>
+    </div>
+</body>
+</html>

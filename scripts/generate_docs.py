@@ -459,7 +459,7 @@ def load_resources(repo_root: Path, prefixes: list) -> tuple:
         # Resolve object if it's a UUID reference
         if obj_value in resources:
             obj_display = resources[obj_value]["alias"]
-            obj_link = f"../{resources[obj_value]['prefix']}/{obj_display.split(':')[-1]}.html"
+            obj_link = f"../{resources[obj_value]['prefix']}/{obj_display.split(':')[-1].lower()}.html"
         else:
             # Literal value - clean up quotes and language tags
             obj_display = str(obj_value).strip('"').split("@")[0].split("^^")[0]
@@ -542,7 +542,7 @@ def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> d
                     "label": local,
                     "type": get_resource_type(target),
                     "center": False,
-                    "url": f"../{target['prefix']}/{local}.html",
+                    "url": f"../{target['prefix']}/{local.lower()}.html",
                 }
             links.append({
                 "source": resource_uuid,
@@ -561,7 +561,7 @@ def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> d
                     "label": local,
                     "type": get_resource_type(source),
                     "center": False,
-                    "url": f"../{source['prefix']}/{local}.html",
+                    "url": f"../{source['prefix']}/{local.lower()}.html",
                 }
             links.append({
                 "source": subj_uuid,
@@ -729,7 +729,7 @@ def build_search_index(resources: dict) -> list:
             "alias": r["alias"],
             "prefix": r["prefix"],
             "type": rtype,
-            "url": f"{r['prefix']}/{local}.html",
+            "url": f"{r['prefix']}/{local.lower()}.html",
         })
     return index
 
@@ -849,7 +849,7 @@ def generate_namespace_page(prefix: str, resources: dict, prefixes: list) -> str
         for r in sorted(items, key=lambda x: x["alias"]):
             local = r["alias"].split(":")[-1]
             label = r["properties"].get("label", [{"value": local}])[0]["value"]
-            html += f'<li data-type="{rtype}"><a href="{local}.html"><span class="badge {badge_class}">{local}</span></a> {escape(label)}</li>'
+            html += f'<li data-type="{rtype}"><a href="{local.lower()}.html"><span class="badge {badge_class}">{local}</span></a> {escape(label)}</li>'
         html += "</ul>"
         return html
 
@@ -1028,6 +1028,29 @@ def generate_namespace_graph_script(graph_data: dict) -> str:
         node.append('title')
             .text(d => `${{d.label}}: ${{d.classes}} classes, ${{d.properties}} properties`);
 
+        // Graph filter function
+        window.filterGraph = (query) => {{
+            const q = query.toLowerCase().trim();
+            node.each(function(d) {{
+                const match = !q || d.label.toLowerCase().includes(q);
+                d3.select(this).style('opacity', match ? 1 : 0.15);
+            }});
+            // Dim links to non-matching nodes
+            link.style('opacity', d => {{
+                if (!q) return 0.6;
+                const srcMatch = d.source.label.toLowerCase().includes(q);
+                const tgtMatch = d.target.label.toLowerCase().includes(q);
+                return (srcMatch || tgtMatch) ? 0.6 : 0.1;
+            }});
+        }};
+
+        // Reset filter
+        window.resetGraphFilter = () => {{
+            node.style('opacity', 1);
+            link.style('opacity', 0.6);
+            document.getElementById('graphFilter').value = '';
+        }};
+
         simulation.on('tick', () => {{
             link.attr('x1', d => d.source.x)
                 .attr('y1', d => d.source.y)
@@ -1081,8 +1104,18 @@ def generate_index_page(prefixes: list, resources: dict, statements: list) -> st
     <h2>Namespace Relationships</h2>
     <p style="font-size: 13px; color: #8b949e;">
         Click a namespace to explore. Node size = resource count. Line thickness = cross-references.
-        <br>Scroll to zoom • Drag to pan
+        <br>Scroll to zoom • Drag to pan • Type to filter
     </p>
+    <div style="margin-bottom: 10px; display: flex; gap: 8px; align-items: center;">
+        <input type="text" id="graphFilter" placeholder="Filter namespaces..."
+               style="padding: 8px 12px; background: var(--code-bg); border: 1px solid var(--border);
+                      border-radius: 6px; color: var(--fg); font-size: 14px; width: 200px;"
+               oninput="filterGraph(this.value)">
+        <button onclick="resetGraphFilter()" style="padding: 6px 12px; background: var(--header-bg);
+                border: 1px solid var(--border); border-radius: 4px; color: var(--fg); cursor: pointer;">
+            Clear
+        </button>
+    </div>
     <div class="graph-container" id="namespaceGraph" style="min-height: 400px;">
         <div class="graph-controls">
             <button onclick="nsZoomIn()" title="Zoom In">+</button>
@@ -1154,7 +1187,7 @@ def main():
         for uuid, r in ns_resources:
             local = r["alias"].split(":")[-1]
             # Sanitize filename
-            safe_local = "".join(c if c.isalnum() or c in "-_" else "_" for c in local)
+            safe_local = "".join(c if c.isalnum() or c in "-_" else "_" for c in local).lower()
             with open(ns_dir / f"{safe_local}.html", "w", encoding="utf-8") as f:
                 f.write(generate_resource_page(r, resources, prefix_dirs, uuid, statements, tooltip_index))
 

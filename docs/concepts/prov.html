@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding PROV-O (Provenance) - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+            --entity: #f0883e;
+            --activity: #58a6ff;
+            --agent: #a371f7;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .meta {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .callout {
+            background: var(--header-bg);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .callout-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .diagram {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .prov-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .prov-node {
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+        }
+        .prov-entity {
+            background: var(--entity);
+            color: #000;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prov-activity {
+            background: var(--activity);
+            color: #fff;
+        }
+        .prov-agent {
+            background: var(--agent);
+            color: #fff;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .arrow {
+            color: #8b949e;
+            font-size: 1.5em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .legend {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .next-step {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .next-step h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .next-step p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; <a href="index.html">Concepts</a> &gt; PROV-O
+        </nav>
+
+        <header>
+            <h1>Understanding PROV-O</h1>
+            <p class="meta">15 min read &bull; Intermediate &bull; Domain Ontology</p>
+        </header>
+
+        <p><strong>PROV-O</strong> (Provenance Ontology) is a W3C standard for describing the <em>history</em> of data. It answers questions like: Where did this data come from? Who created it? What process produced it?</p>
+
+        <h2>The Core Model</h2>
+
+        <p>PROV-O is built around three core concepts:</p>
+
+        <div class="diagram">
+            <div class="prov-diagram">
+                <div class="prov-node prov-entity">Entity</div>
+                <div class="arrow">&larr;</div>
+                <div class="prov-node prov-activity">Activity</div>
+                <div class="arrow">&larr;</div>
+                <div class="prov-node prov-agent">Agent</div>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--entity);"></div>
+                    <span>Entity (data, documents)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--activity);"></div>
+                    <span>Activity (processes)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--agent);"></div>
+                    <span>Agent (people, software)</span>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <tr>
+                <th>Concept</th>
+                <th>Description</th>
+                <th>Examples</th>
+            </tr>
+            <tr>
+                <td><a href="../ontology/prov/entity.html"><code>prov:Entity</code></a></td>
+                <td>A physical, digital, or conceptual thing</td>
+                <td>Document, dataset, file, webpage</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/prov/activity.html"><code>prov:Activity</code></a></td>
+                <td>Something that happens over time</td>
+                <td>Editing, transformation, analysis</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/prov/agent.html"><code>prov:Agent</code></a></td>
+                <td>Something that bears responsibility</td>
+                <td>Person, organization, software</td>
+            </tr>
+        </table>
+
+        <h2>Key Relationships</h2>
+
+        <h3>Entity Derivation</h3>
+
+        <p>When one entity is derived from another:</p>
+
+        <pre><code>@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+
+:report_v2 a prov:Entity ;
+    prov:wasDerivedFrom :report_v1 ;
+    prov:generatedAtTime "2024-01-15T14:30:00Z"^^xsd:dateTime .</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Derivation Chain</div>
+            <p><code>wasDerivedFrom</code> is transitive. If A was derived from B, and B from C, then A was (indirectly) derived from C. This lets you trace data lineage back to its origins.</p>
+        </div>
+
+        <h3>Generation and Usage</h3>
+
+        <p>Activities use entities and generate new ones:</p>
+
+        <pre><code>:analysis a prov:Activity ;
+    prov:used :raw_data ;           # Input
+    prov:generated :report ;        # Output
+    prov:startedAtTime "2024-01-15T10:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-01-15T14:00:00Z"^^xsd:dateTime .
+
+:report prov:wasGeneratedBy :analysis .</code></pre>
+
+        <h3>Attribution and Association</h3>
+
+        <p>Connecting agents to their work:</p>
+
+        <pre><code>:report prov:wasAttributedTo :alice .
+
+:alice a prov:Agent, foaf:Person ;
+    foaf:name "Alice Smith" .
+
+:analysis prov:wasAssociatedWith :alice ;
+    prov:wasAssociatedWith :analysis_software .</code></pre>
+
+        <h2>Complete Example: Document Workflow</h2>
+
+        <pre><code>@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+# The final report (Entity)
+:final_report a prov:Entity ;
+    prov:wasGeneratedBy :review_process ;
+    prov:wasDerivedFrom :draft_report ;
+    prov:wasAttributedTo :editor ;
+    prov:generatedAtTime "2024-01-20T16:00:00Z"^^xsd:dateTime .
+
+# The draft (Entity)
+:draft_report a prov:Entity ;
+    prov:wasGeneratedBy :writing_process ;
+    prov:wasDerivedFrom :research_notes ;
+    prov:wasAttributedTo :author .
+
+# Writing activity
+:writing_process a prov:Activity ;
+    prov:used :research_notes ;
+    prov:wasAssociatedWith :author ;
+    prov:startedAtTime "2024-01-10T09:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-01-15T17:00:00Z"^^xsd:dateTime .
+
+# Review activity
+:review_process a prov:Activity ;
+    prov:used :draft_report ;
+    prov:wasAssociatedWith :editor ;
+    prov:startedAtTime "2024-01-16T09:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-01-20T16:00:00Z"^^xsd:dateTime .
+
+# Agents
+:author a prov:Agent, prov:Person ;
+    foaf:name "Alice Smith" .
+
+:editor a prov:Agent, prov:Person ;
+    foaf:name "Bob Jones" .</code></pre>
+
+        <h2>Specialized Concepts</h2>
+
+        <h3>Delegation</h3>
+
+        <p>When one agent acts on behalf of another:</p>
+
+        <pre><code>:alice prov:actedOnBehalfOf :acme_corp .
+:automated_system prov:actedOnBehalfOf :alice .</code></pre>
+
+        <h3>Bundles</h3>
+
+        <p>Named sets of provenance statements (provenance of provenance):</p>
+
+        <pre><code>:provenance_record a prov:Bundle ;
+    prov:wasAttributedTo :provenance_service ;
+    prov:generatedAtTime "2024-01-21T00:00:00Z"^^xsd:dateTime .</code></pre>
+
+        <h3>Invalidation</h3>
+
+        <p>Recording when entities become invalid:</p>
+
+        <pre><code>:old_data prov:wasInvalidatedBy :cleanup_job ;
+    prov:invalidatedAtTime "2024-02-01T00:00:00Z"^^xsd:dateTime .</code></pre>
+
+        <h2>Common Use Cases</h2>
+
+        <table>
+            <tr>
+                <th>Domain</th>
+                <th>Use Case</th>
+            </tr>
+            <tr>
+                <td><strong>Scientific Research</strong></td>
+                <td>Track which datasets were used to produce results, enable reproducibility</td>
+            </tr>
+            <tr>
+                <td><strong>Data Governance</strong></td>
+                <td>Audit data transformations for compliance (GDPR, HIPAA)</td>
+            </tr>
+            <tr>
+                <td><strong>Journalism</strong></td>
+                <td>Document sources and verification steps for stories</td>
+            </tr>
+            <tr>
+                <td><strong>Software</strong></td>
+                <td>Track build artifacts back to source code and tools</td>
+            </tr>
+            <tr>
+                <td><strong>Digital Archives</strong></td>
+                <td>Record custody and preservation actions on digital objects</td>
+            </tr>
+        </table>
+
+        <h2>Key Properties Reference</h2>
+
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Domain</th>
+                <th>Range</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td><code>wasGeneratedBy</code></td>
+                <td>Entity</td>
+                <td>Activity</td>
+                <td>Entity was created by activity</td>
+            </tr>
+            <tr>
+                <td><code>wasDerivedFrom</code></td>
+                <td>Entity</td>
+                <td>Entity</td>
+                <td>Entity came from another entity</td>
+            </tr>
+            <tr>
+                <td><code>wasAttributedTo</code></td>
+                <td>Entity</td>
+                <td>Agent</td>
+                <td>Agent is responsible for entity</td>
+            </tr>
+            <tr>
+                <td><code>used</code></td>
+                <td>Activity</td>
+                <td>Entity</td>
+                <td>Activity used entity as input</td>
+            </tr>
+            <tr>
+                <td><code>wasAssociatedWith</code></td>
+                <td>Activity</td>
+                <td>Agent</td>
+                <td>Agent was involved in activity</td>
+            </tr>
+            <tr>
+                <td><code>actedOnBehalfOf</code></td>
+                <td>Agent</td>
+                <td>Agent</td>
+                <td>Agent acted for another agent</td>
+            </tr>
+        </table>
+
+        <h2>Integration with Other Ontologies</h2>
+
+        <p>PROV-O works well with:</p>
+
+        <ul>
+            <li><strong><a href="time.html">OWL-Time</a></strong> &mdash; For complex temporal modeling beyond simple timestamps</li>
+            <li><strong><a href="foaf.html">FOAF</a></strong> &mdash; For detailed person/organization descriptions</li>
+            <li><strong><a href="dcat.html">DCAT</a></strong> &mdash; For dataset catalog metadata with provenance</li>
+            <li><strong><a href="dcterms.html">Dublin Core</a></strong> &mdash; For basic metadata (title, creator, date)</li>
+        </ul>
+
+        <h2>Next Steps</h2>
+
+        <div class="next-steps">
+            <div class="next-step">
+                <h4><a href="../ontology/prov/index.html">PROV-O Reference</a></h4>
+                <p>Complete vocabulary with all classes and properties.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../examples.html#provenance">Examples</a></h4>
+                <p>Real-world PROV-O usage patterns.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="time.html">OWL-Time Guide</a></h4>
+                <p>Advanced temporal modeling.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../sparql.html">SPARQL Playground</a></h4>
+                <p>Query provenance data interactively.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="index.html">&larr; Back to Conceptual Guides</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Hierarchy - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.1em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .controls {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--fg);
+            font-size: 14px;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--link);
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 6px 12px;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--fg);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover {
+            border-color: var(--link);
+        }
+        .filter-btn.active {
+            background: var(--link);
+            border-color: var(--link);
+            color: #fff;
+        }
+        .stats {
+            color: #8b949e;
+            font-size: 13px;
+        }
+        .tree-container {
+            display: flex;
+            gap: 20px;
+        }
+        .tree-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+        }
+        .tree-main {
+            flex: 1;
+            min-width: 0;
+        }
+        .namespace-list {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .namespace-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .namespace-item:last-child {
+            border-bottom: none;
+        }
+        .namespace-item:hover {
+            background: var(--code-bg);
+        }
+        .namespace-item.active {
+            background: var(--link);
+            color: #fff;
+        }
+        .namespace-item .count {
+            font-size: 12px;
+            background: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .namespace-item.active .count {
+            background: rgba(255,255,255,0.2);
+        }
+        .tree {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .tree ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .tree > ul {
+            padding-left: 0;
+        }
+        .tree li {
+            padding: 4px 0;
+        }
+        .tree-toggle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 18px;
+            cursor: pointer;
+            color: #8b949e;
+            border-radius: 4px;
+            margin-right: 5px;
+            font-family: monospace;
+        }
+        .tree-toggle:hover {
+            background: var(--code-bg);
+            color: var(--link);
+        }
+        .tree-toggle.leaf {
+            visibility: hidden;
+        }
+        .class-name {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 14px;
+            padding: 2px 6px;
+            background: var(--code-bg);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .class-name:hover {
+            background: var(--link);
+            color: #fff;
+        }
+        .class-name.highlight {
+            background: #d29922;
+            color: #000;
+        }
+        .tree li.collapsed > ul {
+            display: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+        .badge-core { background: #238636; color: #fff; }
+        .badge-vocab { background: #1f6feb; color: #fff; }
+        .badge-domain { background: #8957e5; color: #fff; }
+        .badge-units { background: #d29922; color: #000; }
+        .legend {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .legend h4 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 14px;
+        }
+        .legend-items {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+        @media (max-width: 768px) {
+            .tree-container {
+                flex-direction: column;
+            }
+            .tree-sidebar {
+                width: 100%;
+            }
+            .namespace-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                background: none;
+                border: none;
+            }
+            .namespace-item {
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 5px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="ontology/index.html">Home</a> &gt; Class Hierarchy
+        </nav>
+
+        <header>
+            <h1>Class Hierarchy Browser</h1>
+            <p class="subtitle">Explore rdfs:subClassOf relationships across 1,293 classes</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search classes... (press / to focus)" />
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="core">Core</button>
+                <button class="filter-btn" data-filter="vocab">Vocabularies</button>
+                <button class="filter-btn" data-filter="domain">Domain</button>
+                <button class="filter-btn" data-filter="units">Units</button>
+            </div>
+            <div class="stats">
+                <span id="visible-count">1,293</span> classes shown
+            </div>
+        </div>
+
+        <div class="tree-container">
+            <div class="tree-sidebar">
+                <div class="namespace-list" id="namespace-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <div class="tree-main">
+                <div class="tree" id="tree">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <h4>Legend</h4>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="badge badge-core">Core</span>
+                    <span>RDF, RDFS, OWL, XSD</span>
+                </div>
+                <div class="legend-item">
+                    <span class="badge badge-vocab">Vocab</span>
+                    <span>FOAF, SKOS, Dublin Core</span>
+                </div>
+                <div class="legend-item">
+                    <span class="badge badge-domain">Domain</span>
+                    <span>PROV, TIME, GEO, ORG</span>
+                </div>
+                <div class="legend-item">
+                    <span class="badge badge-units">Units</span>
+                    <span>QUDT, QuantityKinds</span>
+                </div>
+            </div>
+        </div>
+
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p>Part of the <a href="https://github.com/kitelev/exocortex-public-ontologies">Exocortex Public Ontologies</a> project.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Class hierarchy data (simplified for demo - in production, load from JSON)
+        const hierarchyData = {
+            namespaces: {
+                'rdf': { category: 'core', classes: ['rdf:Property', 'rdf:Statement', 'rdf:Bag', 'rdf:Seq', 'rdf:Alt', 'rdf:List', 'rdf:XMLLiteral', 'rdf:HTML', 'rdf:JSON', 'rdf:CompoundLiteral'] },
+                'rdfs': { category: 'core', classes: ['rdfs:Resource', 'rdfs:Class', 'rdfs:Literal', 'rdfs:Datatype', 'rdfs:Container', 'rdfs:ContainerMembershipProperty'] },
+                'owl': { category: 'core', classes: ['owl:Thing', 'owl:Nothing', 'owl:Class', 'owl:ObjectProperty', 'owl:DatatypeProperty', 'owl:AnnotationProperty', 'owl:TransitiveProperty', 'owl:SymmetricProperty', 'owl:FunctionalProperty', 'owl:InverseFunctionalProperty', 'owl:Restriction', 'owl:Ontology', 'owl:DeprecatedClass', 'owl:DeprecatedProperty'] },
+                'xsd': { category: 'core', classes: ['xsd:string', 'xsd:boolean', 'xsd:decimal', 'xsd:float', 'xsd:double', 'xsd:integer', 'xsd:date', 'xsd:dateTime', 'xsd:time', 'xsd:duration', 'xsd:anyURI'] },
+                'foaf': { category: 'vocab', classes: ['foaf:Agent', 'foaf:Person', 'foaf:Organization', 'foaf:Group', 'foaf:Document', 'foaf:Image', 'foaf:Project', 'foaf:OnlineAccount', 'foaf:PersonalProfileDocument'] },
+                'skos': { category: 'vocab', classes: ['skos:Concept', 'skos:ConceptScheme', 'skos:Collection', 'skos:OrderedCollection'] },
+                'dcterms': { category: 'vocab', classes: ['dcterms:Agent', 'dcterms:AgentClass', 'dcterms:BibliographicResource', 'dcterms:FileFormat', 'dcterms:Frequency', 'dcterms:LicenseDocument', 'dcterms:LinguisticSystem', 'dcterms:Location', 'dcterms:MediaType', 'dcterms:PeriodOfTime', 'dcterms:PhysicalMedium', 'dcterms:Policy', 'dcterms:ProvenanceStatement', 'dcterms:RightsStatement', 'dcterms:SizeOrDuration', 'dcterms:Standard'] },
+                'prov': { category: 'domain', classes: ['prov:Entity', 'prov:Activity', 'prov:Agent', 'prov:Bundle', 'prov:Collection', 'prov:EmptyCollection', 'prov:Plan', 'prov:Location', 'prov:Role', 'prov:Influence', 'prov:EntityInfluence', 'prov:ActivityInfluence', 'prov:AgentInfluence', 'prov:Usage', 'prov:Generation', 'prov:Derivation', 'prov:Association', 'prov:Attribution', 'prov:Communication', 'prov:Delegation', 'prov:End', 'prov:Start', 'prov:Invalidation', 'prov:Revision', 'prov:Quotation', 'prov:PrimarySource'] },
+                'time': { category: 'domain', classes: ['time:TemporalEntity', 'time:Instant', 'time:Interval', 'time:ProperInterval', 'time:DateTimeDescription', 'time:DateTimeInterval', 'time:Duration', 'time:DurationDescription', 'time:GeneralDateTimeDescription', 'time:GeneralDurationDescription', 'time:MonthOfYear', 'time:DayOfWeek', 'time:TemporalUnit', 'time:TimeZone', 'time:TRS'] },
+                'geo': { category: 'domain', classes: ['geo:SpatialThing', 'geo:Point'] },
+                'org': { category: 'domain', classes: ['org:Organization', 'org:FormalOrganization', 'org:OrganizationalUnit', 'org:OrganizationalCollaboration', 'org:Membership', 'org:Role', 'org:Post', 'org:Site', 'org:ChangeEvent'] },
+                'dcat': { category: 'domain', classes: ['dcat:Resource', 'dcat:Dataset', 'dcat:DataService', 'dcat:Catalog', 'dcat:CatalogRecord', 'dcat:Distribution', 'dcat:Relationship'] },
+                'sh': { category: 'domain', classes: ['sh:Shape', 'sh:NodeShape', 'sh:PropertyShape', 'sh:Validator', 'sh:SPARQLConstraint', 'sh:SPARQLFunction', 'sh:SPARQLRule', 'sh:SPARQLTarget', 'sh:ValidationReport', 'sh:ValidationResult', 'sh:Severity'] },
+                'sosa': { category: 'domain', classes: ['sosa:Observation', 'sosa:Sensor', 'sosa:Actuator', 'sosa:Sampler', 'sosa:Platform', 'sosa:FeatureOfInterest', 'sosa:ObservableProperty', 'sosa:Sample', 'sosa:Result', 'sosa:Procedure'] },
+                'qudt': { category: 'units', classes: ['qudt:Quantity', 'qudt:QuantityKind', 'qudt:QuantityValue', 'qudt:Unit', 'qudt:Prefix', 'qudt:SystemOfUnits', 'qudt:Discipline', 'qudt:DimensionVector'] },
+                'quantitykind': { category: 'units', classes: ['Length', 'Mass', 'Time', 'Temperature', 'ElectricCurrent', 'AmountOfSubstance', 'LuminousIntensity', 'Area', 'Volume', 'Velocity', 'Acceleration', 'Force', 'Energy', 'Power', 'Pressure', 'Frequency', 'Angle', 'SolidAngle'].map(c => 'quantitykind:' + c) },
+                'as': { category: 'vocab', classes: ['as:Object', 'as:Link', 'as:Activity', 'as:IntransitiveActivity', 'as:Collection', 'as:OrderedCollection', 'as:CollectionPage', 'as:OrderedCollectionPage', 'as:Accept', 'as:Add', 'as:Announce', 'as:Arrive', 'as:Block', 'as:Create', 'as:Delete', 'as:Dislike', 'as:Flag', 'as:Follow', 'as:Ignore', 'as:Invite', 'as:Join', 'as:Leave', 'as:Like', 'as:Listen', 'as:Move', 'as:Offer', 'as:Question', 'as:Reject', 'as:Read', 'as:Remove', 'as:TentativeReject', 'as:TentativeAccept', 'as:Travel', 'as:Undo', 'as:Update', 'as:View', 'as:Application', 'as:Group', 'as:Organization', 'as:Person', 'as:Service', 'as:Article', 'as:Audio', 'as:Document', 'as:Event', 'as:Image', 'as:Note', 'as:Page', 'as:Place', 'as:Profile', 'as:Relationship', 'as:Tombstone', 'as:Video', 'as:Mention'] }
+            },
+            hierarchy: {
+                'rdfs:Resource': ['rdfs:Class', 'rdf:Property', 'rdfs:Literal', 'rdfs:Container'],
+                'rdfs:Class': ['rdfs:Datatype', 'owl:Class'],
+                'owl:Thing': ['prov:Entity', 'prov:Activity', 'prov:Agent', 'foaf:Agent', 'time:TemporalEntity', 'geo:SpatialThing', 'skos:Concept', 'dcat:Resource'],
+                'prov:Entity': ['prov:Bundle', 'prov:Collection', 'prov:Plan'],
+                'prov:Collection': ['prov:EmptyCollection'],
+                'prov:Agent': ['foaf:Agent', 'foaf:Person', 'foaf:Organization'],
+                'foaf:Agent': ['foaf:Person', 'foaf:Organization', 'foaf:Group'],
+                'foaf:Document': ['foaf:Image', 'foaf:PersonalProfileDocument'],
+                'time:TemporalEntity': ['time:Instant', 'time:Interval'],
+                'time:Interval': ['time:ProperInterval'],
+                'dcat:Resource': ['dcat:Dataset', 'dcat:DataService', 'dcat:Catalog'],
+                'skos:Collection': ['skos:OrderedCollection'],
+                'sh:Shape': ['sh:NodeShape', 'sh:PropertyShape'],
+                'org:Organization': ['org:FormalOrganization', 'org:OrganizationalUnit'],
+                'as:Object': ['as:Link', 'as:Activity', 'as:Collection', 'as:Application', 'as:Group', 'as:Organization', 'as:Person', 'as:Service', 'as:Article', 'as:Audio', 'as:Document', 'as:Event', 'as:Image', 'as:Note', 'as:Page', 'as:Place', 'as:Profile', 'as:Relationship', 'as:Tombstone', 'as:Video'],
+                'as:Activity': ['as:IntransitiveActivity', 'as:Accept', 'as:Add', 'as:Announce', 'as:Create', 'as:Delete', 'as:Dislike', 'as:Flag', 'as:Follow', 'as:Ignore', 'as:Invite', 'as:Join', 'as:Leave', 'as:Like', 'as:Listen', 'as:Move', 'as:Offer', 'as:Question', 'as:Reject', 'as:Read', 'as:Remove', 'as:TentativeReject', 'as:TentativeAccept', 'as:Travel', 'as:Undo', 'as:Update', 'as:View'],
+                'as:Collection': ['as:OrderedCollection', 'as:CollectionPage'],
+                'as:CollectionPage': ['as:OrderedCollectionPage']
+            }
+        };
+
+        // Get category for a class
+        function getCategory(className) {
+            const prefix = className.split(':')[0];
+            for (const [ns, data] of Object.entries(hierarchyData.namespaces)) {
+                if (ns === prefix) return data.category;
+            }
+            return 'domain';
+        }
+
+        // Build tree HTML
+        function buildTreeHTML(parent, visited = new Set()) {
+            if (visited.has(parent)) return '';
+            visited.add(parent);
+
+            const children = hierarchyData.hierarchy[parent] || [];
+            const hasChildren = children.length > 0;
+            const category = getCategory(parent);
+            const badgeClass = `badge-${category}`;
+
+            let html = '<li' + (hasChildren ? '' : ' class="collapsed"') + '>';
+            html += `<span class="tree-toggle ${hasChildren ? '' : 'leaf'}">${hasChildren ? '▼' : '•'}</span>`;
+            html += `<span class="class-name" data-class="${parent}" data-category="${category}">${parent}</span>`;
+
+            if (hasChildren) {
+                html += '<ul>';
+                for (const child of children) {
+                    html += buildTreeHTML(child, new Set(visited));
+                }
+                html += '</ul>';
+            }
+            html += '</li>';
+            return html;
+        }
+
+        // Render namespace list
+        function renderNamespaceList() {
+            const list = document.getElementById('namespace-list');
+            let html = '<div class="namespace-item active" data-ns="all"><span>All</span><span class="count">1293</span></div>';
+
+            const sorted = Object.entries(hierarchyData.namespaces).sort((a, b) => a[0].localeCompare(b[0]));
+            for (const [ns, data] of sorted) {
+                html += `<div class="namespace-item" data-ns="${ns}"><span>${ns}</span><span class="count">${data.classes.length}</span></div>`;
+            }
+            list.innerHTML = html;
+
+            // Add click handlers
+            list.querySelectorAll('.namespace-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    list.querySelectorAll('.namespace-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    filterByNamespace(item.dataset.ns);
+                });
+            });
+        }
+
+        // Render tree
+        function renderTree() {
+            const tree = document.getElementById('tree');
+            let html = '<ul>';
+
+            // Find root classes (not children of anything)
+            const allChildren = new Set();
+            for (const children of Object.values(hierarchyData.hierarchy)) {
+                children.forEach(c => allChildren.add(c));
+            }
+
+            const roots = Object.keys(hierarchyData.hierarchy).filter(c => !allChildren.has(c));
+
+            for (const root of roots) {
+                html += buildTreeHTML(root);
+            }
+
+            // Add standalone classes
+            for (const [ns, data] of Object.entries(hierarchyData.namespaces)) {
+                for (const cls of data.classes) {
+                    if (!allChildren.has(cls) && !hierarchyData.hierarchy[cls]) {
+                        const category = data.category;
+                        html += `<li><span class="tree-toggle leaf">•</span><span class="class-name" data-class="${cls}" data-category="${category}">${cls}</span></li>`;
+                    }
+                }
+            }
+
+            html += '</ul>';
+            tree.innerHTML = html;
+
+            // Add toggle handlers
+            tree.querySelectorAll('.tree-toggle:not(.leaf)').forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const li = toggle.parentElement;
+                    li.classList.toggle('collapsed');
+                    toggle.textContent = li.classList.contains('collapsed') ? '▶' : '▼';
+                });
+            });
+
+            // Add class name click handlers
+            tree.querySelectorAll('.class-name').forEach(name => {
+                name.addEventListener('click', () => {
+                    const cls = name.dataset.class;
+                    const prefix = cls.split(':')[0];
+                    const local = cls.split(':')[1];
+                    if (prefix && local) {
+                        window.location.href = `ontology/${prefix}/${local.toLowerCase()}.html`;
+                    }
+                });
+            });
+        }
+
+        // Filter by namespace
+        function filterByNamespace(ns) {
+            const items = document.querySelectorAll('.class-name');
+            let count = 0;
+
+            items.forEach(item => {
+                const cls = item.dataset.class;
+                const prefix = cls.split(':')[0];
+                const show = ns === 'all' || prefix === ns;
+                item.closest('li').style.display = show ? '' : 'none';
+                if (show) count++;
+            });
+
+            document.getElementById('visible-count').textContent = count.toLocaleString();
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('search');
+
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase();
+                const items = document.querySelectorAll('.class-name');
+                let count = 0;
+
+                items.forEach(item => {
+                    const cls = item.dataset.class.toLowerCase();
+                    const match = !query || cls.includes(query);
+                    item.closest('li').style.display = match ? '' : 'none';
+                    item.classList.toggle('highlight', query && match);
+                    if (match) count++;
+                });
+
+                document.getElementById('visible-count').textContent = count.toLocaleString();
+            });
+
+            // Focus on /
+            document.addEventListener('keydown', e => {
+                if (e.key === '/' && document.activeElement !== searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+        }
+
+        // Filter buttons
+        function setupFilters() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+                    const items = document.querySelectorAll('.class-name');
+                    let count = 0;
+
+                    items.forEach(item => {
+                        const category = item.dataset.category;
+                        const show = filter === 'all' || category === filter;
+                        item.closest('li').style.display = show ? '' : 'none';
+                        if (show) count++;
+                    });
+
+                    document.getElementById('visible-count').textContent = count.toLocaleString();
+                });
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNamespaceList();
+            renderTree();
+            setupSearch();
+            setupFilters();
+        });
+    </script>
+</body>
+</html>

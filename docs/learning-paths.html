@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Paths - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.2em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 50px;
+            font-size: 1.8em;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .path-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .path-btn {
+            padding: 15px 25px;
+            background: var(--header-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--fg);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        .path-btn:hover {
+            border-color: var(--link);
+        }
+        .path-btn.active {
+            border-color: var(--accent);
+            background: rgba(35, 134, 54, 0.2);
+        }
+        .path-btn .icon {
+            font-size: 2em;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .path-btn .title {
+            font-weight: 600;
+            color: #fff;
+        }
+        .path-btn .desc {
+            font-size: 0.85em;
+            color: #8b949e;
+            margin-top: 5px;
+        }
+        .learning-path {
+            display: none;
+        }
+        .learning-path.active {
+            display: block;
+        }
+        .path-intro {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .path-intro h3 {
+            margin: 0 0 15px 0;
+            color: #fff;
+        }
+        .path-intro p {
+            margin: 0;
+            color: #8b949e;
+        }
+        .step-list {
+            position: relative;
+            padding-left: 30px;
+        }
+        .step-list::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 30px;
+            bottom: 30px;
+            width: 2px;
+            background: var(--border);
+        }
+        .step {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 40px;
+        }
+        .step-number {
+            position: absolute;
+            left: -15px;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .step-number.optional {
+            background: #d29922;
+            color: #000;
+        }
+        .step h4 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 1.2em;
+        }
+        .step p {
+            margin: 0 0 15px 0;
+            color: #8b949e;
+        }
+        .step-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .step-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .step-link:hover {
+            border-color: var(--link);
+            text-decoration: none;
+        }
+        .time-estimate {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .time-estimate .icon {
+            font-size: 1.5em;
+        }
+        .time-estimate .info {
+            flex: 1;
+        }
+        .time-estimate .total {
+            font-weight: 600;
+            color: #fff;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+        .badge-beginner { background: #238636; color: #fff; }
+        .badge-intermediate { background: #1f6feb; color: #fff; }
+        .badge-advanced { background: #8957e5; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="ontology/index.html">Home</a> &gt; Learning Paths
+        </nav>
+
+        <header>
+            <h1>Learning Paths</h1>
+            <p class="subtitle">Structured journeys through the ontology ecosystem based on your role</p>
+        </header>
+
+        <div class="path-selector">
+            <div class="path-btn active" data-path="developer">
+                <span class="icon">👨‍💻</span>
+                <span class="title">Developer</span>
+                <span class="desc">Build semantic apps</span>
+            </div>
+            <div class="path-btn" data-path="data-scientist">
+                <span class="icon">📊</span>
+                <span class="title">Data Scientist</span>
+                <span class="desc">Query knowledge graphs</span>
+            </div>
+            <div class="path-btn" data-path="researcher">
+                <span class="icon">🔬</span>
+                <span class="title">Researcher</span>
+                <span class="desc">Model complex domains</span>
+            </div>
+            <div class="path-btn" data-path="architect">
+                <span class="icon">🏗️</span>
+                <span class="title">Architect</span>
+                <span class="desc">Design data systems</span>
+            </div>
+        </div>
+
+        <!-- Developer Path -->
+        <div class="learning-path active" id="developer">
+            <div class="path-intro">
+                <h3>Developer Learning Path</h3>
+                <p>Learn to build applications that use semantic data. Start with RDF basics, then explore domain vocabularies relevant to your project.</p>
+            </div>
+
+            <div class="step-list">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Understand the Triple Model <span class="badge badge-beginner">Beginner</span></h4>
+                    <p>Learn how RDF represents data as subject-predicate-object triples. This is the foundation of everything.</p>
+                    <div class="step-links">
+                        <a href="concepts/rdf-rdfs-owl.html" class="step-link">RDF/RDFS/OWL Guide</a>
+                        <a href="ontology/rdf/index.html" class="step-link">RDF Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Learn RDFS Schemas <span class="badge badge-beginner">Beginner</span></h4>
+                    <p>Understand how to define classes, properties, and their relationships using RDFS.</p>
+                    <div class="step-links">
+                        <a href="ontology/rdfs/index.html" class="step-link">RDFS Reference</a>
+                        <a href="hierarchy.html" class="step-link">Class Hierarchy</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Try SPARQL Queries <span class="badge badge-beginner">Beginner</span></h4>
+                    <p>Query semantic data using SPARQL. Start with simple SELECT queries, then move to more complex patterns.</p>
+                    <div class="step-links">
+                        <a href="sparql.html" class="step-link">SPARQL Playground</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Model People with FOAF <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Use the Friend of a Friend vocabulary to describe users, their relationships, and social connections.</p>
+                    <div class="step-links">
+                        <a href="concepts/foaf.html" class="step-link">FOAF Guide</a>
+                        <a href="examples.html#people" class="step-link">FOAF Examples</a>
+                        <a href="ontology/foaf/index.html" class="step-link">FOAF Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Add Metadata with Dublin Core <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Describe resources with standard metadata: title, creator, date, description, etc.</p>
+                    <div class="step-links">
+                        <a href="concepts/dcterms.html" class="step-link">Dublin Core Guide</a>
+                        <a href="ontology/dcterms/index.html" class="step-link">DC Terms Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number optional">6</div>
+                    <h4>Validate with SHACL <span class="badge badge-advanced">Advanced</span></h4>
+                    <p>Define shapes to validate that your RDF data conforms to expected patterns.</p>
+                    <div class="step-links">
+                        <a href="ontology/sh/index.html" class="step-link">SHACL Reference</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-estimate">
+                <span class="icon">⏱️</span>
+                <div class="info">
+                    <div class="total">Estimated time: 4-6 hours</div>
+                    <div>Core steps 1-5, plus optional SHACL</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Scientist Path -->
+        <div class="learning-path" id="data-scientist">
+            <div class="path-intro">
+                <h3>Data Scientist Learning Path</h3>
+                <p>Focus on querying and analyzing linked data. Learn to navigate complex relationships and extract insights from knowledge graphs.</p>
+            </div>
+
+            <div class="step-list">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>RDF Data Model Basics <span class="badge badge-beginner">Beginner</span></h4>
+                    <p>Understand how RDF structures data differently from tables. Learn about URIs, literals, and blank nodes.</p>
+                    <div class="step-links">
+                        <a href="concepts/rdf-rdfs-owl.html" class="step-link">RDF/RDFS/OWL Guide</a>
+                        <a href="getting-started.html" class="step-link">Getting Started</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Master SPARQL <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Learn to write powerful queries: JOINs via pattern matching, aggregations, subqueries, OPTIONAL patterns.</p>
+                    <div class="step-links">
+                        <a href="sparql.html" class="step-link">SPARQL Playground</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Understand Class Hierarchies <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Learn to traverse rdfs:subClassOf relationships. Understand how inference expands query results.</p>
+                    <div class="step-links">
+                        <a href="hierarchy.html" class="step-link">Class Hierarchy Browser</a>
+                        <a href="ontology/rdfs/subclassof.html" class="step-link">rdfs:subClassOf</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Work with Datasets (DCAT) <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Describe datasets, distributions, and data services using the Data Catalog vocabulary.</p>
+                    <div class="step-links">
+                        <a href="concepts/dcat.html" class="step-link">DCAT Guide</a>
+                        <a href="examples.html#dataset" class="step-link">DCAT Examples</a>
+                        <a href="ontology/dcat/index.html" class="step-link">DCAT Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Quantities and Units (QUDT) <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Handle scientific measurements with proper units and quantity kinds for accurate analysis.</p>
+                    <div class="step-links">
+                        <a href="concepts/qudt.html" class="step-link">QUDT Guide</a>
+                        <a href="examples.html#measurements" class="step-link">QUDT Examples</a>
+                        <a href="ontology/qudt/index.html" class="step-link">QUDT Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number optional">6</div>
+                    <h4>Track Data Provenance <span class="badge badge-advanced">Advanced</span></h4>
+                    <p>Record where data came from, how it was transformed, and who was responsible.</p>
+                    <div class="step-links">
+                        <a href="concepts/prov.html" class="step-link">PROV-O Guide</a>
+                        <a href="examples.html#provenance" class="step-link">Provenance Examples</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-estimate">
+                <span class="icon">⏱️</span>
+                <div class="info">
+                    <div class="total">Estimated time: 5-8 hours</div>
+                    <div>Deep SPARQL focus with domain vocabularies</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Researcher Path -->
+        <div class="learning-path" id="researcher">
+            <div class="path-intro">
+                <h3>Researcher Learning Path</h3>
+                <p>Model complex domains with formal semantics. Learn to create ontologies that enable automated reasoning and ensure reproducibility.</p>
+            </div>
+
+            <div class="step-list">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>From RDF to OWL <span class="badge badge-beginner">Beginner</span></h4>
+                    <p>Understand the progression from simple triples (RDF) to schemas (RDFS) to full ontologies (OWL).</p>
+                    <div class="step-links">
+                        <a href="concepts/rdf-rdfs-owl.html" class="step-link">RDF/RDFS/OWL Guide</a>
+                        <a href="ontology/owl/index.html" class="step-link">OWL Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Master OWL Constructs <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Learn property characteristics, class expressions, restrictions, and equivalences.</p>
+                    <div class="step-links">
+                        <a href="ontology/owl/transitiveproperty.html" class="step-link">owl:TransitiveProperty</a>
+                        <a href="ontology/owl/restriction.html" class="step-link">owl:Restriction</a>
+                        <a href="ontology/owl/equivalentclass.html" class="step-link">owl:equivalentClass</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Model Time with OWL-Time <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Represent temporal entities, intervals, durations, and temporal relationships.</p>
+                    <div class="step-links">
+                        <a href="concepts/time.html" class="step-link">OWL-Time Guide</a>
+                        <a href="examples.html#temporal" class="step-link">TIME Examples</a>
+                        <a href="ontology/time/index.html" class="step-link">TIME Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Track Provenance with PROV-O <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Document how your data was created, transformed, and validated for reproducibility.</p>
+                    <div class="step-links">
+                        <a href="concepts/prov.html" class="step-link">PROV-O Guide</a>
+                        <a href="examples.html#provenance" class="step-link">Provenance Examples</a>
+                        <a href="ontology/prov/index.html" class="step-link">PROV-O Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Sensor Data with SOSA/SSN <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Model observations, sensors, and measurements for scientific data collection.</p>
+                    <div class="step-links">
+                        <a href="concepts/sosa-ssn.html" class="step-link">SOSA/SSN Guide</a>
+                        <a href="ontology/sosa/index.html" class="step-link">SOSA Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number optional">6</div>
+                    <h4>Validate with SHACL <span class="badge badge-advanced">Advanced</span></h4>
+                    <p>Create validation rules to ensure data quality and constraint satisfaction.</p>
+                    <div class="step-links">
+                        <a href="ontology/sh/index.html" class="step-link">SHACL Reference</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-estimate">
+                <span class="icon">⏱️</span>
+                <div class="info">
+                    <div class="total">Estimated time: 8-12 hours</div>
+                    <div>Comprehensive ontology modeling skills</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architect Path -->
+        <div class="learning-path" id="architect">
+            <div class="path-intro">
+                <h3>Enterprise Architect Learning Path</h3>
+                <p>Design data integration architectures using semantic standards. Learn how ontologies enable interoperability across systems.</p>
+            </div>
+
+            <div class="step-list">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Semantic Web Foundations <span class="badge badge-beginner">Beginner</span></h4>
+                    <p>Understand the semantic web stack and how it enables data integration.</p>
+                    <div class="step-links">
+                        <a href="concepts/rdf-rdfs-owl.html" class="step-link">RDF/RDFS/OWL Guide</a>
+                        <a href="getting-started.html" class="step-link">Getting Started</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Organizational Modeling (ORG) <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Model organizations, departments, memberships, and organizational roles.</p>
+                    <div class="step-links">
+                        <a href="concepts/org.html" class="step-link">ORG Guide</a>
+                        <a href="examples.html#organization" class="step-link">ORG Examples</a>
+                        <a href="ontology/org/index.html" class="step-link">ORG Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Taxonomy Management (SKOS) <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Create and manage classification schemes, thesauri, and controlled vocabularies.</p>
+                    <div class="step-links">
+                        <a href="concepts/skos.html" class="step-link">SKOS Guide</a>
+                        <a href="examples.html#taxonomy" class="step-link">SKOS Examples</a>
+                        <a href="ontology/skos/index.html" class="step-link">SKOS Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Data Catalog Standards (DCAT) <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Describe data assets, services, and their distributions for enterprise data catalogs.</p>
+                    <div class="step-links">
+                        <a href="concepts/dcat.html" class="step-link">DCAT Guide</a>
+                        <a href="examples.html#dataset" class="step-link">DCAT Examples</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Metadata Standards <span class="badge badge-intermediate">Intermediate</span></h4>
+                    <p>Apply Dublin Core for consistent metadata across all enterprise resources.</p>
+                    <div class="step-links">
+                        <a href="concepts/dcterms.html" class="step-link">Dublin Core Guide</a>
+                        <a href="ontology/dcterms/index.html" class="step-link">DC Terms Reference</a>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number optional">6</div>
+                    <h4>Data Lineage (PROV-O) <span class="badge badge-advanced">Advanced</span></h4>
+                    <p>Track data provenance for compliance and audit requirements.</p>
+                    <div class="step-links">
+                        <a href="concepts/prov.html" class="step-link">PROV-O Guide</a>
+                        <a href="examples.html#provenance" class="step-link">Provenance Examples</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-estimate">
+                <span class="icon">⏱️</span>
+                <div class="info">
+                    <div class="total">Estimated time: 6-10 hours</div>
+                    <div>Enterprise integration and governance focus</div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p>Part of the <a href="https://github.com/kitelev/exocortex-public-ontologies">Exocortex Public Ontologies</a> project.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.path-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update buttons
+                document.querySelectorAll('.path-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update paths
+                document.querySelectorAll('.learning-path').forEach(p => p.classList.remove('active'));
+                document.getElementById(btn.dataset.path).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

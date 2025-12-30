@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+            --warning: #d29922;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.2em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        nav.breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            color: #fff;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .card {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon {
+            font-size: 1.5em;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        .badge-core { background: #238636; color: #fff; }
+        .badge-vocab { background: #1f6feb; color: #fff; }
+        .badge-domain { background: #8957e5; color: #fff; }
+        .badge-units { background: #d29922; color: #000; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .audience-section {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .audience-section h4 {
+            margin-top: 0;
+            color: var(--link);
+        }
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+        .step-list li {
+            counter-increment: step;
+            padding: 15px 0 15px 50px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+        .step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .toc {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .toc h4 {
+            margin-top: 0;
+            color: #fff;
+        }
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .toc li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="ontology/index.html">Home</a> &gt; Getting Started
+        </nav>
+
+        <header>
+            <h1>Getting Started</h1>
+            <p class="subtitle">A beginner's guide to understanding and using public ontologies</p>
+        </header>
+
+        <div class="toc">
+            <h4>On This Page</h4>
+            <ul>
+                <li><a href="#what-are-ontologies">What Are Ontologies?</a></li>
+                <li><a href="#why-use-them">Why Use Public Ontologies?</a></li>
+                <li><a href="#who-is-this-for">Who Is This For?</a></li>
+                <li><a href="#ontology-categories">Ontology Categories</a></li>
+                <li><a href="#quick-start">Quick Start Guide</a></li>
+                <li><a href="#next-steps">Next Steps</a></li>
+            </ul>
+        </div>
+
+        <h2 id="what-are-ontologies">What Are Ontologies?</h2>
+
+        <p>An <strong>ontology</strong> is a formal description of knowledge within a domain. Think of it as a shared vocabulary that enables:</p>
+
+        <ul>
+            <li><strong>Common understanding</strong> &mdash; Everyone uses the same terms with the same meanings</li>
+            <li><strong>Machine readability</strong> &mdash; Computers can process and reason about the data</li>
+            <li><strong>Interoperability</strong> &mdash; Different systems can exchange data seamlessly</li>
+            <li><strong>Reusability</strong> &mdash; Build on existing standards instead of reinventing the wheel</li>
+        </ul>
+
+        <p>For example, instead of everyone defining "Person" differently, we can all use <code>foaf:Person</code> from the FOAF ontology, ensuring our data is compatible.</p>
+
+        <h2 id="why-use-them">Why Use Public Ontologies?</h2>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3><span class="card-icon">🔗</span> Interoperability</h3>
+                <p>Your data can be understood and integrated with other systems that use the same ontologies.</p>
+            </div>
+            <div class="card">
+                <h3><span class="card-icon">📊</span> Data Quality</h3>
+                <p>Standardized vocabularies improve consistency and reduce ambiguity in your datasets.</p>
+            </div>
+            <div class="card">
+                <h3><span class="card-icon">🔍</span> Discoverability</h3>
+                <p>Data described with standard ontologies is easier to find, query, and analyze.</p>
+            </div>
+            <div class="card">
+                <h3><span class="card-icon">⚡</span> Faster Development</h3>
+                <p>Reuse proven models instead of designing from scratch. Focus on your domain.</p>
+            </div>
+        </div>
+
+        <h2 id="who-is-this-for">Who Is This For?</h2>
+
+        <div class="audience-section">
+            <h4>👨‍💻 Developers</h4>
+            <p>Building applications with semantic data? Start with <a href="ontology/rdf/index.html">RDF</a> and <a href="ontology/rdfs/index.html">RDFS</a> for basic modeling, add <a href="ontology/owl/index.html">OWL</a> for complex constraints, and use domain vocabularies like <a href="ontology/foaf/index.html">FOAF</a> or <a href="ontology/schema/index.html">Schema.org</a>.</p>
+            <p><strong>Quick path:</strong> <a href="ontology/index.html">Browse Ontologies</a> → <a href="sparql.html">Try SPARQL</a></p>
+        </div>
+
+        <div class="audience-section">
+            <h4>📈 Data Scientists</h4>
+            <p>Working with linked data or knowledge graphs? Understand the class hierarchies and property definitions. Use our <a href="sparql.html">SPARQL Playground</a> to explore relationships.</p>
+            <p><strong>Quick path:</strong> <a href="#ontology-categories">Ontology Categories</a> → <a href="examples.html">Use Cases</a></p>
+        </div>
+
+        <div class="audience-section">
+            <h4>🔬 Researchers</h4>
+            <p>Need provenance tracking or temporal reasoning? <a href="ontology/prov/index.html">PROV-O</a> handles data lineage, <a href="ontology/time/index.html">TIME</a> models temporal concepts, and <a href="ontology/dcat/index.html">DCAT</a> describes datasets.</p>
+            <p><strong>Quick path:</strong> <a href="ontology/prov/index.html">PROV-O</a> → <a href="ontology/dcat/index.html">DCAT</a></p>
+        </div>
+
+        <div class="audience-section">
+            <h4>🏢 Enterprise Architects</h4>
+            <p>Designing data integration architectures? Use <a href="ontology/org/index.html">ORG</a> for organizational structures, <a href="ontology/dcterms/index.html">Dublin Core Terms</a> for metadata, and <a href="ontology/skos/index.html">SKOS</a> for taxonomies.</p>
+            <p><strong>Quick path:</strong> <a href="ontology/org/index.html">ORG</a> → <a href="ontology/skos/index.html">SKOS</a></p>
+        </div>
+
+        <h2 id="ontology-categories">Ontology Categories</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Ontologies</th>
+                    <th>Use For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-core">Core</span></td>
+                    <td><a href="ontology/rdf/index.html">RDF</a>, <a href="ontology/rdfs/index.html">RDFS</a>, <a href="ontology/owl/index.html">OWL</a>, <a href="ontology/xsd/index.html">XSD</a></td>
+                    <td>Foundation for all semantic data modeling</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-vocab">Vocabularies</span></td>
+                    <td><a href="ontology/foaf/index.html">FOAF</a>, <a href="ontology/skos/index.html">SKOS</a>, <a href="ontology/dcterms/index.html">Dublin Core</a></td>
+                    <td>People, concepts, metadata</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-domain">Domain</span></td>
+                    <td><a href="ontology/prov/index.html">PROV-O</a>, <a href="ontology/time/index.html">TIME</a>, <a href="ontology/geo/index.html">GEO</a>, <a href="ontology/org/index.html">ORG</a></td>
+                    <td>Provenance, temporal, spatial, organizational</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-units">Units</span></td>
+                    <td><a href="ontology/qudt/index.html">QUDT</a>, <a href="ontology/quantitykind/index.html">QuantityKinds</a>, <a href="ontology/prefix/index.html">Prefixes</a></td>
+                    <td>Scientific measurements, units, quantities</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id="quick-start">Quick Start Guide</h2>
+
+        <ol class="step-list">
+            <li>
+                <strong>Explore the ontologies</strong><br>
+                Start with the <a href="ontology/index.html">interactive browser</a>. Use the namespace graph to understand relationships between ontologies.
+            </li>
+            <li>
+                <strong>Understand the structure</strong><br>
+                Each ontology defines <strong>Classes</strong> (types of things), <strong>Properties</strong> (relationships), and <strong>Datatypes</strong> (value formats).
+            </li>
+            <li>
+                <strong>Try SPARQL queries</strong><br>
+                Use our <a href="sparql.html">SPARQL Playground</a> to query the ontologies. Example: find all subclasses of <code>foaf:Agent</code>.
+            </li>
+            <li>
+                <strong>Use in your project</strong><br>
+                Reference ontology terms using their URIs. For example:
+                <pre><code>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+
+:john a foaf:Person ;
+    foaf:name "John Doe" ;
+    foaf:knows :jane .</code></pre>
+            </li>
+            <li>
+                <strong>Validate with SHACL</strong><br>
+                Use <a href="ontology/sh/index.html">SHACL</a> shapes to validate that your data conforms to expected patterns.
+            </li>
+        </ol>
+
+        <h2 id="next-steps">Next Steps</h2>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>📚 Browse Ontologies</h3>
+                <p>Explore all 27 namespaces with interactive graphs and search.</p>
+                <p><a href="ontology/index.html">Go to Browser →</a></p>
+            </div>
+            <div class="card">
+                <h3>🎯 Use Cases</h3>
+                <p>See real-world examples of how to use these ontologies.</p>
+                <p><a href="examples.html">View Examples →</a></p>
+            </div>
+            <div class="card">
+                <h3>🔍 SPARQL Playground</h3>
+                <p>Query the ontologies interactively.</p>
+                <p><a href="sparql.html">Try SPARQL →</a></p>
+            </div>
+            <div class="card">
+                <h3>📖 Conceptual Guides</h3>
+                <p>Deep dives into specific ontologies.</p>
+                <p><a href="concepts/index.html">Read Guides →</a></p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p>Part of the <a href="https://github.com/kitelev/exocortex-public-ontologies">Exocortex Public Ontologies</a> project.</p>
+        </footer>
+    </div>
+</body>
+</html>

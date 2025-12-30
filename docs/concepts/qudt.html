@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding QUDT - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #d29922;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .meta {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .callout {
+            background: var(--header-bg);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .callout-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .diagram {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .qudt-stack {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .qudt-box {
+            padding: 20px 25px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 140px;
+        }
+        .qudt-quantity { background: #238636; color: #fff; }
+        .qudt-unit { background: #1f6feb; color: #fff; }
+        .qudt-dimension { background: #8957e5; color: #fff; }
+        .qudt-prefix { background: #d29922; color: #000; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .next-step {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .next-step h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .next-step p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #8b949e;
+        }
+        .formula {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 15px;
+            background: var(--code-bg);
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; <a href="index.html">Concepts</a> &gt; QUDT
+        </nav>
+
+        <header>
+            <h1>Understanding QUDT</h1>
+            <p class="meta">15 min read &bull; Intermediate &bull; Units &amp; Measurements</p>
+        </header>
+
+        <p><strong>QUDT</strong> (Quantities, Units, Dimensions, and Types) is a comprehensive ontology for scientific and engineering quantities. It enables machine-readable representation of measurements with proper unit semantics.</p>
+
+        <h2>The QUDT Model</h2>
+
+        <div class="diagram">
+            <div class="qudt-stack">
+                <div class="qudt-box qudt-quantity">
+                    <strong>Quantity Kind</strong><br>
+                    <small>What you're measuring</small><br>
+                    Length, Mass, Time
+                </div>
+                <div class="qudt-box qudt-unit">
+                    <strong>Unit</strong><br>
+                    <small>How you measure it</small><br>
+                    Meter, Kilogram, Second
+                </div>
+                <div class="qudt-box qudt-dimension">
+                    <strong>Dimension</strong><br>
+                    <small>Physical dimension</small><br>
+                    L, M, T
+                </div>
+                <div class="qudt-box qudt-prefix">
+                    <strong>Prefix</strong><br>
+                    <small>Scale factor</small><br>
+                    Kilo, Milli, Micro
+                </div>
+            </div>
+        </div>
+
+        <h2>Core Concepts</h2>
+
+        <h3>Quantity Kinds</h3>
+
+        <p>A quantity kind represents <em>what</em> is being measured:</p>
+
+        <pre><code>@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix quantitykind: &lt;http://qudt.org/vocab/quantitykind/&gt; .
+
+# Using a standard quantity kind
+:measurement1 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:numericValue 5.5 ;
+    qudt:unit unit:M .</code></pre>
+
+        <p>Common quantity kinds:</p>
+        <table>
+            <tr>
+                <th>Quantity Kind</th>
+                <th>Symbol</th>
+                <th>Units</th>
+            </tr>
+            <tr>
+                <td><code>quantitykind:Length</code></td>
+                <td>L</td>
+                <td>Meter, Foot, Mile</td>
+            </tr>
+            <tr>
+                <td><code>quantitykind:Mass</code></td>
+                <td>M</td>
+                <td>Kilogram, Pound, Tonne</td>
+            </tr>
+            <tr>
+                <td><code>quantitykind:Time</code></td>
+                <td>T</td>
+                <td>Second, Minute, Hour</td>
+            </tr>
+            <tr>
+                <td><code>quantitykind:Temperature</code></td>
+                <td>Θ</td>
+                <td>Kelvin, Celsius, Fahrenheit</td>
+            </tr>
+            <tr>
+                <td><code>quantitykind:ElectricCurrent</code></td>
+                <td>I</td>
+                <td>Ampere, Milliampere</td>
+            </tr>
+            <tr>
+                <td><code>quantitykind:Velocity</code></td>
+                <td>L/T</td>
+                <td>Meter per Second, Knot</td>
+            </tr>
+            <tr>
+                <td><code>quantitykind:Area</code></td>
+                <td>L²</td>
+                <td>Square Meter, Hectare</td>
+            </tr>
+        </table>
+
+        <h3>Units</h3>
+
+        <p>Units belong to unit systems and have conversion factors:</p>
+
+        <pre><code>@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
+
+# Meter - the base SI unit for length
+unit:M a qudt:Unit ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:symbol "m" ;
+    qudt:conversionMultiplier 1.0 ;
+    rdfs:label "Meter"@en .
+
+# Kilometer - derived unit
+unit:KiloM a qudt:Unit ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:symbol "km" ;
+    qudt:conversionMultiplier 1000.0 ;
+    qudt:prefix prefix:Kilo ;
+    rdfs:label "Kilometer"@en .</code></pre>
+
+        <h3>SI Prefixes</h3>
+
+        <table>
+            <tr>
+                <th>Prefix</th>
+                <th>Symbol</th>
+                <th>Factor</th>
+            </tr>
+            <tr>
+                <td><code>prefix:Tera</code></td>
+                <td>T</td>
+                <td>10<sup>12</sup></td>
+            </tr>
+            <tr>
+                <td><code>prefix:Giga</code></td>
+                <td>G</td>
+                <td>10<sup>9</sup></td>
+            </tr>
+            <tr>
+                <td><code>prefix:Mega</code></td>
+                <td>M</td>
+                <td>10<sup>6</sup></td>
+            </tr>
+            <tr>
+                <td><code>prefix:Kilo</code></td>
+                <td>k</td>
+                <td>10<sup>3</sup></td>
+            </tr>
+            <tr>
+                <td><code>prefix:Milli</code></td>
+                <td>m</td>
+                <td>10<sup>-3</sup></td>
+            </tr>
+            <tr>
+                <td><code>prefix:Micro</code></td>
+                <td>μ</td>
+                <td>10<sup>-6</sup></td>
+            </tr>
+            <tr>
+                <td><code>prefix:Nano</code></td>
+                <td>n</td>
+                <td>10<sup>-9</sup></td>
+            </tr>
+        </table>
+
+        <h2>Recording Measurements</h2>
+
+        <h3>Simple Value with Unit</h3>
+
+        <pre><code>@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
+
+:sensorReading a qudt:Quantity ;
+    qudt:numericValue 23.5 ;
+    qudt:unit unit:DEG_C .
+
+:distance a qudt:Quantity ;
+    qudt:numericValue 42.195 ;
+    qudt:unit unit:KiloM .</code></pre>
+
+        <h3>Quantity Value Pattern</h3>
+
+        <p>For more structured data:</p>
+
+        <pre><code>:experiment1 a :Experiment ;
+    :hasTemperature [
+        a qudt:QuantityValue ;
+        qudt:numericValue 298.15 ;
+        qudt:unit unit:K ;
+        qudt:hasQuantityKind quantitykind:Temperature
+    ] ;
+    :hasPressure [
+        a qudt:QuantityValue ;
+        qudt:numericValue 101.325 ;
+        qudt:unit unit:KiloPA ;
+        qudt:hasQuantityKind quantitykind:Pressure
+    ] .</code></pre>
+
+        <h2>Unit Conversion</h2>
+
+        <p>QUDT provides conversion factors through <code>conversionMultiplier</code> and <code>conversionOffset</code>:</p>
+
+        <div class="formula">
+            value<sub>SI</sub> = (value × multiplier) + offset
+        </div>
+
+        <pre><code># Celsius to Kelvin
+unit:DEG_C a qudt:Unit ;
+    qudt:conversionMultiplier 1.0 ;
+    qudt:conversionOffset 273.15 .
+
+# Fahrenheit to Kelvin
+unit:DEG_F a qudt:Unit ;
+    qudt:conversionMultiplier 0.5555555556 ;  # 5/9
+    qudt:conversionOffset 255.3722222222 .    # 459.67 × 5/9</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Conversion Example</div>
+            <p>To convert 20°C to Kelvin:<br>
+            K = (20 × 1.0) + 273.15 = 293.15 K</p>
+            <p>To convert 68°F to Kelvin:<br>
+            K = (68 × 0.5556) + 255.37 = 293.15 K</p>
+        </div>
+
+        <h2>Dimensional Analysis</h2>
+
+        <p>QUDT tracks physical dimensions using dimension vectors:</p>
+
+        <pre><code># Velocity = Length / Time
+quantitykind:Velocity
+    qudt:hasDimensionVector "L1 T-1" ;  # L¹ × T⁻¹
+    qudt:applicableUnit unit:M-PER-SEC, unit:KiloM-PER-HR .
+
+# Force = Mass × Acceleration = M × L / T²
+quantitykind:Force
+    qudt:hasDimensionVector "M1 L1 T-2" ;  # M¹ × L¹ × T⁻²
+    qudt:applicableUnit unit:N, unit:LB_F .</code></pre>
+
+        <h2>Complete Example: Sensor Data</h2>
+
+        <pre><code>@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix quantitykind: &lt;http://qudt.org/vocab/quantitykind/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
+@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+# Weather station observation
+:observation_2024_01_15 a sosa:Observation ;
+    sosa:observedProperty quantitykind:Temperature ;
+    sosa:hasFeatureOfInterest :location_berlin ;
+    sosa:resultTime "2024-01-15T14:30:00Z"^^xsd:dateTime ;
+    sosa:hasResult [
+        a qudt:QuantityValue ;
+        qudt:numericValue 5.2 ;
+        qudt:unit unit:DEG_C ;
+        qudt:hasQuantityKind quantitykind:Temperature
+    ] .
+
+# Additional measurements
+:observation_2024_01_15
+    :hasWindSpeed [
+        a qudt:QuantityValue ;
+        qudt:numericValue 15.3 ;
+        qudt:unit unit:KiloM-PER-HR ;
+        qudt:hasQuantityKind quantitykind:Velocity
+    ] ;
+    :hasHumidity [
+        a qudt:QuantityValue ;
+        qudt:numericValue 78 ;
+        qudt:unit unit:PERCENT ;
+        qudt:hasQuantityKind quantitykind:RelativeHumidity
+    ] ;
+    :hasPressure [
+        a qudt:QuantityValue ;
+        qudt:numericValue 1013.25 ;
+        qudt:unit unit:HectoPA ;
+        qudt:hasQuantityKind quantitykind:Pressure
+    ] .</code></pre>
+
+        <h2>Common Use Cases</h2>
+
+        <table>
+            <tr>
+                <th>Domain</th>
+                <th>Quantity Kinds</th>
+            </tr>
+            <tr>
+                <td><strong>IoT / Sensors</strong></td>
+                <td>Temperature, Humidity, Pressure, Luminosity</td>
+            </tr>
+            <tr>
+                <td><strong>Manufacturing</strong></td>
+                <td>Length, Mass, Force, Torque, Tolerance</td>
+            </tr>
+            <tr>
+                <td><strong>Energy</strong></td>
+                <td>Power, Energy, Voltage, Current, Frequency</td>
+            </tr>
+            <tr>
+                <td><strong>Chemistry</strong></td>
+                <td>Amount of Substance, Concentration, pH</td>
+            </tr>
+            <tr>
+                <td><strong>Geospatial</strong></td>
+                <td>Distance, Area, Volume, Angle</td>
+            </tr>
+            <tr>
+                <td><strong>Finance</strong></td>
+                <td>Currency amounts with exchange rates</td>
+            </tr>
+        </table>
+
+        <h2>Integration with Other Ontologies</h2>
+
+        <ul>
+            <li><strong><a href="sosa-ssn.html">SOSA/SSN</a></strong> &mdash; Sensor observations use QUDT for result values</li>
+            <li><strong>Schema.org</strong> &mdash; <code>schema:QuantitativeValue</code> can use QUDT units</li>
+            <li><strong><a href="prov.html">PROV-O</a></strong> &mdash; Track provenance of measurements</li>
+            <li><strong><a href="dcat.html">DCAT</a></strong> &mdash; Document dataset measurement units</li>
+        </ul>
+
+        <h2>QUDT Vocabularies</h2>
+
+        <p>QUDT is split into multiple vocabularies:</p>
+
+        <table>
+            <tr>
+                <th>Vocabulary</th>
+                <th>Contents</th>
+            </tr>
+            <tr>
+                <td><a href="../ontology/qudt/index.html">qudt:</a></td>
+                <td>Core schema (Quantity, Unit, QuantityKind classes)</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/quantitykind/index.html">quantitykind:</a></td>
+                <td>1,000+ quantity kinds (Length, Mass, Force...)</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/prefix/index.html">prefix:</a></td>
+                <td>SI prefixes (Kilo, Milli, Nano...)</td>
+            </tr>
+            <tr>
+                <td>unit:</td>
+                <td>2,000+ units (not imported here)</td>
+            </tr>
+        </table>
+
+        <h2>Next Steps</h2>
+
+        <div class="next-steps">
+            <div class="next-step">
+                <h4><a href="../ontology/qudt/index.html">QUDT Reference</a></h4>
+                <p>Core QUDT schema classes and properties.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../ontology/quantitykind/index.html">Quantity Kinds</a></h4>
+                <p>Browse all 1,188 quantity kinds.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="sosa-ssn.html">SOSA/SSN Guide</a></h4>
+                <p>Sensor observations with QUDT.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../sparql.html">SPARQL Playground</a></h4>
+                <p>Query QUDT data interactively.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="index.html">&larr; Back to Conceptual Guides</a></p>
+        </footer>
+    </div>
+</body>
+</html>

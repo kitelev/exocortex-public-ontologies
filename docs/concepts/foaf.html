@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding FOAF - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .meta {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .callout {
+            background: var(--header-bg);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .callout-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .class-hierarchy {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        .class-hierarchy ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        .class-hierarchy > ul {
+            padding-left: 0;
+        }
+        .class-hierarchy li::before {
+            content: "├─ ";
+            color: #8b949e;
+        }
+        .class-hierarchy li:last-child::before {
+            content: "└─ ";
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .next-step {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .next-step h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .next-step p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; <a href="index.html">Concepts</a> &gt; FOAF
+        </nav>
+
+        <header>
+            <h1>Understanding FOAF</h1>
+            <p class="meta">10 min read &bull; Beginner &bull; Vocabulary</p>
+        </header>
+
+        <p><strong>FOAF</strong> (Friend of a Friend) is one of the oldest and most widely-used ontologies on the semantic web. It describes people, their activities, and the relationships between them.</p>
+
+        <h2>Core Classes</h2>
+
+        <div class="class-hierarchy">
+            <ul>
+                <li><a href="../ontology/foaf/agent.html">foaf:Agent</a> (anything that can act)
+                    <ul>
+                        <li><a href="../ontology/foaf/person.html">foaf:Person</a></li>
+                        <li><a href="../ontology/foaf/organization.html">foaf:Organization</a></li>
+                        <li><a href="../ontology/foaf/group.html">foaf:Group</a></li>
+                    </ul>
+                </li>
+                <li><a href="../ontology/foaf/document.html">foaf:Document</a>
+                    <ul>
+                        <li><a href="../ontology/foaf/image.html">foaf:Image</a></li>
+                        <li>foaf:PersonalProfileDocument</li>
+                    </ul>
+                </li>
+                <li><a href="../ontology/foaf/project.html">foaf:Project</a></li>
+                <li><a href="../ontology/foaf/onlineaccount.html">foaf:OnlineAccount</a></li>
+            </ul>
+        </div>
+
+        <h2>Describing People</h2>
+
+        <p>The most common use of FOAF is describing individuals:</p>
+
+        <pre><code>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+
+:alice a foaf:Person ;
+    foaf:name "Alice Smith" ;
+    foaf:givenName "Alice" ;
+    foaf:familyName "Smith" ;
+    foaf:mbox &lt;mailto:alice@example.org&gt; ;
+    foaf:homepage &lt;https://alice.example.org/&gt; ;
+    foaf:img &lt;https://alice.example.org/photo.jpg&gt; ;
+    foaf:based_near &lt;http://dbpedia.org/resource/Berlin&gt; .</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Privacy Consideration</div>
+            <p>FOAF was designed for the open web. Use <code>foaf:mbox_sha1sum</code> (a hash of email) instead of <code>foaf:mbox</code> when you want to identify someone without exposing their email address.</p>
+        </div>
+
+        <h2>Key Properties</h2>
+
+        <h3>Identity Properties</h3>
+
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><code>foaf:name</code></td>
+                <td>Full name</td>
+                <td>"Alice Smith"</td>
+            </tr>
+            <tr>
+                <td><code>foaf:givenName</code></td>
+                <td>First name</td>
+                <td>"Alice"</td>
+            </tr>
+            <tr>
+                <td><code>foaf:familyName</code></td>
+                <td>Last name</td>
+                <td>"Smith"</td>
+            </tr>
+            <tr>
+                <td><code>foaf:nick</code></td>
+                <td>Nickname</td>
+                <td>"asmith"</td>
+            </tr>
+            <tr>
+                <td><code>foaf:title</code></td>
+                <td>Title/honorific</td>
+                <td>"Dr."</td>
+            </tr>
+        </table>
+
+        <h3>Contact Properties</h3>
+
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Range</th>
+                <th>Note</th>
+            </tr>
+            <tr>
+                <td><code>foaf:mbox</code></td>
+                <td>URI (mailto:)</td>
+                <td>Inverse-functional (unique identifier)</td>
+            </tr>
+            <tr>
+                <td><code>foaf:mbox_sha1sum</code></td>
+                <td>Literal</td>
+                <td>SHA1 hash of email for privacy</td>
+            </tr>
+            <tr>
+                <td><code>foaf:homepage</code></td>
+                <td>Document</td>
+                <td>Personal website</td>
+            </tr>
+            <tr>
+                <td><code>foaf:weblog</code></td>
+                <td>Document</td>
+                <td>Blog</td>
+            </tr>
+            <tr>
+                <td><code>foaf:phone</code></td>
+                <td>URI (tel:)</td>
+                <td>Phone number</td>
+            </tr>
+        </table>
+
+        <h2>Social Connections</h2>
+
+        <p>The <code>foaf:knows</code> property links people:</p>
+
+        <pre><code>:alice foaf:knows :bob .
+:bob foaf:knows :alice .  # Not automatically symmetric!
+
+# With more detail
+:alice foaf:knows [
+    a foaf:Person ;
+    foaf:name "Bob Jones" ;
+    foaf:homepage &lt;https://bob.example.org/&gt;
+] .</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Note on foaf:knows</div>
+            <p><code>foaf:knows</code> is intentionally vague &mdash; it means "has met" or "is somehow connected to." For more specific relationships, use vocabularies like <a href="https://vocab.org/relationship/">RELATIONSHIP</a> or extend FOAF with your own properties.</p>
+        </div>
+
+        <h2>Online Accounts</h2>
+
+        <p>Link people to their social media profiles:</p>
+
+        <pre><code>:alice foaf:account [
+    a foaf:OnlineAccount ;
+    foaf:accountServiceHomepage &lt;https://twitter.com/&gt; ;
+    foaf:accountName "alice_tweets"
+] .
+
+# Or use subclasses for common services
+:alice foaf:account [
+    a foaf:OnlineChatAccount ;
+    foaf:accountServiceHomepage &lt;https://slack.com/&gt; ;
+    foaf:accountName "alice.smith"
+] .</code></pre>
+
+        <h2>Projects and Interests</h2>
+
+        <pre><code># A project
+:semanticWeb a foaf:Project ;
+    foaf:name "Semantic Web Initiative" ;
+    foaf:homepage &lt;https://www.w3.org/2001/sw/&gt; .
+
+# Person's involvement
+:alice foaf:currentProject :semanticWeb ;
+       foaf:pastProject :oldProject ;
+       foaf:interest &lt;http://dbpedia.org/resource/Linked_data&gt; ;
+       foaf:topic_interest &lt;http://dbpedia.org/resource/RDF&gt; .</code></pre>
+
+        <h2>Organizations and Groups</h2>
+
+        <pre><code>:acme a foaf:Organization ;
+    foaf:name "ACME Corporation" ;
+    foaf:homepage &lt;https://acme.example.org/&gt; ;
+    foaf:member :alice ;
+    foaf:member :bob .
+
+:devTeam a foaf:Group ;
+    foaf:name "Development Team" ;
+    foaf:member :alice ;
+    foaf:member :charlie .</code></pre>
+
+        <h2>Complete Example: Professional Profile</h2>
+
+        <pre><code>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+:alice a foaf:Person ;
+    # Identity
+    foaf:name "Dr. Alice Smith" ;
+    foaf:title "Dr." ;
+    foaf:givenName "Alice" ;
+    foaf:familyName "Smith" ;
+    foaf:nick "asmith" ;
+
+    # Contact
+    foaf:mbox &lt;mailto:alice@example.org&gt; ;
+    foaf:homepage &lt;https://alice.example.org/&gt; ;
+    foaf:weblog &lt;https://alice.example.org/blog/&gt; ;
+
+    # Visual
+    foaf:img &lt;https://alice.example.org/photo.jpg&gt; ;
+    foaf:depiction &lt;https://alice.example.org/avatar.png&gt; ;
+
+    # Location
+    foaf:based_near &lt;http://dbpedia.org/resource/Berlin&gt; ;
+
+    # Work
+    foaf:workplaceHomepage &lt;https://university.example.org/&gt; ;
+    foaf:currentProject :semanticWebProject ;
+
+    # Social
+    foaf:knows :bob, :charlie ;
+
+    # Online presence
+    foaf:account [
+        a foaf:OnlineAccount ;
+        foaf:accountServiceHomepage &lt;https://github.com/&gt; ;
+        foaf:accountName "alicesmith"
+    ] ;
+
+    # Interests
+    foaf:interest &lt;http://dbpedia.org/resource/Semantic_Web&gt; ;
+    foaf:interest &lt;http://dbpedia.org/resource/Knowledge_graph&gt; .
+
+# Her employer
+:acmeResearch a foaf:Organization ;
+    foaf:name "ACME Research Lab" ;
+    foaf:member :alice .</code></pre>
+
+        <h2>Integration with Other Ontologies</h2>
+
+        <ul>
+            <li><strong><a href="org.html">ORG</a></strong> &mdash; For detailed organizational structures (departments, roles)</li>
+            <li><strong><a href="vcard.html">vCard</a></strong> &mdash; For detailed address and contact information</li>
+            <li><strong><a href="prov.html">PROV-O</a></strong> &mdash; Use <code>foaf:Person</code> as a <code>prov:Agent</code></li>
+            <li><strong>Schema.org</strong> &mdash; <code>foaf:Person</code> is compatible with <code>schema:Person</code></li>
+            <li><strong><a href="doap.html">DOAP</a></strong> &mdash; For software projects (maintainer, developer)</li>
+        </ul>
+
+        <h2>Next Steps</h2>
+
+        <div class="next-steps">
+            <div class="next-step">
+                <h4><a href="../ontology/foaf/index.html">FOAF Reference</a></h4>
+                <p>Complete vocabulary with all classes and properties.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../examples.html#people">Examples</a></h4>
+                <p>Real-world FOAF usage patterns.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="org.html">ORG Guide</a></h4>
+                <p>Detailed organizational modeling.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../sparql.html">SPARQL Playground</a></h4>
+                <p>Query FOAF data interactively.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="index.html">&larr; Back to Conceptual Guides</a></p>
+        </footer>
+    </div>
+</body>
+</html>

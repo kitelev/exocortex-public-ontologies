@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding RDF, RDFS &amp; OWL - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .meta {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .callout {
+            background: var(--header-bg);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .callout-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .diagram {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .diagram svg {
+            max-width: 100%;
+        }
+        .layer-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .layer {
+            padding: 20px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
+        .layer:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+        .layer:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+        .layer-owl { background: #8957e5; color: #fff; }
+        .layer-rdfs { background: #1f6feb; color: #fff; }
+        .layer-rdf { background: #238636; color: #fff; }
+        .layer-uri { background: var(--header-bg); color: var(--fg); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .next-step {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .next-step h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .next-step p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; <a href="index.html">Concepts</a> &gt; RDF, RDFS &amp; OWL
+        </nav>
+
+        <header>
+            <h1>Understanding RDF, RDFS &amp; OWL</h1>
+            <p class="meta">15 min read &bull; Beginner &bull; Core Foundations</p>
+        </header>
+
+        <p>The semantic web is built on three foundational specifications that work together like building blocks. Each layer adds more expressive power for describing knowledge.</p>
+
+        <div class="diagram">
+            <div class="layer-stack">
+                <div class="layer layer-owl">OWL (Web Ontology Language)<br><small>Rich constraints &amp; reasoning</small></div>
+                <div class="layer layer-rdfs">RDFS (RDF Schema)<br><small>Class hierarchies &amp; types</small></div>
+                <div class="layer layer-rdf">RDF (Resource Description Framework)<br><small>Basic triples</small></div>
+                <div class="layer layer-uri">URIs &amp; Literals<br><small>Identifiers &amp; values</small></div>
+            </div>
+        </div>
+
+        <h2>RDF: The Foundation</h2>
+
+        <p><strong>RDF (Resource Description Framework)</strong> is the base layer. It provides a simple way to make statements about things using <em>triples</em>.</p>
+
+        <h3>The Triple Model</h3>
+
+        <p>Every RDF statement consists of three parts:</p>
+
+        <table>
+            <tr>
+                <th>Part</th>
+                <th>Role</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><strong>Subject</strong></td>
+                <td>The thing being described</td>
+                <td><code>:Shakespeare</code></td>
+            </tr>
+            <tr>
+                <td><strong>Predicate</strong></td>
+                <td>The property or relationship</td>
+                <td><code>:wrote</code></td>
+            </tr>
+            <tr>
+                <td><strong>Object</strong></td>
+                <td>The value or related thing</td>
+                <td><code>:Hamlet</code></td>
+            </tr>
+        </table>
+
+        <pre><code># Turtle syntax
+:Shakespeare :wrote :Hamlet .
+:Hamlet :hasGenre :Tragedy .
+:Hamlet :publishedIn "1603"^^xsd:gYear .</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Key Insight</div>
+            <p>RDF uses URIs (Uniform Resource Identifiers) to uniquely identify things. The prefix <code>:</code> is shorthand for a namespace like <code>http://example.org/</code>. This ensures that "Shakespeare" in your data refers to the same entity across the entire web.</p>
+        </div>
+
+        <h3>What RDF Defines</h3>
+
+        <p>The RDF namespace (<code>rdf:</code>) provides these core concepts:</p>
+
+        <ul>
+            <li><a href="../ontology/rdf/type.html"><code>rdf:type</code></a> &mdash; Links an instance to its class ("is a")</li>
+            <li><a href="../ontology/rdf/property.html"><code>rdf:Property</code></a> &mdash; The class of all properties</li>
+            <li><a href="../ontology/rdf/statement.html"><code>rdf:Statement</code></a> &mdash; Reification (statements about statements)</li>
+            <li><a href="../ontology/rdf/list.html"><code>rdf:List</code></a>, <code>rdf:first</code>, <code>rdf:rest</code> &mdash; Ordered collections</li>
+        </ul>
+
+        <h2>RDFS: Adding Structure</h2>
+
+        <p><strong>RDF Schema (RDFS)</strong> adds vocabulary for defining classes and properties. It's the simplest schema language for RDF.</p>
+
+        <h3>Classes and Instances</h3>
+
+        <pre><code># Define a class
+:Person a rdfs:Class .
+
+# Create an instance
+:Shakespeare a :Person .
+
+# Classes can have subclasses
+:Author rdfs:subClassOf :Person .
+:Shakespeare a :Author .  # Also a Person!</code></pre>
+
+        <h3>Properties with Domains and Ranges</h3>
+
+        <pre><code># Define a property
+:wrote a rdf:Property ;
+    rdfs:domain :Author ;     # Subject must be an Author
+    rdfs:range :Work .        # Object must be a Work
+
+# Property hierarchies
+:authored rdfs:subPropertyOf :created .</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Domain &amp; Range</div>
+            <p><strong>Domain</strong> = "what type of thing can have this property?"<br>
+            <strong>Range</strong> = "what type of value can this property have?"</p>
+            <p>If <code>:wrote</code> has domain <code>:Author</code>, then saying <code>:X :wrote :Y</code> implies <code>:X a :Author</code>.</p>
+        </div>
+
+        <h3>Key RDFS Vocabulary</h3>
+
+        <table>
+            <tr>
+                <th>Term</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/class.html"><code>rdfs:Class</code></a></td>
+                <td>The class of all classes</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/subclassof.html"><code>rdfs:subClassOf</code></a></td>
+                <td>Class inheritance</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/subpropertyof.html"><code>rdfs:subPropertyOf</code></a></td>
+                <td>Property inheritance</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/domain.html"><code>rdfs:domain</code></a></td>
+                <td>Property applies to this class</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/range.html"><code>rdfs:range</code></a></td>
+                <td>Property values are of this type</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/label.html"><code>rdfs:label</code></a></td>
+                <td>Human-readable name</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/rdfs/comment.html"><code>rdfs:comment</code></a></td>
+                <td>Human-readable description</td>
+            </tr>
+        </table>
+
+        <h2>OWL: Rich Ontologies</h2>
+
+        <p><strong>OWL (Web Ontology Language)</strong> adds powerful constructs for complex knowledge modeling. It enables automated reasoning.</p>
+
+        <h3>What OWL Adds</h3>
+
+        <h4>Property Characteristics</h4>
+
+        <pre><code># Symmetric: if A knows B, then B knows A
+:knows a owl:SymmetricProperty .
+
+# Transitive: if A contains B and B contains C, then A contains C
+:contains a owl:TransitiveProperty .
+
+# Functional: each subject has at most one value
+:hasBirthDate a owl:FunctionalProperty .
+
+# Inverse: :hasParent is the inverse of :hasChild
+:hasParent owl:inverseOf :hasChild .</code></pre>
+
+        <h4>Class Expressions</h4>
+
+        <pre><code># Union: Parent OR Guardian
+:Caregiver owl:unionOf ( :Parent :Guardian ) .
+
+# Intersection: must be BOTH
+:WorkingParent owl:intersectionOf ( :Employee :Parent ) .
+
+# Restriction: exactly 4 wheels
+:Car rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasWheel ;
+    owl:cardinality 4
+] .</code></pre>
+
+        <h4>Equivalence and Difference</h4>
+
+        <pre><code># Same individual, different URIs
+:WilliamShakespeare owl:sameAs dbpedia:William_Shakespeare .
+
+# Definitely different
+:Hamlet owl:differentFrom :Macbeth .
+
+# Equivalent classes (same extension)
+:Human owl:equivalentClass :Person .</code></pre>
+
+        <h3>OWL Profiles</h3>
+
+        <p>OWL has three profiles for different use cases:</p>
+
+        <table>
+            <tr>
+                <th>Profile</th>
+                <th>Use Case</th>
+                <th>Reasoning Complexity</th>
+            </tr>
+            <tr>
+                <td><strong>OWL EL</strong></td>
+                <td>Large taxonomies (SNOMED CT)</td>
+                <td>Polynomial time</td>
+            </tr>
+            <tr>
+                <td><strong>OWL QL</strong></td>
+                <td>Query answering over databases</td>
+                <td>Polynomial time</td>
+            </tr>
+            <tr>
+                <td><strong>OWL RL</strong></td>
+                <td>Rule-based systems</td>
+                <td>Polynomial time</td>
+            </tr>
+            <tr>
+                <td><strong>OWL DL</strong></td>
+                <td>Full expressivity</td>
+                <td>Decidable, but worst-case exponential</td>
+            </tr>
+        </table>
+
+        <h2>Choosing the Right Layer</h2>
+
+        <table>
+            <tr>
+                <th>Need</th>
+                <th>Use</th>
+            </tr>
+            <tr>
+                <td>Simple data interchange</td>
+                <td>RDF only</td>
+            </tr>
+            <tr>
+                <td>Class hierarchies, basic types</td>
+                <td>RDF + RDFS</td>
+            </tr>
+            <tr>
+                <td>Property characteristics (symmetric, transitive)</td>
+                <td>OWL</td>
+            </tr>
+            <tr>
+                <td>Cardinality constraints</td>
+                <td>OWL</td>
+            </tr>
+            <tr>
+                <td>Automated reasoning</td>
+                <td>OWL</td>
+            </tr>
+        </table>
+
+        <div class="callout">
+            <div class="callout-title">Practical Advice</div>
+            <p>Start with RDFS. Add OWL constructs only when you need them. Many real-world applications use "OWL Lite" &mdash; a subset that's easy to understand and implement.</p>
+        </div>
+
+        <h2>Next Steps</h2>
+
+        <div class="next-steps">
+            <div class="next-step">
+                <h4><a href="../ontology/rdf/index.html">RDF Reference</a></h4>
+                <p>Complete RDF vocabulary with all properties and classes.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../ontology/rdfs/index.html">RDFS Reference</a></h4>
+                <p>Full RDFS schema vocabulary reference.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../ontology/owl/index.html">OWL Reference</a></h4>
+                <p>Complete OWL ontology language reference.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../sparql.html">SPARQL Playground</a></h4>
+                <p>Try querying RDF data interactively.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="index.html">&larr; Back to Conceptual Guides</a></p>
+        </footer>
+    </div>
+</body>
+</html>

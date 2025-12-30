@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Cases &amp; Examples - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.2em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        nav.breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            color: #fff;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 50px;
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .example-card {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        .example-header {
+            background: var(--code-bg);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .example-header h3 {
+            margin: 0;
+            flex: 1;
+        }
+        .example-tags {
+            display: flex;
+            gap: 8px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+        .tag-foaf { background: #1f6feb; color: #fff; }
+        .tag-geo { background: #238636; color: #fff; }
+        .tag-time { background: #8957e5; color: #fff; }
+        .tag-prov { background: #d29922; color: #000; }
+        .tag-org { background: #f85149; color: #fff; }
+        .tag-skos { background: #a371f7; color: #fff; }
+        .tag-dcat { background: #3fb950; color: #000; }
+        .tag-schema { background: #db6d28; color: #fff; }
+        .tag-qudt { background: #6e7681; color: #fff; }
+        .example-body {
+            padding: 20px;
+        }
+        .example-body p {
+            margin-top: 0;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .copy-btn:hover {
+            background: var(--border);
+        }
+        .toc {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .toc h4 {
+            margin-top: 0;
+            color: #fff;
+        }
+        .toc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .toc li {
+            padding: 5px 0;
+        }
+        .note {
+            background: rgba(56, 139, 253, 0.1);
+            border-left: 4px solid var(--link);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .note strong {
+            color: var(--link);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="ontology/index.html">Home</a> &gt; <a href="getting-started.html">Getting Started</a> &gt; Examples
+        </nav>
+
+        <header>
+            <h1>Use Cases &amp; Examples</h1>
+            <p class="subtitle">Practical examples showing how to use public ontologies in real-world scenarios</p>
+        </header>
+
+        <div class="toc">
+            <h4>Examples</h4>
+            <ul>
+                <li><a href="#person-profile">Describing a Person (FOAF)</a></li>
+                <li><a href="#geolocation">Geolocation Data (GEO + Schema.org)</a></li>
+                <li><a href="#temporal">Temporal Events (TIME)</a></li>
+                <li><a href="#provenance">Data Provenance (PROV-O)</a></li>
+                <li><a href="#organization">Organizational Structure (ORG)</a></li>
+                <li><a href="#taxonomy">Building a Taxonomy (SKOS)</a></li>
+                <li><a href="#dataset">Dataset Metadata (DCAT)</a></li>
+                <li><a href="#measurements">Scientific Measurements (QUDT)</a></li>
+            </ul>
+        </div>
+
+        <!-- Example 1: FOAF Person -->
+        <div class="example-card" id="person-profile">
+            <div class="example-header">
+                <h3>Describing a Person</h3>
+                <div class="example-tags">
+                    <span class="tag tag-foaf">FOAF</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Use <a href="ontology/foaf/index.html">FOAF (Friend of a Friend)</a> to describe people, their relationships, and online presence.</p>
+
+                <pre><code>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+:alice a foaf:Person ;
+    foaf:name "Alice Smith" ;
+    foaf:givenName "Alice" ;
+    foaf:familyName "Smith" ;
+    foaf:mbox &lt;mailto:alice@example.com&gt; ;
+    foaf:homepage &lt;https://alice.example.com&gt; ;
+    foaf:knows :bob, :carol ;
+    foaf:interest &lt;http://dbpedia.org/resource/Semantic_Web&gt; .
+
+:bob a foaf:Person ;
+    foaf:name "Bob Jones" ;
+    foaf:knows :alice .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/foaf/person.html">foaf:Person</a>, <a href="ontology/foaf/organization.html">foaf:Organization</a>, <a href="ontology/foaf/document.html">foaf:Document</a></p>
+                <p><strong>Key properties:</strong> <a href="ontology/foaf/name.html">foaf:name</a>, <a href="ontology/foaf/knows.html">foaf:knows</a>, <a href="ontology/foaf/mbox.html">foaf:mbox</a></p>
+            </div>
+        </div>
+
+        <!-- Example 2: Geolocation -->
+        <div class="example-card" id="geolocation">
+            <div class="example-header">
+                <h3>Geolocation Data</h3>
+                <div class="example-tags">
+                    <span class="tag tag-geo">GEO</span>
+                    <span class="tag tag-schema">Schema.org</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Combine <a href="ontology/geo/index.html">WGS84 Geo</a> with <a href="ontology/schema/index.html">Schema.org</a> for rich location data.</p>
+
+                <pre><code>@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
+@prefix schema: &lt;https://schema.org/&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+:eiffelTower a schema:LandmarksOrHistoricalBuildings, geo:SpatialThing ;
+    schema:name "Eiffel Tower"@en ;
+    schema:name "Tour Eiffel"@fr ;
+    schema:description "Iconic iron lattice tower in Paris" ;
+    geo:lat "48.8584"^^xsd:float ;
+    geo:long "2.2945"^^xsd:float ;
+    geo:alt "330"^^xsd:float ;
+    schema:address [
+        a schema:PostalAddress ;
+        schema:streetAddress "Champ de Mars, 5 Avenue Anatole France" ;
+        schema:addressLocality "Paris" ;
+        schema:postalCode "75007" ;
+        schema:addressCountry "FR"
+    ] .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/geo/spatialthing.html">geo:SpatialThing</a>, <a href="ontology/geo/point.html">geo:Point</a></p>
+                <p><strong>Key properties:</strong> <a href="ontology/geo/lat.html">geo:lat</a>, <a href="ontology/geo/long.html">geo:long</a>, <a href="ontology/geo/alt.html">geo:alt</a></p>
+            </div>
+        </div>
+
+        <!-- Example 3: TIME -->
+        <div class="example-card" id="temporal">
+            <div class="example-header">
+                <h3>Temporal Events</h3>
+                <div class="example-tags">
+                    <span class="tag tag-time">TIME</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Use <a href="ontology/time/index.html">OWL-Time</a> to model temporal concepts: instants, intervals, durations.</p>
+
+                <pre><code>@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+:conference2024 a time:Interval ;
+    time:hasBeginning :conf_start ;
+    time:hasEnd :conf_end ;
+    time:hasDuration [
+        a time:Duration ;
+        time:numericDuration "3"^^xsd:decimal ;
+        time:unitType time:unitDay
+    ] .
+
+:conf_start a time:Instant ;
+    time:inXSDDateTime "2024-09-15T09:00:00Z"^^xsd:dateTime .
+
+:conf_end a time:Instant ;
+    time:inXSDDateTime "2024-09-17T18:00:00Z"^^xsd:dateTime .
+
+# Temporal relations
+:keynote a time:Interval ;
+    time:intervalDuring :conference2024 ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inXSDDateTime "2024-09-15T10:00:00Z"^^xsd:dateTime
+    ] .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/time/instant.html">time:Instant</a>, <a href="ontology/time/interval.html">time:Interval</a>, <a href="ontology/time/duration.html">time:Duration</a></p>
+            </div>
+        </div>
+
+        <!-- Example 4: PROV-O -->
+        <div class="example-card" id="provenance">
+            <div class="example-header">
+                <h3>Data Provenance</h3>
+                <div class="example-tags">
+                    <span class="tag tag-prov">PROV-O</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Track data lineage with <a href="ontology/prov/index.html">PROV-O</a>: who created what, when, and how.</p>
+
+                <pre><code>@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+# The dataset is an Entity
+:sales_report_v2 a prov:Entity ;
+    prov:wasGeneratedBy :data_processing ;
+    prov:generatedAtTime "2024-01-15T14:30:00Z"^^xsd:dateTime ;
+    prov:wasDerivedFrom :sales_data_raw ;
+    prov:wasAttributedTo :alice .
+
+# The processing is an Activity
+:data_processing a prov:Activity ;
+    prov:startedAtTime "2024-01-15T14:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-01-15T14:30:00Z"^^xsd:dateTime ;
+    prov:used :sales_data_raw ;
+    prov:wasAssociatedWith :alice ;
+    prov:used :etl_script_v3 .
+
+# Alice is an Agent
+:alice a prov:Agent, prov:Person ;
+    prov:actedOnBehalfOf :data_team .
+
+:data_team a prov:Agent, prov:Organization .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/prov/entity.html">prov:Entity</a>, <a href="ontology/prov/activity.html">prov:Activity</a>, <a href="ontology/prov/agent.html">prov:Agent</a></p>
+                <p><strong>Key properties:</strong> <a href="ontology/prov/wasderivedfrom.html">prov:wasDerivedFrom</a>, <a href="ontology/prov/wasgeneratedby.html">prov:wasGeneratedBy</a></p>
+            </div>
+        </div>
+
+        <!-- Example 5: ORG -->
+        <div class="example-card" id="organization">
+            <div class="example-header">
+                <h3>Organizational Structure</h3>
+                <div class="example-tags">
+                    <span class="tag tag-org">ORG</span>
+                    <span class="tag tag-foaf">FOAF</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Model organizations, departments, and roles with <a href="ontology/org/index.html">W3C Organization Ontology</a>.</p>
+
+                <pre><code>@prefix org: &lt;http://www.w3.org/ns/org#&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+
+:acme_corp a org:FormalOrganization ;
+    foaf:name "ACME Corporation" ;
+    org:hasUnit :engineering_dept, :sales_dept ;
+    org:hasSite :hq_office .
+
+:engineering_dept a org:OrganizationalUnit ;
+    foaf:name "Engineering Department" ;
+    org:unitOf :acme_corp ;
+    org:hasPost :cto_post, :dev_lead_post .
+
+:cto_post a org:Post ;
+    org:role :cto_role ;
+    org:heldBy :john .
+
+:john a foaf:Person ;
+    foaf:name "John Smith" ;
+    org:memberOf :acme_corp ;
+    org:headOf :engineering_dept .
+
+:hq_office a org:Site ;
+    org:siteOf :acme_corp ;
+    org:siteAddress [
+        a vcard:Address ;
+        vcard:locality "San Francisco"
+    ] .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/org/organization.html">org:Organization</a>, <a href="ontology/org/organizationalunit.html">org:OrganizationalUnit</a>, <a href="ontology/org/post.html">org:Post</a></p>
+            </div>
+        </div>
+
+        <!-- Example 6: SKOS -->
+        <div class="example-card" id="taxonomy">
+            <div class="example-header">
+                <h3>Building a Taxonomy</h3>
+                <div class="example-tags">
+                    <span class="tag tag-skos">SKOS</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Create controlled vocabularies and taxonomies with <a href="ontology/skos/index.html">SKOS</a>.</p>
+
+                <pre><code>@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+
+:ProductCategories a skos:ConceptScheme ;
+    skos:prefLabel "Product Categories"@en ;
+    skos:hasTopConcept :Electronics, :Clothing .
+
+:Electronics a skos:Concept ;
+    skos:prefLabel "Electronics"@en ;
+    skos:altLabel "Electronic Devices"@en ;
+    skos:definition "Devices that operate using electrical power"@en ;
+    skos:topConceptOf :ProductCategories ;
+    skos:narrower :Computers, :Phones .
+
+:Computers a skos:Concept ;
+    skos:prefLabel "Computers"@en ;
+    skos:broader :Electronics ;
+    skos:narrower :Laptops, :Desktops ;
+    skos:related :Software .
+
+:Laptops a skos:Concept ;
+    skos:prefLabel "Laptops"@en ;
+    skos:prefLabel "Notebook Computers"@en ;
+    skos:broader :Computers ;
+    skos:scopeNote "Portable computers with integrated screen"@en .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/skos/concept.html">skos:Concept</a>, <a href="ontology/skos/conceptscheme.html">skos:ConceptScheme</a></p>
+                <p><strong>Key properties:</strong> <a href="ontology/skos/broader.html">skos:broader</a>, <a href="ontology/skos/narrower.html">skos:narrower</a>, <a href="ontology/skos/related.html">skos:related</a></p>
+            </div>
+        </div>
+
+        <!-- Example 7: DCAT -->
+        <div class="example-card" id="dataset">
+            <div class="example-header">
+                <h3>Dataset Metadata</h3>
+                <div class="example-tags">
+                    <span class="tag tag-dcat">DCAT</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Describe datasets and data catalogs with <a href="ontology/dcat/index.html">DCAT</a>.</p>
+
+                <pre><code>@prefix dcat: &lt;http://www.w3.org/ns/dcat#&gt; .
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+
+:open_data_portal a dcat:Catalog ;
+    dcterms:title "City Open Data Portal"@en ;
+    dcterms:publisher :city_gov ;
+    dcat:dataset :traffic_data, :crime_stats .
+
+:traffic_data a dcat:Dataset ;
+    dcterms:title "Traffic Flow Data 2024"@en ;
+    dcterms:description "Real-time traffic sensor readings"@en ;
+    dcterms:issued "2024-01-01"^^xsd:date ;
+    dcterms:modified "2024-01-15"^^xsd:date ;
+    dcterms:publisher :city_gov ;
+    dcat:keyword "traffic", "transportation", "sensors" ;
+    dcat:distribution :traffic_csv, :traffic_api .
+
+:traffic_csv a dcat:Distribution ;
+    dcterms:title "CSV Download" ;
+    dcat:downloadURL &lt;https://data.city.gov/traffic/2024.csv&gt; ;
+    dcat:mediaType "text/csv" ;
+    dcat:byteSize "15000000"^^xsd:integer .
+
+:traffic_api a dcat:Distribution ;
+    dcterms:title "REST API" ;
+    dcat:accessURL &lt;https://api.city.gov/traffic/&gt; ;
+    dcat:mediaType "application/json" .</code></pre>
+
+                <p><strong>Key classes:</strong> <a href="ontology/dcat/catalog.html">dcat:Catalog</a>, <a href="ontology/dcat/dataset.html">dcat:Dataset</a>, <a href="ontology/dcat/distribution.html">dcat:Distribution</a></p>
+            </div>
+        </div>
+
+        <!-- Example 8: QUDT -->
+        <div class="example-card" id="measurements">
+            <div class="example-header">
+                <h3>Scientific Measurements</h3>
+                <div class="example-tags">
+                    <span class="tag tag-qudt">QUDT</span>
+                </div>
+            </div>
+            <div class="example-body">
+                <p>Express quantities with units using <a href="ontology/qudt/index.html">QUDT (Quantities, Units, Dimensions, Types)</a>.</p>
+
+                <pre><code>@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
+@prefix quantitykind: &lt;http://qudt.org/vocab/quantitykind/&gt; .
+
+:sensor_reading_001 a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Temperature ;
+    qudt:numericValue "25.5"^^xsd:double ;
+    qudt:unit unit:DEG_C .
+
+:distance_measurement a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Length ;
+    qudt:numericValue "42.195"^^xsd:double ;
+    qudt:unit unit:KiloM .
+
+:power_output a qudt:Quantity ;
+    qudt:hasQuantityKind quantitykind:Power ;
+    qudt:numericValue "1.21"^^xsd:double ;
+    qudt:unit unit:GigaW .</code></pre>
+
+                <div class="note">
+                    <strong>Note:</strong> QUDT includes 1,000+ predefined units and quantity kinds. Browse the full catalog at <a href="ontology/qudt/index.html">QUDT</a> and <a href="ontology/quantitykind/index.html">QuantityKinds</a>.
+                </div>
+
+                <p><strong>Key classes:</strong> <a href="ontology/qudt/quantity.html">qudt:Quantity</a>, <a href="ontology/qudt/unit.html">qudt:Unit</a></p>
+            </div>
+        </div>
+
+        <h2>Combining Multiple Ontologies</h2>
+
+        <p>Real-world data often requires combining multiple ontologies. Here's an example that integrates several vocabularies:</p>
+
+        <pre><code>@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix org: &lt;http://www.w3.org/ns/org#&gt; .
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
+@prefix dcterms: &lt;http://purl.org/dc/terms/&gt; .
+@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+
+# A research paper with full provenance and authorship
+:paper_2024 a prov:Entity, foaf:Document ;
+    dcterms:title "Semantic Web Advances 2024" ;
+    dcterms:created "2024-03-15"^^xsd:date ;
+    prov:wasAttributedTo :alice ;
+    prov:wasGeneratedBy :research_project ;
+    dcterms:subject &lt;http://dbpedia.org/resource/Semantic_Web&gt; .
+
+:alice a foaf:Person, prov:Agent ;
+    foaf:name "Dr. Alice Smith" ;
+    org:memberOf :university ;
+    foaf:based_near :campus_location .
+
+:university a org:FormalOrganization ;
+    foaf:name "Technical University" .
+
+:campus_location a geo:SpatialThing ;
+    geo:lat "52.5200" ;
+    geo:long "13.4050" .
+
+:research_project a prov:Activity ;
+    time:hasBeginning [ time:inXSDDate "2023-01-01"^^xsd:date ] ;
+    time:hasEnd [ time:inXSDDate "2024-03-01"^^xsd:date ] .</code></pre>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="getting-started.html">← Back to Getting Started</a> | <a href="sparql.html">Try these in SPARQL Playground →</a></p>
+            <p>Part of the <a href="https://github.com/kitelev/exocortex-public-ontologies">Exocortex Public Ontologies</a> project.</p>
+        </footer>
+    </div>
+</body>
+</html>

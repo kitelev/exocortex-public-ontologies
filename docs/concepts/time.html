@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding OWL-Time - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.2em;
+        }
+        .meta {
+            color: #8b949e;
+            font-size: 0.9em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        h2 {
+            color: #fff;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            color: #fff;
+            margin-top: 30px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        .callout {
+            background: var(--header-bg);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .callout-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .diagram {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .timeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin: 20px 0;
+        }
+        .timeline-point {
+            width: 20px;
+            height: 20px;
+            background: var(--link);
+            border-radius: 50%;
+        }
+        .timeline-line {
+            height: 4px;
+            background: #8b949e;
+            flex-grow: 1;
+            max-width: 100px;
+        }
+        .timeline-interval {
+            height: 20px;
+            background: rgba(88, 166, 255, 0.3);
+            border: 2px solid var(--link);
+            border-radius: 4px;
+            flex-grow: 1;
+            max-width: 150px;
+        }
+        .timeline-label {
+            text-align: center;
+            font-size: 0.85em;
+            color: #8b949e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--header-bg);
+            color: #fff;
+        }
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .next-step {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .next-step h4 {
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+        .next-step p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; <a href="index.html">Concepts</a> &gt; OWL-Time
+        </nav>
+
+        <header>
+            <h1>Understanding OWL-Time</h1>
+            <p class="meta">12 min read &bull; Intermediate &bull; Domain Ontology</p>
+        </header>
+
+        <p><strong>OWL-Time</strong> is a W3C ontology for describing temporal concepts. It goes beyond simple timestamps to model complex temporal relationships, durations, and calendar systems.</p>
+
+        <h2>When to Use OWL-Time vs. XSD Dates</h2>
+
+        <table>
+            <tr>
+                <th>Use XSD Datatypes When...</th>
+                <th>Use OWL-Time When...</th>
+            </tr>
+            <tr>
+                <td>Simple timestamps suffice</td>
+                <td>Modeling time intervals (start + end)</td>
+            </tr>
+            <tr>
+                <td>Precision is exact (2024-01-15T10:30:00Z)</td>
+                <td>Dates are imprecise ("sometime in 2024")</td>
+            </tr>
+            <tr>
+                <td>No need to reason about time</td>
+                <td>Querying temporal relationships (before, during, overlaps)</td>
+            </tr>
+            <tr>
+                <td>Standard Gregorian calendar only</td>
+                <td>Multiple calendar systems needed</td>
+            </tr>
+        </table>
+
+        <h2>Core Concepts</h2>
+
+        <h3>Instants vs. Intervals</h3>
+
+        <p>OWL-Time distinguishes between points and spans:</p>
+
+        <div class="diagram">
+            <div class="timeline">
+                <div>
+                    <div class="timeline-point"></div>
+                    <div class="timeline-label">Instant</div>
+                </div>
+                <div class="timeline-line"></div>
+                <div>
+                    <div class="timeline-interval"></div>
+                    <div class="timeline-label">Interval</div>
+                </div>
+                <div class="timeline-line"></div>
+                <div>
+                    <div class="timeline-point"></div>
+                    <div class="timeline-label">Instant</div>
+                </div>
+            </div>
+        </div>
+
+        <pre><code>@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+# An instant (point in time)
+:moonLanding a time:Instant ;
+    time:inXSDDateTimeStamp "1969-07-20T20:17:00Z"^^xsd:dateTimeStamp .
+
+# An interval (period of time)
+:apolloMission a time:Interval ;
+    time:hasBeginning :missionStart ;
+    time:hasEnd :missionEnd .
+
+:missionStart a time:Instant ;
+    time:inXSDDateTimeStamp "1969-07-16T13:32:00Z"^^xsd:dateTimeStamp .
+
+:missionEnd a time:Instant ;
+    time:inXSDDateTimeStamp "1969-07-24T16:50:35Z"^^xsd:dateTimeStamp .</code></pre>
+
+        <h3>Durations</h3>
+
+        <p>Express how long something lasts:</p>
+
+        <pre><code># Using XSD duration
+:meeting time:hasDuration [
+    a time:Duration ;
+    time:numericDuration 1.5 ;
+    time:unitType time:unitHour
+] .
+
+# Or using XSD duration directly
+:meeting time:hasDuration "PT1H30M"^^xsd:duration .</code></pre>
+
+        <h2>Temporal Relations</h2>
+
+        <p>OWL-Time provides Allen's interval algebra for precise temporal reasoning:</p>
+
+        <table>
+            <tr>
+                <th>Relation</th>
+                <th>Meaning</th>
+                <th>Diagram</th>
+            </tr>
+            <tr>
+                <td><code>time:before</code></td>
+                <td>X ends before Y starts</td>
+                <td><code>|--X--|&nbsp;&nbsp;&nbsp;&nbsp;|--Y--|</code></td>
+            </tr>
+            <tr>
+                <td><code>time:after</code></td>
+                <td>X starts after Y ends</td>
+                <td><code>|--Y--|&nbsp;&nbsp;&nbsp;&nbsp;|--X--|</code></td>
+            </tr>
+            <tr>
+                <td><code>time:meets</code></td>
+                <td>X ends exactly when Y starts</td>
+                <td><code>|--X--|--Y--|</code></td>
+            </tr>
+            <tr>
+                <td><code>time:overlaps</code></td>
+                <td>X starts before Y but ends during Y</td>
+                <td><code>|--X--|<br>&nbsp;&nbsp;&nbsp;|--Y--|</code></td>
+            </tr>
+            <tr>
+                <td><code>time:during</code></td>
+                <td>X is entirely within Y</td>
+                <td><code>|----Y----| <br>&nbsp;&nbsp;|--X--|</code></td>
+            </tr>
+            <tr>
+                <td><code>time:contains</code></td>
+                <td>Y is entirely within X</td>
+                <td><code>|----X----|<br>&nbsp;&nbsp;|--Y--|</code></td>
+            </tr>
+            <tr>
+                <td><code>time:equals</code></td>
+                <td>Same start and end</td>
+                <td><code>|--X--|<br>|--Y--|</code></td>
+            </tr>
+        </table>
+
+        <pre><code># The meeting is before the deadline
+:planningMeeting time:before :projectDeadline .
+
+# Q1 contains January
+:q1_2024 time:contains :january_2024 .
+
+# Lunch overlaps with the presentation
+:lunchBreak time:overlaps :presentation .</code></pre>
+
+        <h2>Date-Time Descriptions</h2>
+
+        <p>For calendar-based representations:</p>
+
+        <pre><code>:january_15_2024 a time:DateTimeDescription ;
+    time:year 2024 ;
+    time:month time:January ;
+    time:day 15 ;
+    time:dayOfWeek time:Monday ;
+    time:unitType time:unitDay .</code></pre>
+
+        <div class="callout">
+            <div class="callout-title">Named Months and Days</div>
+            <p>OWL-Time provides named individuals for months (<code>time:January</code> through <code>time:December</code>) and days of week (<code>time:Monday</code> through <code>time:Sunday</code>). This enables SPARQL queries like "find all events on Mondays."</p>
+        </div>
+
+        <h2>Imprecise Dates</h2>
+
+        <p>Not all dates are exact. OWL-Time handles this:</p>
+
+        <pre><code># "Sometime in 2024" - precision is year
+:futureEvent a time:Instant ;
+    time:inDateTime [
+        a time:DateTimeDescription ;
+        time:year 2024 ;
+        time:unitType time:unitYear  # Only year-level precision
+    ] .
+
+# "In the 18th century"
+:historicalEvent a time:Interval ;
+    time:hasBeginning [ time:inXSDgYear "1701"^^xsd:gYear ] ;
+    time:hasEnd [ time:inXSDgYear "1800"^^xsd:gYear ] .</code></pre>
+
+        <h2>Time Zones and Reference Systems</h2>
+
+        <pre><code>:localEvent a time:Instant ;
+    time:inDateTime [
+        a time:DateTimeDescription ;
+        time:year 2024 ;
+        time:month time:March ;
+        time:day 15 ;
+        time:hour 14 ;
+        time:minute 30 ;
+        time:timeZone &lt;https://www.timeanddate.com/time/zones/cet&gt;
+    ] .</code></pre>
+
+        <h2>Complete Example: Conference Schedule</h2>
+
+        <pre><code>@prefix time: &lt;http://www.w3.org/2006/time#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix : &lt;http://example.org/conference/&gt; .
+
+# The conference (3-day interval)
+:semanticWeb2024 a time:Interval ;
+    time:hasBeginning :day1_start ;
+    time:hasEnd :day3_end ;
+    time:hasDuration [
+        a time:Duration ;
+        time:numericDuration 3 ;
+        time:unitType time:unitDay
+    ] .
+
+:day1_start a time:Instant ;
+    time:inXSDDateTimeStamp "2024-05-15T09:00:00+02:00"^^xsd:dateTimeStamp .
+
+:day3_end a time:Instant ;
+    time:inXSDDateTimeStamp "2024-05-17T18:00:00+02:00"^^xsd:dateTimeStamp .
+
+# A keynote speech (during the conference)
+:keynote a time:Interval ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inXSDDateTimeStamp "2024-05-15T09:30:00+02:00"^^xsd:dateTimeStamp
+    ] ;
+    time:hasDuration [
+        a time:Duration ;
+        time:numericDuration 45 ;
+        time:unitType time:unitMinute
+    ] .
+
+# Temporal relation: keynote is during the conference
+:keynote time:during :semanticWeb2024 .
+
+# Coffee break meets (immediately follows) the keynote
+:coffeeBreak time:meets :keynote ;
+    time:hasDuration [
+        a time:Duration ;
+        time:numericDuration 15 ;
+        time:unitType time:unitMinute
+    ] .</code></pre>
+
+        <h2>Integration with Other Ontologies</h2>
+
+        <ul>
+            <li><strong><a href="prov.html">PROV-O</a></strong> &mdash; Uses OWL-Time for activity start/end times</li>
+            <li><strong><a href="sosa-ssn.html">SOSA/SSN</a></strong> &mdash; Observation timestamps and phenomena time</li>
+            <li><strong><a href="dcat.html">DCAT</a></strong> &mdash; Dataset temporal coverage</li>
+            <li><strong>Schema.org</strong> &mdash; Event scheduling and opening hours</li>
+        </ul>
+
+        <h2>Key Classes Reference</h2>
+
+        <table>
+            <tr>
+                <th>Class</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><a href="../ontology/time/instant.html"><code>time:Instant</code></a></td>
+                <td>A zero-duration temporal entity (point in time)</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/time/interval.html"><code>time:Interval</code></a></td>
+                <td>A temporal entity with extent (duration)</td>
+            </tr>
+            <tr>
+                <td><a href="../ontology/time/duration.html"><code>time:Duration</code></a></td>
+                <td>Description of temporal extent</td>
+            </tr>
+            <tr>
+                <td><code>time:DateTimeDescription</code></td>
+                <td>Calendar-based time representation</td>
+            </tr>
+            <tr>
+                <td><code>time:TemporalUnit</code></td>
+                <td>Units like second, minute, hour, day, month, year</td>
+            </tr>
+        </table>
+
+        <h2>Next Steps</h2>
+
+        <div class="next-steps">
+            <div class="next-step">
+                <h4><a href="../ontology/time/index.html">TIME Reference</a></h4>
+                <p>Complete vocabulary with all classes and properties.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../examples.html#temporal">Examples</a></h4>
+                <p>Real-world TIME usage patterns.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="prov.html">PROV-O Guide</a></h4>
+                <p>Provenance with temporal context.</p>
+            </div>
+            <div class="next-step">
+                <h4><a href="../sparql.html">SPARQL Playground</a></h4>
+                <p>Query temporal data interactively.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p><a href="index.html">&larr; Back to Conceptual Guides</a></p>
+        </footer>
+    </div>
+</body>
+</html>

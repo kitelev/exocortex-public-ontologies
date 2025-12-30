@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptual Guides - Exocortex Public Ontologies</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 1.2em;
+        }
+        nav.breadcrumb {
+            margin-bottom: 20px;
+        }
+        nav.breadcrumb a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        nav.breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            color: #fff;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .guide-card {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            transition: border-color 0.2s;
+        }
+        .guide-card:hover {
+            border-color: var(--link);
+        }
+        .guide-card h3 {
+            margin: 0 0 12px 0;
+            color: #fff;
+            font-size: 1.3em;
+        }
+        .guide-card h3 a {
+            color: #fff;
+        }
+        .guide-card p {
+            margin: 0 0 15px 0;
+            color: #8b949e;
+        }
+        .guide-card .meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85em;
+            color: #8b949e;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 500;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .badge-core { background: #238636; color: #fff; }
+        .badge-vocab { background: #1f6feb; color: #fff; }
+        .badge-domain { background: #8957e5; color: #fff; }
+        .badge-units { background: #d29922; color: #000; }
+        .intro {
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+        .intro p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="../ontology/index.html">Home</a> &gt; Conceptual Guides
+        </nav>
+
+        <header>
+            <h1>Conceptual Guides</h1>
+            <p class="subtitle">Human-readable introductions to semantic web ontologies</p>
+        </header>
+
+        <div class="intro">
+            <p>These guides explain the <strong>concepts and models</strong> behind each ontology before diving into technical details. Start here if you're new to an ontology or want to understand its design philosophy.</p>
+        </div>
+
+        <h2>Core Foundations</h2>
+        <p>The building blocks of semantic web technologies. Essential reading for anyone working with RDF data.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="rdf-rdfs-owl.html">RDF, RDFS &amp; OWL</a> <span class="badge badge-core">Core</span></h3>
+                <p>The semantic web stack: how triples, schemas, and ontologies work together to model knowledge.</p>
+                <div class="meta">
+                    <span>15 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="xsd.html">XSD Datatypes</a> <span class="badge badge-core">Core</span></h3>
+                <p>Standard datatypes for literals: strings, numbers, dates, URIs, and more.</p>
+                <div class="meta">
+                    <span>8 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="shacl.html">SHACL Validation</a> <span class="badge badge-core">Core</span></h3>
+                <p>Shapes Constraint Language for validating RDF graphs against expected patterns.</p>
+                <div class="meta">
+                    <span>12 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>People &amp; Organizations</h2>
+        <p>Ontologies for describing agents, social connections, and organizational structures.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="foaf.html">FOAF</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Friend of a Friend: describing people, their projects, and social networks.</p>
+                <div class="meta">
+                    <span>10 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="org.html">ORG</a> <span class="badge badge-domain">Domain</span></h3>
+                <p>W3C Organization Ontology: companies, departments, memberships, and roles.</p>
+                <div class="meta">
+                    <span>10 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="vcard.html">vCard</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Contact information: addresses, phone numbers, emails in RDF format.</p>
+                <div class="meta">
+                    <span>8 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Time &amp; Provenance</h2>
+        <p>Tracking when things happen and where data comes from.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="time.html">OWL-Time</a> <span class="badge badge-domain">Domain</span></h3>
+                <p>Temporal concepts: instants, intervals, durations, and calendar systems.</p>
+                <div class="meta">
+                    <span>12 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="prov.html">PROV-O</a> <span class="badge badge-domain">Domain</span></h3>
+                <p>Provenance Ontology: tracking who created what, when, and how.</p>
+                <div class="meta">
+                    <span>15 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Location &amp; Geography</h2>
+        <p>Representing places, coordinates, and spatial relationships.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="geo.html">WGS84 Geo</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Basic geolocation: latitude, longitude, altitude using WGS84 coordinates.</p>
+                <div class="meta">
+                    <span>5 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="geosparql.html">GeoSPARQL</a> <span class="badge badge-domain">Domain</span></h3>
+                <p>OGC standard for geospatial data: geometries, spatial relations, and queries.</p>
+                <div class="meta">
+                    <span>15 min read</span>
+                    <span>Advanced</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Knowledge Organization</h2>
+        <p>Structuring concepts, taxonomies, and metadata.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="skos.html">SKOS</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Simple Knowledge Organization System: thesauri, taxonomies, and concept schemes.</p>
+                <div class="meta">
+                    <span>12 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="dcterms.html">Dublin Core</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Metadata elements for describing resources: title, creator, date, format.</p>
+                <div class="meta">
+                    <span>8 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="dcat.html">DCAT</a> <span class="badge badge-domain">Domain</span></h3>
+                <p>Data Catalog Vocabulary: describing datasets, distributions, and data services.</p>
+                <div class="meta">
+                    <span>12 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Scientific Measurements</h2>
+        <p>Units, quantities, and sensor observations.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="qudt.html">QUDT</a> <span class="badge badge-units">Units</span></h3>
+                <p>Quantities, Units, Dimensions, and Types: scientific measurement vocabulary.</p>
+                <div class="meta">
+                    <span>15 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="sosa-ssn.html">SOSA/SSN</a> <span class="badge badge-domain">Domain</span></h3>
+                <p>Sensor, Observation, Sample: IoT and sensor network data modeling.</p>
+                <div class="meta">
+                    <span>15 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Social &amp; Activity</h2>
+        <p>Social content, activities, and software projects.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3><a href="activitystreams.html">Activity Streams</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>W3C standard for social activities: posts, likes, follows in federated networks.</p>
+                <div class="meta">
+                    <span>12 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="sioc.html">SIOC</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Semantically-Interlinked Online Communities: forums, blogs, wikis.</p>
+                <div class="meta">
+                    <span>10 min read</span>
+                    <span>Intermediate</span>
+                </div>
+            </div>
+            <div class="guide-card">
+                <h3><a href="doap.html">DOAP</a> <span class="badge badge-vocab">Vocabulary</span></h3>
+                <p>Description of a Project: software projects, releases, and repositories.</p>
+                <div class="meta">
+                    <span>8 min read</span>
+                    <span>Beginner</span>
+                </div>
+            </div>
+        </div>
+
+        <footer style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9em;">
+            <p>Part of the <a href="https://github.com/kitelev/exocortex-public-ontologies">Exocortex Public Ontologies</a> project.</p>
+        </footer>
+    </div>
+</body>
+</html>
