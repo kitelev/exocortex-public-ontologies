@@ -5,23 +5,24 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2025-12-29 17:17 UTC*
+*Auto-generated on 2025-12-30 20:59 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **126,158** |
-| Statements (triples) | 112,934 |
-| Anchors (resources) | 7,372 |
+| Total Files | **156,698** |
+| Statements (triples) | 142,251 |
+| Anchors (resources) | 8,593 |
 | Blank Nodes | 5,823 |
-| Namespaces | 29 |
+| Namespaces | 31 |
 
 ## By Namespace
 
 | Namespace | Triples | Anchors | Blank Nodes | Total Files |
 |-----------|---------|---------|-------------|-------------|
 | `qudt` | 81,830 | 2914 | 5061 | 89,807 |
+| `quantitykind` | 28,982 | 1188 | 0 | 30,171 |
 | `schema` | 17,606 | 2994 | 0 | 20,601 |
 | `as` | 1,363 | 124 | 360 | 1,848 |
 | `dcat` | 1,338 | 37 | 31 | 1,407 |
@@ -37,6 +38,7 @@ title: Statistics
 | `foaf` | 620 | 75 | 0 | 696 |
 | `owl` | 450 | 78 | 0 | 529 |
 | `ssn` | 397 | 21 | 91 | 510 |
+| `prefix` | 335 | 33 | 0 | 369 |
 | `sosa` | 331 | 36 | 2 | 370 |
 | `skos` | 252 | 33 | 3 | 289 |
 | `adms` | 151 | 18 | 5 | 175 |
@@ -55,18 +57,18 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdfs:label` | 23,094 |
-| `rdf:type` | 13,731 |
+| `rdfs:label` | 26,047 |
+| `7c346f09...` | 15,507 |
+| `rdf:type` | 14,985 |
+| `rdfs:comment` | 5,872 |
+| `rdfs:isDefinedBy` | 5,393 |
 | `0aa3d93f...` | 4,865 |
-| `rdfs:comment` | 4,853 |
 | `58430877...` | 4,807 |
 | `4d8181f6...` | 4,807 |
 | `4ef8b6c4...` | 4,807 |
-| `rdfs:isDefinedBy` | 4,172 |
 | `a6fa8785...` | 4,096 |
+| `92f7c89b...` | 4,087 |
+| `dcterms:description` | 3,457 |
+| `61901538...` | 3,447 |
+| `ec23d74f...` | 3,346 |
 | `e7e09266...` | 2,899 |
-| `d2af0991...` | 2,899 |
-| `92f7c89b...` | 2,899 |
-| `ec23d74f...` | 2,739 |
-| `61901538...` | 2,481 |
-| `dcterms:description` | 2,478 |

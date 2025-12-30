@@ -279,8 +279,8 @@ Complete property hierarchy across all ontologies.
 - ⚙️ `foaf:fundedBy`
 - 📝 `foaf:geekcode`
 - ⚙️ `foaf:gender`
-- 📝 `foaf:givenname`
 - ⚙️ `foaf:givenName`
+- 📝 `foaf:givenname`
 - 🔗 `foaf:holdsAccount`
 - ⚙️ `foaf:interest`
 - ⚙️ `foaf:jabberID`
@@ -2354,21 +2354,21 @@ Complete property hierarchy across all ontologies.
 
 ## ssn
 
-- 🔗 `3154f0e3`
-- 🔗 `51a957ac`
-- 🔗 `611866b9`
-- 🔗 `6b3e821e`
-- 🔗 `6d9a5296`
-- 🔗 `82650300`
-- 🔗 `927d471e`
-- 🔗 `a72bc15a`
-- 🔗 `c1183b7d`
-- 🔗 `d0275b62`
-- 🔗 `d696ac8b`
-- 🔗 `dd9aa6ac`
-- 🔗 `e08e674f`
-- 🔗 `f012e19e`
-- 🔗 `fcae51d2`
+- 🔗 `ssn:deployedOnPlatform`
+- 🔗 `ssn:deployedSystem`
+- 🔗 `ssn:detects`
+- 🔗 `ssn:forProperty`
+- 🔗 `ssn:hasDeployment`
+- 🔗 `ssn:hasInput`
+- 🔗 `ssn:hasOutput`
+- 🔗 `ssn:hasProperty`
+- 🔗 `ssn:hasSubSystem`
+- 🔗 `ssn:implementedBy`
+- 🔗 `ssn:implements`
+- 🔗 `ssn:inDeployment`
+- 🔗 `ssn:isPropertyOf`
+- 🔗 `ssn:isProxyFor`
+- 🔗 `ssn:wasOriginatedBy`
 
 ## time
 
