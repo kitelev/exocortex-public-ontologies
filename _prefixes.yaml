@@ -53,6 +53,12 @@ qudt: "http://qudt.org/schema/qudt/"
 quantitykind: "http://qudt.org/vocab/quantitykind/"
 prefix: "http://qudt.org/vocab/prefix/"
 
+# Upper-level / Foundational Ontologies
+dul: "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#"
+dolce: "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+bfo: "http://purl.obolibrary.org/obo/"
+obo: "http://purl.obolibrary.org/obo/"
+
 # ============================================================================
 # Альтернативные URI онтологий (owl:Ontology URI без #)
 # Используются когда URI онтологии отличается от namespace URI

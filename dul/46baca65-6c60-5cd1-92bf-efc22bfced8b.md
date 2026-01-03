@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[83512d0e-0747-5cee-bae6-f7d59c84a100]]"
+predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
+object: "\"is member of\"@en"
+aliases:
+  - "dul:isMemberOf rdfs:label \"is member of\"@en"
+---
