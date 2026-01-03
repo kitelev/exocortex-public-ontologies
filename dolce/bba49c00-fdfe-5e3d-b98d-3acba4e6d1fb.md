@@ -1,0 +1,8 @@
+---
+metadata: statement
+subject: "[[0442ef84-0a32-5e86-8a3b-405a338aae1b]]"
+predicate: "[[da1b0b28-9c51-55c3-a963-2337006693de]]"
+object: "\"Perdurants (AKA occurrences) comprise what are variously called events, processes, phenomena, activities and states. They can have temporal parts or spatial parts. For instance, the first movement of (an execution of) a symphony is a temporal part of the symphony. On the other hand, the play performed by the left side of the orchestra is a spatial part. In both cases, these parts are occurrences themselves. We assume that objects cannot be parts of occurrences, but rather they participate in them. Perdurants extend in time by accumulating different temporal parts, so that, at any time they are present, they are only partially present, in  the sense that some of their proper temporal parts (e.g., their previous or future phases) may be not present. E.g., the piece of paper you are reading now is wholly present, while some temporal parts of your reading are not present yet, or any more. Philosophers say that endurants are entities that are in time, while lacking temporal parts (so to speak, all their parts flow with them in time). Perdurants, on the contrary, are entities that happen in time, and can have temporal parts (all their parts are fixed in time).\"^^[[936caa86-c233-5829-b9ec-ad6eb152c274]]"
+aliases:
+  - "dolce:perdurant rdfs:comment \"Perdurants (AKA occurrences) ..."
+---
