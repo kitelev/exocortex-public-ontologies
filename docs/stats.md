@@ -5,17 +5,17 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2025-12-30 20:59 UTC*
+*Auto-generated on 2026-01-03 13:03 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **156,698** |
-| Statements (triples) | 142,251 |
-| Anchors (resources) | 8,593 |
-| Blank Nodes | 5,823 |
-| Namespaces | 31 |
+| Total Files | **160,641** |
+| Statements (triples) | 145,568 |
+| Anchors (resources) | 8,899 |
+| Blank Nodes | 6,140 |
+| Namespaces | 34 |
 
 ## By Namespace
 
@@ -24,6 +24,7 @@ title: Statistics
 | `qudt` | 81,830 | 2914 | 5061 | 89,807 |
 | `quantitykind` | 28,982 | 1188 | 0 | 30,171 |
 | `schema` | 17,606 | 2994 | 0 | 20,601 |
+| `dul` | 1,910 | 197 | 139 | 2,247 |
 | `as` | 1,363 | 124 | 360 | 1,848 |
 | `dcat` | 1,338 | 37 | 31 | 1,407 |
 | `time` | 1,295 | 98 | 71 | 1,465 |
@@ -31,10 +32,12 @@ title: Statistics
 | `prov` | 1,126 | 96 | 68 | 1,291 |
 | `vcard` | 882 | 153 | 75 | 1,111 |
 | `geosparql` | 774 | 66 | 12 | 853 |
+| `dolce` | 752 | 108 | 58 | 919 |
 | `org` | 746 | 46 | 25 | 818 |
 | `doap` | 741 | 56 | 5 | 803 |
 | `dcterms` | 700 | 99 | 0 | 800 |
 | `sioc` | 658 | 99 | 0 | 758 |
+| `bfo` | 655 | 1 | 120 | 777 |
 | `foaf` | 620 | 75 | 0 | 696 |
 | `owl` | 450 | 78 | 0 | 529 |
 | `ssn` | 397 | 21 | 91 | 510 |
@@ -57,11 +60,11 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdfs:label` | 26,047 |
+| `rdfs:label` | 26,409 |
+| `rdf:type` | 15,586 |
 | `7c346f09...` | 15,507 |
-| `rdf:type` | 14,985 |
-| `rdfs:comment` | 5,872 |
-| `rdfs:isDefinedBy` | 5,393 |
+| `rdfs:comment` | 6,141 |
+| `rdfs:isDefinedBy` | 5,584 |
 | `0aa3d93f...` | 4,865 |
 | `58430877...` | 4,807 |
 | `4d8181f6...` | 4,807 |

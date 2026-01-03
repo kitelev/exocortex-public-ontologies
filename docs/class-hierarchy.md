@@ -2,7 +2,7 @@
 
 Complete class hierarchy across all ontologies.
 
-*Generated automatically. Total classes: 1293*
+*Generated automatically. Total classes: 1408*
 
 ## adms
 
@@ -121,6 +121,127 @@ Complete class hierarchy across all ontologies.
   - `doap:HgRepository`
   - `doap:SVNRepository`
 - `doap:Version`
+
+## dolce
+
+- `dolce:particular`
+  - `dolce:abstract`
+    - `dolce:proposition`
+    - `dolce:region`
+      - `dolce:abstract-region`
+      - `dolce:physical-region`
+        - `dolce:space-region`
+          - `dolce:spatio-temporal-region`
+      - `dolce:temporal-region`
+        - `dolce:time-interval`
+    - `dolce:set`
+- `dolce:quale`
+- `dolce:quality-space`
+- `dolce:spatio-temporal-particular`
+  - `dolce:endurant`
+    - `dolce:arbitrary-sum`
+    - `dolce:non-physical-endurant`
+      - `dolce:non-physical-object`
+    - `dolce:physical-endurant`
+      - `dolce:amount-of-matter`
+      - `dolce:feature`
+        - `dolce:dependent-place`
+        - `dolce:relevant-part`
+      - `dolce:physical-object`
+  - `dolce:perdurant`
+    - `dolce:event`
+      - `dolce:accomplishment`
+      - `dolce:achievement`
+    - `dolce:stative`
+      - `dolce:process`
+      - `dolce:state`
+  - `dolce:quality`
+    - `dolce:abstract-quality`
+    - `dolce:physical-quality`
+      - `dolce:spatial-location_q`
+    - `dolce:temporal-quality`
+      - `dolce:temporal-location_q`
+
+## dul
+
+- `dul:Entity`
+  - `dul:Abstract`
+    - `dul:FormalEntity`
+      - `dul:Set`
+    - `dul:Region`
+      - `dul:Amount`
+      - `dul:PhysicalAttribute`
+      - `dul:SocialObjectAttribute`
+      - `dul:SpaceRegion`
+      - `dul:SpatioTemporalRegion`
+      - `dul:TimeInterval`
+  - `dul:Event`
+    - `dul:Action`
+    - `dul:Process`
+  - `dul:InformationEntity`
+    - `dul:InformationObject`
+    - `dul:InformationRealization`
+  - `dul:Object`
+    - `dul:Agent`
+      - `dul:Person`
+        - `dul:NaturalPerson`
+        - `dul:SocialPerson`
+      - `dul:PhysicalAgent`
+        - `dul:Organism`
+      - `dul:SocialAgent`
+        - `dul:CollectiveAgent`
+          - `dul:Community`
+          - `dul:Group`
+        - `dul:Organization`
+        - `dul:Personification`
+    - `dul:PhysicalObject`
+      - `dul:PhysicalArtifact`
+        - `dul:DesignedArtifact`
+          - `dul:DesignedSubstance`
+      - `dul:PhysicalBody`
+        - `dul:BiologicalObject`
+        - `dul:ChemicalObject`
+        - `dul:Substance`
+          - `dul:FunctionalSubstance`
+      - `dul:PhysicalPlace`
+    - `dul:SocialObject`
+      - `dul:Collection`
+        - `dul:Collective`
+        - `dul:Configuration`
+        - `dul:TypeCollection`
+      - `dul:Concept`
+        - `dul:EventType`
+          - `dul:Task`
+        - `dul:LocalConcept`
+        - `dul:Parameter`
+          - `dul:UnitOfMeasure`
+        - `dul:Role`
+      - `dul:Description`
+        - `dul:Contract`
+        - `dul:Design`
+        - `dul:Diagnosis`
+        - `dul:Goal`
+        - `dul:Method`
+        - `dul:Narrative`
+        - `dul:Norm`
+        - `dul:Plan`
+          - `dul:Project`
+          - `dul:Workflow`
+        - `dul:Relation`
+          - `dul:Pattern`
+          - `dul:SocialRelation`
+        - `dul:Right`
+        - `dul:Theory`
+      - `dul:Place`
+  - `dul:Quality`
+  - `dul:Situation`
+    - `dul:PlanExecution`
+    - `dul:TimeIndexedRelation`
+      - `dul:Classification`
+      - `dul:Parthood`
+    - `dul:Transition`
+    - `dul:WorkflowExecution`
+- `dul:ObjectAggregate`
 
 ## foaf
 

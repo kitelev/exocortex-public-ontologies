@@ -2,7 +2,7 @@
 
 Complete property hierarchy across all ontologies.
 
-*Generated automatically. Total properties: 2437*
+*Generated automatically. Total properties: 2625*
 
 **Legend:** 🔗 ObjectProperty | 📝 DatatypeProperty | 📎 AnnotationProperty | ⚙️ Property
 
@@ -257,6 +257,207 @@ Complete property hierarchy across all ontologies.
 - ⚙️ `doap:vendor`
 - ⚙️ `doap:wiki`
 
+## dolce
+
+- 🔗 `dolce:immediate-relation`
+  - 🔗 `dolce:generic-constituent`
+  - 🔗 `dolce:generic-dependent`
+  - 🔗 `dolce:identity-c`
+  - 🔗 `dolce:identity-n`
+  - 🔗 `dolce:inherent-in`
+    - 🔗 `dolce:t-inherent-in`
+  - 🔗 `dolce:part`
+    - 🔗 `dolce:atomic-part`
+    - 🔗 `dolce:proper-part`
+      - 🔗 `dolce:boundary`
+      - 🔗 `dolce:temporary-proper-part`
+        - 🔗 `dolce:temporary-atomic-part`
+    - 🔗 `dolce:temporary-part`
+      - 🔗 `dolce:mereologically-coincides`
+  - 🔗 `dolce:participant`
+    - 🔗 `dolce:constant-participant`
+      - 🔗 `dolce:life-of`
+      - 🔗 `dolce:total-constant-participant`
+    - 🔗 `dolce:temporary-participant`
+      - 🔗 `dolce:total-temporary-participant`
+  - 🔗 `dolce:q-location`
+    - 🔗 `dolce:has-quale`
+  - 🔗 `dolce:r-location`
+  - 🔗 `dolce:specific-constant-constituent`
+  - 🔗 `dolce:specific-constant-dependent`
+    - 🔗 `dolce:host-of`
+  - 🔗 `dolce:weak-connection`
+- 🔗 `dolce:immediate-relation-i`
+  - 🔗 `dolce:generic-constituent-of`
+  - 🔗 `dolce:generically-dependent-on`
+  - 🔗 `dolce:has-quality`
+    - 🔗 `dolce:has-t-quality`
+  - 🔗 `dolce:part-of`
+    - 🔗 `dolce:atomic-part-of`
+    - 🔗 `dolce:proper-part-of`
+      - 🔗 `dolce:boundary-of`
+      - 🔗 `dolce:temporary-proper-part-of`
+        - 🔗 `dolce:temporary-atomic-part-of`
+    - 🔗 `dolce:temporary-part-of`
+  - 🔗 `dolce:participant-in`
+    - 🔗 `dolce:constant-participant-in`
+      - 🔗 `dolce:life`
+      - 🔗 `dolce:total-constant-participant-in`
+    - 🔗 `dolce:temporary-participant-in`
+      - 🔗 `dolce:total-temporary-participant-in`
+  - 🔗 `dolce:q-location-of`
+    - 🔗 `dolce:quale-of`
+  - 🔗 `dolce:r-location-of`
+  - 🔗 `dolce:specific-constant-constituent-of`
+  - 🔗 `dolce:specifically-constantly-dependent-on`
+    - 🔗 `dolce:host`
+- 🔗 `dolce:mediated-relation`
+  - 🔗 `dolce:generic-location`
+    - 🔗 `dolce:exact-location`
+      - 🔗 `dolce:abstract-location`
+      - 🔗 `dolce:physical-location`
+      - 🔗 `dolce:spatio-temporally-present-at`
+  - 🔗 `dolce:overlaps`
+  - 🔗 `dolce:partly-compresent`
+    - 🔗 `dolce:temporary-part`
+      - 🔗 `dolce:mereologically-coincides`
+      - 🔗 `dolce:temporary-proper-part`
+        - 🔗 `dolce:temporary-atomic-part`
+    - 🔗 `dolce:temporary-part-of`
+      - 🔗 `dolce:temporary-proper-part-of`
+        - 🔗 `dolce:temporary-atomic-part-of`
+  - 🔗 `dolce:q-present-at`
+  - 🔗 `dolce:sibling-part`
+  - 🔗 `dolce:strong-connection`
+- 🔗 `dolce:mediated-relation-i`
+  - 🔗 `dolce:generic-location-of`
+    - 🔗 `dolce:exact-location-of`
+      - 🔗 `dolce:abstract-location-of`
+      - 🔗 `dolce:physical-location-of`
+      - 🔗 `dolce:spatio-temporal-presence-of`
+  - 🔗 `dolce:time-of-q-presence-of`
+
+## dul
+
+- 🔗 `dul:associatedWith`
+  - 🔗 `dul:actsFor`
+  - 🔗 `dul:actsThrough`
+  - 🔗 `dul:characterizes`
+  - 🔗 `dul:classifies`
+    - 🔗 `dul:isConstraintFor`
+    - 🔗 `dul:isExecutedIn`
+    - 🔗 `dul:isRoleOf`
+    - 🔗 `dul:parametrizes`
+  - 🔗 `dul:conceptualizes`
+  - 🔗 `dul:concretelyExpresses`
+  - 🔗 `dul:coparticipatesWith`
+  - 🔗 `dul:covers`
+  - 🔗 `dul:describes`
+  - 🔗 `dul:expresses`
+    - 🔗 `dul:expressesConcept`
+  - 🔗 `dul:farFrom`
+  - 🔗 `dul:follows`
+    - 🔗 `dul:directlyFollows`
+      - 🔗 `dul:hasPrecondition`
+      - 🔗 `dul:isPostconditionOf`
+      - 🔗 `dul:isSubordinatedTo`
+  - 🔗 `dul:hasCommonBoundary`
+  - 🔗 `dul:hasConstituent`
+  - 🔗 `dul:hasInScope`
+  - 🔗 `dul:hasLocation`
+  - 🔗 `dul:hasMember`
+  - 🔗 `dul:hasPart`
+    - 🔗 `dul:hasProperPart`
+      - 🔗 `dul:hasComponent`
+  - 🔗 `dul:hasParticipant`
+    - 🔗 `dul:involvesAgent`
+  - 🔗 `dul:hasQuality`
+  - 🔗 `dul:hasRegion`
+    - 🔗 `dul:hasTimeInterval`
+    - 🔗 `dul:isObservableAt`
+  - 🔗 `dul:hasSetting`
+    - 🔗 `dul:isEventIncludedIn`
+      - 🔗 `dul:isActionIncludedIn`
+    - 🔗 `dul:isObjectIncludedIn`
+      - 🔗 `dul:isAgentIncludedIn`
+    - 🔗 `dul:isTimeIncludedIn`
+  - 🔗 `dul:introduces`
+  - 🔗 `dul:isAbout`
+  - 🔗 `dul:isCharacterizedBy`
+  - 🔗 `dul:isClassifiedBy`
+    - 🔗 `dul:executesTask`
+    - 🔗 `dul:hasConstraint`
+    - 🔗 `dul:hasRole`
+    - 🔗 `dul:isParametrizedBy`
+  - 🔗 `dul:isConceptualizedBy`
+  - 🔗 `dul:isConceptUsedIn`
+    - 🔗 `dul:isDefinedIn`
+      - 🔗 `dul:isRoleDefinedIn`
+      - 🔗 `dul:isTaskDefinedIn`
+  - 🔗 `dul:isConcretelyExpressedBy`
+  - 🔗 `dul:isConstituentOf`
+  - 🔗 `dul:isCoveredBy`
+  - 🔗 `dul:isDescribedBy`
+  - 🔗 `dul:isExpressedBy`
+    - 🔗 `dul:isConceptExpressedBy`
+  - 🔗 `dul:isIntroducedBy`
+  - 🔗 `dul:isLocationOf`
+  - 🔗 `dul:isMemberOf`
+  - 🔗 `dul:isParticipantIn`
+    - 🔗 `dul:isAgentInvolvedIn`
+  - 🔗 `dul:isPartOf`
+    - 🔗 `dul:isPropertPartOf`
+      - 🔗 `dul:isComponentOf`
+  - 🔗 `dul:isQualityOf`
+  - 🔗 `dul:isRealizedBy`
+  - 🔗 `dul:isReferenceOf`
+  - 🔗 `dul:isReferenceOfInformationRealizedBy`
+  - 🔗 `dul:isRegionFor`
+    - 🔗 `dul:isTimeIntervalOf`
+    - 🔗 `dul:isTimeOfObservationOf`
+  - 🔗 `dul:isRelatedToConcept`
+    - 🔗 `dul:hasParameter`
+    - 🔗 `dul:hasTask`
+    - 🔗 `dul:isParameterFor`
+    - 🔗 `dul:isSuperordinatedTo`
+    - 🔗 `dul:isTaskOf`
+  - 🔗 `dul:isRelatedToDescription`
+    - 🔗 `dul:expands`
+    - 🔗 `dul:isExpandedIn`
+  - 🔗 `dul:isSatisfiedBy`
+  - 🔗 `dul:isSettingFor`
+    - 🔗 `dul:includesEvent`
+      - 🔗 `dul:includesAction`
+    - 🔗 `dul:includesObject`
+      - 🔗 `dul:includesAgent`
+    - 🔗 `dul:includesPart`
+    - 🔗 `dul:includesTime`
+    - 🔗 `dul:includesWhole`
+  - 🔗 `dul:isSpecializedBy`
+  - 🔗 `dul:isUnifiedBy`
+  - 🔗 `dul:nearTo`
+  - 🔗 `dul:overlaps`
+  - 🔗 `dul:precedes`
+    - 🔗 `dul:directlyPrecedes`
+      - 🔗 `dul:hasPostcondition`
+      - 🔗 `dul:isPreconditionOf`
+  - 🔗 `dul:realizes`
+  - 🔗 `dul:realizesInformationAbout`
+    - 🔗 `dul:realizesSelfInformation`
+  - 🔗 `dul:sameSettingAs`
+  - 🔗 `dul:satisfies`
+  - 🔗 `dul:specializes`
+  - 🔗 `dul:unifies`
+  - 🔗 `dul:usesConcept`
+    - 🔗 `dul:defines`
+      - 🔗 `dul:definesRole`
+      - 🔗 `dul:definesTask`
+- 📝 `dul:hasDataValue`
+  - 📝 `dul:hasEventDate`
+  - 📝 `dul:hasParameterDataValue`
+  - 📝 `dul:hasRegionDataValue`
+    - 📝 `dul:hasIntervalDate`
+
 ## foaf
 
 - ⚙️ `foaf:account`
@@ -279,8 +480,8 @@ Complete property hierarchy across all ontologies.
 - ⚙️ `foaf:fundedBy`
 - 📝 `foaf:geekcode`
 - ⚙️ `foaf:gender`
-- ⚙️ `foaf:givenName`
 - 📝 `foaf:givenname`
+- ⚙️ `foaf:givenName`
 - 🔗 `foaf:holdsAccount`
 - ⚙️ `foaf:interest`
 - ⚙️ `foaf:jabberID`
