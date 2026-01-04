@@ -50,6 +50,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
+    <base href="{base_href}">
     <style>
         :root {{
             --bg: #0d1117;
@@ -323,12 +324,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         </main>
     </div>
     <script>
-        // Search functionality
-        const searchIndex = {search_index};
+        // Search functionality - load index asynchronously
+        let searchIndex = [];
         const searchInput = document.getElementById('search');
         const searchResults = document.getElementById('searchResults');
 
-        if (searchInput && searchIndex.length > 0) {{
+        // Load search index once (relative to ontology root)
+        const basePath = document.querySelector('base')?.href || '';
+        fetch(basePath + 'search-index.json')
+            .then(r => r.ok ? r.json() : [])
+            .then(data => {{ searchIndex = data; }})
+            .catch(() => {{ searchIndex = []; }});
+
+        if (searchInput) {{
             searchInput.addEventListener('input', function() {{
                 const query = this.value.toLowerCase().trim();
                 if (query.length < 2) {{
@@ -820,14 +828,13 @@ def generate_resource_page(resource: dict, resources: dict, prefixes: list,
     </table>
     """
 
-    search_index = build_search_index(resources)
     sidebar_nav = build_sidebar_nav(prefixes, resources, prefix)
     graph_script = generate_graph_script(graph_data)
 
     return HTML_TEMPLATE.format(
         title=f"{alias} - Ontology Documentation",
+        base_href="../",
         content=content,
-        search_index=json.dumps(search_index),
         sidebar_nav=sidebar_nav,
         graph_script=graph_script
     )
@@ -875,13 +882,12 @@ def generate_namespace_page(prefix: str, resources: dict, prefixes: list) -> str
     {resource_list(datatypes, "badge-datatype", "datatype")}
     """
 
-    search_index = build_search_index(resources)
     sidebar_nav = build_sidebar_nav(prefixes, resources, prefix)
 
     return HTML_TEMPLATE.format(
         title=f"{prefix.upper()} - Ontology Documentation",
+        base_href="../",
         content=content,
-        search_index=json.dumps(search_index),
         sidebar_nav=sidebar_nav,
         graph_script=""  # No graph on namespace pages
     )
@@ -1130,14 +1136,13 @@ def generate_index_page(prefixes: list, resources: dict, statements: list) -> st
     </ul>
     """
 
-    search_index = build_search_index(resources)
     sidebar_nav = build_sidebar_nav(prefixes, resources)
     graph_script = generate_namespace_graph_script(ns_graph_data)
 
     return HTML_TEMPLATE.format(
         title="Exocortex Public Ontologies",
+        base_href="./",
         content=content,
-        search_index=json.dumps(search_index),
         sidebar_nav=sidebar_nav,
         graph_script=graph_script
     )
@@ -1162,6 +1167,12 @@ def main():
     # Build tooltip index
     tooltip_index = build_tooltip_index(resources)
     print(f"  Built tooltip index with {len(tooltip_index)} entries")
+
+    # Generate search index (single JSON file loaded by all pages)
+    search_index = build_search_index(resources)
+    print(f"Generating search index ({len(search_index)} entries)...")
+    with open(output_dir / "search-index.json", "w", encoding="utf-8") as f:
+        json.dump(search_index, f, separators=(',', ':'))  # Minified
 
     # Generate main index
     print("Generating index page...")
