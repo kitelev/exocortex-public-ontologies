@@ -278,7 +278,7 @@
     <div class="breadcrumb">
         <a href="../index.html">Ontologies</a> / <a href="index.html">dul</a> / hasParameterDataValue
     </div>
-    <h1><span class="badge badge-property">Property</span> has parameter data value&quot;</h1>
+    <h1><span class="badge badge-property">Property</span> has parameter data value</h1>
     <div class="uri">http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParameterDataValue</div>
 
     <div class='description'>Parametrizes values from a datatype. For example, a Parameter MinimumAgeForDriving hasParameterDataValue 18 on datatype xsd:int, in the Italian traffic code. In this example, MinimumAgeForDriving isDefinedIn the Norm ItalianTrafficCodeAgeDriving. More complex parametrization requires workarounds. E.g. AgeRangeForDrugUsage could parametrize data value: 14 to 50 on the datatype: xsd:int. Since complex datatypes are not allowed in OWL1.0, a solution to this can only work by creating two &#x27;sub-parameters&#x27;: MinimumAgeForDrugUsage (that hasParameterDataValue 14) and MaximumAgeForDrugUsage (that hasParameterDataValue 50), which are components of (cf. hasComponent) the main Parameter AgeRangeForDrugUsage. Ordering on subparameters can be created by using or specializing the object property &#x27;precedes&#x27;.</div>
