@@ -470,7 +470,15 @@ def load_resources(repo_root: Path, prefixes: list) -> tuple:
             obj_link = f"../{resources[obj_value]['prefix']}/{obj_display.split(':')[-1].lower()}.html"
         else:
             # Literal value - clean up quotes and language tags
-            obj_display = str(obj_value).strip('"').split("@")[0].split("^^")[0]
+            # Format is "value"@lang or "value"^^type
+            lit = str(obj_value)
+            # Remove language tag and datatype suffix first
+            if "@" in lit:
+                lit = lit.rsplit("@", 1)[0]
+            if "^^" in lit:
+                lit = lit.rsplit("^^", 1)[0]
+            # Now strip surrounding quotes
+            obj_display = lit.strip('"')
             obj_link = None
 
         resources[subj_uuid]["properties"][pred_name].append({
