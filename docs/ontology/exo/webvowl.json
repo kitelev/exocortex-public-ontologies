@@ -1,0 +1,1266 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.7), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "en", "undefined" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://www.w3.org/2002/07/owl", "http://www.w3.org/2000/01/rdf-schema", "http://purl.org/dc/terms", "http://www.w3.org/2001/XMLSchema", "http://purl.org/dc/elements/1.1", "https://exocortex.my/ontology/exo" ],
+    "prefixList" : {
+      "exo" : "https://exocortex.my/ontology/exo#",
+      "owl" : "http://www.w3.org/2002/07/owl#",
+      "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "vann" : "http://purl.org/vocab/vann/",
+      "dcterms" : "http://purl.org/dc/terms/",
+      "xsd" : "http://www.w3.org/2001/XMLSchema#",
+      "" : "http://www.semanticweb.org/owl/owlapi/turtle#",
+      "dc" : "http://purl.org/dc/elements/1.1/",
+      "xml" : "http://www.w3.org/XML/1998/namespace",
+      "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "iri" : "https://exocortex.my/ontology/exo#",
+    "version" : "1.0.0",
+    "labels" : {
+      "en" : "EXO - Exocortex Core Ontology"
+    },
+    "comments" : {
+      "en" : "Core ontology for Exocortex knowledge management system. Defines fundamental concepts: Assets, Classes, Properties, Instances, and their relationships. Provides interoperability with standard RDF/RDFS/OWL vocabularies."
+    },
+    "other" : {
+      "preferredNamespacePrefix" : [ {
+        "identifier" : "preferredNamespacePrefix",
+        "language" : "undefined",
+        "value" : "exo",
+        "type" : "label"
+      } ],
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "1.0.0",
+        "type" : "label"
+      } ],
+      "preferredNamespaceUri" : [ {
+        "identifier" : "preferredNamespaceUri",
+        "language" : "undefined",
+        "value" : "https://exocortex.my/ontology/exo#",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "3",
+    "type" : "owl:Class"
+  }, {
+    "id" : "5",
+    "type" : "owl:Class"
+  }, {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "11",
+    "type" : "owl:Class"
+  }, {
+    "id" : "6",
+    "type" : "owl:Class"
+  }, {
+    "id" : "37",
+    "type" : "owl:Class"
+  }, {
+    "id" : "41",
+    "type" : "owl:Class"
+  }, {
+    "id" : "44",
+    "type" : "owl:Class"
+  }, {
+    "id" : "45",
+    "type" : "owl:Class"
+  }, {
+    "id" : "46",
+    "type" : "owl:Class"
+  }, {
+    "id" : "47",
+    "type" : "owl:Class"
+  }, {
+    "id" : "48",
+    "type" : "owl:Class"
+  }, {
+    "id" : "1",
+    "type" : "owl:Class"
+  }, {
+    "id" : "64",
+    "type" : "owl:Class"
+  }, {
+    "id" : "51",
+    "type" : "owl:Class"
+  }, {
+    "id" : "16",
+    "type" : "owl:Class"
+  }, {
+    "id" : "70",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "14",
+    "type" : "owl:Class"
+  }, {
+    "id" : "18",
+    "type" : "owl:Class"
+  }, {
+    "id" : "42",
+    "type" : "owl:Class"
+  }, {
+    "id" : "31",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "21",
+    "type" : "owl:Class"
+  }, {
+    "id" : "29",
+    "type" : "owl:Class"
+  }, {
+    "id" : "74",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "75",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "56",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "54",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "35",
+    "type" : "owl:Class"
+  }, {
+    "id" : "61",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "36",
+    "type" : "owl:Class"
+  }, {
+    "id" : "79",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "19",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "80",
+    "type" : "owl:Class"
+  }, {
+    "id" : "25",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "39",
+    "type" : "owl:Class"
+  }, {
+    "id" : "24",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "83",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "9",
+    "type" : "owl:Class"
+  }, {
+    "id" : "86",
+    "type" : "owl:Class"
+  }, {
+    "id" : "38",
+    "type" : "owl:Class"
+  }, {
+    "id" : "33",
+    "type" : "owl:Class"
+  }, {
+    "id" : "88",
+    "type" : "owl:Class"
+  }, {
+    "id" : "27",
+    "type" : "owl:Class"
+  }, {
+    "id" : "89",
+    "type" : "owl:Class"
+  }, {
+    "id" : "4",
+    "type" : "owl:Class"
+  }, {
+    "id" : "63",
+    "type" : "owl:Class"
+  }, {
+    "id" : "2",
+    "type" : "owl:Class"
+  }, {
+    "id" : "12",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "https://exocortex.my/ontology/exo#NumberProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "NumberProperty",
+      "en" : "Number Property"
+    },
+    "comment" : {
+      "en" : "Property with numeric range"
+    },
+    "id" : "3",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement",
+    "baseIri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Statement"
+    },
+    "subClasses" : [ "6" ],
+    "attributes" : [ "external" ],
+    "id" : "5"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#TimestampProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TimestampProperty",
+      "en" : "Timestamp Property"
+    },
+    "comment" : {
+      "en" : "Property with timestamp range"
+    },
+    "id" : "7",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Resource",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Resource",
+      "en" : "Resource"
+    },
+    "comment" : {
+      "en" : "Base resource type"
+    },
+    "id" : "11",
+    "superClasses" : [ "12" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Statement",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Statement",
+      "en" : "Statement"
+    },
+    "comment" : {
+      "en" : "RDF statement (triple)"
+    },
+    "id" : "6",
+    "superClasses" : [ "5" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#PropertyCardinality",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "PropertyCardinality",
+      "en" : "Property Cardinality"
+    },
+    "subClasses" : [ "38", "39" ],
+    "comment" : {
+      "en" : "Cardinality constraint for properties"
+    },
+    "id" : "37"
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Ontology",
+    "baseIri" : "http://www.w3.org/2002/07/owl",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Ontology"
+    },
+    "subClasses" : [ "42" ],
+    "attributes" : [ "external" ],
+    "id" : "41"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#DateProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "DateProperty",
+      "en" : "Date Property"
+    },
+    "comment" : {
+      "en" : "Property with date range"
+    },
+    "id" : "44",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#DatatypeProperty",
+    "baseIri" : "http://www.w3.org/2002/07/owl",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "DatatypeProperty"
+    },
+    "subClasses" : [ "4" ],
+    "attributes" : [ "external" ],
+    "id" : "45"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Instance",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Instance",
+      "en" : "Instance"
+    },
+    "comment" : {
+      "en" : "Instance of a class"
+    },
+    "id" : "46"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#FunctionSignatureInputArgument",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "FunctionSignatureInputArgument",
+      "en" : "Function Signature Input Argument"
+    },
+    "comment" : {
+      "en" : "Input argument for function signatures"
+    },
+    "id" : "47"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#DeprecatedProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "DeprecatedProperty",
+      "en" : "Deprecated Property"
+    },
+    "comment" : {
+      "en" : "Property marked for removal"
+    },
+    "id" : "48",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Property",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Property",
+      "en" : "Property"
+    },
+    "subClasses" : [ "48", "51" ],
+    "comment" : {
+      "en" : "Base class for all properties"
+    },
+    "id" : "1",
+    "superClasses" : [ "2" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Boolean",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Boolean",
+      "en" : "Boolean"
+    },
+    "subClasses" : [ "63" ],
+    "comment" : {
+      "en" : "Boolean value type"
+    },
+    "id" : "64"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#MetaProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "MetaProperty",
+      "en" : "Meta Property"
+    },
+    "comment" : {
+      "en" : "Property about properties"
+    },
+    "id" : "51",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#StringProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "StringProperty",
+      "en" : "String Property"
+    },
+    "comment" : {
+      "en" : "Property with string range"
+    },
+    "id" : "16",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "70",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#BooleanProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "BooleanProperty",
+      "en" : "Boolean Property"
+    },
+    "comment" : {
+      "en" : "Property with boolean range"
+    },
+    "id" : "14",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Asset",
+      "en" : "Asset"
+    },
+    "comment" : {
+      "en" : "Base class for all knowledge assets in Exocortex"
+    },
+    "id" : "18"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Ontology",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Ontology",
+      "en" : "Ontology"
+    },
+    "comment" : {
+      "en" : "Ontology definition"
+    },
+    "id" : "42",
+    "superClasses" : [ "41" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "31",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#TimeProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TimeProperty",
+      "en" : "Time Property"
+    },
+    "comment" : {
+      "en" : "Property with time range"
+    },
+    "id" : "21",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#URLProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "URLProperty",
+      "en" : "URL Property"
+    },
+    "comment" : {
+      "en" : "Property with URL range"
+    },
+    "id" : "29",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "74",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "75",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "56",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "54",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#ObjectProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "ObjectProperty",
+      "en" : "Object Property"
+    },
+    "comment" : {
+      "en" : "Property linking to another resource"
+    },
+    "id" : "35",
+    "superClasses" : [ "36" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "61",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#ObjectProperty",
+    "baseIri" : "http://www.w3.org/2002/07/owl",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "ObjectProperty"
+    },
+    "subClasses" : [ "35" ],
+    "attributes" : [ "external" ],
+    "id" : "36"
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "79",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "19",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Relation",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Relation",
+      "en" : "Relation"
+    },
+    "comment" : {
+      "en" : "Semantic relation between assets"
+    },
+    "id" : "80"
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "25",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#PropertyCardinalitySingle",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "PropertyCardinalitySingle",
+      "en" : "Single Cardinality"
+    },
+    "comment" : {
+      "en" : "Property allows single value"
+    },
+    "id" : "39",
+    "superClasses" : [ "37" ]
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "24",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "83",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Class",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Class",
+      "en" : "Class"
+    },
+    "comment" : {
+      "en" : "Represents a class definition"
+    },
+    "id" : "9",
+    "superClasses" : [ "33" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Prototype",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Prototype",
+      "en" : "Prototype"
+    },
+    "comment" : {
+      "en" : "Template for creating instances"
+    },
+    "id" : "86"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#PropertyCardinalityMultiple",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "PropertyCardinalityMultiple",
+      "en" : "Multiple Cardinality"
+    },
+    "comment" : {
+      "en" : "Property allows multiple values"
+    },
+    "id" : "38",
+    "superClasses" : [ "37" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Class",
+    "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Class"
+    },
+    "subClasses" : [ "9" ],
+    "attributes" : [ "external" ],
+    "id" : "33"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#OntologyAlias",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "OntologyAlias",
+      "en" : "Ontology Alias"
+    },
+    "comment" : {
+      "en" : "Prefix alias for namespace"
+    },
+    "id" : "88"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#UUIDProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "UUIDProperty",
+      "en" : "UUID Property"
+    },
+    "comment" : {
+      "en" : "Property with UUID range"
+    },
+    "id" : "27",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Collection",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Collection",
+      "en" : "Collection"
+    },
+    "comment" : {
+      "en" : "Container for multiple items"
+    },
+    "id" : "89"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#DatatypeProperty",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "DatatypeProperty",
+      "en" : "Datatype Property"
+    },
+    "subClasses" : [ "44", "7", "3", "21", "29", "27", "16", "14" ],
+    "comment" : {
+      "en" : "Property with literal value"
+    },
+    "id" : "4",
+    "superClasses" : [ "45" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#True",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "True",
+      "en" : "True"
+    },
+    "comment" : {
+      "en" : "Boolean true value"
+    },
+    "id" : "63",
+    "superClasses" : [ "64" ]
+  }, {
+    "iri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+    "baseIri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Property"
+    },
+    "subClasses" : [ "1" ],
+    "attributes" : [ "external" ],
+    "id" : "2"
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Resource",
+    "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Resource"
+    },
+    "subClasses" : [ "11" ],
+    "attributes" : [ "external" ],
+    "id" : "12"
+  } ],
+  "property" : [ {
+    "id" : "0",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "8",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "13",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "15",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "17",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "20",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "22",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "23",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "26",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "28",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "30",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "32",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "34",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "40",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "43",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "49",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "52",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "53",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "55",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "58",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "59",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "60",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "62",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "65",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "66",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "67",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "69",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "71",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "72",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "73",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "76",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "77",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "81",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "82",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "84",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "87",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "90",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "85",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "78",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "50",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "57",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "10",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "68",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "91",
+    "type" : "rdfs:SubClassOf"
+  } ],
+  "propertyAttribute" : [ {
+    "range" : "2",
+    "domain" : "1",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "0"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Property_domain",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "Property_domain",
+      "en" : "domain"
+    },
+    "superproperty" : [ "10" ],
+    "domain" : "1",
+    "comment" : {
+      "en" : "Domain class of a property"
+    },
+    "attributes" : [ "object" ],
+    "id" : "8"
+  }, {
+    "range" : "4",
+    "domain" : "14",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "13"
+  }, {
+    "range" : "4",
+    "domain" : "16",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "15"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_uid",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "19",
+    "label" : {
+      "IRI-based" : "Asset_uid",
+      "en" : "uid"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Unique identifier for an asset"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "17"
+  }, {
+    "range" : "4",
+    "domain" : "21",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "20"
+  }, {
+    "range" : "4",
+    "domain" : "3",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "22"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_label",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "25",
+    "label" : {
+      "IRI-based" : "Asset_label",
+      "en" : "label"
+    },
+    "domain" : "24",
+    "comment" : {
+      "en" : "Human-readable label for an asset"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "23"
+  }, {
+    "range" : "4",
+    "domain" : "27",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "26"
+  }, {
+    "range" : "4",
+    "domain" : "29",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "28"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_fileName",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "31",
+    "label" : {
+      "IRI-based" : "Asset_fileName",
+      "en" : "fileName"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "File name in vault"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "30"
+  }, {
+    "range" : "33",
+    "domain" : "9",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "32"
+  }, {
+    "range" : "36",
+    "domain" : "35",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "34"
+  }, {
+    "range" : "4",
+    "domain" : "7",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "40"
+  }, {
+    "range" : "4",
+    "domain" : "44",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "43"
+  }, {
+    "iri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "baseIri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+    "range" : "24",
+    "label" : {
+      "IRI-based" : "type"
+    },
+    "domain" : "24",
+    "subproperty" : [ "50" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "49"
+  }, {
+    "range" : "1",
+    "domain" : "51",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "52"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Ontology_url",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "54",
+    "label" : {
+      "IRI-based" : "Ontology_url",
+      "en" : "url"
+    },
+    "domain" : "42",
+    "comment" : {
+      "en" : "Namespace URL of ontology"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "53"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_relates",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "56",
+    "label" : {
+      "IRI-based" : "Asset_relates",
+      "en" : "relates"
+    },
+    "superproperty" : [ "57" ],
+    "domain" : "18",
+    "comment" : {
+      "en" : "Generic relation to another asset"
+    },
+    "attributes" : [ "object" ],
+    "id" : "55"
+  }, {
+    "range" : "1",
+    "domain" : "48",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "58"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_bodyLink",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "56",
+    "label" : {
+      "IRI-based" : "Asset_bodyLink",
+      "en" : "bodyLink"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Links extracted from body content"
+    },
+    "attributes" : [ "object" ],
+    "id" : "59"
+  }, {
+    "iri" : "http://purl.org/dc/terms/created",
+    "baseIri" : "http://purl.org/dc/terms",
+    "range" : "61",
+    "label" : {
+      "IRI-based" : "created"
+    },
+    "domain" : "24",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "60"
+  }, {
+    "range" : "64",
+    "domain" : "63",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "62"
+  }, {
+    "range" : "37",
+    "domain" : "39",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "65"
+  }, {
+    "range" : "37",
+    "domain" : "38",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "66"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Ontology_imports",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "42",
+    "label" : {
+      "IRI-based" : "Ontology_imports",
+      "en" : "imports"
+    },
+    "superproperty" : [ "68" ],
+    "domain" : "42",
+    "comment" : {
+      "en" : "Imported ontology"
+    },
+    "attributes" : [ "object" ],
+    "id" : "67"
+  }, {
+    "iri" : "http://purl.org/dc/terms/description",
+    "baseIri" : "http://purl.org/dc/terms",
+    "range" : "70",
+    "label" : {
+      "IRI-based" : "description"
+    },
+    "domain" : "24",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "69"
+  }, {
+    "range" : "45",
+    "domain" : "4",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "71"
+  }, {
+    "range" : "41",
+    "domain" : "42",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "72"
+  }, {
+    "range" : "5",
+    "domain" : "6",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "73"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_description",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "74",
+    "label" : {
+      "IRI-based" : "Asset_description",
+      "en" : "description"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Textual description of an asset"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "76"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Property_range",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "75",
+    "label" : {
+      "IRI-based" : "Property_range",
+      "en" : "range"
+    },
+    "superproperty" : [ "78" ],
+    "domain" : "1",
+    "comment" : {
+      "en" : "Range class of a property"
+    },
+    "attributes" : [ "object" ],
+    "id" : "77"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_isDefinedBy",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "56",
+    "label" : {
+      "IRI-based" : "Asset_isDefinedBy",
+      "en" : "isDefinedBy"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Reference to defining resource"
+    },
+    "attributes" : [ "object" ],
+    "id" : "81"
+  }, {
+    "iri" : "http://purl.org/dc/elements/1.1/identifier",
+    "baseIri" : "http://purl.org/dc/elements/1.1",
+    "range" : "79",
+    "label" : {
+      "IRI-based" : "identifier"
+    },
+    "domain" : "24",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "82"
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
+    "range" : "24",
+    "label" : {
+      "IRI-based" : "subClassOf"
+    },
+    "domain" : "24",
+    "subproperty" : [ "85" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "84"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_createdAt",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "83",
+    "label" : {
+      "IRI-based" : "Asset_createdAt",
+      "en" : "createdAt"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Creation timestamp"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "87"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_prototype",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "86",
+    "label" : {
+      "IRI-based" : "Asset_prototype",
+      "en" : "prototype"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Reference to template/prototype"
+    },
+    "attributes" : [ "object" ],
+    "id" : "90"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Class_superClass",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "Class_superClass",
+      "en" : "superClass"
+    },
+    "superproperty" : [ "84" ],
+    "domain" : "9",
+    "comment" : {
+      "en" : "Parent class in hierarchy"
+    },
+    "attributes" : [ "object" ],
+    "id" : "85"
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#range",
+    "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
+    "range" : "24",
+    "label" : {
+      "IRI-based" : "range"
+    },
+    "domain" : "24",
+    "subproperty" : [ "77" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "78"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Instance_class",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "Instance_class",
+      "en" : "class"
+    },
+    "superproperty" : [ "49" ],
+    "domain" : "46",
+    "comment" : {
+      "en" : "Class of an instance"
+    },
+    "attributes" : [ "object" ],
+    "id" : "50"
+  }, {
+    "iri" : "http://purl.org/dc/terms/relation",
+    "baseIri" : "http://purl.org/dc/terms",
+    "range" : "24",
+    "label" : {
+      "IRI-based" : "relation"
+    },
+    "domain" : "24",
+    "subproperty" : [ "55" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "57"
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#domain",
+    "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
+    "range" : "24",
+    "label" : {
+      "IRI-based" : "domain"
+    },
+    "domain" : "24",
+    "subproperty" : [ "8" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#imports",
+    "baseIri" : "http://www.w3.org/2002/07/owl",
+    "range" : "24",
+    "label" : {
+      "IRI-based" : "imports"
+    },
+    "domain" : "24",
+    "subproperty" : [ "67" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "68"
+  }, {
+    "range" : "12",
+    "domain" : "11",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "91"
+  } ]
+}

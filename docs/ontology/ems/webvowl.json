@@ -1,0 +1,1529 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.7), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "en", "undefined" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2001/XMLSchema", "https://exocortex.my/ontology/ems", "https://exocortex.my/ontology/exo" ],
+    "prefixList" : {
+      "ems" : "https://exocortex.my/ontology/ems#",
+      "exo" : "https://exocortex.my/ontology/exo#",
+      "owl" : "http://www.w3.org/2002/07/owl#",
+      "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "vann" : "http://purl.org/vocab/vann/",
+      "xsd" : "http://www.w3.org/2001/XMLSchema#",
+      "" : "http://www.semanticweb.org/owl/owlapi/turtle#",
+      "xml" : "http://www.w3.org/XML/1998/namespace",
+      "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "iri" : "https://exocortex.my/ontology/ems#",
+    "version" : "1.0.0",
+    "labels" : {
+      "en" : "EMS - Effort Management System Ontology"
+    },
+    "comments" : {
+      "en" : "Ontology for task management, project planning, and effort tracking in Exocortex. Key concepts: Tasks, Projects, Areas, Ideas, Sessions, Meetings, and OKRs with status tracking and timestamps."
+    },
+    "other" : {
+      "preferredNamespacePrefix" : [ {
+        "identifier" : "preferredNamespacePrefix",
+        "language" : "undefined",
+        "value" : "ems",
+        "type" : "label"
+      } ],
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "1.0.0",
+        "type" : "label"
+      } ],
+      "preferredNamespaceUri" : [ {
+        "identifier" : "preferredNamespaceUri",
+        "language" : "undefined",
+        "value" : "https://exocortex.my/ontology/ems#",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "0",
+    "type" : "owl:Class"
+  }, {
+    "id" : "4",
+    "type" : "owl:Class"
+  }, {
+    "id" : "6",
+    "type" : "owl:Class"
+  }, {
+    "id" : "17",
+    "type" : "owl:Class"
+  }, {
+    "id" : "28",
+    "type" : "owl:Class"
+  }, {
+    "id" : "37",
+    "type" : "owl:Class"
+  }, {
+    "id" : "20",
+    "type" : "owl:Class"
+  }, {
+    "id" : "38",
+    "type" : "owl:Class"
+  }, {
+    "id" : "39",
+    "type" : "owl:Class"
+  }, {
+    "id" : "16",
+    "type" : "owl:Class"
+  }, {
+    "id" : "41",
+    "type" : "owl:Class"
+  }, {
+    "id" : "13",
+    "type" : "owl:Class"
+  }, {
+    "id" : "54",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "3",
+    "type" : "owl:Class"
+  }, {
+    "id" : "10",
+    "type" : "owl:Class"
+  }, {
+    "id" : "63",
+    "type" : "owl:Class"
+  }, {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "47",
+    "type" : "owl:Class"
+  }, {
+    "id" : "71",
+    "type" : "owl:Class"
+  }, {
+    "id" : "29",
+    "type" : "owl:Class"
+  }, {
+    "id" : "85",
+    "type" : "owl:Class"
+  }, {
+    "id" : "18",
+    "type" : "owl:Class"
+  }, {
+    "id" : "88",
+    "type" : "owl:Class"
+  }, {
+    "id" : "96",
+    "type" : "owl:Class"
+  }, {
+    "id" : "5",
+    "type" : "owl:Class"
+  }, {
+    "id" : "48",
+    "type" : "owl:Class"
+  }, {
+    "id" : "74",
+    "type" : "owl:Class"
+  }, {
+    "id" : "83",
+    "type" : "owl:Class"
+  }, {
+    "id" : "11",
+    "type" : "owl:Class"
+  }, {
+    "id" : "15",
+    "type" : "owl:Class"
+  }, {
+    "id" : "101",
+    "type" : "owl:Class"
+  }, {
+    "id" : "102",
+    "type" : "owl:Class"
+  }, {
+    "id" : "19",
+    "type" : "owl:Class"
+  }, {
+    "id" : "1",
+    "type" : "owl:Class"
+  }, {
+    "id" : "79",
+    "type" : "owl:Class"
+  }, {
+    "id" : "50",
+    "type" : "owl:Class"
+  }, {
+    "id" : "103",
+    "type" : "owl:Class"
+  }, {
+    "id" : "84",
+    "type" : "owl:Class"
+  }, {
+    "id" : "21",
+    "type" : "owl:Class"
+  }, {
+    "id" : "87",
+    "type" : "owl:Class"
+  }, {
+    "id" : "8",
+    "type" : "owl:Class"
+  }, {
+    "id" : "105",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "12",
+    "type" : "owl:Class"
+  }, {
+    "id" : "107",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "110",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "66",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "44",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "91",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "68",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "111",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "82",
+    "type" : "owl:Class"
+  }, {
+    "id" : "86",
+    "type" : "owl:Class"
+  }, {
+    "id" : "9",
+    "type" : "owl:Class"
+  }, {
+    "id" : "62",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "35",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "53",
+    "type" : "owl:Class"
+  }, {
+    "id" : "57",
+    "type" : "owl:Class"
+  }, {
+    "id" : "14",
+    "type" : "owl:Class"
+  }, {
+    "id" : "77",
+    "type" : "owl:Class"
+  }, {
+    "id" : "114",
+    "type" : "owl:Class"
+  }, {
+    "id" : "64",
+    "type" : "owl:Class"
+  }, {
+    "id" : "115",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "https://exocortex.my/ontology/ems#Initiative",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Initiative",
+      "en" : "Initiative"
+    },
+    "comment" : {
+      "en" : "Strategic initiative spanning multiple projects"
+    },
+    "id" : "0",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#TransportingSession",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TransportingSession",
+      "en" : "Transporting Session"
+    },
+    "comment" : {
+      "en" : "Travel time between locations"
+    },
+    "id" : "4",
+    "superClasses" : [ "5" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatus",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatus",
+      "en" : "Effort Status"
+    },
+    "subClasses" : [ "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" ],
+    "comment" : {
+      "en" : "Status enumeration for efforts"
+    },
+    "id" : "6"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Task",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Task",
+      "en" : "Task"
+    },
+    "subClasses" : [ "19", "20", "21" ],
+    "comment" : {
+      "en" : "Atomic unit of work"
+    },
+    "id" : "17",
+    "superClasses" : [ "18" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#MeetingPrototype",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "MeetingPrototype",
+      "en" : "Meeting Prototype"
+    },
+    "comment" : {
+      "en" : "Template for recurring meetings"
+    },
+    "id" : "28",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortColor",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortColor",
+      "en" : "Effort Color"
+    },
+    "comment" : {
+      "en" : "Visual color indicator for effort"
+    },
+    "id" : "37"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Bug",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Bug",
+      "en" : "Bug"
+    },
+    "comment" : {
+      "en" : "Software defect to be fixed"
+    },
+    "id" : "20",
+    "superClasses" : [ "17" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#TaskPrototype",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TaskPrototype",
+      "en" : "Task Prototype"
+    },
+    "comment" : {
+      "en" : "Template for creating tasks"
+    },
+    "id" : "38",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#TaskZone",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TaskZone",
+      "en" : "Task Zone"
+    },
+    "comment" : {
+      "en" : "Energy zone for task (creative, routine, administrative)"
+    },
+    "id" : "39"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusDone",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusDone",
+      "en" : "Done"
+    },
+    "comment" : {
+      "en" : "Effort has been completed"
+    },
+    "id" : "16",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#TaskContext",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TaskContext",
+      "en" : "Task Context"
+    },
+    "comment" : {
+      "en" : "Context where task can be done (@home, @work, @phone)"
+    },
+    "id" : "41"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusToDo",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusToDo",
+      "en" : "To Do"
+    },
+    "comment" : {
+      "en" : "Effort is scheduled to be done"
+    },
+    "id" : "13",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "54",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Project",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Project",
+      "en" : "Project"
+    },
+    "comment" : {
+      "en" : "Collection of related tasks"
+    },
+    "id" : "3",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusAcknowledgement",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusAcknowledgement",
+      "en" : "Acknowledgement"
+    },
+    "comment" : {
+      "en" : "Effort awaiting acknowledgement"
+    },
+    "id" : "10",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#OfflineMeetingFormat",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "OfflineMeetingFormat",
+      "en" : "Offline"
+    },
+    "comment" : {
+      "en" : "In-person meeting"
+    },
+    "id" : "63",
+    "superClasses" : [ "64" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusBusinessAnalysis",
+      "en" : "Business Analysis"
+    },
+    "comment" : {
+      "en" : "Effort in business analysis phase"
+    },
+    "id" : "7",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#MonthlyObjective",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "MonthlyObjective",
+      "en" : "Monthly Objective"
+    },
+    "comment" : {
+      "en" : "Monthly objective"
+    },
+    "id" : "47",
+    "superClasses" : [ "48" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Area",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Area",
+      "en" : "Area"
+    },
+    "comment" : {
+      "en" : "Life area (Work, Health, Learning, etc.)"
+    },
+    "id" : "71",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Prototype",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Prototype"
+    },
+    "subClasses" : [ "82", "83", "84", "28", "38" ],
+    "attributes" : [ "external" ],
+    "id" : "29"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Collection",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Collection"
+    },
+    "subClasses" : [ "86" ],
+    "attributes" : [ "external" ],
+    "id" : "85"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Effort",
+      "en" : "Effort"
+    },
+    "subClasses" : [ "17", "5", "1", "74", "79" ],
+    "comment" : {
+      "en" : "Base class for all trackable efforts"
+    },
+    "id" : "18",
+    "superClasses" : [ "87" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#TaskSize",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TaskSize",
+      "en" : "Task Size"
+    },
+    "comment" : {
+      "en" : "T-shirt sizing for task estimation (S, M, L, XL)"
+    },
+    "id" : "88"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Recurring",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Recurring",
+      "en" : "Recurring"
+    },
+    "comment" : {
+      "en" : "Recurring effort pattern"
+    },
+    "id" : "96"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Session",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Session",
+      "en" : "Session"
+    },
+    "subClasses" : [ "4" ],
+    "comment" : {
+      "en" : "Focused work session"
+    },
+    "id" : "5",
+    "superClasses" : [ "18" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#OKR",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "OKR",
+      "en" : "OKR"
+    },
+    "subClasses" : [ "57", "50", "47", "53" ],
+    "comment" : {
+      "en" : "Objective and Key Results"
+    },
+    "id" : "48",
+    "superClasses" : [ "1" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Idea",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Idea",
+      "en" : "Idea"
+    },
+    "comment" : {
+      "en" : "Captured thought or concept for future development"
+    },
+    "id" : "74",
+    "superClasses" : [ "18" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortPrototype",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortPrototype",
+      "en" : "Effort Prototype"
+    },
+    "comment" : {
+      "en" : "Base template for efforts"
+    },
+    "id" : "83",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusBacklog",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusBacklog",
+      "en" : "Backlog"
+    },
+    "comment" : {
+      "en" : "Effort is in backlog, not yet scheduled"
+    },
+    "id" : "11",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusDraft",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusDraft",
+      "en" : "Draft"
+    },
+    "comment" : {
+      "en" : "Effort is in draft state, not finalized"
+    },
+    "id" : "15",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortParticipant",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortParticipant",
+      "en" : "Effort Participant"
+    },
+    "comment" : {
+      "en" : "Participant in an effort"
+    },
+    "id" : "101"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#CurrentFocus",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "CurrentFocus",
+      "en" : "Current Focus"
+    },
+    "comment" : {
+      "en" : "Currently active focus area"
+    },
+    "id" : "102"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#ExtTask",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "ExtTask",
+      "en" : "External Task"
+    },
+    "comment" : {
+      "en" : "Task from external system (GitHub, Jira, etc.)"
+    },
+    "id" : "19",
+    "superClasses" : [ "17" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#ParentEffort",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "ParentEffort",
+      "en" : "Parent Effort"
+    },
+    "subClasses" : [ "0", "3", "48", "71" ],
+    "comment" : {
+      "en" : "Effort that contains child efforts"
+    },
+    "id" : "1",
+    "superClasses" : [ "18" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Meeting",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Meeting",
+      "en" : "Meeting"
+    },
+    "comment" : {
+      "en" : "Scheduled meeting with participants"
+    },
+    "id" : "79",
+    "superClasses" : [ "18" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#WeeklyObjective",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "WeeklyObjective",
+      "en" : "Weekly Objective"
+    },
+    "comment" : {
+      "en" : "Weekly objective"
+    },
+    "id" : "50",
+    "superClasses" : [ "48" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#SessionType",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "SessionType",
+      "en" : "Session Type"
+    },
+    "comment" : {
+      "en" : "Type of work session"
+    },
+    "id" : "103"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#ProjectPrototype",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "ProjectPrototype",
+      "en" : "Project Prototype"
+    },
+    "comment" : {
+      "en" : "Template for creating projects"
+    },
+    "id" : "84",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#WaitingTask",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "WaitingTask",
+      "en" : "Waiting Task"
+    },
+    "comment" : {
+      "en" : "Task blocked/waiting for something"
+    },
+    "id" : "21",
+    "superClasses" : [ "17" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Asset"
+    },
+    "subClasses" : [ "18" ],
+    "attributes" : [ "external" ],
+    "id" : "87"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusThisWeek",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusThisWeek",
+      "en" : "This Week"
+    },
+    "comment" : {
+      "en" : "Effort planned for this week"
+    },
+    "id" : "8",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "105",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusTrashed",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusTrashed",
+      "en" : "Trashed"
+    },
+    "comment" : {
+      "en" : "Effort has been discarded"
+    },
+    "id" : "12",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "107",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "110",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "66",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "44",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "91",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "68",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "111",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#SessionPrototype",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "SessionPrototype",
+      "en" : "Session Prototype"
+    },
+    "comment" : {
+      "en" : "Template for work sessions"
+    },
+    "id" : "82",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortParticipants",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortParticipants",
+      "en" : "Effort Participants"
+    },
+    "comment" : {
+      "en" : "Collection of participants"
+    },
+    "id" : "86",
+    "superClasses" : [ "85" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusClarifying",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusClarifying",
+      "en" : "Clarifying"
+    },
+    "comment" : {
+      "en" : "Effort requires clarification before work"
+    },
+    "id" : "9",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "62",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "35",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#QuarterlyObjective",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "QuarterlyObjective",
+      "en" : "Quarterly Objective"
+    },
+    "comment" : {
+      "en" : "Quarterly objective"
+    },
+    "id" : "53",
+    "superClasses" : [ "48" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#YearlyObjective",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "YearlyObjective",
+      "en" : "Yearly Objective"
+    },
+    "comment" : {
+      "en" : "Annual objective"
+    },
+    "id" : "57",
+    "superClasses" : [ "48" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortStatusDoing",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortStatusDoing",
+      "en" : "Doing"
+    },
+    "comment" : {
+      "en" : "Effort is currently in progress"
+    },
+    "id" : "14",
+    "superClasses" : [ "6" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#OnlineMeetingFormat",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "OnlineMeetingFormat",
+      "en" : "Online"
+    },
+    "comment" : {
+      "en" : "Virtual/remote meeting"
+    },
+    "id" : "77",
+    "superClasses" : [ "64" ]
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#TaskCategory",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TaskCategory",
+      "en" : "Task Category"
+    },
+    "comment" : {
+      "en" : "Category for task classification"
+    },
+    "id" : "114"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#MeetingFormat",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "MeetingFormat",
+      "en" : "Meeting Format"
+    },
+    "subClasses" : [ "77", "63" ],
+    "comment" : {
+      "en" : "Format of meeting (online/offline)"
+    },
+    "id" : "64"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#EffortResponsible",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EffortResponsible",
+      "en" : "Effort Responsible"
+    },
+    "comment" : {
+      "en" : "Person responsible for effort completion"
+    },
+    "id" : "115"
+  } ],
+  "property" : [ {
+    "id" : "2",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "22",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "23",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "24",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "25",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "26",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "27",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "30",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "31",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "32",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "33",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "34",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "40",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "42",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "43",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "45",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "46",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "49",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "51",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "52",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "55",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "56",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "58",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "60",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "61",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "65",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "67",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "69",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "70",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "73",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "75",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "76",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "78",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "80",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "81",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "59",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "89",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "90",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "92",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "93",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "94",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "95",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "97",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "98",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "99",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "36",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "100",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "104",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "106",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "108",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "112",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "113",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "72",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "109",
+    "type" : "owl:objectProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "range" : "1",
+    "domain" : "3",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "2"
+  }, {
+    "range" : "1",
+    "domain" : "0",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "22"
+  }, {
+    "range" : "17",
+    "domain" : "21",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "23"
+  }, {
+    "range" : "6",
+    "domain" : "16",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "24"
+  }, {
+    "range" : "6",
+    "domain" : "15",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "25"
+  }, {
+    "range" : "17",
+    "domain" : "20",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "26"
+  }, {
+    "range" : "17",
+    "domain" : "19",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "27"
+  }, {
+    "range" : "6",
+    "domain" : "12",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "30"
+  }, {
+    "range" : "6",
+    "domain" : "11",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "31"
+  }, {
+    "range" : "6",
+    "domain" : "14",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "32"
+  }, {
+    "range" : "6",
+    "domain" : "13",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "33"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_project",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "35",
+    "label" : {
+      "IRI-based" : "Asset_project"
+    },
+    "domain" : "35",
+    "subproperty" : [ "36" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "34"
+  }, {
+    "range" : "6",
+    "domain" : "9",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "40"
+  }, {
+    "range" : "6",
+    "domain" : "8",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "42"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_endTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "44",
+    "label" : {
+      "IRI-based" : "Effort_endTimestamp",
+      "en" : "endTimestamp"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Actual end time"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "43"
+  }, {
+    "range" : "6",
+    "domain" : "10",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "45"
+  }, {
+    "range" : "48",
+    "domain" : "47",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "46"
+  }, {
+    "range" : "48",
+    "domain" : "50",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "49"
+  }, {
+    "range" : "6",
+    "domain" : "7",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "51"
+  }, {
+    "range" : "48",
+    "domain" : "53",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "52"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_priority",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "54",
+    "label" : {
+      "IRI-based" : "Asset_priority"
+    },
+    "domain" : "35",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "55"
+  }, {
+    "range" : "48",
+    "domain" : "57",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "56"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_parent",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "Effort_parent",
+      "en" : "parent"
+    },
+    "superproperty" : [ "59" ],
+    "domain" : "18",
+    "comment" : {
+      "en" : "Parent effort in hierarchy"
+    },
+    "attributes" : [ "object" ],
+    "id" : "58"
+  }, {
+    "range" : "5",
+    "domain" : "4",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "60"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "62",
+    "label" : {
+      "IRI-based" : "Effort_plannedStartTimestamp",
+      "en" : "plannedStartTimestamp"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Planned start time"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "61"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_startTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "66",
+    "label" : {
+      "IRI-based" : "Effort_startTimestamp",
+      "en" : "startTimestamp"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Actual start time"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "65"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_startTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "68",
+    "label" : {
+      "IRI-based" : "Asset_startTimestamp"
+    },
+    "domain" : "35",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "67"
+  }, {
+    "range" : "64",
+    "domain" : "63",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "69"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_area",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "71",
+    "label" : {
+      "IRI-based" : "Effort_area",
+      "en" : "area"
+    },
+    "superproperty" : [ "72" ],
+    "domain" : "18",
+    "comment" : {
+      "en" : "Life area this effort belongs to"
+    },
+    "attributes" : [ "object" ],
+    "id" : "70"
+  }, {
+    "range" : "18",
+    "domain" : "74",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "73"
+  }, {
+    "range" : "18",
+    "domain" : "1",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "75"
+  }, {
+    "range" : "64",
+    "domain" : "77",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "76"
+  }, {
+    "range" : "18",
+    "domain" : "79",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "78"
+  }, {
+    "range" : "18",
+    "domain" : "5",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "80"
+  }, {
+    "range" : "18",
+    "domain" : "17",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "81"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_parent",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "35",
+    "label" : {
+      "IRI-based" : "Asset_parent"
+    },
+    "domain" : "35",
+    "subproperty" : [ "58" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "59"
+  }, {
+    "range" : "85",
+    "domain" : "86",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "89"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_endTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "91",
+    "label" : {
+      "IRI-based" : "Asset_endTimestamp"
+    },
+    "domain" : "35",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "90"
+  }, {
+    "range" : "29",
+    "domain" : "84",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "92"
+  }, {
+    "range" : "29",
+    "domain" : "83",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "93"
+  }, {
+    "range" : "29",
+    "domain" : "38",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "94"
+  }, {
+    "range" : "29",
+    "domain" : "28",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "95"
+  }, {
+    "range" : "1",
+    "domain" : "71",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "97"
+  }, {
+    "range" : "1",
+    "domain" : "48",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "98"
+  }, {
+    "range" : "29",
+    "domain" : "82",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "99"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_project",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "3",
+    "label" : {
+      "IRI-based" : "Effort_project",
+      "en" : "project"
+    },
+    "superproperty" : [ "34" ],
+    "domain" : "18",
+    "comment" : {
+      "en" : "Project this effort belongs to"
+    },
+    "attributes" : [ "object" ],
+    "id" : "36"
+  }, {
+    "range" : "87",
+    "domain" : "18",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "100"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_priority",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "105",
+    "label" : {
+      "IRI-based" : "Effort_priority",
+      "en" : "priority"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Priority level of the effort"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "104"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "107",
+    "label" : {
+      "IRI-based" : "Effort_plannedEndTimestamp",
+      "en" : "plannedEndTimestamp"
+    },
+    "domain" : "18",
+    "comment" : {
+      "en" : "Planned end time"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "106"
+  }, {
+    "iri" : "https://exocortex.my/ontology/ems#Effort_status",
+    "baseIri" : "https://exocortex.my/ontology/ems",
+    "range" : "6",
+    "label" : {
+      "IRI-based" : "Effort_status",
+      "en" : "status"
+    },
+    "superproperty" : [ "109" ],
+    "domain" : "18",
+    "comment" : {
+      "en" : "Current status of the effort"
+    },
+    "attributes" : [ "object" ],
+    "id" : "108"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_plannedEndTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "111",
+    "label" : {
+      "IRI-based" : "Asset_plannedEndTimestamp"
+    },
+    "domain" : "35",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "112"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_plannedStartTimestamp",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "110",
+    "label" : {
+      "IRI-based" : "Asset_plannedStartTimestamp"
+    },
+    "domain" : "35",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "113"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_area",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "35",
+    "label" : {
+      "IRI-based" : "Asset_area"
+    },
+    "domain" : "35",
+    "subproperty" : [ "70" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "72"
+  }, {
+    "iri" : "https://exocortex.my/ontology/exo#Asset_status",
+    "baseIri" : "https://exocortex.my/ontology/exo",
+    "range" : "35",
+    "label" : {
+      "IRI-based" : "Asset_status"
+    },
+    "domain" : "35",
+    "subproperty" : [ "108" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "109"
+  } ]
+}

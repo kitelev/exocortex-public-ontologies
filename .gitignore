@@ -9,3 +9,6 @@
 __pycache__/
 *.pyc
 exports/
+
+# Build tools (large binaries, rebuild from source if needed)
+tools/
