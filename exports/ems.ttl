@@ -1,0 +1,128 @@
+@prefix ems: <https://exocortex.my/ontology/ems#> .
+@prefix exo: <https://exocortex.my/ontology/exo#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ems:Area a rdfs:Class .
+
+ems:Bug a rdfs:Class .
+
+ems:CurrentFocus a rdfs:Class .
+
+ems:Effort a rdfs:Class .
+
+ems:EffortColor a rdfs:Class .
+
+ems:EffortParticipant a rdfs:Class .
+
+ems:EffortParticipants a rdfs:Class .
+
+ems:EffortPrototype a rdfs:Class .
+
+ems:EffortResponsible a rdfs:Class .
+
+ems:EffortStatus a rdfs:Class .
+
+ems:EffortStatusAcknowledgement a rdfs:Class .
+
+ems:EffortStatusBacklog a rdfs:Class .
+
+ems:EffortStatusBusinessAnalysis a rdfs:Class .
+
+ems:EffortStatusClarifying a rdfs:Class .
+
+ems:EffortStatusDoing a rdfs:Class .
+
+ems:EffortStatusDone a rdfs:Class .
+
+ems:EffortStatusDraft a rdfs:Class .
+
+ems:EffortStatusThisWeek a rdfs:Class .
+
+ems:EffortStatusToDo a rdfs:Class .
+
+ems:EffortStatusTrashed a rdfs:Class .
+
+ems:ExtTask a rdfs:Class .
+
+ems:Idea a rdfs:Class .
+
+ems:Initiative a rdfs:Class .
+
+ems:Meeting a rdfs:Class .
+
+ems:MeetingFormat a rdfs:Class .
+
+ems:MeetingPrototype a rdfs:Class .
+
+ems:MonthlyObjective a rdfs:Class .
+
+ems:OKR a rdfs:Class .
+
+ems:OfflineMeetingFormat a rdfs:Class .
+
+ems:OnlineMeetingFormat a rdfs:Class .
+
+ems:ParentEffort a rdfs:Class .
+
+ems:Project a rdfs:Class .
+
+ems:ProjectPrototype a rdfs:Class .
+
+ems:QuarterlyObjective a rdfs:Class .
+
+ems:Recurring a rdfs:Class .
+
+ems:Session a rdfs:Class .
+
+ems:SessionPrototype a rdfs:Class .
+
+ems:SessionType a rdfs:Class .
+
+ems:Task a rdfs:Class .
+
+ems:TaskCategory a rdfs:Class .
+
+ems:TaskContext a rdfs:Class .
+
+ems:TaskPrototype a rdfs:Class .
+
+ems:TaskSize a rdfs:Class .
+
+ems:TaskZone a rdfs:Class .
+
+ems:TransportingSession a rdfs:Class .
+
+ems:WaitingTask a rdfs:Class .
+
+ems:WeeklyObjective a rdfs:Class .
+
+ems:YearlyObjective a rdfs:Class .
+
+ems:Effort_area a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_area .
+
+ems:Effort_endTimestamp a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_endTimestamp .
+
+ems:Effort_parent a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_parent .
+
+ems:Effort_plannedEndTimestamp a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_plannedEndTimestamp .
+
+ems:Effort_plannedStartTimestamp a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_plannedStartTimestamp .
+
+ems:Effort_priority a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_priority .
+
+ems:Effort_project a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_project .
+
+ems:Effort_startTimestamp a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_startTimestamp .
+
+ems:Effort_status a rdf:Property ;
+    rdfs:subPropertyOf exo:Asset_status .
+

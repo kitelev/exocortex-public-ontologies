@@ -1,0 +1,43 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix exo: <https://exocortex.my/ontology/exo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+exo:Asset_createdAt rdfs:subPropertyOf dcterms:created .
+
+exo:Asset_description rdfs:subPropertyOf dcterms:description .
+
+exo:Asset_isDefinedBy rdfs:subPropertyOf rdfs:isDefinedBy .
+
+exo:Asset_label rdfs:subPropertyOf rdfs:label .
+
+exo:Asset_relates rdfs:subPropertyOf dcterms:relation .
+
+exo:Asset_uid rdfs:subPropertyOf dc:identifier .
+
+exo:Class rdfs:subClassOf rdfs:Class .
+
+exo:Class_superClass rdfs:subPropertyOf rdfs:subClassOf .
+
+exo:DatatypeProperty rdfs:subClassOf owl:DatatypeProperty .
+
+exo:Instance_class rdfs:subPropertyOf rdf:type .
+
+exo:ObjectProperty rdfs:subClassOf owl:ObjectProperty .
+
+exo:Ontology rdfs:subClassOf owl:Ontology .
+
+exo:Ontology_imports rdfs:subPropertyOf owl:imports .
+
+exo:Property rdfs:subClassOf rdf:Property .
+
+exo:Property_domain rdfs:subPropertyOf rdfs:domain .
+
+exo:Property_range rdfs:subPropertyOf rdfs:range .
+
+exo:Resource rdfs:subClassOf rdfs:Resource .
+
+exo:Statement rdfs:subClassOf rdf:Statement .
+
