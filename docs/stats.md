@@ -5,17 +5,17 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2026-01-06 16:33 UTC*
+*Auto-generated on 2026-01-06 21:12 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **160,795** |
-| Statements (triples) | 145,610 |
-| Anchors (resources) | 9,008 |
+| Total Files | **161,208** |
+| Statements (triples) | 145,951 |
+| Anchors (resources) | 9,079 |
 | Blank Nodes | 6,140 |
-| Namespaces | 37 |
+| Namespaces | 38 |
 
 ## By Namespace
 
@@ -43,17 +43,18 @@ title: Statistics
 | `ssn` | 397 | 21 | 91 | 510 |
 | `prefix` | 335 | 33 | 0 | 369 |
 | `sosa` | 331 | 36 | 2 | 370 |
+| `exo-ui` | 265 | 59 | 0 | 325 |
 | `skos` | 252 | 33 | 3 | 289 |
 | `adms` | 151 | 18 | 5 | 175 |
 | `rdf` | 127 | 22 | 0 | 150 |
 | `dc` | 107 | 15 | 0 | 123 |
+| `ems-ui` | 100 | 20 | 0 | 121 |
 | `rdfs` | 87 | 15 | 0 | 103 |
 | `void` | 57 | 11 | 0 | 69 |
 | `grddl` | 55 | 13 | 0 | 69 |
 | `vann` | 38 | 7 | 0 | 46 |
 | `geo` | 33 | 7 | 0 | 41 |
 | `dcam` | 26 | 4 | 0 | 31 |
-| `exo-ui` | 24 | 8 | 0 | 33 |
 | `exo` | 18 | 44 | 0 | 63 |
 | `ems` | 0 | 57 | 0 | 58 |
 | `vs` | 0 | 1 | 0 | 2 |
@@ -63,10 +64,10 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdfs:label` | 26,417 |
-| `rdf:type` | 15,594 |
+| `rdfs:label` | 26,485 |
+| `rdf:type` | 15,662 |
 | `7c346f09...` | 15,507 |
-| `rdfs:comment` | 6,149 |
+| `rdfs:comment` | 6,217 |
 | `rdfs:isDefinedBy` | 5,584 |
 | `0aa3d93f...` | 4,865 |
 | `58430877...` | 4,807 |
