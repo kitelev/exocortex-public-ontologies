@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS - Effort Management System Ontology</title>
+    <base href="../">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .layout { display: flex; min-height: 100vh; }
+        .sidebar {
+            width: 280px;
+            background: var(--header-bg);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px 40px;
+            max-width: 900px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--fg);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .sidebar-nav {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 6px 0;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .sidebar-nav a:hover { color: var(--link); }
+        .sidebar-nav a.active { color: var(--link); font-weight: 600; }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; word-break: break-all; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .stats { display: flex; gap: 20px; margin: 16px 0; flex-wrap: wrap; }
+        .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
+        .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
+        .stat-label { font-size: 12px; color: #8b949e; }
+        .category { margin-top: 24px; }
+        .category h3 { color: #8b949e; font-size: 14px; margin-bottom: 8px; }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <input type="text" class="search-box" placeholder="Search terms..." disabled>
+            <div class="sidebar-nav">
+                <strong style="font-size: 12px; color: #8b949e;">EXOCORTEX ONTOLOGIES</strong>
+                <a href="exo/index.html">exo (63)</a>
+                <a href="ems/index.html" class="active">ems (58)</a>
+                <hr style="border-color: var(--border);">
+                <strong style="font-size: 12px; color: #8b949e;">STANDARD ONTOLOGIES</strong>
+                <a href="rdf/index.html">rdf</a>
+                <a href="rdfs/index.html">rdfs</a>
+                <a href="owl/index.html">owl</a>
+                <a href="dc/index.html">dc</a>
+                <a href="dcterms/index.html">dcterms</a>
+            </div>
+        </nav>
+        <main class="main">
+            <div class="breadcrumb">
+                <a href="../index.html">Ontologies</a> / ems
+            </div>
+            <h1>EMS - Effort Management System Ontology</h1>
+            <p class="uri">https://exocortex.my/ontology/ems#</p>
+
+            <div class="description">
+                <p><strong>Effort Management System Ontology</strong> provides vocabulary for task management, project planning, and effort tracking.</p>
+                <p>Key concepts: Tasks, Projects, Areas, Ideas, Sessions, Meetings, and OKRs with status tracking and timestamps.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat"><div class="stat-value">48</div><div class="stat-label">Classes</div></div>
+                <div class="stat"><div class="stat-value">9</div><div class="stat-label">Properties</div></div>
+            </div>
+
+            <h2>Classes by Category</h2>
+
+            <div class="category">
+                <h3>CORE EFFORT TYPES</h3>
+                <ul class="resource-list">
+                    <li><span class="badge badge-class">C</span> <strong>Task</strong> - Atomic unit of work</li>
+                    <li><span class="badge badge-class">C</span> <strong>Project</strong> - Collection of related tasks</li>
+                    <li><span class="badge badge-class">C</span> <strong>Area</strong> - Life area (Work, Health, etc.)</li>
+                    <li><span class="badge badge-class">C</span> <strong>Idea</strong> - Captured thought or concept</li>
+                    <li><span class="badge badge-class">C</span> <strong>Initiative</strong> - Strategic initiative</li>
+                    <li><span class="badge badge-class">C</span> <strong>Bug</strong> - Software defect</li>
+                    <li><span class="badge badge-class">C</span> <strong>Effort</strong> - Base class for all efforts</li>
+                    <li><span class="badge badge-class">C</span> <strong>ParentEffort</strong> - Effort with children</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>EFFORT STATUS</h3>
+                <ul class="resource-list">
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatus</strong> - Status enumeration</li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusBacklog</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusToDo</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusThisWeek</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusDoing</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusDone</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusTrashed</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusDraft</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusClarifying</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusAcknowledgement</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortStatusBusinessAnalysis</strong></li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>MEETINGS & SESSIONS</h3>
+                <ul class="resource-list">
+                    <li><span class="badge badge-class">C</span> <strong>Meeting</strong> - Scheduled meeting</li>
+                    <li><span class="badge badge-class">C</span> <strong>MeetingFormat</strong> - Online/Offline</li>
+                    <li><span class="badge badge-class">C</span> <strong>MeetingPrototype</strong> - Meeting template</li>
+                    <li><span class="badge badge-class">C</span> <strong>OnlineMeetingFormat</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>OfflineMeetingFormat</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>Session</strong> - Work session</li>
+                    <li><span class="badge badge-class">C</span> <strong>SessionPrototype</strong> - Session template</li>
+                    <li><span class="badge badge-class">C</span> <strong>SessionType</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>TransportingSession</strong> - Travel time</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>OKRs (OBJECTIVES & KEY RESULTS)</h3>
+                <ul class="resource-list">
+                    <li><span class="badge badge-class">C</span> <strong>OKR</strong> - Objective and Key Results</li>
+                    <li><span class="badge badge-class">C</span> <strong>YearlyObjective</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>QuarterlyObjective</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>MonthlyObjective</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>WeeklyObjective</strong></li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>PROTOTYPES & METADATA</h3>
+                <ul class="resource-list">
+                    <li><span class="badge badge-class">C</span> <strong>TaskPrototype</strong> - Task template</li>
+                    <li><span class="badge badge-class">C</span> <strong>ProjectPrototype</strong> - Project template</li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortPrototype</strong> - Effort template</li>
+                    <li><span class="badge badge-class">C</span> <strong>TaskCategory</strong> - Task categorization</li>
+                    <li><span class="badge badge-class">C</span> <strong>TaskContext</strong> - Context (@home, @work)</li>
+                    <li><span class="badge badge-class">C</span> <strong>TaskSize</strong> - T-shirt sizing (S, M, L)</li>
+                    <li><span class="badge badge-class">C</span> <strong>TaskZone</strong> - Energy zone</li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortColor</strong> - Visual indicator</li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortParticipant</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortParticipants</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>EffortResponsible</strong></li>
+                    <li><span class="badge badge-class">C</span> <strong>CurrentFocus</strong> - Active focus area</li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <h3>SPECIAL TYPES</h3>
+                <ul class="resource-list">
+                    <li><span class="badge badge-class">C</span> <strong>ExtTask</strong> - External task (GitHub, Jira)</li>
+                    <li><span class="badge badge-class">C</span> <strong>WaitingTask</strong> - Blocked/waiting</li>
+                    <li><span class="badge badge-class">C</span> <strong>Recurring</strong> - Recurring effort</li>
+                </ul>
+            </div>
+
+            <h2>Properties (9)</h2>
+            <ul class="resource-list">
+                <li><span class="badge badge-property">P</span> <strong>Effort_status</strong> - Current status</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_area</strong> - Associated area</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_parent</strong> - Parent effort</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_project</strong> - Associated project</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_priority</strong> - Priority level</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_startTimestamp</strong> - Actual start</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_endTimestamp</strong> - Actual end</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_plannedStartTimestamp</strong> - Planned start</li>
+                <li><span class="badge badge-property">P</span> <strong>Effort_plannedEndTimestamp</strong> - Planned end</li>
+            </ul>
+
+            <h2>Downloads</h2>
+            <ul>
+                <li><a href="../../../exports/ems.ttl">Turtle (.ttl)</a></li>
+                <li><a href="../../../exports/ems.rdf">RDF/XML (.rdf)</a></li>
+                <li><a href="../../../exports/ems.nt">N-Triples (.nt)</a></li>
+            </ul>
+        </main>
+    </div>
+</body>
+</html>

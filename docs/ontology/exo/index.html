@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXO - Exocortex Core Ontology</title>
+    <base href="../">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --header-bg: #161b22;
+            --code-bg: #21262d;
+            --accent: #238636;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .layout { display: flex; min-height: 100vh; }
+        .sidebar {
+            width: 280px;
+            background: var(--header-bg);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px 40px;
+            max-width: 900px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px 12px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--fg);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .sidebar-nav {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+        .sidebar-nav a {
+            display: block;
+            padding: 6px 0;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .sidebar-nav a:hover { color: var(--link); }
+        .sidebar-nav a.active { color: var(--link); font-weight: 600; }
+        a { color: var(--link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: #fff; }
+        h1 { border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .uri { color: #8b949e; font-family: monospace; font-size: 14px; word-break: break-all; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+        .badge-class { background: #388bfd33; color: #388bfd; }
+        .badge-property { background: #56d36433; color: #56d364; }
+        .breadcrumb { color: #8b949e; margin-bottom: 20px; }
+        .resource-list { list-style: none; padding: 0; }
+        .resource-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .description { background: var(--code-bg); padding: 16px; border-radius: 6px; margin: 16px 0; }
+        code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .stats { display: flex; gap: 20px; margin: 16px 0; flex-wrap: wrap; }
+        .stat { background: var(--code-bg); padding: 12px 16px; border-radius: 6px; }
+        .stat-value { font-size: 24px; font-weight: 600; color: #fff; }
+        .stat-label { font-size: 12px; color: #8b949e; }
+        .mapping { color: #8b949e; font-size: 13px; margin-left: 8px; }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main { margin-left: 0; padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <nav class="sidebar">
+            <input type="text" class="search-box" placeholder="Search terms..." disabled>
+            <div class="sidebar-nav">
+                <strong style="font-size: 12px; color: #8b949e;">EXOCORTEX ONTOLOGIES</strong>
+                <a href="exo/index.html" class="active">exo (63)</a>
+                <a href="ems/index.html">ems (58)</a>
+                <hr style="border-color: var(--border);">
+                <strong style="font-size: 12px; color: #8b949e;">STANDARD ONTOLOGIES</strong>
+                <a href="rdf/index.html">rdf</a>
+                <a href="rdfs/index.html">rdfs</a>
+                <a href="owl/index.html">owl</a>
+                <a href="dc/index.html">dc</a>
+                <a href="dcterms/index.html">dcterms</a>
+            </div>
+        </nav>
+        <main class="main">
+            <div class="breadcrumb">
+                <a href="../index.html">Ontologies</a> / exo
+            </div>
+            <h1>EXO - Exocortex Core Ontology</h1>
+            <p class="uri">https://exocortex.my/ontology/exo#</p>
+
+            <div class="description">
+                <p><strong>Exocortex Core Ontology</strong> defines fundamental concepts for knowledge management: Assets, Classes, Properties, Instances, and their relationships.</p>
+                <p>This ontology provides interoperability with standard RDF/RDFS/OWL vocabularies through <code>rdfs:subClassOf</code> and <code>rdfs:subPropertyOf</code> mappings.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat"><div class="stat-value">29</div><div class="stat-label">Classes</div></div>
+                <div class="stat"><div class="stat-value">15</div><div class="stat-label">Properties</div></div>
+                <div class="stat"><div class="stat-value">18</div><div class="stat-label">Mappings</div></div>
+            </div>
+
+            <h2>Classes (29)</h2>
+            <ul class="resource-list">
+                <li><span class="badge badge-class">C</span> <strong>Asset</strong> - Base class for all knowledge assets</li>
+                <li><span class="badge badge-class">C</span> <strong>Boolean</strong> - Boolean value type</li>
+                <li><span class="badge badge-class">C</span> <strong>BooleanProperty</strong> - Property with boolean range</li>
+                <li><span class="badge badge-class">C</span> <strong>Class</strong> <span class="mapping">→ rdfs:Class</span></li>
+                <li><span class="badge badge-class">C</span> <strong>Collection</strong> - Container for multiple items</li>
+                <li><span class="badge badge-class">C</span> <strong>DatatypeProperty</strong> <span class="mapping">→ owl:DatatypeProperty</span></li>
+                <li><span class="badge badge-class">C</span> <strong>DateProperty</strong> - Property with date range</li>
+                <li><span class="badge badge-class">C</span> <strong>DeprecatedProperty</strong> - Marked for removal</li>
+                <li><span class="badge badge-class">C</span> <strong>FunctionSignatureInputArgument</strong></li>
+                <li><span class="badge badge-class">C</span> <strong>Instance</strong> - Instance of a class</li>
+                <li><span class="badge badge-class">C</span> <strong>MetaProperty</strong> - Property about properties</li>
+                <li><span class="badge badge-class">C</span> <strong>NumberProperty</strong> - Property with numeric range</li>
+                <li><span class="badge badge-class">C</span> <strong>ObjectProperty</strong> <span class="mapping">→ owl:ObjectProperty</span></li>
+                <li><span class="badge badge-class">C</span> <strong>Ontology</strong> <span class="mapping">→ owl:Ontology</span></li>
+                <li><span class="badge badge-class">C</span> <strong>OntologyAlias</strong> - Prefix alias for namespace</li>
+                <li><span class="badge badge-class">C</span> <strong>Property</strong> <span class="mapping">→ rdf:Property</span></li>
+                <li><span class="badge badge-class">C</span> <strong>PropertyCardinality</strong> - Cardinality constraint</li>
+                <li><span class="badge badge-class">C</span> <strong>PropertyCardinalityMultiple</strong></li>
+                <li><span class="badge badge-class">C</span> <strong>PropertyCardinalitySingle</strong></li>
+                <li><span class="badge badge-class">C</span> <strong>Prototype</strong> - Template for creating instances</li>
+                <li><span class="badge badge-class">C</span> <strong>Relation</strong> - Semantic relation between assets</li>
+                <li><span class="badge badge-class">C</span> <strong>Resource</strong> <span class="mapping">→ rdfs:Resource</span></li>
+                <li><span class="badge badge-class">C</span> <strong>Statement</strong> <span class="mapping">→ rdf:Statement</span></li>
+                <li><span class="badge badge-class">C</span> <strong>StringProperty</strong> - Property with string range</li>
+                <li><span class="badge badge-class">C</span> <strong>TimeProperty</strong> - Property with time range</li>
+                <li><span class="badge badge-class">C</span> <strong>TimestampProperty</strong> - Property with timestamp range</li>
+                <li><span class="badge badge-class">C</span> <strong>True</strong> - Boolean true value</li>
+                <li><span class="badge badge-class">C</span> <strong>URLProperty</strong> - Property with URL range</li>
+                <li><span class="badge badge-class">C</span> <strong>UUIDProperty</strong> - Property with UUID range</li>
+            </ul>
+
+            <h2>Properties (15)</h2>
+            <ul class="resource-list">
+                <li><span class="badge badge-property">P</span> <strong>Asset_label</strong> <span class="mapping">→ rdfs:label</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_uid</strong> <span class="mapping">→ dc:identifier</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_createdAt</strong> <span class="mapping">→ dcterms:created</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_isDefinedBy</strong> <span class="mapping">→ rdfs:isDefinedBy</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_description</strong> <span class="mapping">→ dcterms:description</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_relates</strong> <span class="mapping">→ dcterms:relation</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_bodyLink</strong> - Links from body content</li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_prototype</strong> - Template reference</li>
+                <li><span class="badge badge-property">P</span> <strong>Asset_fileName</strong> - File name in vault</li>
+                <li><span class="badge badge-property">P</span> <strong>Instance_class</strong> <span class="mapping">→ rdf:type</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Property_domain</strong> <span class="mapping">→ rdfs:domain</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Property_range</strong> <span class="mapping">→ rdfs:range</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Class_superClass</strong> <span class="mapping">→ rdfs:subClassOf</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Ontology_imports</strong> <span class="mapping">→ owl:imports</span></li>
+                <li><span class="badge badge-property">P</span> <strong>Ontology_url</strong> - Namespace URL</li>
+            </ul>
+
+            <h2>Downloads</h2>
+            <ul>
+                <li><a href="../../../exports/exo.ttl">Turtle (.ttl)</a></li>
+                <li><a href="../../../exports/exo.rdf">RDF/XML (.rdf)</a></li>
+                <li><a href="../../../exports/exo.nt">N-Triples (.nt)</a></li>
+            </ul>
+        </main>
+    </div>
+</body>
+</html>

@@ -48,6 +48,10 @@ grddl: "http://www.w3.org/2003/g/data-view#"
 # Schema.org
 schema: "https://schema.org/"
 
+# Exocortex ontologies
+exo: "https://exocortex.my/ontology/exo#"
+ems: "https://exocortex.my/ontology/ems#"
+
 # QUDT (Quantities, Units, Dimensions, Types)
 qudt: "http://qudt.org/schema/qudt/"
 quantitykind: "http://qudt.org/vocab/quantitykind/"
