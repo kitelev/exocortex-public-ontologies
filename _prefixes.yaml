@@ -51,6 +51,7 @@ schema: "https://schema.org/"
 # Exocortex ontologies
 exo: "https://exocortex.my/ontology/exo#"
 ems: "https://exocortex.my/ontology/ems#"
+exo-ui: "https://exocortex.my/ontology/exo-ui#"
 
 # QUDT (Quantities, Units, Dimensions, Types)
 qudt: "http://qudt.org/schema/qudt/"
