@@ -5,17 +5,17 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2026-01-03 13:03 UTC*
+*Auto-generated on 2026-01-06 06:26 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **160,641** |
-| Statements (triples) | 145,568 |
-| Anchors (resources) | 8,899 |
+| Total Files | **160,762** |
+| Statements (triples) | 145,586 |
+| Anchors (resources) | 9,000 |
 | Blank Nodes | 6,140 |
-| Namespaces | 34 |
+| Namespaces | 36 |
 
 ## By Namespace
 
@@ -53,6 +53,8 @@ title: Statistics
 | `vann` | 38 | 7 | 0 | 46 |
 | `geo` | 33 | 7 | 0 | 41 |
 | `dcam` | 26 | 4 | 0 | 31 |
+| `exo` | 18 | 44 | 0 | 63 |
+| `ems` | 0 | 57 | 0 | 58 |
 | `vs` | 0 | 1 | 0 | 2 |
 | `xsd` | 0 | 13 | 0 | 13 |
 

@@ -176,6 +176,6 @@ classDiagram
 |--------|-------|
 | Classes | 1566 |
 | Properties | 2625 |
-| Inheritance relationships | 1620 |
+| Inheritance relationships | 1627 |
 | Properties with domain | 369 |
 | Properties with range | 386 |

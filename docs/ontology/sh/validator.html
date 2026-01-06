@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sh:validator - Ontology Documentation</title>
+    <title>sh:Validator - Ontology Documentation</title>
     <base href="../">
     <style>
         :root {
@@ -270,18 +270,18 @@
                 <label><input type="checkbox" checked data-filter="datatype"> Datatypes</label>
             </div>
             <div class="sidebar-nav" id="sidebarNav">
-                <strong style="font-size: 12px; color: #8b949e;">NAMESPACES</strong><a href="../adms/index.html">adms (19)</a><a href="../as/index.html">as (125)</a><a href="../bfo/index.html">bfo (2)</a><a href="../dc/index.html">dc (16)</a><a href="../dcam/index.html">dcam (5)</a><a href="../dcat/index.html">dcat (38)</a><a href="../dcterms/index.html">dcterms (100)</a><a href="../doap/index.html">doap (57)</a><a href="../dolce/index.html">dolce (109)</a><a href="../dul/index.html">dul (198)</a><a href="../foaf/index.html">foaf (76)</a><a href="../geo/index.html">geo (8)</a><a href="../geosparql/index.html">geosparql (67)</a><a href="../grddl/index.html">grddl (14)</a><a href="../org/index.html">org (47)</a><a href="../owl/index.html">owl (79)</a><a href="../prefix/index.html">prefix (34)</a><a href="../prov/index.html">prov (97)</a><a href="../quantitykind/index.html">quantitykind (1189)</a><a href="../qudt/index.html">qudt (2916)</a><a href="../rdf/index.html">rdf (23)</a><a href="../rdfs/index.html">rdfs (16)</a><a href="../schema/index.html">schema (2995)</a><a href="../sh/index.html" class="active">sh (222)</a><a href="../sioc/index.html">sioc (100)</a><a href="../skos/index.html">skos (34)</a><a href="../sosa/index.html">sosa (37)</a><a href="../ssn/index.html">ssn (22)</a><a href="../time/index.html">time (99)</a><a href="../vann/index.html">vann (8)</a><a href="../vcard/index.html">vcard (154)</a><a href="../void/index.html">void (12)</a><a href="../vs/index.html">vs (2)</a><a href="../xsd/index.html">xsd (13)</a>
+                <strong style="font-size: 12px; color: #8b949e;">NAMESPACES</strong><a href="../adms/index.html">adms (19)</a><a href="../as/index.html">as (125)</a><a href="../bfo/index.html">bfo (2)</a><a href="../dc/index.html">dc (16)</a><a href="../dcam/index.html">dcam (5)</a><a href="../dcat/index.html">dcat (38)</a><a href="../dcterms/index.html">dcterms (100)</a><a href="../doap/index.html">doap (57)</a><a href="../dolce/index.html">dolce (109)</a><a href="../dul/index.html">dul (198)</a><a href="../ems/index.html">ems (58)</a><a href="../exo/index.html">exo (45)</a><a href="../foaf/index.html">foaf (76)</a><a href="../geo/index.html">geo (8)</a><a href="../geosparql/index.html">geosparql (67)</a><a href="../grddl/index.html">grddl (14)</a><a href="../org/index.html">org (47)</a><a href="../owl/index.html">owl (79)</a><a href="../prefix/index.html">prefix (34)</a><a href="../prov/index.html">prov (97)</a><a href="../quantitykind/index.html">quantitykind (1189)</a><a href="../qudt/index.html">qudt (2916)</a><a href="../rdf/index.html">rdf (23)</a><a href="../rdfs/index.html">rdfs (16)</a><a href="../schema/index.html">schema (2995)</a><a href="../sh/index.html" class="active">sh (222)</a><a href="../sioc/index.html">sioc (100)</a><a href="../skos/index.html">skos (34)</a><a href="../sosa/index.html">sosa (37)</a><a href="../ssn/index.html">ssn (22)</a><a href="../time/index.html">time (99)</a><a href="../vann/index.html">vann (8)</a><a href="../vcard/index.html">vcard (154)</a><a href="../void/index.html">void (12)</a><a href="../vs/index.html">vs (2)</a><a href="../xsd/index.html">xsd (13)</a>
             </div>
         </nav>
         <main class="main">
             
     <div class="breadcrumb">
-        <a href="../index.html">Ontologies</a> / <a href="index.html">sh</a> / validator
+        <a href="../index.html">Ontologies</a> / <a href="index.html">sh</a> / Validator
     </div>
-    <h1><span class="badge badge-property">Property</span> validator</h1>
-    <div class="uri">http://www.w3.org/ns/shacl#validator</div>
+    <h1><span class="badge badge-class">Class</span> Validator</h1>
+    <div class="uri">http://www.w3.org/ns/shacl#Validator</div>
 
-    <div class='description'>The validator(s) used to evaluate constraints of either node or property shapes.</div>
+    <div class='description'>The class of validators, which provide instructions on how to process a constraint definition. This class serves as base class for the SPARQL-based validators and other possible implementations.</div>
 
     
         <h2>Relationships</h2>
@@ -303,7 +303,7 @@
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td><code>rdfs:domain</code></td><td><a href="../sh/constraintcomponent.html" data-tooltip="The class of constraint components.">sh:ConstraintComponent</a></td></tr><tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../sh/!sh.html">!sh</a></td></tr><tr><td><code>rdfs:range</code></td><td><a href="../sh/validator.html" data-tooltip="The class of validators, which provide instructions on how to process a constraint definition. This class serves as base class for the SPARQL-based...">sh:Validator</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdf/property.html" data-tooltip="The class of RDF properties.">rdf:Property</a></td></tr>
+        <tr><td><code>rdfs:isDefinedBy</code></td><td><a href="../sh/!sh.html">!sh</a></td></tr><tr><td><code>rdfs:subClassOf</code></td><td><a href="../rdfs/resource.html" data-tooltip="The class resource, everything.">rdfs:Resource</a></td></tr><tr><td><code>rdf:type</code></td><td><a href="../rdfs/class.html" data-tooltip="The class of classes.">rdfs:Class</a></td></tr>
     </table>
     
         </main>
@@ -390,7 +390,7 @@
     
     <script>
     (function() {
-        const graphData = {"nodes": [{"id": "54243131-d168-52a1-b1e1-d58da50e496d", "label": "validator", "type": "property", "center": true, "url": null}, {"id": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "Validator", "type": "class", "center": false, "url": "../sh/validator.html"}, {"id": "855019fb-8f0b-5e84-867e-9ca98149464b", "label": "ConstraintComponent", "type": "class", "center": false, "url": "../sh/constraintcomponent.html"}, {"id": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "Property", "type": "class", "center": false, "url": "../rdf/property.html"}], "links": [{"source": "54243131-d168-52a1-b1e1-d58da50e496d", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "range", "direction": "out"}, {"source": "54243131-d168-52a1-b1e1-d58da50e496d", "target": "855019fb-8f0b-5e84-867e-9ca98149464b", "label": "domain", "direction": "out"}, {"source": "54243131-d168-52a1-b1e1-d58da50e496d", "target": "f1afe09a-f371-5a01-a530-be18bfdb4d6b", "label": "type", "direction": "out"}]};
+        const graphData = {"nodes": [{"id": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "Validator", "type": "class", "center": true, "url": null}, {"id": "06f428f4-4340-5879-aa5f-2f55c978705b", "label": "JSValidator", "type": "class", "center": false, "url": "../sh/jsvalidator.html"}, {"id": "d1f65e1b-8521-5089-9152-4711442f92cf", "label": "SPARQLSelectValidator", "type": "class", "center": false, "url": "../sh/sparqlselectvalidator.html"}, {"id": "b000954f-38bd-5421-81dc-fe10732442e7", "label": "SPARQLAskValidator", "type": "class", "center": false, "url": "../sh/sparqlaskvalidator.html"}, {"id": "30488677-f427-5947-8a14-02903ca20a7e", "label": "Class", "type": "class", "center": false, "url": "../rdfs/class.html"}, {"id": "566dc397-7a6c-5c07-8cb8-3e8a029d6f89", "label": "propertyValidator", "type": "property", "center": false, "url": "../sh/propertyvalidator.html"}, {"id": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "Resource", "type": "class", "center": false, "url": "../rdfs/resource.html"}, {"id": "d18b946e-a435-5d5b-a0a6-f3558401cb23", "label": "nodeValidator", "type": "property", "center": false, "url": "../sh/nodevalidator.html"}, {"id": "54243131-d168-52a1-b1e1-d58da50e496d", "label": "validator", "type": "property", "center": false, "url": "../sh/validator.html"}], "links": [{"source": "06f428f4-4340-5879-aa5f-2f55c978705b", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "subClassOf", "direction": "in"}, {"source": "d1f65e1b-8521-5089-9152-4711442f92cf", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "subClassOf", "direction": "in"}, {"source": "b000954f-38bd-5421-81dc-fe10732442e7", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "subClassOf", "direction": "in"}, {"source": "79146ebb-6459-5a52-b6da-414228ba154d", "target": "30488677-f427-5947-8a14-02903ca20a7e", "label": "type", "direction": "out"}, {"source": "566dc397-7a6c-5c07-8cb8-3e8a029d6f89", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "range", "direction": "in"}, {"source": "79146ebb-6459-5a52-b6da-414228ba154d", "target": "d6ac0df2-324e-561c-9f05-41d3b2d5ebd3", "label": "subClassOf", "direction": "out"}, {"source": "d18b946e-a435-5d5b-a0a6-f3558401cb23", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "range", "direction": "in"}, {"source": "54243131-d168-52a1-b1e1-d58da50e496d", "target": "79146ebb-6459-5a52-b6da-414228ba154d", "label": "range", "direction": "in"}]};
         const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
 
         const container = document.getElementById('relationshipGraph');
