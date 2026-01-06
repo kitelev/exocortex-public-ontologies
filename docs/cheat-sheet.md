@@ -199,7 +199,7 @@ Extended spatial vocabulary for GIS applications.
 | `dcat:accessURL` | Property | Access point |
 
 ### void: — Vocabulary of Interlinked Datasets
-`http://rdfs.org/ns/void#`
+`http://vocab.deri.ie/void#`
 
 Dataset descriptions and statistics.
 
