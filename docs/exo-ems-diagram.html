@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXO/EMS Ontology Relationships</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --fg: #c9d1d9;
+            --link: #58a6ff;
+            --border: #30363d;
+            --exo-color: #388bfd;
+            --ems-color: #56d364;
+            --owl-color: #f78166;
+            --rdf-color: #d29922;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            overflow: hidden;
+        }
+        #container { width: 100vw; height: 100vh; }
+
+        .node circle {
+            stroke: #fff;
+            stroke-width: 2px;
+            cursor: pointer;
+        }
+        .node text {
+            font-size: 11px;
+            fill: var(--fg);
+            pointer-events: none;
+        }
+        .node.exo circle { fill: var(--exo-color); }
+        .node.ems circle { fill: var(--ems-color); }
+        .node.owl circle { fill: var(--owl-color); }
+        .node.rdf circle { fill: var(--rdf-color); }
+        .node.rdfs circle { fill: var(--rdf-color); }
+
+        .link {
+            stroke: var(--border);
+            stroke-opacity: 0.6;
+        }
+        .link.subclass { stroke: var(--link); stroke-dasharray: 5,3; }
+        .link.imports { stroke: var(--ems-color); stroke-width: 3; }
+
+        .tooltip {
+            position: absolute;
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 12px;
+            pointer-events: none;
+            max-width: 300px;
+            z-index: 1000;
+        }
+        .tooltip h4 { color: #fff; margin-bottom: 5px; }
+        .tooltip .uri { color: #8b949e; font-family: monospace; font-size: 10px; word-break: break-all; }
+        .tooltip .comment { margin-top: 5px; }
+
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 15px;
+            z-index: 100;
+        }
+        #controls h3 { margin-bottom: 10px; font-size: 14px; }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .filter-btn {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--fg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 2px;
+            font-size: 11px;
+        }
+        .filter-btn:hover { border-color: var(--link); }
+        .filter-btn.active { background: var(--link); color: #000; }
+
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-size: 12px;
+        }
+        #info a { color: var(--link); text-decoration: none; }
+        #info a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <div id="controls">
+        <h3>EXO/EMS Ontology Map</h3>
+        <div class="legend-item"><div class="legend-color" style="background: var(--exo-color)"></div> EXO (Core)</div>
+        <div class="legend-item"><div class="legend-color" style="background: var(--ems-color)"></div> EMS (Effort)</div>
+        <div class="legend-item"><div class="legend-color" style="background: var(--owl-color)"></div> OWL</div>
+        <div class="legend-item"><div class="legend-color" style="background: var(--rdf-color)"></div> RDF/RDFS</div>
+        <hr style="border-color: var(--border); margin: 10px 0;">
+        <div style="margin-bottom: 5px; font-size: 11px;">Filter:</div>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="exo">EXO</button>
+        <button class="filter-btn" data-filter="ems">EMS</button>
+        <button class="filter-btn" data-filter="core">Core Only</button>
+    </div>
+
+    <div id="info">
+        <a href="ontology/exo/index.html">EXO Docs</a> |
+        <a href="ontology/ems/index.html">EMS Docs</a> |
+        <a href="webvowl/index.html#exo">WebVOWL</a>
+    </div>
+
+    <div class="tooltip" style="display: none;"></div>
+
+    <script>
+    // Ontology data extracted from TTL files
+    const nodes = [
+        // EXO Classes
+        { id: "exo:Asset", label: "Asset", ns: "exo", comment: "Base class for all knowledge assets in Exocortex", core: true },
+        { id: "exo:Class", label: "Class", ns: "exo", comment: "Represents a class definition", parent: "rdfs:Class" },
+        { id: "exo:Property", label: "Property", ns: "exo", comment: "Base class for all properties", parent: "rdf:Property" },
+        { id: "exo:ObjectProperty", label: "ObjectProperty", ns: "exo", comment: "Property linking to another resource", parent: "owl:ObjectProperty" },
+        { id: "exo:DatatypeProperty", label: "DatatypeProperty", ns: "exo", comment: "Property with literal value", parent: "owl:DatatypeProperty" },
+        { id: "exo:Instance", label: "Instance", ns: "exo", comment: "Instance of a class" },
+        { id: "exo:Resource", label: "Resource", ns: "exo", comment: "Base resource type", parent: "rdfs:Resource" },
+        { id: "exo:Prototype", label: "Prototype", ns: "exo", comment: "Template for creating instances", core: true },
+        { id: "exo:Collection", label: "Collection", ns: "exo", comment: "Container for multiple items" },
+        { id: "exo:Relation", label: "Relation", ns: "exo", comment: "Semantic relation between assets" },
+        { id: "exo:Boolean", label: "Boolean", ns: "exo", comment: "Boolean value type" },
+        { id: "exo:StringProperty", label: "StringProperty", ns: "exo", comment: "Property with string range", parent: "exo:DatatypeProperty" },
+        { id: "exo:NumberProperty", label: "NumberProperty", ns: "exo", comment: "Property with numeric range", parent: "exo:DatatypeProperty" },
+        { id: "exo:DateProperty", label: "DateProperty", ns: "exo", comment: "Property with date range", parent: "exo:DatatypeProperty" },
+        { id: "exo:TimestampProperty", label: "TimestampProperty", ns: "exo", comment: "Property with timestamp range", parent: "exo:DatatypeProperty" },
+
+        // EMS Classes
+        { id: "ems:Effort", label: "Effort", ns: "ems", comment: "Base class for all trackable efforts", parent: "exo:Asset", core: true },
+        { id: "ems:ParentEffort", label: "ParentEffort", ns: "ems", comment: "Effort that contains child efforts", parent: "ems:Effort" },
+        { id: "ems:Task", label: "Task", ns: "ems", comment: "Atomic unit of work", parent: "ems:Effort", core: true },
+        { id: "ems:Project", label: "Project", ns: "ems", comment: "Collection of related tasks", parent: "ems:ParentEffort", core: true },
+        { id: "ems:Area", label: "Area", ns: "ems", comment: "Life area (Work, Health, etc.)", parent: "ems:ParentEffort", core: true },
+        { id: "ems:Idea", label: "Idea", ns: "ems", comment: "Captured thought for future development", parent: "ems:Effort" },
+        { id: "ems:Initiative", label: "Initiative", ns: "ems", comment: "Strategic initiative spanning multiple projects", parent: "ems:ParentEffort" },
+        { id: "ems:Bug", label: "Bug", ns: "ems", comment: "Software defect to be fixed", parent: "ems:Task" },
+        { id: "ems:Meeting", label: "Meeting", ns: "ems", comment: "Scheduled meeting with participants", parent: "ems:Effort" },
+        { id: "ems:Session", label: "Session", ns: "ems", comment: "Focused work session", parent: "ems:Effort" },
+        { id: "ems:OKR", label: "OKR", ns: "ems", comment: "Objective and Key Results", parent: "ems:ParentEffort" },
+        { id: "ems:YearlyObjective", label: "YearlyObjective", ns: "ems", comment: "Annual objective", parent: "ems:OKR" },
+        { id: "ems:QuarterlyObjective", label: "QuarterlyObjective", ns: "ems", comment: "Quarterly objective", parent: "ems:OKR" },
+        { id: "ems:EffortStatus", label: "EffortStatus", ns: "ems", comment: "Status enumeration for efforts" },
+        { id: "ems:EffortStatusDoing", label: "Doing", ns: "ems", comment: "Effort is currently in progress", parent: "ems:EffortStatus" },
+        { id: "ems:EffortStatusDone", label: "Done", ns: "ems", comment: "Effort has been completed", parent: "ems:EffortStatus" },
+        { id: "ems:EffortStatusToDo", label: "ToDo", ns: "ems", comment: "Effort is scheduled to be done", parent: "ems:EffortStatus" },
+        { id: "ems:TaskPrototype", label: "TaskPrototype", ns: "ems", comment: "Template for creating tasks", parent: "exo:Prototype" },
+        { id: "ems:ProjectPrototype", label: "ProjectPrototype", ns: "ems", comment: "Template for creating projects", parent: "exo:Prototype" },
+        { id: "ems:MeetingPrototype", label: "MeetingPrototype", ns: "ems", comment: "Template for recurring meetings", parent: "exo:Prototype" },
+
+        // External references
+        { id: "rdfs:Class", label: "Class", ns: "rdfs", comment: "The class of classes" },
+        { id: "rdfs:Resource", label: "Resource", ns: "rdfs", comment: "The class of everything" },
+        { id: "rdf:Property", label: "Property", ns: "rdf", comment: "The class of RDF properties" },
+        { id: "owl:ObjectProperty", label: "ObjectProperty", ns: "owl", comment: "Properties relating individuals" },
+        { id: "owl:DatatypeProperty", label: "DatatypeProperty", ns: "owl", comment: "Properties relating to literals" },
+    ];
+
+    // Build links from parent relationships
+    const links = [];
+    nodes.forEach(node => {
+        if (node.parent) {
+            links.push({ source: node.id, target: node.parent, type: "subclass" });
+        }
+    });
+    // Add ontology import link
+    links.push({ source: "ems:Effort", target: "exo:Asset", type: "imports" });
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    const svg = d3.select("#container")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    // Add zoom behavior
+    const g = svg.append("g");
+    svg.call(d3.zoom()
+        .scaleExtent([0.3, 3])
+        .on("zoom", (event) => g.attr("transform", event.transform)));
+
+    // Create simulation
+    const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(80))
+        .force("charge", d3.forceManyBody().strength(-300))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(30));
+
+    // Draw links
+    const link = g.append("g")
+        .selectAll("line")
+        .data(links)
+        .join("line")
+        .attr("class", d => `link ${d.type}`);
+
+    // Draw nodes
+    const node = g.append("g")
+        .selectAll("g")
+        .data(nodes)
+        .join("g")
+        .attr("class", d => `node ${d.ns}`)
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+
+    node.append("circle")
+        .attr("r", d => d.core ? 12 : 8);
+
+    node.append("text")
+        .attr("dx", 15)
+        .attr("dy", 4)
+        .text(d => d.label);
+
+    // Tooltip
+    const tooltip = d3.select(".tooltip");
+
+    node.on("mouseover", (event, d) => {
+        tooltip.style("display", "block")
+            .html(`<h4>${d.label}</h4>
+                   <div class="uri">${d.id}</div>
+                   <div class="comment">${d.comment || ''}</div>`)
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px");
+    })
+    .on("mouseout", () => tooltip.style("display", "none"));
+
+    // Update positions
+    simulation.on("tick", () => {
+        link
+            .attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
+
+        node.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
+
+    // Drag functions
+    function dragstarted(event) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
+    }
+
+    function dragged(event) {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+    }
+
+    function dragended(event) {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+    }
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            node.style("opacity", d => {
+                if (filter === "all") return 1;
+                if (filter === "core") return d.core ? 1 : 0.2;
+                return d.ns === filter ? 1 : 0.2;
+            });
+            link.style("opacity", d => {
+                if (filter === "all") return 1;
+                if (filter === "core") return 0.3;
+                const sourceNs = d.source.ns || d.source.id?.split(':')[0];
+                const targetNs = d.target.ns || d.target.id?.split(':')[0];
+                return (sourceNs === filter || targetNs === filter) ? 1 : 0.1;
+            });
+        });
+    });
+    </script>
+</body>
+</html>

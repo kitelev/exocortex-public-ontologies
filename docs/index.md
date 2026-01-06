@@ -15,6 +15,7 @@ File-based RDF ontologies for knowledge management in Obsidian.
 - **[SPARQL Query](sparql.html)** - Execute SPARQL queries in browser
 - **[Visual Browser](browser.html)** - Interactive D3.js graph visualization
 - **[WebVOWL](webvowl/index.html)** - Interactive ontology visualization (VOWL notation)
+- **[EXO/EMS Diagram](exo-ems-diagram.html)** - Exocortex ontology relationships
 
 ## Documentation
 
