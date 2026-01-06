@@ -3,6 +3,7 @@ description: File-based RDF ontologies for knowledge management
 theme: jekyll-theme-cayman
 baseurl: "/exocortex-public-ontologies"
 url: "https://kitelev.github.io"
+repository: kitelev/exocortex-public-ontologies
 
 # Markdown settings
 markdown: kramdown
