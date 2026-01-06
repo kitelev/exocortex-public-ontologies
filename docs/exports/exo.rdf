@@ -1,60 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:vann="http://purl.org/vocab/vann/"
 >
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_createdAt">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/created"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#DatatypeProperty">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Class_superClass">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_description">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/description"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Ontology_imports">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#imports"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_relates">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Resource">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Property_range">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#range"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_uid">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Class">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Property">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_label">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Statement">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Instance_class">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#StringProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">String Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with string range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_isDefinedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">isDefinedBy</rdfs:label>
+    <rdfs:comment xml:lang="en">Reference to defining resource</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Ontology">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Statement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Statement</rdfs:label>
+    <rdfs:comment xml:lang="en">RDF statement (triple)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Property_domain">
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#domain"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#URLProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">URL Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with URL range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://exocortex.my/ontology/exo#ObjectProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Object Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property linking to another resource</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Collection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Collection</rdfs:label>
+    <rdfs:comment xml:lang="en">Container for multiple items</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Class">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Class</rdfs:label>
+    <rdfs:comment xml:lang="en">Represents a class definition</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#MetaProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Meta Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property about properties</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Ontology_imports">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">imports</rdfs:label>
+    <rdfs:comment xml:lang="en">Imported ontology</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Ontology"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/exo#Ontology"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#imports"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#BooleanProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Boolean Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with boolean range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#UUIDProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">UUID Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with UUID range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Class_superClass">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">superClass</rdfs:label>
+    <rdfs:comment xml:lang="en">Parent class in hierarchy</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Class"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/exo#Class"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Ontology">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Ontology</rdfs:label>
+    <rdfs:comment xml:lang="en">Ontology definition</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#DatatypeProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Datatype Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with literal value</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="en">EXO - Exocortex Core Ontology</rdfs:label>
+    <rdfs:comment xml:lang="en">Core ontology for Exocortex knowledge management system. Defines fundamental concepts: Assets, Classes, Properties, Instances, and their relationships. Provides interoperability with standard RDF/RDFS/OWL vocabularies.</rdfs:comment>
+    <vann:preferredNamespacePrefix>exo</vann:preferredNamespacePrefix>
+    <vann:preferredNamespaceUri>https://exocortex.my/ontology/exo#</vann:preferredNamespaceUri>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_uid">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">uid</rdfs:label>
+    <rdfs:comment xml:lang="en">Unique identifier for an asset</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/identifier"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#NumberProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Number Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with numeric range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#DateProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Date Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with date range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#TimeProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Time Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with time range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#OntologyAlias">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Ontology Alias</rdfs:label>
+    <rdfs:comment xml:lang="en">Prefix alias for namespace</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Boolean">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Boolean</rdfs:label>
+    <rdfs:comment xml:lang="en">Boolean value type</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#DeprecatedProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Deprecated Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property marked for removal</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_prototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Reference to template/prototype</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/exo#Prototype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Instance_class">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">class</rdfs:label>
+    <rdfs:comment xml:lang="en">Class of an instance</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Instance"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/exo#Class"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Ontology_url">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">url</rdfs:label>
+    <rdfs:comment xml:lang="en">Namespace URL of ontology</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_createdAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">createdAt</rdfs:label>
+    <rdfs:comment xml:lang="en">Creation timestamp</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/created"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_relates">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">relates</rdfs:label>
+    <rdfs:comment xml:lang="en">Generic relation to another asset</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/relation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Asset</rdfs:label>
+    <rdfs:comment xml:lang="en">Base class for all knowledge assets in Exocortex</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Relation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Relation</rdfs:label>
+    <rdfs:comment xml:lang="en">Semantic relation between assets</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Property">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Base class for all properties</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#PropertyCardinality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Property Cardinality</rdfs:label>
+    <rdfs:comment xml:lang="en">Cardinality constraint for properties</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Resource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Resource</rdfs:label>
+    <rdfs:comment xml:lang="en">Base resource type</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Instance">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Instance</rdfs:label>
+    <rdfs:comment xml:lang="en">Instance of a class</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Property_domain">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">domain</rdfs:label>
+    <rdfs:comment xml:lang="en">Domain class of a property</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Property"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/exo#Class"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#domain"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_fileName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">fileName</rdfs:label>
+    <rdfs:comment xml:lang="en">File name in vault</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#True">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">True</rdfs:label>
+    <rdfs:comment xml:lang="en">Boolean true value</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#PropertyCardinalitySingle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Single Cardinality</rdfs:label>
+    <rdfs:comment xml:lang="en">Property allows single value</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#PropertyCardinality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#TimestampProperty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Timestamp Property</rdfs:label>
+    <rdfs:comment xml:lang="en">Property with timestamp range</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#FunctionSignatureInputArgument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Function Signature Input Argument</rdfs:label>
+    <rdfs:comment xml:lang="en">Input argument for function signatures</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Prototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Template for creating instances</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_label">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">label</rdfs:label>
+    <rdfs:comment xml:lang="en">Human-readable label for an asset</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#PropertyCardinalityMultiple">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Multiple Cardinality</rdfs:label>
+    <rdfs:comment xml:lang="en">Property allows multiple values</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#PropertyCardinality"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">description</rdfs:label>
+    <rdfs:comment xml:lang="en">Textual description of an asset</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/description"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Property_range">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">range</rdfs:label>
+    <rdfs:comment xml:lang="en">Range class of a property</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Property"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#range"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/exo#Asset_bodyLink">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">bodyLink</rdfs:label>
+    <rdfs:comment xml:lang="en">Links extracted from body content</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
   </rdf:Description>
 </rdf:RDF>

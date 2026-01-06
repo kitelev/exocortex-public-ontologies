@@ -1,128 +1,314 @@
 @prefix ems: <https://exocortex.my/ontology/ems#> .
 @prefix exo: <https://exocortex.my/ontology/exo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 
-ems:Area a rdfs:Class .
+<https://exocortex.my/ontology/ems#> a owl:Ontology ;
+    rdfs:label "EMS - Effort Management System Ontology"@en ;
+    rdfs:comment "Ontology for task management, project planning, and effort tracking in Exocortex. Key concepts: Tasks, Projects, Areas, Ideas, Sessions, Meetings, and OKRs with status tracking and timestamps."@en ;
+    vann:preferredNamespacePrefix "ems" ;
+    vann:preferredNamespaceUri "https://exocortex.my/ontology/ems#" ;
+    owl:versionInfo "1.0.0" ;
+    owl:imports <https://exocortex.my/ontology/exo#> .
 
-ems:Bug a rdfs:Class .
+# Core Effort Types
 
-ems:CurrentFocus a rdfs:Class .
+ems:Effort a owl:Class ;
+    rdfs:label "Effort"@en ;
+    rdfs:comment "Base class for all trackable efforts"@en ;
+    rdfs:subClassOf exo:Asset .
 
-ems:Effort a rdfs:Class .
+ems:ParentEffort a owl:Class ;
+    rdfs:label "Parent Effort"@en ;
+    rdfs:comment "Effort that contains child efforts"@en ;
+    rdfs:subClassOf ems:Effort .
 
-ems:EffortColor a rdfs:Class .
+ems:Task a owl:Class ;
+    rdfs:label "Task"@en ;
+    rdfs:comment "Atomic unit of work"@en ;
+    rdfs:subClassOf ems:Effort .
 
-ems:EffortParticipant a rdfs:Class .
+ems:Project a owl:Class ;
+    rdfs:label "Project"@en ;
+    rdfs:comment "Collection of related tasks"@en ;
+    rdfs:subClassOf ems:ParentEffort .
 
-ems:EffortParticipants a rdfs:Class .
+ems:Area a owl:Class ;
+    rdfs:label "Area"@en ;
+    rdfs:comment "Life area (Work, Health, Learning, etc.)"@en ;
+    rdfs:subClassOf ems:ParentEffort .
 
-ems:EffortPrototype a rdfs:Class .
+ems:Idea a owl:Class ;
+    rdfs:label "Idea"@en ;
+    rdfs:comment "Captured thought or concept for future development"@en ;
+    rdfs:subClassOf ems:Effort .
 
-ems:EffortResponsible a rdfs:Class .
+ems:Initiative a owl:Class ;
+    rdfs:label "Initiative"@en ;
+    rdfs:comment "Strategic initiative spanning multiple projects"@en ;
+    rdfs:subClassOf ems:ParentEffort .
 
-ems:EffortStatus a rdfs:Class .
+ems:Bug a owl:Class ;
+    rdfs:label "Bug"@en ;
+    rdfs:comment "Software defect to be fixed"@en ;
+    rdfs:subClassOf ems:Task .
 
-ems:EffortStatusAcknowledgement a rdfs:Class .
+# Effort Status Classes
 
-ems:EffortStatusBacklog a rdfs:Class .
+ems:EffortStatus a owl:Class ;
+    rdfs:label "Effort Status"@en ;
+    rdfs:comment "Status enumeration for efforts"@en .
 
-ems:EffortStatusBusinessAnalysis a rdfs:Class .
+ems:EffortStatusBacklog a owl:Class ;
+    rdfs:label "Backlog"@en ;
+    rdfs:comment "Effort is in backlog, not yet scheduled"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusClarifying a rdfs:Class .
+ems:EffortStatusToDo a owl:Class ;
+    rdfs:label "To Do"@en ;
+    rdfs:comment "Effort is scheduled to be done"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusDoing a rdfs:Class .
+ems:EffortStatusThisWeek a owl:Class ;
+    rdfs:label "This Week"@en ;
+    rdfs:comment "Effort planned for this week"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusDone a rdfs:Class .
+ems:EffortStatusDoing a owl:Class ;
+    rdfs:label "Doing"@en ;
+    rdfs:comment "Effort is currently in progress"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusDraft a rdfs:Class .
+ems:EffortStatusDone a owl:Class ;
+    rdfs:label "Done"@en ;
+    rdfs:comment "Effort has been completed"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusThisWeek a rdfs:Class .
+ems:EffortStatusTrashed a owl:Class ;
+    rdfs:label "Trashed"@en ;
+    rdfs:comment "Effort has been discarded"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusToDo a rdfs:Class .
+ems:EffortStatusDraft a owl:Class ;
+    rdfs:label "Draft"@en ;
+    rdfs:comment "Effort is in draft state, not finalized"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:EffortStatusTrashed a rdfs:Class .
+ems:EffortStatusClarifying a owl:Class ;
+    rdfs:label "Clarifying"@en ;
+    rdfs:comment "Effort requires clarification before work"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:ExtTask a rdfs:Class .
+ems:EffortStatusAcknowledgement a owl:Class ;
+    rdfs:label "Acknowledgement"@en ;
+    rdfs:comment "Effort awaiting acknowledgement"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:Idea a rdfs:Class .
+ems:EffortStatusBusinessAnalysis a owl:Class ;
+    rdfs:label "Business Analysis"@en ;
+    rdfs:comment "Effort in business analysis phase"@en ;
+    rdfs:subClassOf ems:EffortStatus .
 
-ems:Initiative a rdfs:Class .
+# Meetings & Sessions
 
-ems:Meeting a rdfs:Class .
+ems:Meeting a owl:Class ;
+    rdfs:label "Meeting"@en ;
+    rdfs:comment "Scheduled meeting with participants"@en ;
+    rdfs:subClassOf ems:Effort .
 
-ems:MeetingFormat a rdfs:Class .
+ems:MeetingFormat a owl:Class ;
+    rdfs:label "Meeting Format"@en ;
+    rdfs:comment "Format of meeting (online/offline)"@en .
 
-ems:MeetingPrototype a rdfs:Class .
+ems:OnlineMeetingFormat a owl:Class ;
+    rdfs:label "Online"@en ;
+    rdfs:comment "Virtual/remote meeting"@en ;
+    rdfs:subClassOf ems:MeetingFormat .
 
-ems:MonthlyObjective a rdfs:Class .
+ems:OfflineMeetingFormat a owl:Class ;
+    rdfs:label "Offline"@en ;
+    rdfs:comment "In-person meeting"@en ;
+    rdfs:subClassOf ems:MeetingFormat .
 
-ems:OKR a rdfs:Class .
+ems:MeetingPrototype a owl:Class ;
+    rdfs:label "Meeting Prototype"@en ;
+    rdfs:comment "Template for recurring meetings"@en ;
+    rdfs:subClassOf exo:Prototype .
 
-ems:OfflineMeetingFormat a rdfs:Class .
+ems:Session a owl:Class ;
+    rdfs:label "Session"@en ;
+    rdfs:comment "Focused work session"@en ;
+    rdfs:subClassOf ems:Effort .
 
-ems:OnlineMeetingFormat a rdfs:Class .
+ems:SessionPrototype a owl:Class ;
+    rdfs:label "Session Prototype"@en ;
+    rdfs:comment "Template for work sessions"@en ;
+    rdfs:subClassOf exo:Prototype .
 
-ems:ParentEffort a rdfs:Class .
+ems:SessionType a owl:Class ;
+    rdfs:label "Session Type"@en ;
+    rdfs:comment "Type of work session"@en .
 
-ems:Project a rdfs:Class .
+ems:TransportingSession a owl:Class ;
+    rdfs:label "Transporting Session"@en ;
+    rdfs:comment "Travel time between locations"@en ;
+    rdfs:subClassOf ems:Session .
 
-ems:ProjectPrototype a rdfs:Class .
+# OKRs (Objectives & Key Results)
 
-ems:QuarterlyObjective a rdfs:Class .
+ems:OKR a owl:Class ;
+    rdfs:label "OKR"@en ;
+    rdfs:comment "Objective and Key Results"@en ;
+    rdfs:subClassOf ems:ParentEffort .
 
-ems:Recurring a rdfs:Class .
+ems:YearlyObjective a owl:Class ;
+    rdfs:label "Yearly Objective"@en ;
+    rdfs:comment "Annual objective"@en ;
+    rdfs:subClassOf ems:OKR .
 
-ems:Session a rdfs:Class .
+ems:QuarterlyObjective a owl:Class ;
+    rdfs:label "Quarterly Objective"@en ;
+    rdfs:comment "Quarterly objective"@en ;
+    rdfs:subClassOf ems:OKR .
 
-ems:SessionPrototype a rdfs:Class .
+ems:MonthlyObjective a owl:Class ;
+    rdfs:label "Monthly Objective"@en ;
+    rdfs:comment "Monthly objective"@en ;
+    rdfs:subClassOf ems:OKR .
 
-ems:SessionType a rdfs:Class .
+ems:WeeklyObjective a owl:Class ;
+    rdfs:label "Weekly Objective"@en ;
+    rdfs:comment "Weekly objective"@en ;
+    rdfs:subClassOf ems:OKR .
 
-ems:Task a rdfs:Class .
+# Prototypes & Metadata
 
-ems:TaskCategory a rdfs:Class .
+ems:TaskPrototype a owl:Class ;
+    rdfs:label "Task Prototype"@en ;
+    rdfs:comment "Template for creating tasks"@en ;
+    rdfs:subClassOf exo:Prototype .
 
-ems:TaskContext a rdfs:Class .
+ems:ProjectPrototype a owl:Class ;
+    rdfs:label "Project Prototype"@en ;
+    rdfs:comment "Template for creating projects"@en ;
+    rdfs:subClassOf exo:Prototype .
 
-ems:TaskPrototype a rdfs:Class .
+ems:EffortPrototype a owl:Class ;
+    rdfs:label "Effort Prototype"@en ;
+    rdfs:comment "Base template for efforts"@en ;
+    rdfs:subClassOf exo:Prototype .
 
-ems:TaskSize a rdfs:Class .
+ems:TaskCategory a owl:Class ;
+    rdfs:label "Task Category"@en ;
+    rdfs:comment "Category for task classification"@en .
 
-ems:TaskZone a rdfs:Class .
+ems:TaskContext a owl:Class ;
+    rdfs:label "Task Context"@en ;
+    rdfs:comment "Context where task can be done (@home, @work, @phone)"@en .
 
-ems:TransportingSession a rdfs:Class .
+ems:TaskSize a owl:Class ;
+    rdfs:label "Task Size"@en ;
+    rdfs:comment "T-shirt sizing for task estimation (S, M, L, XL)"@en .
 
-ems:WaitingTask a rdfs:Class .
+ems:TaskZone a owl:Class ;
+    rdfs:label "Task Zone"@en ;
+    rdfs:comment "Energy zone for task (creative, routine, administrative)"@en .
 
-ems:WeeklyObjective a rdfs:Class .
+ems:EffortColor a owl:Class ;
+    rdfs:label "Effort Color"@en ;
+    rdfs:comment "Visual color indicator for effort"@en .
 
-ems:YearlyObjective a rdfs:Class .
+ems:EffortParticipant a owl:Class ;
+    rdfs:label "Effort Participant"@en ;
+    rdfs:comment "Participant in an effort"@en .
 
-ems:Effort_area a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_area .
+ems:EffortParticipants a owl:Class ;
+    rdfs:label "Effort Participants"@en ;
+    rdfs:comment "Collection of participants"@en ;
+    rdfs:subClassOf exo:Collection .
 
-ems:Effort_endTimestamp a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_endTimestamp .
+ems:EffortResponsible a owl:Class ;
+    rdfs:label "Effort Responsible"@en ;
+    rdfs:comment "Person responsible for effort completion"@en .
 
-ems:Effort_parent a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_parent .
+ems:CurrentFocus a owl:Class ;
+    rdfs:label "Current Focus"@en ;
+    rdfs:comment "Currently active focus area"@en .
 
-ems:Effort_plannedEndTimestamp a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_plannedEndTimestamp .
+# Special Task Types
 
-ems:Effort_plannedStartTimestamp a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_plannedStartTimestamp .
+ems:ExtTask a owl:Class ;
+    rdfs:label "External Task"@en ;
+    rdfs:comment "Task from external system (GitHub, Jira, etc.)"@en ;
+    rdfs:subClassOf ems:Task .
 
-ems:Effort_priority a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_priority .
+ems:WaitingTask a owl:Class ;
+    rdfs:label "Waiting Task"@en ;
+    rdfs:comment "Task blocked/waiting for something"@en ;
+    rdfs:subClassOf ems:Task .
 
-ems:Effort_project a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_project .
+ems:Recurring a owl:Class ;
+    rdfs:label "Recurring"@en ;
+    rdfs:comment "Recurring effort pattern"@en .
 
-ems:Effort_startTimestamp a rdf:Property ;
-    rdfs:subPropertyOf exo:Asset_startTimestamp .
+# Properties
 
-ems:Effort_status a rdf:Property ;
+ems:Effort_status a owl:ObjectProperty ;
+    rdfs:label "status"@en ;
+    rdfs:comment "Current status of the effort"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:range ems:EffortStatus ;
     rdfs:subPropertyOf exo:Asset_status .
 
+ems:Effort_area a owl:ObjectProperty ;
+    rdfs:label "area"@en ;
+    rdfs:comment "Life area this effort belongs to"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:range ems:Area ;
+    rdfs:subPropertyOf exo:Asset_area .
+
+ems:Effort_parent a owl:ObjectProperty ;
+    rdfs:label "parent"@en ;
+    rdfs:comment "Parent effort in hierarchy"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:range ems:ParentEffort ;
+    rdfs:subPropertyOf exo:Asset_parent .
+
+ems:Effort_project a owl:ObjectProperty ;
+    rdfs:label "project"@en ;
+    rdfs:comment "Project this effort belongs to"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:range ems:Project ;
+    rdfs:subPropertyOf exo:Asset_project .
+
+ems:Effort_priority a owl:DatatypeProperty ;
+    rdfs:label "priority"@en ;
+    rdfs:comment "Priority level of the effort"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:subPropertyOf exo:Asset_priority .
+
+ems:Effort_startTimestamp a owl:DatatypeProperty ;
+    rdfs:label "startTimestamp"@en ;
+    rdfs:comment "Actual start time"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:subPropertyOf exo:Asset_startTimestamp .
+
+ems:Effort_endTimestamp a owl:DatatypeProperty ;
+    rdfs:label "endTimestamp"@en ;
+    rdfs:comment "Actual end time"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:subPropertyOf exo:Asset_endTimestamp .
+
+ems:Effort_plannedStartTimestamp a owl:DatatypeProperty ;
+    rdfs:label "plannedStartTimestamp"@en ;
+    rdfs:comment "Planned start time"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:subPropertyOf exo:Asset_plannedStartTimestamp .
+
+ems:Effort_plannedEndTimestamp a owl:DatatypeProperty ;
+    rdfs:label "plannedEndTimestamp"@en ;
+    rdfs:comment "Planned end time"@en ;
+    rdfs:domain ems:Effort ;
+    rdfs:subPropertyOf exo:Asset_plannedEndTimestamp .

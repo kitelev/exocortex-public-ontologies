@@ -1,186 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:vann="http://purl.org/vocab/vann/"
 >
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Project">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Meeting">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskCategory">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskZone">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#ProjectPrototype">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_parent">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_parent"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortParticipants">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusToDo">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Task">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Initiative">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#MeetingPrototype">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#OfflineMeetingFormat">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortColor">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#MeetingFormat">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#WaitingTask">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_plannedEndTimestamp"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskPrototype">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#CurrentFocus">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskSize">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusTrashed">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskContext">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_startTimestamp">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_startTimestamp"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#OKR">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusClarifying">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Session">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_plannedStartTimestamp"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_area">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_area"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortParticipant">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_priority">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_priority"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortPrototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort Prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Base template for efforts</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Prototype"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusDraft">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#WeeklyObjective">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#ParentEffort">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#MonthlyObjective">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#YearlyObjective">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#ExtTask">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatus">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#SessionType">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortPrototype">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusDoing">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_project">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_project"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_status">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
-    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_status"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#QuarterlyObjective">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusAcknowledgement">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusBacklog">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusThisWeek">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Recurring">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#SessionPrototype">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Draft</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort is in draft state, not finalized</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_endTimestamp">
-    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">endTimestamp</rdfs:label>
+    <rdfs:comment xml:lang="en">Actual end time</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
     <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_endTimestamp"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Idea">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusClarifying">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Clarifying</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort requires clarification before work</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusDone">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Session">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Session</rdfs:label>
+    <rdfs:comment xml:lang="en">Focused work session</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TransportingSession">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#MonthlyObjective">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Monthly Objective</rdfs:label>
+    <rdfs:comment xml:lang="en">Monthly objective</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#OKR"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#OnlineMeetingFormat">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#WaitingTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Waiting Task</rdfs:label>
+    <rdfs:comment xml:lang="en">Task blocked/waiting for something</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Task"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Area">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#SessionPrototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Session Prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Template for work sessions</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Prototype"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortResponsible">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Business Analysis</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort in business analysis phase</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusThisWeek">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">This Week</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort planned for this week</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskSize">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Task Size</rdfs:label>
+    <rdfs:comment xml:lang="en">T-shirt sizing for task estimation (S, M, L, XL)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusTrashed">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Trashed</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort has been discarded</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort</rdfs:label>
+    <rdfs:comment xml:lang="en">Base class for all trackable efforts</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Asset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#SessionType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Session Type</rdfs:label>
+    <rdfs:comment xml:lang="en">Type of work session</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortParticipants">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort Participants</rdfs:label>
+    <rdfs:comment xml:lang="en">Collection of participants</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Collection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskPrototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Task Prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Template for creating tasks</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Prototype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">plannedEndTimestamp</rdfs:label>
+    <rdfs:comment xml:lang="en">Planned end time</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_plannedEndTimestamp"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#OfflineMeetingFormat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Offline</rdfs:label>
+    <rdfs:comment xml:lang="en">In-person meeting</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#MeetingFormat"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="en">EMS - Effort Management System Ontology</rdfs:label>
+    <rdfs:comment xml:lang="en">Ontology for task management, project planning, and effort tracking in Exocortex. Key concepts: Tasks, Projects, Areas, Ideas, Sessions, Meetings, and OKRs with status tracking and timestamps.</rdfs:comment>
+    <vann:preferredNamespacePrefix>ems</vann:preferredNamespacePrefix>
+    <vann:preferredNamespaceUri>https://exocortex.my/ontology/ems#</vann:preferredNamespaceUri>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+    <owl:imports rdf:resource="https://exocortex.my/ontology/exo#"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Recurring">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Recurring</rdfs:label>
+    <rdfs:comment xml:lang="en">Recurring effort pattern</rdfs:comment>
   </rdf:Description>
   <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Bug">
-    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Bug</rdfs:label>
+    <rdfs:comment xml:lang="en">Software defect to be fixed</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Task"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_area">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">area</rdfs:label>
+    <rdfs:comment xml:lang="en">Life area this effort belongs to</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/ems#Area"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_area"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#YearlyObjective">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Yearly Objective</rdfs:label>
+    <rdfs:comment xml:lang="en">Annual objective</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#OKR"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskZone">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Task Zone</rdfs:label>
+    <rdfs:comment xml:lang="en">Energy zone for task (creative, routine, administrative)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Initiative">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Initiative</rdfs:label>
+    <rdfs:comment xml:lang="en">Strategic initiative spanning multiple projects</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#ParentEffort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort Status</rdfs:label>
+    <rdfs:comment xml:lang="en">Status enumeration for efforts</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskContext">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Task Context</rdfs:label>
+    <rdfs:comment xml:lang="en">Context where task can be done (@home, @work, @phone)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortParticipant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort Participant</rdfs:label>
+    <rdfs:comment xml:lang="en">Participant in an effort</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">plannedStartTimestamp</rdfs:label>
+    <rdfs:comment xml:lang="en">Planned start time</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_plannedStartTimestamp"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#MeetingPrototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Meeting Prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Template for recurring meetings</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Prototype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#CurrentFocus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Current Focus</rdfs:label>
+    <rdfs:comment xml:lang="en">Currently active focus area</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#OnlineMeetingFormat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Online</rdfs:label>
+    <rdfs:comment xml:lang="en">Virtual/remote meeting</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#MeetingFormat"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TaskCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Task Category</rdfs:label>
+    <rdfs:comment xml:lang="en">Category for task classification</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusAcknowledgement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Acknowledgement</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort awaiting acknowledgement</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Task">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Task</rdfs:label>
+    <rdfs:comment xml:lang="en">Atomic unit of work</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#WeeklyObjective">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Weekly Objective</rdfs:label>
+    <rdfs:comment xml:lang="en">Weekly objective</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#OKR"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusBacklog">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Backlog</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort is in backlog, not yet scheduled</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusToDo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">To Do</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort is scheduled to be done</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Project">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Project</rdfs:label>
+    <rdfs:comment xml:lang="en">Collection of related tasks</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#ParentEffort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#ProjectPrototype">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Project Prototype</rdfs:label>
+    <rdfs:comment xml:lang="en">Template for creating projects</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/exo#Prototype"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusDoing">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Doing</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort is currently in progress</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortResponsible">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort Responsible</rdfs:label>
+    <rdfs:comment xml:lang="en">Person responsible for effort completion</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Area">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Area</rdfs:label>
+    <rdfs:comment xml:lang="en">Life area (Work, Health, Learning, etc.)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#ParentEffort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortColor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Effort Color</rdfs:label>
+    <rdfs:comment xml:lang="en">Visual color indicator for effort</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#OKR">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">OKR</rdfs:label>
+    <rdfs:comment xml:lang="en">Objective and Key Results</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#ParentEffort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#TransportingSession">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Transporting Session</rdfs:label>
+    <rdfs:comment xml:lang="en">Travel time between locations</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Session"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_priority">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">priority</rdfs:label>
+    <rdfs:comment xml:lang="en">Priority level of the effort</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_priority"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Meeting">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Meeting</rdfs:label>
+    <rdfs:comment xml:lang="en">Scheduled meeting with participants</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">status</rdfs:label>
+    <rdfs:comment xml:lang="en">Current status of the effort</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_status"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#ParentEffort">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Parent Effort</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort that contains child efforts</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_parent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">parent</rdfs:label>
+    <rdfs:comment xml:lang="en">Parent effort in hierarchy</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/ems#ParentEffort"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_parent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_startTimestamp">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">startTimestamp</rdfs:label>
+    <rdfs:comment xml:lang="en">Actual start time</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_startTimestamp"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Effort_project">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">project</rdfs:label>
+    <rdfs:comment xml:lang="en">Project this effort belongs to</rdfs:comment>
+    <rdfs:domain rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+    <rdfs:range rdf:resource="https://exocortex.my/ontology/ems#Project"/>
+    <rdfs:subPropertyOf rdf:resource="https://exocortex.my/ontology/exo#Asset_project"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#QuarterlyObjective">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Quarterly Objective</rdfs:label>
+    <rdfs:comment xml:lang="en">Quarterly objective</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#OKR"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#EffortStatusDone">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Done</rdfs:label>
+    <rdfs:comment xml:lang="en">Effort has been completed</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#EffortStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#MeetingFormat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Meeting Format</rdfs:label>
+    <rdfs:comment xml:lang="en">Format of meeting (online/offline)</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#Idea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Idea</rdfs:label>
+    <rdfs:comment xml:lang="en">Captured thought or concept for future development</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Effort"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://exocortex.my/ontology/ems#ExtTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">External Task</rdfs:label>
+    <rdfs:comment xml:lang="en">Task from external system (GitHub, Jira, etc.)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://exocortex.my/ontology/ems#Task"/>
   </rdf:Description>
 </rdf:RDF>

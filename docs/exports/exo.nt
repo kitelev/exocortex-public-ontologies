@@ -1,18 +1,190 @@
-<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#label> .
-<https://exocortex.my/ontology/exo#Ontology> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#Ontology> .
-<https://exocortex.my/ontology/exo#Asset_uid> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/elements/1.1/identifier> .
-<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#subClassOf> .
-<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> .
-<https://exocortex.my/ontology/exo#Asset_description> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/description> .
-<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2002/07/owl#imports> .
-<https://exocortex.my/ontology/exo#Asset_relates> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/relation> .
-<https://exocortex.my/ontology/exo#Statement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
-<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#domain> .
-<https://exocortex.my/ontology/exo#Property_range> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#range> .
-<https://exocortex.my/ontology/exo#Asset_createdAt> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/created> .
-<https://exocortex.my/ontology/exo#Property> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/exo#Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2000/01/rdf-schema#Resource> .
-<https://exocortex.my/ontology/exo#ObjectProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://exocortex.my/ontology/exo#DatatypeProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
-<https://exocortex.my/ontology/exo#Class> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<https://exocortex.my/ontology/exo#StringProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://exocortex.my/ontology/exo#Asset_isDefinedBy> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> .
+<https://exocortex.my/ontology/exo#Statement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement> .
+<https://exocortex.my/ontology/exo#URLProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with URL range"@en .
+<https://exocortex.my/ontology/exo#ObjectProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property linking to another resource"@en .
+<https://exocortex.my/ontology/exo#Collection> <http://www.w3.org/2000/01/rdf-schema#comment> "Container for multiple items"@en .
+<https://exocortex.my/ontology/exo#Class> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<https://exocortex.my/ontology/exo#MetaProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2002/07/owl#imports> .
+<https://exocortex.my/ontology/exo#BooleanProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#UUIDProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#subClassOf> .
+<https://exocortex.my/ontology/exo#Ontology> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/2000/01/rdf-schema#comment> "Imported ontology"@en .
+<https://exocortex.my/ontology/exo#DatatypeProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Asset_isDefinedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#> <http://purl.org/vocab/vann/preferredNamespacePrefix> "exo" .
+<https://exocortex.my/ontology/exo#Asset_uid> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#NumberProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Asset_uid> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#DateProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#TimeProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/exo#Ontology> .
+<https://exocortex.my/ontology/exo#OntologyAlias> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Class> <http://www.w3.org/2000/01/rdf-schema#label> "Class"@en .
+<https://exocortex.my/ontology/exo#Statement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Boolean> <http://www.w3.org/2000/01/rdf-schema#comment> "Boolean value type"@en .
+<https://exocortex.my/ontology/exo#StringProperty> <http://www.w3.org/2000/01/rdf-schema#label> "String Property"@en .
+<https://exocortex.my/ontology/exo#DeprecatedProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#BooleanProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Boolean Property"@en .
+<https://exocortex.my/ontology/exo#Asset_prototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Instance> .
+<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/2000/01/rdf-schema#label> "imports"@en .
+<https://exocortex.my/ontology/exo#Collection> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Ontology_url> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Asset_createdAt> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/created> .
+<https://exocortex.my/ontology/exo#OntologyAlias> <http://www.w3.org/2000/01/rdf-schema#label> "Ontology Alias"@en .
+<https://exocortex.my/ontology/exo#DeprecatedProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Property> .
+<https://exocortex.my/ontology/exo#Asset_relates> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#Ontology_url> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Ontology> .
+<https://exocortex.my/ontology/exo#Asset> <http://www.w3.org/2000/01/rdf-schema#comment> "Base class for all knowledge assets in Exocortex"@en .
+<https://exocortex.my/ontology/exo#Relation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#DateProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Property> <http://www.w3.org/2000/01/rdf-schema#comment> "Base class for all properties"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinality> <http://www.w3.org/2000/01/rdf-schema#comment> "Cardinality constraint for properties"@en .
+<https://exocortex.my/ontology/exo#Resource> <http://www.w3.org/2000/01/rdf-schema#label> "Resource"@en .
+<https://exocortex.my/ontology/exo#Instance> <http://www.w3.org/2000/01/rdf-schema#label> "Instance"@en .
+<https://exocortex.my/ontology/exo#Ontology> <http://www.w3.org/2000/01/rdf-schema#label> "Ontology"@en .
+<https://exocortex.my/ontology/exo#NumberProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Property> <http://www.w3.org/2000/01/rdf-schema#label> "Property"@en .
+<https://exocortex.my/ontology/exo#MetaProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property about properties"@en .
+<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#domain> .
+<https://exocortex.my/ontology/exo#PropertyCardinality> <http://www.w3.org/2000/01/rdf-schema#label> "Property Cardinality"@en .
+<https://exocortex.my/ontology/exo#NumberProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with numeric range"@en .
+<https://exocortex.my/ontology/exo#Asset_relates> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/relation> .
+<https://exocortex.my/ontology/exo#Asset_isDefinedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Asset_fileName> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#True> <http://www.w3.org/2000/01/rdf-schema#comment> "Boolean true value"@en .
+<https://exocortex.my/ontology/exo#MetaProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Property> .
+<https://exocortex.my/ontology/exo#Resource> <http://www.w3.org/2000/01/rdf-schema#comment> "Base resource type"@en .
+<https://exocortex.my/ontology/exo#DatatypeProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with literal value"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinalitySingle> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#PropertyCardinality> .
+<https://exocortex.my/ontology/exo#Asset_uid> <http://www.w3.org/2000/01/rdf-schema#comment> "Unique identifier for an asset"@en .
+<https://exocortex.my/ontology/exo#> <http://www.w3.org/2002/07/owl#versionInfo> "1.0.0" .
+<https://exocortex.my/ontology/exo#Boolean> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#TimestampProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Timestamp Property"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinality> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#FunctionSignatureInputArgument> <http://www.w3.org/2000/01/rdf-schema#comment> "Input argument for function signatures"@en .
+<https://exocortex.my/ontology/exo#Prototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Template for creating instances"@en .
+<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#label> .
+<https://exocortex.my/ontology/exo#PropertyCardinalitySingle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#DatatypeProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Datatype Property"@en .
+<https://exocortex.my/ontology/exo#DeprecatedProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property marked for removal"@en .
+<https://exocortex.my/ontology/exo#StringProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#True> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Boolean> .
+<https://exocortex.my/ontology/exo#Asset_createdAt> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#UUIDProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/2000/01/rdf-schema#comment> "Parent class in hierarchy"@en .
+<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Prototype> <http://www.w3.org/2000/01/rdf-schema#label> "Prototype"@en .
+<https://exocortex.my/ontology/exo#Property> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/2000/01/rdf-schema#label> "superClass"@en .
+<https://exocortex.my/ontology/exo#Asset_relates> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Asset_uid> <http://www.w3.org/2000/01/rdf-schema#label> "uid"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinalityMultiple> <http://www.w3.org/2000/01/rdf-schema#comment> "Property allows multiple values"@en .
+<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/2000/01/rdf-schema#label> "domain"@en .
+<https://exocortex.my/ontology/exo#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Statement> <http://www.w3.org/2000/01/rdf-schema#comment> "RDF statement (triple)"@en .
+<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/2000/01/rdf-schema#label> "class"@en .
+<https://exocortex.my/ontology/exo#Ontology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Asset_description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#FunctionSignatureInputArgument> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Prototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#> <http://www.w3.org/2000/01/rdf-schema#label> "EXO - Exocortex Core Ontology"@en .
+<https://exocortex.my/ontology/exo#Resource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#OntologyAlias> <http://www.w3.org/2000/01/rdf-schema#comment> "Prefix alias for namespace"@en .
+<https://exocortex.my/ontology/exo#Asset_description> <http://www.w3.org/2000/01/rdf-schema#comment> "Textual description of an asset"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinalitySingle> <http://www.w3.org/2000/01/rdf-schema#label> "Single Cardinality"@en .
+<https://exocortex.my/ontology/exo#Ontology_url> <http://www.w3.org/2000/01/rdf-schema#comment> "Namespace URL of ontology"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinalityMultiple> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#PropertyCardinality> .
+<https://exocortex.my/ontology/exo#> <http://purl.org/vocab/vann/preferredNamespaceUri> "https://exocortex.my/ontology/exo#" .
+<https://exocortex.my/ontology/exo#Asset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Ontology_imports> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Ontology> .
+<https://exocortex.my/ontology/exo#PropertyCardinalityMultiple> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Relation> <http://www.w3.org/2000/01/rdf-schema#comment> "Semantic relation between assets"@en .
+<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
+<https://exocortex.my/ontology/exo#Asset_uid> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/elements/1.1/identifier> .
+<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Statement> <http://www.w3.org/2000/01/rdf-schema#label> "Statement"@en .
+<https://exocortex.my/ontology/exo#Relation> <http://www.w3.org/2000/01/rdf-schema#label> "Relation"@en .
+<https://exocortex.my/ontology/exo#Property_range> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#range> .
+<https://exocortex.my/ontology/exo#Asset_fileName> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Property_range> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Boolean> <http://www.w3.org/2000/01/rdf-schema#label> "Boolean"@en .
+<https://exocortex.my/ontology/exo#Resource> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2000/01/rdf-schema#Resource> .
+<https://exocortex.my/ontology/exo#DatatypeProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Asset_bodyLink> <http://www.w3.org/2000/01/rdf-schema#label> "bodyLink"@en .
+<https://exocortex.my/ontology/exo#Asset_fileName> <http://www.w3.org/2000/01/rdf-schema#comment> "File name in vault"@en .
+<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Property> .
+<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> .
+<https://exocortex.my/ontology/exo#MetaProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Meta Property"@en .
+<https://exocortex.my/ontology/exo#Asset_prototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Reference to template/prototype"@en .
+<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/2000/01/rdf-schema#comment> "Class of an instance"@en .
+<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#DateProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Date Property"@en .
+<https://exocortex.my/ontology/exo#DeprecatedProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Deprecated Property"@en .
+<https://exocortex.my/ontology/exo#Asset_isDefinedBy> <http://www.w3.org/2000/01/rdf-schema#label> "isDefinedBy"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinalitySingle> <http://www.w3.org/2000/01/rdf-schema#comment> "Property allows single value"@en .
+<https://exocortex.my/ontology/exo#Property_range> <http://www.w3.org/2000/01/rdf-schema#comment> "Range class of a property"@en .
+<https://exocortex.my/ontology/exo#Asset_bodyLink> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#TimeProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Time Property"@en .
+<https://exocortex.my/ontology/exo#URLProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/2000/01/rdf-schema#comment> "Domain class of a property"@en .
+<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Class> .
+<https://exocortex.my/ontology/exo#Asset_createdAt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Property_range> <http://www.w3.org/2000/01/rdf-schema#label> "range"@en .
+<https://exocortex.my/ontology/exo#True> <http://www.w3.org/2000/01/rdf-schema#label> "True"@en .
+<https://exocortex.my/ontology/exo#Asset> <http://www.w3.org/2000/01/rdf-schema#label> "Asset"@en .
+<https://exocortex.my/ontology/exo#BooleanProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with boolean range"@en .
+<https://exocortex.my/ontology/exo#Asset_relates> <http://www.w3.org/2000/01/rdf-schema#label> "relates"@en .
+<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/2000/01/rdf-schema#label> "label"@en .
+<https://exocortex.my/ontology/exo#Class> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#TimeProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#TimestampProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#FunctionSignatureInputArgument> <http://www.w3.org/2000/01/rdf-schema#label> "Function Signature Input Argument"@en .
+<https://exocortex.my/ontology/exo#Instance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Property> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<https://exocortex.my/ontology/exo#DateProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with date range"@en .
+<https://exocortex.my/ontology/exo#TimeProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with time range"@en .
+<https://exocortex.my/ontology/exo#TimestampProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with timestamp range"@en .
+<https://exocortex.my/ontology/exo#URLProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#Asset_createdAt> <http://www.w3.org/2000/01/rdf-schema#comment> "Creation timestamp"@en .
+<https://exocortex.my/ontology/exo#> <http://www.w3.org/2000/01/rdf-schema#comment> "Core ontology for Exocortex knowledge management system. Defines fundamental concepts: Assets, Classes, Properties, Instances, and their relationships. Provides interoperability with standard RDF/RDFS/OWL vocabularies."@en .
+<https://exocortex.my/ontology/exo#Asset_relates> <http://www.w3.org/2000/01/rdf-schema#comment> "Generic relation to another asset"@en .
+<https://exocortex.my/ontology/exo#PropertyCardinalityMultiple> <http://www.w3.org/2000/01/rdf-schema#label> "Multiple Cardinality"@en .
+<https://exocortex.my/ontology/exo#Asset_isDefinedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "Reference to defining resource"@en .
+<https://exocortex.my/ontology/exo#Property_range> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Property> .
+<https://exocortex.my/ontology/exo#Class_superClass> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/exo#Class> .
+<https://exocortex.my/ontology/exo#URLProperty> <http://www.w3.org/2000/01/rdf-schema#label> "URL Property"@en .
+<https://exocortex.my/ontology/exo#ObjectProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Object Property"@en .
+<https://exocortex.my/ontology/exo#NumberProperty> <http://www.w3.org/2000/01/rdf-schema#label> "Number Property"@en .
+<https://exocortex.my/ontology/exo#Asset_label> <http://www.w3.org/2000/01/rdf-schema#comment> "Human-readable label for an asset"@en .
+<https://exocortex.my/ontology/exo#Asset_createdAt> <http://www.w3.org/2000/01/rdf-schema#label> "createdAt"@en .
+<https://exocortex.my/ontology/exo#Property_domain> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/exo#Class> .
+<https://exocortex.my/ontology/exo#Asset_bodyLink> <http://www.w3.org/2000/01/rdf-schema#comment> "Links extracted from body content"@en .
+<https://exocortex.my/ontology/exo#True> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Instance_class> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/exo#Class> .
+<https://exocortex.my/ontology/exo#Collection> <http://www.w3.org/2000/01/rdf-schema#label> "Collection"@en .
+<https://exocortex.my/ontology/exo#BooleanProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#UUIDProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with UUID range"@en .
+<https://exocortex.my/ontology/exo#Instance> <http://www.w3.org/2000/01/rdf-schema#comment> "Instance of a class"@en .
+<https://exocortex.my/ontology/exo#Asset_description> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/description> .
+<https://exocortex.my/ontology/exo#Ontology> <http://www.w3.org/2000/01/rdf-schema#comment> "Ontology definition"@en .
+<https://exocortex.my/ontology/exo#ObjectProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/exo#Asset_prototype> <http://www.w3.org/2000/01/rdf-schema#label> "prototype"@en .
+<https://exocortex.my/ontology/exo#Asset_prototype> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/exo#Prototype> .
+<https://exocortex.my/ontology/exo#Asset_description> <http://www.w3.org/2000/01/rdf-schema#label> "description"@en .
+<https://exocortex.my/ontology/exo#Ontology_url> <http://www.w3.org/2000/01/rdf-schema#label> "url"@en .
+<https://exocortex.my/ontology/exo#TimestampProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#DatatypeProperty> .
+<https://exocortex.my/ontology/exo#UUIDProperty> <http://www.w3.org/2000/01/rdf-schema#label> "UUID Property"@en .
+<https://exocortex.my/ontology/exo#Asset_description> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#Asset_bodyLink> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Class> <http://www.w3.org/2000/01/rdf-schema#comment> "Represents a class definition"@en .
+<https://exocortex.my/ontology/exo#ObjectProperty> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/exo#Asset_prototype> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/exo#StringProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "Property with string range"@en .
+<https://exocortex.my/ontology/exo#Asset_fileName> <http://www.w3.org/2000/01/rdf-schema#label> "fileName"@en .

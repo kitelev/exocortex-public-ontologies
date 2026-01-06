@@ -4,40 +4,249 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 
-exo:Asset_createdAt rdfs:subPropertyOf dcterms:created .
+<https://exocortex.my/ontology/exo#> a owl:Ontology ;
+    rdfs:label "EXO - Exocortex Core Ontology"@en ;
+    rdfs:comment "Core ontology for Exocortex knowledge management system. Defines fundamental concepts: Assets, Classes, Properties, Instances, and their relationships. Provides interoperability with standard RDF/RDFS/OWL vocabularies."@en ;
+    vann:preferredNamespacePrefix "exo" ;
+    vann:preferredNamespaceUri "https://exocortex.my/ontology/exo#" ;
+    owl:versionInfo "1.0.0" .
 
-exo:Asset_description rdfs:subPropertyOf dcterms:description .
+# Classes
 
-exo:Asset_isDefinedBy rdfs:subPropertyOf rdfs:isDefinedBy .
+exo:Asset a owl:Class ;
+    rdfs:label "Asset"@en ;
+    rdfs:comment "Base class for all knowledge assets in Exocortex"@en .
 
-exo:Asset_label rdfs:subPropertyOf rdfs:label .
+exo:Class a owl:Class ;
+    rdfs:label "Class"@en ;
+    rdfs:comment "Represents a class definition"@en ;
+    rdfs:subClassOf rdfs:Class .
 
-exo:Asset_relates rdfs:subPropertyOf dcterms:relation .
+exo:Property a owl:Class ;
+    rdfs:label "Property"@en ;
+    rdfs:comment "Base class for all properties"@en ;
+    rdfs:subClassOf rdf:Property .
 
-exo:Asset_uid rdfs:subPropertyOf dc:identifier .
+exo:ObjectProperty a owl:Class ;
+    rdfs:label "Object Property"@en ;
+    rdfs:comment "Property linking to another resource"@en ;
+    rdfs:subClassOf owl:ObjectProperty .
 
-exo:Class rdfs:subClassOf rdfs:Class .
+exo:DatatypeProperty a owl:Class ;
+    rdfs:label "Datatype Property"@en ;
+    rdfs:comment "Property with literal value"@en ;
+    rdfs:subClassOf owl:DatatypeProperty .
 
-exo:Class_superClass rdfs:subPropertyOf rdfs:subClassOf .
+exo:Instance a owl:Class ;
+    rdfs:label "Instance"@en ;
+    rdfs:comment "Instance of a class"@en .
 
-exo:DatatypeProperty rdfs:subClassOf owl:DatatypeProperty .
+exo:Resource a owl:Class ;
+    rdfs:label "Resource"@en ;
+    rdfs:comment "Base resource type"@en ;
+    rdfs:subClassOf rdfs:Resource .
 
-exo:Instance_class rdfs:subPropertyOf rdf:type .
+exo:Statement a owl:Class ;
+    rdfs:label "Statement"@en ;
+    rdfs:comment "RDF statement (triple)"@en ;
+    rdfs:subClassOf rdf:Statement .
 
-exo:ObjectProperty rdfs:subClassOf owl:ObjectProperty .
+exo:Ontology a owl:Class ;
+    rdfs:label "Ontology"@en ;
+    rdfs:comment "Ontology definition"@en ;
+    rdfs:subClassOf owl:Ontology .
 
-exo:Ontology rdfs:subClassOf owl:Ontology .
+exo:Collection a owl:Class ;
+    rdfs:label "Collection"@en ;
+    rdfs:comment "Container for multiple items"@en .
 
-exo:Ontology_imports rdfs:subPropertyOf owl:imports .
+exo:Relation a owl:Class ;
+    rdfs:label "Relation"@en ;
+    rdfs:comment "Semantic relation between assets"@en .
 
-exo:Property rdfs:subClassOf rdf:Property .
+exo:Prototype a owl:Class ;
+    rdfs:label "Prototype"@en ;
+    rdfs:comment "Template for creating instances"@en .
 
-exo:Property_domain rdfs:subPropertyOf rdfs:domain .
+exo:OntologyAlias a owl:Class ;
+    rdfs:label "Ontology Alias"@en ;
+    rdfs:comment "Prefix alias for namespace"@en .
 
-exo:Property_range rdfs:subPropertyOf rdfs:range .
+exo:Boolean a owl:Class ;
+    rdfs:label "Boolean"@en ;
+    rdfs:comment "Boolean value type"@en .
 
-exo:Resource rdfs:subClassOf rdfs:Resource .
+exo:True a owl:Class ;
+    rdfs:label "True"@en ;
+    rdfs:comment "Boolean true value"@en ;
+    rdfs:subClassOf exo:Boolean .
 
-exo:Statement rdfs:subClassOf rdf:Statement .
+# Property Types
 
+exo:StringProperty a owl:Class ;
+    rdfs:label "String Property"@en ;
+    rdfs:comment "Property with string range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:NumberProperty a owl:Class ;
+    rdfs:label "Number Property"@en ;
+    rdfs:comment "Property with numeric range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:BooleanProperty a owl:Class ;
+    rdfs:label "Boolean Property"@en ;
+    rdfs:comment "Property with boolean range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:DateProperty a owl:Class ;
+    rdfs:label "Date Property"@en ;
+    rdfs:comment "Property with date range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:TimeProperty a owl:Class ;
+    rdfs:label "Time Property"@en ;
+    rdfs:comment "Property with time range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:TimestampProperty a owl:Class ;
+    rdfs:label "Timestamp Property"@en ;
+    rdfs:comment "Property with timestamp range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:URLProperty a owl:Class ;
+    rdfs:label "URL Property"@en ;
+    rdfs:comment "Property with URL range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:UUIDProperty a owl:Class ;
+    rdfs:label "UUID Property"@en ;
+    rdfs:comment "Property with UUID range"@en ;
+    rdfs:subClassOf exo:DatatypeProperty .
+
+exo:MetaProperty a owl:Class ;
+    rdfs:label "Meta Property"@en ;
+    rdfs:comment "Property about properties"@en ;
+    rdfs:subClassOf exo:Property .
+
+exo:DeprecatedProperty a owl:Class ;
+    rdfs:label "Deprecated Property"@en ;
+    rdfs:comment "Property marked for removal"@en ;
+    rdfs:subClassOf exo:Property .
+
+# Cardinality
+
+exo:PropertyCardinality a owl:Class ;
+    rdfs:label "Property Cardinality"@en ;
+    rdfs:comment "Cardinality constraint for properties"@en .
+
+exo:PropertyCardinalitySingle a owl:Class ;
+    rdfs:label "Single Cardinality"@en ;
+    rdfs:comment "Property allows single value"@en ;
+    rdfs:subClassOf exo:PropertyCardinality .
+
+exo:PropertyCardinalityMultiple a owl:Class ;
+    rdfs:label "Multiple Cardinality"@en ;
+    rdfs:comment "Property allows multiple values"@en ;
+    rdfs:subClassOf exo:PropertyCardinality .
+
+# Other Classes
+
+exo:FunctionSignatureInputArgument a owl:Class ;
+    rdfs:label "Function Signature Input Argument"@en ;
+    rdfs:comment "Input argument for function signatures"@en .
+
+# Properties
+
+exo:Asset_label a owl:DatatypeProperty ;
+    rdfs:label "label"@en ;
+    rdfs:comment "Human-readable label for an asset"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:range rdfs:Literal ;
+    rdfs:subPropertyOf rdfs:label .
+
+exo:Asset_uid a owl:DatatypeProperty ;
+    rdfs:label "uid"@en ;
+    rdfs:comment "Unique identifier for an asset"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:subPropertyOf dc:identifier .
+
+exo:Asset_createdAt a owl:DatatypeProperty ;
+    rdfs:label "createdAt"@en ;
+    rdfs:comment "Creation timestamp"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:subPropertyOf dcterms:created .
+
+exo:Asset_description a owl:DatatypeProperty ;
+    rdfs:label "description"@en ;
+    rdfs:comment "Textual description of an asset"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:subPropertyOf dcterms:description .
+
+exo:Asset_isDefinedBy a owl:ObjectProperty ;
+    rdfs:label "isDefinedBy"@en ;
+    rdfs:comment "Reference to defining resource"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:subPropertyOf rdfs:isDefinedBy .
+
+exo:Asset_relates a owl:ObjectProperty ;
+    rdfs:label "relates"@en ;
+    rdfs:comment "Generic relation to another asset"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:subPropertyOf dcterms:relation .
+
+exo:Asset_bodyLink a owl:ObjectProperty ;
+    rdfs:label "bodyLink"@en ;
+    rdfs:comment "Links extracted from body content"@en ;
+    rdfs:domain exo:Asset .
+
+exo:Asset_prototype a owl:ObjectProperty ;
+    rdfs:label "prototype"@en ;
+    rdfs:comment "Reference to template/prototype"@en ;
+    rdfs:domain exo:Asset ;
+    rdfs:range exo:Prototype .
+
+exo:Asset_fileName a owl:DatatypeProperty ;
+    rdfs:label "fileName"@en ;
+    rdfs:comment "File name in vault"@en ;
+    rdfs:domain exo:Asset .
+
+exo:Instance_class a owl:ObjectProperty ;
+    rdfs:label "class"@en ;
+    rdfs:comment "Class of an instance"@en ;
+    rdfs:domain exo:Instance ;
+    rdfs:range exo:Class ;
+    rdfs:subPropertyOf rdf:type .
+
+exo:Property_domain a owl:ObjectProperty ;
+    rdfs:label "domain"@en ;
+    rdfs:comment "Domain class of a property"@en ;
+    rdfs:domain exo:Property ;
+    rdfs:range exo:Class ;
+    rdfs:subPropertyOf rdfs:domain .
+
+exo:Property_range a owl:ObjectProperty ;
+    rdfs:label "range"@en ;
+    rdfs:comment "Range class of a property"@en ;
+    rdfs:domain exo:Property ;
+    rdfs:subPropertyOf rdfs:range .
+
+exo:Class_superClass a owl:ObjectProperty ;
+    rdfs:label "superClass"@en ;
+    rdfs:comment "Parent class in hierarchy"@en ;
+    rdfs:domain exo:Class ;
+    rdfs:range exo:Class ;
+    rdfs:subPropertyOf rdfs:subClassOf .
+
+exo:Ontology_imports a owl:ObjectProperty ;
+    rdfs:label "imports"@en ;
+    rdfs:comment "Imported ontology"@en ;
+    rdfs:domain exo:Ontology ;
+    rdfs:range exo:Ontology ;
+    rdfs:subPropertyOf owl:imports .
+
+exo:Ontology_url a owl:DatatypeProperty ;
+    rdfs:label "url"@en ;
+    rdfs:comment "Namespace URL of ontology"@en ;
+    rdfs:domain exo:Ontology .

@@ -1,66 +1,236 @@
-<https://exocortex.my/ontology/ems#Project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Meeting> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#TaskCategory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#TaskZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#ProjectPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#EffortParticipants> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusToDo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Task> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Initiative> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#MeetingPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#OfflineMeetingFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortColor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#MeetingFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#WaitingTask> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#TaskPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#CurrentFocus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#TaskSize> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusTrashed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<https://exocortex.my/ontology/ems#EffortPrototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Base template for efforts"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDraft> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_endTimestamp> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#EffortStatusClarifying> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort requires clarification before work"@en .
+<https://exocortex.my/ontology/ems#Session> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#MonthlyObjective> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#OKR> .
+<https://exocortex.my/ontology/ems#WaitingTask> <http://www.w3.org/2000/01/rdf-schema#comment> "Task blocked/waiting for something"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDraft> <http://www.w3.org/2000/01/rdf-schema#label> "Draft"@en .
+<https://exocortex.my/ontology/ems#SessionPrototype> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Prototype> .
+<https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort in business analysis phase"@en .
+<https://exocortex.my/ontology/ems#EffortStatusThisWeek> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#TaskSize> <http://www.w3.org/2000/01/rdf-schema#comment> "T-shirt sizing for task estimation (S, M, L, XL)"@en .
+<https://exocortex.my/ontology/ems#EffortStatusTrashed> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Effort> <http://www.w3.org/2000/01/rdf-schema#comment> "Base class for all trackable efforts"@en .
+<https://exocortex.my/ontology/ems#SessionType> <http://www.w3.org/2000/01/rdf-schema#label> "Session Type"@en .
+<https://exocortex.my/ontology/ems#EffortParticipants> <http://www.w3.org/2000/01/rdf-schema#label> "Effort Participants"@en .
+<https://exocortex.my/ontology/ems#TaskPrototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Template for creating tasks"@en .
 <https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_plannedEndTimestamp> .
-<https://exocortex.my/ontology/ems#TaskContext> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_startTimestamp> .
-<https://exocortex.my/ontology/ems#OKR> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusClarifying> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Session> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#Effort> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortParticipant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#EffortStatusDraft> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#WeeklyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#ParentEffort> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#MonthlyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#YearlyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#ExtTask> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#SessionType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusDoing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_project> .
-<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_area> .
-<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_plannedStartTimestamp> .
-<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_priority> .
-<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_status> .
-<https://exocortex.my/ontology/ems#QuarterlyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusAcknowledgement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusBacklog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_parent> .
-<https://exocortex.my/ontology/ems#EffortStatusThisWeek> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Recurring> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#SessionPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_endTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<https://exocortex.my/ontology/ems#Idea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortStatusDone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#TransportingSession> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#OnlineMeetingFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<https://exocortex.my/ontology/ems#OfflineMeetingFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#> <http://www.w3.org/2002/07/owl#versionInfo> "1.0.0" .
+<https://exocortex.my/ontology/ems#> <http://www.w3.org/2002/07/owl#imports> <https://exocortex.my/ontology/exo#> .
+<https://exocortex.my/ontology/ems#> <http://purl.org/vocab/vann/preferredNamespaceUri> "https://exocortex.my/ontology/ems#" .
+<https://exocortex.my/ontology/ems#Recurring> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Bug> <http://www.w3.org/2000/01/rdf-schema#comment> "Software defect to be fixed"@en .
+<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#YearlyObjective> <http://www.w3.org/2000/01/rdf-schema#comment> "Annual objective"@en .
+<https://exocortex.my/ontology/ems#TaskZone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Initiative> <http://www.w3.org/2000/01/rdf-schema#label> "Initiative"@en .
 <https://exocortex.my/ontology/ems#Effort_endTimestamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_endTimestamp> .
-<https://exocortex.my/ontology/ems#Area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#EffortResponsible> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Bug> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
-<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<https://exocortex.my/ontology/ems#EffortStatus> <http://www.w3.org/2000/01/rdf-schema#comment> "Status enumeration for efforts"@en .
+<https://exocortex.my/ontology/ems#TaskContext> <http://www.w3.org/2000/01/rdf-schema#label> "Task Context"@en .
+<https://exocortex.my/ontology/ems#Bug> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Task> .
+<https://exocortex.my/ontology/ems#Effort> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Asset> .
+<https://exocortex.my/ontology/ems#YearlyObjective> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#OKR> .
+<https://exocortex.my/ontology/ems#EffortParticipant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_area> .
+<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/2000/01/rdf-schema#comment> "Planned start time"@en .
+<https://exocortex.my/ontology/ems#MeetingPrototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Template for recurring meetings"@en .
+<https://exocortex.my/ontology/ems#EffortStatusClarifying> <http://www.w3.org/2000/01/rdf-schema#label> "Clarifying"@en .
+<https://exocortex.my/ontology/ems#CurrentFocus> <http://www.w3.org/2000/01/rdf-schema#comment> "Currently active focus area"@en .
+<https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp> <http://www.w3.org/2000/01/rdf-schema#comment> "Planned end time"@en .
+<https://exocortex.my/ontology/ems#OnlineMeetingFormat> <http://www.w3.org/2000/01/rdf-schema#comment> "Virtual/remote meeting"@en .
+<https://exocortex.my/ontology/ems#TaskCategory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/ems#EffortStatusAcknowledgement> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort awaiting acknowledgement"@en .
+<https://exocortex.my/ontology/ems#EffortStatusThisWeek> <http://www.w3.org/2000/01/rdf-schema#label> "This Week"@en .
+<https://exocortex.my/ontology/ems#Task> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#WeeklyObjective> <http://www.w3.org/2000/01/rdf-schema#comment> "Weekly objective"@en .
+<https://exocortex.my/ontology/ems#EffortStatusBacklog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortStatusToDo> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort is scheduled to be done"@en .
+<https://exocortex.my/ontology/ems#EffortStatusTrashed> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort has been discarded"@en .
+<https://exocortex.my/ontology/ems#EffortStatusToDo> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#OfflineMeetingFormat> <http://www.w3.org/2000/01/rdf-schema#comment> "In-person meeting"@en .
+<https://exocortex.my/ontology/ems#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://exocortex.my/ontology/ems#Project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#WeeklyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#OnlineMeetingFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#WeeklyObjective> <http://www.w3.org/2000/01/rdf-schema#label> "Weekly Objective"@en .
+<https://exocortex.my/ontology/ems#ProjectPrototype> <http://www.w3.org/2000/01/rdf-schema#label> "Project Prototype"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDoing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortParticipant> <http://www.w3.org/2000/01/rdf-schema#comment> "Participant in an effort"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDraft> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort is in draft state, not finalized"@en .
+<https://exocortex.my/ontology/ems#MeetingPrototype> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Prototype> .
+<https://exocortex.my/ontology/ems#EffortResponsible> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#WaitingTask> <http://www.w3.org/2000/01/rdf-schema#label> "Waiting Task"@en .
+<https://exocortex.my/ontology/ems#Area> <http://www.w3.org/2000/01/rdf-schema#label> "Area"@en .
+<https://exocortex.my/ontology/ems#OnlineMeetingFormat> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#MeetingFormat> .
+<https://exocortex.my/ontology/ems#YearlyObjective> <http://www.w3.org/2000/01/rdf-schema#label> "Yearly Objective"@en .
+<https://exocortex.my/ontology/ems#EffortColor> <http://www.w3.org/2000/01/rdf-schema#label> "Effort Color"@en .
+<https://exocortex.my/ontology/ems#OKR> <http://www.w3.org/2000/01/rdf-schema#comment> "Objective and Key Results"@en .
+<https://exocortex.my/ontology/ems#TransportingSession> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Session> .
+<https://exocortex.my/ontology/ems#SessionPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#MeetingPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortStatus> <http://www.w3.org/2000/01/rdf-schema#label> "Effort Status"@en .
+<https://exocortex.my/ontology/ems#TaskCategory> <http://www.w3.org/2000/01/rdf-schema#label> "Task Category"@en .
+<https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortColor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/2000/01/rdf-schema#label> "priority"@en .
+<https://exocortex.my/ontology/ems#Meeting> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#OKR> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#ParentEffort> .
+<https://exocortex.my/ontology/ems#EffortStatusAcknowledgement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Task> <http://www.w3.org/2000/01/rdf-schema#label> "Task"@en .
+<https://exocortex.my/ontology/ems#EffortParticipants> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortStatusDraft> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#ParentEffort> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/ems#ParentEffort> .
+<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#Session> <http://www.w3.org/2000/01/rdf-schema#comment> "Focused work session"@en .
+<https://exocortex.my/ontology/ems#EffortStatusAcknowledgement> <http://www.w3.org/2000/01/rdf-schema#label> "Acknowledgement"@en .
+<https://exocortex.my/ontology/ems#EffortStatusTrashed> <http://www.w3.org/2000/01/rdf-schema#label> "Trashed"@en .
+<https://exocortex.my/ontology/ems#Effort> <http://www.w3.org/2000/01/rdf-schema#label> "Effort"@en .
+<https://exocortex.my/ontology/ems#EffortStatusThisWeek> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Effort_endTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/2000/01/rdf-schema#label> "project"@en .
+<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#Meeting> <http://www.w3.org/2000/01/rdf-schema#label> "Meeting"@en .
+<https://exocortex.my/ontology/ems#EffortPrototype> <http://www.w3.org/2000/01/rdf-schema#label> "Effort Prototype"@en .
+<https://exocortex.my/ontology/ems#Initiative> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp> <http://www.w3.org/2000/01/rdf-schema#label> "plannedEndTimestamp"@en .
+<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/ems#Project> .
+<https://exocortex.my/ontology/ems#EffortStatusClarifying> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#QuarterlyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Recurring> <http://www.w3.org/2000/01/rdf-schema#label> "Recurring"@en .
+<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_startTimestamp> .
+<https://exocortex.my/ontology/ems#EffortStatusDone> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort has been completed"@en .
+<https://exocortex.my/ontology/ems#SessionPrototype> <http://www.w3.org/2000/01/rdf-schema#label> "Session Prototype"@en .
+<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/2000/01/rdf-schema#label> "parent"@en .
+<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/2000/01/rdf-schema#range> <https://exocortex.my/ontology/ems#Area> .
+<https://exocortex.my/ontology/ems#EffortStatusBacklog> <http://www.w3.org/2000/01/rdf-schema#label> "Backlog"@en .
+<https://exocortex.my/ontology/ems#EffortStatusThisWeek> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort planned for this week"@en .
+<https://exocortex.my/ontology/ems#OKR> <http://www.w3.org/2000/01/rdf-schema#label> "OKR"@en .
+<https://exocortex.my/ontology/ems#EffortParticipants> <http://www.w3.org/2000/01/rdf-schema#comment> "Collection of participants"@en .
+<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#TransportingSession> <http://www.w3.org/2000/01/rdf-schema#comment> "Travel time between locations"@en .
+<https://exocortex.my/ontology/ems#Effort> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#MeetingFormat> <http://www.w3.org/2000/01/rdf-schema#comment> "Format of meeting (online/offline)"@en .
+<https://exocortex.my/ontology/ems#QuarterlyObjective> <http://www.w3.org/2000/01/rdf-schema#comment> "Quarterly objective"@en .
+<https://exocortex.my/ontology/ems#TaskPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#OfflineMeetingFormat> <http://www.w3.org/2000/01/rdf-schema#label> "Offline"@en .
+<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/2000/01/rdf-schema#label> "startTimestamp"@en .
+<https://exocortex.my/ontology/ems#Idea> <http://www.w3.org/2000/01/rdf-schema#label> "Idea"@en .
+<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#MonthlyObjective> <http://www.w3.org/2000/01/rdf-schema#comment> "Monthly objective"@en .
+<https://exocortex.my/ontology/ems#EffortParticipant> <http://www.w3.org/2000/01/rdf-schema#label> "Effort Participant"@en .
+<https://exocortex.my/ontology/ems#TaskPrototype> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Prototype> .
+<https://exocortex.my/ontology/ems#EffortStatusBacklog> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Bug> <http://www.w3.org/2000/01/rdf-schema#label> "Bug"@en .
+<https://exocortex.my/ontology/ems#CurrentFocus> <http://www.w3.org/2000/01/rdf-schema#label> "Current Focus"@en .
+<https://exocortex.my/ontology/ems#MeetingPrototype> <http://www.w3.org/2000/01/rdf-schema#label> "Meeting Prototype"@en .
+<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_parent> .
+<https://exocortex.my/ontology/ems#EffortResponsible> <http://www.w3.org/2000/01/rdf-schema#comment> "Person responsible for effort completion"@en .
+<https://exocortex.my/ontology/ems#> <http://www.w3.org/2000/01/rdf-schema#label> "EMS - Effort Management System Ontology"@en .
+<https://exocortex.my/ontology/ems#MeetingFormat> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortStatusDone> <http://www.w3.org/2000/01/rdf-schema#label> "Done"@en .
+<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/2000/01/rdf-schema#comment> "Actual start time"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDoing> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Effort_endTimestamp> <http://www.w3.org/2000/01/rdf-schema#comment> "Actual end time"@en .
+<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/2000/01/rdf-schema#label> "plannedStartTimestamp"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/2000/01/rdf-schema#comment> "Priority level of the effort"@en .
+<https://exocortex.my/ontology/ems#ExtTask> <http://www.w3.org/2000/01/rdf-schema#comment> "Task from external system (GitHub, Jira, etc.)"@en .
+<https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#SessionPrototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Template for work sessions"@en .
+<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/2000/01/rdf-schema#label> "area"@en .
+<https://exocortex.my/ontology/ems#Effort_area> <http://www.w3.org/2000/01/rdf-schema#comment> "Life area this effort belongs to"@en .
+<https://exocortex.my/ontology/ems#TaskSize> <http://www.w3.org/2000/01/rdf-schema#label> "Task Size"@en .
+<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_project> .
+<https://exocortex.my/ontology/ems#EffortStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#ProjectPrototype> <http://www.w3.org/2000/01/rdf-schema#comment> "Template for creating projects"@en .
+<https://exocortex.my/ontology/ems#ProjectPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Area> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#ParentEffort> .
+<https://exocortex.my/ontology/ems#Idea> <http://www.w3.org/2000/01/rdf-schema#comment> "Captured thought or concept for future development"@en .
+<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/2000/01/rdf-schema#comment> "Project this effort belongs to"@en .
+<https://exocortex.my/ontology/ems#Project> <http://www.w3.org/2000/01/rdf-schema#label> "Project"@en .
+<https://exocortex.my/ontology/ems#Bug> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Task> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/ems#> <http://purl.org/vocab/vann/preferredNamespacePrefix> "ems" .
+<https://exocortex.my/ontology/ems#EffortPrototype> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Prototype> .
+<https://exocortex.my/ontology/ems#WeeklyObjective> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#OKR> .
+<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/2000/01/rdf-schema#comment> "Parent effort in hierarchy"@en .
+<https://exocortex.my/ontology/ems#Effort_startTimestamp> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#MeetingFormat> <http://www.w3.org/2000/01/rdf-schema#label> "Meeting Format"@en .
+<https://exocortex.my/ontology/ems#YearlyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortPrototype> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#TransportingSession> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/ems#Idea> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#TaskCategory> <http://www.w3.org/2000/01/rdf-schema#comment> "Category for task classification"@en .
+<https://exocortex.my/ontology/ems#Session> <http://www.w3.org/2000/01/rdf-schema#label> "Session"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDoing> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort is currently in progress"@en .
+<https://exocortex.my/ontology/ems#ParentEffort> <http://www.w3.org/2000/01/rdf-schema#label> "Parent Effort"@en .
+<https://exocortex.my/ontology/ems#EffortParticipants> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Collection> .
+<https://exocortex.my/ontology/ems#Session> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#TransportingSession> <http://www.w3.org/2000/01/rdf-schema#label> "Transporting Session"@en .
+<https://exocortex.my/ontology/ems#ParentEffort> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort that contains child efforts"@en .
+<https://exocortex.my/ontology/ems#TaskZone> <http://www.w3.org/2000/01/rdf-schema#comment> "Energy zone for task (creative, routine, administrative)"@en .
+<https://exocortex.my/ontology/ems#EffortColor> <http://www.w3.org/2000/01/rdf-schema#comment> "Visual color indicator for effort"@en .
+<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/2000/01/rdf-schema#label> "status"@en .
+<https://exocortex.my/ontology/ems#Effort_endTimestamp> <http://www.w3.org/2000/01/rdf-schema#label> "endTimestamp"@en .
+<https://exocortex.my/ontology/ems#OKR> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Meeting> <http://www.w3.org/2000/01/rdf-schema#comment> "Scheduled meeting with participants"@en .
+<https://exocortex.my/ontology/ems#SessionType> <http://www.w3.org/2000/01/rdf-schema#comment> "Type of work session"@en .
+<https://exocortex.my/ontology/ems#ExtTask> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Task> .
+<https://exocortex.my/ontology/ems#WaitingTask> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_plannedEndTimestamp> <http://www.w3.org/2000/01/rdf-schema#domain> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#EffortStatusBacklog> <http://www.w3.org/2000/01/rdf-schema#comment> "Effort is in backlog, not yet scheduled"@en .
+<https://exocortex.my/ontology/ems#MonthlyObjective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#CurrentFocus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#ExtTask> <http://www.w3.org/2000/01/rdf-schema#label> "External Task"@en .
+<https://exocortex.my/ontology/ems#TaskPrototype> <http://www.w3.org/2000/01/rdf-schema#label> "Task Prototype"@en .
+<https://exocortex.my/ontology/ems#OnlineMeetingFormat> <http://www.w3.org/2000/01/rdf-schema#label> "Online"@en .
+<https://exocortex.my/ontology/ems#TaskZone> <http://www.w3.org/2000/01/rdf-schema#label> "Task Zone"@en .
+<https://exocortex.my/ontology/ems#Meeting> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#ExtTask> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortStatusClarifying> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Recurring> <http://www.w3.org/2000/01/rdf-schema#comment> "Recurring effort pattern"@en .
+<https://exocortex.my/ontology/ems#Effort_parent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://exocortex.my/ontology/ems#EffortStatusToDo> <http://www.w3.org/2000/01/rdf-schema#label> "To Do"@en .
+<https://exocortex.my/ontology/ems#TaskContext> <http://www.w3.org/2000/01/rdf-schema#comment> "Context where task can be done (@home, @work, @phone)"@en .
+<https://exocortex.my/ontology/ems#EffortResponsible> <http://www.w3.org/2000/01/rdf-schema#label> "Effort Responsible"@en .
+<https://exocortex.my/ontology/ems#ParentEffort> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#Area> <http://www.w3.org/2000/01/rdf-schema#comment> "Life area (Work, Health, Learning, etc.)"@en .
+<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_priority> .
+<https://exocortex.my/ontology/ems#QuarterlyObjective> <http://www.w3.org/2000/01/rdf-schema#label> "Quarterly Objective"@en .
+<https://exocortex.my/ontology/ems#EffortStatusToDo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#> <http://www.w3.org/2000/01/rdf-schema#comment> "Ontology for task management, project planning, and effort tracking in Exocortex. Key concepts: Tasks, Projects, Areas, Ideas, Sessions, Meetings, and OKRs with status tracking and timestamps."@en .
+<https://exocortex.my/ontology/ems#TaskSize> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#EffortStatusBusinessAnalysis> <http://www.w3.org/2000/01/rdf-schema#label> "Business Analysis"@en .
+<https://exocortex.my/ontology/ems#Area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/2000/01/rdf-schema#comment> "Current status of the effort"@en .
+<https://exocortex.my/ontology/ems#Task> <http://www.w3.org/2000/01/rdf-schema#comment> "Atomic unit of work"@en .
+<https://exocortex.my/ontology/ems#ProjectPrototype> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/exo#Prototype> .
+<https://exocortex.my/ontology/ems#OfflineMeetingFormat> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#MeetingFormat> .
+<https://exocortex.my/ontology/ems#QuarterlyObjective> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#OKR> .
+<https://exocortex.my/ontology/ems#EffortStatusDoing> <http://www.w3.org/2000/01/rdf-schema#label> "Doing"@en .
+<https://exocortex.my/ontology/ems#MonthlyObjective> <http://www.w3.org/2000/01/rdf-schema#label> "Monthly Objective"@en .
+<https://exocortex.my/ontology/ems#Effort_status> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_status> .
+<https://exocortex.my/ontology/ems#EffortStatusTrashed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Initiative> <http://www.w3.org/2000/01/rdf-schema#comment> "Strategic initiative spanning multiple projects"@en .
+<https://exocortex.my/ontology/ems#EffortStatusAcknowledgement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#WaitingTask> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Task> .
+<https://exocortex.my/ontology/ems#Effort_plannedStartTimestamp> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://exocortex.my/ontology/exo#Asset_plannedStartTimestamp> .
+<https://exocortex.my/ontology/ems#Idea> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#Effort> .
+<https://exocortex.my/ontology/ems#TaskContext> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://exocortex.my/ontology/ems#Initiative> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#ParentEffort> .
+<https://exocortex.my/ontology/ems#Effort_priority> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://exocortex.my/ontology/ems#Project> <http://www.w3.org/2000/01/rdf-schema#comment> "Collection of related tasks"@en .
+<https://exocortex.my/ontology/ems#EffortStatusDone> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#EffortStatus> .
+<https://exocortex.my/ontology/ems#Project> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://exocortex.my/ontology/ems#ParentEffort> .
+<https://exocortex.my/ontology/ems#SessionType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
