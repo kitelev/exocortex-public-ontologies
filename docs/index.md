@@ -75,6 +75,16 @@ File-based RDF ontologies for knowledge management in Obsidian.
 | GEO | `geo` | 33 |
 | Dublin Core Abstract Model | `dcam` | 26 |
 
+## Exocortex Ontologies
+
+Custom ontologies developed for the Exocortex knowledge management system.
+
+| Ontology | Prefix | Description | TTL Export |
+|----------|--------|-------------|------------|
+| EXO Core | `exo` | Core asset and domain ontology | [exo.ttl](exports/exo.ttl) |
+| EMS | `ems` | Effort management ontology | [ems.ttl](exports/ems.ttl) |
+| EXO-UI | `exo-ui` | Declarative UI configuration: commands, buttons, layouts, actions | [exo-ui.ttl](exports/exo-ui.ttl) |
+
 ## Repository
 
 - [GitHub Repository](https://github.com/kitelev/exocortex-public-ontologies)

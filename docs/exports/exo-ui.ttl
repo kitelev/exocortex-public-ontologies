@@ -1,0 +1,243 @@
+@prefix exo-ui: <https://exocortex.my/ontology/exo-ui#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+exo-ui:Action a rdfs:Class ;
+    rdfs:label "Action" ;
+    rdfs:comment "An action performed in response to a command." .
+
+exo-ui:Button a rdfs:Class ;
+    rdfs:label "Button" ;
+    rdfs:comment "A clickable UI element that triggers a command." .
+
+exo-ui:ButtonGroup a rdfs:Class ;
+    rdfs:label "ButtonGroup" ;
+    rdfs:comment "A collection of related buttons." .
+
+exo-ui:Column a rdfs:Class ;
+    rdfs:label "Column" ;
+    rdfs:comment "A vertical column within a layout." .
+
+exo-ui:Command a rdfs:Class ;
+    rdfs:label "Command" ;
+    rdfs:comment "A UI command that can be triggered by the user." .
+
+exo-ui:CompositeAction a rdfs:Class ;
+    rdfs:label "Composite Action" ;
+    rdfs:comment "Sequential execution of multiple actions. Parameters: actions (ordered list)." .
+
+exo-ui:Condition a rdfs:Class ;
+    rdfs:label "Condition" ;
+    rdfs:comment "A condition that determines visibility or behavior." .
+
+exo-ui:CreateAssetAction a rdfs:Class ;
+    rdfs:label "Create Asset Action" ;
+    rdfs:comment "Creates new asset of specified class using template. Parameters: targetClass, template, location." .
+
+exo-ui:CustomHandlerAction a rdfs:Class ;
+    rdfs:label "Custom Handler Action" ;
+    rdfs:comment "Escape hatch: calls registered TypeScript handler by ID. Parameters: handler (string ID)." .
+
+exo-ui:ExecuteSPARQLAction a rdfs:Class ;
+    rdfs:label "Execute SPARQL Action" ;
+    rdfs:comment "Executes SPARQL query and processes results. Parameters: query, resultHandler." .
+
+exo-ui:Layout a rdfs:Class ;
+    rdfs:label "Layout" ;
+    rdfs:comment "A UI layout container for organizing components." .
+
+exo-ui:Modal a rdfs:Class ;
+    rdfs:label "Modal" ;
+    rdfs:comment "A modal dialog window." .
+
+exo-ui:NavigateAction a rdfs:Class ;
+    rdfs:label "Navigate Action" ;
+    rdfs:comment "Navigates to asset or SPARQL query result. Parameters: target (URI or SPARQL SELECT)." .
+
+exo-ui:ShowModalAction a rdfs:Class ;
+    rdfs:label "Show Modal Action" ;
+    rdfs:comment "Shows modal dialog of specified type. Parameters: modalType, modalParams." .
+
+exo-ui:TriggerHookAction a rdfs:Class ;
+    rdfs:label "Trigger Hook Action" ;
+    rdfs:comment "Triggers webhook or internal hook. Parameters: hookName, payload." .
+
+exo-ui:UpdatePropertyAction a rdfs:Class ;
+    rdfs:label "Update Property Action" ;
+    rdfs:comment "Updates property value on current or specified asset. Parameters: targetProperty, targetValue, targetAsset." .
+
+exo-ui:Action_actions a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "actions" ;
+    rdfs:comment "For CompositeAction: ordered list of actions to execute" .
+
+exo-ui:Action_cliAlternative a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "CLI alternative" ;
+    rdfs:comment "CLI argument syntax that replaces UI interaction. Example: '--reason \"text\"' instead of modal." .
+
+exo-ui:Action_cliCommand a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "CLI command" ;
+    rdfs:comment "Full CLI command equivalent. Example: 'exocortex command complete --file {{asset}}'." .
+
+exo-ui:Action_handler a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "handler" ;
+    rdfs:comment "For CustomHandlerAction: registered TypeScript handler ID" .
+
+exo-ui:Action_headless a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "headless" ;
+    rdfs:comment "Whether action can execute without UI (CLI mode). True = works in CLI+Obsidian, False = Obsidian only." .
+
+exo-ui:Action_location a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "location" ;
+    rdfs:comment "For CreateAssetAction: folder path for new asset (supports templates)" .
+
+exo-ui:Action_modalParams a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "modal params" ;
+    rdfs:comment "For ShowModalAction: JSON parameters for modal" .
+
+exo-ui:Action_modalType a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "modal type" ;
+    rdfs:comment "For ShowModalAction: type of modal (confirm, input, select, custom)" .
+
+exo-ui:Action_query a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "query" ;
+    rdfs:comment "For ExecuteSPARQLAction: SPARQL query to execute" .
+
+exo-ui:Action_target a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "target" ;
+    rdfs:comment "For NavigateAction: asset URI or SPARQL SELECT query" .
+
+exo-ui:Action_targetAsset a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "target asset" ;
+    rdfs:comment "For UpdatePropertyAction: asset to update (default: current asset)" .
+
+exo-ui:Action_targetClass a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "target class" ;
+    rdfs:comment "For CreateAssetAction: class of asset to create" .
+
+exo-ui:Action_targetProperty a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "target property" ;
+    rdfs:comment "For UpdatePropertyAction: property to update" .
+
+exo-ui:Action_targetValue a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "target value" ;
+    rdfs:comment "For UpdatePropertyAction: new value (can be literal or URI)" .
+
+exo-ui:Action_template a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "template" ;
+    rdfs:comment "For CreateAssetAction: template/prototype for new asset" .
+
+exo-ui:ButtonGroup_collapsible a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "collapsible" ;
+    rdfs:comment "Whether group can be collapsed" .
+
+exo-ui:ButtonGroup_defaultCollapsed a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "default collapsed" ;
+    rdfs:comment "Whether group is collapsed by default" .
+
+exo-ui:ButtonGroup_order a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "order" ;
+    rdfs:comment "Display order of button group" .
+
+exo-ui:Button_action a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "action" ;
+    rdfs:comment "Action to execute when button is clicked" .
+
+exo-ui:Button_condition a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "condition" ;
+    rdfs:comment "Condition for button visibility" .
+
+exo-ui:Button_group a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "group" ;
+    rdfs:comment "Button group membership (Creation, Status, Planning, Maintenance)" .
+
+exo-ui:Button_icon a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "icon" ;
+    rdfs:comment "Optional Lucide icon before label" .
+
+exo-ui:Button_label a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "button label" ;
+    rdfs:comment "Text displayed on button. Can include template variables: {{asset.label}}" .
+
+exo-ui:Button_order a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "order" ;
+    rdfs:comment "Sort order within group (lower = first)" .
+
+exo-ui:Button_tooltip a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "tooltip" ;
+    rdfs:comment "Hover tooltip text" .
+
+exo-ui:Button_variant a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "variant" ;
+    rdfs:comment "Visual style: primary, secondary, success, warning, danger" .
+
+exo-ui:Command_action a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "action" ;
+    rdfs:comment "Action to execute when command is invoked" .
+
+exo-ui:Command_condition a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "condition" ;
+    rdfs:comment "Condition for command visibility in Command Palette" .
+
+exo-ui:Command_hotkey a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "hotkey" ;
+    rdfs:comment "Keyboard shortcut (e.g., 'Ctrl+Shift+T', 'Mod+K')" .
+
+exo-ui:Command_icon a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "icon" ;
+    rdfs:comment "Lucide icon name (e.g., 'plus-circle', 'check', 'trash')" .
+
+exo-ui:Command_id a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "command ID" ;
+    rdfs:comment "Unique command identifier for Obsidian (e.g., 'exocortex:create-task')" .
+
+exo-ui:Command_name a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "command name" ;
+    rdfs:comment "Human-readable command name shown in Command Palette" .
+
+exo-ui:Condition_and a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "and" ;
+    rdfs:comment "Conjunction: all conditions must be true" .
+
+exo-ui:Condition_assetClass a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "asset class" ;
+    rdfs:comment "Simple condition: current asset must be instance of this class" .
+
+exo-ui:Condition_hasProperty a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "has property" ;
+    rdfs:comment "Simple condition: current asset must have this property" .
+
+exo-ui:Condition_not a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "not" ;
+    rdfs:comment "Negation: condition must be false" .
+
+exo-ui:Condition_or a _:N94f13b7be1fe4b97972accd8d6996780 ;
+    rdfs:label "or" ;
+    rdfs:comment "Disjunction: at least one condition must be true" .
+
+exo-ui:Condition_propertyValue a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "property value" ;
+    rdfs:comment "Simple condition: property must equal this value" .
+
+exo-ui:Condition_sparql a _:N66830a63cfb04a2997b111f2ac93417b ;
+    rdfs:label "SPARQL condition" ;
+    rdfs:comment "ASK query that returns true/false. Variable ?asset bound to current asset." .
+
+exo-ui:CreationButtonGroup a exo-ui:ButtonGroup ;
+    rdfs:label "Creation"@en ;
+    rdfs:comment "Buttons for creating new assets: Task, Project, Area, Concept, etc."@en ;
+    exo-ui:ButtonGroup_order "1" .
+
+exo-ui:MaintenanceButtonGroup a exo-ui:ButtonGroup ;
+    rdfs:label "Maintenance"@en ;
+    rdfs:comment "Buttons for asset maintenance: Cleanup, Repair, Rename to UID."@en ;
+    exo-ui:ButtonGroup_order "4" .
+
+exo-ui:PlanningButtonGroup a exo-ui:ButtonGroup ;
+    rdfs:label "Planning"@en ;
+    rdfs:comment "Buttons for time-based planning: Plan Today, Plan Evening, Shift Forward."@en ;
+    exo-ui:ButtonGroup_order "3" .
+
+exo-ui:StatusButtonGroup a exo-ui:ButtonGroup ;
+    rdfs:label "Status"@en ;
+    rdfs:comment "Buttons for status transitions: Draft, Backlog, ToDo, Doing, Done, Trashed."@en ;
+    exo-ui:ButtonGroup_order "2" .
+
