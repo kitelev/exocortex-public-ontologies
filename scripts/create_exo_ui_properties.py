@@ -53,13 +53,13 @@ def get_uuid_for_uri(uri: str) -> str:
 def create_anchor_file(output_dir: Path, prop_name: str, uri: str) -> str:
     """Create anchor file for a property. Returns the UUID."""
     prop_uuid = get_uuid_for_uri(uri)
-    content = f'''---
+    content = f"""---
 metadata: anchor
 uri: "{uri}"
 aliases:
   - "exo-ui:{prop_name}"
 ---
-'''
+"""
     (output_dir / f"{prop_uuid}.md").write_text(content)
     return prop_uuid
 
@@ -67,17 +67,25 @@ aliases:
 def escape_yaml_string(s: str) -> str:
     """Escape a string for use in YAML."""
     # Escape backslashes first, then quotes
-    s = s.replace('\\', '\\\\')
+    s = s.replace("\\", "\\\\")
     s = s.replace('"', '\\"')
     return s
 
 
-def create_statement_file(output_dir: Path, subject_uuid: str, subject_alias: str,
-                          predicate_uuid: str, predicate_alias: str,
-                          obj_value: str, alias_suffix: str) -> str:
+def create_statement_file(
+    output_dir: Path,
+    subject_uuid: str,
+    subject_alias: str,
+    predicate_uuid: str,
+    predicate_alias: str,
+    obj_value: str,
+    alias_suffix: str,
+) -> str:
     """Create statement file. Returns the UUID."""
     # Create canonical form for UUID generation
-    canonical = f"https://exocortex.my/ontology/exo-ui#{subject_alias.replace('exo-ui:', '')}|{predicate_alias}|{obj_value}"
+    canonical = (
+        f"https://exocortex.my/ontology/exo-ui#{subject_alias.replace('exo-ui:', '')}|{predicate_alias}|{obj_value}"
+    )
     stmt_uuid = get_uuid_for_uri(canonical)
 
     # Format object based on type
@@ -103,7 +111,7 @@ def create_statement_file(output_dir: Path, subject_uuid: str, subject_alias: st
     # Escape alias suffix for YAML
     alias_escaped = escape_yaml_string(f"{subject_alias} {predicate_alias} {alias_suffix}")
 
-    content = f'''---
+    content = f"""---
 metadata: statement
 subject: "[[{subject_uuid}|{subject_alias}]]"
 predicate: "[[{predicate_uuid}|{predicate_alias}]]"
@@ -111,7 +119,7 @@ object: {obj_formatted}
 aliases:
   - "{alias_escaped}"
 ---
-'''
+"""
     (output_dir / f"{stmt_uuid}.md").write_text(content)
     return stmt_uuid
 
@@ -120,133 +128,309 @@ aliases:
 # Format: (name, type, label, comment, domain, range)
 PROPERTIES = [
     # Command properties (6)
-    ("Command_id", "DatatypeProperty", "command ID",
-     "Unique command identifier for Obsidian (e.g., 'exocortex:create-task')",
-     "exo-ui:Command", "xsd:string"),
-    ("Command_name", "DatatypeProperty", "command name",
-     "Human-readable command name shown in Command Palette",
-     "exo-ui:Command", "xsd:string"),
-    ("Command_hotkey", "DatatypeProperty", "hotkey",
-     "Keyboard shortcut (e.g., 'Ctrl+Shift+T', 'Mod+K')",
-     "exo-ui:Command", "xsd:string"),
-    ("Command_icon", "DatatypeProperty", "icon",
-     "Lucide icon name (e.g., 'plus-circle', 'check', 'trash')",
-     "exo-ui:Command", "xsd:string"),
-    ("Command_action", "ObjectProperty", "action",
-     "Action to execute when command is invoked",
-     "exo-ui:Command", "exo-ui:Action"),
-    ("Command_condition", "ObjectProperty", "condition",
-     "Condition for command visibility in Command Palette",
-     "exo-ui:Command", "exo-ui:Condition"),
-
+    (
+        "Command_id",
+        "DatatypeProperty",
+        "command ID",
+        "Unique command identifier for Obsidian (e.g., 'exocortex:create-task')",
+        "exo-ui:Command",
+        "xsd:string",
+    ),
+    (
+        "Command_name",
+        "DatatypeProperty",
+        "command name",
+        "Human-readable command name shown in Command Palette",
+        "exo-ui:Command",
+        "xsd:string",
+    ),
+    (
+        "Command_hotkey",
+        "DatatypeProperty",
+        "hotkey",
+        "Keyboard shortcut (e.g., 'Ctrl+Shift+T', 'Mod+K')",
+        "exo-ui:Command",
+        "xsd:string",
+    ),
+    (
+        "Command_icon",
+        "DatatypeProperty",
+        "icon",
+        "Lucide icon name (e.g., 'plus-circle', 'check', 'trash')",
+        "exo-ui:Command",
+        "xsd:string",
+    ),
+    (
+        "Command_action",
+        "ObjectProperty",
+        "action",
+        "Action to execute when command is invoked",
+        "exo-ui:Command",
+        "exo-ui:Action",
+    ),
+    (
+        "Command_condition",
+        "ObjectProperty",
+        "condition",
+        "Condition for command visibility in Command Palette",
+        "exo-ui:Command",
+        "exo-ui:Condition",
+    ),
     # Button properties (8)
-    ("Button_label", "DatatypeProperty", "button label",
-     "Text displayed on button. Can include template variables: {{asset.label}}",
-     "exo-ui:Button", "xsd:string"),
-    ("Button_variant", "DatatypeProperty", "variant",
-     "Visual style: primary, secondary, success, warning, danger",
-     "exo-ui:Button", "xsd:string"),
-    ("Button_icon", "DatatypeProperty", "icon",
-     "Optional Lucide icon before label",
-     "exo-ui:Button", "xsd:string"),
-    ("Button_action", "ObjectProperty", "action",
-     "Action to execute when button is clicked",
-     "exo-ui:Button", "exo-ui:Action"),
-    ("Button_group", "ObjectProperty", "group",
-     "Button group membership (Creation, Status, Planning, Maintenance)",
-     "exo-ui:Button", "exo-ui:ButtonGroup"),
-    ("Button_condition", "ObjectProperty", "condition",
-     "Condition for button visibility",
-     "exo-ui:Button", "exo-ui:Condition"),
-    ("Button_order", "DatatypeProperty", "order",
-     "Sort order within group (lower = first)",
-     "exo-ui:Button", "xsd:integer"),
-    ("Button_tooltip", "DatatypeProperty", "tooltip",
-     "Hover tooltip text",
-     "exo-ui:Button", "xsd:string"),
-
+    (
+        "Button_label",
+        "DatatypeProperty",
+        "button label",
+        "Text displayed on button. Can include template variables: {{asset.label}}",
+        "exo-ui:Button",
+        "xsd:string",
+    ),
+    (
+        "Button_variant",
+        "DatatypeProperty",
+        "variant",
+        "Visual style: primary, secondary, success, warning, danger",
+        "exo-ui:Button",
+        "xsd:string",
+    ),
+    ("Button_icon", "DatatypeProperty", "icon", "Optional Lucide icon before label", "exo-ui:Button", "xsd:string"),
+    (
+        "Button_action",
+        "ObjectProperty",
+        "action",
+        "Action to execute when button is clicked",
+        "exo-ui:Button",
+        "exo-ui:Action",
+    ),
+    (
+        "Button_group",
+        "ObjectProperty",
+        "group",
+        "Button group membership (Creation, Status, Planning, Maintenance)",
+        "exo-ui:Button",
+        "exo-ui:ButtonGroup",
+    ),
+    (
+        "Button_condition",
+        "ObjectProperty",
+        "condition",
+        "Condition for button visibility",
+        "exo-ui:Button",
+        "exo-ui:Condition",
+    ),
+    (
+        "Button_order",
+        "DatatypeProperty",
+        "order",
+        "Sort order within group (lower = first)",
+        "exo-ui:Button",
+        "xsd:integer",
+    ),
+    ("Button_tooltip", "DatatypeProperty", "tooltip", "Hover tooltip text", "exo-ui:Button", "xsd:string"),
     # Action properties (12)
-    ("Action_targetClass", "ObjectProperty", "target class",
-     "For CreateAssetAction: class of asset to create",
-     "exo-ui:CreateAssetAction", "owl:Class"),
-    ("Action_template", "ObjectProperty", "template",
-     "For CreateAssetAction: template/prototype for new asset",
-     "exo-ui:CreateAssetAction", "exo:Prototype"),
-    ("Action_location", "DatatypeProperty", "location",
-     "For CreateAssetAction: folder path for new asset (supports templates)",
-     "exo-ui:CreateAssetAction", "xsd:string"),
-    ("Action_targetProperty", "ObjectProperty", "target property",
-     "For UpdatePropertyAction: property to update",
-     "exo-ui:UpdatePropertyAction", "rdf:Property"),
-    ("Action_targetValue", "DatatypeProperty", "target value",
-     "For UpdatePropertyAction: new value (can be literal or URI)",
-     "exo-ui:UpdatePropertyAction", None),  # No range specified
-    ("Action_targetAsset", "ObjectProperty", "target asset",
-     "For UpdatePropertyAction: asset to update (default: current asset)",
-     "exo-ui:UpdatePropertyAction", "exo:Asset"),
-    ("Action_target", "DatatypeProperty", "target",
-     "For NavigateAction: asset URI or SPARQL SELECT query",
-     "exo-ui:NavigateAction", "xsd:string"),
-    ("Action_query", "DatatypeProperty", "query",
-     "For ExecuteSPARQLAction: SPARQL query to execute",
-     "exo-ui:ExecuteSPARQLAction", "xsd:string"),
-    ("Action_modalType", "DatatypeProperty", "modal type",
-     "For ShowModalAction: type of modal (confirm, input, select, custom)",
-     "exo-ui:ShowModalAction", "xsd:string"),
-    ("Action_modalParams", "DatatypeProperty", "modal params",
-     "For ShowModalAction: JSON parameters for modal",
-     "exo-ui:ShowModalAction", "xsd:string"),
-    ("Action_handler", "DatatypeProperty", "handler",
-     "For CustomHandlerAction: registered TypeScript handler ID",
-     "exo-ui:CustomHandlerAction", "xsd:string"),
-    ("Action_actions", "ObjectProperty", "actions",
-     "For CompositeAction: ordered list of actions to execute",
-     "exo-ui:CompositeAction", "rdf:List"),
-
+    (
+        "Action_targetClass",
+        "ObjectProperty",
+        "target class",
+        "For CreateAssetAction: class of asset to create",
+        "exo-ui:CreateAssetAction",
+        "owl:Class",
+    ),
+    (
+        "Action_template",
+        "ObjectProperty",
+        "template",
+        "For CreateAssetAction: template/prototype for new asset",
+        "exo-ui:CreateAssetAction",
+        "exo:Prototype",
+    ),
+    (
+        "Action_location",
+        "DatatypeProperty",
+        "location",
+        "For CreateAssetAction: folder path for new asset (supports templates)",
+        "exo-ui:CreateAssetAction",
+        "xsd:string",
+    ),
+    (
+        "Action_targetProperty",
+        "ObjectProperty",
+        "target property",
+        "For UpdatePropertyAction: property to update",
+        "exo-ui:UpdatePropertyAction",
+        "rdf:Property",
+    ),
+    (
+        "Action_targetValue",
+        "DatatypeProperty",
+        "target value",
+        "For UpdatePropertyAction: new value (can be literal or URI)",
+        "exo-ui:UpdatePropertyAction",
+        None,
+    ),  # No range specified
+    (
+        "Action_targetAsset",
+        "ObjectProperty",
+        "target asset",
+        "For UpdatePropertyAction: asset to update (default: current asset)",
+        "exo-ui:UpdatePropertyAction",
+        "exo:Asset",
+    ),
+    (
+        "Action_target",
+        "DatatypeProperty",
+        "target",
+        "For NavigateAction: asset URI or SPARQL SELECT query",
+        "exo-ui:NavigateAction",
+        "xsd:string",
+    ),
+    (
+        "Action_query",
+        "DatatypeProperty",
+        "query",
+        "For ExecuteSPARQLAction: SPARQL query to execute",
+        "exo-ui:ExecuteSPARQLAction",
+        "xsd:string",
+    ),
+    (
+        "Action_modalType",
+        "DatatypeProperty",
+        "modal type",
+        "For ShowModalAction: type of modal (confirm, input, select, custom)",
+        "exo-ui:ShowModalAction",
+        "xsd:string",
+    ),
+    (
+        "Action_modalParams",
+        "DatatypeProperty",
+        "modal params",
+        "For ShowModalAction: JSON parameters for modal",
+        "exo-ui:ShowModalAction",
+        "xsd:string",
+    ),
+    (
+        "Action_handler",
+        "DatatypeProperty",
+        "handler",
+        "For CustomHandlerAction: registered TypeScript handler ID",
+        "exo-ui:CustomHandlerAction",
+        "xsd:string",
+    ),
+    (
+        "Action_actions",
+        "ObjectProperty",
+        "actions",
+        "For CompositeAction: ordered list of actions to execute",
+        "exo-ui:CompositeAction",
+        "rdf:List",
+    ),
     # Condition properties (7)
-    ("Condition_sparql", "DatatypeProperty", "SPARQL condition",
-     "ASK query that returns true/false. Variable ?asset bound to current asset.",
-     "exo-ui:Condition", "xsd:string"),
-    ("Condition_assetClass", "ObjectProperty", "asset class",
-     "Simple condition: current asset must be instance of this class",
-     "exo-ui:Condition", "owl:Class"),
-    ("Condition_hasProperty", "ObjectProperty", "has property",
-     "Simple condition: current asset must have this property",
-     "exo-ui:Condition", "rdf:Property"),
-    ("Condition_propertyValue", "DatatypeProperty", "property value",
-     "Simple condition: property must equal this value",
-     "exo-ui:Condition", None),  # No range specified
-    ("Condition_not", "ObjectProperty", "not",
-     "Negation: condition must be false",
-     "exo-ui:Condition", "exo-ui:Condition"),
-    ("Condition_and", "ObjectProperty", "and",
-     "Conjunction: all conditions must be true",
-     "exo-ui:Condition", "rdf:List"),
-    ("Condition_or", "ObjectProperty", "or",
-     "Disjunction: at least one condition must be true",
-     "exo-ui:Condition", "rdf:List"),
-
+    (
+        "Condition_sparql",
+        "DatatypeProperty",
+        "SPARQL condition",
+        "ASK query that returns true/false. Variable ?asset bound to current asset.",
+        "exo-ui:Condition",
+        "xsd:string",
+    ),
+    (
+        "Condition_assetClass",
+        "ObjectProperty",
+        "asset class",
+        "Simple condition: current asset must be instance of this class",
+        "exo-ui:Condition",
+        "owl:Class",
+    ),
+    (
+        "Condition_hasProperty",
+        "ObjectProperty",
+        "has property",
+        "Simple condition: current asset must have this property",
+        "exo-ui:Condition",
+        "rdf:Property",
+    ),
+    (
+        "Condition_propertyValue",
+        "DatatypeProperty",
+        "property value",
+        "Simple condition: property must equal this value",
+        "exo-ui:Condition",
+        None,
+    ),  # No range specified
+    (
+        "Condition_not",
+        "ObjectProperty",
+        "not",
+        "Negation: condition must be false",
+        "exo-ui:Condition",
+        "exo-ui:Condition",
+    ),
+    (
+        "Condition_and",
+        "ObjectProperty",
+        "and",
+        "Conjunction: all conditions must be true",
+        "exo-ui:Condition",
+        "rdf:List",
+    ),
+    (
+        "Condition_or",
+        "ObjectProperty",
+        "or",
+        "Disjunction: at least one condition must be true",
+        "exo-ui:Condition",
+        "rdf:List",
+    ),
     # ButtonGroup properties (3)
-    ("ButtonGroup_order", "DatatypeProperty", "order",
-     "Display order of button group",
-     "exo-ui:ButtonGroup", "xsd:integer"),
-    ("ButtonGroup_collapsible", "DatatypeProperty", "collapsible",
-     "Whether group can be collapsed",
-     "exo-ui:ButtonGroup", "xsd:boolean"),
-    ("ButtonGroup_defaultCollapsed", "DatatypeProperty", "default collapsed",
-     "Whether group is collapsed by default",
-     "exo-ui:ButtonGroup", "xsd:boolean"),
-
+    (
+        "ButtonGroup_order",
+        "DatatypeProperty",
+        "order",
+        "Display order of button group",
+        "exo-ui:ButtonGroup",
+        "xsd:integer",
+    ),
+    (
+        "ButtonGroup_collapsible",
+        "DatatypeProperty",
+        "collapsible",
+        "Whether group can be collapsed",
+        "exo-ui:ButtonGroup",
+        "xsd:boolean",
+    ),
+    (
+        "ButtonGroup_defaultCollapsed",
+        "DatatypeProperty",
+        "default collapsed",
+        "Whether group is collapsed by default",
+        "exo-ui:ButtonGroup",
+        "xsd:boolean",
+    ),
     # CLI-specific Action properties (3)
-    ("Action_headless", "DatatypeProperty", "headless",
-     "Whether action can execute without UI (CLI mode). True = works in CLI+Obsidian, False = Obsidian only.",
-     "exo-ui:Action", "xsd:boolean"),
-    ("Action_cliAlternative", "DatatypeProperty", "CLI alternative",
-     "CLI argument syntax that replaces UI interaction. Example: '--reason \"text\"' instead of modal.",
-     "exo-ui:Action", "xsd:string"),
-    ("Action_cliCommand", "DatatypeProperty", "CLI command",
-     "Full CLI command equivalent. Example: 'exocortex command complete --file {{asset}}'.",
-     "exo-ui:Action", "xsd:string"),
+    (
+        "Action_headless",
+        "DatatypeProperty",
+        "headless",
+        "Whether action can execute without UI (CLI mode). True = works in CLI+Obsidian, False = Obsidian only.",
+        "exo-ui:Action",
+        "xsd:boolean",
+    ),
+    (
+        "Action_cliAlternative",
+        "DatatypeProperty",
+        "CLI alternative",
+        "CLI argument syntax that replaces UI interaction. Example: '--reason \"text\"' instead of modal.",
+        "exo-ui:Action",
+        "xsd:string",
+    ),
+    (
+        "Action_cliCommand",
+        "DatatypeProperty",
+        "CLI command",
+        "Full CLI command equivalent. Example: 'exocortex command complete --file {{asset}}'.",
+        "exo-ui:Action",
+        "xsd:string",
+    ),
 ]
 
 
@@ -266,41 +450,35 @@ def main():
 
         # Create rdf:type statement
         owl_type = f"owl:{prop_type}"
-        create_statement_file(
-            output_dir, prop_uuid, prop_alias,
-            PREDICATE_UUIDS["rdf:type"], "a",
-            owl_type, owl_type
-        )
+        create_statement_file(output_dir, prop_uuid, prop_alias, PREDICATE_UUIDS["rdf:type"], "a", owl_type, owl_type)
 
         # Create rdfs:label statement
         label_literal = f'"{label}"'
         create_statement_file(
-            output_dir, prop_uuid, prop_alias,
-            PREDICATE_UUIDS["rdfs:label"], "rdfs:label",
-            label_literal, label_literal
+            output_dir, prop_uuid, prop_alias, PREDICATE_UUIDS["rdfs:label"], "rdfs:label", label_literal, label_literal
         )
 
         # Create rdfs:comment statement
         comment_literal = f'"{comment}"'
         create_statement_file(
-            output_dir, prop_uuid, prop_alias,
-            PREDICATE_UUIDS["rdfs:comment"], "rdfs:comment",
-            comment_literal, comment_literal
+            output_dir,
+            prop_uuid,
+            prop_alias,
+            PREDICATE_UUIDS["rdfs:comment"],
+            "rdfs:comment",
+            comment_literal,
+            comment_literal,
         )
 
         # Create rdfs:domain statement
         create_statement_file(
-            output_dir, prop_uuid, prop_alias,
-            PREDICATE_UUIDS["rdfs:domain"], "rdfs:domain",
-            domain, domain
+            output_dir, prop_uuid, prop_alias, PREDICATE_UUIDS["rdfs:domain"], "rdfs:domain", domain, domain
         )
 
         # Create rdfs:range statement (if specified)
         if range_type:
             create_statement_file(
-                output_dir, prop_uuid, prop_alias,
-                PREDICATE_UUIDS["rdfs:range"], "rdfs:range",
-                range_type, range_type
+                output_dir, prop_uuid, prop_alias, PREDICATE_UUIDS["rdfs:range"], "rdfs:range", range_type, range_type
             )
 
     print(f"\nCreated files for {len(PROPERTIES)} properties")
