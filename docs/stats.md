@@ -5,17 +5,17 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2026-01-06 08:55 UTC*
+*Auto-generated on 2026-01-06 16:33 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **160,762** |
-| Statements (triples) | 145,586 |
-| Anchors (resources) | 9,000 |
+| Total Files | **160,795** |
+| Statements (triples) | 145,610 |
+| Anchors (resources) | 9,008 |
 | Blank Nodes | 6,140 |
-| Namespaces | 36 |
+| Namespaces | 37 |
 
 ## By Namespace
 
@@ -53,6 +53,7 @@ title: Statistics
 | `vann` | 38 | 7 | 0 | 46 |
 | `geo` | 33 | 7 | 0 | 41 |
 | `dcam` | 26 | 4 | 0 | 31 |
+| `exo-ui` | 24 | 8 | 0 | 33 |
 | `exo` | 18 | 44 | 0 | 63 |
 | `ems` | 0 | 57 | 0 | 58 |
 | `vs` | 0 | 1 | 0 | 2 |
@@ -62,10 +63,10 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdfs:label` | 26,409 |
-| `rdf:type` | 15,586 |
+| `rdfs:label` | 26,417 |
+| `rdf:type` | 15,594 |
 | `7c346f09...` | 15,507 |
-| `rdfs:comment` | 6,141 |
+| `rdfs:comment` | 6,149 |
 | `rdfs:isDefinedBy` | 5,584 |
 | `0aa3d93f...` | 4,865 |
 | `58430877...` | 4,807 |

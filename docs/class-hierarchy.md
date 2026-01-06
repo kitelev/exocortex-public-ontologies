@@ -2,7 +2,7 @@
 
 Complete class hierarchy across all ontologies.
 
-*Generated automatically. Total classes: 1408*
+*Generated automatically. Total classes: 1416*
 
 ## adms
 
@@ -242,6 +242,17 @@ Complete class hierarchy across all ontologies.
     - `dul:Transition`
     - `dul:WorkflowExecution`
 - `dul:ObjectAggregate`
+
+## exo-ui
+
+- `exo-ui:Action`
+- `exo-ui:Button`
+- `exo-ui:ButtonGroup`
+- `exo-ui:Column`
+- `exo-ui:Command`
+- `exo-ui:Condition`
+- `exo-ui:Layout`
+- `exo-ui:Modal`
 
 ## foaf
 
