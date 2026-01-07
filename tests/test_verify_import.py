@@ -151,30 +151,36 @@ class TestLoadTriplesFromFiles:
         # Create a minimal namespace file
         ns_uuid = "test-namespace-uuid"
         ns_file = tmp_path / f"{ns_uuid}.md"
-        ns_file.write_text("""---
+        ns_file.write_text(
+            """---
 metadata: namespace
 uri: http://example.org/test#
 ---
-""")
+"""
+        )
 
         # Create an anchor file
         anchor_uuid = "test-anchor-uuid"
         anchor_file = tmp_path / f"{anchor_uuid}.md"
-        anchor_file.write_text("""---
+        anchor_file.write_text(
+            """---
 metadata: anchor
 uri: http://example.org/test#Thing
 ---
-""")
+"""
+        )
 
         # Create a statement file
         statement_file = tmp_path / "statement-uuid.md"
-        statement_file.write_text("""---
+        statement_file.write_text(
+            """---
 metadata: statement
 subject: "[[test-anchor-uuid]]"
 predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b]]"
 object: "[[other-uuid]]"
 ---
-""")
+"""
+        )
 
         triples, blank_uuids = load_triples_from_files(tmp_path)
 
@@ -186,18 +192,22 @@ object: "[[other-uuid]]"
         """Test that non-statement files are skipped."""
         # Create namespace file
         ns_file = tmp_path / "ns.md"
-        ns_file.write_text("""---
+        ns_file.write_text(
+            """---
 metadata: namespace
 uri: http://example.org/
 ---
-""")
+"""
+        )
 
         # Create anchor file
         anchor_file = tmp_path / "anchor.md"
-        anchor_file.write_text("""---
+        anchor_file.write_text(
+            """---
 metadata: anchor
 ---
-""")
+"""
+        )
 
         triples, _ = load_triples_from_files(tmp_path)
 
@@ -232,9 +242,7 @@ class TestCompareTriplesFunction:
         file_triples = {("a", "b", "c"), ("extra", "x", "y")}
         rdf_triples = {("a", "b", "c")}
 
-        only_files, only_rdf, _, _, _ = compare_triples(
-            file_triples, rdf_triples, set(), set()
-        )
+        only_files, only_rdf, _, _, _ = compare_triples(file_triples, rdf_triples, set(), set())
 
         assert ("extra", "x", "y") in only_files
         assert len(only_rdf) == 0
@@ -244,9 +252,7 @@ class TestCompareTriplesFunction:
         file_triples = {("a", "b", "c")}
         rdf_triples = {("a", "b", "c"), ("missing", "x", "y")}
 
-        only_files, only_rdf, _, _, _ = compare_triples(
-            file_triples, rdf_triples, set(), set()
-        )
+        only_files, only_rdf, _, _, _ = compare_triples(file_triples, rdf_triples, set(), set())
 
         assert len(only_files) == 0
         assert ("missing", "x", "y") in only_rdf
@@ -260,9 +266,7 @@ class TestCompareTriplesFunction:
         file_blank = {"blank-uuid-1"}
         rdf_blank = {"blank-uuid-2"}
 
-        _, _, f_count, r_count, patterns_match = compare_triples(
-            file_triples, rdf_triples, rdf_blank, file_blank
-        )
+        _, _, f_count, r_count, patterns_match = compare_triples(file_triples, rdf_triples, rdf_blank, file_blank)
 
         # Patterns should match (same structure, different blank node IDs)
         assert f_count == 1
@@ -283,9 +287,7 @@ class TestCompareTriplesFunction:
         file_blank = {"blank-1"}
         rdf_blank = {"blank-2"}
 
-        only_files, only_rdf, _, _, patterns_match = compare_triples(
-            file_triples, rdf_triples, rdf_blank, file_blank
-        )
+        only_files, only_rdf, _, _, patterns_match = compare_triples(file_triples, rdf_triples, rdf_blank, file_blank)
 
         assert len(only_files) == 0
         assert len(only_rdf) == 0
@@ -299,13 +301,15 @@ class TestLoadTriplesFromRdf:
         """Test loading triples from a simple Turtle file."""
         # Create a simple Turtle file
         ttl_file = tmp_path / "test.ttl"
-        ttl_file.write_text("""
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 ex:Thing rdf:type ex:Class .
 ex:Thing ex:label "Test Label" .
-""")
+"""
+        )
 
         triples, blank_uuids = load_triples_from_rdf(ttl_file, "http://example.org/")
 
@@ -315,13 +319,15 @@ ex:Thing ex:label "Test Label" .
     def test_load_with_blank_nodes(self, tmp_path):
         """Test loading triples with blank nodes."""
         ttl_file = tmp_path / "blank.ttl"
-        ttl_file.write_text("""
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 
 ex:Thing ex:has [
     ex:name "Anonymous"
 ] .
-""")
+"""
+        )
 
         triples, blank_uuids = load_triples_from_rdf(ttl_file, "http://example.org/")
 
@@ -331,13 +337,15 @@ ex:Thing ex:has [
     def test_load_with_language_tags(self, tmp_path):
         """Test loading triples with language-tagged literals."""
         ttl_file = tmp_path / "lang.ttl"
-        ttl_file.write_text("""
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:Thing rdfs:label "Test"@en ;
          rdfs:label "Тест"@ru .
-""")
+"""
+        )
 
         triples, _ = load_triples_from_rdf(ttl_file, "http://example.org/")
 
@@ -350,12 +358,14 @@ ex:Thing rdfs:label "Test"@en ;
     def test_load_with_datatypes(self, tmp_path):
         """Test loading triples with datatyped literals."""
         ttl_file = tmp_path / "dtype.ttl"
-        ttl_file.write_text("""
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:Thing ex:count "42"^^xsd:integer .
-""")
+"""
+        )
 
         triples, _ = load_triples_from_rdf(ttl_file, "http://example.org/")
 
@@ -373,14 +383,16 @@ class TestIntegrationVerification:
         """Test round-trip verification for simple ontology."""
         # Create source RDF file
         rdf_file = tmp_path / "source.ttl"
-        rdf_file.write_text("""
+        rdf_file.write_text(
+            """
 @prefix ex: <http://example.org/test#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:Person rdf:type rdfs:Class ;
           rdfs:label "Person"@en .
-""")
+"""
+        )
 
         # Load from RDF
         rdf_triples, rdf_blank = load_triples_from_rdf(rdf_file, "http://example.org/test#")
@@ -392,11 +404,13 @@ ex:Person rdf:type rdfs:Class ;
         """Test that CRLF is normalized to LF in literals."""
         ttl_file = tmp_path / "crlf.ttl"
         # Write with proper Turtle literal (rdflib handles \r\n in parsed literals)
-        ttl_file.write_text("""
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 
 ex:Thing ex:comment "Line1\\nLine2" .
-""")
+"""
+        )
 
         triples, _ = load_triples_from_rdf(ttl_file, "http://example.org/")
 
@@ -423,11 +437,13 @@ class TestEdgeCases:
     def test_special_characters_in_literal(self, tmp_path):
         """Test handling of special characters in literals."""
         ttl_file = tmp_path / "special.ttl"
-        ttl_file.write_text('''
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 
 ex:Thing ex:value "Line with \\"quotes\\" and \\\\backslash" .
-''')
+"""
+        )
 
         triples, _ = load_triples_from_rdf(ttl_file, "http://example.org/")
 
@@ -436,11 +452,13 @@ ex:Thing ex:value "Line with \\"quotes\\" and \\\\backslash" .
     def test_unicode_in_uri(self, tmp_path):
         """Test handling of URIs (without unicode in path)."""
         ttl_file = tmp_path / "uri.ttl"
-        ttl_file.write_text("""
+        ttl_file.write_text(
+            """
 @prefix ex: <http://example.org/> .
 
 ex:Thing ex:label "Тест"@ru .
-""")
+"""
+        )
 
         triples, _ = load_triples_from_rdf(ttl_file, "http://example.org/")
 

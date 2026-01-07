@@ -23,13 +23,15 @@ class TestParseFrontmatterFast:
     def test_valid_anchor(self, tmp_path):
         """Test parsing valid anchor frontmatter."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 metadata: anchor
 uri: http://example.org/Test
 aliases:
   - "example:Test"
 ---
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         assert data is not None
         assert data["metadata"] == "anchor"
@@ -38,7 +40,8 @@ aliases:
     def test_valid_statement(self, tmp_path):
         """Test parsing valid statement frontmatter."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 metadata: statement
 subject: "[[uuid1]]"
 predicate: "[[uuid2]]"
@@ -46,7 +49,8 @@ object: "[[uuid3]]"
 aliases:
   - "test alias"
 ---
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         assert data is not None
         assert data["metadata"] == "statement"
@@ -62,10 +66,12 @@ aliases:
     def test_incomplete_frontmatter(self, tmp_path):
         """Test parsing incomplete frontmatter returns partial data."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 metadata: anchor
 no closing delimiter
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         # Parser returns partial data for incomplete frontmatter
         assert data is None or data.get("metadata") == "anchor"
@@ -190,13 +196,15 @@ class TestCollectOntologyData:
 
         # Create blank node file
         bn_file = ns_dir / "blank-node-uuid.md"
-        bn_file.write_text("""---
+        bn_file.write_text(
+            """---
 metadata: blank_node
 uri: http://example.org/.well-known/genid/123
 aliases:
   - "_:genid-123"
 ---
-""")
+"""
+        )
 
         data = collect_ontology_data(tmp_path, "test")
 
@@ -249,7 +257,7 @@ class TestGenerateClassDiagram:
                     "prefix": "test",
                     "local": "",
                     "prefix_local": "",
-                }
+                },
             },
             "classes": {"class-uuid", "blank-uuid"},
             "properties": {},
@@ -273,7 +281,7 @@ class TestGenerateClassDiagram:
                     "prefix": "test",
                     "local": "Parent",
                     "prefix_local": "test:Parent",
-                }
+                },
             },
             "classes": {"child-uuid"},
             "properties": {},

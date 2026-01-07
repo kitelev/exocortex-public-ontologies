@@ -29,13 +29,15 @@ class TestParseFrontmatterFast:
     def test_valid_anchor(self, tmp_path):
         """Test parsing valid anchor frontmatter."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 metadata: anchor
 uri: http://example.org/Test
 aliases:
   - "example:Test"
 ---
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         assert data is not None
         assert data["metadata"] == "anchor"
@@ -44,13 +46,15 @@ aliases:
     def test_valid_statement(self, tmp_path):
         """Test parsing valid statement frontmatter."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 metadata: statement
 subject: "[[uuid1]]"
 predicate: "[[uuid2]]"
 object: "[[uuid3]]"
 ---
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         assert data is not None
         assert data["metadata"] == "statement"
@@ -66,10 +70,12 @@ object: "[[uuid3]]"
     def test_incomplete_frontmatter(self, tmp_path):
         """Test parsing incomplete frontmatter."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 metadata: anchor
 no closing delimiter
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         # Parser returns partial data or None for incomplete frontmatter
         assert data is None or data.get("metadata") == "anchor"
@@ -77,9 +83,11 @@ no closing delimiter
     def test_empty_frontmatter(self, tmp_path):
         """Test parsing empty frontmatter."""
         file = tmp_path / "test.md"
-        file.write_text("""---
+        file.write_text(
+            """---
 ---
-""")
+"""
+        )
         data = parse_frontmatter_fast(file)
         assert data == {} or data is None
 
@@ -242,22 +250,26 @@ class TestLintNamespace:
         # Create anchor for class
         anchor_uuid = "class-anchor-uuid"
         anchor = ns_dir / f"{anchor_uuid}.md"
-        anchor.write_text("""---
+        anchor.write_text(
+            """---
 metadata: anchor
 aliases:
   - "test:MyClass"
 ---
-""")
+"""
+        )
 
         # Create type statement (class is rdf:type owl:Class)
         type_stmt = ns_dir / "type-stmt-uuid.md"
-        type_stmt.write_text(f"""---
+        type_stmt.write_text(
+            f"""---
 metadata: statement
 subject: "[[{anchor_uuid}]]"
 predicate: "[[{RDF_TYPE_UUID}]]"
 object: "[[{OWL_CLASS_UUID}]]"
 ---
-""")
+"""
+        )
 
         stats, issues = lint_namespace(tmp_path, "test")
         assert stats["classes"] == 1
@@ -271,12 +283,14 @@ object: "[[{OWL_CLASS_UUID}]]"
 
         anchor_uuid = "class-uuid"
         anchor = ns_dir / f"{anchor_uuid}.md"
-        anchor.write_text("""---
+        anchor.write_text(
+            """---
 metadata: anchor
 aliases:
   - "test:MyClass"
 ---
-""")
+"""
+        )
 
         # Type statement
         type_stmt = ns_dir / "type-stmt.md"
@@ -285,28 +299,34 @@ aliases:
         owl_class = "581d50c0-7bc2-5a97-bdc2-9c056f43c807"
         rdfs_label = "d0e9e696-d3f2-5966-a62f-d8358cbde741"
 
-        type_stmt.write_text(f"""---
+        type_stmt.write_text(
+            f"""---
 metadata: statement
 subject: "[[{anchor_uuid}]]"
 predicate: "[[{rdf_type}]]"
 object: "[[{owl_class}]]"
 ---
-""")
+"""
+        )
 
         # Label statement - use single quotes for YAML to allow double quotes in value
         label_stmt = ns_dir / "label-stmt.md"
-        label_stmt.write_text(f"""---
+        label_stmt.write_text(
+            f"""---
 metadata: statement
 subject: "[[{anchor_uuid}]]"
 predicate: "[[{rdfs_label}]]"
 object: '"MyClass"@en'
 ---
-""")
+"""
+        )
 
         stats, issues = lint_namespace(tmp_path, "test")
         # No warning for missing label (class has label)
         label_warnings = [i for i in issues if i.category == "missing-label" and "Class" in i.message]
-        assert len(label_warnings) == 0, f"Expected no label warnings, got: {[(i.resource, i.message) for i in label_warnings]}, stats={stats}"
+        assert (
+            len(label_warnings) == 0
+        ), f"Expected no label warnings, got: {[(i.resource, i.message) for i in label_warnings]}, stats={stats}"
 
 
 class TestGenerateReport:

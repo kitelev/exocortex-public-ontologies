@@ -54,9 +54,11 @@ class TestLoadPrefixes:
         """Test loading from custom repo root."""
         # Create a minimal _prefixes.yaml
         prefixes_file = tmp_path / "_prefixes.yaml"
-        prefixes_file.write_text("""
+        prefixes_file.write_text(
+            """
 test: "http://example.org/test#"
-""")
+"""
+        )
 
         prefixes = load_prefixes(tmp_path)
         assert prefixes == {"test": "http://example.org/test#"}
@@ -281,11 +283,13 @@ class TestParseFrontmatterFromFile:
     def test_valid_file(self, tmp_path):
         """Test parsing from valid file."""
         test_file = tmp_path / "test.md"
-        test_file.write_text("""---
+        test_file.write_text(
+            """---
 metadata: anchor
 uri: http://example.org/Thing
 ---
-""")
+"""
+        )
 
         fm = parse_frontmatter_from_file(test_file)
 

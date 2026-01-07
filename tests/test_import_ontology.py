@@ -405,14 +405,16 @@ class TestImportOntologyIntegration:
         """Test importing a simple Turtle file."""
         # Create source Turtle file
         source_file = tmp_path / "source.ttl"
-        source_file.write_text("""
+        source_file.write_text(
+            """
 @prefix ex: <http://example.org/test#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:Thing rdf:type rdfs:Class ;
          rdfs:label "Thing"@en .
-""")
+"""
+        )
 
         output_dir = tmp_path / "output"
 
@@ -435,13 +437,15 @@ ex:Thing rdf:type rdfs:Class ;
     def test_import_with_blank_nodes(self, tmp_path):
         """Test importing ontology with blank nodes."""
         source_file = tmp_path / "blank.ttl"
-        source_file.write_text("""
+        source_file.write_text(
+            """
 @prefix ex: <http://example.org/test#> .
 
 ex:Thing ex:has [
     ex:name "Anonymous"
 ] .
-""")
+"""
+        )
 
         output_dir = tmp_path / "output"
 
@@ -464,10 +468,12 @@ ex:Thing ex:has [
     def test_import_creates_namespace_file(self, tmp_path):
         """Test that namespace file is created."""
         source_file = tmp_path / "test.ttl"
-        source_file.write_text("""
+        source_file.write_text(
+            """
 @prefix ex: <http://example.org/ns#> .
 ex:A ex:p ex:B .
-""")
+"""
+        )
 
         output_dir = tmp_path / "output"
         import_ontology(source_file, output_dir, prefix="ex", namespace_uri="http://example.org/ns#")
@@ -481,13 +487,15 @@ ex:A ex:p ex:B .
     def test_import_with_datatypes(self, tmp_path):
         """Test importing triples with datatyped literals."""
         source_file = tmp_path / "dtype.ttl"
-        source_file.write_text("""
+        source_file.write_text(
+            """
 @prefix ex: <http://example.org/test#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:Thing ex:count "42"^^xsd:integer ;
          ex:active "true"^^xsd:boolean .
-""")
+"""
+        )
 
         output_dir = tmp_path / "output"
 
@@ -501,9 +509,7 @@ ex:Thing ex:count "42"^^xsd:integer ;
         assert triple_count == 2
 
         # Check that datatype wikilinks are in the files
-        statement_files = [
-            f for f in output_dir.glob("*.md") if "metadata: statement" in f.read_text()
-        ]
+        statement_files = [f for f in output_dir.glob("*.md") if "metadata: statement" in f.read_text()]
 
         assert len(statement_files) == 2
 
@@ -514,10 +520,12 @@ ex:Thing ex:count "42"^^xsd:integer ;
     def test_uuid_filenames(self, tmp_path):
         """Test that all files have UUID filenames."""
         source_file = tmp_path / "test.ttl"
-        source_file.write_text("""
+        source_file.write_text(
+            """
 @prefix ex: <http://example.org/test#> .
 ex:Thing ex:label "Test" .
-""")
+"""
+        )
 
         output_dir = tmp_path / "output"
         import_ontology(source_file, output_dir, prefix="ex", namespace_uri="http://example.org/test#")
