@@ -5,15 +5,15 @@ title: Statistics
 
 # Ontology Statistics
 
-*Auto-generated on 2026-01-06 21:12 UTC*
+*Auto-generated on 2026-01-07 07:57 UTC*
 
 ## Overview
 
 | Metric | Count |
 |--------|-------|
-| Total Files | **161,208** |
-| Statements (triples) | 145,951 |
-| Anchors (resources) | 9,079 |
+| Total Files | **161,250** |
+| Statements (triples) | 145,987 |
+| Anchors (resources) | 9,085 |
 | Blank Nodes | 6,140 |
 | Namespaces | 38 |
 
@@ -46,9 +46,9 @@ title: Statistics
 | `exo-ui` | 265 | 59 | 0 | 325 |
 | `skos` | 252 | 33 | 3 | 289 |
 | `adms` | 151 | 18 | 5 | 175 |
+| `ems-ui` | 136 | 26 | 0 | 163 |
 | `rdf` | 127 | 22 | 0 | 150 |
 | `dc` | 107 | 15 | 0 | 123 |
-| `ems-ui` | 100 | 20 | 0 | 121 |
 | `rdfs` | 87 | 15 | 0 | 103 |
 | `void` | 57 | 11 | 0 | 69 |
 | `grddl` | 55 | 13 | 0 | 69 |
@@ -64,8 +64,8 @@ title: Statistics
 
 | Predicate | Usage Count |
 |-----------|-------------|
-| `rdfs:label` | 26,485 |
-| `rdf:type` | 15,662 |
+| `rdfs:label` | 26,487 |
+| `rdf:type` | 15,669 |
 | `7c346f09...` | 15,507 |
 | `rdfs:comment` | 6,217 |
 | `rdfs:isDefinedBy` | 5,584 |

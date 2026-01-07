@@ -270,7 +270,7 @@
                 <label><input type="checkbox" checked data-filter="datatype"> Datatypes</label>
             </div>
             <div class="sidebar-nav" id="sidebarNav">
-                <strong style="font-size: 12px; color: #8b949e;">NAMESPACES</strong><a href="../adms/index.html">adms (19)</a><a href="../as/index.html">as (125)</a><a href="../bfo/index.html">bfo (2)</a><a href="../dc/index.html">dc (16)</a><a href="../dcam/index.html">dcam (5)</a><a href="../dcat/index.html">dcat (38)</a><a href="../dcterms/index.html">dcterms (100)</a><a href="../doap/index.html">doap (57)</a><a href="../dolce/index.html">dolce (109)</a><a href="../dul/index.html">dul (198)</a><a href="../ems/index.html">ems (58)</a><a href="../ems-ui/index.html" class="active">ems-ui (21)</a><a href="../exo/index.html">exo (45)</a><a href="../exo-ui/index.html">exo-ui (60)</a><a href="../foaf/index.html">foaf (76)</a><a href="../geo/index.html">geo (8)</a><a href="../geosparql/index.html">geosparql (67)</a><a href="../grddl/index.html">grddl (14)</a><a href="../org/index.html">org (47)</a><a href="../owl/index.html">owl (79)</a><a href="../prefix/index.html">prefix (34)</a><a href="../prov/index.html">prov (97)</a><a href="../quantitykind/index.html">quantitykind (1189)</a><a href="../qudt/index.html">qudt (2916)</a><a href="../rdf/index.html">rdf (23)</a><a href="../rdfs/index.html">rdfs (16)</a><a href="../schema/index.html">schema (2995)</a><a href="../sh/index.html">sh (222)</a><a href="../sioc/index.html">sioc (100)</a><a href="../skos/index.html">skos (34)</a><a href="../sosa/index.html">sosa (37)</a><a href="../ssn/index.html">ssn (22)</a><a href="../time/index.html">time (99)</a><a href="../vann/index.html">vann (8)</a><a href="../vcard/index.html">vcard (154)</a><a href="../void/index.html">void (12)</a><a href="../vs/index.html">vs (2)</a><a href="../xsd/index.html">xsd (13)</a>
+                <strong style="font-size: 12px; color: #8b949e;">NAMESPACES</strong><a href="../adms/index.html">adms (19)</a><a href="../as/index.html">as (125)</a><a href="../bfo/index.html">bfo (2)</a><a href="../dc/index.html">dc (16)</a><a href="../dcam/index.html">dcam (5)</a><a href="../dcat/index.html">dcat (38)</a><a href="../dcterms/index.html">dcterms (100)</a><a href="../doap/index.html">doap (57)</a><a href="../dolce/index.html">dolce (109)</a><a href="../dul/index.html">dul (198)</a><a href="../ems/index.html">ems (58)</a><a href="../ems-ui/index.html" class="active">ems-ui (27)</a><a href="../exo/index.html">exo (45)</a><a href="../exo-ui/index.html">exo-ui (60)</a><a href="../foaf/index.html">foaf (76)</a><a href="../geo/index.html">geo (8)</a><a href="../geosparql/index.html">geosparql (67)</a><a href="../grddl/index.html">grddl (14)</a><a href="../org/index.html">org (47)</a><a href="../owl/index.html">owl (79)</a><a href="../prefix/index.html">prefix (34)</a><a href="../prov/index.html">prov (97)</a><a href="../quantitykind/index.html">quantitykind (1189)</a><a href="../qudt/index.html">qudt (2916)</a><a href="../rdf/index.html">rdf (23)</a><a href="../rdfs/index.html">rdfs (16)</a><a href="../schema/index.html">schema (2995)</a><a href="../sh/index.html">sh (222)</a><a href="../sioc/index.html">sioc (100)</a><a href="../skos/index.html">skos (34)</a><a href="../sosa/index.html">sosa (37)</a><a href="../ssn/index.html">ssn (22)</a><a href="../time/index.html">time (99)</a><a href="../vann/index.html">vann (8)</a><a href="../vcard/index.html">vcard (154)</a><a href="../void/index.html">void (12)</a><a href="../vs/index.html">vs (2)</a><a href="../xsd/index.html">xsd (13)</a>
             </div>
         </nav>
         <main class="main">
@@ -284,11 +284,26 @@
     
 
     
+        <h2>Relationships</h2>
+        <div class="graph-container" id="relationshipGraph">
+            <div class="graph-controls">
+                <button onclick="zoomIn()" title="Zoom In">+</button>
+                <button onclick="zoomOut()" title="Zoom Out">−</button>
+                <button onclick="resetZoom()" title="Reset">⟲</button>
+            </div>
+        </div>
+        <div class="graph-legend">
+            <span><div class="graph-legend-dot" style="background: #388bfd;"></div> Class</span>
+            <span><div class="graph-legend-dot" style="background: #56d364;"></div> Property</span>
+            <span><div class="graph-legend-dot" style="background: #f78166;"></div> Datatype</span>
+            <span style="color: #6e7681; margin-left: 10px;">Scroll to zoom • Drag to pan</span>
+        </div>
+        
 
     <h2>Properties</h2>
     <table class="property-table">
         <tr><th>Predicate</th><th>Value</th></tr>
-        <tr><td colspan='2'>No properties defined</td></tr>
+        <tr><td><code>00f5d0a5</code></td><td><a href="../ems/effortstatusdoing.html">ems:EffortStatusDoing</a></td></tr><tr><td><code>6b2fa361</code></td><td><a href="../ems/effort_status.html">ems:Effort_status</a></td></tr><tr><td><code>f70fa27d</code></td><td>true</td></tr><tr><td><code>rdf:type</code></td><td><a href="../exo-ui/updatepropertyaction.html" data-tooltip="Updates property value on current or specified asset. Parameters: targetProperty, targetValue, targetAsset.">exo-ui:UpdatePropertyAction</a></td></tr>
     </table>
     
         </main>
@@ -371,6 +386,114 @@
                 searchInput?.focus();
             }
         });
+    </script>
+    
+    <script>
+    (function() {
+        const graphData = {"nodes": [{"id": "d15994f8-681d-5cc4-99b7-629702c015e4", "label": "StartAction", "type": "property", "center": true, "url": null}, {"id": "4c6193c6-80c5-53b0-8d32-71aa9cfcc0ac", "label": "UpdatePropertyAction", "type": "class", "center": false, "url": "../exo-ui/updatepropertyaction.html"}], "links": [{"source": "d15994f8-681d-5cc4-99b7-629702c015e4", "target": "4c6193c6-80c5-53b0-8d32-71aa9cfcc0ac", "label": "type", "direction": "out"}]};
+        const colors = {"class": "#388bfd", "property": "#56d364", "datatype": "#f78166"};
+
+        const container = document.getElementById('relationshipGraph');
+        if (!container || graphData.nodes.length <= 1) return;
+
+        const width = container.clientWidth;
+        const height = 250;
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        // Create main group for zoom/pan
+        const g = svg.append('g');
+
+        // Zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.3, 4])
+            .on('zoom', (event) => {
+                g.attr('transform', event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Zoom control functions
+        window.zoomIn = () => svg.transition().call(zoom.scaleBy, 1.3);
+        window.zoomOut = () => svg.transition().call(zoom.scaleBy, 0.7);
+        window.resetZoom = () => svg.transition().call(zoom.transform, d3.zoomIdentity);
+
+        // Arrow marker for directed edges
+        svg.append('defs').selectAll('marker')
+            .data(['end'])
+            .enter().append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 20)
+            .attr('refY', 0)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5')
+            .attr('fill', '#8b949e');
+
+        const simulation = d3.forceSimulation(graphData.nodes)
+            .force('link', d3.forceLink(graphData.links).id(d => d.id).distance(80))
+            .force('charge', d3.forceManyBody().strength(-200))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(30));
+
+        const link = g.append('g')
+            .selectAll('line')
+            .data(graphData.links)
+            .enter().append('line')
+            .attr('class', 'graph-link')
+            .attr('marker-end', 'url(#arrow)');
+
+        const linkLabel = g.append('g')
+            .selectAll('text')
+            .data(graphData.links)
+            .enter().append('text')
+            .attr('class', 'graph-link-label')
+            .text(d => d.label);
+
+        const node = g.append('g')
+            .selectAll('g')
+            .data(graphData.nodes)
+            .enter().append('g')
+            .attr('class', d => 'graph-node' + (d.center ? ' center' : ''))
+            .style('cursor', d => d.url ? 'pointer' : 'default')
+            .on('click', (event, d) => { if (d.url) window.location.href = d.url; })
+            .call(d3.drag()
+                .on('start', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x; d.fy = d.y;
+                })
+                .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+                .on('end', (event, d) => {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null; d.fy = null;
+                }));
+
+        node.append('circle')
+            .attr('r', d => d.center ? 12 : 8)
+            .attr('fill', d => colors[d.type] || '#8b949e');
+
+        node.append('text')
+            .attr('dy', 20)
+            .text(d => d.label.length > 12 ? d.label.slice(0, 10) + '..' : d.label);
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            linkLabel.attr('x', d => (d.source.x + d.target.x) / 2)
+                     .attr('y', d => (d.source.y + d.target.y) / 2);
+
+            node.attr('transform', d => `translate(${d.x},${d.y})`);
+        });
+    })();
     </script>
     
 </body>
