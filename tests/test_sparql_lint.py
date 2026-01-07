@@ -38,13 +38,7 @@ class TestLintIssue:
 
     def test_create_issue(self):
         """Test creating a lint issue."""
-        issue = LintIssue(
-            severity=Severity.ERROR,
-            line=1,
-            column=5,
-            message="Test message",
-            rule="test-rule"
-        )
+        issue = LintIssue(severity=Severity.ERROR, line=1, column=5, message="Test message", rule="test-rule")
         assert issue.severity == Severity.ERROR
         assert issue.line == 1
         assert issue.column == 5

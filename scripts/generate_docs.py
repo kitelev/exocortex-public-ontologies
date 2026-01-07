@@ -481,11 +481,13 @@ def load_resources(repo_root: Path, prefixes: list) -> tuple:
             obj_display = lit.strip('"')
             obj_link = None
 
-        resources[subj_uuid]["properties"][pred_name].append({
-            "value": obj_display,
-            "link": obj_link,
-            "predicate": pred_label,
-        })
+        resources[subj_uuid]["properties"][pred_name].append(
+            {
+                "value": obj_display,
+                "link": obj_link,
+                "predicate": pred_label,
+            }
+        )
 
     return resources, statements
 
@@ -560,12 +562,14 @@ def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> d
                     "center": False,
                     "url": f"../{target['prefix']}/{local.lower()}.html",
                 }
-            links.append({
-                "source": resource_uuid,
-                "target": obj_value,
-                "label": pred_name,
-                "direction": "out",
-            })
+            links.append(
+                {
+                    "source": resource_uuid,
+                    "target": obj_value,
+                    "label": pred_name,
+                    "direction": "out",
+                }
+            )
 
         # Incoming: other -> this resource
         elif obj_value == resource_uuid and subj_uuid in resources:
@@ -579,12 +583,14 @@ def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> d
                     "center": False,
                     "url": f"../{source['prefix']}/{local.lower()}.html",
                 }
-            links.append({
-                "source": subj_uuid,
-                "target": resource_uuid,
-                "label": pred_name,
-                "direction": "in",
-            })
+            links.append(
+                {
+                    "source": subj_uuid,
+                    "target": resource_uuid,
+                    "label": pred_name,
+                    "direction": "in",
+                }
+            )
 
     # Limit to 20 nodes to keep graph readable
     if len(nodes) > 20:
@@ -594,9 +600,7 @@ def build_graph_data(resource_uuid: str, resources: dict, statements: list) -> d
             link_counts[link["source"]] += 1
             link_counts[link["target"]] += 1
         sorted_nodes = sorted(
-            [n for n in nodes.values() if not n["center"]],
-            key=lambda x: link_counts[x["id"]],
-            reverse=True
+            [n for n in nodes.values() if not n["center"]], key=lambda x: link_counts[x["id"]], reverse=True
         )[:19]
         keep_ids = {resource_uuid} | {n["id"] for n in sorted_nodes}
         nodes = {k: v for k, v in nodes.items() if k in keep_ids}
@@ -740,13 +744,15 @@ def build_search_index(resources: dict) -> list:
         rtype = get_resource_type(r)
         local = r["alias"].split(":")[-1]
         label = r["properties"].get("label", [{"value": local}])[0]["value"]
-        index.append({
-            "label": label,
-            "alias": r["alias"],
-            "prefix": r["prefix"],
-            "type": rtype,
-            "url": f"{r['prefix']}/{local.lower()}.html",
-        })
+        index.append(
+            {
+                "label": label,
+                "alias": r["alias"],
+                "prefix": r["prefix"],
+                "type": rtype,
+                "url": f"{r['prefix']}/{local.lower()}.html",
+            }
+        )
     return index
 
 
@@ -757,13 +763,14 @@ def build_sidebar_nav(prefixes: list, resources: dict, current_prefix: str = "")
         ns_count = len([r for r in resources.values() if r["prefix"] == prefix])
         if ns_count == 0:
             continue
-        active = ' class="active"' if prefix == current_prefix else ''
+        active = ' class="active"' if prefix == current_prefix else ""
         nav += f'<a href="../{prefix}/index.html"{active}>{prefix} ({ns_count})</a>'
     return nav
 
 
-def generate_resource_page(resource: dict, resources: dict, prefixes: list,
-                           resource_uuid: str, statements: list, tooltip_index: dict) -> str:
+def generate_resource_page(
+    resource: dict, resources: dict, prefixes: list, resource_uuid: str, statements: list, tooltip_index: dict
+) -> str:
     """Generate HTML page for a single resource."""
     alias = resource["alias"]
     prefix = resource["prefix"]
@@ -844,7 +851,7 @@ def generate_resource_page(resource: dict, resources: dict, prefixes: list,
         base_href="../",
         content=content,
         sidebar_nav=sidebar_nav,
-        graph_script=graph_script
+        graph_script=graph_script,
     )
 
 
@@ -897,7 +904,7 @@ def generate_namespace_page(prefix: str, resources: dict, prefixes: list) -> str
         base_href="../",
         content=content,
         sidebar_nav=sidebar_nav,
-        graph_script=""  # No graph on namespace pages
+        graph_script="",  # No graph on namespace pages
     )
 
 
@@ -929,15 +936,17 @@ def build_namespace_graph_data(resources: dict, statements: list) -> dict:
     for prefix, counts in ns_counts.items():
         if counts["total"] == 0:
             continue
-        nodes.append({
-            "id": prefix,
-            "label": prefix.upper(),
-            "size": min(30, 8 + counts["total"] // 50),  # Size by resource count
-            "classes": counts["classes"],
-            "properties": counts["properties"],
-            "total": counts["total"],
-            "url": f"{prefix}/index.html",
-        })
+        nodes.append(
+            {
+                "id": prefix,
+                "label": prefix.upper(),
+                "size": min(30, 8 + counts["total"] // 50),  # Size by resource count
+                "classes": counts["classes"],
+                "properties": counts["properties"],
+                "total": counts["total"],
+                "url": f"{prefix}/index.html",
+            }
+        )
 
     # Build links (aggregate both directions, show strongest connections)
     link_map = {}
@@ -1152,7 +1161,7 @@ def generate_index_page(prefixes: list, resources: dict, statements: list) -> st
         base_href="./",
         content=content,
         sidebar_nav=sidebar_nav,
-        graph_script=graph_script
+        graph_script=graph_script,
     )
 
 
@@ -1180,7 +1189,7 @@ def main():
     search_index = build_search_index(resources)
     print(f"Generating search index ({len(search_index)} entries)...")
     with open(output_dir / "search-index.json", "w", encoding="utf-8") as f:
-        json.dump(search_index, f, separators=(',', ':'))  # Minified
+        json.dump(search_index, f, separators=(",", ":"))  # Minified
 
     # Generate main index
     print("Generating index page...")

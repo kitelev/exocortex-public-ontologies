@@ -180,8 +180,7 @@ def print_stats_markdown(stats: Dict[str, Any], repo_root: Path) -> None:
     print("| Namespace | Triples | Anchors | Blank Nodes | Total Files |")
     print("|-----------|---------|---------|-------------|-------------|")
 
-    for ns in sorted(stats["by_namespace"].keys(),
-                     key=lambda x: -stats["by_namespace"][x]["files"]):
+    for ns in sorted(stats["by_namespace"].keys(), key=lambda x: -stats["by_namespace"][x]["files"]):
         ns_stats = stats["by_namespace"][ns]
         stmts = ns_stats["statements"]
         anchors = ns_stats["anchors"]
@@ -204,7 +203,9 @@ def print_stats_markdown(stats: Dict[str, Any], repo_root: Path) -> None:
     # SPARQL Endpoint section
     print("## SPARQL Endpoint")
     print()
-    print("The ontology data is available for client-side SPARQL queries via the [SPARQL Query Interface](sparql.html).")
+    print(
+        "The ontology data is available for client-side SPARQL queries via the [SPARQL Query Interface](sparql.html)."
+    )
     print()
     print("| Metric | Value |")
     print("|--------|-------|")
@@ -326,6 +327,7 @@ def main() -> None:
     if args.output:
         import sys
         from io import StringIO
+
         old_stdout = sys.stdout
         sys.stdout = StringIO()
         print_stats(stats, REPO_ROOT, args.json, args.markdown)

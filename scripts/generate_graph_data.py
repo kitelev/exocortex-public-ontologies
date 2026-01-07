@@ -117,13 +117,15 @@ def extract_relationships(repo_root: Path, prefixes: list, uuid_map: dict) -> li
             if not subj_info or not obj_info:
                 continue
 
-            relationships.append({
-                "source": subj_uuid,
-                "source_alias": subj_info.get("alias", subj_uuid[:8]),
-                "target": obj_uuid,
-                "target_alias": obj_info.get("alias", obj_uuid[:8]),
-                "type": rel_type,
-            })
+            relationships.append(
+                {
+                    "source": subj_uuid,
+                    "source_alias": subj_info.get("alias", subj_uuid[:8]),
+                    "target": obj_uuid,
+                    "target_alias": obj_info.get("alias", obj_uuid[:8]),
+                    "type": rel_type,
+                }
+            )
 
     return relationships
 
@@ -160,12 +162,14 @@ def build_graph_data(repo_root: Path) -> dict:
     for uuid in node_uuids:
         info = uuid_map.get(uuid, {})
         if info:
-            nodes.append({
-                "id": uuid,
-                "alias": info.get("alias", uuid[:8]),
-                "uri": info.get("uri", ""),
-                "prefix": info.get("prefix", ""),
-            })
+            nodes.append(
+                {
+                    "id": uuid,
+                    "alias": info.get("alias", uuid[:8]),
+                    "uri": info.get("uri", ""),
+                    "prefix": info.get("prefix", ""),
+                }
+            )
 
     print(f"\nTotal nodes: {len(nodes)}")
 

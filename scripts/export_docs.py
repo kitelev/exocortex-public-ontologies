@@ -26,16 +26,18 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 from common import load_prefixes, get_prefix_dirs, parse_frontmatter_from_file, extract_wikilink_uuid
 
+
 # Check dependencies
-def check_dependencies(format_type: str = 'all'):
+def check_dependencies(format_type: str = "all"):
     """Check if required packages are installed."""
-    available = {'pdf': False, 'epub': False}
+    available = {"pdf": False, "epub": False}
 
     try:
         import weasyprint
-        available['pdf'] = True
+
+        available["pdf"] = True
     except (ImportError, OSError) as e:
-        if format_type in ('pdf', 'all'):
+        if format_type in ("pdf", "all"):
             print(f"⚠️  PDF export unavailable: {type(e).__name__}")
             print("   For PDF support, install system libraries:")
             print("   macOS: brew install pango glib cairo")
@@ -43,17 +45,18 @@ def check_dependencies(format_type: str = 'all'):
 
     try:
         import ebooklib
-        available['epub'] = True
+
+        available["epub"] = True
     except ImportError:
-        if format_type in ('epub', 'all'):
+        if format_type in ("epub", "all"):
             print("⚠️  EPUB export unavailable")
             print("   Install: pip install ebooklib")
 
-    if format_type == 'pdf' and not available['pdf']:
+    if format_type == "pdf" and not available["pdf"]:
         return False
-    if format_type == 'epub' and not available['epub']:
+    if format_type == "epub" and not available["epub"]:
         return False
-    if format_type == 'all' and not any(available.values()):
+    if format_type == "all" and not any(available.values()):
         print("No export formats available. Install dependencies first.")
         return False
 
@@ -186,10 +189,12 @@ def load_resources(repo_root: Path, prefixes: list) -> dict:
         if pred_name not in resources[subj_uuid]["properties"]:
             resources[subj_uuid]["properties"][pred_name] = []
 
-        resources[subj_uuid]["properties"][pred_name].append({
-            "value": obj_display,
-            "predicate": pred_label,
-        })
+        resources[subj_uuid]["properties"][pred_name].append(
+            {
+                "value": obj_display,
+                "predicate": pred_label,
+            }
+        )
 
     return resources
 
@@ -328,24 +333,19 @@ def generate_epub(resources: dict, prefixes: list, output_path: Path):
     from ebooklib import epub
 
     book = epub.EpubBook()
-    book.set_identifier('exocortex-ontologies')
-    book.set_title('Exocortex Public Ontologies')
-    book.set_language('en')
-    book.add_author('Exocortex Project')
+    book.set_identifier("exocortex-ontologies")
+    book.set_title("Exocortex Public Ontologies")
+    book.set_language("en")
+    book.add_author("Exocortex Project")
 
     # CSS
-    css = epub.EpubItem(
-        uid="style",
-        file_name="style/main.css",
-        media_type="text/css",
-        content=PDF_CSS.encode('utf-8')
-    )
+    css = epub.EpubItem(uid="style", file_name="style/main.css", media_type="text/css", content=PDF_CSS.encode("utf-8"))
     book.add_item(css)
 
     chapters = []
 
     # Intro chapter
-    intro = epub.EpubHtml(title='Introduction', file_name='intro.xhtml', lang='en')
+    intro = epub.EpubHtml(title="Introduction", file_name="intro.xhtml", lang="en")
     intro.content = f"""
     <html><body>
     <h1>Exocortex Public Ontologies</h1>
@@ -381,17 +381,17 @@ def generate_epub(resources: dict, prefixes: list, output_path: Path):
                 content += f"<li><strong>{escape(label)}</strong></li>\n"
             content += "</ul>\n"
 
-        chapter = epub.EpubHtml(title=f'{prefix.upper()}', file_name=f'{prefix}.xhtml', lang='en')
+        chapter = epub.EpubHtml(title=f"{prefix.upper()}", file_name=f"{prefix}.xhtml", lang="en")
         chapter.content = f"<html><body>{content}</body></html>"
         chapter.add_item(css)
         book.add_item(chapter)
         chapters.append(chapter)
 
     # Define TOC and spine
-    book.toc = [(epub.Section('Ontologies'), chapters)]
+    book.toc = [(epub.Section("Ontologies"), chapters)]
     book.add_item(epub.EpubNcx())
     book.add_item(epub.EpubNav())
-    book.spine = ['nav'] + chapters
+    book.spine = ["nav"] + chapters
 
     epub.write_epub(str(output_path), book, {})
 
@@ -400,18 +400,13 @@ def export_pdf(html_content: str, output_path: Path):
     """Export HTML to PDF using WeasyPrint."""
     from weasyprint import HTML, CSS
 
-    HTML(string=html_content).write_pdf(
-        str(output_path),
-        stylesheets=[CSS(string=PDF_CSS)]
-    )
+    HTML(string=html_content).write_pdf(str(output_path), stylesheets=[CSS(string=PDF_CSS)])
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Export ontology documentation to PDF/EPUB')
-    parser.add_argument('--format', choices=['pdf', 'epub', 'all'], default='all',
-                        help='Output format (default: all)')
-    parser.add_argument('--namespace', '-n', type=str, default=None,
-                        help='Export single namespace only')
+    parser = argparse.ArgumentParser(description="Export ontology documentation to PDF/EPUB")
+    parser.add_argument("--format", choices=["pdf", "epub", "all"], default="all", help="Output format (default: all)")
+    parser.add_argument("--namespace", "-n", type=str, default=None, help="Export single namespace only")
     args = parser.parse_args()
 
     available = check_dependencies(args.format)
@@ -434,7 +429,7 @@ def main():
 
     exported = []
 
-    if args.format in ('pdf', 'all') and available.get('pdf'):
+    if args.format in ("pdf", "all") and available.get("pdf"):
         if args.namespace:
             output_file = output_dir / f"{args.namespace}.pdf"
             print(f"Generating PDF for {args.namespace}...")
@@ -447,7 +442,7 @@ def main():
         print(f"  ✅ {output_file}")
         exported.append(output_file)
 
-    if args.format in ('epub', 'all') and available.get('epub') and not args.namespace:
+    if args.format in ("epub", "all") and available.get("epub") and not args.namespace:
         output_file = output_dir / "ontologies.epub"
         print("Generating EPUB...")
         generate_epub(resources, prefix_dirs, output_file)

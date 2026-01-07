@@ -254,19 +254,19 @@ def generate_report(
     lines.append("|--------|-------|------------|----------|")
     lines.append(f"| Total Classes | {total_classes:,} | - | - |")
     if total_classes > 0:
-        pct = 100*total_cls_label/total_classes
+        pct = 100 * total_cls_label / total_classes
         lines.append(f"| Classes with label | {total_cls_label:,} | {pct:.1f}% | {progress_bar(pct)} |")
-        pct = 100*total_cls_comment/total_classes
+        pct = 100 * total_cls_comment / total_classes
         lines.append(f"| Classes with comment | {total_cls_comment:,} | {pct:.1f}% | {progress_bar(pct)} |")
     lines.append(f"| Total Properties | {total_props:,} | - | - |")
     if total_props > 0:
-        pct = 100*total_prop_label/total_props
+        pct = 100 * total_prop_label / total_props
         lines.append(f"| Properties with label | {total_prop_label:,} | {pct:.1f}% | {progress_bar(pct)} |")
-        pct = 100*total_prop_comment/total_props
+        pct = 100 * total_prop_comment / total_props
         lines.append(f"| Properties with comment | {total_prop_comment:,} | {pct:.1f}% | {progress_bar(pct)} |")
-        pct = 100*total_prop_domain/total_props
+        pct = 100 * total_prop_domain / total_props
         lines.append(f"| Properties with domain | {total_prop_domain:,} | {pct:.1f}% | {progress_bar(pct)} |")
-        pct = 100*total_prop_range/total_props
+        pct = 100 * total_prop_range / total_props
         lines.append(f"| Properties with range | {total_prop_range:,} | {pct:.1f}% | {progress_bar(pct)} |")
 
     lines.append("")

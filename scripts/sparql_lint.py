@@ -46,19 +46,70 @@ KNOWN_PREFIXES = load_prefixes()
 
 # Built-in SPARQL functions
 SPARQL_FUNCTIONS = {
-    "str", "lang", "langmatches", "datatype", "bound", "iri", "uri", "bnode",
-    "rand", "abs", "ceil", "floor", "round", "concat", "strlen", "ucase", "lcase",
-    "encode_for_uri", "contains", "strstarts", "strends", "strbefore", "strafter",
-    "year", "month", "day", "hours", "minutes", "seconds", "timezone", "tz",
-    "now", "uuid", "struuid", "md5", "sha1", "sha256", "sha384", "sha512",
-    "coalesce", "if", "sameTerm", "isIRI", "isURI", "isBlank", "isLiteral",
-    "isNumeric", "regex", "replace", "exists", "not exists", "count", "sum",
-    "min", "max", "avg", "sample", "group_concat"
+    "str",
+    "lang",
+    "langmatches",
+    "datatype",
+    "bound",
+    "iri",
+    "uri",
+    "bnode",
+    "rand",
+    "abs",
+    "ceil",
+    "floor",
+    "round",
+    "concat",
+    "strlen",
+    "ucase",
+    "lcase",
+    "encode_for_uri",
+    "contains",
+    "strstarts",
+    "strends",
+    "strbefore",
+    "strafter",
+    "year",
+    "month",
+    "day",
+    "hours",
+    "minutes",
+    "seconds",
+    "timezone",
+    "tz",
+    "now",
+    "uuid",
+    "struuid",
+    "md5",
+    "sha1",
+    "sha256",
+    "sha384",
+    "sha512",
+    "coalesce",
+    "if",
+    "sameTerm",
+    "isIRI",
+    "isURI",
+    "isBlank",
+    "isLiteral",
+    "isNumeric",
+    "regex",
+    "replace",
+    "exists",
+    "not exists",
+    "count",
+    "sum",
+    "min",
+    "max",
+    "avg",
+    "sample",
+    "group_concat",
 }
 
 
 class Severity(Enum):
     """Issue severity levels."""
+
     ERROR = "error"
     WARNING = "warning"
     INFO = "info"
@@ -67,6 +118,7 @@ class Severity(Enum):
 @dataclass
 class LintIssue:
     """Represents a lint issue in a SPARQL query."""
+
     severity: Severity
     line: int
     column: int
@@ -90,13 +142,9 @@ class SPARQLLinter:
         self.issues = []
 
         if not query.strip():
-            self.issues.append(LintIssue(
-                severity=Severity.ERROR,
-                line=1,
-                column=1,
-                message="Empty query",
-                rule="empty-query"
-            ))
+            self.issues.append(
+                LintIssue(severity=Severity.ERROR, line=1, column=1, message="Empty query", rule="empty-query")
+            )
             return self.issues
 
         # Run all checks
@@ -118,40 +166,44 @@ class SPARQLLinter:
         open_braces = 0
         for i, line in enumerate(lines, 1):
             # Ignore braces in strings
-            line_no_strings = re.sub(r'"[^"]*"', '', line)
-            line_no_strings = re.sub(r"'[^']*'", '', line_no_strings)
+            line_no_strings = re.sub(r'"[^"]*"', "", line)
+            line_no_strings = re.sub(r"'[^']*'", "", line_no_strings)
             open_braces += line_no_strings.count("{") - line_no_strings.count("}")
 
         if open_braces > 0:
-            self.issues.append(LintIssue(
-                severity=Severity.ERROR,
-                line=len(lines),
-                column=1,
-                message=f"Unclosed braces: {open_braces} opening brace(s) without closing",
-                rule="unclosed-braces"
-            ))
+            self.issues.append(
+                LintIssue(
+                    severity=Severity.ERROR,
+                    line=len(lines),
+                    column=1,
+                    message=f"Unclosed braces: {open_braces} opening brace(s) without closing",
+                    rule="unclosed-braces",
+                )
+            )
         elif open_braces < 0:
-            self.issues.append(LintIssue(
-                severity=Severity.ERROR,
-                line=len(lines),
-                column=1,
-                message=f"Extra closing braces: {-open_braces} extra closing brace(s)",
-                rule="extra-braces"
-            ))
+            self.issues.append(
+                LintIssue(
+                    severity=Severity.ERROR,
+                    line=len(lines),
+                    column=1,
+                    message=f"Extra closing braces: {-open_braces} extra closing brace(s)",
+                    rule="extra-braces",
+                )
+            )
 
         # Check for query type keyword
         query_upper = query.upper()
-        has_query_type = any(kw in query_upper for kw in [
-            "SELECT", "CONSTRUCT", "ASK", "DESCRIBE", "INSERT", "DELETE"
-        ])
+        has_query_type = any(kw in query_upper for kw in ["SELECT", "CONSTRUCT", "ASK", "DESCRIBE", "INSERT", "DELETE"])
         if not has_query_type:
-            self.issues.append(LintIssue(
-                severity=Severity.ERROR,
-                line=1,
-                column=1,
-                message="Query must start with SELECT, CONSTRUCT, ASK, DESCRIBE, INSERT, or DELETE",
-                rule="missing-query-type"
-            ))
+            self.issues.append(
+                LintIssue(
+                    severity=Severity.ERROR,
+                    line=1,
+                    column=1,
+                    message="Query must start with SELECT, CONSTRUCT, ASK, DESCRIBE, INSERT, or DELETE",
+                    rule="missing-query-type",
+                )
+            )
 
         # Check WHERE clause for SELECT/CONSTRUCT/DESCRIBE
         if "SELECT" in query_upper or "CONSTRUCT" in query_upper or "DESCRIBE" in query_upper:
@@ -159,13 +211,15 @@ class SPARQLLinter:
                 # Some queries use implicit WHERE
                 pass
             elif "WHERE" not in query_upper and "{" not in query:
-                self.issues.append(LintIssue(
-                    severity=Severity.ERROR,
-                    line=1,
-                    column=1,
-                    message="SELECT/CONSTRUCT/DESCRIBE queries require a WHERE clause or pattern",
-                    rule="missing-where"
-                ))
+                self.issues.append(
+                    LintIssue(
+                        severity=Severity.ERROR,
+                        line=1,
+                        column=1,
+                        message="SELECT/CONSTRUCT/DESCRIBE queries require a WHERE clause or pattern",
+                        rule="missing-where",
+                    )
+                )
 
     def _check_prefixes(self, query: str) -> None:
         """Check for undefined prefixes."""
@@ -193,13 +247,15 @@ class SPARQLLinter:
             for match in used_prefix_pattern.finditer(line):
                 prefix = match.group(1).lower()
                 if prefix not in all_known:
-                    self.issues.append(LintIssue(
-                        severity=Severity.ERROR,
-                        line=i,
-                        column=match.start() + 1,
-                        message=f"Unknown prefix '{prefix}:'",
-                        rule="unknown-prefix"
-                    ))
+                    self.issues.append(
+                        LintIssue(
+                            severity=Severity.ERROR,
+                            line=i,
+                            column=match.start() + 1,
+                            message=f"Unknown prefix '{prefix}:'",
+                            rule="unknown-prefix",
+                        )
+                    )
 
     def _check_select_star(self, query: str) -> None:
         """Check for SELECT * usage."""
@@ -210,13 +266,15 @@ class SPARQLLinter:
         for i, line in enumerate(lines, 1):
             match = select_star_pattern.search(line)
             if match:
-                self.issues.append(LintIssue(
-                    severity=Severity.INFO,
-                    line=i,
-                    column=match.start() + 1,
-                    message="Consider using explicit variables instead of SELECT *",
-                    rule="select-star"
-                ))
+                self.issues.append(
+                    LintIssue(
+                        severity=Severity.INFO,
+                        line=i,
+                        column=match.start() + 1,
+                        message="Consider using explicit variables instead of SELECT *",
+                        rule="select-star",
+                    )
+                )
 
     def _check_limit(self, query: str) -> None:
         """Check for missing LIMIT on potentially expensive queries."""
@@ -237,13 +295,15 @@ class SPARQLLinter:
 
         # Warn about missing LIMIT
         lines = query.split("\n")
-        self.issues.append(LintIssue(
-            severity=Severity.WARNING,
-            line=len(lines),
-            column=1,
-            message="Consider adding LIMIT to prevent expensive full-table scans",
-            rule="missing-limit"
-        ))
+        self.issues.append(
+            LintIssue(
+                severity=Severity.WARNING,
+                line=len(lines),
+                column=1,
+                message="Consider adding LIMIT to prevent expensive full-table scans",
+                rule="missing-limit",
+            )
+        )
 
     def _check_variables(self, query: str) -> None:
         """Check for variable usage issues."""
@@ -274,13 +334,15 @@ class SPARQLLinter:
                         # Find line with this variable
                         for i, line in enumerate(lines, 1):
                             if f"?{var}" in line and "SELECT" in line.upper():
-                                self.issues.append(LintIssue(
-                                    severity=Severity.WARNING,
-                                    line=i,
-                                    column=line.find(f"?{var}") + 1,
-                                    message=f"Variable ?{var} in SELECT is not bound in WHERE clause",
-                                    rule="unbound-variable"
-                                ))
+                                self.issues.append(
+                                    LintIssue(
+                                        severity=Severity.WARNING,
+                                        line=i,
+                                        column=line.find(f"?{var}") + 1,
+                                        message=f"Variable ?{var} in SELECT is not bound in WHERE clause",
+                                        rule="unbound-variable",
+                                    )
+                                )
                                 break
 
     def _check_filters(self, query: str) -> None:
@@ -295,13 +357,15 @@ class SPARQLLinter:
             if match:
                 # Check if 'i' flag is used
                 if "'i'" not in line.lower() and '"i"' not in line.lower():
-                    self.issues.append(LintIssue(
-                        severity=Severity.INFO,
-                        line=i,
-                        column=match.start() + 1,
-                        message="REGEX without case-insensitive flag may miss matches",
-                        rule="regex-no-flag"
-                    ))
+                    self.issues.append(
+                        LintIssue(
+                            severity=Severity.INFO,
+                            line=i,
+                            column=match.start() + 1,
+                            message="REGEX without case-insensitive flag may miss matches",
+                            rule="regex-no-flag",
+                        )
+                    )
 
         # Check for FILTER NOT EXISTS pattern (with or without parentheses)
         not_exists_pattern = re.compile(r"FILTER\s*(?:\(\s*)?NOT\s+EXISTS", re.IGNORECASE)
@@ -309,13 +373,15 @@ class SPARQLLinter:
         for i, line in enumerate(lines, 1):
             match = not_exists_pattern.search(line)
             if match:
-                self.issues.append(LintIssue(
-                    severity=Severity.INFO,
-                    line=i,
-                    column=match.start() + 1,
-                    message="FILTER NOT EXISTS can be expensive; consider MINUS if applicable",
-                    rule="filter-not-exists"
-                ))
+                self.issues.append(
+                    LintIssue(
+                        severity=Severity.INFO,
+                        line=i,
+                        column=match.start() + 1,
+                        message="FILTER NOT EXISTS can be expensive; consider MINUS if applicable",
+                        rule="filter-not-exists",
+                    )
+                )
 
     def _check_optional_patterns(self, query: str) -> None:
         """Check for nested OPTIONAL patterns."""
@@ -336,13 +402,15 @@ class SPARQLLinter:
                 max_depth = optional_depth
 
             if optional_depth > 2:
-                self.issues.append(LintIssue(
-                    severity=Severity.WARNING,
-                    line=i,
-                    column=1,
-                    message=f"Deeply nested OPTIONAL (depth {optional_depth}) can be slow",
-                    rule="nested-optional"
-                ))
+                self.issues.append(
+                    LintIssue(
+                        severity=Severity.WARNING,
+                        line=i,
+                        column=1,
+                        message=f"Deeply nested OPTIONAL (depth {optional_depth}) can be slow",
+                        rule="nested-optional",
+                    )
+                )
 
 
 def lint_query(query: str, known_prefixes: Optional[dict] = None) -> List[LintIssue]:
@@ -395,14 +463,9 @@ def main():
     # Output results
     if args.json:
         import json
+
         output = [
-            {
-                "severity": i.severity.value,
-                "line": i.line,
-                "column": i.column,
-                "message": i.message,
-                "rule": i.rule
-            }
+            {"severity": i.severity.value, "line": i.line, "column": i.column, "message": i.message, "rule": i.rule}
             for i in issues
         ]
         print(json.dumps(output, indent=2))

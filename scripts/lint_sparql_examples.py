@@ -24,11 +24,11 @@ def extract_sparql_blocks(content: str) -> List[Tuple[int, str]]:
     """
     blocks = []
     # Match ```sparql ... ``` blocks
-    pattern = re.compile(r'```sparql\s*\n(.*?)```', re.DOTALL | re.IGNORECASE)
+    pattern = re.compile(r"```sparql\s*\n(.*?)```", re.DOTALL | re.IGNORECASE)
 
     for match in pattern.finditer(content):
         # Calculate line number
-        line_num = content[:match.start()].count('\n') + 1
+        line_num = content[: match.start()].count("\n") + 1
         query = match.group(1).strip()
         if query:
             blocks.append((line_num, query))
@@ -44,7 +44,7 @@ def lint_file(filepath: Path) -> List[Tuple[int, str, List[LintIssue]]]:
     results = []
 
     try:
-        content = filepath.read_text(encoding='utf-8')
+        content = filepath.read_text(encoding="utf-8")
     except Exception as e:
         print(f"Error reading {filepath}: {e}")
         return results
@@ -84,7 +84,7 @@ def main():
         results = lint_file(filepath)
 
         if args.verbose:
-            blocks = extract_sparql_blocks(filepath.read_text(encoding='utf-8'))
+            blocks = extract_sparql_blocks(filepath.read_text(encoding="utf-8"))
             if blocks:
                 print(f"  {filepath}: {len(blocks)} SPARQL block(s)")
 
@@ -99,7 +99,7 @@ def main():
                 elif issue.severity == Severity.WARNING:
                     total_warnings += 1
 
-        total_blocks += len(extract_sparql_blocks(filepath.read_text(encoding='utf-8')))
+        total_blocks += len(extract_sparql_blocks(filepath.read_text(encoding="utf-8")))
 
     # Print results
     print(f"\nSPARQL Documentation Linter")
@@ -119,7 +119,7 @@ def main():
             for line_num, query, issues in file_issues:
                 print(f"  Line {line_num}:")
                 # Show first line of query
-                first_line = query.split('\n')[0][:60]
+                first_line = query.split("\n")[0][:60]
                 print(f"    Query: {first_line}...")
                 for issue in issues:
                     icon = "❌" if issue.severity == Severity.ERROR else "⚠️"
