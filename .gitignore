@@ -12,3 +12,9 @@ exports/
 
 # Build tools (large binaries, rebuild from source if needed)
 tools/
+
+# Generated documentation (regenerate with build scripts)
+docs/
+
+# QUDT ontology files (too large, fetch externally if needed)
+qudt/
