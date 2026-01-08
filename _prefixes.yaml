@@ -53,6 +53,7 @@ exo: "https://exocortex.my/ontology/exo#"
 ems: "https://exocortex.my/ontology/ems#"
 exo-ui: "https://exocortex.my/ontology/exo-ui#"
 ems-ui: "https://exocortex.my/ontology/ems-ui#"
+pn: "https://exocortex.my/ontology/pn#"
 
 # QUDT (Quantities, Units, Dimensions, Types)
 qudt: "http://qudt.org/schema/qudt/"
