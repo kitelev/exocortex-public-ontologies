@@ -8,9 +8,9 @@ Quality assessment of ontology definitions.
 
 | Metric | Count | Percentage | Coverage |
 |--------|-------|------------|----------|
-| Total Classes | 1,582 | - | - |
-| Classes with label | 1,376 | 87.0% | ████████░░ |
-| Classes with comment | 1,361 | 86.0% | ████████░░ |
+| Total Classes | 1,583 | - | - |
+| Classes with label | 1,377 | 87.0% | ████████░░ |
+| Classes with comment | 1,362 | 86.0% | ████████░░ |
 | Total Properties | 2,625 | - | - |
 | Properties with label | 2,482 | 94.6% | █████████░ |
 | Properties with comment | 2,459 | 93.7% | █████████░ |
@@ -30,7 +30,7 @@ Quality assessment of ontology definitions.
 | doap | 🟢 A | 14 | 43 | 93% | 93% | 88% | 67% |
 | dolce | 🔴 D | 44 | 70 | 0% | 84% | 100% | 100% |
 | dul | 🟡 B | 92 | 118 | 79% | 75% | 96% | 93% |
-| exo-ui | 🟢 A | 16 | 0 | 100% | 100% | - | - |
+| exo-ui | 🟢 A | 17 | 0 | 100% | 100% | - | - |
 | foaf | 🟢 A | 13 | 62 | 100% | 100% | 89% | 89% |
 | geo | 🟢 A | 2 | 5 | 100% | 100% | 60% | 20% |
 | geosparql | 🔴 D | 6 | 54 | 0% | 0% | 100% | 87% |
@@ -71,26 +71,26 @@ Quality assessment of ontology definitions.
 
 ### as
 
-- ⚠️ `d8445621`: Class missing rdfs:label
-- ⚠️ `4edfcb9e`: Class missing rdfs:label
-- ⚠️ `1583faea`: Class missing rdfs:label
-- ⚠️ `ecac7e97`: Class missing rdfs:label
-- ⚠️ `6f5a992a`: Class missing rdfs:label
-- ⚠️ `a2645612`: Class missing rdfs:label
-- ⚠️ `b158946c`: Class missing rdfs:label
-- ⚠️ `2a2171fa`: Class missing rdfs:label
-- ⚠️ `7fab4898`: Class missing rdfs:label
-- ⚠️ `ac3f0388`: Class missing rdfs:label
-- ⚠️ `11e388fe`: Class missing rdfs:label
-- ⚠️ `0c2288fc`: Class missing rdfs:label
-- ⚠️ `5da60c63`: Class missing rdfs:label
-- ⚠️ `3c97862a`: Class missing rdfs:label
 - ⚠️ `d906d795`: Class missing rdfs:label
-- ⚠️ `a1fb6f8e`: Class missing rdfs:label
-- ⚠️ `16f99ad1`: Class missing rdfs:label
+- ⚠️ `52dbd1df`: Class missing rdfs:label
+- ⚠️ `1583faea`: Class missing rdfs:label
+- ⚠️ `8de931a5`: Class missing rdfs:label
+- ⚠️ `4edfcb9e`: Class missing rdfs:label
+- ⚠️ `ffe2bb9e`: Class missing rdfs:label
+- ⚠️ `1f753f63`: Class missing rdfs:label
+- ⚠️ `b9f53685`: Class missing rdfs:label
 - ⚠️ `d73c9eaa`: Class missing rdfs:label
-- ⚠️ `fe11726b`: Class missing rdfs:label
-- ⚠️ `01fb90c2`: Class missing rdfs:label
+- ⚠️ `11e388fe`: Class missing rdfs:label
+- ⚠️ `79fc9e6c`: Class missing rdfs:label
+- ⚠️ `dd5c9543`: Class missing rdfs:label
+- ⚠️ `6d7404a5`: Class missing rdfs:label
+- ⚠️ `c6b8fc39`: Class missing rdfs:label
+- ⚠️ `b1267ad9`: Class missing rdfs:label
+- ⚠️ `7fab4898`: Class missing rdfs:label
+- ⚠️ `50e31cbb`: Class missing rdfs:label
+- ⚠️ `a4da0fb1`: Class missing rdfs:label
+- ⚠️ `156b67a7`: Class missing rdfs:label
+- ⚠️ `cd02e552`: Class missing rdfs:label
 - ... and 84 more warnings
 
 ### dcat
@@ -103,105 +103,105 @@ Quality assessment of ontology definitions.
 
 ### dolce
 
-- ⚠️ `dolce:temporal-location_q`: Class missing rdfs:label
-- ⚠️ `dolce:physical-object`: Class missing rdfs:label
-- ⚠️ `dolce:spatio-temporal-region`: Class missing rdfs:label
-- ⚠️ `dolce:process`: Class missing rdfs:label
-- ⚠️ `dolce:space-region`: Class missing rdfs:label
-- ⚠️ `dolce:spatial-location_q`: Class missing rdfs:label
-- ⚠️ `dolce:non-physical-endurant`: Class missing rdfs:label
-- ⚠️ `dolce:proposition`: Class missing rdfs:label
-- ⚠️ `dolce:spatio-temporal-particular`: Class missing rdfs:label
-- ⚠️ `d6e4ceb3`: Class missing rdfs:label
-- ⚠️ `dolce:quality-space`: Class missing rdfs:label
-- ⚠️ `dolce:physical-quality`: Class missing rdfs:label
-- ⚠️ `dolce:state`: Class missing rdfs:label
-- ⚠️ `dolce:stative`: Class missing rdfs:label
-- ⚠️ `dolce:arbitrary-sum`: Class missing rdfs:label
 - ⚠️ `dolce:relevant-part`: Class missing rdfs:label
-- ⚠️ `d39682d2`: Class missing rdfs:label
 - ⚠️ `dolce:non-physical-object`: Class missing rdfs:label
+- ⚠️ `dolce:proposition`: Class missing rdfs:label
+- ⚠️ `5cf6f9c2`: Class missing rdfs:label
+- ⚠️ `dolce:abstract-quality`: Class missing rdfs:label
+- ⚠️ `dolce:dependent-place`: Class missing rdfs:label
+- ⚠️ `dolce:temporal-region`: Class missing rdfs:label
+- ⚠️ `dolce:quality`: Class missing rdfs:label
+- ⚠️ `dolce:feature`: Class missing rdfs:label
+- ⚠️ `dolce:temporal-quality`: Class missing rdfs:label
+- ⚠️ `dolce:perdurant`: Class missing rdfs:label
+- ⚠️ `5e1e4331`: Class missing rdfs:label
+- ⚠️ `dolce:temporal-location_q`: Class missing rdfs:label
+- ⚠️ `dolce:particular`: Class missing rdfs:label
+- ⚠️ `dolce:set`: Class missing rdfs:label
+- ⚠️ `dolce:physical-quality`: Class missing rdfs:label
+- ⚠️ `dolce:quality-space`: Class missing rdfs:label
 - ⚠️ `849f1493`: Class missing rdfs:label
-- ⚠️ `dolce:abstract-region`: Class missing rdfs:label
+- ⚠️ `dolce:non-physical-endurant`: Class missing rdfs:label
+- ⚠️ `dolce:state`: Class missing rdfs:label
 - ... and 94 more warnings
 
 ### dul
 
-- ⚠️ `be7d6220`: Class missing rdfs:label
-- ⚠️ `ebc7a9e0`: Class missing rdfs:label
-- ⚠️ `4559dd29`: Class missing rdfs:label
-- ⚠️ `bf820665`: Class missing rdfs:label
-- ⚠️ `dul:TimeIndexedRelation`: Class missing rdfs:label
-- ⚠️ `dul:DesignedSubstance`: Class missing rdfs:label
-- ⚠️ `5c528107`: Class missing rdfs:label
-- ⚠️ `2a489fda`: Class missing rdfs:label
-- ⚠️ `02519bf3`: Class missing rdfs:label
-- ⚠️ `8b1d430f`: Class missing rdfs:label
-- ⚠️ `79fad4cd`: Class missing rdfs:label
-- ⚠️ `dul:InformationEntity`: Class missing rdfs:label
+- ⚠️ `a2d449d0`: Class missing rdfs:label
 - ⚠️ `6c0e841c`: Class missing rdfs:label
+- ⚠️ `c1388d51`: Class missing rdfs:label
+- ⚠️ `dul:DesignedSubstance`: Class missing rdfs:label
+- ⚠️ `bf820665`: Class missing rdfs:label
+- ⚠️ `5c528107`: Class missing rdfs:label
+- ⚠️ `dul:TimeIndexedRelation`: Class missing rdfs:label
+- ⚠️ `79fad4cd`: Class missing rdfs:label
+- ⚠️ `ebc7a9e0`: Class missing rdfs:label
+- ⚠️ `dul:InformationEntity`: Class missing rdfs:label
+- ⚠️ `dul:SpatioTemporalRegion`: Class missing rdfs:label
+- ⚠️ `2a489fda`: Class missing rdfs:label
 - ⚠️ `b31df9c0`: Class missing rdfs:label
 - ⚠️ `688f28a5`: Class missing rdfs:label
 - ⚠️ `dul:ObjectAggregate`: Class missing rdfs:label
-- ⚠️ `c1388d51`: Class missing rdfs:label
-- ⚠️ `dul:SpatioTemporalRegion`: Class missing rdfs:label
-- ⚠️ `a2d449d0`: Class missing rdfs:label
-- ⚠️ `dul:hasInScope`: Property missing rdfs:label
+- ⚠️ `02519bf3`: Class missing rdfs:label
+- ⚠️ `be7d6220`: Class missing rdfs:label
+- ⚠️ `8b1d430f`: Class missing rdfs:label
+- ⚠️ `4559dd29`: Class missing rdfs:label
+- ⚠️ `dul:realizesSelfInformation`: Property missing rdfs:label
 - ... and 3 more warnings
 
 ### geosparql
 
-- ⚠️ `geosparql:Feature`: Class missing rdfs:label
 - ⚠️ `geosparql:GeometryCollection`: Class missing rdfs:label
-- ⚠️ `geosparql:SpatialObjectCollection`: Class missing rdfs:label
-- ⚠️ `geosparql:SpatialObject`: Class missing rdfs:label
-- ⚠️ `geosparql:FeatureCollection`: Class missing rdfs:label
+- ⚠️ `geosparql:Feature`: Class missing rdfs:label
 - ⚠️ `geosparql:Geometry`: Class missing rdfs:label
-- ⚠️ `geosparql:sfCrosses`: Property missing rdfs:label
-- ⚠️ `geosparql:rcc8po`: Property missing rdfs:label
-- ⚠️ `geosparql:rcc8tppi`: Property missing rdfs:label
-- ⚠️ `geosparql:isSimple`: Property missing rdfs:label
-- ⚠️ `geosparql:ehContains`: Property missing rdfs:label
-- ⚠️ `geosparql:hasMetricSpatialResolution`: Property missing rdfs:label
-- ⚠️ `geosparql:asGeoJSON`: Property missing rdfs:label
+- ⚠️ `geosparql:SpatialObject`: Class missing rdfs:label
+- ⚠️ `geosparql:SpatialObjectCollection`: Class missing rdfs:label
+- ⚠️ `geosparql:FeatureCollection`: Class missing rdfs:label
+- ⚠️ `geosparql:isEmpty`: Property missing rdfs:label
+- ⚠️ `geosparql:hasMetricLength`: Property missing rdfs:label
+- ⚠️ `geosparql:asDGGS`: Property missing rdfs:label
 - ⚠️ `geosparql:hasVolume`: Property missing rdfs:label
-- ⚠️ `geosparql:rcc8eq`: Property missing rdfs:label
-- ⚠️ `geosparql:ehEquals`: Property missing rdfs:label
+- ⚠️ `geosparql:hasSpatialResolution`: Property missing rdfs:label
 - ⚠️ `geosparql:hasArea`: Property missing rdfs:label
 - ⚠️ `geosparql:hasSize`: Property missing rdfs:label
-- ⚠️ `geosparql:defaultGeometry`: Property missing rdfs:label
-- ⚠️ `geosparql:ehInside`: Property missing rdfs:label
+- ⚠️ `geosparql:rcc8ntppi`: Property missing rdfs:label
+- ⚠️ `geosparql:hasMetricVolume`: Property missing rdfs:label
+- ⚠️ `geosparql:sfOverlaps`: Property missing rdfs:label
+- ⚠️ `geosparql:rcc8po`: Property missing rdfs:label
+- ⚠️ `geosparql:ehCoveredBy`: Property missing rdfs:label
+- ⚠️ `geosparql:sfIntersects`: Property missing rdfs:label
+- ⚠️ `geosparql:asKML`: Property missing rdfs:label
 - ... and 40 more warnings
 
 ### org
 
+- ⚠️ `1e931111`: Class missing rdfs:label
 - ⚠️ `2c962624`: Class missing rdfs:label
 - ⚠️ `7874a001`: Class missing rdfs:label
-- ⚠️ `1e931111`: Class missing rdfs:label
 - ⚠️ `a3331a7e`: Class missing rdfs:label
 
 ### prov
 
-- ⚠️ `e675e13f`: Class missing rdfs:label
-- ⚠️ `efdc0db0`: Class missing rdfs:label
 - ⚠️ `5df0710c`: Class missing rdfs:label
-- ⚠️ `16f92030`: Class missing rdfs:label
 - ⚠️ `08e29461`: Class missing rdfs:label
+- ⚠️ `16f92030`: Class missing rdfs:label
 - ⚠️ `2e97a557`: Class missing rdfs:label
-- ⚠️ `54ca8a65`: Class missing rdfs:label
+- ⚠️ `e675e13f`: Class missing rdfs:label
 - ⚠️ `8231af0e`: Class missing rdfs:label
-- ⚠️ `prov:unqualifiedForm`: Property missing rdfs:label
-- ⚠️ `prov:editorsDefinition`: Property missing rdfs:label
-- ⚠️ `prov:order`: Property missing rdfs:label
-- ⚠️ `prov:definition`: Property missing rdfs:label
-- ⚠️ `prov:n`: Property missing rdfs:label
-- ⚠️ `prov:constraints`: Property missing rdfs:label
+- ⚠️ `efdc0db0`: Class missing rdfs:label
+- ⚠️ `54ca8a65`: Class missing rdfs:label
+- ⚠️ `prov:qualifiedForm`: Property missing rdfs:label
 - ⚠️ `prov:todo`: Property missing rdfs:label
 - ⚠️ `prov:sharesDefinitionWith`: Property missing rdfs:label
-- ⚠️ `prov:component`: Property missing rdfs:label
+- ⚠️ `prov:order`: Property missing rdfs:label
 - ⚠️ `prov:aq`: Property missing rdfs:label
+- ⚠️ `prov:editorialNote`: Property missing rdfs:label
+- ⚠️ `prov:constraints`: Property missing rdfs:label
+- ⚠️ `prov:component`: Property missing rdfs:label
 - ⚠️ `prov:dm`: Property missing rdfs:label
-- ⚠️ `prov:category`: Property missing rdfs:label
+- ⚠️ `prov:definition`: Property missing rdfs:label
+- ⚠️ `prov:inverse`: Property missing rdfs:label
+- ⚠️ `prov:editorsDefinition`: Property missing rdfs:label
 - ... and 3 more warnings
 
 ### qudt
@@ -215,25 +215,25 @@ Quality assessment of ontology definitions.
 
 ### time
 
-- ⚠️ `dec3c87c`: Class missing rdfs:label
 - ⚠️ `ec3bf17f`: Class missing rdfs:label
 - ⚠️ `a308e1b7`: Class missing rdfs:label
+- ⚠️ `dec3c87c`: Class missing rdfs:label
 
 ### vcard
 
-- ⚠️ `bd3511ac`: Class missing rdfs:label
 - ⚠️ `e6fb0d42`: Class missing rdfs:label
-- ⚠️ `1e8f15a8`: Class missing rdfs:label
-- ⚠️ `92b55bff`: Class missing rdfs:label
+- ⚠️ `27fdff12`: Class missing rdfs:label
+- ⚠️ `0fe2bd43`: Class missing rdfs:label
 - ⚠️ `d1db992f`: Class missing rdfs:label
+- ⚠️ `92b55bff`: Class missing rdfs:label
+- ⚠️ `afabe2fd`: Class missing rdfs:label
+- ⚠️ `27a61271`: Class missing rdfs:label
+- ⚠️ `9de50819`: Class missing rdfs:label
+- ⚠️ `bd3511ac`: Class missing rdfs:label
+- ⚠️ `1e8f15a8`: Class missing rdfs:label
 - ⚠️ `9882b74c`: Class missing rdfs:label
 - ⚠️ `9d9c42b2`: Class missing rdfs:label
 - ⚠️ `5ca151b2`: Class missing rdfs:label
-- ⚠️ `afabe2fd`: Class missing rdfs:label
-- ⚠️ `9de50819`: Class missing rdfs:label
-- ⚠️ `0fe2bd43`: Class missing rdfs:label
-- ⚠️ `27fdff12`: Class missing rdfs:label
-- ⚠️ `27a61271`: Class missing rdfs:label
 
 ## Quality Grade
 

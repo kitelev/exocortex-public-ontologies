@@ -2,7 +2,7 @@
 
 Complete class hierarchy across all ontologies.
 
-*Generated automatically. Total classes: 1424*
+*Generated automatically. Total classes: 1425*
 
 ## adms
 
@@ -256,6 +256,7 @@ Complete class hierarchy across all ontologies.
 - `exo-ui:CustomHandlerAction`
 - `exo-ui:ExecuteSPARQLAction`
 - `exo-ui:Layout`
+- `exo-ui:LayoutBlock`
 - `exo-ui:Modal`
 - `exo-ui:NavigateAction`
 - `exo-ui:ShowModalAction`
