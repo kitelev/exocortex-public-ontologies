@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[8e81022e-3de8-5275-8af3-e719cd19a9e4]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"kąt bryłowy\"@pl"
-aliases:
-  - "quantitykind:SolidAngle rdfs:label \"kąt bryłowy\"@pl"
----

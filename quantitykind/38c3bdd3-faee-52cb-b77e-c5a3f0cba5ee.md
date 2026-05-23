@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[40241fdb-8991-519d-8a60-a65f3ebbfbf9]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[f1df622a-89db-5db2-ab2d-545ace0eb78a]]"
-aliases:
-  - "quantitykind:ElectronMeanFreePath 7c346f09... f1df622a..."
----

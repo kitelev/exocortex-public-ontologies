@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[c8f95c08-13b4-595f-b8eb-6ddf19eea14e]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"repetency\"@en-US"
-aliases:
-  - "quantitykind:Repetency rdfs:label \"repetency\"@en-US"
----

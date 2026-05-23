@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[aa450660-6bb1-5c7a-a8c3-9c4193268d33]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[49f694db-a7c7-5020-9154-7da69ca96536]]"
-aliases:
-  - "quantitykind:ParticlePositionVector 7c346f09... 49f694db..."
----

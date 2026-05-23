@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[ce84924c-1610-5636-9545-2c24c05a8066]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[73686b06-b179-54cd-94cd-6073b77dd272]]"
-aliases:
-  - "quantitykind:NozzleThroatPressure 7c346f09... 73686b06..."
----

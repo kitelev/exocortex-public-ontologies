@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[37e3cadf-092a-5b5f-937f-ee1a6fadf7c2]]"
-predicate: "[[61901538-e888-5bc3-a3f4-16b848dd13e0]]"
-object: "\"http://en.wikipedia.org/wiki/Angular_frequency\"^^[[762b4689-bb72-5ab1-82fb-fcfc4504ee49]]"
-aliases:
-  - "quantitykind:AngularFrequency 61901538... \"http://en.wikipedia.org/wiki/..."
----

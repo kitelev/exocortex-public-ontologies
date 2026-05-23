@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[e9368079-70be-5862-bd08-1da709fe3a53]]"
-predicate: "[[bbaabde4-cff0-5472-905e-34de0eef6a43]]"
-object: "\"$\\chi$\"^^[[ce59db63-4c64-5bd2-9f95-1e220f8b4891]]"
-aliases:
-  - "quantitykind:Compressibility bbaabde4... \"$\\chi$\"^^[[ce59db63-4c64-5bd2..."
----

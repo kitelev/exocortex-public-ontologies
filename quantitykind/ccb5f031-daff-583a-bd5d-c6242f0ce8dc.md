@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[05bfe78b-370e-5338-9241-77e2aaeb648f]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[40aee268-cfd0-5663-8db7-5aca748bb5a9]]"
-aliases:
-  - "quantitykind:ElectricChargePerMass 7c346f09... 40aee268..."
----

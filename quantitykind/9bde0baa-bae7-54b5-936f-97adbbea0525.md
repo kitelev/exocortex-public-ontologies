@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[494f4293-630a-5f24-971b-ae03815811d9]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[3f43de46-68ee-5c4a-9a4c-5a16d646a199]]"
-aliases:
-  - "quantitykind:WebTimeAveragePressure 7c346f09... 3f43de46..."
----

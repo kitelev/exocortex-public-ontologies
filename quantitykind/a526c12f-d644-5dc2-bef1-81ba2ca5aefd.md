@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[31844323-c0ca-59e4-bdf5-f433adfddba3]]"
-predicate: "[[ec554dd3-a425-5dc0-b731-666ba293ce0b]]"
-object: "[[4683511b-3866-59fb-870a-7a60bd4c968e]]"
-aliases:
-  - "quantitykind:SpecificHeatCapacityAtConstantVolume rdfs:seeAlso quantitykind:SpecificHeatCapacity"
----

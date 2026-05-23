@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[b179c0d8-a10a-5555-9476-bca17bd58975]]"
-predicate: "[[4d5c4800-f1d8-5a6b-aee4-d4a25f9f0045]]"
-object: "[[3cf30d36-46ce-5548-a646-68db12302c33]]"
-aliases:
-  - "dul:EventType owl:disjointWith dul:Role"
----

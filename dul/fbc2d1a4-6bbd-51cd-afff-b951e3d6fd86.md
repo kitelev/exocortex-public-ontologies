@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[4e66f54a-48e5-5008-bd65-bd38fe4d7a0e]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"ha valore\"@it"
-aliases:
-  - "dul:hasDataValue rdfs:label \"ha valore\"@it"
----

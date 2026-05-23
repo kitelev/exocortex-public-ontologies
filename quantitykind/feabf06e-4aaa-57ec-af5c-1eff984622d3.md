@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[a3429475-d4cf-5161-8398-889297fb639c]]"
-predicate: "[[4b738bbd-09f4-5fb2-acce-047fa4177965]]"
-object: "\"The moment of inertia, also called mass moment of inertia, rotational inertia, polar moment of inertia of mass, or the angular mass is a property of a distribution of mass in space that measures its resistance to rotational acceleration about an axis.\"^^[[ce59db63-4c64-5bd2-9f95-1e220f8b4891]]"
-aliases:
-  - "quantitykind:SecondAxialMomentOfArea dcterms:description \"The moment of inertia, also c..."
----

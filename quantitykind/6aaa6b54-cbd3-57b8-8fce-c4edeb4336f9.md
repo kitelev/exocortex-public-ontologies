@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[d6ff8d52-9654-5901-bbba-f62a09e3ef71]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"moc akustyczna\"@pl"
-aliases:
-  - "quantitykind:SoundPower rdfs:label \"moc akustyczna\"@pl"
----

@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[9bdc6a26-faf3-5216-95a1-2a164c30b05e]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"Abstract\"@en"
-aliases:
-  - "dul:Abstract rdfs:label \"Abstract\"@en"
----

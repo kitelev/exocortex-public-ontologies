@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[d5027d2f-50f2-5fab-ba01-34284da2a328]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[6088cd1a-185e-5d31-b1d7-29ad0a92fb6f]]"
-aliases:
-  - "quantitykind:SpecificPower 7c346f09... 6088cd1a..."
----

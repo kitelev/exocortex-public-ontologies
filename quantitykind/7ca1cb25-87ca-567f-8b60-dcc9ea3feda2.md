@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[0ff24c5c-eb77-50af-bbf0-f61903ebf037]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[35533ab7-c2ad-515d-a254-1bb163cd62b4]]"
-aliases:
-  - "quantitykind:AreicHeatFlowRate 7c346f09... 35533ab7..."
----

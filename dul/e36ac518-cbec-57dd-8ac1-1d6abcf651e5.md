@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[77ff1492-e142-5d56-8ed5-1f4577c39ff2]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"è un concetto espresso da\"@it"
-aliases:
-  - "dul:isConceptExpressedBy rdfs:label \"è un concetto espresso da\"@it"
----

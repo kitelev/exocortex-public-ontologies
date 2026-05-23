@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[d7fc70ad-ac85-5b69-bef9-72ec65bb3c4c]]"
-predicate: "[[73b69787-81ea-563e-8e09-9c84cad4cf2b|a]]"
-object: "[[07dc491d-843b-5262-85bb-e35a92e2e4d6]]"
-aliases:
-  - "_:genid-77a9726f a owl:Restriction"
----

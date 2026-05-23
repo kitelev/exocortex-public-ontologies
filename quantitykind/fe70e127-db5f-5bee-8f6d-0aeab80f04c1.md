@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[0a8623c7-e5d7-5172-9608-396cf3620487]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[203cd6c3-e616-540c-b3c6-dad0ff389725]]"
-aliases:
-  - "quantitykind:FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS 7c346f09... 203cd6c3..."
----

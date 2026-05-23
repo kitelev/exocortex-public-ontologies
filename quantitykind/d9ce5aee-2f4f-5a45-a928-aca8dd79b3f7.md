@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[cf2655aa-ed21-511e-b10d-5aae2dbe8176]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"المحاثة (التحريض)\"@ar"
-aliases:
-  - "quantitykind:Inductance rdfs:label \"المحاثة (التحريض)\"@ar"
----

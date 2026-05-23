@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[b9abf911-853e-54c8-8c7c-d4e361c2b5a9]]"
-predicate: "[[3870a83d-7036-5d74-8956-8b0a88e2f286]]"
-object: "[[a40e45bb-6252-5641-a4b8-a2594201a1f7]]"
-aliases:
-  - "dolce:specifically-constantly-dependent-on owl:inverseOf dolce:specific-constant-dependent"
----

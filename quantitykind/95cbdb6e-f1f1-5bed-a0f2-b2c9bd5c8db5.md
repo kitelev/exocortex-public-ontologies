@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[d33e5fe8-fcc4-5c0c-a8dc-13e2eb220fff]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[b8d75e83-16d2-5a20-b455-09c5fb17e736]]"
-aliases:
-  - "quantitykind:MaximumExpectedOperatingPressure 7c346f09... b8d75e83..."
----

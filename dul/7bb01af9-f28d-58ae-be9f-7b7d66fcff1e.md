@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[e472d865-4d97-541f-9a0a-e98871d4e28e]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"is action included in\"@en"
-aliases:
-  - "dul:isActionIncludedIn rdfs:label \"is action included in\"@en"
----

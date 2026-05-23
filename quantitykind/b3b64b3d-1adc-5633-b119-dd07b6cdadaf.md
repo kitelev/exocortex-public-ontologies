@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[2de71aaf-afbf-56a7-9a80-b7e10fdae572]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[da255533-fa61-5a42-b08d-db7aaa8236f0]]"
-aliases:
-  - "quantitykind:MassOfTheEarth 7c346f09... da255533..."
----

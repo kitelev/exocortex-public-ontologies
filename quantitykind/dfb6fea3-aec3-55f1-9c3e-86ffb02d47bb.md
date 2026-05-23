@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[a2d3549b-e2e6-5556-8f40-37b97097df7b]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[a002ca4d-bb71-5de4-abb4-c9e6ff9b7cd7]]"
-aliases:
-  - "quantitykind:ElectronRadius 7c346f09... a002ca4d..."
----

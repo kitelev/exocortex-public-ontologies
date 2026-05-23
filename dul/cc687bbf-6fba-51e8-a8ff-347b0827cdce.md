@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[c33c7273-5ba6-5dce-9a88-fdd1a836a4e4]]"
-predicate: "[[0113b13b-fb4a-551d-ba7b-d224c026e80e]]"
-object: "[[9378447d-51a9-5052-8047-2d7f58cfdc4e]]"
-aliases:
-  - "_:genid-d8de7b34 owl:onProperty dul:hasPart"
----

@@ -1,6 +1,0 @@
----
-metadata: anchor
-uri: "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#total-constant-participant-in"
-aliases:
-  - "dolce:total-constant-participant-in"
----

@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[f874bcc1-81a8-5c9e-a3c8-57aba15ed86a]]"
-predicate: "[[d0e9e696-d3f2-5966-a62f-d8358cbde741]]"
-object: "\"elektromotorische Kraft\"@de"
-aliases:
-  - "quantitykind:ElectromotiveForce rdfs:label \"elektromotorische Kraft\"@de"
----

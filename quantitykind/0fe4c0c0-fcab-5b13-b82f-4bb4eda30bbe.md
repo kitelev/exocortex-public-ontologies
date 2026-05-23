@@ -1,8 +1,0 @@
----
-metadata: statement
-subject: "[[30c234bc-e86e-5500-98b8-f09d24582c3f]]"
-predicate: "[[7c346f09-f4c3-5eba-92d0-0d7ab2fbfa99]]"
-object: "[[33eb0aa7-13bd-5ad1-8f8b-64ff5fcbf1b7]]"
-aliases:
-  - "quantitykind:ExhaustStreamPower 7c346f09... 33eb0aa7..."
----
